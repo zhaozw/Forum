@@ -172,10 +172,6 @@
 
 
 -(ShowThreadPage *)parseShowThreadWithHtml:(NSString *)html{
-
-    // 修改引用帖子的样式
-    html = [html stringByReplacingOccurrencesOfString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\">引用:</div>" withString:@""];
-    
     // 查找设置了字体的回帖
     NSArray * fontSetString = [html arrayWithRegulat:@"<font size=\"\\d+\">"];
     
@@ -198,30 +194,6 @@
         fuxkHttp = [fuxkHttp stringByReplacingOccurrencesOfString:http withString:patterned];
         
     }
-    
-    // 单纯的引用
-    fuxkHttp = [fuxkHttp stringByReplacingOccurrencesOfString:@"<div id=\"wrap\">" withString:@"<div id=\"wrap\"><br />"];
-    
-    // 引用回帖--->
-    NSString * quoteTable = @"<td class=\"alt2\" style=\"border:1px inset\">\r\n\t\t\t\r\n\t\t\t\t<div>\r\n\t\t\t\t\t.*: <strong>.*</strong>\r\n\t\t\t\t\t<a href=\".*\" rel=\"nofollow\"><img class=\"inlineimg\" src=\".*\" border=\"0\" alt=\".*\" /></a>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div>\r\n\t\t\t<!-- 修改防止撑破表格 -->\r\n\t\t\t<div class=\"tb\">\r\n\t\t\t<div id=\"wrap\">";
-    NSArray * quoteArry = [fuxkHttp arrayWithRegulat:quoteTable];
-
-    for (NSString * quote in quoteArry) {
-        NSString *author = [quote stringWithRegular:@"<strong>.*</strong>"];
-        author = [NSString stringWithFormat:@"<td>\r\n\t\t\t<div>\r\n\t\t\t<br /><strong>@</strong>%@<strong>:</strong>", author];
-        
-        fuxkHttp = [fuxkHttp stringByReplacingOccurrencesOfString:quote withString:author];
-    }
-    
-    
-    NSString * quoteBottom = @"</div></div>\r\n\t\t\t<!--/ 修改防止撑破表格 -->\t\r\n\t\t\t</div>";
-    NSArray * quoteBottomArray = [fuxkHttp arrayWithRegulat:quoteBottom];
-    for (NSString * quote in quoteBottomArray) {
-        fuxkHttp = [fuxkHttp stringByReplacingOccurrencesOfString:quote withString:@"\r\n\t\t\t<br /></div>"];
-    }
-    
-    fuxkHttp = [fuxkHttp stringByReplacingOccurrencesOfString:@"</div></div>\r\n\t\t\t<!--/ 修改防止撑破表格 -->" withString:@"<br /></div></div>\r\n\t\t\t<!--/ 修改防止撑破表格 -->"];
-    // <--- 引用回帖结束
     
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:fuxkHttp error:nil];
@@ -304,79 +276,7 @@
         IGXMLNode *message = [postDocument queryWithXPath:xPathMessage].firstObject;
         
         ccfpost.postContent = message.html;
-        
-        
-        
-        
-        
-        
-        NSString * pattern = @"<img %@ width=\"300\" height=\"300\" />";
-        
-        
-        NSString * imageByUrlReg = @"<img src=\"http.*\" border=\"0\" alt=\"\">";
-        NSRegularExpression *imageByUrlRegx = [NSRegularExpression regularExpressionWithPattern:imageByUrlReg options:NSRegularExpressionCaseInsensitive error:nil];
-        
-        
-        NSString * needFixHtml = ccfpost.postContent;
-        
-        NSArray * imageByUrlresult = [imageByUrlRegx matchesInString:needFixHtml options:0 range:NSMakeRange(0, needFixHtml.length)];
-        for (NSTextCheckingResult *tmpresult in imageByUrlresult) {
-            
-            NSString * image = [needFixHtml substringWithRange:tmpresult.range];
-            NSString * src = [image stringWithRegular:@"src=\"\\S*\""];
-            NSString *fixedImage = [NSString stringWithFormat:pattern, src];
-            ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:image withString:fixedImage];
-        }
-        
-        
-        
-        
-        NSString * reg = @"<img src=\"http.*\" border=\"0\" alt=\"(\\W*)?(.*)?(\n)?(\\W*)?(.*)?(\n)?(\\W*)?(.*)?\"( style=\"margin: 2px\")?>";
-        
-        //NSString * reg = @"<img src=\"http.*\" border=\"0\" alt=\"\">";
-        
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:reg options:NSRegularExpressionCaseInsensitive error:nil];
-        // 添加的图片
-        NSString * html = message.html;
-        NSArray * result = [regex matchesInString:html options:0 range:NSMakeRange(0, html.length)];
-        for (NSTextCheckingResult *tmpresult in result) {
-     
-                NSString * image = [html substringWithRange:tmpresult.range];
-                NSString * src = [image stringWithRegular:@"src=\"\\S*\""];
-                NSString *fixedImage = [NSString stringWithFormat:pattern, src];
-                ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:image withString:fixedImage];
-        }
    
-        
-        
-        //ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:@"border=\"0\" alt=\"\">" withString:@"width=\"300\" height=\"300\">"];
-
-        // 上传的附件
-        NSString *xPathAttImage = [NSString stringWithFormat:@"//*[@id='td_post_%@']/div[2]/fieldset/div", postId];
-        IGXMLNode *attImage = [postDocument queryWithXPath:xPathAttImage].firstObject;
-
-        
-        if (attImage != nil) {
-
-            NSString * allImage = @"";
-            
-            
-            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<img class=\"attach\" src=\"attachment.php\\?attachmentid=(\\d+)" options:NSRegularExpressionCaseInsensitive error:nil];
-            
-            NSArray * result = [regex matchesInString:attImage.html options:0 range:NSMakeRange(0, attImage.html.length)];
-            
-            for (NSTextCheckingResult *tmpresult in result) {
-                
-                //    <img class="attach" src="attachment.php?attachmentid=872113
-                NSString * image = [[attImage.html substringWithRange:tmpresult.range] stringByAppendingString:@"\"><br>"];
-                NSString * fixedImage = [image stringByReplacingOccurrencesOfString:@"class=\"attach\"" withString:@"width=\"300\" height=\"300\""];
-                NSString * fixUrl = [fixedImage stringByReplacingOccurrencesOfString:@"src=\"attachment.php" withString:@"src=\"https://bbs.et8.net/bbs/attachment.php"];
-                
-                allImage = [allImage stringByAppendingString:fixUrl];
-
-            }
-            ccfpost.postContent = [ccfpost.postContent stringByAppendingString:allImage];
-        }
         
         NSRange louCengRange = [time.text rangeOfString:@"#\\d+" options:NSRegularExpressionSearch];
         
