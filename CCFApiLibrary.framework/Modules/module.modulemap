@@ -1,0 +1,6 @@
+framework module CCFApiLibrary {
+  umbrella header "CCFApiLibrary.h"
+
+  export *
+  module * { export * }
+}

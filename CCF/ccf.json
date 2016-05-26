@@ -1,0 +1,734 @@
+{
+    "ccfforms": [
+                 {
+                 "formId": 1,
+                 "formName": "论坛规则及重要公告",
+                 "parentFormId": -1,
+                 "isNeedLogin": 1,
+                 "childForms": [
+                                {
+                                "formId": 79,
+                                "formName": "『论坛规则及论坛公告』",
+                                "parentFormId": 1,
+                                "isNeedLogin": 1,
+                                "childForms": [
+                                               {
+                                               "formId": 77,
+                                               "formName": "『违规提示』",
+                                               "parentFormId": 79,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 168,
+                                               "formName": "『live违规提示』",
+                                               "parentFormId": 79,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               }
+                                ]
+                                },
+                                {
+                                "formId": 62,
+                                "formName": "『回收站』",
+                                "parentFormId": 1,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                }
+                                ]
+                 },
+                 {
+                 "formId": 42,
+                 "formName": "评测活动专版",
+                 "parentFormId": -1,
+                 "isNeedLogin": 0,
+                 "childForms": [
+                                {
+                                "formId": 142,
+                                "formName": "『向日葵远程控制软件评测专版』",
+                                "parentFormId": 42,
+                                "isNeedLogin": 0,
+                                "childForms": []
+                                }
+                                ]
+                 },
+                 {
+                 "formId": 2,
+                 "formName": "技术版",
+                 "parentFormId": -1,
+                 "isNeedLogin": 0,
+                 "childForms": [
+                                {
+                                "formId": 17,
+                                "formName": "『软件使用』",
+                                "parentFormId": 2,
+                                "isNeedLogin": 0,
+                                "childForms": [
+                                               {
+                                               "formId": 89,
+                                               "formName": "『精品桌面专题』",
+                                               "parentFormId": 17,
+                                               "isNeedLogin": 0,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 115,
+                                               "formName": "【K-MeleonCCF】",
+                                               "parentFormId": 17,
+                                               "isNeedLogin": 0,
+                                               "childForms": []
+                                               }
+                                               ]
+                                },
+                                {
+                                "formId": 11,
+                                "formName": "『电脑硬件』",
+                                "parentFormId": 2,
+                                "isNeedLogin": 0,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 19,
+                                "formName": "『网络技术』",
+                                "parentFormId": 2,
+                                "isNeedLogin": 0,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 132,
+                                "formName": "『企业信息化』",
+                                "parentFormId": 2,
+                                "isNeedLogin": 0,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 46,
+                                "formName": "『Server System』",
+                                "parentFormId": 2,
+                                "isNeedLogin": 0,
+                                "childForms": [
+                                               {
+                                               "formId": 129,
+                                               "formName": "『M$服务器系统平台』",
+                                               "parentFormId": 46,
+                                               "isNeedLogin": 0,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 7,
+                                               "formName": "『*NIX系统平台』",
+                                               "parentFormId": 46,
+                                               "isNeedLogin": 0,
+                                               "childForms": []
+                                               }
+                                               ]
+                                },
+                                {
+                                "formId": 53,
+                                "formName": "『软件会员区』",
+                                "parentFormId": 2,
+                                "isNeedLogin": 1,
+                                "childForms": [
+                                               {
+                                               "formId": 134,
+                                               "formName": "『软件预览』",
+                                               "parentFormId": 53,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 114,
+                                               "formName": "『FTP List』",
+                                               "parentFormId": 53,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 39,
+                                               "formName": "『软会区归档』",
+                                               "parentFormId": 53,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               }
+                                               ]
+                                }
+                                ]
+                 },
+                 {
+                 "formId": 113,
+                 "formName": "移动互联网",
+                 "parentFormId": -1,
+                 "isNeedLogin": 0,
+                 "childForms": [
+                                {
+                                "formId": 158,
+                                "formName": "『手机◇移动数码』",
+                                "parentFormId": 113,
+                                "isNeedLogin": 0,
+                                "childForms": [
+                                               {
+                                               "formId": 55,
+                                               "formName": "Mobile应用软件资源区",
+                                               "parentFormId": 158,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               }
+                                               ]
+                                },
+                                {
+                                "formId": 36,
+                                "formName": "『苹果iOS』",
+                                "parentFormId": 113,
+                                "isNeedLogin": 0,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 103,
+                                "formName": "『安卓Android』",
+                                "parentFormId": 113,
+                                "isNeedLogin": 0,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 87,
+                                "formName": "『精品源码』",
+                                "parentFormId": 113,
+                                "isNeedLogin": 0,
+                                "childForms": [
+                                               {
+                                               "formId": 6,
+                                               "formName": "『软件开发版』",
+                                               "parentFormId": 87,
+                                               "isNeedLogin": 0,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 50,
+                                               "formName": "控件交流区",
+                                               "parentFormId": 87,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 88,
+                                               "formName": "『VBB』",
+                                               "parentFormId": 87,
+                                               "isNeedLogin": 0,
+                                               "childForms": []
+                                               }
+                                               ]
+                                }
+                                ]
+                 },
+                 {
+                 "formId": 138,
+                 "formName": "数码时代",
+                 "parentFormId": -1,
+                 "isNeedLogin": 0,
+                 "childForms": [
+                                {
+                                "formId": 54,
+                                "formName": "『色影数码硬件』",
+                                "parentFormId": 138,
+                                "isNeedLogin": 0,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 146,
+                                "formName": "『个人摄影作品』",
+                                "parentFormId": 138,
+                                "isNeedLogin": 0,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 24,
+                                "formName": "『美图◇平面设计』",
+                                "parentFormId": 138,
+                                "isNeedLogin": 0,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 51,
+                                "formName": "『数码视频制作技术』",
+                                "parentFormId": 138,
+                                "isNeedLogin": 0,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 44,
+                                "formName": "『精品影视』",
+                                "parentFormId": 138,
+                                "isNeedLogin": 1,
+                                "childForms": [
+                                               {
+                                               "formId": 94,
+                                               "formName": "『精品影评』",
+                                               "parentFormId": 44,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 43,
+                                               "formName": "影视预览",
+                                               "parentFormId": 44,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               }
+                                               ]
+                                },
+                                {
+                                "formId": 56,
+                                "formName": "『精品音乐』",
+                                "parentFormId": 138,
+                                "isNeedLogin": 1,
+                                "childForms": [
+                                               {
+                                               "formId": 96,
+                                               "formName": "音乐预览",
+                                               "parentFormId": 56,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               }
+                                               ]
+                                }
+                                ]
+                 },
+                 {
+                 "formId": 16,
+                 "formName": "资讯文化版",
+                 "parentFormId": -1,
+                 "isNeedLogin": 1,
+                 "childForms": [
+                                {
+                                "formId": 99,
+                                "formName": "『精品学堂』",
+                                "parentFormId": 16,
+                                "isNeedLogin": 1,
+                                "childForms": [
+                                               {
+                                               "formId": 9,
+                                               "formName": "教育资源交流",
+                                               "parentFormId": 99,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               }
+                                               ]
+                                },
+                                {
+                                "formId": 148,
+                                "formName": "『文学版◇水秀精华』",
+                                "parentFormId": 16,
+                                "isNeedLogin": 1,
+                                "childForms": [
+                                               {
+                                               "formId": 177,
+                                               "formName": "水秀精华",
+                                               "parentFormId": 148,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               }
+                                               ]
+                                },
+                                {
+                                "formId": 172,
+                                "formName": "『文史长廊◇科学沙龙』",
+                                "parentFormId": 16,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 178,
+                                "formName": "『金融财经』",
+                                "parentFormId": 16,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 20,
+                                "formName": "『网闻信息版』",
+                                "parentFormId": 16,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                }
+                                ]
+                 },
+                 {
+                 "formId": 153,
+                 "formName": "精品生活",
+                 "parentFormId": -1,
+                 "isNeedLogin": 0,
+                 "childForms": [
+                                {
+                                "formId": 154,
+                                "formName": "『家居生活』",
+                                "parentFormId": 153,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 190,
+                                "formName": "『家电论坛』",
+                                "parentFormId": 153,
+                                "isNeedLogin": 0,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 169,
+                                "formName": "『精品宝贝』",
+                                "parentFormId": 153,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 188,
+                                "formName": "『汽车论坛』",
+                                "parentFormId": 153,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                }
+                                ]
+                 },
+                 {
+                 "formId": 144,
+                 "formName": "休闲娱乐",
+                 "parentFormId": -1,
+                 "isNeedLogin": 1,
+                 "childForms": [
+                                {
+                                "formId": 147,
+                                "formName": "『精品放心情』",
+                                "parentFormId": 144,
+                                "isNeedLogin": 1,
+                                "childForms": [
+                                               {
+                                               "formId": 181,
+                                               "formName": "CCFer 个人影展",
+                                               "parentFormId": 147,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 194,
+                                               "formName": "特别事件版",
+                                               "parentFormId": 147,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 180,
+                                               "formName": "放心请精华版",
+                                               "parentFormId": 147,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               }
+                                               ]
+                                },
+                                {
+                                "formId": 189,
+                                "formName": "『旅游版』",
+                                "parentFormId": 144,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 10,
+                                "formName": "『精品游戏』",
+                                "parentFormId": 144,
+                                "isNeedLogin": 1,
+                                "childForms": [
+                                               {
+                                               "formId": 72,
+                                               "formName": "『游戏下载』",
+                                               "parentFormId": 10,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 135,
+                                               "formName": "游戏预览",
+                                               "parentFormId": 10,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 45,
+                                               "formName": "MMORPG游戏分区",
+                                               "parentFormId": 10,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 122,
+                                               "formName": "WebGame游戏分区",
+                                               "parentFormId": 10,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               }
+                                               ]
+                                },
+                                {
+                                "formId": 150,
+                                "formName": "『精品笑话』",
+                                "parentFormId": 144,
+                                "isNeedLogin": 1,
+                                "childForms": [
+                                               {
+                                               "formId": 183,
+                                               "formName": "经典笑话",
+                                               "parentFormId": 150,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               }
+                                               ]
+                                },
+                                {
+                                "formId": 179,
+                                "formName": "『体育版』",
+                                "parentFormId": 144,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                }
+                                ]
+                 },
+                 {
+                 "formId": 152,
+                 "formName": "交易论坛",
+                 "parentFormId": -1,
+                 "isNeedLogin": 1,
+                 "childForms": [
+                                {
+                                "formId": 60,
+                                "formName": "『商品交易版』",
+                                "parentFormId": 152,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 171,
+                                "formName": "『论坛团购』",
+                                "parentFormId": 152,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 174,
+                                "formName": "『二手闲置』",
+                                "parentFormId": 152,
+                                "isNeedLogin": 1,
+                                "childForms": [
+                                               {
+                                               "formId": 192,
+                                               "formName": "归档区",
+                                               "parentFormId": 174,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               }
+                                               ]
+                                },
+                                {
+                                "formId": 191,
+                                "formName": "『网购指南』",
+                                "parentFormId": 152,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 161,
+                                "formName": "【交易区版务】",
+                                "parentFormId": 152,
+                                "isNeedLogin": 1,
+                                "childForms": [
+                                               {
+                                               "formId": 206,
+                                               "formName": "【交易区版务】",
+                                               "parentFormId": 161,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 204,
+                                               "formName": "【交易区版务】",
+                                               "parentFormId": 161,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 186,
+                                               "formName": "【交易区版务】",
+                                               "parentFormId": 161,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               }
+                                               ]
+                                }
+                                ]
+                 },
+                 {
+                 "formId": 155,
+                 "formName": "CCFer 联谊版",
+                 "parentFormId": -1,
+                 "isNeedLogin": 1,
+                 "childForms": [
+                                {
+                                "formId": 131,
+                                "formName": "『技术人的职场版』",
+                                "parentFormId": 155,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 167,
+                                "formName": "『精品之家联谊区』",
+                                "parentFormId": 155,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 185,
+                                "formName": "『精品电台』",
+                                "parentFormId": 155,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 182,
+                                "formName": "CCF活动历史记录",
+                                "parentFormId": 155,
+                                "isNeedLogin": 1,
+                                "childForms": [
+                                               {
+                                               "formId": 240,
+                                               "formName": "【2013年CCF平台改革】",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 176,
+                                               "formName": "CCF十周年活动记录",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 215,
+                                               "formName": "精品十周年活动之“寻找联想红气球挑战赛”",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 228,
+                                               "formName": "CCF 纪念衫2011",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 201,
+                                               "formName": "CCF 车标2009",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 34,
+                                               "formName": "CCF车标设计",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 166,
+                                               "formName": "CCF U盘2008",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 118,
+                                               "formName": "精品衫2005",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 100,
+                                               "formName": "精品衫2002",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               }
+                                
+                                ]
+                                }
+                                ]
+                 },
+                 {
+                 "formId": 128,
+                 "formName": "版务行政",
+                 "parentFormId": -1,
+                 "isNeedLogin": 1,
+                 "childForms": [
+                                {
+                                "formId": 192,
+                                "formName": "〖 热会事务版 〗",
+                                "parentFormId": 128,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 165,
+                                "formName": "『会员事物版』",
+                                "parentFormId": 128,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 98,
+                                "formName": "『TorrentCCF版务』",
+                                "parentFormId": 128,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 145,
+                                "formName": "『沉默会员激活版务』",
+                                "parentFormId": 128,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                }
+                                ]
+                 },
+                 {
+                 "formId": 64,
+                 "formName": "管理团队",
+                 "parentFormId": -1,
+                 "isNeedLogin": 1,
+                 "childForms": [
+                                {
+                                "formId": 47,
+                                "formName": "『版主专区』",
+                                "parentFormId": 64,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 151,
+                                "formName": "旧版",
+                                "parentFormId": 64,
+                                "isNeedLogin": 1,
+                                "childForms": [
+                                               {
+                                               "formId": 156,
+                                               "formName": "『LIVE版主专区』",
+                                               "parentFormId": 151,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               }
+                                ]
+                                }
+                                ]
+                 }
+                 ]
+}
