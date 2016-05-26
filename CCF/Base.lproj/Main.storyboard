@@ -962,7 +962,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R4C-zz-DaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1257" y="-718"/>
+            <point key="canvasLocation" x="1865" y="606"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="nUF-pr-pG4">
@@ -1143,6 +1143,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UnW-0r-hG2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3942" y="1871"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="3AK-po-iLj">
+            <objects>
+                <viewController id="uS6-lo-jk0" customClass="CCFWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mAZ-lx-yAR"/>
+                        <viewControllerLayoutGuide type="bottom" id="Row-Gl-tyc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mno-8p-Ogv">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQS-6A-m5d">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UQS-6A-m5d" firstAttribute="leading" secondItem="mno-8p-Ogv" secondAttribute="leadingMargin" constant="-20" id="2EM-1c-Nai"/>
+                            <constraint firstItem="UQS-6A-m5d" firstAttribute="top" secondItem="mAZ-lx-yAR" secondAttribute="bottom" id="2cK-5q-5KL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UQS-6A-m5d" secondAttribute="trailing" constant="-20" id="4Jk-Ug-5Hc"/>
+                            <constraint firstItem="Row-Gl-tyc" firstAttribute="top" secondItem="UQS-6A-m5d" secondAttribute="bottom" id="JZ5-H5-0GA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="uvS-iw-Zj5"/>
+                    <connections>
+                        <outlet property="webView" destination="UQS-6A-m5d" id="u0c-ee-xVK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PZP-d4-zR4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1295" y="-710"/>
         </scene>
         <!--收藏主题-->
         <scene sceneID="B4V-EQ-cMU">
@@ -2900,7 +2934,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tig-W1-eHw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="551" y="-718"/>
+            <point key="canvasLocation" x="1159" y="606"/>
         </scene>
         <!--New Thread Navigation Controller-->
         <scene sceneID="xBQ-EG-vCf">
@@ -3078,7 +3112,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aC5-ZQ-26Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4694" y="982"/>
+            <point key="canvasLocation" x="-4792" y="1024"/>
         </scene>
         <!--收藏-->
         <scene sceneID="olg-xa-46v">
@@ -3105,6 +3139,31 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N7F-4G-cab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4652" y="-381"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4nX-Rs-Rii">
+            <objects>
+                <navigationController storyboardIdentifier="CCFWebViewNavigationController" id="cse-wU-SXy" customClass="CCFNavigationController" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Rj5-Th-Yxn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.1843137255" green="0.27058823529999998" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="uS6-lo-jk0" kind="relationship" relationship="rootViewController" id="R97-Vi-IiA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N53-5b-slY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="478" y="-710"/>
         </scene>
     </scenes>
     <resources>

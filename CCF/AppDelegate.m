@@ -18,6 +18,7 @@
 #import <AVOSCloud.h>
 #import <AVOSCloudIM.h>
 #import "ForumApi.h"
+#import "CCFNavigationController.h"
 #import "UIStoryboard+CCF.h"
 
 
@@ -44,7 +45,7 @@
     
     
     
-    API_DEBUG = NO;
+    API_DEBUG = YES;
     
     if (API_DEBUG) {
         
@@ -52,9 +53,11 @@
         
         NSString * versionCode = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
         
+        CCFNavigationController * root = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"CCFWebViewNavigationController"];
         
-        ApiTestViewController * testController = [[ApiTestViewController alloc] init];
-        self.window.rootViewController = testController;
+        self.window.rootViewController = root;
+//        ApiTestViewController * testController = [[ApiTestViewController alloc] init];
+//        self.window.rootViewController = testController;
         return YES;
     }
     
