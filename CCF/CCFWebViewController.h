@@ -13,4 +13,6 @@
 @interface CCFWebViewController : CCFApiBaseViewController
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
+@property (nonatomic, strong) UIImageView *animatedFromView;
+
 @end

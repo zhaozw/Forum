@@ -9,6 +9,7 @@
 #import "CCFWebViewController.h"
 #import "ShowThreadPage.h"
 #import <MJRefresh.h>
+#import "SDImageCache+URLCache.h"
 
 @interface CCFWebViewController ()<UIWebViewDelegate, UIScrollViewDelegate>
 
@@ -132,12 +133,32 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
     NSString *urlString = [[request URL] absoluteString];
-    NSLog(@"%@ %ld %@",urlString, navigationType, request.URL.scheme);
+    NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> %@ %ld %@",urlString, navigationType, request.URL.scheme);
     
     
     if ([request.URL.scheme isEqualToString:@"postid"]) {
         return NO;
         
+    }
+    
+    if ([urlString hasPrefix:@"https://bbs.et8.net/bbs/attachment.php?attachmentid="]) {
+        NSString *src = request.URL.absoluteString;
+        UIImage *i = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:src];
+        
+        CGRect r = CGRectMake(0, 0, 500, 500);
+        
+        if (!self.animatedFromView) {
+            self.animatedFromView = [[UIImageView alloc] initWithFrame:CGRectZero];
+            self.animatedFromView.backgroundColor = [UIColor redColor];
+        }
+        self.animatedFromView.frame = r;
+        
+        if (i) self.animatedFromView.image = i;
+        
+        [self.view addSubview:self.animatedFromView];
+        
+        
+        return NO;
     }
     return YES;
 }
