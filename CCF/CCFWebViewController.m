@@ -59,7 +59,8 @@
 
                 NSString * postInfoPattern = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
                 
-                NSString * postInfo = [NSString stringWithFormat:postInfoPattern,post.postID, post.postUserInfo.userAvatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
+                NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
+                NSString * postInfo = [NSString stringWithFormat:postInfoPattern,post.postID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
                 
                 lis = [lis stringByAppendingString:postInfo];
             }
@@ -117,7 +118,8 @@
             
             NSString * postInfoPattern = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
             
-            NSString * postInfo = [NSString stringWithFormat:postInfoPattern,post.postID, post.postUserInfo.userAvatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
+            NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
+            NSString * postInfo = [NSString stringWithFormat:postInfoPattern,post.postID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
             
             lis = [lis stringByAppendingString:postInfo];
         }
