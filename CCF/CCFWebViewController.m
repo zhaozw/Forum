@@ -8,6 +8,7 @@
 
 #import "CCFWebViewController.h"
 #import "ShowThreadPage.h"
+#import <MJRefresh.h>
 
 @interface CCFWebViewController ()<UIWebViewDelegate, UIScrollViewDelegate>
 
@@ -33,11 +34,86 @@
     // scrollView
     self.webView.scrollView.delegate = self;
     
-    NSMutableString * string = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
+    
+    
+
+    
+    
+    
+    self.webView.scrollView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        //[self onLoadMore];
+        
+        NSMutableString * string = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
+        
+        [self.ccfApi showThreadWithId:1314451 andPage:2 handler:^(BOOL isSuccess, id message) {
+            
+            
+            //[self.webView stringByEvaluatingJavaScriptFromString:@"document.open();document.close();"];
+            //[self.webView loadHTMLString:nil baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
+            
+            
+            ShowThreadPage * page = message;
+            
+            NSMutableArray<Post *> * posts = page.dataList;
+            
+            
+            NSString * lis = @"";
+            
+            for (Post * post in posts) {
+                
+                NSString * postInfoPattern = @"<div class=\"info\">\n<span class=\"avatar\"><a href=\"large_image\"><img src=\"%@\"></a></span>\n<span class=\"author\">%@</span><span class=\"floor\">%@</span>\n<span class=\"time-ago\">%@</span>\n</div>";
+                NSString * postInfo = [NSString stringWithFormat:postInfoPattern, post.postUserInfo.userAvatar, post.postUserInfo.userName, post.postLouCeng, post.postTime];
+                
+                
+                NSString * listPattern = @"<li class=\"\" data-id=\"7308071\" onclick=\"location.href='http://example';\">\n%@\n%@\n</li>";
+                
+                NSString * listString = [NSString stringWithFormat:listPattern,postInfo, post.postContent];
+                
+                lis = [lis stringByAppendingString:listString];
+            }
+            
+            [string replaceOccurrencesOfString:@"<span style=\"display:none\">##lists##</span>" withString:lis options:0 range:NSMakeRange(0, string.length)];
+            [self.webView loadHTMLString:string baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
+            
+            [self.webView.scrollView.mj_footer endRefreshing];
+            
+            CABasicAnimation *stretchAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.y"];
+            [stretchAnimation setToValue:[NSNumber numberWithFloat:1.02]];
+            [stretchAnimation setRemovedOnCompletion:YES];
+            [stretchAnimation setFillMode:kCAFillModeRemoved];
+            [stretchAnimation setAutoreverses:YES];
+            [stretchAnimation setDuration:0.15];
+            [stretchAnimation setDelegate:self];
+            
+            [stretchAnimation setBeginTime:CACurrentMediaTime() + 0.35];
+            
+            [stretchAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+            //[self.webView setAnchorPoint:CGPointMake(0.0, 1) forView:self.webView];
+            [self.view.layer addAnimation:stretchAnimation forKey:@"stretchAnimation"];
+            
+            CATransition *animation = [CATransition animation];
+            [animation setType:kCATransitionPush];
+            [animation setSubtype:kCATransitionFromTop];
+            [animation setDuration:0.5f];
+            [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+            [[self.webView layer] addAnimation:animation forKey:nil];
+            
+            
+        }];
+        
+        
+    }];
+    
+    
+    
+
     
     
     
     [self.ccfApi showThreadWithId:1314451 andPage:1 handler:^(BOOL isSuccess, id message) {
+        
+            NSMutableString * string = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
+        
         ShowThreadPage * page = message;
         
         NSMutableArray<Post *> * posts = page.dataList;
@@ -46,16 +122,6 @@
         NSString * lis = @"";
         
         for (Post * post in posts) {
-            
-//            <div class="info">
-//            
-//            <span class="avatar"><a href="large_image"><img src="http://www.hi-pda.com/forum/uc_server/data/avatar/000/45/17/59_avatar_middle.jpg"></a></span>
-//            <span class="author">hswglff</span>
-//            <span class="floor">1#</span>
-//            <span class="time-ago">4 hours ago</span>
-//            
-//            </div>
-            
             
             NSString * postInfoPattern = @"<div class=\"info\">\n<span class=\"avatar\"><a href=\"large_image\"><img src=\"%@\"></a></span>\n<span class=\"author\">%@</span><span class=\"floor\">%@</span>\n<span class=\"time-ago\">%@</span>\n</div>";
             NSString * postInfo = [NSString stringWithFormat:postInfoPattern, post.postUserInfo.userAvatar, post.postUserInfo.userName, post.postLouCeng, post.postTime];
@@ -69,11 +135,7 @@
         }
         
         [string replaceOccurrencesOfString:@"<span style=\"display:none\">##lists##</span>" withString:lis options:0 range:NSMakeRange(0, string.length)];
-        
-//        [string stringByReplacingOccurrencesOfString:@"##lists##" withString:lis];
-        
         [self.webView loadHTMLString:string baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
-        
     }];
     
 }

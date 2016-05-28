@@ -914,8 +914,9 @@
 }
 
 -(void)showThreadWithId:(int)threadId andPage:(int)page handler:(Handler)handler{
-    
-    [self browseWithUrl:[UrlBuilder buildThreadURL:threadId withPage:page] :^(BOOL isSuccess, id result) {
+    NSURL * url = [UrlBuilder buildThreadURL:threadId withPage:page];
+    NSString * urlStr = [NSString stringWithFormat:@"%@", url];
+    [self browseWithUrl:url :^(BOOL isSuccess, id result) {
         handler(isSuccess, result);
     }];
 }
