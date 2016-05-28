@@ -23,7 +23,7 @@
     [self.webView setScalesPageToFit:YES];
     self.webView.dataDetectorTypes = UIDataDetectorTypeNone;
     self.webView.delegate = self;
-    self.webView.backgroundColor = [UIColor clearColor];
+    self.webView.backgroundColor = [UIColor whiteColor];
     
     for(UIView *view in [[[self.webView subviews] objectAtIndex:0] subviews]) {
         if([view isKindOfClass:[UIImageView class]]) {
