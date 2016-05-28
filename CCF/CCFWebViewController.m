@@ -37,7 +37,7 @@
     
     
     
-    [self.ccfApi showThreadWithId:1335973 andPage:1 handler:^(BOOL isSuccess, id message) {
+    [self.ccfApi showThreadWithId:1314451 andPage:1 handler:^(BOOL isSuccess, id message) {
         ShowThreadPage * page = message;
         
         NSMutableArray<Post *> * posts = page.dataList;

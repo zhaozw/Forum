@@ -277,6 +277,15 @@
         
         ccfpost.postContent = message.html;
    
+        NSString *xPathAttImage = [NSString stringWithFormat:@"//*[@id='td_post_%@']/div[2]/fieldset/div", postId];
+        IGXMLNode *attImage = [postDocument queryWithXPath:xPathAttImage].firstObject;
+        
+        
+        if (attImage != nil) {
+            ccfpost.postContent = [ccfpost.postContent stringByAppendingString:[attImage html]];
+        }
+        
+        
         
         NSRange louCengRange = [time.text rangeOfString:@"#\\d+" options:NSRegularExpressionSearch];
         
