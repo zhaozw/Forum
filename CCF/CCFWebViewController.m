@@ -59,7 +59,7 @@
 
                 NSString * postInfoPattern = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
                 
-                NSString * postInfo = [NSString stringWithFormat:postInfoPattern, post.postUserInfo.userAvatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
+                NSString * postInfo = [NSString stringWithFormat:postInfoPattern,post.postID, post.postUserInfo.userAvatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
                 
                 lis = [lis stringByAppendingString:postInfo];
             }
@@ -117,7 +117,7 @@
             
             NSString * postInfoPattern = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
             
-            NSString * postInfo = [NSString stringWithFormat:postInfoPattern, post.postUserInfo.userAvatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
+            NSString * postInfo = [NSString stringWithFormat:postInfoPattern,post.postID, post.postUserInfo.userAvatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
             
             lis = [lis stringByAppendingString:postInfo];
         }
@@ -133,7 +133,7 @@
     NSLog(@"%@ %ld %@",urlString, navigationType, request.URL.scheme);
     
     
-    if ([request.URL.scheme isEqualToString:@"floor"]) {
+    if ([request.URL.scheme isEqualToString:@"postid"]) {
         return NO;
         
     }
