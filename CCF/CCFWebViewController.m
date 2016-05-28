@@ -59,18 +59,13 @@
 
                 NSString * postInfoPattern = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
                 
-                NSString * postInfo = [NSString stringWithFormat:postInfoPattern, post.postUserInfo.userAvatar, post.postUserInfo.userName, post.postLouCeng, post.postTime];
+                NSString * postInfo = [NSString stringWithFormat:postInfoPattern, post.postUserInfo.userAvatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
                 
-                
-                NSString * listPattern = @"<li class=\"\" data-id=\"7308071\" onclick=\"location.href='http://example';\">\n%@\n%@\n</li>";
-                
-                NSString * listString = [NSString stringWithFormat:listPattern,postInfo, post.postContent];
-                
-                lis = [lis stringByAppendingString:listString];
+                lis = [lis stringByAppendingString:postInfo];
             }
             
-            [string replaceOccurrencesOfString:@"<span style=\"display:none\">##lists##</span>" withString:lis options:0 range:NSMakeRange(0, string.length)];
-            [self.webView loadHTMLString:string baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
+            NSString * html = [NSString stringWithFormat:string, lis];
+            [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
             
             [self.webView.scrollView.mj_footer endRefreshing];
             
@@ -121,18 +116,13 @@
         for (Post * post in posts) {
             
             NSString * postInfoPattern = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
-            NSString * postInfo = [NSString stringWithFormat:postInfoPattern, post.postUserInfo.userAvatar, post.postUserInfo.userName, post.postLouCeng, post.postTime];
             
+            NSString * postInfo = [NSString stringWithFormat:postInfoPattern, post.postUserInfo.userAvatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
             
-            NSString * listPattern = @"<li class=\"\" data-id=\"7308071\" onclick=\"location.href='http://example';\">\n%@\n%@\n</li>";
-            
-            NSString * listString = [NSString stringWithFormat:listPattern,postInfo, post.postContent];
-            
-            lis = [lis stringByAppendingString:listString];
+            lis = [lis stringByAppendingString:postInfo];
         }
-        
-        [string replaceOccurrencesOfString:@"<span style=\"display:none\">##lists##</span>" withString:lis options:0 range:NSMakeRange(0, string.length)];
-        [self.webView loadHTMLString:string baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
+        NSString * html = [NSString stringWithFormat:string, lis];
+        [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
     }];
     
 }
