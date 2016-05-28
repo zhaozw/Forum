@@ -140,6 +140,19 @@
     
 }
 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    
+    NSString *urlString = [[request URL] absoluteString];
+    NSLog(@"%@ %ld %@",urlString, navigationType, request.URL.scheme);
+    
+    
+    if ([request.URL.scheme isEqualToString:@"floor"]) {
+        return NO;
+        
+    }
+    return YES;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
