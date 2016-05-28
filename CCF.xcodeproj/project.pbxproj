@@ -101,6 +101,7 @@
 		3AC660841CF1AEA1000D3BDB /* AutoRelayoutToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660831CF1AEA1000D3BDB /* AutoRelayoutToolbar.m */; };
 		3AC660871CF1AF85000D3BDB /* AutoRelayoutUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660861CF1AF85000D3BDB /* AutoRelayoutUITextView.m */; };
 		3AC660921CF1B578000D3BDB /* ForumCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660911CF1B578000D3BDB /* ForumCoreDataManager.m */; };
+		3ACFFD261CF9B151000312DC /* post_message.html in Resources */ = {isa = PBXBuildFile; fileRef = 3ACFFD251CF9B151000312DC /* post_message.html */; };
 		3AD077C51CF73B50006A8FBF /* CCFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD077C41CF73B50006A8FBF /* CCFWebViewController.m */; };
 		3AD077C71CF73FBF006A8FBF /* post_view.html in Resources */ = {isa = PBXBuildFile; fileRef = 3AD077C61CF73FBF006A8FBF /* post_view.html */; };
 		3AEC539A1CB9529F00E50390 /* CCFThreadListTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */; };
@@ -319,6 +320,7 @@
 		3AC660861CF1AF85000D3BDB /* AutoRelayoutUITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoRelayoutUITextView.m; sourceTree = "<group>"; };
 		3AC660901CF1B578000D3BDB /* ForumCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumCoreDataManager.h; sourceTree = "<group>"; };
 		3AC660911CF1B578000D3BDB /* ForumCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumCoreDataManager.m; sourceTree = "<group>"; };
+		3ACFFD251CF9B151000312DC /* post_message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = post_message.html; sourceTree = "<group>"; };
 		3AD077C31CF73B50006A8FBF /* CCFWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFWebViewController.h; sourceTree = "<group>"; };
 		3AD077C41CF73B50006A8FBF /* CCFWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFWebViewController.m; sourceTree = "<group>"; };
 		3AD077C61CF73FBF006A8FBF /* post_view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = post_view.html; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 				4D339D9F1C31454B0022A6A4 /* LaunchScreen.storyboard */,
 				4D339DA21C31454B0022A6A4 /* Info.plist */,
 				3AD077C61CF73FBF006A8FBF /* post_view.html */,
+				3ACFFD251CF9B151000312DC /* post_message.html */,
 			);
 			path = CCF;
 			sourceTree = "<group>";
@@ -911,6 +914,7 @@
 				4D339D991C31454A0022A6A4 /* Main.storyboard in Resources */,
 				3A1CC3B11CB8F8B5007A0B97 /* paperclip.gif in Resources */,
 				3A690A481C3792D00076C8F1 /* CCFThreadDetailCell.xib in Resources */,
+				3ACFFD261CF9B151000312DC /* post_message.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

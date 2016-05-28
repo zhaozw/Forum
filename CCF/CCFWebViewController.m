@@ -41,16 +41,11 @@
     
     
     self.webView.scrollView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        //[self onLoadMore];
         
         NSMutableString * string = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
         
         [self.ccfApi showThreadWithId:1314451 andPage:2 handler:^(BOOL isSuccess, id message) {
-            
-            
-            //[self.webView stringByEvaluatingJavaScriptFromString:@"document.open();document.close();"];
-            //[self.webView loadHTMLString:nil baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
-            
+
             
             ShowThreadPage * page = message;
             
@@ -61,7 +56,9 @@
             
             for (Post * post in posts) {
                 
-                NSString * postInfoPattern = @"<div class=\"info\">\n<span class=\"avatar\"><a href=\"large_image\"><img src=\"%@\"></a></span>\n<span class=\"author\">%@</span><span class=\"floor\">%@</span>\n<span class=\"time-ago\">%@</span>\n</div>";
+
+                NSString * postInfoPattern = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
+                
                 NSString * postInfo = [NSString stringWithFormat:postInfoPattern, post.postUserInfo.userAvatar, post.postUserInfo.userName, post.postLouCeng, post.postTime];
                 
                 
@@ -123,7 +120,7 @@
         
         for (Post * post in posts) {
             
-            NSString * postInfoPattern = @"<div class=\"info\">\n<span class=\"avatar\"><a href=\"large_image\"><img src=\"%@\"></a></span>\n<span class=\"author\">%@</span><span class=\"floor\">%@</span>\n<span class=\"time-ago\">%@</span>\n</div>";
+            NSString * postInfoPattern = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
             NSString * postInfo = [NSString stringWithFormat:postInfoPattern, post.postUserInfo.userAvatar, post.postUserInfo.userName, post.postLouCeng, post.postTime];
             
             
