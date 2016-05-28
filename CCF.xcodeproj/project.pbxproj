@@ -102,6 +102,9 @@
 		3AC660871CF1AF85000D3BDB /* AutoRelayoutUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660861CF1AF85000D3BDB /* AutoRelayoutUITextView.m */; };
 		3AC660921CF1B578000D3BDB /* ForumCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660911CF1B578000D3BDB /* ForumCoreDataManager.m */; };
 		3ACFFD261CF9B151000312DC /* post_message.html in Resources */ = {isa = PBXBuildFile; fileRef = 3ACFFD251CF9B151000312DC /* post_message.html */; };
+		3ACFFD2C1CF9D6BF000312DC /* HPURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACFFD291CF9D6BF000312DC /* HPURLCache.m */; };
+		3ACFFD2D1CF9D6BF000312DC /* SDImageCache+URLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACFFD2B1CF9D6BF000312DC /* SDImageCache+URLCache.m */; };
+		3ACFFD301CF9DD3C000312DC /* HPURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACFFD2F1CF9DD3C000312DC /* HPURLProtocol.m */; };
 		3AD077C51CF73B50006A8FBF /* CCFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD077C41CF73B50006A8FBF /* CCFWebViewController.m */; };
 		3AD077C71CF73FBF006A8FBF /* post_view.html in Resources */ = {isa = PBXBuildFile; fileRef = 3AD077C61CF73FBF006A8FBF /* post_view.html */; };
 		3AEC539A1CB9529F00E50390 /* CCFThreadListTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */; };
@@ -321,6 +324,12 @@
 		3AC660901CF1B578000D3BDB /* ForumCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumCoreDataManager.h; sourceTree = "<group>"; };
 		3AC660911CF1B578000D3BDB /* ForumCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumCoreDataManager.m; sourceTree = "<group>"; };
 		3ACFFD251CF9B151000312DC /* post_message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = post_message.html; sourceTree = "<group>"; };
+		3ACFFD281CF9D6BF000312DC /* HPURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPURLCache.h; sourceTree = "<group>"; };
+		3ACFFD291CF9D6BF000312DC /* HPURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPURLCache.m; sourceTree = "<group>"; };
+		3ACFFD2A1CF9D6BF000312DC /* SDImageCache+URLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDImageCache+URLCache.h"; sourceTree = "<group>"; };
+		3ACFFD2B1CF9D6BF000312DC /* SDImageCache+URLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDImageCache+URLCache.m"; sourceTree = "<group>"; };
+		3ACFFD2E1CF9DD3C000312DC /* HPURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPURLProtocol.h; sourceTree = "<group>"; };
+		3ACFFD2F1CF9DD3C000312DC /* HPURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPURLProtocol.m; sourceTree = "<group>"; };
 		3AD077C31CF73B50006A8FBF /* CCFWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFWebViewController.h; sourceTree = "<group>"; };
 		3AD077C41CF73B50006A8FBF /* CCFWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFWebViewController.m; sourceTree = "<group>"; };
 		3AD077C61CF73FBF006A8FBF /* post_view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = post_view.html; sourceTree = "<group>"; };
@@ -566,6 +575,19 @@
 			name = ApiTest;
 			sourceTree = "<group>";
 		};
+		3ACFFD271CF9D6B1000312DC /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				3ACFFD2E1CF9DD3C000312DC /* HPURLProtocol.h */,
+				3ACFFD2F1CF9DD3C000312DC /* HPURLProtocol.m */,
+				3ACFFD281CF9D6BF000312DC /* HPURLCache.h */,
+				3ACFFD291CF9D6BF000312DC /* HPURLCache.m */,
+				3ACFFD2A1CF9D6BF000312DC /* SDImageCache+URLCache.h */,
+				3ACFFD2B1CF9D6BF000312DC /* SDImageCache+URLCache.m */,
+			);
+			name = NetWork;
+			sourceTree = "<group>";
+		};
 		3AEA1F341C365E2100710BD6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -665,6 +687,7 @@
 		4D339D821C31454A0022A6A4 = {
 			isa = PBXGroup;
 			children = (
+				3ACFFD271CF9D6B1000312DC /* NetWork */,
 				3AC65FBC1CF13809000D3BDB /* CCF */,
 				4D796BEE1C44B59100B3C62D /* CoreData */,
 				3A2FCC7B1C956D5C00B469E4 /* TableViewCell */,
@@ -994,6 +1017,7 @@
 				4DEB34C61C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m in Sources */,
 				3A256FA11CA57F4000419D67 /* CCFShowPrivateMessageViewController.m in Sources */,
 				3A734BFB1CCCD72400C4821A /* CCFWritePMNavigationController.m in Sources */,
+				3ACFFD2C1CF9D6BF000312DC /* HPURLCache.m in Sources */,
 				3AC65FC21CF13AA1000D3BDB /* Utils.m in Sources */,
 				3AA5B99A1CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m in Sources */,
 				3A9FEDDE1C3430A500F30885 /* CCFBrowser.m in Sources */,
@@ -1033,6 +1057,7 @@
 				3AC65FCD1CF141D3000D3BDB /* UrlBuilder.m in Sources */,
 				3A671EEF1CB9F294001CC91E /* UIRoundCornerButton.m in Sources */,
 				3AA935E31CF1BCB2009FC4A6 /* FormEntry+CoreDataProperties.m in Sources */,
+				3ACFFD301CF9DD3C000312DC /* HPURLProtocol.m in Sources */,
 				3AC65FEC1CF153C6000D3BDB /* ShowThreadPage.m in Sources */,
 				3AC65FE31CF15199000D3BDB /* User.m in Sources */,
 				3AC65FBF1CF13A8F000D3BDB /* NSUserDefaults+Extensions.m in Sources */,
@@ -1050,6 +1075,7 @@
 				3A2FCC7E1C956DB100B469E4 /* PrivateMessageTableViewCell.m in Sources */,
 				3AA935E81CF1C19A009FC4A6 /* LoginViewController.m in Sources */,
 				3A1CF8781C54F8AB002E52EE /* UIColor+MyColor.m in Sources */,
+				3ACFFD2D1CF9D6BF000312DC /* SDImageCache+URLCache.m in Sources */,
 				4D339D931C31454A0022A6A4 /* AppDelegate.m in Sources */,
 				4D796BEA1C44992700B3C62D /* UIStoryboard+CCF.m in Sources */,
 				3AC660711CF1833F000D3BDB /* CCFThreadListForChildFormUITableViewController.m in Sources */,

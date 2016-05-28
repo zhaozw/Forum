@@ -103,7 +103,7 @@
     
     
     
-    [self.ccfApi showThreadWithId:1314451 andPage:1 handler:^(BOOL isSuccess, id message) {
+    [self.ccfApi showThreadWithId:1195114 andPage:1 handler:^(BOOL isSuccess, id message) {
         
             NSMutableString * string = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
         

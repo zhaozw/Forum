@@ -20,7 +20,9 @@
 #import "ForumApi.h"
 #import "CCFNavigationController.h"
 #import "UIStoryboard+CCF.h"
-
+#import "HPURLProtocol.h"
+#import "AFNetworking.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 
 @interface AppDelegate (){
@@ -33,6 +35,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:10 * 1024 * 1024 diskCapacity:50 * 1024 * 1024 diskPath:nil];
+    [NSURLCache setSharedURLCache:cache];
+    
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+    
+    [HPURLProtocol registerURLProtocolIfNeed];
+    
+    
+    
     
     
     // 这地方要换成你自己的ID，别用我这个，否则签名不对你也无法收到推送
@@ -144,6 +156,9 @@
 
 
     [AVOSCloudIM registerForRemoteNotification];
+    
+    
+
     
     return YES;
 }
