@@ -46,9 +46,24 @@
         NSString * lis = @"";
         
         for (Post * post in posts) {
-            NSString * listPattern = @"<li class=\"\" data-id=\"7308071\" onclick=\"location.href='http://example';\">\n%@\n</li>";
             
-            NSString * listString = [NSString stringWithFormat:listPattern, post.postContent];
+//            <div class="info">
+//            
+//            <span class="avatar"><a href="large_image"><img src="http://www.hi-pda.com/forum/uc_server/data/avatar/000/45/17/59_avatar_middle.jpg"></a></span>
+//            <span class="author">hswglff</span>
+//            <span class="floor">1#</span>
+//            <span class="time-ago">4 hours ago</span>
+//            
+//            </div>
+            
+            
+            NSString * postInfoPattern = @"<div class=\"info\">\n<span class=\"avatar\"><a href=\"large_image\"><img src=\"%@\"></a></span>\n<span class=\"author\">%@</span><span class=\"floor\">%@</span>\n<span class=\"time-ago\">%@</span>\n</div>";
+            NSString * postInfo = [NSString stringWithFormat:postInfoPattern, post.postUserInfo.userAvatar, post.postUserInfo.userName, post.postLouCeng, post.postTime];
+            
+            
+            NSString * listPattern = @"<li class=\"\" data-id=\"7308071\" onclick=\"location.href='http://example';\">\n%@\n%@\n</li>";
+            
+            NSString * listString = [NSString stringWithFormat:listPattern,postInfo, post.postContent];
             
             lis = [lis stringByAppendingString:listString];
         }
