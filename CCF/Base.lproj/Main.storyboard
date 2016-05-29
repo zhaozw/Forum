@@ -3156,21 +3156,31 @@
                     <navigationItem key="navigationItem" id="bgS-TU-Qv8">
                         <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="QmW-SL-cI2">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="back:" destination="7tp-vM-md4" id="bpL-Au-opl"/>
+                            </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="ic_more_horiz_18pt" id="a8a-Vk-Jzn">
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="showMoreAction:" destination="7tp-vM-md4" id="SNn-6x-K3z"/>
+                                </connections>
                             </barButtonItem>
                             <barButtonItem image="ic_loupe_white_18pt" id="sKp-Xu-po2">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </barButtonItem>
                             <barButtonItem title="1/1" id="bLC-QH-xuv">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="changeNumber:" destination="7tp-vM-md4" id="HJe-04-p5E"/>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
+                        <outlet property="pageNumber" destination="bLC-QH-xuv" id="DpC-NM-xVY"/>
                         <outlet property="webView" destination="iya-mg-Rba" id="LFP-nw-XYE"/>
                     </connections>
                 </viewController>

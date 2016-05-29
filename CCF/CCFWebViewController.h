@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CCFApiBaseViewController.h"
 #import "TransValueDelegate.h"
+#import "ReplyTransValueDelegate.h"
 
 
 @interface CCFWebViewController : CCFApiBaseViewController
@@ -17,5 +18,16 @@
 @property (nonatomic, strong) UIImageView *animatedFromView;
 
 @property (nonatomic, weak) id<TransValueDelegate> transValueDelegate;
+
+- (IBAction)back:(UIBarButtonItem *)sender;
+
+- (IBAction)showMoreAction:(UIBarButtonItem *)sender;
+
+@property (nonatomic, weak) id<ReplyTransValueDelegate> replyTransValueDelegate;
+
+- (IBAction)changeNumber:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *pageNumber;
+
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CCFShowThreadViewController.h"
 #import "TransValueBundle.h"
 
 
