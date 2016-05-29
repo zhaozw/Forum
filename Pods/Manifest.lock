@@ -41,6 +41,7 @@ PODS:
   - DTFoundation/UIKit (1.7.10):
     - DTFoundation/Core
   - FDFullscreenPopGesture (1.1)
+  - FLAnimatedImage (1.0.12)
   - IGHTMLQuery (0.8.4):
     - IGHTMLQuery/Core (= 0.8.4)
   - IGHTMLQuery/Core (0.8.4):
@@ -50,6 +51,13 @@ PODS:
   - MGSwipeTableCell (1.5.5)
   - MJRefresh (3.0.8)
   - NUIParse (1.3)
+  - NYTPhotoViewer (1.1.0):
+    - NYTPhotoViewer/AnimatedGifSupport (= 1.1.0)
+    - NYTPhotoViewer/Core (= 1.1.0)
+  - NYTPhotoViewer/AnimatedGifSupport (1.1.0):
+    - FLAnimatedImage (~> 1.0.8)
+    - NYTPhotoViewer/Core
+  - NYTPhotoViewer/Core (1.1.0)
   - SDVersion (2.6)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
@@ -69,10 +77,22 @@ DEPENDENCIES:
   - LCActionSheet
   - MGSwipeTableCell
   - MJRefresh (~> 3.0.8)
+  - NYTPhotoViewer (from `https://github.com/andforce/NYTPhotoViewer.git`, commit
+    `659d4ac`)
   - SDVersion
   - SDWebImage (~> 3.7.5)
   - SVProgressHUD (~> 1.1.3)
   - UITableView+FDTemplateLayoutCell (~> 1.4)
+
+EXTERNAL SOURCES:
+  NYTPhotoViewer:
+    :commit: 659d4ac
+    :git: https://github.com/andforce/NYTPhotoViewer.git
+
+CHECKOUT OPTIONS:
+  NYTPhotoViewer:
+    :commit: 659d4ac
+    :git: https://github.com/andforce/NYTPhotoViewer.git
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 8312778b6815578e6a86d630fbcf31dc94c534e7
@@ -84,12 +104,14 @@ SPEC CHECKSUMS:
   DTCoreText: 3ea8bba23dd2141ba18adb227a7dd33a822df1c4
   DTFoundation: 3b6b1b817d2a7fb02e7eaf2596c922a68145bd43
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   IGHTMLQuery: 6176bcb88ad36f80ee984dbfde5592bb3ccc921f
   JSONModel: 216584d0311b053ff714f1d6cb700dbf890847bc
   LCActionSheet: 690882cd8b9a6713f1b2881c3bb2c7f11954d034
   MGSwipeTableCell: bafeb5f351124544c9364ecbdf24c7b06a37d340
   MJRefresh: fafde8f18f4afd66b434331a9beb67a6c0264056
   NUIParse: 2e3885ba7807477266396292626bd387d34c2338
+  NYTPhotoViewer: e80e8767f3780d2df37c6f72cbab15d6c7232911
   SDVersion: c036f7890279d188c17f5701b9feea0d93b9f8ee
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1

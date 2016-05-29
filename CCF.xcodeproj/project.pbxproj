@@ -105,6 +105,7 @@
 		3ACFFD2C1CF9D6BF000312DC /* HPURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACFFD291CF9D6BF000312DC /* HPURLCache.m */; };
 		3ACFFD2D1CF9D6BF000312DC /* SDImageCache+URLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACFFD2B1CF9D6BF000312DC /* SDImageCache+URLCache.m */; };
 		3ACFFD301CF9DD3C000312DC /* HPURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACFFD2F1CF9DD3C000312DC /* HPURLProtocol.m */; };
+		3ACFFD341CFA641F000312DC /* NYTExamplePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACFFD331CFA641F000312DC /* NYTExamplePhoto.m */; };
 		3AD077C51CF73B50006A8FBF /* CCFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD077C41CF73B50006A8FBF /* CCFWebViewController.m */; };
 		3AD077C71CF73FBF006A8FBF /* post_view.html in Resources */ = {isa = PBXBuildFile; fileRef = 3AD077C61CF73FBF006A8FBF /* post_view.html */; };
 		3AEC539A1CB9529F00E50390 /* CCFThreadListTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */; };
@@ -330,6 +331,8 @@
 		3ACFFD2B1CF9D6BF000312DC /* SDImageCache+URLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDImageCache+URLCache.m"; sourceTree = "<group>"; };
 		3ACFFD2E1CF9DD3C000312DC /* HPURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPURLProtocol.h; sourceTree = "<group>"; };
 		3ACFFD2F1CF9DD3C000312DC /* HPURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPURLProtocol.m; sourceTree = "<group>"; };
+		3ACFFD321CFA641F000312DC /* NYTExamplePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTExamplePhoto.h; sourceTree = "<group>"; };
+		3ACFFD331CFA641F000312DC /* NYTExamplePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTExamplePhoto.m; sourceTree = "<group>"; };
 		3AD077C31CF73B50006A8FBF /* CCFWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFWebViewController.h; sourceTree = "<group>"; };
 		3AD077C41CF73B50006A8FBF /* CCFWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFWebViewController.m; sourceTree = "<group>"; };
 		3AD077C61CF73FBF006A8FBF /* post_view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = post_view.html; sourceTree = "<group>"; };
@@ -588,6 +591,15 @@
 			name = NetWork;
 			sourceTree = "<group>";
 		};
+		3ACFFD311CFA640B000312DC /* PhotoView */ = {
+			isa = PBXGroup;
+			children = (
+				3ACFFD321CFA641F000312DC /* NYTExamplePhoto.h */,
+				3ACFFD331CFA641F000312DC /* NYTExamplePhoto.m */,
+			);
+			name = PhotoView;
+			sourceTree = "<group>";
+		};
 		3AEA1F341C365E2100710BD6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -687,6 +699,7 @@
 		4D339D821C31454A0022A6A4 = {
 			isa = PBXGroup;
 			children = (
+				3ACFFD311CFA640B000312DC /* PhotoView */,
 				3ACFFD271CF9D6B1000312DC /* NetWork */,
 				3AC65FBC1CF13809000D3BDB /* CCF */,
 				4D796BEE1C44B59100B3C62D /* CoreData */,
@@ -1021,6 +1034,7 @@
 				3AC65FC21CF13AA1000D3BDB /* Utils.m in Sources */,
 				3AA5B99A1CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m in Sources */,
 				3A9FEDDE1C3430A500F30885 /* CCFBrowser.m in Sources */,
+				3ACFFD341CFA641F000312DC /* NYTExamplePhoto.m in Sources */,
 				3AC65FE91CF15338000D3BDB /* NormalThread.m in Sources */,
 				3AC660841CF1AEA1000D3BDB /* AutoRelayoutToolbar.m in Sources */,
 				3AC6606D1CF1833F000D3BDB /* CCFMyThreadTableViewController.m in Sources */,

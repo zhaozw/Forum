@@ -11,6 +11,10 @@
 #import <MJRefresh.h>
 #import "SDImageCache+URLCache.h"
 
+#import <NYTPhotosViewController.h>
+#import <NYTPhotoViewer/NYTPhoto.h>
+#import "NYTExamplePhoto.h"
+
 @interface CCFWebViewController ()<UIWebViewDelegate, UIScrollViewDelegate>
 
 @end
@@ -143,19 +147,32 @@
     
     if ([urlString hasPrefix:@"https://bbs.et8.net/bbs/attachment.php?attachmentid="]) {
         NSString *src = request.URL.absoluteString;
-        UIImage *i = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:src];
+        UIImage *memCachedImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:src];
         
-        CGRect r = CGRectMake(0, 0, 500, 500);
-        
-        if (!self.animatedFromView) {
-            self.animatedFromView = [[UIImageView alloc] initWithFrame:CGRectZero];
-            self.animatedFromView.backgroundColor = [UIColor redColor];
+        NSData *data = nil;
+        if (memCachedImage) {
+            if (!memCachedImage.images) {
+                data = UIImageJPEGRepresentation(memCachedImage, 1.f);
+            }
+        } else {
+            data = [[SDImageCache sharedImageCache] hp_imageDataFromDiskCacheForKey:src];
+            memCachedImage = [UIImage imageWithData: data];
         }
-        self.animatedFromView.frame = r;
         
-        if (i) self.animatedFromView.image = i;
         
-        [self.view addSubview:self.animatedFromView];
+        
+        
+        NSMutableArray * array = [NSMutableArray array];
+        
+        NYTExamplePhoto  * photo1 = [[NYTExamplePhoto alloc] init];
+        photo1.attributedCaptionTitle = [[NSAttributedString alloc] initWithString:@"1" attributes:nil];
+        photo1.image = memCachedImage;
+        
+        [array addObject:photo1];
+                                         
+        NYTPhotosViewController *photosViewController = [[NYTPhotosViewController alloc] initWithPhotos:array];
+        
+        [self presentViewController:photosViewController animated:YES completion:nil];
         
         
         return NO;

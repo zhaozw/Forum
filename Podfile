@@ -20,3 +20,5 @@ pod 'MGSwipeTableCell'
 pod 'AVOSCloud'
 
 pod 'AVOSCloudIM'
+
+pod 'NYTPhotoViewer', :git => "https://github.com/andforce/NYTPhotoViewer.git", :commit => "659d4ac"
