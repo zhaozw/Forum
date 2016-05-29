@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "CCFApiBaseViewController.h"
+#import "TransValueDelegate.h"
 
 
 @interface CCFWebViewController : CCFApiBaseViewController
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @property (nonatomic, strong) UIImageView *animatedFromView;
+
+@property (nonatomic, weak) id<TransValueDelegate> transValueDelegate;
 
 @end

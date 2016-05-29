@@ -12,6 +12,7 @@
 #import "CCFShowThreadViewController.h"
 #import "Thread.h"
 #import "DRLTabBarController.h"
+#import "CCFWebViewController.h"
 
 
 @interface CCFFavThreadPostTableViewController ()<MGSwipeTableCellDelegate>
@@ -107,14 +108,25 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if([segue.identifier isEqualToString:@"ShowThreadPosts"]){
-        CCFShowThreadViewController * controller = segue.destinationViewController;
-        self.transValueDelegate = (id<TransValueDelegate>)controller;
-        
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        
-        Thread * thread = self.dataList[indexPath.row];
-        
-        [self.transValueDelegate transValue:thread];
+        if(YES){
+            CCFWebViewController * controller = segue.destinationViewController;
+            self.transValueDelegate = (id<TransValueDelegate>)controller;
+            
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            
+            Thread * thread = self.dataList[indexPath.row];
+            
+            [self.transValueDelegate transValue:thread];
+        } else{
+            CCFShowThreadViewController * controller = segue.destinationViewController;
+            self.transValueDelegate = (id<TransValueDelegate>)controller;
+            
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            
+            Thread * thread = self.dataList[indexPath.row];
+            
+            [self.transValueDelegate transValue:thread];
+        }
         
     } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]){
         //selectSegue = segue;

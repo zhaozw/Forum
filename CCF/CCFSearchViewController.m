@@ -15,6 +15,7 @@
 #import "CCFShowThreadViewController.h"
 #import "CCFProfileTableViewController.h"
 #import <SVProgressHUD.h>
+#import "CCFWebViewController.h"
 
 
 @interface CCFSearchViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, CCFThreadListCellDelegate>{
@@ -138,15 +139,26 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if([segue.identifier isEqualToString:@"ShowThreadPosts"]){
-        CCFShowThreadViewController * controller = segue.destinationViewController;
-        self.transValueDelegate = (id<TransValueDelegate>)controller;
-        
-        
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        
-        ThreadInSearch * thread = self.dataList[indexPath.row];
-        
-        [self.transValueDelegate transValue:thread];
+        if(YES){
+            CCFWebViewController * controller = segue.destinationViewController;
+            self.transValueDelegate = (id<TransValueDelegate>)controller;
+            
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            
+            ThreadInSearch * thread = self.dataList[indexPath.row];
+            
+            [self.transValueDelegate transValue:thread];
+        } else{
+            CCFShowThreadViewController * controller = segue.destinationViewController;
+            self.transValueDelegate = (id<TransValueDelegate>)controller;
+            
+            
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            
+            ThreadInSearch * thread = self.dataList[indexPath.row];
+            
+            [self.transValueDelegate transValue:thread];
+        }
         
     } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]){
         selectSegue = segue;

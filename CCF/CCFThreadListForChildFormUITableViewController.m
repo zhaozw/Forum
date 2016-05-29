@@ -17,6 +17,7 @@
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "CCFProfileTableViewController.h"
 #import "ForumCoreDataManager.h"
+#import "CCFWebViewController.h"
 
 
 @interface CCFThreadListForChildFormUITableViewController (){
@@ -167,19 +168,40 @@
         
         
     } else if([sender isKindOfClass:[UITableViewCell class]]){
-        CCFShowThreadViewController * controller = segue.destinationViewController;
-        self.transValueDelegate = (id<TransValueDelegate>)controller;
-        [self.transValueDelegate transValue:transForm];
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
-        NormalThread * thread = nil;
-        
-        if (indexPath.section == 0) {
-            thread = self.threadTopList[indexPath.row];
+        if(YES){
+            CCFWebViewController * controller = segue.destinationViewController;
+            self.transValueDelegate = (id<TransValueDelegate>)controller;
+            [self.transValueDelegate transValue:transForm];
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            
+            NormalThread * thread = nil;
+            
+            if (indexPath.section == 0) {
+                thread = self.threadTopList[indexPath.row];
+            } else{
+                thread = self.dataList[indexPath.row];
+            }
+            [self.transValueDelegate transValue:thread];
+            
+            
         } else{
-            thread = self.dataList[indexPath.row];
+            CCFShowThreadViewController * controller = segue.destinationViewController;
+            self.transValueDelegate = (id<TransValueDelegate>)controller;
+            [self.transValueDelegate transValue:transForm];
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            
+            NormalThread * thread = nil;
+            
+            if (indexPath.section == 0) {
+                thread = self.threadTopList[indexPath.row];
+            } else{
+                thread = self.dataList[indexPath.row];
+            }
+            [self.transValueDelegate transValue:thread];
         }
-        [self.transValueDelegate transValue:thread];
+        
+
         
     } else if ([sender isKindOfClass:[UIButton class]]){
         CCFProfileTableViewController * controller = segue.destinationViewController;

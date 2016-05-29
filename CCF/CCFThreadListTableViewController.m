@@ -23,6 +23,7 @@
 #import <SVProgressHUD.h>
 #import "ForumCoreDataManager.h"
 #import "MGSwipeTableCellWithIndexPath.h"
+#import "CCFWebViewController.h"
 
 
 
@@ -289,24 +290,51 @@
         
         
     } else if([segue.identifier isEqualToString:@"ShowThreadPosts"]){
-        CCFShowThreadViewController * controller = segue.destinationViewController;
-        self.transValueDelegate = (id<TransValueDelegate>)controller;
-
         
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        
-        NormalThread * thread = nil;
-        
-        NSInteger section = indexPath.section;
-        
-        if ( section == 1) {
-            thread = self.threadTopList[indexPath.row];
-        } else if(section == 2){
-            thread = self.dataList[indexPath.row];
+        if(YES){
+            CCFWebViewController * controller = segue.destinationViewController;
+            self.transValueDelegate = (id<TransValueDelegate>)controller;
+            
+            
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            
+            NormalThread * thread = nil;
+            
+            NSInteger section = indexPath.section;
+            
+            if ( section == 1) {
+                thread = self.threadTopList[indexPath.row];
+            } else if(section == 2){
+                thread = self.dataList[indexPath.row];
+            }
+            
+            
+            [self.transValueDelegate transValue:thread];
+            
+            
+        } else{
+            CCFShowThreadViewController * controller = segue.destinationViewController;
+            self.transValueDelegate = (id<TransValueDelegate>)controller;
+            
+            
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            
+            NormalThread * thread = nil;
+            
+            NSInteger section = indexPath.section;
+            
+            if ( section == 1) {
+                thread = self.threadTopList[indexPath.row];
+            } else if(section == 2){
+                thread = self.dataList[indexPath.row];
+            }
+            
+            
+            [self.transValueDelegate transValue:thread];
         }
         
         
-        [self.transValueDelegate transValue:thread];
+        
         
     } else if ([segue.identifier isEqualToString:@"ShowChildForm"]){
         CCFThreadListForChildFormUITableViewController * controller = segue.destinationViewController;

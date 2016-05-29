@@ -12,6 +12,7 @@
 #import "CCFShowThreadViewController.h"
 #import "UserProfile.h"
 #import "ForumDisplayPage.h"
+#import "CCFWebViewController.h"
 
 
 @interface CCFUserThreadTableViewController ()<TransValueDelegate>{
@@ -79,15 +80,33 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if([segue.identifier isEqualToString:@"ShowThreadPosts"]){
-        CCFShowThreadViewController * controller = segue.destinationViewController;
-        self.transValueDelegate = (id<TransValueDelegate>)controller;
-
         
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        if(YES){
+            
+            CCFWebViewController * controller = segue.destinationViewController;
+            self.transValueDelegate = (id<TransValueDelegate>)controller;
+            
+            
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            
+            ThreadInSearch * thread = self.dataList[indexPath.row];
+            
+            [self.transValueDelegate transValue:thread];
+            
+            
+        } else{
+            CCFShowThreadViewController * controller = segue.destinationViewController;
+            self.transValueDelegate = (id<TransValueDelegate>)controller;
+            
+            
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            
+            ThreadInSearch * thread = self.dataList[indexPath.row];
+            
+            [self.transValueDelegate transValue:thread];
+        }
         
-        ThreadInSearch * thread = self.dataList[indexPath.row];
-
-        [self.transValueDelegate transValue:thread];
+        
         
     }
 }

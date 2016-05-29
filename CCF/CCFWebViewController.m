@@ -15,15 +15,23 @@
 #import <NYTPhotoViewer/NYTPhoto.h>
 #import "NYTExamplePhoto.h"
 #import "LCActionSheet.h"
+#import "Thread.h"
+#import "TransValueDelegate.h"
 
-@interface CCFWebViewController ()<UIWebViewDelegate, UIScrollViewDelegate>{
+@interface CCFWebViewController ()<UIWebViewDelegate, UIScrollViewDelegate,TransValueDelegate>{
     
     LCActionSheet * itemActionSheet;
+    
+    Thread * thread;
 }
 
 @end
 
 @implementation CCFWebViewController
+
+-(void)transValue:(id)value{
+    thread = value;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,7 +62,7 @@
         
         NSMutableString * string = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
         
-        [self.ccfApi showThreadWithId:1339402 andPage:2 handler:^(BOOL isSuccess, id message) {
+        [self.ccfApi showThreadWithId:[thread.threadID intValue] andPage:2 handler:^(BOOL isSuccess, id message) {
 
             
             ShowThreadPage * page = message;
@@ -113,7 +121,7 @@
     
     
     
-    [self.ccfApi showThreadWithId:1339402 andPage:1 handler:^(BOOL isSuccess, id message) {
+    [self.ccfApi showThreadWithId:[thread.threadID intValue] andPage:1 handler:^(BOOL isSuccess, id message) {
         
             NSMutableString * string = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
         
