@@ -14,8 +14,12 @@
 #import <NYTPhotosViewController.h>
 #import <NYTPhotoViewer/NYTPhoto.h>
 #import "NYTExamplePhoto.h"
+#import "LCActionSheet.h"
 
-@interface CCFWebViewController ()<UIWebViewDelegate, UIScrollViewDelegate>
+@interface CCFWebViewController ()<UIWebViewDelegate, UIScrollViewDelegate>{
+    
+    LCActionSheet * itemActionSheet;
+}
 
 @end
 
@@ -27,6 +31,7 @@
     
     [self.webView setScalesPageToFit:YES];
     self.webView.dataDetectorTypes = UIDataDetectorTypeNone;
+    self.webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
     self.webView.delegate = self;
     self.webView.backgroundColor = [UIColor whiteColor];
     
@@ -134,6 +139,17 @@
     
 }
 
+- (void)showMoreAction{
+
+    itemActionSheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"复制帖子链接", @"在浏览器中查看",@"高级回帖"] redButtonIndex:2 clicked:^(NSInteger buttonIndex) {
+
+        
+    }];
+    
+    [itemActionSheet show];
+}
+
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
     NSString *urlString = [[request URL] absoluteString];
@@ -141,6 +157,8 @@
     
     
     if ([request.URL.scheme isEqualToString:@"postid"]) {
+        
+        [self showMoreAction];
         return NO;
         
     }
