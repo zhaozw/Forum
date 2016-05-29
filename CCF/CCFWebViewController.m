@@ -147,7 +147,14 @@
     
     if ([request.URL.scheme isEqualToString:@"image"]) {
         
-        NSString *src = [request.URL.absoluteString stringByReplacingOccurrencesOfString:@"image://" withString:@""];
+        NSString * absUrl = request.URL.absoluteString;
+        
+        
+        NSString *src = [absUrl stringByReplacingOccurrencesOfString:@"image://https//" withString:@"https://"];
+        if ([absUrl hasPrefix:@"image://http//"]) {
+            src = [absUrl stringByReplacingOccurrencesOfString:@"image://http//" withString:@"http://"];
+        }
+
         UIImage *memCachedImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:src];
         NSData *data = nil;
         if (memCachedImage) {
