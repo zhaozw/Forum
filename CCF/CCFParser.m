@@ -276,8 +276,8 @@
         IGXMLNode *message = [postDocument queryWithXPath:xPathMessage].firstObject;
         
         ccfpost.postContent = message.html;
-   
-        NSString *xPathAttImage = [NSString stringWithFormat:@"//*[@id='td_post_%@']/div[2]/fieldset/div", postId];
+
+        NSString *xPathAttImage = [NSString stringWithFormat:@"//*[@id='td_post_%@']/div[2]", postId];
         IGXMLNode *attImage = [postDocument queryWithXPath:xPathAttImage].firstObject;
         
         NSString * attImageHtml = [attImage html];
@@ -290,7 +290,7 @@
         // 因此要替换成<img src="attachment.php?attachmentid=725161&amp;stc=1" /> 这种形式
         IGHTMLDocument * attImageDocument = [[IGHTMLDocument alloc] initWithHTMLString:attImageHtml error:nil];
         
-        IGXMLNodeSet * attImageSet = [attImageDocument queryWithXPath:@"/html/body/div/a[*]"];
+        IGXMLNodeSet * attImageSet = [attImageDocument queryWithXPath:@"/html/body/div/fieldset/div/a[*]"];
     
         
         NSString * newImagePattern = @"<img src=\"%@\" />";

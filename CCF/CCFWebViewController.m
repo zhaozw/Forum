@@ -49,7 +49,7 @@
         
         NSMutableString * string = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
         
-        [self.ccfApi showThreadWithId:1314451 andPage:2 handler:^(BOOL isSuccess, id message) {
+        [self.ccfApi showThreadWithId:1339402 andPage:2 handler:^(BOOL isSuccess, id message) {
 
             
             ShowThreadPage * page = message;
@@ -108,7 +108,7 @@
     
     
     
-    [self.ccfApi showThreadWithId:1195114 andPage:1 handler:^(BOOL isSuccess, id message) {
+    [self.ccfApi showThreadWithId:1339402 andPage:1 handler:^(BOOL isSuccess, id message) {
         
             NSMutableString * string = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
         
