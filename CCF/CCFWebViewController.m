@@ -145,38 +145,33 @@
         
     }
     
-//    if ([urlString hasPrefix:@"https://bbs.et8.net/bbs/attachment.php?attachmentid="]) {
-//        NSString *src = request.URL.absoluteString;
-//        UIImage *memCachedImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:src];
-//        
-//        NSData *data = nil;
-//        if (memCachedImage) {
-//            if (!memCachedImage.images) {
-//                data = UIImageJPEGRepresentation(memCachedImage, 1.f);
-//            }
-//        } else {
-//            data = [[SDImageCache sharedImageCache] hp_imageDataFromDiskCacheForKey:src];
-//            memCachedImage = [UIImage imageWithData: data];
-//        }
-//        
-//        
-//        
-//        
-//        NSMutableArray * array = [NSMutableArray array];
-//        
-//        NYTExamplePhoto  * photo1 = [[NYTExamplePhoto alloc] init];
-//        photo1.attributedCaptionTitle = [[NSAttributedString alloc] initWithString:@"1" attributes:nil];
-//        photo1.image = memCachedImage;
-//        
-//        [array addObject:photo1];
-//                                         
-//        NYTPhotosViewController *photosViewController = [[NYTPhotosViewController alloc] initWithPhotos:array];
-//        
-//        [self presentViewController:photosViewController animated:YES completion:nil];
-//        
-//        
-//        return NO;
-//    }
+    if ([request.URL.scheme isEqualToString:@"image"]) {
+        
+        NSString *src = [request.URL.absoluteString stringByReplacingOccurrencesOfString:@"image://" withString:@""];
+        UIImage *memCachedImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:src];
+        NSData *data = nil;
+        if (memCachedImage) {
+            if (!memCachedImage.images) {
+                data = UIImageJPEGRepresentation(memCachedImage, 1.f);
+            }
+        } else {
+            data = [[SDImageCache sharedImageCache] hp_imageDataFromDiskCacheForKey:src];
+            memCachedImage = [UIImage imageWithData: data];
+        }
+
+        NSMutableArray * array = [NSMutableArray array];
+
+        NYTExamplePhoto  * photo1 = [[NYTExamplePhoto alloc] init];
+
+        photo1.attributedCaptionTitle = [[NSAttributedString alloc] initWithString:@"1" attributes:nil];
+        photo1.image = memCachedImage;
+        [array addObject:photo1];
+        NYTPhotosViewController *photosViewController = [[NYTPhotosViewController alloc] initWithPhotos:array];
+        [self presentViewController:photosViewController animated:YES completion:nil];
+        
+        return NO;
+    }
+
     return YES;
 }
 

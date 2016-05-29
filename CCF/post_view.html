@@ -299,10 +299,7 @@ list.addEventListener("click", function(event) {
 
 var img_click_el = function(el) {
     var p = getPosition(el);
-    
-    //location.href = 'image://'+el.src+'_'+p.x+'_'+p.y+'_';
-    //location.href = 'image://'+el.src+'_{{'+p.x+', '+p.y+'}, {'+el.clientWidth+', '+el.clientHeight+'}}_';
-    location.href = 'image://'+el.src+'___???a???a'+p.x+'???s'+p.y+'???b???s???a'+el.clientWidth+'???s'+el.clientHeight+'???b???b___';
+    location.href = 'image://'+el.src;
 };
 
 var img_click = function (el) {
