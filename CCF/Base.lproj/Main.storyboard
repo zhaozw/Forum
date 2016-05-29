@@ -3123,13 +3123,10 @@
                             <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
                     </navigationBar>
-                    <connections>
-                        <segue destination="7tp-vM-md4" kind="relationship" relationship="rootViewController" id="TGd-sf-gKB"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N53-5b-slY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="478" y="-710"/>
+            <point key="canvasLocation" x="-3526" y="-2112"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="aTR-2G-zAu">
@@ -3143,17 +3140,17 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iya-mg-Rba">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iya-mg-Rba">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="iya-mg-Rba" firstAttribute="leading" secondItem="YLg-gy-qB2" secondAttribute="leadingMargin" constant="-20" id="L3h-lc-qBR"/>
-                            <constraint firstItem="Egh-zl-ZQU" firstAttribute="top" secondItem="iya-mg-Rba" secondAttribute="bottom" id="cQ7-Bq-f85"/>
-                            <constraint firstItem="iya-mg-Rba" firstAttribute="top" secondItem="Fd7-is-dKM" secondAttribute="bottom" id="dj6-29-8ES"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="iya-mg-Rba" secondAttribute="trailing" constant="-20" id="irM-Jf-S6t"/>
+                            <constraint firstItem="iya-mg-Rba" firstAttribute="leading" secondItem="YLg-gy-qB2" secondAttribute="leadingMargin" constant="-20" id="01V-NI-kZ0"/>
+                            <constraint firstItem="iya-mg-Rba" firstAttribute="top" secondItem="Fd7-is-dKM" secondAttribute="bottom" id="MI8-jL-7y9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="iya-mg-Rba" secondAttribute="trailing" constant="-20" id="bfz-7r-vuD"/>
+                            <constraint firstItem="Egh-zl-ZQU" firstAttribute="top" secondItem="iya-mg-Rba" secondAttribute="bottom" constant="-49" id="guB-aH-hga"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bgS-TU-Qv8">
@@ -3179,7 +3176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5F5-XV-A49" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-229" y="-3462"/>
+            <point key="canvasLocation" x="-4557" y="-2150"/>
         </scene>
     </scenes>
     <resources>
