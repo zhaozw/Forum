@@ -135,7 +135,7 @@ static id<HPURLMapping> s_URLMapping;
         UIImage *memCachedImage = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:cacheKey];
         NSData *data = nil;
         if (memCachedImage) {
-            NSLog(@"get memcache %@", self.request);
+            NSLog(@"HPURLProtocol   get memcache >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> %@" , self.request);
             // 无法从uiimage 判断jpeg png gif, 所以俺jpeg处理
             if (!memCachedImage.images) {
                 data = UIImageJPEGRepresentation(memCachedImage, 1.f);
@@ -146,7 +146,9 @@ static id<HPURLMapping> s_URLMapping;
             }
         } else {
             data = [[SDImageCache sharedImageCache] hp_imageDataFromDiskCacheForKey:cacheKey];
-            if (data) { NSLog(@"get disk cache %@", self.request); }
+            if (data) {
+                NSLog(@"HPURLProtocol   get disk cache >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> %@" , self.request);
+            }
         }
         
         if (data) {
@@ -188,7 +190,7 @@ static id<HPURLMapping> s_URLMapping;
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     
-    NSLog(@"didReceiveResponse >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> %@" , response.URL);
+    NSLog(@"HPURLProtocol   didReceiveResponse >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> %@" , response.URL);
     //canInit
     
     [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
@@ -218,14 +220,10 @@ static id<HPURLMapping> s_URLMapping;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [self.client URLProtocolDidFinishLoading:self];
     
-    
-    NSLog(@"connectionDidFinishLoading >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> %@" , connection.currentRequest.URL);
-    
-    
     // 缓存图片
     if ([self.class shouldCache:self.request]) {
         
-        NSLog(@"storeCachedResponse %@", self.request.URL);
+        NSLog(@"HPURLProtocol connectionDidFinishLoading %@", self.request.URL);
         if ([self.data length] == 0) {
             NSLog(@"self.data.length = 0");
             return;
@@ -253,15 +251,16 @@ static id<HPURLMapping> s_URLMapping;
 {
     // 1. 如果是SDWebImage的请求, request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData, SDWebImage自己会处理缓存
     // 2. 这里是通过url后缀来判断是不是图片的, 还可以从response.MIMEType
+    NSString * absUrl = [[request.URL absoluteString] lowercaseString];
+    if (request.cachePolicy != NSURLRequestReloadIgnoringLocalCacheData && ( [absUrl hasSuffixes:@[@".jpg", @".jpeg", @".gif", @".png"]]  ||  [absUrl hasPrefix:@"https://bbs.et8.net/bbs/attachment.php?attachmentid="]) ) {
+        
+        NSLog(@"HPURLProtocol shouldCache >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> YES");
+        
+        return YES;
+    }
 
-    return YES;
-    
-//    if (request.cachePolicy != NSURLRequestReloadIgnoringLocalCacheData && [[[request.URL absoluteString] lowercaseString] hasSuffixes:@[@".jpg", @".jpeg", @".gif", @".png"]]) {
-//        
-//        return YES;
-//    }
-//    
-//    return NO;
+    NSLog(@"HPURLProtocol shouldCache >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NO");
+    return NO;
 }
 
 + (NSString *)cacheKeyForURL:(NSURL *)url {
