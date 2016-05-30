@@ -20,6 +20,7 @@
 #import "UrlBuilder.h"
 #import "SVProgressHUD.h"
 #import "UIStoryboard+CCF.h"
+#import "ActionSheetPicker.h"
 
 #import "CCFSimpleReplyNavigationController.h"
 
@@ -31,6 +32,9 @@
     Thread * transThread;
     
     ShowThreadPage * currentThreadPage;
+    
+    int currentPageNumber;
+    int totalPageCount;
 }
 
 @end
@@ -61,41 +65,51 @@
     self.webView.scrollView.delegate = self;
     
     
-    
-
-    
-    
-    
     self.webView.scrollView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        
-        NSMutableString * string = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
-        
-        [self.ccfApi showThreadWithId:[transThread.threadID intValue] andPage:2 handler:^(BOOL isSuccess, id message) {
 
-            
-            ShowThreadPage * page = message;
-            
-            NSMutableArray<Post *> * posts = page.dataList;
-            
-            
-            NSString * lis = @"";
-            
-            for (Post * post in posts) {
-                
+        int toPageNumber = currentPageNumber + 1;
+        
+        [self showThread:[transThread.threadID intValue] page:toPageNumber withAnim:YES];
 
-                NSString * postInfoPattern = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
-                
-                NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
-                NSString * postInfo = [NSString stringWithFormat:postInfoPattern,post.postID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
-                
-                lis = [lis stringByAppendingString:postInfo];
-            }
+    }];
+    
+    [self showThread:[transThread.threadID intValue] page:1 withAnim:NO];
+    
+}
+
+-(void) showThread:(int) threadId page:(int)page withAnim:(BOOL) anim{
+    NSMutableString * string = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
+    
+    [self.ccfApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
+
+        ShowThreadPage * threadPage = message;
+        
+        currentThreadPage = threadPage;
+        totalPageCount = (int)currentThreadPage.totalPageCount;
+        currentPageNumber = page;
+        
+        
+        NSMutableArray<Post *> * posts = threadPage.dataList;
+        
+        
+        NSString * lis = @"";
+        
+        for (Post * post in posts) {
+            NSString * postInfoPattern = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
             
-            NSString * html = [NSString stringWithFormat:string, lis];
-            [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
+            NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
+            NSString * postInfo = [NSString stringWithFormat:postInfoPattern,post.postID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
             
-            [self.webView.scrollView.mj_footer endRefreshing];
-            
+            lis = [lis stringByAppendingString:postInfo];
+        }
+        
+        NSString * html = [NSString stringWithFormat:string, lis];
+        [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
+        
+        [self.webView.scrollView.mj_footer endRefreshing];
+        
+        
+        if (anim) {
             CABasicAnimation *stretchAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.y"];
             [stretchAnimation setToValue:[NSNumber numberWithFloat:1.02]];
             [stretchAnimation setRemovedOnCompletion:YES];
@@ -116,43 +130,9 @@
             [animation setDuration:0.5f];
             [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
             [[self.webView layer] addAnimation:animation forKey:nil];
-            
-            
-        }];
-        
-        
-    }];
-    
-    
-    
-
-    
-    
-    
-    [self.ccfApi showThreadWithId:[transThread.threadID intValue] andPage:1 handler:^(BOOL isSuccess, id message) {
-        
-            NSMutableString * string = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
-        
-        ShowThreadPage * page = message;
-        
-        NSMutableArray<Post *> * posts = page.dataList;
-        
-        
-        NSString * lis = @"";
-        
-        for (Post * post in posts) {
-            
-            NSString * postInfoPattern = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
-            
-            NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
-            NSString * postInfo = [NSString stringWithFormat:postInfoPattern,post.postID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
-            
-            lis = [lis stringByAppendingString:postInfo];
         }
-        NSString * html = [NSString stringWithFormat:string, lis];
-        [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
+        
     }];
-    
 }
 
 - (void)showMoreAction{
@@ -214,6 +194,53 @@
     }
 
     return YES;
+}
+
+-(void) showChangePageActionSheet:(UIBarButtonItem *)sender{
+    NSMutableArray<NSString*> * pages = [NSMutableArray array];
+    for (int i = 0 ; i < currentThreadPage.totalPageCount; i++) {
+        NSString * page = [NSString stringWithFormat:@"第 %d 页", i + 1];
+        [pages addObject:page];
+    }
+    
+    
+    
+    ActionSheetStringPicker * picker = [[ActionSheetStringPicker alloc] initWithTitle:@"选择页面" rows:pages initialSelection:currentPageNumber - 1 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        
+        int selectPage = (int)selectedIndex + 1;
+        
+        if (selectPage != currentPageNumber) {
+            
+            [SVProgressHUD showWithStatus:@"正在切换" maskType:SVProgressHUDMaskTypeBlack];
+            [self showThread:[transThread.threadID intValue] page:selectPage withAnim:YES];
+        }
+        
+        
+    } cancelBlock:^(ActionSheetStringPicker *picker) {
+        
+        
+    } origin:sender];
+    
+    UIBarButtonItem * cancelItem = [[UIBarButtonItem alloc] init];
+    cancelItem.title = @"取消";
+    [picker setCancelButton:cancelItem];
+    
+    UIBarButtonItem * queding = [[UIBarButtonItem alloc] init];
+    queding.title = @"确定";
+    [picker setDoneButton:queding];
+    
+    
+    [picker showActionSheetPicker];
+}
+
+
+- (IBAction)back:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)changeNumber:(id)sender {
+    [self showChangePageActionSheet:sender];
+    
 }
 
 - (IBAction)showMoreAction:(UIBarButtonItem *)sender {
