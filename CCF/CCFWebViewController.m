@@ -69,6 +69,9 @@
 
         int toPageNumber = currentPageNumber + 1;
         
+        if (toPageNumber >= totalPageCount) {
+            toPageNumber = totalPageCount;
+        }
         [self showThread:[transThread.threadID intValue] page:toPageNumber withAnim:YES];
 
     }];
@@ -78,7 +81,7 @@
 }
 
 -(void) showThread:(int) threadId page:(int)page withAnim:(BOOL) anim{
-    NSMutableString * string = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
+    NSMutableString * threadPagePattern = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
     
     [self.ccfApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
 
@@ -88,6 +91,12 @@
         totalPageCount = (int)currentThreadPage.totalPageCount;
         currentPageNumber = page;
         
+        if (currentPageNumber >= totalPageCount) {
+            currentPageNumber = totalPageCount;
+        }
+        
+        NSString * title = [NSString stringWithFormat:@"%d/%d", currentPageNumber, totalPageCount];
+        self.pageNumber.title = title;
         
         NSMutableArray<Post *> * posts = threadPage.dataList;
         
@@ -96,14 +105,14 @@
         
         for (Post * post in posts) {
             NSString * postInfoPattern = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
-            
+ 
             NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
             NSString * postInfo = [NSString stringWithFormat:postInfoPattern,post.postID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
             
             lis = [lis stringByAppendingString:postInfo];
         }
         
-        NSString * html = [NSString stringWithFormat:string, lis];
+        NSString * html = [NSString stringWithFormat:threadPagePattern, threadPage.threadTitle,lis];
         [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
         
         [self.webView.scrollView.mj_footer endRefreshing];
