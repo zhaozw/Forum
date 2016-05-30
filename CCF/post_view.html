@@ -10,7 +10,7 @@
 		-webkit-text-size-adjust: **[txtadjust]**;
 		font-size: 16px !Important;
 		background-color:#ffffff;
-		width:95%% !Important;
+		width:100%% !Important;
 		padding-top:15px !Important;
 		padding-bottom:20px !Important;
 		margin: 0 auto !Important;
@@ -135,12 +135,33 @@
     	list-style: none outside none;
     }
 
+    /*发帖的时间 用户名 楼层等*/
     .info {
     	/*background-color: red;*/
+        margin-left: 15px !important;
+        margin-right: 15px !important;
     	position: relative;
     	height: 42px;
     }
 
+    /*帖子的内容*/
+    body>div>ul>li>div{
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    /**/
+    .shell{
+        width: 95%;
+        border: 1px solid #909090;
+        padding: 8px;
+        padding-top: 8px;
+        margin: 8px;
+        margin-top: 12pt;
+        text-align: left;
+        background-color: #000000;
+        color: #ffffff;
+    }
+    
     .avatar {
     	position: absolute;
     	top: 0;
@@ -150,7 +171,7 @@
     .avatar img {
     	width: 35px !important;
     	height: 35px !important;
-    	-webkit-border-radius: 3.5px;
+    	-webkit-border-radius: 17.5px;
 
     	border: 0 !important;
     	outline: 0 !important;
@@ -183,42 +204,36 @@
         text-align: center;
         color: #929292;
     }
+    
+
+    
 }
 
 </style>
 </head>
 <body>
-<div class="bd">
+    <div class="bd">
 
-<ul class="list" id="list">
-	<li>
-		<div class="title">
+        <ul class="list" id="list">
+            <li><div class="title">%@</div></li>
             %@
-        </div>
-	</li>
-    %@
-    <!-- 
-	<li class="" data-id="7308071" onclick="location.href='http://example';">
-		<div class="info">
-
-			<span class="avatar"><a href="large_image"><img src="http://www.hi-pda.com/forum/uc_server/data/avatar/000/45/17/59_avatar_middle.jpg"></a></span>
-			<span class="author">hswglff</span>
-			<span class="floor">1#</span>
-			<span class="time-ago">4 hours ago</span>
-
-		</div>
-
-		<div class="content">
-
-			"战争尚未结束。"他擦过我身边低声说。<br />
-			<br />
-			"一曲忠诚的赞歌。"我低声回应。<br />
-
-		</div>
-		
-	</li> -->
-</ul>
-</div>
+            <!--
+            <li class="post-message" data-id="postid://%@" >
+                <div class="info">
+                    <span class="avatar"><a href="large_image"><img src="%@"></a></span>
+                    <span class="author">%@</span>
+                    <span class="floor">%@</span>
+                    <span class="time-ago">%@</span>
+                </div>
+                <div id="post_message_16831653" style="overflow-x: hidden;">
+                    我是五个字
+                    还有一张流
+                </div>
+            </li>
+            -->
+        </ul>
+        
+    </div>
 <script type="text/javascript">
 
 /*
