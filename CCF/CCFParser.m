@@ -88,7 +88,7 @@
             normalThread.threadAuthorName = [authorNode text];
             
             IGXMLNode * lastPostTime = [threadListNode childrenAtPosition:4];
-            normalThread.lastPostTime = [[lastPostTime text] trim];
+            normalThread.lastPostTime = [self timeForShort:[[lastPostTime text] trim]];
             
             IGXMLNode * commentCountNode = threadListNode.children [5];
             normalThread.postCount = [commentCountNode text];
@@ -124,6 +124,35 @@
     page.dataList = threadList;
     
     return page;
+    
+}
+
+-(NSString*) timeForShort:(NSString *) time{
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    //[dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate * date = [dateFormatter dateFromString:time];
+    
+    NSTimeInterval intervalTime = date.timeIntervalSinceNow;
+    
+    int interval = -intervalTime;
+    if (interval < 60) {
+        return @"刚刚";
+    } else if (interval >= 60 && interval <= 60* 60){
+        return [NSString stringWithFormat:@"%d分钟前",(int)(interval / 60)];
+    } else if (interval > 60 * 60 && interval < 60 * 60 * 24){
+        return [NSString stringWithFormat:@"%d小时前",(int)(interval / (60 * 60))];
+    } else if (interval >= 60 * 60 * 24 && interval <60 * 60 * 24 * 7){
+        return [NSString stringWithFormat:@"%d天前",(int)(interval / (60 * 60 * 24))];
+    } else if (interval >= 60 * 60 * 24 * 7 && interval < 60 * 60 * 24 * 30){
+        return [NSString stringWithFormat:@"%d周前",(int)(interval / (60 * 60 * 24 * 7))];
+    } else if (interval >=  60 * 60 * 24 * 30 && interval <= 60 * 60 * 24 * 365){
+        return [NSString stringWithFormat:@"%d月前",(int)(interval / (60 * 60 * 24 * 30))];
+    } else if (interval > 60 * 60 * 24 * 365 ){
+        return [NSString stringWithFormat:@"%d年前",(int)(interval / (60 * 60 * 24 * 365))];
+    }
+    
+    return time;
     
 }
 
@@ -555,6 +584,7 @@
             NSString * postAuthor = [[node childrenAtPosition:3] text];
             NSString * postAuthorId = [[node.children[3] html] stringWithRegular:@"=\\d+" andChild:@"\\d+"];
             NSString * postTime = [node.children[4] text];
+            
             NSString * postBelongForm = [node.children[8] text];
             
             searchThread.threadID = postId;
