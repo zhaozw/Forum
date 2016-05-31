@@ -120,9 +120,14 @@
     	padding: 0;
     }
 
-    .bd li {
-    	border-bottom: 1.0px solid rgba(68, 155, 173, 1);
-    	padding: 4px 0px;
+    .post-title{
+        border-bottom: 1.0px solid rgba(68, 155, 173, 1);
+        padding: 4px 0px;
+    }
+    
+    .post-message{
+        border-bottom: 1.0px solid rgba(68, 155, 173, 1);
+        padding: 4px 0px;
     }
     
     .bd .gotoFloor {
@@ -153,6 +158,10 @@
         padding-bottom: 10px !important;
         padding-left: 15px !important;
         padding-right: 15px !important;
+    }
+    body>div>ul>li>div>ul>li{
+        border-bottom: 0px ;
+        padding: 4px 0px;
     }
     /**/
     .shell{
@@ -251,7 +260,7 @@
     <div class="bd">
 
         <ul class="list" id="list">
-            <li><div class="title">%@</div></li>
+            <li class="post-title"><div class="title">%@</div></li>
             %@
             <!--
             <li class="post-message" data-id="postid://16832061" >
