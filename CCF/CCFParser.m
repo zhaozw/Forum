@@ -305,6 +305,11 @@
         IGXMLNode *message = [postDocument queryWithXPath:xPathMessage].firstObject;
         
         ccfpost.postContent = message.html;
+        // 去掉引用inline 的样式设定
+        ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\">引用:</div>" withString:@""];
+        ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:@"style=\"margin:20px; margin-top:5px; \"" withString:@"class=\"post-quote\""];
+        ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:@"<td class=\"alt2\" style=\"border:1px inset\">" withString:@"<td class=\"alt2\">"];
+        
 
         NSString *xPathAttImage = [NSString stringWithFormat:@"//*[@id='td_post_%@']/div[2]", postId];
         IGXMLNode *attImage = [postDocument queryWithXPath:xPathAttImage].firstObject;

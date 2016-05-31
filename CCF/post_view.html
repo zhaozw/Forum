@@ -48,15 +48,6 @@
     	font-size:1.0em !important;
     }
 
-	.title {
-		font-size: 20px !Important;
-		margin-bottom: 10px;
-	}
-	.title a {
-		text-decoration: none !Important;
-		color:#333 !Important;
-	}
-
     .content a {
     	text-decoration: none !Important;
     	border-bottom:1px dashed;
@@ -100,11 +91,8 @@
     	font-size: 0.9em;
     }
     
-    .content img[src^='http://www.hi-pda.com/forum/attachments/day_140621/1406211752793e731a4fec8f7b.png'],
-    .content img[src^='images'],
-    .content img[src^='http://www.hi-pda.com/forum/images'],
-    .content img[src^='http://cnc.hi-pda.com/forum/attachments/day_140621/1406211752793e731a4fec8f7b.png'],
-    .content img[src^='http://cnc.hi-pda.com/forum/images'] {
+
+    .content img[src^='images']{
     	border: 0 !important;
     	outline: 0 !important;
     	margin: 0 !important;
@@ -120,17 +108,32 @@
     	padding: 0;
     }
 
+    /* 标题相关 */
     .post-title{
         border-bottom: 1.0px solid rgba(68, 155, 173, 1);
         padding: 4px 0px;
+    }
+    
+    .title {
+        font-size: 18px !Important;
+        margin-bottom: 5px;
+    }
+    .title a {
+        text-decoration: none !Important;
+        color:#333 !Important;
+    }
+    .post-quote{
+        background-color: #f6f6f8;
+        border: 1.0px solid #CFCFD1;
+        margin-bottom: 10px;
     }
     
     .post-message{
         border-bottom: 1.0px solid rgba(68, 155, 173, 1);
         padding: 4px 0px;
     }
-    
-    .bd .gotoFloor {
+
+    .page .gotoFloor {
 
     	background-color: Gainsboro;
 
@@ -198,7 +201,7 @@
     .pre{
         margin: 0px;
         padding: 6px;
-        border: 1px inset;
+        border: 1px solid;
         width: 100%%;
         height: 34px;
         text-align: left;
@@ -257,23 +260,26 @@
 </style>
 </head>
 <body>
-    <div class="bd">
+    <div class="page">
 
         <ul class="list" id="list">
             <li class="post-title"><div class="title">%@</div></li>
             %@
             <!--
             <li class="post-message" data-id="postid://16832061" >
+             
                 <div class="info">
                     <span class="avatar"><a href="large_image"><img src="https://bbs.et8.net/bbs/customavatars/thumbs/avatar17981_14.gif"></a></span>
                     <span class="author">马小甲</span>
                     <span class="floor">#1</span>
                     <span class="time-ago">一天前</span>
                 </div>
+             
                 <div id="post_message_16831653" style="overflow-x: hidden;">
                     我是五个字
                     还有一张流
                 </div>
+             
             </li>
             -->
         </ul>
