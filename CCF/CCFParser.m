@@ -347,7 +347,8 @@
         NSRange timeRange = [time.text rangeOfString:@"\\d{4}-\\d{2}-\\d{2}, \\d{2}:\\d{2}:\\d{2}" options:NSRegularExpressionSearch];
         
         if (timeRange.location != NSNotFound) {
-            ccfpost.postTime = [time.text substringWithRange:timeRange];
+            NSString * fixTime = [[time.text substringWithRange:timeRange] stringByReplacingOccurrencesOfString:@", " withString:@" "];
+            ccfpost.postTime = [self timeForShort:fixTime];
         }
         // 保存数据
         ccfpost.postID = postId;
@@ -595,7 +596,7 @@
             searchThread.threadCategory = [self spliteCategory:fullTitle];
             searchThread.threadAuthorName = postAuthor;
             searchThread.threadAuthorID = postAuthorId;
-            searchThread.lastPostTime = [postTime trim];
+            searchThread.lastPostTime = [self timeForShort:[postTime trim]];
             searchThread.fromFormName = postBelongForm;
             
             
@@ -749,7 +750,7 @@
     privateMessage.pmContent = [[contentNodeSet firstObject] html];
     // 回帖时间
     IGXMLNodeSet * privateSendTimeSet = [document queryWithXPath:@"//*[@id='table1']/tr/td[1]/div/text()"];
-    privateMessage.pmTime = [[privateSendTimeSet [2] text] trim];
+    privateMessage.pmTime = [self timeForShort:[[privateSendTimeSet [2] text] trim]];
     // PM ID
     IGXMLNodeSet * privateMessageIdSet = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tr/td[1]/table/tr[2]/td/a"];
     NSString * pmId = [[[privateMessageIdSet firstObject] attribute:@"href"] stringWithRegular:@"\\d+"];
