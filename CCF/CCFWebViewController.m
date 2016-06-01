@@ -82,6 +82,8 @@
 
     }];
     
+    [self.webView.scrollView.mj_header beginRefreshing];
+    
 }
 
 -(void) prePage:(int)threadId withAnim:(BOOL) anim{
