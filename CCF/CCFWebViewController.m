@@ -345,26 +345,7 @@
             // 在浏览器种查看
             [[UIApplication sharedApplication] openURL:[UrlBuilder buildThreadURL:[transThread.threadID intValue] withPage:1]];
         } else if (buttonIndex == 2){
-            // 进入高级回帖
-//            UIStoryboard * storyBoard = [UIStoryboard mainStoryboard];
-//            
-//            CCFSimpleReplyNavigationController * controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
-//            
-//            self.replyTransValueDelegate = (id<ReplyTransValueDelegate>)controller;
-//            
-//            TransValueBundle * bundle = [[TransValueBundle alloc] init];
-//            
-//            [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
-//            NSString * token = currentThreadPage.securityToken;
-//            [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
-//            [bundle putStringValue:transThread.threadAuthorName forKey:@"POST_USER"];
-//            [bundle putStringValue:currentThreadPage.formId forKey:@"FORM_ID"];
-//            
-//            [self.replyTransValueDelegate transValue:self withBundle:bundle];
-//            
-//            [self.navigationController presentViewController:controller animated:YES completion:^{
-//                
-//            }];
+            [self reply:self];
             
         }
     }];
