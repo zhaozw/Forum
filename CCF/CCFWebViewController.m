@@ -23,6 +23,7 @@
 #import "ActionSheetPicker.h"
 #import "ReplyCallbackDelegate.h"
 #import "CCFSimpleReplyNavigationController.h"
+#import "CCFPCH.pch"
 
 
 @interface CCFWebViewController ()<UIWebViewDelegate, UIScrollViewDelegate,TransValueDelegate,ReplyCallbackDelegate>{
@@ -85,7 +86,7 @@
 }
 
 -(void) prePage:(int)threadId withAnim:(BOOL) anim{
-    NSMutableString * threadPagePattern = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
+    NSMutableString * threadPagePattern = [FIRST_PAGE mutableCopy];
     
     int page = currentPageNumber--;
     [self.ccfApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
@@ -109,7 +110,7 @@
         NSString * lis = @"";
         
         for (Post * post in posts) {
-            NSString * postInfoPattern = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
+            NSString * postInfoPattern = POST_MESSAGE;
             
             NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
             NSString * postInfo = [NSString stringWithFormat:postInfoPattern,post.postID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
@@ -150,7 +151,7 @@
 }
 
 -(void) showThread:(int) threadId page:(int)page withAnim:(BOOL) anim{
-    NSMutableString * threadPagePattern = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
+    NSMutableString * threadPagePattern = [FIRST_PAGE mutableCopy];
     
     [self.ccfApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
 
@@ -173,7 +174,7 @@
         NSString * lis = @"";
         
         for (Post * post in posts) {
-            NSString * postInfoPattern = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
+            NSString * postInfoPattern = POST_MESSAGE;
  
             NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
             NSString * postInfo = [NSString stringWithFormat:postInfoPattern,post.postID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
