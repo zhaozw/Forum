@@ -21,11 +21,11 @@
 #import "SVProgressHUD.h"
 #import "UIStoryboard+CCF.h"
 #import "ActionSheetPicker.h"
-
+#import "ReplyCallbackDelegate.h"
 #import "CCFSimpleReplyNavigationController.h"
 
 
-@interface CCFWebViewController ()<UIWebViewDelegate, UIScrollViewDelegate,TransValueDelegate>{
+@interface CCFWebViewController ()<UIWebViewDelegate, UIScrollViewDelegate,TransValueDelegate,ReplyCallbackDelegate>{
     
     LCActionSheet * itemActionSheet;
     
@@ -64,6 +64,12 @@
     // scrollView
     self.webView.scrollView.delegate = self;
     
+    self.webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [self prePage:[transThread.threadID intValue] withAnim:YES];
+        
+    }];
+    
     
     self.webView.scrollView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
 
@@ -76,8 +82,71 @@
 
     }];
     
-    [self showThread:[transThread.threadID intValue] page:1 withAnim:NO];
+}
+
+-(void) prePage:(int)threadId withAnim:(BOOL) anim{
+    NSMutableString * threadPagePattern = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
     
+    int page = currentPageNumber--;
+    [self.ccfApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
+        
+        ShowThreadPage * threadPage = message;
+        
+        currentThreadPage = threadPage;
+        totalPageCount = (int)currentThreadPage.totalPageCount;
+        currentPageNumber = page;
+        
+        if (currentPageNumber >= totalPageCount) {
+            currentPageNumber = totalPageCount;
+        }
+        
+        NSString * title = [NSString stringWithFormat:@"%d/%d", currentPageNumber, totalPageCount];
+        self.pageNumber.title = title;
+        
+        NSMutableArray<Post *> * posts = threadPage.dataList;
+        
+        
+        NSString * lis = @"";
+        
+        for (Post * post in posts) {
+            NSString * postInfoPattern = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
+            
+            NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
+            NSString * postInfo = [NSString stringWithFormat:postInfoPattern,post.postID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
+            
+            lis = [lis stringByAppendingString:postInfo];
+        }
+        
+        NSString * html = [NSString stringWithFormat:threadPagePattern, threadPage.threadTitle,lis];
+        [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
+        
+        [self.webView.scrollView.mj_header endRefreshing];
+        
+        
+        if (anim) {
+            CABasicAnimation *stretchAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.y"];
+            [stretchAnimation setToValue:[NSNumber numberWithFloat:1.02]];
+            [stretchAnimation setRemovedOnCompletion:YES];
+            [stretchAnimation setFillMode:kCAFillModeRemoved];
+            [stretchAnimation setAutoreverses:YES];
+            [stretchAnimation setDuration:0.15];
+            [stretchAnimation setDelegate:self];
+            
+            [stretchAnimation setBeginTime:CACurrentMediaTime() + 0.35];
+            
+            [stretchAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+            //[self.webView setAnchorPoint:CGPointMake(0.0, 1) forView:self.webView];
+            [self.view.layer addAnimation:stretchAnimation forKey:@"stretchAnimation"];
+            
+            CATransition *animation = [CATransition animation];
+            [animation setType:kCATransitionPush];
+            [animation setSubtype:kCATransitionFromBottom];
+            [animation setDuration:0.5f];
+            [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+            [[self.webView layer] addAnimation:animation forKey:nil];
+        }
+        
+    }];
 }
 
 -(void) showThread:(int) threadId page:(int)page withAnim:(BOOL) anim{
@@ -152,6 +221,18 @@
     }];
     
     [itemActionSheet show];
+}
+
+-(void)transReplyValue:(ShowThreadPage *)value{
+    
+    currentThreadPage = value;
+    
+    currentPageNumber = (int)value.currentPage;
+    totalPageCount = (int)value.totalPageCount;
+    
+    NSMutableArray<Post *> * parsedPosts = value.dataList;
+    
+    
 }
 
 
@@ -295,4 +376,20 @@
     [itemActionSheet show];
 }
 
+- (IBAction)reply:(id)sender {
+    
+    UIStoryboard * storyBoard = [UIStoryboard mainStoryboard];
+    CCFSimpleReplyNavigationController * controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
+    self.replyTransValueDelegate = (id<ReplyTransValueDelegate>)controller;
+    TransValueBundle * bundle = [[TransValueBundle alloc] init];
+    [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
+    NSString * token = currentThreadPage.securityToken;
+    [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
+    [bundle putStringValue:transThread.threadAuthorName forKey:@"POST_USER"];
+    [bundle putStringValue:currentThreadPage.formId forKey:@"FORM_ID"];
+    [self.replyTransValueDelegate transValue:self withBundle:bundle];
+    [self.navigationController presentViewController:controller animated:YES completion:^{
+     
+    }];
+}
 @end

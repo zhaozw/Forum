@@ -3169,6 +3169,9 @@
                             </barButtonItem>
                             <barButtonItem image="ic_loupe_white_18pt" id="sKp-Xu-po2">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="reply:" destination="7tp-vM-md4" id="re8-bp-UIo"/>
+                                </connections>
                             </barButtonItem>
                             <barButtonItem title="1/1" id="bLC-QH-xuv">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -29,5 +29,6 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *pageNumber;
 
+- (IBAction)reply:(id)sender;
 
 @end
