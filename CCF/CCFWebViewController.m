@@ -48,7 +48,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     [self.webView setScalesPageToFit:YES];
     self.webView.dataDetectorTypes = UIDataDetectorTypeNone;
@@ -86,8 +85,6 @@
 }
 
 -(void) prePage:(int)threadId withAnim:(BOOL) anim{
-    NSMutableString * threadPagePattern = [FIRST_PAGE mutableCopy];
-    
     int page = currentPageNumber--;
     [self.ccfApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
         
@@ -110,15 +107,13 @@
         NSString * lis = @"";
         
         for (Post * post in posts) {
-            NSString * postInfoPattern = POST_MESSAGE;
-            
             NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
-            NSString * postInfo = [NSString stringWithFormat:postInfoPattern,post.postID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
+            NSString * postInfo = [NSString stringWithFormat:POST_MESSAGE,post.postID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
             
             lis = [lis stringByAppendingString:postInfo];
         }
         
-        NSString * html = [NSString stringWithFormat:threadPagePattern, threadPage.threadTitle,lis];
+        NSString * html = [NSString stringWithFormat:THREAD_PAGE, threadPage.threadTitle,lis];
         [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
         
         [self.webView.scrollView.mj_header endRefreshing];
@@ -151,7 +146,6 @@
 }
 
 -(void) showThread:(int) threadId page:(int)page withAnim:(BOOL) anim{
-    NSMutableString * threadPagePattern = [FIRST_PAGE mutableCopy];
     
     [self.ccfApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
 
@@ -174,15 +168,14 @@
         NSString * lis = @"";
         
         for (Post * post in posts) {
-            NSString * postInfoPattern = POST_MESSAGE;
  
             NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
-            NSString * postInfo = [NSString stringWithFormat:postInfoPattern,post.postID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
+            NSString * postInfo = [NSString stringWithFormat:POST_MESSAGE,post.postID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
             
             lis = [lis stringByAppendingString:postInfo];
         }
         
-        NSString * html = [NSString stringWithFormat:threadPagePattern, threadPage.threadTitle,lis];
+        NSString * html = [NSString stringWithFormat:THREAD_PAGE_NOTITLE ,lis];
         [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
         
         [self.webView.scrollView.mj_footer endRefreshing];
