@@ -36,6 +36,8 @@
     
     int currentPageNumber;
     int totalPageCount;
+    
+    NSMutableDictionary * pageDic;
 }
 
 @end
@@ -48,6 +50,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    pageDic = [NSMutableDictionary dictionary];
+    
+    currentPageNumber = 1;
+    
     
     [self.webView setScalesPageToFit:YES];
     self.webView.dataDetectorTypes = UIDataDetectorTypeNone;
@@ -66,10 +73,16 @@
     
     self.webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-        [self prePage:[transThread.threadID intValue] withAnim:YES];
+        if (currentPageNumber >1) {
+            int page = currentPageNumber - 1;
+            [self prePage:[transThread.threadID intValue] page:page withAnim:YES];
+        } else{
+            [self prePage:[transThread.threadID intValue] page:1 withAnim:NO];
+        }
+        
         
     }];
-    
+
     
     self.webView.scrollView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
 
@@ -86,8 +99,9 @@
     
 }
 
--(void) prePage:(int)threadId withAnim:(BOOL) anim{
-    int page = currentPageNumber--;
+-(void) prePage:(int)threadId page:(int)page withAnim:(BOOL) anim{
+    
+    
     [self.ccfApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
         
         ShowThreadPage * threadPage = message;
@@ -116,6 +130,9 @@
         }
         
         NSString * html = [NSString stringWithFormat:THREAD_PAGE, threadPage.threadTitle,lis];
+        
+        [pageDic setObject:html forKey:[NSNumber numberWithInt:currentPageNumber]];
+        
         [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
         
         [self.webView.scrollView.mj_header endRefreshing];
@@ -149,6 +166,9 @@
 
 -(void) showThread:(int) threadId page:(int)page withAnim:(BOOL) anim{
     
+    
+    NSString * cacheHtml = [pageDic objectForKey:[NSNumber numberWithInt:page]];
+    
     [self.ccfApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
 
         ShowThreadPage * threadPage = message;
@@ -178,33 +198,43 @@
         }
         
         NSString * html = [NSString stringWithFormat:THREAD_PAGE_NOTITLE ,lis];
-        [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
         
         [self.webView.scrollView.mj_footer endRefreshing];
         
-        
-        if (anim) {
-            CABasicAnimation *stretchAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.y"];
-            [stretchAnimation setToValue:[NSNumber numberWithFloat:1.02]];
-            [stretchAnimation setRemovedOnCompletion:YES];
-            [stretchAnimation setFillMode:kCAFillModeRemoved];
-            [stretchAnimation setAutoreverses:YES];
-            [stretchAnimation setDuration:0.15];
-            [stretchAnimation setDelegate:self];
+        if (![cacheHtml isEqualToString:html]) {
             
-            [stretchAnimation setBeginTime:CACurrentMediaTime() + 0.35];
+            [pageDic setObject:html forKey:[NSNumber numberWithInt:page]];
             
-            [stretchAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-            //[self.webView setAnchorPoint:CGPointMake(0.0, 1) forView:self.webView];
-            [self.view.layer addAnimation:stretchAnimation forKey:@"stretchAnimation"];
-            
-            CATransition *animation = [CATransition animation];
-            [animation setType:kCATransitionPush];
-            [animation setSubtype:kCATransitionFromTop];
-            [animation setDuration:0.5f];
-            [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-            [[self.webView layer] addAnimation:animation forKey:nil];
+            [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
+            if (anim) {
+                CABasicAnimation *stretchAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.y"];
+                [stretchAnimation setToValue:[NSNumber numberWithFloat:1.02]];
+                [stretchAnimation setRemovedOnCompletion:YES];
+                [stretchAnimation setFillMode:kCAFillModeRemoved];
+                [stretchAnimation setAutoreverses:YES];
+                [stretchAnimation setDuration:0.15];
+                [stretchAnimation setDelegate:self];
+                
+                [stretchAnimation setBeginTime:CACurrentMediaTime() + 0.35];
+                
+                [stretchAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+                //[self.webView setAnchorPoint:CGPointMake(0.0, 1) forView:self.webView];
+                [self.view.layer addAnimation:stretchAnimation forKey:@"stretchAnimation"];
+                
+                CATransition *animation = [CATransition animation];
+                [animation setType:kCATransitionPush];
+                [animation setSubtype:kCATransitionFromTop];
+                [animation setDuration:0.5f];
+                [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+                [[self.webView layer] addAnimation:animation forKey:nil];
+            }
         }
+        
+        
+        
+        
+        
+
         
     }];
 }
