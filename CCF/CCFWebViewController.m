@@ -358,7 +358,7 @@
             } else if (buttonIndex == 2){
                 NSString * louceng = louCeng;
                 
-                NSString * postUrl = [NSString stringWithFormat: @"https://bbs.et8.net/bbs/showpost.php?p=%@&postcount=%@", transThread.threadID, louceng];
+                NSString * postUrl = [NSString stringWithFormat: @"https://bbs.et8.net/bbs/showpost.php?p=%d&postcount=%@", postId, louceng];
                 
                 UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
                 pasteboard.string = postUrl;
