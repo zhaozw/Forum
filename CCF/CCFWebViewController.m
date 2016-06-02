@@ -24,6 +24,7 @@
 #import "ReplyCallbackDelegate.h"
 #import "CCFSimpleReplyNavigationController.h"
 #import "CCFPCH.pch"
+#import "NSString+Extensions.h"
 
 
 @interface CCFWebViewController ()<UIWebViewDelegate, UIScrollViewDelegate,TransValueDelegate,ReplyCallbackDelegate>{
@@ -124,8 +125,8 @@
         
         for (Post * post in posts) {
             NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
-            NSString * postInfo = [NSString stringWithFormat:POST_MESSAGE,post.postID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
-            
+            NSString * louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
+            NSString * postInfo = [NSString stringWithFormat:POST_MESSAGE,post.postID, post.postID,post.postUserInfo.userName,louceng, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
             lis = [lis stringByAppendingString:postInfo];
         }
         
@@ -192,7 +193,8 @@
         for (Post * post in posts) {
  
             NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
-            NSString * postInfo = [NSString stringWithFormat:POST_MESSAGE,post.postID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
+            NSString * louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
+            NSString * postInfo = [NSString stringWithFormat:POST_MESSAGE,post.postID, post.postID,post.postUserInfo.userName,louceng, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
             
             lis = [lis stringByAppendingString:postInfo];
         }
@@ -262,15 +264,111 @@
 }
 
 
+- (NSDictionary*)dictionaryFromQuery:(NSString*)query usingEncoding:(NSStringEncoding)encoding {
+    NSCharacterSet* delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];
+    NSMutableDictionary* pairs = [NSMutableDictionary dictionary];
+    NSScanner* scanner = [[NSScanner alloc] initWithString:query];
+    while (![scanner isAtEnd]) {
+        NSString* pairString = nil;
+        [scanner scanUpToCharactersFromSet:delimiterSet intoString:&pairString];
+        [scanner scanCharactersFromSet:delimiterSet intoString:NULL];
+        NSArray* kvPair = [pairString componentsSeparatedByString:@"="];
+        if (kvPair.count == 2) {
+            NSString* key = [[kvPair objectAtIndex:0]
+                             stringByReplacingPercentEscapesUsingEncoding:encoding];
+            NSString* value = [[kvPair objectAtIndex:1]
+                               stringByReplacingPercentEscapesUsingEncoding:encoding];
+            [pairs setObject:value forKey:key];
+        }
+    }
+    
+    return [NSDictionary dictionaryWithDictionary:pairs];
+}
+
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
     NSString *urlString = [[request URL] absoluteString];
     NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> %@ %ld %@",urlString, navigationType, request.URL.scheme);
     
+
+    
     
     if ([request.URL.scheme isEqualToString:@"postid"]) {
+    NSDictionary * query = [self dictionaryFromQuery:request.URL.query usingEncoding:NSUTF8StringEncoding];
         
-        [self showMoreAction];
+        NSString * userName = [[query valueForKey:@"postuser"] replaceUnicode];
+        int postId = [[query valueForKey:@"postid"] intValue];
+        NSString * louCeng = [query valueForKey:@"postlouceng"];
+        
+        itemActionSheet = [LCActionSheet sheetWithTitle:userName buttonTitles:@[@"快速回复", @"高级回复", @"复制链接"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
+            if (buttonIndex == 0) {
+                UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+                
+                CCFSimpleReplyNavigationController* simpleReplyController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSimpleReplyNavigationController"];
+                self.replyTransValueDelegate = (id<ReplyTransValueDelegate>)simpleReplyController;
+                
+                TransValueBundle * bundle = [[TransValueBundle alloc] init];
+
+                [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
+                [bundle putIntValue:postId forKey:@"POST_ID"];
+                
+                NSString * token = currentThreadPage.securityToken;
+                [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
+                [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
+                [bundle putStringValue:userName forKey:@"POST_USER"];
+                
+                [self.replyTransValueDelegate transValue:self withBundle:bundle];
+                
+                [self.navigationController presentViewController:simpleReplyController animated:YES completion:^{
+                    
+                }];
+                
+                
+            } else if (buttonIndex == 1){
+                
+                UIStoryboard * storyBoard = [UIStoryboard mainStoryboard];
+                
+                CCFSimpleReplyNavigationController * controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
+                self.replyTransValueDelegate = (id<ReplyTransValueDelegate>)controller;
+                
+                TransValueBundle * bundle = [[TransValueBundle alloc] init];
+                
+                [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
+                
+                
+                [bundle putIntValue:postId forKey:@"POST_ID"];
+                
+                NSString * token = currentThreadPage.securityToken;
+                
+                
+                [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
+                
+                [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
+                
+                [bundle putStringValue:userName forKey:@"USER_NAME"];
+                
+                [self.replyTransValueDelegate transValue:self withBundle:bundle];
+                
+                [self.navigationController presentViewController:controller animated:YES completion:^{
+                    
+                }];
+                
+                
+            } else if (buttonIndex == 2){
+                NSString * louceng = louCeng;
+                
+                NSString * postUrl = [NSString stringWithFormat: @"https://bbs.et8.net/bbs/showpost.php?p=%@&postcount=%@", transThread.threadID, louceng];
+                
+                UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+                pasteboard.string = postUrl;
+                
+                [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
+                
+            }
+        }];
+        
+        [itemActionSheet show];
         return NO;
         
     }
