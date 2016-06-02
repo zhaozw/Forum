@@ -199,7 +199,13 @@
             lis = [lis stringByAppendingString:postInfo];
         }
         
-        NSString * html = [NSString stringWithFormat:THREAD_PAGE_NOTITLE ,lis];
+        NSString * html = nil;
+        
+        if (page <= 1) {
+            html = [NSString stringWithFormat:THREAD_PAGE ,threadPage.threadTitle ,lis];
+        } else{
+            html = [NSString stringWithFormat:THREAD_PAGE_NOTITLE ,lis];
+        }
         
         [self.webView.scrollView.mj_footer endRefreshing];
         
