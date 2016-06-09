@@ -748,8 +748,12 @@
 
 
 -(ShowPrivateMessage *)parsePrivateMessageContent:(NSString *)html{
-    // 修改引用帖子的样式
-    html = [html stringByReplacingOccurrencesOfString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\">引用:</div>" withString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\"><br /></div>"];
+    
+    // 去掉引用inline 的样式设定
+    html = [html stringByReplacingOccurrencesOfString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\">引用:</div>" withString:@""];
+    html = [html stringByReplacingOccurrencesOfString:@"style=\"margin:20px; margin-top:5px; \"" withString:@"class=\"post-quote\""];
+    html = [html stringByReplacingOccurrencesOfString:@"<td class=\"alt2\" style=\"border:1px inset\">" withString:@"<td class=\"alt2\">"];
+    
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     
