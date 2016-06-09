@@ -89,10 +89,6 @@
     return [NSURL URLWithString:[NSString stringWithFormat:kCCFThreadFloor, threadID]];
 }
 
-+(NSURL *)buildAvatarURL:(NSString *)avatar{
-    return [NSURL URLWithString:[NSString stringWithFormat:kCCFAvatar, avatar]];
-}
-
 +(NSURL *) buildPrivateMessageWithType:(int)type andPage:(int)page{
     NSString * url = @"https://bbs.et8.net/bbs/private.php?folderid=%d&pp=30&sort=date&page=%d";
     url = [NSString stringWithFormat:url, type,page];

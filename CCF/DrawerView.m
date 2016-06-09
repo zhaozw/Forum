@@ -71,7 +71,7 @@
         if ([entry.userAvatar isEqualToString:@"defaultAvatar"]) {
             [self getAvatar:loginUser];
         } else{
-            NSURL * avatarUrl = [UrlBuilder buildAvatarURL:entry.userAvatar];
+            NSURL * avatarUrl = [NSURL URLWithString:entry.userAvatar];
             NSString *cacheImageKey = [[SDWebImageManager sharedManager] cacheKeyForURL:avatarUrl];
             if (cacheImageKey) {
                 [self.avatarUIImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatar];
@@ -126,7 +126,7 @@
             if (avatar == nil) {
                 [self.avatarUIImageView setImage:defaultAvatar];
             } else{
-                NSURL * avatarUrl = [UrlBuilder buildAvatarURL:avatar];
+                NSURL * avatarUrl = [NSURL URLWithString:avatar];
                 [self.avatarUIImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatar];
             }
         } else{

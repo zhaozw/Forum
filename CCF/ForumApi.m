@@ -14,6 +14,7 @@
 #import "ForumDisplayPage.h"
 #import "ShowPrivateMessage.h"
 #import "UserProfile.h"
+#import "CCFPCH.pch"
 
 
 #define kCCFCookie_User @"bbuserid"
@@ -339,6 +340,10 @@
 -(void)getAvatarWithUserId:(NSString *)userId handler:(HandlerWithBool)handler{
     [_browser showProfileWithUserId:userId handler:^(BOOL isSuccess, NSString* result) {
         NSString * avatar = [_praser parseUserAvatar:result userId:userId];
+        if (avatar) {
+            avatar = [AVATAR_BASE_URL stringByAppendingString:avatar];
+        }
+        
         NSLog( @"showAvatar ==============   getAvatarWithUserId -> %@", avatar);
         handler(isSuccess, avatar);
     }];

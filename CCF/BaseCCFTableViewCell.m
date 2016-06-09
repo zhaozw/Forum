@@ -94,7 +94,7 @@
                 if (avatar == nil) {
                     [avatarImageView setImage:defaultAvatar];
                 } else{
-                    NSURL * avatarUrl = [UrlBuilder buildAvatarURL:avatar];
+                    NSURL * avatarUrl = [NSURL URLWithString:avatar];
                     [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatar];
                 }
             } else{
@@ -109,7 +109,7 @@
             [avatarImageView setImage:defaultAvatar];
         } else{
             
-            NSURL * avatarUrl = [UrlBuilder buildAvatarURL:avatarInArray];
+            NSURL * avatarUrl = [NSURL URLWithString:avatarInArray];
             
             NSLog( @"showAvatar abs -> %@", [avatarUrl absoluteString]);
             

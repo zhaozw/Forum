@@ -37,9 +37,6 @@
 
 + (NSURL *) buildThreadFirtFloorByThreadId:(NSString *) threadID;
 
-// https://bbs.et8.net/bbs/member.php
-+ (NSURL *) buildAvatarURL:(NSString *) avatar;
-
 + (NSURL *) buildPrivateMessageWithType:(int) type andPage:(int) page;
 
 + (NSURL *) buildShowPrivateMessageURLWithId:(int) messageId;

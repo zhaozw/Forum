@@ -69,7 +69,7 @@
         [self.avatarImage setImage:[UIImage imageNamed:@"logo.jpg"]];
         
     } else{
-        [self.avatarImage setImageWithURL:[UrlBuilder buildAvatarURL:avatar]];
+        [self.avatarImage setImageWithURL:[NSURL URLWithString:avatar]];
         
         [_coreDateManager insertOneData:^(id src) {
             

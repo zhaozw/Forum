@@ -127,7 +127,7 @@
         
     } else{
         
-        NSURL * url = [UrlBuilder buildAvatarURL:avatar];
+        NSURL * url = [NSURL URLWithString:avatar];
 
         [self.avatarImage sd_setImageWithURL:url placeholderImage:defaultAvatar];
 
