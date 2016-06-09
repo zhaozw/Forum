@@ -251,7 +251,7 @@ static id<HPURLMapping> s_URLMapping;
     // 1. 如果是SDWebImage的请求, request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData, SDWebImage自己会处理缓存
     // 2. 这里是通过url后缀来判断是不是图片的, 还可以从response.MIMEType
     NSString * absUrl = [[request.URL absoluteString] lowercaseString];
-    if (request.cachePolicy != NSURLRequestReloadIgnoringLocalCacheData &&  [absUrl hasSuffixes:@[@".jpg", @".jpeg", @".gif", @".png"]]) {
+    if (request.cachePolicy != NSURLRequestReloadIgnoringLocalCacheData &&  ([absUrl hasSuffix:@"&stc=1"] ||[absUrl hasSuffixes:@[@".jpg", @".jpeg", @".gif", @".png"]])) {
         
         NSLog(@"HPURLProtocol shouldCache >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> YES   %@", absUrl);
         
