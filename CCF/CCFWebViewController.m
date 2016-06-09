@@ -143,7 +143,7 @@
         
         [pageDic setObject:html forKey:[NSNumber numberWithInt:currentPageNumber]];
         
-        [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
+        [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
         
         [self.webView.scrollView.mj_header endRefreshing];
         
@@ -221,7 +221,7 @@
         [self.webView.scrollView.mj_footer endRefreshing];
         
         if (![cacheHtml isEqualToString:currentHtml]) {
-            [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"]];
+            [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
             currentHtml = html;
             [pageDic setObject:html forKey:[NSNumber numberWithInt:page]];
         }
