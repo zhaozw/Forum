@@ -94,6 +94,8 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 // 显示主题帖子和所有回帖
 -(void) showThreadWithId:(int) threadId andPage:(int)page handler:(HandlerWithBool)handler;
 
+-(void) showThreadWithP:(NSString *)p handler:(HandlerWithBool)handler;
+
 -(void) forumDisplayWithId:(int) formId andPage:(int)page handler:(HandlerWithBool)handler;
 
 -(void) getAvatarWithUserId:(NSString*)userId handler:(HandlerWithBool)handler;

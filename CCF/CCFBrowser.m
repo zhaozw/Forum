@@ -921,6 +921,14 @@
     }];
 }
 
+-(void)showThreadWithP:(NSString*)p handler:(Handler)handler{
+    NSString * baseUrl = @"https://bbs.et8.net/bbs/showthread.php?p=%@";
+    NSString * url = [NSString stringWithFormat:baseUrl, p];
+    [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess, html);
+    }];
+}
+
 -(void)forumDisplayWithId:(int)formId andPage:(int)page handler:(Handler)handler{
     [self browseWithUrl:[UrlBuilder buildFormURL:formId withPage:page] :^(BOOL isSuccess, id result) {
         handler(isSuccess, result);

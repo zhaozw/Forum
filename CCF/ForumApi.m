@@ -326,6 +326,17 @@
     }];
 }
 
+-(void)showThreadWithP:(NSString *)p handler:(HandlerWithBool)handler{
+    [_browser showThreadWithP:p handler:^(BOOL isSuccess, id result) {
+        if (isSuccess) {
+            ShowThreadPage * detail = [_praser parseShowThreadWithHtml:result];
+            handler(isSuccess, detail);
+        } else{
+            handler(NO, result);
+        }
+    }];
+}
+
 -(void)forumDisplayWithId:(int)formId andPage:(int)page handler:(HandlerWithBool)handler{
     [_browser forumDisplayWithId:formId andPage:page handler:^(BOOL isSuccess, NSString* result) {
         if (isSuccess) {
