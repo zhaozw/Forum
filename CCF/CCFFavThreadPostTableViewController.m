@@ -125,7 +125,11 @@
             
             Thread * thread = self.dataList[indexPath.row];
             
-            [self.transValueDelegate transValue:thread];
+            TransValueBundle *transBundle = [[TransValueBundle alloc] init];
+            [transBundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
+            [transBundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
+            
+            [self.transValueDelegate transValue:transBundle];
         }
         
     } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]){

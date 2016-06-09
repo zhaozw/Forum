@@ -308,8 +308,11 @@
                 thread = self.dataList[indexPath.row];
             }
             
+            TransValueBundle *transBundle = [[TransValueBundle alloc] init];
+            [transBundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
+            [transBundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
             
-            [self.transValueDelegate transValue:thread];
+            [self.transValueDelegate transValue:transBundle];
             
             
         } else{

@@ -26,13 +26,14 @@
 #import "CCFPCH.pch"
 #import "NSString+Extensions.h"
 #import "DRLTabBarController.h"
+#import "TransValueBundle.h"
 
 
 @interface CCFWebViewController ()<UIWebViewDelegate, UIScrollViewDelegate,TransValueDelegate,ReplyCallbackDelegate>{
     
     LCActionSheet * itemActionSheet;
     
-    Thread * transThread;
+    TransValueBundle * transBundle;
     
     ShowThreadPage * currentThreadPage;
     
@@ -42,6 +43,9 @@
     NSMutableDictionary * pageDic;
     
     NSString * currentHtml;
+    
+    int threadID;
+    NSString *threadAuthorName;
 }
 
 @end
@@ -49,11 +53,17 @@
 @implementation CCFWebViewController
 
 -(void)transValue:(id)value{
-    transThread = value;
+    transBundle = value;
+    
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    threadID = [transBundle getIntValue:@"threadID"];
+    threadAuthorName = [transBundle getStringValue:@"threadAuthorName"];
+    
     
     pageDic = [NSMutableDictionary dictionary];
     
@@ -79,9 +89,9 @@
         
         if (currentPageNumber >1) {
             int page = currentPageNumber - 1;
-            [self prePage:[transThread.threadID intValue] page:page withAnim:YES];
+            [self prePage:threadID page:page withAnim:YES];
         } else{
-            [self prePage:[transThread.threadID intValue] page:1 withAnim:NO];
+            [self prePage:threadID page:1 withAnim:NO];
         }
         
         
@@ -95,7 +105,7 @@
         if (toPageNumber >= totalPageCount) {
             toPageNumber = totalPageCount;
         }
-        [self showThread:[transThread.threadID intValue] page:toPageNumber withAnim:YES];
+        [self showThread:threadID page:toPageNumber withAnim:YES];
 
     }];
     
@@ -327,7 +337,7 @@
                 
                 TransValueBundle * bundle = [[TransValueBundle alloc] init];
 
-                [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
+                [bundle putIntValue:threadID forKey:@"THREAD_ID"];
                 [bundle putIntValue:postId forKey:@"POST_ID"];
                 
                 NSString * token = currentThreadPage.securityToken;
@@ -351,7 +361,7 @@
                 
                 TransValueBundle * bundle = [[TransValueBundle alloc] init];
                 
-                [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
+                [bundle putIntValue:threadID forKey:@"THREAD_ID"];
                 
                 
                 [bundle putIntValue:postId forKey:@"POST_ID"];
@@ -432,20 +442,17 @@
             // 显示帖子
             NSDictionary * query = [self dictionaryFromQuery:request.URL.query usingEncoding:NSUTF8StringEncoding];
             
-            NSString * threadId = [query valueForKey:@"t"];
-            
-            
-//            DRLTabBarController * controller = (DRLTabBarController*)[UIApplication sharedApplication].keyWindow.rootViewController;
+            NSString * threadIdStr = [query valueForKey:@"t"];
             UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
             
             CCFWebViewController * showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFWebViewController"];
             
             self.transValueDelegate = (id<TransValueDelegate>)showThreadController;
             
-            Thread * thread = [[Thread alloc] init];
-            thread.threadID = threadId;
+            TransValueBundle *showTransBundle = [[TransValueBundle alloc] init];
+            [showTransBundle putIntValue:[threadIdStr intValue] forKey:@"threadID"];
             
-            [self.transValueDelegate transValue:thread];
+            [self.transValueDelegate transValue:showTransBundle];
             [self.navigationController pushViewController:showThreadController animated:YES];
             
             return NO;
@@ -474,7 +481,7 @@
         if (selectPage != currentPageNumber) {
             
             [SVProgressHUD showWithStatus:@"正在切换" maskType:SVProgressHUDMaskTypeBlack];
-            [self showThread:[transThread.threadID intValue] page:selectPage withAnim:YES];
+            [self showThread:threadID page:selectPage withAnim:YES];
         }
         
         
@@ -513,13 +520,13 @@
         if (buttonIndex == 0) {
             // 复制贴链接
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-            pasteboard.string = [[UrlBuilder buildThreadURL:[transThread.threadID intValue] withPage:0] absoluteString];
+            pasteboard.string = [[UrlBuilder buildThreadURL:threadID withPage:0] absoluteString];
             
             [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
             
         } else if (buttonIndex == 1){
             // 在浏览器种查看
-            [[UIApplication sharedApplication] openURL:[UrlBuilder buildThreadURL:[transThread.threadID intValue] withPage:1]];
+            [[UIApplication sharedApplication] openURL:[UrlBuilder buildThreadURL:threadID withPage:1]];
         } else if (buttonIndex == 2){
             [self reply:self];
             
@@ -535,10 +542,10 @@
     CCFSimpleReplyNavigationController * controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
     self.replyTransValueDelegate = (id<ReplyTransValueDelegate>)controller;
     TransValueBundle * bundle = [[TransValueBundle alloc] init];
-    [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
+    [bundle putIntValue:threadID forKey:@"THREAD_ID"];
     NSString * token = currentThreadPage.securityToken;
     [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
-    [bundle putStringValue:transThread.threadAuthorName forKey:@"POST_USER"];
+    [bundle putStringValue:threadAuthorName forKey:@"POST_USER"];
     [bundle putStringValue:currentThreadPage.formId forKey:@"FORM_ID"];
     [self.replyTransValueDelegate transValue:self withBundle:bundle];
     [self.navigationController presentViewController:controller animated:YES completion:^{
