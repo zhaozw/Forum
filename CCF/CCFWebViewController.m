@@ -286,7 +286,7 @@
  
             NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
             NSString * louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
-            NSString * postInfo = [NSString stringWithFormat:POST_MESSAGE,post.postID, post.postID,post.postUserInfo.userName,louceng, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
+            NSString * postInfo = [NSString stringWithFormat:POST_MESSAGE,post.postID, post.postID,post.postUserInfo.userName,louceng, post.postUserInfo.userID,avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
             
             lis = [lis stringByAppendingString:postInfo];
         }
