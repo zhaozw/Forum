@@ -390,6 +390,10 @@
         NSString * avatarLink = [[[avatarNode children] [1] firstChild] attribute:@"src"];
         
         avatarLink = [avatarLink stringWithRegular:@"/avatar(\\d+)_(\\d+).gif"];
+        if (avatarLink == nil) {
+            avatarLink = @"/no_avatar.gif";
+        }
+        
         NSLog(@"showAvatar   ==== detail %@", avatarLink);
 
         //avatarLink = [[avatarLink componentsSeparatedByString:@"/"]lastObject];
@@ -826,6 +830,10 @@
 -(NSString *)parseUserAvatar:(NSString *)html userId:(NSString *)userId{
     NSString * regular = [NSString stringWithFormat:@"/avatar%@_(\\d+).gif", userId];
     NSString * avatar = [html stringWithRegular:regular];
+    if (avatar == nil) {
+        avatar = @"/no_avatar.gif";
+    }
+    NSLog(@"avatarLink  >> %@", avatar);
     return avatar;
 }
 

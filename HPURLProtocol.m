@@ -171,7 +171,7 @@ static id<HPURLMapping> s_URLMapping;
             //
             return;
         } else {
-            NSLog(@"not get cachedImage");
+            NSLog(@"HPURLProtocol   not get cachedImage");
         }
     }
     
@@ -252,14 +252,14 @@ static id<HPURLMapping> s_URLMapping;
     // 1. 如果是SDWebImage的请求, request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData, SDWebImage自己会处理缓存
     // 2. 这里是通过url后缀来判断是不是图片的, 还可以从response.MIMEType
     NSString * absUrl = [[request.URL absoluteString] lowercaseString];
-    if (request.cachePolicy != NSURLRequestReloadIgnoringLocalCacheData && ( [absUrl hasSuffixes:@[@".jpg", @".jpeg", @".gif", @".png"]]  ||  [absUrl hasPrefix:@"https://bbs.et8.net/bbs/attachment.php?attachmentid="]) ) {
+    if (request.cachePolicy != NSURLRequestReloadIgnoringLocalCacheData &&  [absUrl hasSuffixes:@[@".jpg", @".jpeg", @".gif", @".png"]]) {
         
-        NSLog(@"HPURLProtocol shouldCache >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> YES");
+        NSLog(@"HPURLProtocol shouldCache >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> YES   %@", absUrl);
         
         return YES;
     }
 
-    NSLog(@"HPURLProtocol shouldCache >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NO");
+    NSLog(@"HPURLProtocol shouldCache >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NO     %@", absUrl);
     return NO;
 }
 
