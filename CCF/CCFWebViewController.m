@@ -25,6 +25,7 @@
 #import "CCFSimpleReplyNavigationController.h"
 #import "CCFPCH.pch"
 #import "NSString+Extensions.h"
+#import "DRLTabBarController.h"
 
 
 @interface CCFWebViewController ()<UIWebViewDelegate, UIScrollViewDelegate,TransValueDelegate,ReplyCallbackDelegate>{
@@ -311,7 +312,7 @@
     
     
     if ([request.URL.scheme isEqualToString:@"postid"]) {
-    NSDictionary * query = [self dictionaryFromQuery:request.URL.query usingEncoding:NSUTF8StringEncoding];
+        NSDictionary * query = [self dictionaryFromQuery:request.URL.query usingEncoding:NSUTF8StringEncoding];
         
         NSString * userName = [[query valueForKey:@"postuser"] replaceUnicode];
         int postId = [[query valueForKey:@"postid"] intValue];
@@ -423,6 +424,40 @@
         return NO;
     }
 
+    if (navigationType == UIWebViewNavigationTypeLinkClicked && ([request.URL.scheme isEqualToString:@"http"] || [request.URL.scheme isEqualToString:@"https"])) {
+        //[[UIApplication sharedApplication] openURL:request.URL];
+        NSURL * url = request.URL;
+        
+        NSString * path = request.URL.path;
+        if ([path rangeOfString:@"showthread.php"].location != NSNotFound) {
+            // 显示帖子
+            NSDictionary * query = [self dictionaryFromQuery:request.URL.query usingEncoding:NSUTF8StringEncoding];
+            
+            NSString * threadId = [query valueForKey:@"t"];
+            
+            
+//            DRLTabBarController * controller = (DRLTabBarController*)[UIApplication sharedApplication].keyWindow.rootViewController;
+            UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+            
+            CCFWebViewController * showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFWebViewController"];
+            
+            self.transValueDelegate = (id<TransValueDelegate>)showThreadController;
+            
+            Thread * thread = [[Thread alloc] init];
+            thread.threadID = threadId;
+            
+            [self.transValueDelegate transValue:thread];
+            [self.navigationController pushViewController:showThreadController animated:YES];
+        } 
+        
+        
+        
+
+        
+        
+        
+        return NO;
+    }
     return YES;
 }
 
