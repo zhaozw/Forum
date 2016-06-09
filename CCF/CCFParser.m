@@ -245,7 +245,10 @@
     IGXMLNode * titleNode = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tr/td[1]/table/tr[2]/td/strong"].firstObject;
     showThreadPage.threadTitle = titleNode.text;
     
-
+    NSString * threadIdPattern = @"<input type=\"hidden\" name=\"searchthreadid\" value=\"\\d+\" />";
+    NSString * threadID = [html stringWithRegular:threadIdPattern andChild:@"\\d+"];
+    showThreadPage.threadID = threadID;
+    
     IGXMLNodeSet * threadInfoSet = [document queryWithXPath:@"/html/body/div[4]/div/div/table[1]/tr/td[2]/div/table/tr"];
     
     if (threadInfoSet == nil || threadInfoSet.count == 0) {

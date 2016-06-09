@@ -142,20 +142,26 @@
             // 显示帖子
             NSDictionary * query = [self dictionaryFromQuery:request.URL.query usingEncoding:NSUTF8StringEncoding];
             
-            NSString * threadId = [query valueForKey:@"t"];
+            NSString * t = [query valueForKey:@"t"];
+
             
             
-            //            DRLTabBarController * controller = (DRLTabBarController*)[UIApplication sharedApplication].keyWindow.rootViewController;
             UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
             
             CCFWebViewController * showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFWebViewController"];
             
             self.transValueDelegate = (id<TransValueDelegate>)showThreadController;
             
-            Thread * thread = [[Thread alloc] init];
-            thread.threadID = threadId;
+            TransValueBundle *transBundle = [[TransValueBundle alloc] init];
+            if (t) {
+                [transBundle putIntValue:[t intValue] forKey:@"threadID"];
+            } else{
+                NSString * p = [query valueForKey:@"p"];
+                [transBundle putIntValue:[p intValue] forKey:@"p"];
+            }
             
-            [self.transValueDelegate transValue:thread];
+            
+            [self.transValueDelegate transValue:transBundle];
             [self.navigationController pushViewController:showThreadController animated:YES];
             
             return NO;

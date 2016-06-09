@@ -46,6 +46,8 @@
     
     int threadID;
     NSString *threadAuthorName;
+    
+    int p;
 }
 
 @end
@@ -54,14 +56,14 @@
 
 -(void)transValue:(id)value{
     transBundle = value;
-    
-
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     threadID = [transBundle getIntValue:@"threadID"];
+    p = [transBundle getIntValue:@"p"];
+    
     threadAuthorName = [transBundle getStringValue:@"threadAuthorName"];
     
     
@@ -87,14 +89,16 @@
     
     self.webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-        if (currentPageNumber >1) {
-            int page = currentPageNumber - 1;
-            [self prePage:threadID page:page withAnim:YES];
+        if (threadID == -1) {
+            [self showThreadWithP:[NSString stringWithFormat:@"%d",p]];
         } else{
-            [self prePage:threadID page:1 withAnim:NO];
+            if (currentPageNumber >1) {
+                int page = currentPageNumber - 1;
+                [self prePage:threadID page:page withAnim:YES];
+            } else{
+                [self prePage:threadID page:1 withAnim:NO];
+            }
         }
-        
-        
     }];
 
     
@@ -110,7 +114,73 @@
     }];
     
     [self.webView.scrollView.mj_header beginRefreshing];
-    
+}
+
+-(void) showThreadWithP:(NSString *)pID {
+    [self.ccfApi showThreadWithP:pID handler:^(BOOL isSuccess, id message) {
+        
+        ShowThreadPage * threadPage = message;
+        
+        currentThreadPage = threadPage;
+        totalPageCount = (int)currentThreadPage.totalPageCount;
+        currentPageNumber = (int)threadPage.currentPage;
+        
+        threadID = [threadPage.threadID intValue];
+        
+        if (currentPageNumber >= totalPageCount) {
+            currentPageNumber = totalPageCount;
+        }
+        
+        NSString * title = [NSString stringWithFormat:@"%d/%d", currentPageNumber, totalPageCount];
+        self.pageNumber.title = title;
+        
+        NSMutableArray<Post *> * posts = threadPage.dataList;
+        
+        
+        NSString * lis = @"";
+        
+        for (Post * post in posts) {
+            NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
+            NSString * louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
+            NSString * postInfo = [NSString stringWithFormat:POST_MESSAGE,post.postID, post.postID,post.postUserInfo.userName,louceng, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
+            lis = [lis stringByAppendingString:postInfo];
+        }
+        
+        NSString * html = nil;
+        
+        html = [NSString stringWithFormat:THREAD_PAGE ,threadPage.threadTitle ,lis];
+        
+        
+        [pageDic setObject:html forKey:[NSNumber numberWithInt:currentPageNumber]];
+        
+        [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
+        
+        [self.webView.scrollView.mj_header endRefreshing];
+        
+        
+        if (YES) {
+            CABasicAnimation *stretchAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.y"];
+            [stretchAnimation setToValue:[NSNumber numberWithFloat:1.02]];
+            [stretchAnimation setRemovedOnCompletion:YES];
+            [stretchAnimation setFillMode:kCAFillModeRemoved];
+            [stretchAnimation setAutoreverses:YES];
+            [stretchAnimation setDuration:0.15];
+            [stretchAnimation setDelegate:self];
+            
+            [stretchAnimation setBeginTime:CACurrentMediaTime() + 0.35];
+            
+            [stretchAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+            //[self.webView setAnchorPoint:CGPointMake(0.0, 1) forView:self.webView];
+            [self.view.layer addAnimation:stretchAnimation forKey:@"stretchAnimation"];
+            
+            CATransition *animation = [CATransition animation];
+            [animation setType:kCATransitionPush];
+            [animation setSubtype:kCATransitionFromBottom];
+            [animation setDuration:0.5f];
+            [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+            [[self.webView layer] addAnimation:animation forKey:nil];
+        }
+    }];
 }
 
 -(void) prePage:(int)threadId page:(int)page withAnim:(BOOL) anim{
