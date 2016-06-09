@@ -425,8 +425,7 @@
     }
 
     if (navigationType == UIWebViewNavigationTypeLinkClicked && ([request.URL.scheme isEqualToString:@"http"] || [request.URL.scheme isEqualToString:@"https"])) {
-        //[[UIApplication sharedApplication] openURL:request.URL];
-        NSURL * url = request.URL;
+        
         
         NSString * path = request.URL.path;
         if ([path rangeOfString:@"showthread.php"].location != NSNotFound) {
@@ -448,15 +447,13 @@
             
             [self.transValueDelegate transValue:thread];
             [self.navigationController pushViewController:showThreadController animated:YES];
-        } 
-        
-        
-        
-
-        
-        
-        
-        return NO;
+            
+            return NO;
+        } else{
+            [[UIApplication sharedApplication] openURL:request.URL];
+            
+            return NO;
+        }
     }
     return YES;
 }
