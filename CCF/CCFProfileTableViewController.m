@@ -81,6 +81,9 @@
     } else if([value isKindOfClass:[Post class]]){
         Post * message = value;
         userId = [message.postUserInfo.userID intValue];
+    } else if ([value isKindOfClass:[TransValueBundle class]]){
+        TransValueBundle * transBundle = value;
+        userId = [transBundle getIntValue:@"userid"];
     }
 }
 

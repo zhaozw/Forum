@@ -88,7 +88,7 @@
 
         [self.ccfApi showPrivateContentById:[transPrivateMessage.pmID intValue] handler:^(BOOL isSuccess, id message) {
             ShowPrivateMessage * content = message;
-            NSString * postInfo = [NSString stringWithFormat:PRIVATE_MESSAGE,content.pmUserInfo.userAvatar, content.pmUserInfo.userName, content.pmTime, content.pmContent];
+            NSString * postInfo = [NSString stringWithFormat:PRIVATE_MESSAGE,content.pmUserInfo.userID,content.pmUserInfo.userAvatar, content.pmUserInfo.userName, content.pmTime, content.pmContent];
             
             NSString *html = [NSString stringWithFormat:THREAD_PAGE ,content.pmTitle ,postInfo];
             
@@ -171,6 +171,25 @@
             return NO;
         }
     }
+    
+    if ([request.URL.scheme isEqualToString:@"avatar"]) {
+        NSDictionary * query = [self dictionaryFromQuery:request.URL.query usingEncoding:NSUTF8StringEncoding];
+        
+        NSString * userid = [query valueForKey:@"userid"];
+        
+        
+        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+        CCFProfileTableViewController * showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFProfileTableViewController"];
+        self.transValueDelegate = (id<TransValueDelegate>)showThreadController;
+        TransValueBundle *showTransBundle = [[TransValueBundle alloc] init];
+        [showTransBundle putIntValue:[userid intValue] forKey:@"userid"];
+        [self.transValueDelegate transValue:showTransBundle];
+        
+        [self.navigationController pushViewController:showThreadController animated:YES];
+        
+        return NO;
+    }
+    
     return YES;
 }
 

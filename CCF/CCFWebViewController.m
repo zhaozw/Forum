@@ -27,7 +27,7 @@
 #import "NSString+Extensions.h"
 #import "DRLTabBarController.h"
 #import "TransValueBundle.h"
-
+#import "CCFProfileTableViewController.h"
 
 @interface CCFWebViewController ()<UIWebViewDelegate, UIScrollViewDelegate,TransValueDelegate,ReplyCallbackDelegate>{
     
@@ -142,7 +142,7 @@
         for (Post * post in posts) {
             NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
             NSString * louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
-            NSString * postInfo = [NSString stringWithFormat:POST_MESSAGE,post.postID, post.postID,post.postUserInfo.userName,louceng, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
+            NSString * postInfo = [NSString stringWithFormat:POST_MESSAGE,post.postID, post.postID,post.postUserInfo.userName,louceng,post.postUserInfo.userID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
             lis = [lis stringByAppendingString:postInfo];
         }
         
@@ -209,7 +209,7 @@
         for (Post * post in posts) {
             NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
             NSString * louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
-            NSString * postInfo = [NSString stringWithFormat:POST_MESSAGE,post.postID, post.postID,post.postUserInfo.userName,louceng, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
+            NSString * postInfo = [NSString stringWithFormat:POST_MESSAGE,post.postID, post.postID,post.postUserInfo.userName,louceng,post.postUserInfo.userID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
             lis = [lis stringByAppendingString:postInfo];
         }
         
@@ -503,6 +503,24 @@
         
         return NO;
     }
+    
+    if ([request.URL.scheme isEqualToString:@"avatar"]) {
+        NSDictionary * query = [self dictionaryFromQuery:request.URL.query usingEncoding:NSUTF8StringEncoding];
+        
+        NSString * userid = [query valueForKey:@"userid"];
+        
+        
+        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+        CCFProfileTableViewController * showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFProfileTableViewController"];
+        self.transValueDelegate = (id<TransValueDelegate>)showThreadController;
+        TransValueBundle *showTransBundle = [[TransValueBundle alloc] init];
+        [showTransBundle putIntValue:[userid intValue] forKey:@"userid"];
+        [self.transValueDelegate transValue:showTransBundle];
+        
+        [self.navigationController pushViewController:showThreadController animated:YES];
+        
+        return NO;
+    }
 
     if (navigationType == UIWebViewNavigationTypeLinkClicked && ([request.URL.scheme isEqualToString:@"http"] || [request.URL.scheme isEqualToString:@"https"])) {
         
@@ -513,16 +531,15 @@
             NSDictionary * query = [self dictionaryFromQuery:request.URL.query usingEncoding:NSUTF8StringEncoding];
             
             NSString * threadIdStr = [query valueForKey:@"t"];
+            
+            
             UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-            
             CCFWebViewController * showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFWebViewController"];
-            
             self.transValueDelegate = (id<TransValueDelegate>)showThreadController;
-            
             TransValueBundle *showTransBundle = [[TransValueBundle alloc] init];
             [showTransBundle putIntValue:[threadIdStr intValue] forKey:@"threadID"];
-            
             [self.transValueDelegate transValue:showTransBundle];
+            
             [self.navigationController pushViewController:showThreadController animated:YES];
             
             return NO;
