@@ -88,7 +88,7 @@
             normalThread.threadAuthorName = [authorNode text];
             
             IGXMLNode * lastPostTime = [threadListNode childrenAtPosition:4];
-            normalThread.lastPostTime = [self timeForShort:[[lastPostTime text] trim]];
+            normalThread.lastPostTime = [self timeForShort:[[lastPostTime text] trim] withFormat:@"yyyy-MM-dd HH:mm:ss"];
             
             IGXMLNode * commentCountNode = threadListNode.children [5];
             normalThread.postCount = [commentCountNode text];
@@ -127,10 +127,10 @@
     
 }
 
--(NSString*) timeForShort:(NSString *) time{
+-(NSString*) timeForShort:(NSString *) time withFormat:(NSString * ) format{
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     //[dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter setDateFormat:format];
     NSDate * date = [dateFormatter dateFromString:time];
     
     NSTimeInterval intervalTime = date.timeIntervalSinceNow;
@@ -353,7 +353,7 @@
         
         if (timeRange.location != NSNotFound) {
             NSString * fixTime = [[time.text substringWithRange:timeRange] stringByReplacingOccurrencesOfString:@", " withString:@" "];
-            ccfpost.postTime = [self timeForShort:fixTime];
+            ccfpost.postTime = [self timeForShort:fixTime withFormat:@"yyyy-MM-dd HH:mm:ss"];
         }
         // 保存数据
         ccfpost.postID = postId;
@@ -605,7 +605,7 @@
             searchThread.threadCategory = [self spliteCategory:fullTitle];
             searchThread.threadAuthorName = postAuthor;
             searchThread.threadAuthorID = postAuthorId;
-            searchThread.lastPostTime = [self timeForShort:[postTime trim]];
+            searchThread.lastPostTime = [self timeForShort:[postTime trim] withFormat:@"yyyy-MM-dd HH:mm:ss"];
             searchThread.fromFormName = postBelongForm;
             
             
@@ -759,7 +759,8 @@
     privateMessage.pmContent = [[contentNodeSet firstObject] html];
     // 回帖时间
     IGXMLNodeSet * privateSendTimeSet = [document queryWithXPath:@"//*[@id='table1']/tr/td[1]/div/text()"];
-    privateMessage.pmTime = [self timeForShort:[[privateSendTimeSet [2] text] trim]];
+    NSString * timeLong = [[privateSendTimeSet [2] text] trim];
+    privateMessage.pmTime = [self timeForShort:timeLong withFormat:@"yyyy-MM-dd, HH:mm:ss"];
     // PM ID
     IGXMLNodeSet * privateMessageIdSet = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tr/td[1]/table/tr[2]/td/a"];
     NSString * pmId = [[[privateMessageIdSet firstObject] attribute:@"href"] stringWithRegular:@"\\d+"];
@@ -783,6 +784,12 @@
     
     // 用户头像
     NSString* userAvatar = [[[[[[userInfoNode childrenAtPosition:1] childrenAtPosition:1] childrenAtPosition:0] attribute:@"src"] componentsSeparatedByString:@"/"] lastObject];
+    if (userAvatar) {
+        NSString * avatarPattern = @"%@/%@";
+        userAvatar = [NSString stringWithFormat:avatarPattern, AVATAR_BASE_URL, userAvatar];
+    } else{
+        userAvatar = NO_AVATAR_URL;
+    }
     pmAuthor.userAvatar = userAvatar;
     
     // 用户等级

@@ -10,15 +10,19 @@
 #import "AutoRelayoutToolbar.h"
 #import "ShowPrivateMessage.h"
 #import "TransValueDelegate.h"
+#import "CCFApiBaseViewController.h"
+#import "TransValueDelegate.h"
+#import "ReplyTransValueDelegate.h"
 
-@interface CCFShowPrivateMessageViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+
+@interface CCFShowPrivateMessageViewController : CCFApiBaseViewController
 
 
 @property (nonatomic, strong) NSMutableArray<ShowPrivateMessage *> * dataList;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet AutoRelayoutToolbar *floatToolbar;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *back;
+
+- (IBAction)back:(id)sender;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @property (weak, nonatomic) id<TransValueDelegate> transValueDelegate;
 
