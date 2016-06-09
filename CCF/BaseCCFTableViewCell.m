@@ -10,7 +10,7 @@
 #import <UIImageView+WebCache.h>
 
 @implementation BaseCCFTableViewCell{
-    UIImage * defaultAvatar;
+    UIImage * defaultAvatarImage;
     
     ForumCoreDataManager *coreDateManager;
     ForumApi * ccfapi;
@@ -35,7 +35,7 @@
 }
 
 -(void) initData{
-    defaultAvatar = [UIImage imageNamed:@"logo.jpg"];
+    defaultAvatarImage = [UIImage imageNamed:@"logo.jpg"];
     
     ccfapi = [[ForumApi alloc] init];
     
@@ -69,7 +69,7 @@
     
     // 不知道什么原因，userID可能是nil
     if (userId == nil) {
-        [avatarImageView setImage:defaultAvatar];
+        [avatarImageView setImage:defaultAvatarImage];
         return;
     }
     NSString * avatarInArray = [avatarCache valueForKey:userId];
@@ -85,33 +85,32 @@
                 [coreDateManager insertOneData:^(id src) {
                     UserEntry * user =(UserEntry *)src;
                     user.userID = userId;
-                    user.userAvatar = avatar == nil ? @"defaultAvatar" : avatar;
+                    user.userAvatar = avatar;
                 }];
                 // 添加到Cache中
-                [avatarCache setValue:avatar == nil ? @"defaultAvatar": avatar forKey:userId];
+                [avatarCache setValue:avatar forKey:userId];
                 
                 // 显示头像
                 if (avatar == nil) {
-                    [avatarImageView setImage:defaultAvatar];
+                    [avatarImageView setImage:defaultAvatarImage];
                 } else{
                     NSURL * avatarUrl = [NSURL URLWithString:avatar];
-                    [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatar];
+                    [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatarImage];
                 }
             } else{
-                [avatarImageView setImage:defaultAvatar];
+                [avatarImageView setImage:defaultAvatarImage];
             }
 
         }];
     } else{
         
         NSLog( @"showAvatar %@", avatarInArray);
-        if ([avatarInArray isEqualToString:@"defaultAvatar"]) {
-            [avatarImageView setImage:defaultAvatar];
+        
+        if ([avatarInArray isEqualToString:NO_AVATAR_URL]) {
+            [avatarImageView setImage:defaultAvatarImage];
         } else{
             
             NSURL * avatarUrl = [NSURL URLWithString:avatarInArray];
-            
-            NSLog( @"showAvatar abs -> %@", [avatarUrl absoluteString]);
             
             if (/* DISABLES CODE */ (NO)) {
                 NSString *cacheImageKey = [[SDWebImageManager sharedManager] cacheKeyForURL:avatarUrl];
@@ -119,8 +118,7 @@
                 NSLog(@"cache_image_path %@", cacheImagePath);
             }
 
-
-            [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatar];
+            [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatarImage];
         }
     }
 }

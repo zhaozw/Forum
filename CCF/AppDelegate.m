@@ -53,7 +53,7 @@
     application.applicationIconBadgeNumber = 0;
     
     
-    DB_VERSION = 4;
+    DB_VERSION = 5;
     
     
     

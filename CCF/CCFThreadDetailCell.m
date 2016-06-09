@@ -27,7 +27,7 @@
     
     BOOL _needsAdjustInsetsOnLayout;
     
-    UIImage * defaultAvatar;
+    UIImage * defaultAvatarImage;
     
     NSMutableArray<UserEntry*> * cacheUsers;
     NSMutableDictionary * avatarCache;
@@ -58,8 +58,8 @@
     self.htmlView.relayoutMask = DTAttributedTextContentViewRelayoutOnHeightChanged | DTAttributedTextContentViewRelayoutOnWidthChanged;
 
     
-    if (defaultAvatar == nil) {
-        defaultAvatar = [UIImage imageNamed:@"logo.jpg"];
+    if (defaultAvatarImage == nil) {
+        defaultAvatarImage = [UIImage imageNamed:@"logo.jpg"];
     }
     
     avatarCache = [NSMutableDictionary dictionary];
@@ -109,27 +109,27 @@
                 user.userID = newPost.postUserInfo.userID;
                 
                 NSString * avatar = newPost.postUserInfo.userAvatar;
-                user.userAvatar = avatar == nil ? @"defaultAvatar" : avatar;
+                user.userAvatar = avatar;
             }];
             
             // 添加到Cache中
-            [avatarCache setValue:avatar == nil ? @"defaultAvatar": avatar forKey:newPost.postUserInfo.userID];
+            [avatarCache setValue:avatar forKey:newPost.postUserInfo.userID];
         }
     } else{
-        [self.avatarImage setImage:defaultAvatar];
+        [self.avatarImage setImage:defaultAvatarImage];
         return;
     }
 
     
     if (avatar == nil) {
         
-        [self.avatarImage setImage:defaultAvatar];
+        [self.avatarImage setImage:defaultAvatarImage];
         
     } else{
         
         NSURL * url = [NSURL URLWithString:avatar];
 
-        [self.avatarImage sd_setImageWithURL:url placeholderImage:defaultAvatar];
+        [self.avatarImage sd_setImageWithURL:url placeholderImage:defaultAvatarImage];
 
     }
     

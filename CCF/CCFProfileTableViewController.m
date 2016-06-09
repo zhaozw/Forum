@@ -24,7 +24,7 @@
     UserProfile * userProfile;
     int userId;
     
-    UIImage * defaultAvatar;
+    UIImage * defaultAvatarImage;
     
     ForumCoreDataManager *coreDateManager;
     ForumApi * ccfapi;
@@ -41,7 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    defaultAvatar = [UIImage imageNamed:@"logo.jpg"];
+    defaultAvatarImage = [UIImage imageNamed:@"logo.jpg"];
     
     ccfapi = [[ForumApi alloc] init];
     coreDateManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
@@ -159,24 +159,24 @@
             [coreDateManager insertOneData:^(id src) {
                 UserEntry * user =(UserEntry *)src;
                 user.userID = profileUserId;
-                user.userAvatar = avatar == nil ? @"defaultAvatar" : avatar;
+                user.userAvatar = avatar;
             }];
             // 添加到Cache中
-            [avatarCache setValue:avatar == nil ? @"defaultAvatar": avatar forKey:profileUserId];
+            [avatarCache setValue:avatar forKey:profileUserId];
             
             // 显示头像
             if (avatar == nil) {
-                [avatarImageView setImage:defaultAvatar];
+                [avatarImageView setImage:defaultAvatarImage];
             } else{
-                [avatarImageView sd_setImageWithURL:[NSURL URLWithString:avatar] placeholderImage:defaultAvatar];
+                [avatarImageView sd_setImageWithURL:[NSURL URLWithString:avatar] placeholderImage:defaultAvatarImage];
             }
         }];
     } else{
-        if ([avatarInArray isEqualToString:@"defaultAvatar"]) {
-            [avatarImageView setImage:defaultAvatar];
+        if ([avatarInArray isEqualToString:NO_AVATAR_URL]) {
+            [avatarImageView setImage:defaultAvatarImage];
         } else{
             NSURL * url = [NSURL URLWithString:avatarInArray];
-            [avatarImageView sd_setImageWithURL:url placeholderImage:defaultAvatar];
+            [avatarImageView sd_setImageWithURL:url placeholderImage:defaultAvatarImage];
         }
     }
 }

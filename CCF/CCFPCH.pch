@@ -23,4 +23,5 @@
 #define THREAD_PAGE_NOTITLE [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view_notitle" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil]
 #define POST_MESSAGE [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil]
 #define BBS_URL @"https://bbs.et8.net/bbs/"
-#define AVATAR_BASE_URL @"https://bbs.et8.net/bbs/customavatars"
+#define AVATAR_BASE_URL [BBS_URL stringByAppendingString:@"customavatars"]
+#define NO_AVATAR_URL [AVATAR_BASE_URL stringByAppendingString:@"/no_avatar.gif"]

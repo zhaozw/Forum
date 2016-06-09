@@ -342,6 +342,8 @@
         NSString * avatar = [_praser parseUserAvatar:result userId:userId];
         if (avatar) {
             avatar = [AVATAR_BASE_URL stringByAppendingString:avatar];
+        } else{
+            avatar = NO_AVATAR_URL;
         }
         
         NSLog( @"showAvatar ==============   getAvatarWithUserId -> %@", avatar);

@@ -31,6 +31,7 @@
 #import "LoginUser.h"
 #import "DRLTabBarController.h"
 #import "DRLForumTableViewController.h"
+#import "CCFPCH.pch"
 
 
 @interface DrawerView(){
@@ -68,7 +69,7 @@
     
     if (cacheUsers.count > 0) {
         UserEntry * entry = cacheUsers.firstObject;
-        if ([entry.userAvatar isEqualToString:@"defaultAvatar"]) {
+        if ([entry.userAvatar isEqualToString:NO_AVATAR_URL]) {
             [self getAvatar:loginUser];
         } else{
             NSURL * avatarUrl = [NSURL URLWithString:entry.userAvatar];
@@ -119,7 +120,7 @@
             [coreDateManager insertOneData:^(id src) {
                 UserEntry * user =(UserEntry *)src;
                 user.userID = loginUser.userID;
-                user.userAvatar = avatar == nil ? @"defaultAvatar" : avatar;
+                user.userAvatar = avatar;
             }];
             
             // 显示头像
