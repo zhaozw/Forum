@@ -39,7 +39,7 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 // 获取所有的论坛列表
 -(void) formList:(Handler)handler;
 
--(void) searchWithKeyWord:(NSString*) keyWord searchDone:(Handler) callback;
+-(void) searchWithKeyWord:(NSString*) keyWord forType:(int)type searchDone:(Handler) callback;
 
 
 -(void)createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *)images handler:(Handler)handler;

@@ -168,8 +168,8 @@
 }
 
 
--(void)searchWithKeyWord:(NSString *)keyWord handler:(HandlerWithBool)handler{
-    [_browser searchWithKeyWord:keyWord searchDone:^(BOOL isSuccess, NSString* result) {
+-(void)searchWithKeyWord:(NSString *)keyWord forType:(int)type handler:(HandlerWithBool)handler{
+    [_browser searchWithKeyWord:keyWord forType:type searchDone:^(BOOL isSuccess, NSString* result) {
         
         if (isSuccess) {
             

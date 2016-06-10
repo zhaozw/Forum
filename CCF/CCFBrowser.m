@@ -256,7 +256,7 @@
     }];
 }
 
--(void)searchWithKeyWord:(NSString *)keyWord searchDone:(Handler)callback{
+-(void)searchWithKeyWord:(NSString *)keyWord forType:(int)type searchDone:(Handler)callback{
 
     NSURL * searchUrl = [UrlBuilder buildSearchUrl];
     
@@ -266,10 +266,26 @@
     [parameters setValue:@"" forKey:@"s"];
     [parameters setValue:@"process" forKey:@"do"];
     [parameters setValue:@"" forKey:@"searchthreadid"];
-    [parameters setValue:keyWord forKey:@"query"];
-    [parameters setValue:@"1" forKey:@"titleonly"];
-    [parameters setValue:@"" forKey:@"searchuser"];
-    [parameters setValue:@"0" forKey:@"starteronly"];
+    
+    if (type == 0) {
+        [parameters setValue:keyWord forKey:@"query"];
+        [parameters setValue:@"1" forKey:@"titleonly"];
+        [parameters setValue:@"" forKey:@"searchuser"];
+        [parameters setValue:@"0" forKey:@"starteronly"];
+    } else if (type == 1){
+        [parameters setValue:keyWord forKey:@"query"];
+        [parameters setValue:@"0" forKey:@"titleonly"];
+        [parameters setValue:@"" forKey:@"searchuser"];
+        [parameters setValue:@"0" forKey:@"starteronly"];
+    } else if (type == 2){
+        [parameters setValue:@"1" forKey:@"starteronly"];
+        [parameters setValue:@"" forKey:@"query"];
+        [parameters setValue:@"1" forKey:@"titleonly"];
+        [parameters setValue:keyWord forKey:@"searchuser"];
+    }
+
+    
+    
     [parameters setValue:@"1" forKey:@"exactname"];
     [parameters setValue:@"0" forKey:@"replyless"];
     [parameters setValue:@"0" forKey:@"replylimit"];

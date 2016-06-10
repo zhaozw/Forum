@@ -43,7 +43,8 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 -(void) seniorReplyWithThreadId:(int)threadId  forFormId:(int) formId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(HandlerWithBool)handler;
 
 // 搜索论坛
--(void) searchWithKeyWord:(NSString*) keyWord handler:(HandlerWithBool) handler;
+// 0.标题 1. 内容 2. 用户
+-(void) searchWithKeyWord:(NSString*) keyWord forType:(int) type handler:(HandlerWithBool) handler;
 
 // 根据PM ID 显示一条私信内容
 -(void) showPrivateContentById:(int)pmId handler:(HandlerWithBool)handler;
