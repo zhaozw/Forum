@@ -69,7 +69,9 @@
 -(void)keyboardDidHide:(id)sender{
     [SVProgressHUD showWithStatus:@"搜索中" maskType:SVProgressHUDMaskTypeBlack];
     
-    [self.ccfApi searchWithKeyWord:searchText forType:2 handler:^(BOOL isSuccess, SearchForumDisplayPage* message) {
+    int select = (int)self.segmentedControl.selectedSegmentIndex;
+    
+    [self.ccfApi searchWithKeyWord:searchText forType:select handler:^(BOOL isSuccess, SearchForumDisplayPage* message) {
         [SVProgressHUD dismiss];
         
         if (isSuccess) {
