@@ -21,7 +21,8 @@
 }
 
 -(void)setData:(SimpleThread *)data{
-    self.threadTitle.text = data.threadTitle;
+    NSString * title = [NSString stringWithFormat:@"[%@]%@", data.threadCategory, data.threadTitle];
+    self.threadTitle.text = title;
     self.threadAuthorName.text = data.threadAuthorName;
     self.lastPostTime.text = data.lastPostTime;
     self.threadCategory.text = data.threadCategory;

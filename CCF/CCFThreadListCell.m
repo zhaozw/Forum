@@ -58,14 +58,16 @@
     
     self.threadContainsImage.hidden = !data.isContainsImage;
     
+     NSString * title = [NSString stringWithFormat:@"[%@]%@", data.threadCategory, data.threadTitle];
+    
     if (data.isGoodNess) {
-        NSString * goodNessTitle = [@"[精]" stringByAppendingString:data.threadTitle];
+        NSString * goodNessTitle = [@"[精]" stringByAppendingString:title];
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:goodNessTitle];
         [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 3)];
         
         self.threadTitle.attributedText = attrStr;
     } else{
-        self.threadTitle.text = data.threadTitle;
+        self.threadTitle.text = title;
     }
     [self showAvatar:self.avatarImage userId:data.threadAuthorID];
 }

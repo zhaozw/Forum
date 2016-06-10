@@ -16,7 +16,11 @@
 
 
 -(void)setData:(ThreadInSearch*)data{
-    self.postTitle.text = data.threadTitle;
+    
+    
+    NSString * title = [NSString stringWithFormat:@"[%@]%@", data.threadCategory, data.threadTitle];
+    
+    self.postTitle.text = title;
     self.postAuthor.text = data.threadAuthorName;
     self.postTime.text = data.lastPostTime;
     self.postBelongForm.text = data.fromFormName;

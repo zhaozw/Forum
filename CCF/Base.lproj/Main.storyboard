@@ -2201,7 +2201,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="CCFProfileTableViewController" id="Kd2-6b-uhY" customClass="CCFProfileTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6tN-Pg-gRW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -2486,7 +2486,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="CCFUserThreadTableViewController" id="l3g-AL-GdG" customClass="CCFUserThreadTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="XcW-xB-IIx">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -2854,20 +2854,20 @@
             </objects>
             <point key="canvasLocation" x="-3526" y="-2112"/>
         </scene>
-        <!--Web View Controller-->
+        <!--帖子详情-->
         <scene sceneID="aTR-2G-zAu">
             <objects>
-                <viewController storyboardIdentifier="CCFWebViewController" id="7tp-vM-md4" customClass="CCFWebViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CCFWebViewController" title="帖子详情" id="7tp-vM-md4" customClass="CCFWebViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fd7-is-dKM"/>
                         <viewControllerLayoutGuide type="bottom" id="Egh-zl-ZQU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YLg-gy-qB2">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iya-mg-Rba">
-                                <rect key="frame" x="0.0" y="20" width="600" height="629"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
                         </subviews>
@@ -3068,9 +3068,9 @@
         <image name="tab_new_post" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="I7W-2E-iHf"/>
+        <segue reference="FiC-V2-LqH"/>
+        <segue reference="Ysv-Xy-VAF"/>
         <segue reference="Klt-aO-3La"/>
-        <segue reference="8py-bn-CWe"/>
-        <segue reference="cfT-dF-Qgb"/>
-        <segue reference="8yZ-lk-mNR"/>
     </inferredMetricsTieBreakers>
 </document>
