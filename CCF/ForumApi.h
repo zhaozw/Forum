@@ -101,7 +101,7 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 
 -(void) getAvatarWithUserId:(NSString*)userId handler:(HandlerWithBool)handler;
 
--(void) listSearchResultWithUrl:(NSString *) url andPage:(int) page handler:(HandlerWithBool)handler;
+-(void) listSearchResultWithSearchid:(NSString *) searchid andPage:(int) page handler:(HandlerWithBool)handler;
 
 // 显示用户信息页面
 -(void) showProfileWithUserId:(NSString*)userId handler:(HandlerWithBool) handler;

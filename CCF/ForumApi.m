@@ -363,8 +363,8 @@
     }];
 }
 
--(void)listSearchResultWithUrl:(NSString *)url andPage:(int)page handler:(HandlerWithBool)handler{
-    [_browser listSearchResultWithUrl:url andPage:page handler:^(BOOL isSuccess, id result) {
+-(void)listSearchResultWithSearchid:(NSString *)searchid andPage:(int)page handler:(HandlerWithBool)handler{
+    [_browser listSearchResultWithSearchid:searchid andPage:page handler:^(BOOL isSuccess, id result) {
         if (isSuccess) {
             
             NSRange range = [result rangeOfString:kSearchErrorTooshort];

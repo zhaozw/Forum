@@ -251,8 +251,8 @@
     }];
 }
 
--(void)listSearchResultWithUrl:(NSString *)url andPage:(int)page handler:(Handler)handler{
-    NSString * searchedUrl = [NSString stringWithFormat:@"https://bbs.et8.net%@&pp=30&page=%d", url, page];
+-(void)listSearchResultWithSearchid:(NSString *)searchid andPage:(int)page handler:(Handler)handler{
+    NSString * searchedUrl = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/search.php?searchid=%@&pp=30&page=%d", searchid, page];
     [_browser GETWithURLString:searchedUrl requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess,html);
     }];
@@ -760,7 +760,7 @@
         [_browser GETWithURL:myUrl requestCallback:^(BOOL isSuccess, NSString *html) {
             
             if (listMyThreadRedirectUrl == nil) {
-                listMyThreadRedirectUrl = [parser parseListMyThreadRedirectUrl:html];
+                listMyThreadRedirectUrl = [parser parseListMyThreadSearchid:html];
             }
             
             handler(isSuccess, html);
@@ -835,7 +835,7 @@
     if (newThreadPostRedirectUrl == nil) {
         [_browser GETWithURLString:@"https://bbs.et8.net/bbs/search.php?do=getnew" requestCallback:^(BOOL isSuccess, NSString *html) {
             if (isSuccess) {
-                newThreadPostRedirectUrl = [parser parseListMyThreadRedirectUrl:html];
+                newThreadPostRedirectUrl = [parser parseListMyThreadSearchid:html];
             }
             handler(isSuccess, html);
         }];
@@ -855,7 +855,7 @@
         [_browser GETWithURLString:@"https://bbs.et8.net/bbs/search.php?do=getdaily" requestCallback:^(BOOL isSuccess, NSString *html) {
             
             if (isSuccess) {
-                todayNewThreadPostRedirectUrl = [parser parseListMyThreadRedirectUrl:html];
+                todayNewThreadPostRedirectUrl = [parser parseListMyThreadSearchid:html];
             }
             handler(isSuccess, html);
         }];
@@ -971,7 +971,7 @@
                 listUserThreadRedirectUrlDictionary = [NSMutableDictionary dictionary];
             }
             
-            NSString * redirectUrl = [parser parseListMyThreadRedirectUrl:html];
+            NSString * redirectUrl = [parser parseListMyThreadSearchid:html];
             
             [listUserThreadRedirectUrlDictionary setObject:redirectUrl forKey:[NSNumber numberWithInt:userId]];
             

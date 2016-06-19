@@ -89,7 +89,7 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
 -(void)showProfileWithUserId:(NSString *)userId handler:(Handler)handler;
 
--(void) listSearchResultWithUrl:(NSString *) url andPage:(int) page handler:(Handler)handler;
+-(void) listSearchResultWithSearchid:(NSString *) searchid andPage:(int) page handler:(Handler)handler;
 
 -(void)listAllUserThreads:(int)userId withPage:(int)page handler:(Handler)handler;
 

@@ -10,6 +10,6 @@
 
 @interface SearchForumDisplayPage : ForumDisplayPage
 
-@property (nonatomic, strong) NSString * redirectUrl;
+@property (nonatomic, strong) NSString * searchid;
 
 @end

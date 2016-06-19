@@ -19,7 +19,7 @@
 
 
 @interface CCFSearchViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, CCFThreadListCellDelegate>{
-    NSString * redirectUrl;
+    NSString * _searchid;
     UIStoryboardSegue * selectSegue;
     NSString * searchText;
 }
@@ -40,11 +40,11 @@
 
 -(void)onLoadMore{
 
-    if (redirectUrl == nil) {
+    if (_searchid == nil) {
         [self.tableView.mj_footer endRefreshing];
         return;
     }
-    [self.ccfApi listSearchResultWithUrl:redirectUrl andPage:self.currentPage + 1 handler:^(BOOL isSuccess, SearchForumDisplayPage* message) {
+    [self.ccfApi listSearchResultWithSearchid:_searchid andPage:self.currentPage + 1 handler:^(BOOL isSuccess, SearchForumDisplayPage* message) {
         [self.tableView.mj_footer endRefreshing];
         
         if (isSuccess) {
@@ -75,7 +75,7 @@
         [SVProgressHUD dismiss];
         
         if (isSuccess) {
-            redirectUrl = message.redirectUrl;
+            _searchid = message.searchid;
             
             self.currentPage = (int)message.currentPage;
             self.totalPage = (int)message.totalPageCount;

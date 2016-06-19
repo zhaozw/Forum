@@ -54,7 +54,7 @@
 
 - (NSString *) parseUserAvatar:(NSString *)html userId:(NSString*) userId;
 
-- (NSString *) parseListMyThreadRedirectUrl:(NSString *)html;
+- (NSString *) parseListMyThreadSearchid:(NSString *)html;
 
 - (UserProfile *) parserProfile:(NSString*)html userId:(NSString*)userId;
 
