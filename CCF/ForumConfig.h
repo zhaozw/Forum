@@ -20,9 +20,19 @@
 #define BBS_SEARCH [BBS_URL stringByAppendingString:@"search.php"]
 
 // 附件相关
-#define BBS_NEWATTACHMENT_PATTERN [BBS_URL stringByAppendingString:@"newattachment.php?t=%d&poststarttime=%@&posthash=%@"]
-#define BBS_NEWATTACHMENT(...) [NSString stringWithFormat:BBS_NEWATTACHMENT_PATTERN,##__VA_ARGS__]
+#define BBS_NEWATTACHMENT(threadId, time, hash) [NSString stringWithFormat:@"%@newattachment.php?t=%d&poststarttime=%@&posthash=%@", BBS_URL, threadId, time, hash]
+//#define BBS_NEWATTACHMENT(...) [NSString stringWithFormat:BBS_NEWATTACHMENT_PATTERN,##__VA_ARGS__]
 
 // 搜索相关
-#define BBS_SEARCH_PATTERN [BBS_URL stringByAppendingString:@"search.php?searchid=%@&pp=30&page=%d"]
-#define BBS_SEARCH_WITH_SEARCHID(searchid, page)[NSString stringWithFormat:BBS_SEARCH_PATTERN,searchid, page]
+#define BBS_SEARCH_WITH_SEARCHID(searchid, page)[NSString stringWithFormat:@"%@search.php?searchid=%@&pp=30&page=%d",BBS_URL, searchid, page]
+
+// Find User
+#define BBS_FIND_USER_THREADS(userId) [NSString stringWithFormat:@"%@search.php?do=finduser&u=%d&starteronly=1", BBS_URL ,userId]
+
+// 收藏论坛
+#define BBS_SUBSCRIPTION(formId) [NSString stringWithFormat:@"%@subscription.php?do=addsubscription&f=%@", BBS_URL,formId]
+// 收藏论坛参数
+#define BBS_SUBSCRIPTION_PARAM(formId) [NSString stringWithFormat:@"%@subscription.php?do=doaddsubscription&forumid=%@",BBS_URL,formId]
+
+// FormDisplay
+#define BBS_FORMDISPLAY(formId) [NSString stringWithFormat:@"%@forumdisplay.php?f=%@", BBS_URL, formId]

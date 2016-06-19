@@ -775,7 +775,7 @@
 }
 
 -(void)favoriteFormsWithId:(NSString *)formId handler:(Handler)handler{
-    NSString* preUrl = [@"https://bbs.et8.net/bbs/subscription.php?do=addsubscription&f=" stringByAppendingString:formId];
+    NSString* preUrl = BBS_SUBSCRIPTION(formId);
     
     [_browser GETWithURLString:preUrl requestCallback:^(BOOL isSuccess, NSString *html) {
         if (!isSuccess) {
@@ -783,11 +783,10 @@
         } else{
             NSString * token = [parser parseSecurityToken:html];
             
-            NSString * url = [@"https://bbs.et8.net/bbs/subscription.php?do=doaddsubscription&forumid=" stringByAppendingString:formId];
-            
+            NSString * url = BBS_SUBSCRIPTION_PARAM(formId);
             NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
             
-            NSString * paramUrl = [@"https://bbs.et8.net/bbs/forumdisplay.php?f=" stringByAppendingString:formId];
+            NSString * paramUrl = BBS_FORMDISPLAY(formId);
             
             [parameters setValue:@"" forKey:@"s"];
             [parameters setValue:token forKey:@"securitytoken"];
@@ -961,7 +960,7 @@
 }
 
 -(void)listAllUserThreads:(int)userId withPage:(int)page handler:(Handler)handler{
-    NSString * baseUrl = [NSString stringWithFormat: @"https://bbs.et8.net/bbs/search.php?do=finduser&u=%d&starteronly=1", userId];
+    NSString * baseUrl = BBS_FIND_USER_THREADS(userId);
     if (listUserThreadRedirectUrlDictionary == nil || [listUserThreadRedirectUrlDictionary objectForKey:[NSNumber numberWithInt:userId]] == nil) {
         
     
