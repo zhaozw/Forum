@@ -19,5 +19,10 @@
 #define BBS_ARCHIVE [BBS_URL stringByAppendingString:@"archive/index.php"]
 #define BBS_SEARCH [BBS_URL stringByAppendingString:@"search.php"]
 
+// 附件相关
 #define BBS_NEWATTACHMENT_PATTERN [BBS_URL stringByAppendingString:@"newattachment.php?t=%d&poststarttime=%@&posthash=%@"]
 #define BBS_NEWATTACHMENT(...) [NSString stringWithFormat:BBS_NEWATTACHMENT_PATTERN,##__VA_ARGS__]
+
+// 搜索相关
+#define BBS_SEARCH_PATTERN [BBS_URL stringByAppendingString:@"search.php?searchid=%@&pp=30&page=%d"]
+#define BBS_SEARCH_WITH_SEARCHID(searchid, page)[NSString stringWithFormat:BBS_SEARCH_PATTERN,searchid, page]

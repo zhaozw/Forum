@@ -252,7 +252,7 @@
 }
 
 -(void)listSearchResultWithSearchid:(NSString *)searchid andPage:(int)page handler:(Handler)handler{
-    NSString * searchedUrl = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/search.php?searchid=%@&pp=30&page=%d", searchid, page];
+    NSString * searchedUrl = BBS_SEARCH_WITH_SEARCHID(searchid, page);
     [_browser GETWithURLString:searchedUrl requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess,html);
     }];
