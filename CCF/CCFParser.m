@@ -21,6 +21,7 @@
 #import "SearchForumDisplayPage.h"
 #import "IGHTMLDocument+QueryNode.h"
 #import "IGXMLNode+Children.h"
+#import "ForumConfig.h"
 
 
 @implementation CCFParser

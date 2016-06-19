@@ -28,6 +28,7 @@
 #define kCCFCookie_IDStack @"IDstack"
 #define kCCFSecurityToken @"securitytoken"
 #import <SDiOSVersion.h>
+#import "ForumConfig.h"
 
 @implementation CCFBrowser{
     NSString * listMyThreadRedirectUrl;
@@ -80,7 +81,8 @@
 
 // 获取所有的论坛列表
 -(void) formList:(Handler)handler{
-    [_browser GETWithURLString:@"https://bbs.et8.net/bbs/archive/index.php" requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser GETWithURLString:BBS_ARCHIVE requestCallback:^(BOOL isSuccess, NSString *html) {
+        
         handler(isSuccess, html);
     }];
 }
@@ -299,7 +301,7 @@
     [parameters setValue:@"1" forKey:@"childforums"];
     [parameters setValue:@"1" forKey:@"saveprefs"];
     
-    [_browser GETWithURLString:@"https://bbs.et8.net/bbs/search.php" requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser GETWithURLString:BBS_SEARCH requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             NSString * token = [parser parseSecurityToken:html];
             if (token != nil) {
@@ -446,7 +448,7 @@
 }
 
 -(void)uploadImagePrepairFormSeniorReply:(int)threadId startPostTime:(NSString*)time postHash:(NSString*)hash :(Handler) callback{
-    NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/newattachment.php?t=%d&poststarttime=%@&posthash=%@", threadId, time, hash];
+    NSString * url = BBS_NEWATTACHMENT(threadId, time, hash);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         callback(isSuccess, html);
     }];

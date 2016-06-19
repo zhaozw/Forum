@@ -15,6 +15,7 @@
 #import "ShowPrivateMessage.h"
 #import "UserProfile.h"
 #import "CCFPCH.pch"
+#import "ForumConfig.h"
 
 
 #define kCCFCookie_User @"bbuserid"
@@ -68,7 +69,7 @@
     
     [[NSUserDefaults standardUserDefaults] clearCookie];
     
-    NSURL *url = [NSURL URLWithString:@"https://bbs.et8.net/bbs"];
+    NSURL *url = [NSURL URLWithString:BBS_URL];
     if (url) {
         NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url];
         for (int i = 0; i < [cookies count]; i++) {
@@ -431,59 +432,5 @@
         }
     }];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

@@ -28,6 +28,7 @@
 #import "DRLTabBarController.h"
 #import "TransValueBundle.h"
 #import "CCFProfileTableViewController.h"
+#import "ForumConfig.h"
 
 @interface CCFWebViewController ()<UIWebViewDelegate, UIScrollViewDelegate,TransValueDelegate,ReplyCallbackDelegate>{
     

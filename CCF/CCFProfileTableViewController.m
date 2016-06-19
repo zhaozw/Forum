@@ -18,6 +18,7 @@
 #import <UIImageView+WebCache.h>
 #import "UIStoryboard+CCF.h"
 #import "UserProfile.h"
+#import "ForumConfig.h"
 
 @interface CCFProfileTableViewController ()<TransValueDelegate>{
     

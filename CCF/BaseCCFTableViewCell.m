@@ -8,6 +8,7 @@
 
 #import "BaseCCFTableViewCell.h"
 #import <UIImageView+WebCache.h>
+#import "ForumConfig.h"
 
 @implementation BaseCCFTableViewCell{
     UIImage * defaultAvatarImage;

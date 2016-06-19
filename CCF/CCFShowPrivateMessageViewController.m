@@ -43,6 +43,7 @@
 #import "CCFPCH.pch"
 #import "NSString+Extensions.h"
 #import "DRLTabBarController.h"
+#import "ForumConfig.h"
 
 
 

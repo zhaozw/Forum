@@ -32,7 +32,7 @@
 #import "DRLTabBarController.h"
 #import "DRLForumTableViewController.h"
 #import "CCFPCH.pch"
-
+#import "ForumConfig.h"
 
 @interface DrawerView(){
     

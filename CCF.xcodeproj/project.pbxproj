@@ -145,6 +145,7 @@
 		3A0A99811C4A71B600086DAB /* CCFSeniorNewPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSeniorNewPostViewController.h; sourceTree = "<group>"; };
 		3A0A99821C4A71B600086DAB /* CCFSeniorNewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSeniorNewPostViewController.m; sourceTree = "<group>"; };
 		3A0B39FF1D0962D40060F8A4 /* private_message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = private_message.html; sourceTree = "<group>"; };
+		3A141A1F1D0AD9D2001A1F78 /* ForumConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumConfig.h; sourceTree = "<group>"; };
 		3A1C2CCF1C9E9B740068AF6B /* CCFProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFProfileTableViewController.h; sourceTree = "<group>"; };
 		3A1C2CD01C9E9B740068AF6B /* CCFProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFProfileTableViewController.m; sourceTree = "<group>"; };
 		3A1C2CD51C9EB2C10068AF6B /* CCFProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFProfileTableViewCell.h; sourceTree = "<group>"; };
@@ -675,6 +676,7 @@
 				3AC660061CF17D86000D3BDB /* ForumApi.m */,
 				3AC660081CF17F8A000D3BDB /* LoginUser.h */,
 				3AC660091CF17F8A000D3BDB /* LoginUser.m */,
+				3A141A1F1D0AD9D2001A1F78 /* ForumConfig.h */,
 			);
 			name = Api;
 			path = CCF;
