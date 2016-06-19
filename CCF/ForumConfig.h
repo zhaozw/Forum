@@ -20,7 +20,8 @@
 #define BBS_SEARCH [BBS_URL stringByAppendingString:@"search.php"]
 
 // 附件相关
-#define BBS_NEWATTACHMENT(threadId, time, hash) [NSString stringWithFormat:@"%@newattachment.php?t=%d&poststarttime=%@&posthash=%@", BBS_URL, threadId, time, hash]
+#define BBS_NEWATTACHMENT_THREAD(threadId, time, hash) [NSString stringWithFormat:@"%@newattachment.php?t=%d&poststarttime=%@&posthash=%@", BBS_URL, threadId, time, hash]
+#define BBS_NEWATTACHMENT_FORM(formId, time, hash) [NSString stringWithFormat:@"%@newattachment.php?f=%d&poststarttime=%@&posthash=%@", BBS_URL, formId, time, hash]
 // 管理附件
 #define BBS_MANAGE_ATT [NSString stringWithFormat:@"%@newattachment.php?do=manageattach&p=", BBS_URL]
 //#define BBS_NEWATTACHMENT(...) [NSString stringWithFormat:BBS_NEWATTACHMENT_PATTERN,##__VA_ARGS__]
@@ -48,6 +49,7 @@
 
 // FormDisplay
 #define BBS_FORMDISPLAY(formId) [NSString stringWithFormat:@"%@forumdisplay.php?f=%@", BBS_URL, formId]
+#define BBS_FORMDISPLAY_PAGE(formId, page) [NSString stringWithFormat:@"%@forumdisplay.php?f=%d&order=desc&page=%d", BBS_URL, formId, page]
 
 // 列出收藏的帖子
 #define BBS_LIST_FAV_POST(page) [NSString stringWithFormat:@"%@subscription.php?do=viewsubscription&pp=35&folderid=0&sort=lastpost&order=desc&page=%d", BBS_URL, page]
@@ -64,7 +66,7 @@
 // ShowThread
 #define BBS_SHOWTHREAD(threadId) [NSString stringWithFormat:@"%@showthread.php?t=%@",BBS_URL, threadId]
 #define BBS_SHOWTHREAD_POSTCOUNT(postId, postcount) [NSString stringWithFormat:@"%@showpost.php?p=%d&postcount=%@",BBS_URL, postId, postcount]
-
+#define BBS_SHOWTHREAD_PAGE(threadId, page) [NSString stringWithFormat:@"%@showthread.php?t=%d&page=%d",BBS_URL, threadId, page]
 // 头像
 #define BBS_AVATAR(avatar) [NSString stringWithFormat:@"%@customavatars%@",BBS_URL, avatar]
 
@@ -76,6 +78,47 @@
 
 // 验证码
 #define BBS_VCODE [NSString stringWithFormat:@"%@login.php?do=vcode", BBS_URL]
+
+// 收件箱
+#define BBS_INBOX [NSString stringWithFormat:@"%@private.php?folderid=0", BBS_URL]
+
+// 发表新帖子
+#define BBS_NEW_THREAD(formId) [NSString stringWithFormat:@"%@newthread.php?do=newthread&f=%d", BBS_URL,formId]
+
+// 站内短信
+#define BBS_PM_WITH_TYPE(type, page) [NSString stringWithFormat:@"%@private.php?folderid=%d&pp=30&sort=date&page=%d", BBS_URL,type, page]
+#define BBS_SHOW_PM(messageId) [NSString stringWithFormat:@"%@private.php?do=showpm&pmid=%d", BBS_URL,messageId]
+#define BBS_REPLY_PM(messageId) [NSString stringWithFormat:@"%@private.php?do=insertpm&pmid=%d", BBS_URL,messageId]
+#define BBS_SEND_PM [NSString stringWithFormat:@"%@private.php?do=insertpm&pmid=0", BBS_URL]
+
+#define BBS_NEW_PM [NSString stringWithFormat:@"%@private.php?do=newpm", BBS_URL]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

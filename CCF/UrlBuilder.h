@@ -35,8 +35,6 @@
 
 + (NSURL *) buildUploadFileURL;
 
-+ (NSURL *) buildThreadFirtFloorByThreadId:(NSString *) threadID;
-
 + (NSURL *) buildPrivateMessageWithType:(int) type andPage:(int) page;
 
 + (NSURL *) buildShowPrivateMessageURLWithId:(int) messageId;

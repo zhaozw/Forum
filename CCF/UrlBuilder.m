@@ -11,12 +11,6 @@
 
 #define kCCFFavForm @"https://bbs.et8.net/bbs/usercp.php"
 
-#define kCCFThreadFloor @"https://bbs.et8.net/bbs/showpost.php?p=%@&postcount=1"
-
-#define kCCFPrivateMessageInbox @"https://bbs.et8.net/bbs/private.php?folderid=0"
-
-#define kCCFPrivateMessageOutbox @"https://bbs.et8.net/bbs/private.php?folderid=-1"
-
 @implementation UrlBuilder
 
 +(NSURL *)buildMemberURL:(NSString *)userId{
@@ -26,7 +20,7 @@
 
 
 +(NSURL *)buildFormURL:(int)formId withPage:(int) page{
-    NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/forumdisplay.php?f=%d&order=desc&page=%d", formId, page];
+    NSString * url = BBS_FORMDISPLAY_PAGE(formId, page);
     return [NSURL URLWithString:url];
 }
 
@@ -35,7 +29,7 @@
 }
 
 +(NSURL *)buildThreadURL:(int)threadId withPage:(int)page{
-    return [NSURL URLWithString:[NSString stringWithFormat:@"https://bbs.et8.net/bbs/showthread.php?t=%d&page=%d", threadId, page]];
+    return [NSURL URLWithString:BBS_SHOWTHREAD_PAGE(threadId,page)];
 }
 
 +(NSURL *)buildLoginURL{
@@ -59,7 +53,7 @@
 }
 
 +(NSURL *)buildNewThreadURL:(int)formId{
-    return [NSURL URLWithString:[NSString stringWithFormat:@"https://bbs.et8.net/bbs/newthread.php?do=newthread&f=%d", formId]];
+    return [NSURL URLWithString:BBS_NEW_THREAD(formId)];
 }
 
 +(NSURL *)buildUploadFileURL{
@@ -67,37 +61,32 @@
 }
 
 +(NSURL *)buildManageFileURL:(int)formId postTime:(NSString *)time postHash:(NSString *)hash{
-    return [NSURL URLWithString:[NSString stringWithFormat:@"https://bbs.et8.net/bbs/newattachment.php?f=%d&poststarttime=%@&posthash=%@", formId, time, hash]];
+    return [NSURL URLWithString:BBS_NEWATTACHMENT_FORM(formId, time, hash)];
 }
 
-+(NSURL *)buildThreadFirtFloorByThreadId:(NSString *)threadID{
-    return [NSURL URLWithString:[NSString stringWithFormat:kCCFThreadFloor, threadID]];
-}
 
 +(NSURL *) buildPrivateMessageWithType:(int)type andPage:(int)page{
-    NSString * url = @"https://bbs.et8.net/bbs/private.php?folderid=%d&pp=30&sort=date&page=%d";
-    url = [NSString stringWithFormat:url, type,page];
+    NSString * url = BBS_PM_WITH_TYPE(type, page);
     return [NSURL URLWithString:url];
 }
 
 +(NSURL *)buildShowPrivateMessageURLWithId:(int)messageId{
-    NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/private.php?do=showpm&pmid=%d", messageId];
+    NSString * url = BBS_SHOW_PM(messageId);
     return [NSURL URLWithString:url];
 }
 
-+(NSURL *)buildReplyPrivateMessageURLWithReplyedID:(int)pmId{
-    NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/private.php?do=insertpm&pmid=%d" ,pmId];
++(NSURL *)buildReplyPrivateMessageURLWithReplyedID:(int)messageId{
+    NSString * url = BBS_REPLY_PM(messageId);
     return [NSURL URLWithString:url];
 }
 
 +(NSURL *)buildSendPrivateMessageURL{
-    //
-    NSString * url = @"https://bbs.et8.net/bbs/private.php?do=insertpm&pmid=0";
+    NSString * url = BBS_SEND_PM;
     return [NSURL URLWithString:url];
 }
 
 +(NSURL *)buildNewPMUR{
-    NSString * url = @"https://bbs.et8.net/bbs/private.php?do=newpm";
+    NSString * url = BBS_NEW_PM;
     return [NSURL URLWithString:url];
 }
 

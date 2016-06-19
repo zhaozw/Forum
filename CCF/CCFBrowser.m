@@ -448,7 +448,7 @@
 }
 
 -(void)uploadImagePrepairFormSeniorReply:(int)threadId startPostTime:(NSString*)time postHash:(NSString*)hash :(Handler) callback{
-    NSString * url = BBS_NEWATTACHMENT(threadId, time, hash);
+    NSString * url = BBS_NEWATTACHMENT_THREAD(threadId, time, hash);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         callback(isSuccess, html);
     }];
