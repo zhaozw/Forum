@@ -23,7 +23,7 @@
 
 + (NSURL *) buildVCodeURL;
 
-+ (NSURL *) buildReplyURL:(NSString *)threadId;
++ (NSURL *) buildReplyURL:(int)threadId;
 
 + (NSURL *) buildFavFormURL;
 

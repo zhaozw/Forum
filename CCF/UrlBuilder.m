@@ -7,28 +7,11 @@
 //
 
 #import "UrlBuilder.h"
-
-#define kCCFIndex @"https://bbs.et8.net/bbs/"
-
-#define kCCFMember @"https://bbs.et8.net/bbs/member.php?u=%@"
-
-#define kCCFShowThread @"https://bbs.et8.net/bbs/showthread.php?t=%@&page=%@"
-
-#define kCCFLogin @"https://bbs.et8.net/bbs/login.php?do=login"
-
-#define kCCFVCode @"https://bbs.et8.net/bbs/login.php?do=vcode"
-
-#define kCCFReply @"https://bbs.et8.net/bbs/newreply.php?do=postreply&t=%@"
+#import "ForumConfig.h"
 
 #define kCCFFavForm @"https://bbs.et8.net/bbs/usercp.php"
 
-#define kCCFSearch @"https://bbs.et8.net/bbs/search.php"
-
-#define kCCFUploadFile @"https://bbs.et8.net/bbs/newattachment.php?do=manageattach&p="
-
 #define kCCFThreadFloor @"https://bbs.et8.net/bbs/showpost.php?p=%@&postcount=1"
-
-#define kCCFAvatar @"https://bbs.et8.net/bbs/customavatars%@"
 
 #define kCCFPrivateMessageInbox @"https://bbs.et8.net/bbs/private.php?folderid=0"
 
@@ -38,15 +21,17 @@
 
 +(NSURL *)buildMemberURL:(NSString *)userId{
     
-    return [NSURL URLWithString:[NSString stringWithFormat:kCCFMember, userId]];
+    return [NSURL URLWithString:BBS_USER(userId)];
 }
+
+
 +(NSURL *)buildFormURL:(int)formId withPage:(int) page{
     NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/forumdisplay.php?f=%d&order=desc&page=%d", formId, page];
     return [NSURL URLWithString:url];
 }
 
 +(NSURL *)buildIndexURL{
-    return [NSURL URLWithString:kCCFIndex];
+    return [NSURL URLWithString:BBS_URL];
 }
 
 +(NSURL *)buildThreadURL:(int)threadId withPage:(int)page{
@@ -54,15 +39,15 @@
 }
 
 +(NSURL *)buildLoginURL{
-    return  [NSURL URLWithString:kCCFLogin];
+    return  [NSURL URLWithString:BBS_LOGIN];
 }
 
 +(NSURL *)buildVCodeURL{
-    return [NSURL URLWithString:kCCFVCode];
+    return [NSURL URLWithString:BBS_VCODE];
 }
 
-+(NSURL *) buildReplyURL:(NSString *)threadId{
-    return [NSURL URLWithString:[NSString stringWithFormat:kCCFReply, threadId]];
++(NSURL *) buildReplyURL:(int)threadId{
+    return [NSURL URLWithString:BBS_REPLY(threadId)];
 }
 
 +(NSURL *) buildFavFormURL{
@@ -70,7 +55,7 @@
 }
 
 +(NSURL *)buildSearchUrl{
-    return [NSURL URLWithString:kCCFSearch];
+    return [NSURL URLWithString:BBS_SEARCH];
 }
 
 +(NSURL *)buildNewThreadURL:(int)formId{
@@ -78,7 +63,7 @@
 }
 
 +(NSURL *)buildUploadFileURL{
-    return [NSURL URLWithString:kCCFUploadFile];
+    return [NSURL URLWithString:BBS_MANAGE_ATT];
 }
 
 +(NSURL *)buildManageFileURL:(int)formId postTime:(NSString *)time postHash:(NSString *)hash{

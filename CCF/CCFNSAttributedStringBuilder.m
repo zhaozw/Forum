@@ -7,6 +7,7 @@
 //
 
 #import "CCFNSAttributedStringBuilder.h"
+#import "ForumConfig.h"
 
 @implementation CCFNSAttributedStringBuilder
 
@@ -43,7 +44,7 @@
                                     callBackBlock,DTWillFlushBlockCallBack, nil];
     
     
-    [options setObject:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"] forKey:NSBaseURLDocumentOption];
+    [options setObject:[NSURL URLWithString:BBS_URL] forKey:NSBaseURLDocumentOption];
     
     NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
     

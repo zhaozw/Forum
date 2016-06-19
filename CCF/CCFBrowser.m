@@ -203,7 +203,7 @@
     return sigature;
     
 }
--(void)replyThreadWithId:(NSString *)threadId withMessage:(NSString *)message handler:(Handler)result{
+-(void)replyThreadWithId:(int)threadId withMessage:(NSString *)message handler:(Handler)result{
     
     if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
         message = [message stringByAppendingString:[self buildSignature]];
@@ -220,7 +220,7 @@
     [parameters setValue:message forKey:@"message"];
     
     [parameters setValue:@"postreply" forKey:@"do"];
-    [parameters setValue:threadId forKey:@"t"];
+    [parameters setValue:[NSString stringWithFormat:@"%d", threadId] forKey:@"t"];
     [parameters setValue:@"who cares" forKey:@"p"];
     
     [parameters setValue:@"0" forKey:@"specifiedpost"];
@@ -806,22 +806,48 @@
 
 
 -(void)unfavoriteFormsWithId:(NSString *)formId handler:(Handler)handler{
-    NSString * url = [@"https://bbs.et8.net/bbs/subscription.php?do=removesubscription&f=" stringByAppendingString:formId];
+    NSString * url = BBS_UNFAV_FORM(formId);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess,html);
     }];
 }
 
+-(void)favoriteThreadPostWithId:(NSString *)threadPostId handler:(Handler)handler{
+    NSString * preUrl = BBS_FAV_THREAD(threadPostId);
+    [_browser GETWithURLString:preUrl requestCallback:^(BOOL isSuccess, NSString *html) {
+        if (!isSuccess) {
+            handler(NO, html);
+        } else{
+            NSString * token = [parser parseSecurityToken:html];
+            
+            NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+            [parameters setValue:@"" forKey:@"s"];
+            [parameters setValue:token forKey:@"securitytoken"];
+            [parameters setValue:@"doaddsubscription" forKey:@"do"];
+            [parameters setValue:threadPostId forKey:@"threadid"];
+            NSString * urlPram = BBS_SHOWTHREAD(threadPostId);
+            
+            [parameters setValue:urlPram forKey:@"url"];
+            [parameters setValue:@"0" forKey:@"emailupdate"];
+            [parameters setValue:@"0" forKey:@"folderid"];
+            
+            NSString * fav = BBS_SUBSCRIPTION_THREAD(threadPostId);
+            [_browser POSTWithURLString:fav parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+                handler(isSuccess, html);
+            }];
+        }
+    }];
+}
+
 -(void)unfavoriteThreadPostWithId:(NSString *)threadPostId handler:(Handler)handler{
-    NSString * url = [@"https://bbs.et8.net/bbs/subscription.php?do=removesubscription&t=" stringByAppendingString:threadPostId];
+    NSString * url = BBS_UNFAV_THREAD(threadPostId);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess,html);
     }];
 }
 
 -(void)listFavoriteThreadPostsWithPage:(int)page handler:(Handler)handler{
-    NSString * pageString = [NSString stringWithFormat:@"%d", page];
-    NSString * url = [@"https://bbs.et8.net/bbs/subscription.php?do=viewsubscription&pp=35&folderid=0&sort=lastpost&order=desc&page=" stringByAppendingString:pageString];
+    NSString * url = BBS_LIST_FAV_POST(page);
     
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess,html);
@@ -831,7 +857,7 @@
 
 -(void)listNewThreadPostsWithPage:(int)page handler:(Handler)handler{
     if (newThreadPostSearchId == nil) {
-        [_browser GETWithURLString:@"https://bbs.et8.net/bbs/search.php?do=getnew" requestCallback:^(BOOL isSuccess, NSString *html) {
+        [_browser GETWithURLString:BBS_GET_NEW requestCallback:^(BOOL isSuccess, NSString *html) {
             if (isSuccess) {
                 newThreadPostSearchId = [parser parseListMyThreadSearchid:html];
             }
@@ -850,7 +876,7 @@
 
 -(void)listTodayNewThreadsWithPage:(int)page handler:(Handler)handler{
     if (todayNewThreadPostSearchId == nil) {
-        [_browser GETWithURLString:@"https://bbs.et8.net/bbs/search.php?do=getdaily" requestCallback:^(BOOL isSuccess, NSString *html) {
+        [_browser GETWithURLString:BBS_GET_DAILY requestCallback:^(BOOL isSuccess, NSString *html) {
             
             if (isSuccess) {
                 todayNewThreadPostSearchId = [parser parseListMyThreadSearchid:html];
@@ -867,7 +893,7 @@
 }
 
 -(void)quickReplyPostWithThreadId:(int)threadId forPostId:(int)postId andMessage:(NSString *)message securitytoken:(NSString *)token ajaxLastPost:(NSString *)ajax_lastpost handler:(Handler)handler{
-    NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/newreply.php?do=postreply&t=%d", threadId];
+    NSString * url = BBS_REPLY(threadId);
     
     if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
         message = [message stringByAppendingString:[self buildSignature]];
@@ -902,36 +928,10 @@
     }];
 }
 
--(void)favoriteThreadPostWithId:(NSString *)threadPostId handler:(Handler)handler{
-    NSString * preUrl = [@"https://bbs.et8.net/bbs/subscription.php?do=addsubscription&t=" stringByAppendingString:threadPostId];
-    [_browser GETWithURLString:preUrl requestCallback:^(BOOL isSuccess, NSString *html) {
-        if (!isSuccess) {
-            handler(NO, html);
-        } else{
-            NSString * token = [parser parseSecurityToken:html];
-            
-            NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
-            [parameters setValue:@"" forKey:@"s"];
-            [parameters setValue:token forKey:@"securitytoken"];
-            [parameters setValue:@"doaddsubscription" forKey:@"do"];
-            [parameters setValue:threadPostId forKey:@"threadid"];
-            NSString * urlPram = [@"https://bbs.et8.net/bbs/showthread.php?t=" stringByAppendingString:threadPostId];
-            
-            [parameters setValue:urlPram forKey:@"url"];
-            [parameters setValue:@"0" forKey:@"emailupdate"];
-            [parameters setValue:@"0" forKey:@"folderid"];
-            
-            NSString * fav = [@"https://bbs.et8.net/bbs/subscription.php?do=doaddsubscription&threadid=" stringByAppendingString:threadPostId];
-            [_browser POSTWithURLString:fav parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
-                handler(isSuccess, html);
-            }];
-        }
-    }];
-}
+
 
 -(void)showThreadWithId:(int)threadId andPage:(int)page handler:(Handler)handler{
     NSURL * url = [UrlBuilder buildThreadURL:threadId withPage:page];
-    NSString * urlStr = [NSString stringWithFormat:@"%@", url];
     [self browseWithUrl:url :^(BOOL isSuccess, id result) {
         handler(isSuccess, result);
     }];
@@ -953,7 +953,6 @@
 
 -(void)showProfileWithUserId:(NSString *)userId handler:(Handler)handler{
     NSURL * url = [UrlBuilder buildMemberURL:userId];
-    
     [self browseWithUrl:url :^(BOOL isSuccess, id result) {
         handler(isSuccess, result);
     }];
@@ -987,7 +986,7 @@
 
 -(void)seniorReplyWithThreadId:(int)threadId andMessage:(NSString *)message securitytoken:(NSString *)token posthash:(NSString *)posthash poststarttime:(NSString *)poststarttime handler:(Handler)handler{
     
-    NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/newreply.php?do=postreply&t=%d", threadId];
+    NSString * url = BBS_REPLY(threadId);
     
     if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
         message = [message stringByAppendingString:[self buildSignature]];
@@ -1022,7 +1021,7 @@
 
 
 -(void)seniorReplyWithThreadId:(int)threadId forFormId:(int) formId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(Handler)handler{
-    NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/newreply.php?do=postreply&t=%d", threadId];
+    NSString * url = BBS_REPLY(threadId);
     
     
     NSMutableDictionary * presparameters = [NSMutableDictionary dictionary];
@@ -1061,7 +1060,7 @@
             } else{
                 
                 __block NSString * uploadImageToken = @"";
-                NSString * urlStr = @"https://bbs.et8.net/bbs/newattachment.php?do=manageattach&p=";
+                NSString * urlStr = BBS_MANAGE_ATT;
                 NSURL *uploadImageUrl = [NSURL URLWithString:urlStr];
                 // 如果有图片，先传图片
                 [self uploadImagePrepairFormSeniorReply:threadId startPostTime:postStartTime postHash:postHash :^(BOOL isSuccess, id result) {

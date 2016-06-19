@@ -141,7 +141,7 @@
         NSString * lis = @"";
         
         for (Post * post in posts) {
-            NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
+            NSString * avatar = BBS_AVATAR(post.postUserInfo.userAvatar);
             NSString * louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
             NSString * postInfo = [NSString stringWithFormat:POST_MESSAGE,post.postID, post.postID,post.postUserInfo.userName,louceng,post.postUserInfo.userID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
             lis = [lis stringByAppendingString:postInfo];
@@ -208,7 +208,7 @@
         NSString * lis = @"";
         
         for (Post * post in posts) {
-            NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
+            NSString * avatar = BBS_AVATAR(post.postUserInfo.userAvatar);
             NSString * louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
             NSString * postInfo = [NSString stringWithFormat:POST_MESSAGE,post.postID, post.postID,post.postUserInfo.userName,louceng,post.postUserInfo.userID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
             lis = [lis stringByAppendingString:postInfo];
@@ -285,7 +285,7 @@
         
         for (Post * post in posts) {
  
-            NSString * avatar = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/customavatars%@", post.postUserInfo.userAvatar];
+            NSString * avatar = BBS_AVATAR(post.postUserInfo.userAvatar);
             NSString * louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
             NSString * postInfo = [NSString stringWithFormat:POST_MESSAGE,post.postID, post.postID,post.postUserInfo.userName,louceng, post.postUserInfo.userID,avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
             
@@ -456,7 +456,7 @@
             } else if (buttonIndex == 2){
                 NSString * louceng = louCeng;
                 
-                NSString * postUrl = [NSString stringWithFormat: @"https://bbs.et8.net/bbs/showpost.php?p=%d&postcount=%@", postId, louceng];
+                NSString * postUrl = BBS_SHOWTHREAD_POSTCOUNT(postId, louCeng);
                 
                 UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
                 pasteboard.string = postUrl;

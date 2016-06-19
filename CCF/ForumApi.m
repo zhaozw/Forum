@@ -133,8 +133,7 @@
 
 
 -(void)replyThreadWithId:(int)threadId andMessage:(NSString *)message handler:(HandlerWithBool)handler{
-    NSString *threadIdStr = [NSString stringWithFormat:@"%d", threadId];
-    [_browser replyThreadWithId:threadIdStr withMessage:message handler:^(BOOL isSuccess, NSString* result) {
+    [_browser replyThreadWithId:threadId withMessage:message handler:^(BOOL isSuccess, NSString* result) {
         
         if (isSuccess) {
             NSString * error = kErrorMessageTimeTooShort;

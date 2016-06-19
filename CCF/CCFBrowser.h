@@ -32,7 +32,7 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
 -(void) refreshVCodeToUIImageView:(UIImageView* ) vCodeImageView;
 
--(void) replyThreadWithId:(NSString *) threadId withMessage:(NSString *) message handler: (Handler) result;
+-(void) replyThreadWithId:(int) threadId withMessage:(NSString *) message handler: (Handler) result;
 
 -(LoginUser *) getCurrentCCFUser;
 

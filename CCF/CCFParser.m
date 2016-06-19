@@ -387,7 +387,7 @@
         NSString *name = nameNode.innerHtml;
         ccfuser.userName = name;
         NSString *nameLink = [nameNode attribute:@"href"];
-        ccfuser.userLink = [@"https://bbs.et8.net/bbs/" stringByAppendingString:nameLink];
+        ccfuser.userLink = [BBS_URL stringByAppendingString:nameLink];
         ccfuser.userID = [nameLink stringWithRegular:@"\\d+"];
         //avatar
         IGXMLNode * avatarNode = userInfoNode.children[1];
