@@ -9,8 +9,6 @@
 #import "UrlBuilder.h"
 #import "ForumConfig.h"
 
-#define kCCFFavForm @"https://bbs.et8.net/bbs/usercp.php"
-
 @implementation UrlBuilder
 
 +(NSURL *)buildMemberURL:(NSString *)userId{
@@ -45,7 +43,7 @@
 }
 
 +(NSURL *) buildFavFormURL{
-    return [NSURL URLWithString:kCCFFavForm];
+    return [NSURL URLWithString:BBS_USER_CP];
 }
 
 +(NSURL *)buildSearchUrl{
@@ -91,12 +89,12 @@
 }
 
 +(NSURL *)buildMyThreadPostsURLWithUserId:(NSString*)Id{
-    NSString * url = [@"https://bbs.et8.net/bbs/search.php?do=finduser&userid=" stringByAppendingString:Id];
+    NSString * url = BBS_FIND_USER_WITH_USERID(Id);
     return [NSURL URLWithString:url];
 }
 
 +(NSURL *)buildMyThreadWithName:(NSString *)name{
-    NSString * url = [@"https://bbs.et8.net/bbs/search.php?do=process&showposts=0&starteronly=1&exactname=1&searchuser=" stringByAppendingString:name];
+    NSString * url = BBS_FIND_USER_WITH_NAME(name);
     url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     return [NSURL URLWithString:url];
 }

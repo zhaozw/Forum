@@ -938,8 +938,7 @@
 }
 
 -(void)showThreadWithP:(NSString*)p handler:(Handler)handler{
-    NSString * baseUrl = @"https://bbs.et8.net/bbs/showthread.php?p=%@";
-    NSString * url = [NSString stringWithFormat:baseUrl, p];
+    NSString * url = BBS_SHOWTHREAD_WITH_P(p);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];

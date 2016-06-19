@@ -31,6 +31,8 @@
 
 // Find User
 #define BBS_FIND_USER_THREADS(userId) [NSString stringWithFormat:@"%@search.php?do=finduser&u=%d&starteronly=1", BBS_URL ,userId]
+#define BBS_FIND_USER_WITH_USERID(userId) [NSString stringWithFormat:@"%@search.php?do=finduser&userid=%@", BBS_URL ,userId]
+#define BBS_FIND_USER_WITH_NAME(name) [NSString stringWithFormat:@"%@search.php?do=process&showposts=0&starteronly=1&exactname=1&searchuser=%@", BBS_URL ,name]
 
 // 收藏论坛
 #define BBS_SUBSCRIPTION(formId) [NSString stringWithFormat:@"%@subscription.php?do=addsubscription&f=%@", BBS_URL,formId]
@@ -67,6 +69,9 @@
 #define BBS_SHOWTHREAD(threadId) [NSString stringWithFormat:@"%@showthread.php?t=%@",BBS_URL, threadId]
 #define BBS_SHOWTHREAD_POSTCOUNT(postId, postcount) [NSString stringWithFormat:@"%@showpost.php?p=%d&postcount=%@",BBS_URL, postId, postcount]
 #define BBS_SHOWTHREAD_PAGE(threadId, page) [NSString stringWithFormat:@"%@showthread.php?t=%d&page=%d",BBS_URL, threadId, page]
+#define BBS_SHOWTHREAD_WITH_P(p) [NSString stringWithFormat:@"%@showthread.php?p=%@",BBS_URL, p]
+
+
 // 头像
 #define BBS_AVATAR(avatar) [NSString stringWithFormat:@"%@customavatars%@",BBS_URL, avatar]
 
@@ -92,6 +97,9 @@
 #define BBS_SEND_PM [NSString stringWithFormat:@"%@private.php?do=insertpm&pmid=0", BBS_URL]
 
 #define BBS_NEW_PM [NSString stringWithFormat:@"%@private.php?do=newpm", BBS_URL]
+
+// UserCP
+#define BBS_USER_CP [NSString stringWithFormat:@"%@usercp.php", BBS_URL]
 
 
 
