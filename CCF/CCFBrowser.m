@@ -31,12 +31,12 @@
 #import "ForumConfig.h"
 
 @implementation CCFBrowser{
-    NSString * listMyThreadRedirectUrl;
+    NSString * listMyThreadSearchId;
 
     NSMutableDictionary * listUserThreadRedirectUrlDictionary;
     
-    NSString *todayNewThreadPostRedirectUrl;
-    NSString *newThreadPostRedirectUrl;
+    NSString *todayNewThreadPostSearchId;
+    NSString *newThreadPostSearchId;
     
     CCFParser * parser;
     
@@ -754,20 +754,19 @@
         return;
     }
     
-    if (listMyThreadRedirectUrl == nil) {
+    if (listMyThreadSearchId == nil) {
         
         NSURL * myUrl = [UrlBuilder buildMyThreadWithName:user.userName];
         [_browser GETWithURL:myUrl requestCallback:^(BOOL isSuccess, NSString *html) {
             
-            if (listMyThreadRedirectUrl == nil) {
-                listMyThreadRedirectUrl = [parser parseListMyThreadSearchid:html];
+            if (listMyThreadSearchId == nil) {
+                listMyThreadSearchId = [parser parseListMyThreadSearchid:html];
             }
             
             handler(isSuccess, html);
         }];
     } else{
-        //   /bbs/search.php?searchid=7873716
-        NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net%@&pp=30&page=%d", listMyThreadRedirectUrl, page];
+        NSString * url = BBS_SEARCH_WITH_SEARCHID(listMyThreadSearchId, page);
         [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
             handler(isSuccess, html);
         }];
@@ -832,15 +831,15 @@
 
 
 -(void)listNewThreadPostsWithPage:(int)page handler:(Handler)handler{
-    if (newThreadPostRedirectUrl == nil) {
+    if (newThreadPostSearchId == nil) {
         [_browser GETWithURLString:@"https://bbs.et8.net/bbs/search.php?do=getnew" requestCallback:^(BOOL isSuccess, NSString *html) {
             if (isSuccess) {
-                newThreadPostRedirectUrl = [parser parseListMyThreadSearchid:html];
+                newThreadPostSearchId = [parser parseListMyThreadSearchid:html];
             }
             handler(isSuccess, html);
         }];
     } else{
-        NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net%@&pp=30&page=%d", newThreadPostRedirectUrl, page];
+        NSString * url = BBS_SEARCH_WITH_SEARCHID(newThreadPostSearchId, page);
         [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
             handler(isSuccess, html);
         }];
@@ -851,16 +850,16 @@
 
 
 -(void)listTodayNewThreadsWithPage:(int)page handler:(Handler)handler{
-    if (todayNewThreadPostRedirectUrl == nil) {
+    if (todayNewThreadPostSearchId == nil) {
         [_browser GETWithURLString:@"https://bbs.et8.net/bbs/search.php?do=getdaily" requestCallback:^(BOOL isSuccess, NSString *html) {
             
             if (isSuccess) {
-                todayNewThreadPostRedirectUrl = [parser parseListMyThreadSearchid:html];
+                todayNewThreadPostSearchId = [parser parseListMyThreadSearchid:html];
             }
             handler(isSuccess, html);
         }];
     } else{
-        NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net%@&pp=30&page=%d", todayNewThreadPostRedirectUrl, page];
+        NSString * url = BBS_SEARCH_WITH_SEARCHID(todayNewThreadPostSearchId, page);
         [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
             handler(isSuccess, html);
         }];
@@ -971,18 +970,16 @@
                 listUserThreadRedirectUrlDictionary = [NSMutableDictionary dictionary];
             }
             
-            NSString * redirectUrl = [parser parseListMyThreadSearchid:html];
+            NSString * searchId = [parser parseListMyThreadSearchid:html];
             
-            [listUserThreadRedirectUrlDictionary setObject:redirectUrl forKey:[NSNumber numberWithInt:userId]];
+            [listUserThreadRedirectUrlDictionary setObject:searchId forKey:[NSNumber numberWithInt:userId]];
             
             handler(isSuccess, html);
         }];
     } else{
-        //   /bbs/search.php?searchid=7873716
+        NSString * searchId = [listUserThreadRedirectUrlDictionary objectForKey:[NSNumber numberWithInt:userId]];
         
-        NSString * userUrl = [listUserThreadRedirectUrlDictionary objectForKey:[NSNumber numberWithInt:userId]];
-        
-        NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net%@&pp=30&page=%d", userUrl, page];
+        NSString * url = BBS_SEARCH_WITH_SEARCHID(searchId, page);
         [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
             handler(isSuccess, html);
         }];
