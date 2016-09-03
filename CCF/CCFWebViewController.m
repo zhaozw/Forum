@@ -341,10 +341,14 @@
 
 - (void)showMoreAction{
 
-    itemActionSheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"复制帖子链接", @"在浏览器中查看",@"高级回帖"] redButtonIndex:2 clicked:^(NSInteger buttonIndex) {
+    itemActionSheet = [LCActionSheet sheetWithTitle:nil cancelButtonTitle:nil clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
 
-        
-    }];
+    } otherButtonTitles:@"复制帖子链接", @"在浏览器中查看",@"高级回帖" , nil];
+//    
+//    itemActionSheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"复制帖子链接", @"在浏览器中查看",@"高级回帖"] redButtonIndex:2 clicked:^(NSInteger buttonIndex) {
+//
+//        
+//    }];
     
     [itemActionSheet show];
 }
@@ -399,7 +403,7 @@
         int postId = [[query valueForKey:@"postid"] intValue];
         NSString * louCeng = [query valueForKey:@"postlouceng"];
         
-        itemActionSheet = [LCActionSheet sheetWithTitle:userName buttonTitles:@[@"快速回复", @"高级回复", @"复制链接"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
+        itemActionSheet = [LCActionSheet sheetWithTitle:nil cancelButtonTitle:nil clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
             if (buttonIndex == 0) {
                 UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
                 
@@ -407,7 +411,7 @@
                 self.replyTransValueDelegate = (id<ReplyTransValueDelegate>)simpleReplyController;
                 
                 TransValueBundle * bundle = [[TransValueBundle alloc] init];
-
+                
                 [bundle putIntValue:threadID forKey:@"THREAD_ID"];
                 [bundle putIntValue:postId forKey:@"POST_ID"];
                 
@@ -464,7 +468,74 @@
                 [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
                 
             }
-        }];
+        } otherButtonTitles:@"快速回复", @"高级回复", @"复制链接" , nil];
+        
+//        itemActionSheet = [LCActionSheet sheetWithTitle:userName buttonTitles:@[@"快速回复", @"高级回复", @"复制链接"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
+//            if (buttonIndex == 0) {
+//                UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+//                
+//                CCFSimpleReplyNavigationController* simpleReplyController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSimpleReplyNavigationController"];
+//                self.replyTransValueDelegate = (id<ReplyTransValueDelegate>)simpleReplyController;
+//                
+//                TransValueBundle * bundle = [[TransValueBundle alloc] init];
+//
+//                [bundle putIntValue:threadID forKey:@"THREAD_ID"];
+//                [bundle putIntValue:postId forKey:@"POST_ID"];
+//                
+//                NSString * token = currentThreadPage.securityToken;
+//                [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
+//                [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
+//                [bundle putStringValue:userName forKey:@"POST_USER"];
+//                
+//                [self.replyTransValueDelegate transValue:self withBundle:bundle];
+//                
+//                [self.navigationController presentViewController:simpleReplyController animated:YES completion:^{
+//                    
+//                }];
+//                
+//                
+//            } else if (buttonIndex == 1){
+//                
+//                UIStoryboard * storyBoard = [UIStoryboard mainStoryboard];
+//                
+//                CCFSimpleReplyNavigationController * controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
+//                self.replyTransValueDelegate = (id<ReplyTransValueDelegate>)controller;
+//                
+//                TransValueBundle * bundle = [[TransValueBundle alloc] init];
+//                
+//                [bundle putIntValue:threadID forKey:@"THREAD_ID"];
+//                
+//                
+//                [bundle putIntValue:postId forKey:@"POST_ID"];
+//                
+//                NSString * token = currentThreadPage.securityToken;
+//                
+//                
+//                [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
+//                
+//                [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
+//                
+//                [bundle putStringValue:userName forKey:@"USER_NAME"];
+//                
+//                [self.replyTransValueDelegate transValue:self withBundle:bundle];
+//                
+//                [self.navigationController presentViewController:controller animated:YES completion:^{
+//                    
+//                }];
+//                
+//                
+//            } else if (buttonIndex == 2){
+//                NSString * louceng = louCeng;
+//                
+//                NSString * postUrl = BBS_SHOWTHREAD_POSTCOUNT(postId, louCeng);
+//                
+//                UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+//                pasteboard.string = postUrl;
+//                
+//                [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
+//                
+//            }
+//        }];
         
         [itemActionSheet show];
         return NO;
@@ -602,9 +673,7 @@
 
 - (IBAction)showMoreAction:(UIBarButtonItem *)sender {
     
-    
-    
-    itemActionSheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"复制帖子链接", @"在浏览器中查看",@"高级回帖"] redButtonIndex:2 clicked:^(NSInteger buttonIndex) {
+    itemActionSheet = [LCActionSheet sheetWithTitle:nil cancelButtonTitle:nil clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
         if (buttonIndex == 0) {
             // 复制贴链接
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
@@ -619,7 +688,7 @@
             [self reply:self];
             
         }
-    }];
+    } otherButtonTitleArray:@[@"复制帖子链接", @"在浏览器中查看",@"高级回帖"]];
     
     [itemActionSheet show];
 }

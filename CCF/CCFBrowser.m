@@ -53,8 +53,7 @@
         
         parser = [[CCFParser alloc] init];
         
-        DeviceVersion version = [SDiOSVersion deviceVersion];
-        iPhoneName =  stringFromDeviceVersion(version);
+        iPhoneName =  [SDiOSVersion deviceName];
         
         [self loadCookie];
     }
