@@ -1,1 +1,0 @@
-../../../CSSSelectorConverter/CSSSelectorConverter/CSSSelectorAttributeOperator.h
