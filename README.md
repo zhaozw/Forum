@@ -5,7 +5,7 @@
 [![](https://img.shields.io/badge/Xcode-v7.3.1-blue.svg)]()
 [![](https://img.shields.io/badge/Cocodpods-v0.39.0-blue.svg)]()
 [![](https://img.shields.io/badge/Target->=iOS8.0-blue.svg)]()
-[![](https://img.shields.io/badge/Devices-iPhone&iPad-blue.svg)]()
+![](https://img.shields.io/badge/Devices-iPhone&iPad-blue.svg)
 
 ### 使用到的一些开源库
 + [SDVersion](https://github.com/sebyddd/SDVersion) 识别iOS设备的型号
