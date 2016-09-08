@@ -1,3 +1,1 @@
-# CCF
-
-https://bbs.et8.net/bbs/ 论坛客户端
+# CCF iOS 论坛客户端
