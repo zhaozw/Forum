@@ -1,10 +1,10 @@
 # CCF iOS 论坛客户端
 
 [![Crates.io](https://img.shields.io/badge/version-2.0.0-red.svg)](https://itunes.apple.com/cn/app/ccf-jing-pin-lun-tan-ke-hu-duan/id1099534950)
-[![](https://img.shields.io/badge/Language-Objective--C-green.svg)]()
-[![](https://img.shields.io/badge/Xcode-v7.3.1-blue.svg)]()
-[![](https://img.shields.io/badge/Cocodpods-v0.39.0-blue.svg)]()
-[![](https://img.shields.io/badge/Target->=iOS8.0-blue.svg)]()
+![](https://img.shields.io/badge/Language-Objective--C-green.svg)
+![](https://img.shields.io/badge/Xcode-v7.3.1-blue.svg)
+![](https://img.shields.io/badge/Cocodpods-v0.39.0-blue.svg)
+![](https://img.shields.io/badge/Target->=iOS8.0-blue.svg)
 ![](https://img.shields.io/badge/Devices-iPhone&iPad-blue.svg)
 
 ### 使用到的一些开源库
