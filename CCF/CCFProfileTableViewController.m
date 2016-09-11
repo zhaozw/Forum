@@ -85,6 +85,9 @@
     } else if ([value isKindOfClass:[TransValueBundle class]]){
         TransValueBundle * transBundle = value;
         userId = [transBundle getIntValue:@"userid"];
+    } else if ([value isKindOfClass:[SimpleThread class]]){
+        SimpleThread *thread = value;
+        userId = [thread.threadAuthorID intValue];
     }
 }
 

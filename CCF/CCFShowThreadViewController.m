@@ -439,6 +439,7 @@
     
     [self.transValueDelegate transValue:post];
 }
+
 #pragma mark Controller跳转
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     

@@ -19,4 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ThreadAuthorAvatar;
 @property (weak, nonatomic) IBOutlet UILabel *threadCategory;
 
+- (IBAction)showUserProfile:(UIButton *)sender;
+
 @end

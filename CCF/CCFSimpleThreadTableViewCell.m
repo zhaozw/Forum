@@ -8,7 +8,9 @@
 
 #import "CCFSimpleThreadTableViewCell.h"
 
-@implementation CCFSimpleThreadTableViewCell
+@implementation CCFSimpleThreadTableViewCell{
+    NSIndexPath * selectIndexPath;
+}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -29,4 +31,14 @@
     
     [self showAvatar:self.ThreadAuthorAvatar userId:data.threadAuthorID];
 }
+
+-(void)setData:(id)data forIndexPath:(NSIndexPath *)indexPath{
+    selectIndexPath = indexPath;
+    [self setData:data];
+}
+
+-(void)showUserProfile:(UIButton *)sender{
+    [self.showUserProfileDelegate showUserProfile:selectIndexPath];
+}
+
 @end

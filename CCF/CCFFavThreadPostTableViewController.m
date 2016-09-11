@@ -13,9 +13,12 @@
 #import "Thread.h"
 #import "DRLTabBarController.h"
 #import "CCFWebViewController.h"
+#import "CCFProfileTableViewController.h"
 
 
-@interface CCFFavThreadPostTableViewController ()<MGSwipeTableCellDelegate>
+@interface CCFFavThreadPostTableViewController ()<MGSwipeTableCellDelegate, CCFThreadListCellDelegate>{
+    UIStoryboardSegue * selectSegue;
+}
 
 @end
 
@@ -65,13 +68,14 @@
     
     cell.indexPath = indexPath;
     cell.delegate = self;
+    cell.showUserProfileDelegate = self;
     //configure right buttons
     cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"取消收藏" backgroundColor:[UIColor lightGrayColor]]];
     cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
     
     
     SimpleThread * list = self.dataList[indexPath.row];
-    [cell setData:list];
+    [cell setData:list forIndexPath:indexPath];
     
     return cell;
 }
@@ -108,33 +112,33 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if([segue.identifier isEqualToString:@"ShowThreadPosts"]){
-        if(YES){
-            CCFWebViewController * controller = segue.destinationViewController;
-            self.transValueDelegate = (id<TransValueDelegate>)controller;
-            
-            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            
-            Thread * thread = self.dataList[indexPath.row];
-            
-            [self.transValueDelegate transValue:thread];
-        } else{
-            CCFShowThreadViewController * controller = segue.destinationViewController;
-            self.transValueDelegate = (id<TransValueDelegate>)controller;
-            
-            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            
-            Thread * thread = self.dataList[indexPath.row];
-            
-            TransValueBundle *transBundle = [[TransValueBundle alloc] init];
-            [transBundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
-            [transBundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
-            
-            [self.transValueDelegate transValue:transBundle];
-        }
+        CCFWebViewController * controller = segue.destinationViewController;
+        self.transValueDelegate = (id<TransValueDelegate>)controller;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        Thread * thread = self.dataList[indexPath.row];
+        
+        TransValueBundle *transBundle = [[TransValueBundle alloc] init];
+        [transBundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
+        [transBundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
+        
+        [self.transValueDelegate transValue:transBundle];
         
     } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]){
-        //selectSegue = segue;
+        selectSegue = segue;
     }
+}
+
+-(void)showUserProfile:(NSIndexPath *)indexPath{
+    
+    CCFProfileTableViewController * controller = (CCFProfileTableViewController *)selectSegue.destinationViewController;
+    self.transValueDelegate = (id<TransValueDelegate>)controller;
+    
+    SimpleThread * thread = self.dataList[indexPath.row];
+    
+    [self.transValueDelegate transValue:thread];
+    
 }
 
 - (IBAction)showLeftDrawer:(id)sender {
