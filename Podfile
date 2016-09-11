@@ -9,8 +9,7 @@ pod 'MJRefresh', '~> 3.0.8'
 pod 'UITableView+FDTemplateLayoutCell', '~> 1.4'
 pod 'SVProgressHUD', '~> 1.1.3'
 
-pod 'SDVersion'
-#pod 'LCActionSheet', :git => "https://github.com/iTofu/LCActionSheet.git", :commit => "68419a7"
+
 pod 'LCActionSheet','~>1.2.3'
 pod 'ActionSheetPicker-3.0'
 pod 'FDFullscreenPopGesture', '1.1'

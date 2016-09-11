@@ -27,6 +27,7 @@
 		3A2FCC771C953FCD00B469E4 /* UICircleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FCC761C953FCD00B469E4 /* UICircleImageView.m */; };
 		3A2FCC7E1C956DB100B469E4 /* PrivateMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FCC7D1C956DB100B469E4 /* PrivateMessageTableViewCell.m */; };
 		3A3672AD1CAF713200756D8B /* TransValueBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3672AC1CAF713200756D8B /* TransValueBundle.m */; };
+		3A37ED731D859029003CDC58 /* DeviceName.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A37ED721D859029003CDC58 /* DeviceName.m */; };
 		3A671EE41CB9E061001CC91E /* PageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A671EE31CB9E061001CC91E /* PageHeaderView.m */; };
 		3A671EE61CB9E0E1001CC91E /* PageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A671EE51CB9E0E1001CC91E /* PageHeaderView.xib */; };
 		3A671EE91CB9EA59001CC91E /* XibInflater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A671EE81CB9EA59001CC91E /* XibInflater.m */; };
@@ -178,6 +179,8 @@
 		3A2FCC7D1C956DB100B469E4 /* PrivateMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageTableViewCell.m; sourceTree = "<group>"; };
 		3A3672AB1CAF713200756D8B /* TransValueBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransValueBundle.h; sourceTree = "<group>"; };
 		3A3672AC1CAF713200756D8B /* TransValueBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransValueBundle.m; sourceTree = "<group>"; };
+		3A37ED711D859029003CDC58 /* DeviceName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceName.h; sourceTree = "<group>"; };
+		3A37ED721D859029003CDC58 /* DeviceName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceName.m; sourceTree = "<group>"; };
 		3A671EE21CB9E061001CC91E /* PageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageHeaderView.h; sourceTree = "<group>"; };
 		3A671EE31CB9E061001CC91E /* PageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageHeaderView.m; sourceTree = "<group>"; };
 		3A671EE51CB9E0E1001CC91E /* PageHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageHeaderView.xib; sourceTree = "<group>"; };
@@ -706,6 +709,8 @@
 		4D339D821C31454A0022A6A4 = {
 			isa = PBXGroup;
 			children = (
+				3A37ED711D859029003CDC58 /* DeviceName.h */,
+				3A37ED721D859029003CDC58 /* DeviceName.m */,
 				3A141A1F1D0AD9D2001A1F78 /* ForumConfig.h */,
 				3ACFFD311CFA640B000312DC /* PhotoView */,
 				3ACFFD271CF9D6B1000312DC /* NetWork */,
@@ -1022,6 +1027,7 @@
 				3A842CA11C469AC1002944A9 /* CCFNewThreadViewController.m in Sources */,
 				3AA935E11CF1BCB2009FC4A6 /* UserEntry+CoreDataProperties.m in Sources */,
 				3A9FEDDA1C342CB800F30885 /* CCFParser.m in Sources */,
+				3A37ED731D859029003CDC58 /* DeviceName.m in Sources */,
 				3A671EE91CB9EA59001CC91E /* XibInflater.m in Sources */,
 				3A690A461C375B5B0076C8F1 /* CCFThreadDetailCell.m in Sources */,
 				3AC660701CF1833F000D3BDB /* CCFShowThreadViewController.m in Sources */,

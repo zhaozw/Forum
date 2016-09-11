@@ -27,8 +27,8 @@
 #define kCCFCookie_LastVisit @"bblastvisit"
 #define kCCFCookie_IDStack @"IDstack"
 #define kCCFSecurityToken @"securitytoken"
-#import <SDiOSVersion.h>
 #import "ForumConfig.h"
+#import "DeviceName.h"
 
 @implementation CCFBrowser{
     NSString * listMyThreadSearchId;
@@ -53,8 +53,8 @@
         
         parser = [[CCFParser alloc] init];
         
-        iPhoneName =  [SDiOSVersion deviceName];
-        
+
+        iPhoneName = [DeviceName deviceNameDetail];
         [self loadCookie];
     }
     
