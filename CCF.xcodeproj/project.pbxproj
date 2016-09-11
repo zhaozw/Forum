@@ -145,7 +145,7 @@
 		3A0A997F1C4A6A4E00086DAB /* RoundCornerUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundCornerUIView.m; sourceTree = "<group>"; };
 		3A0A99811C4A71B600086DAB /* CCFSeniorNewPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSeniorNewPostViewController.h; sourceTree = "<group>"; };
 		3A0A99821C4A71B600086DAB /* CCFSeniorNewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSeniorNewPostViewController.m; sourceTree = "<group>"; };
-		3A0B39FF1D0962D40060F8A4 /* private_message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = private_message.html; sourceTree = "<group>"; };
+		3A0B39FF1D0962D40060F8A4 /* private_message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = private_message.html; path = CCF/private_message.html; sourceTree = "<group>"; };
 		3A141A1F1D0AD9D2001A1F78 /* ForumConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ForumConfig.h; path = CCF/ForumConfig.h; sourceTree = "<group>"; };
 		3A1C2CCF1C9E9B740068AF6B /* CCFProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFProfileTableViewController.h; sourceTree = "<group>"; };
 		3A1C2CD01C9E9B740068AF6B /* CCFProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFProfileTableViewController.m; sourceTree = "<group>"; };
@@ -172,7 +172,7 @@
 		3A256FAC1CA62DA900419D67 /* IGHTMLDocument+QueryNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IGHTMLDocument+QueryNode.m"; sourceTree = "<group>"; };
 		3A256FAE1CA62FC600419D67 /* IGXMLNode+Children.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IGXMLNode+Children.h"; sourceTree = "<group>"; };
 		3A256FAF1CA62FC600419D67 /* IGXMLNode+Children.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IGXMLNode+Children.m"; sourceTree = "<group>"; };
-		3A28267E1CFF30D20095EAE5 /* post_view_notitle.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = post_view_notitle.html; sourceTree = "<group>"; };
+		3A28267E1CFF30D20095EAE5 /* post_view_notitle.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = post_view_notitle.html; path = CCF/post_view_notitle.html; sourceTree = "<group>"; };
 		3A2FCC751C953FCD00B469E4 /* UICircleImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICircleImageView.h; sourceTree = "<group>"; };
 		3A2FCC761C953FCD00B469E4 /* UICircleImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICircleImageView.m; sourceTree = "<group>"; };
 		3A2FCC7C1C956DB100B469E4 /* PrivateMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageTableViewCell.h; sourceTree = "<group>"; };
@@ -332,7 +332,7 @@
 		3AC660861CF1AF85000D3BDB /* AutoRelayoutUITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoRelayoutUITextView.m; sourceTree = "<group>"; };
 		3AC660901CF1B578000D3BDB /* ForumCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumCoreDataManager.h; sourceTree = "<group>"; };
 		3AC660911CF1B578000D3BDB /* ForumCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumCoreDataManager.m; sourceTree = "<group>"; };
-		3ACFFD251CF9B151000312DC /* post_message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = post_message.html; sourceTree = "<group>"; };
+		3ACFFD251CF9B151000312DC /* post_message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = post_message.html; path = CCF/post_message.html; sourceTree = "<group>"; };
 		3ACFFD281CF9D6BF000312DC /* HPURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPURLCache.h; sourceTree = "<group>"; };
 		3ACFFD291CF9D6BF000312DC /* HPURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPURLCache.m; sourceTree = "<group>"; };
 		3ACFFD2A1CF9D6BF000312DC /* SDImageCache+URLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDImageCache+URLCache.h"; sourceTree = "<group>"; };
@@ -343,7 +343,7 @@
 		3ACFFD331CFA641F000312DC /* NYTExamplePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTExamplePhoto.m; sourceTree = "<group>"; };
 		3AD077C31CF73B50006A8FBF /* CCFWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFWebViewController.h; sourceTree = "<group>"; };
 		3AD077C41CF73B50006A8FBF /* CCFWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFWebViewController.m; sourceTree = "<group>"; };
-		3AD077C61CF73FBF006A8FBF /* post_view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = post_view.html; sourceTree = "<group>"; };
+		3AD077C61CF73FBF006A8FBF /* post_view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = post_view.html; path = CCF/post_view.html; sourceTree = "<group>"; };
 		3AEC53981CB9529F00E50390 /* CCFThreadListTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListTitleCell.h; sourceTree = "<group>"; };
 		3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadListTitleCell.m; sourceTree = "<group>"; };
 		3AF86A7D1C8329C40036AD61 /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessage.h; sourceTree = "<group>"; };
@@ -439,6 +439,17 @@
 			);
 			name = TableViewCell;
 			path = CCF;
+			sourceTree = "<group>";
+		};
+		3A37ED921D85C72E003CDC58 /* Templet */ = {
+			isa = PBXGroup;
+			children = (
+				3AD077C61CF73FBF006A8FBF /* post_view.html */,
+				3ACFFD251CF9B151000312DC /* post_message.html */,
+				3A28267E1CFF30D20095EAE5 /* post_view_notitle.html */,
+				3A0B39FF1D0962D40060F8A4 /* private_message.html */,
+			);
+			name = Templet;
 			sourceTree = "<group>";
 		};
 		3A671EE11CB9E00C001CC91E /* Widgets */ = {
@@ -570,10 +581,6 @@
 				4D339D9D1C31454B0022A6A4 /* Assets.xcassets */,
 				4D339D9F1C31454B0022A6A4 /* LaunchScreen.storyboard */,
 				4D339DA21C31454B0022A6A4 /* Info.plist */,
-				3AD077C61CF73FBF006A8FBF /* post_view.html */,
-				3ACFFD251CF9B151000312DC /* post_message.html */,
-				3A28267E1CFF30D20095EAE5 /* post_view_notitle.html */,
-				3A0B39FF1D0962D40060F8A4 /* private_message.html */,
 			);
 			path = CCF;
 			sourceTree = "<group>";
@@ -709,12 +716,13 @@
 		4D339D821C31454A0022A6A4 = {
 			isa = PBXGroup;
 			children = (
+				3AC65FBC1CF13809000D3BDB /* CCF */,
 				3A37ED711D859029003CDC58 /* DeviceName.h */,
 				3A37ED721D859029003CDC58 /* DeviceName.m */,
 				3A141A1F1D0AD9D2001A1F78 /* ForumConfig.h */,
+				3A37ED921D85C72E003CDC58 /* Templet */,
 				3ACFFD311CFA640B000312DC /* PhotoView */,
 				3ACFFD271CF9D6B1000312DC /* NetWork */,
-				3AC65FBC1CF13809000D3BDB /* CCF */,
 				4D796BEE1C44B59100B3C62D /* CoreData */,
 				3A2FCC7B1C956D5C00B469E4 /* TableViewCell */,
 				3AEA1F341C365E2100710BD6 /* Controllers */,
