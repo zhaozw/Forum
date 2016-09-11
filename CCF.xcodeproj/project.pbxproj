@@ -488,14 +488,14 @@
 		3A734BEC1CCCC2CF00C4821A /* PrivateMessage */ = {
 			isa = PBXGroup;
 			children = (
-				4DAFF5581C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.h */,
-				4DAFF5591C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m */,
-				3A256F9F1CA57F4000419D67 /* CCFShowPrivateMessageViewController.h */,
-				3A256FA01CA57F4000419D67 /* CCFShowPrivateMessageViewController.m */,
 				3A1CC3DE1CB922F5007A0B97 /* CCFWritePMViewController.h */,
 				3A1CC3DF1CB922F5007A0B97 /* CCFWritePMViewController.m */,
 				3A734BF91CCCD72400C4821A /* CCFWritePMNavigationController.h */,
 				3A734BFA1CCCD72400C4821A /* CCFWritePMNavigationController.m */,
+				4DAFF5581C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.h */,
+				4DAFF5591C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m */,
+				3A256F9F1CA57F4000419D67 /* CCFShowPrivateMessageViewController.h */,
+				3A256FA01CA57F4000419D67 /* CCFShowPrivateMessageViewController.m */,
 			);
 			name = PrivateMessage;
 			sourceTree = "<group>";
@@ -503,16 +503,16 @@
 		3A734BF01CCCCCC900C4821A /* TransBundle */ = {
 			isa = PBXGroup;
 			children = (
-				3A734BED1CCCC92800C4821A /* TransBundleUINavigationController.h */,
-				3A734BEE1CCCC92800C4821A /* TransBundleUINavigationController.m */,
-				3A734BF11CCCCD8700C4821A /* TransBundleUITableViewController.h */,
-				3A734BF21CCCCD8700C4821A /* TransBundleUITableViewController.m */,
-				3A734BF41CCCCDAE00C4821A /* TransBundleUIViewController.h */,
-				3A734BF51CCCCDAE00C4821A /* TransBundleUIViewController.m */,
-				3A1C2CD81C9EE6150068AF6B /* TransValueDelegate.h */,
 				3A3672AB1CAF713200756D8B /* TransValueBundle.h */,
 				3A3672AC1CAF713200756D8B /* TransValueBundle.m */,
+				3A734BF41CCCCDAE00C4821A /* TransBundleUIViewController.h */,
+				3A734BF51CCCCDAE00C4821A /* TransBundleUIViewController.m */,
+				3A734BF11CCCCD8700C4821A /* TransBundleUITableViewController.h */,
+				3A734BF21CCCCD8700C4821A /* TransBundleUITableViewController.m */,
+				3A734BED1CCCC92800C4821A /* TransBundleUINavigationController.h */,
+				3A734BEE1CCCC92800C4821A /* TransBundleUINavigationController.m */,
 				3A734BF81CCCCEE600C4821A /* TransBundleDelegate.h */,
+				3A1C2CD81C9EE6150068AF6B /* TransValueDelegate.h */,
 			);
 			name = TransBundle;
 			sourceTree = "<group>";
@@ -541,10 +541,10 @@
 			children = (
 				3AA5B99B1CBA7D690008175A /* CCFSimpleReplyViewController.h */,
 				3AA5B99C1CBA7D690008175A /* CCFSimpleReplyViewController.m */,
-				3AA5B99E1CBA8C6C0008175A /* CCFSimpleReplyNavigationController.h */,
-				3AA5B99F1CBA8C6C0008175A /* CCFSimpleReplyNavigationController.m */,
 				3A0A99811C4A71B600086DAB /* CCFSeniorNewPostViewController.h */,
 				3A0A99821C4A71B600086DAB /* CCFSeniorNewPostViewController.m */,
+				3AA5B99E1CBA8C6C0008175A /* CCFSimpleReplyNavigationController.h */,
+				3AA5B99F1CBA8C6C0008175A /* CCFSimpleReplyNavigationController.m */,
 			);
 			name = ReplyController;
 			sourceTree = "<group>";
