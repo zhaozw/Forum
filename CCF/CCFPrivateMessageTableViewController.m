@@ -103,6 +103,7 @@
     static NSString *identifier = @"PrivateMessageTableViewCell";
     PrivateMessageTableViewCell *cell = (PrivateMessageTableViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
     cell.delegate = self;
+    cell.showUserProfileDelegate = self;
     
     PrivateMessage *message = self.dataList[indexPath.row];
     
