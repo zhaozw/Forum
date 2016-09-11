@@ -342,9 +342,10 @@
     } else if ([segue.identifier isEqualToString:@"ShowChildForm"]){
         CCFThreadListForChildFormUITableViewController * controller = segue.destinationViewController;
         self.transValueDelegate = (id<TransValueDelegate>)controller;
-        [self.transValueDelegate transValue:transForm];
+
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        [self.transValueDelegate transValue:childForms[indexPath.row]];
+        int row = indexPath.row;
+        [self.transValueDelegate transValue:childForms[row]];
         
     } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]){
         selectSegue = segue;

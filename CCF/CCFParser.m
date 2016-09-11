@@ -40,14 +40,27 @@
     NSInteger totaleListCount = -1;
     
     for (int i = 0; i < contents.count; i++){
-        IGXMLNode * threadListNode = contents[i];
+        IGXMLNode * normallThreadNode = contents[i];
         
-        if (threadListNode.children.count > 4) { // 要大于4的原因是：过滤已经被删除的帖子
+        if (normallThreadNode.children.count > 4) { // 要大于4的原因是：过滤已经被删除的帖子
             
             NormalThread * normalThread = [[NormalThread alloc]init];
             
+            // 由于各个论坛的帖子格式可能不一样，因此此处的标题等所在的列也会发生变化
+            // 需要根据不同的论坛计算不同的位置
+
+            NSInteger childColumnCount = normallThreadNode.children.count;
+            
+            int titlePosition = 2;
+            
+            if (childColumnCount == 8) {
+                titlePosition = 2;
+            } else if (childColumnCount == 7){
+                titlePosition = 1;
+            }
+            
             // title Node
-            IGXMLNode * threadTitleNode = [threadListNode childrenAtPosition:2];
+            IGXMLNode * threadTitleNode = [normallThreadNode childrenAtPosition:titlePosition];
 
             // title all html
             NSString * titleHtml = [threadTitleNode html];
@@ -81,20 +94,38 @@
             //[@"showthread.php?t=" length]    17的由来
             normalThread.threadID = [[titleTemp attribute:@"href"] substringFromIndex: 17];
             
-            IGXMLNode * authorNode = threadListNode.children [3];
-
+            // 作者相关
+            int authorNodePosition = 3;
+            if (childColumnCount == 7){
+                authorNodePosition = 2;
+            }
+            IGXMLNode * authorNode = [normallThreadNode childrenAtPosition:authorNodePosition];
             NSString * authorIdStr = [authorNode innerHtml];
             normalThread.threadAuthorID = [authorIdStr stringWithRegular:@"\\d+"];
-            
             normalThread.threadAuthorName = [authorNode text];
             
-            IGXMLNode * lastPostTime = [threadListNode childrenAtPosition:4];
+            // 最后回帖时间
+            int lastPostTimePosition = 4;
+            if (childColumnCount == 7){
+                lastPostTimePosition = 3;
+            }
+            IGXMLNode * lastPostTime = [normallThreadNode childrenAtPosition:lastPostTimePosition];
             normalThread.lastPostTime = [self timeForShort:[[lastPostTime text] trim] withFormat:@"yyyy-MM-dd HH:mm:ss"];
             
-            IGXMLNode * commentCountNode = threadListNode.children [5];
+            // 回帖数量
+            int commentCountPosition = 5;
+            if (childColumnCount == 7){
+                commentCountPosition = 4;
+            }
+            IGXMLNode * commentCountNode = [normallThreadNode childrenAtPosition:commentCountPosition];
             normalThread.postCount = [commentCountNode text];
             
-            IGHTMLDocument * openCountNode = threadListNode.children[6];
+            // 查看数量
+            int openCountNodePosition = 6;
+            if (childColumnCount == 7){
+                openCountNodePosition = 5;
+            }
+            IGXMLNode * openCountNode = [normallThreadNode childrenAtPosition:openCountNodePosition];
             normalThread.openCount = [openCountNode text];
             
             [threadList addObject:normalThread];
