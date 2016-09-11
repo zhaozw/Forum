@@ -500,19 +500,20 @@
             
             // title
             IGXMLNode * threadTitleNode = threadListNode.children [2];
+            NSString *titleAndCategory = [[[threadTitleNode text] trim] componentsSeparatedByString:@"\n"].firstObject;
             
-            NSString * titleInnerHtml = [threadTitleNode innerHtml];
-
-            NSString *titleAndCategory = [self parseTitle: titleInnerHtml];
             //分离出Title 和 Category
             simpleThread.threadTitle = [self spliteTitle:titleAndCategory];
+            
             simpleThread.threadCategory = [self spliteCategory:titleAndCategory];
-
-            IGHTMLDocument * titleTemp = [[IGHTMLDocument alloc]initWithXMLString:titleAndCategory error:nil];
+            
+            
+            
+            NSString * timeHtml = [self parseTitle:[[threadTitleNode innerHtml] trim]];
+            IGHTMLDocument * titleTemp = [[IGHTMLDocument alloc]initWithXMLString:timeHtml error:nil];
             
             //[@"showthread.php?t=" length]    17的由来
             simpleThread.threadID = [[titleTemp attribute:@"href"] substringFromIndex: 17];
-            simpleThread.threadTitle = [titleTemp text];
             
             
             IGXMLNode * authorNode = threadListNode.children [3];
@@ -521,7 +522,12 @@
             simpleThread.threadAuthorID = [authorIdStr stringWithRegular:@"\\d+"];
             
             simpleThread.threadAuthorName = [authorNode text];
-        
+            
+            IGXMLNode * timeNode = threadListNode.children[4];
+            NSString * time = [[timeNode text] trim];
+            
+            simpleThread.lastPostTime = time;
+            
             [threadList addObject:simpleThread];
         }
     }

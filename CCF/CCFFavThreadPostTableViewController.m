@@ -73,7 +73,6 @@
     cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"取消收藏" backgroundColor:[UIColor lightGrayColor]]];
     cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
     
-    
     SimpleThread * list = self.dataList[indexPath.row];
     [cell setData:list forIndexPath:indexPath];
     
