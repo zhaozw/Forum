@@ -28,7 +28,8 @@
 }
 
 -(void)onPullRefresh{
-    [self.ccfApi listAllUserThreads:userProfile.profileName withPage:1 handler:^(BOOL isSuccess, ForumDisplayPage* message) {
+    int userId = [userProfile.profileUserId intValue];
+    [self.ccfApi listAllUserThreads:userId withPage:1 handler:^(BOOL isSuccess, ForumDisplayPage* message) {
         [self.tableView.mj_header endRefreshing];
         
         if (isSuccess) {
@@ -45,7 +46,8 @@
 }
 
 -(void)onLoadMore{
-    [self.ccfApi listAllUserThreads:userProfile.profileName withPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage* message) {
+    int userId = [userProfile.profileUserId intValue];
+    [self.ccfApi listAllUserThreads:userId withPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage* message) {
         [self.tableView.mj_footer endRefreshing];
         
         if (isSuccess) {
