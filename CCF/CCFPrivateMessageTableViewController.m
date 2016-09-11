@@ -15,6 +15,7 @@
 #import "CCFProfileTableViewController.h"
 #import "CCFWritePMNavigationController.h"
 #import "UIStoryboard+CCF.h"
+#import "DRLTabBarController.h"
 
 @interface CCFPrivateMessageTableViewController ()<CCFThreadListCellDelegate>{
     int messageType;
@@ -155,8 +156,8 @@
 
 
 - (IBAction)showLeftDrawer:(id)sender {
-    CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;
-    [rootController showLeftDrawer];
+    DRLTabBarController * root = (DRLTabBarController *)self.tabBarController;
+    [root showLeftDrawer];
 }
 - (IBAction)writePrivateMessage:(UIBarButtonItem *)sender {
     UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
