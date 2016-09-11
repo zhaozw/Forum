@@ -232,7 +232,7 @@
 
 - (IBAction)pickPhoto:(id)sender {
     
-    LCActionSheet * itemActionSheet = [LCActionSheet sheetWithTitle:nil cancelButtonTitle:nil clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+    LCActionSheet * itemActionSheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"相册", @"拍照", @"取消"] redButtonIndex:2 clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
             [pickControl setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
             
@@ -242,7 +242,19 @@
             
             [self presentViewController:pickControl animated:YES completion:nil];
         }
-    } otherButtonTitleArray:@[@"相册", @"拍照"]];
+    }];
+    
+//    LCActionSheet * itemActionSheet = [LCActionSheet sheetWithTitle:nil cancelButtonTitle:nil clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+//        if (buttonIndex == 0) {
+//            [pickControl setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+//            
+//            [self presentViewController:pickControl animated:YES completion:nil];
+//        } else if (buttonIndex == 1){
+//            [pickControl setSourceType:UIImagePickerControllerSourceTypeCamera];
+//            
+//            [self presentViewController:pickControl animated:YES completion:nil];
+//        }
+//    } otherButtonTitleArray:@[@"相册", @"拍照"]];
     
     [itemActionSheet show];
 
