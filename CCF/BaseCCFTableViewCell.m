@@ -122,5 +122,6 @@
             [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatarImage];
         }
     }
+
 }
 @end
