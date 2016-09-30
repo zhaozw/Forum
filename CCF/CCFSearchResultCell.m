@@ -29,24 +29,6 @@
     [self showAvatar:self.postAuthorAvatar userId:data.threadAuthorID];
 }
 
--(void)showAvatar:(UIImageView *)avatarImageView userId:(NSString *)userId{
-    [super showAvatar:avatarImageView userId:userId];
-    [self circle:avatarImageView];
-    
-}
-
--(void)circle:(UIImageView *) view{
-    //开始对imageView进行画图
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 1.0);
-    //使用贝塞尔曲线画出一个圆形图
-    [[UIBezierPath bezierPathWithRoundedRect:view.bounds cornerRadius:view.frame.size.width] addClip];
-    [view drawRect:view.bounds];
-    
-    view.image = UIGraphicsGetImageFromCurrentImageContext();
-    //结束画图
-    UIGraphicsEndImageContext();
-}
-
 
 -(void)setData:(id)data forIndexPath:(NSIndexPath *)indexPath{
     selectIndexPath = indexPath;
