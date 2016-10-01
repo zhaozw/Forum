@@ -10,8 +10,7 @@
 #import "CCFNavigationController.h"
 #import "CCFSearchResultCell.h"
 #import "CCFShowThreadViewController.h"
-#import "UserProfile.h"
-#import "ForumDisplayPage.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "CCFWebViewController.h"
 
 

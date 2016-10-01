@@ -16,7 +16,8 @@
 #import "UIStoryboard+CCF.h"
 #import "CCFFavFormController.h"
 #import "UrlBuilder.h"
-#import "LoginUser.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
+
 #import "CCFPrivateMessageTableViewController.h"
 #import "CCFMyThreadPostTableViewController.h"
 #import "CCFMyThreadTableViewController.h"
@@ -28,7 +29,7 @@
 #import "ForumCoreDataManager.h"
 #import "UserEntry+CoreDataProperties.h"
 #import "CCFForumApi.h"
-#import "LoginUser.h"
+
 #import "DRLTabBarController.h"
 #import "DRLForumTableViewController.h"
 #import "CCFPCH.pch"

@@ -14,16 +14,15 @@
 #import "MJRefresh.h"
 #import "AutoRelayoutUITextView.h"
 
-#import "ShowThreadPage.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "SVProgressHUD.h"
 
 #import <UITableView+FDTemplateLayoutCell.h>
-#import "ShowPrivateMessage.h"
+
 #import "CCFShowPMTableViewCell.h"
-#import "PrivateMessage.h"
+
 #import "CCFProfileTableViewController.h"
 
-#import "ShowThreadPage.h"
 #import <MJRefresh.h>
 #import "SDImageCache+URLCache.h"
 #import "CCFWebViewController.h"
@@ -31,7 +30,7 @@
 #import <NYTPhotoViewer/NYTPhoto.h>
 #import "NYTExamplePhoto.h"
 #import "LCActionSheet.h"
-#import "Thread.h"
+
 #import "TransValueDelegate.h"
 #import "UrlBuilder.h"
 #import "SVProgressHUD.h"

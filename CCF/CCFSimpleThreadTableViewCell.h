@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SimpleThread.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "BaseCCFTableViewCell.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 

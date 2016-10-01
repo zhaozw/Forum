@@ -9,10 +9,10 @@
 #import "CCFSimpleReplyViewController.h"
 #import "CCFSimpleReplyNavigationController.h"
 #import "SVProgressHUD.h"
-#import "ShowThreadPage.h"
+
 #import "UIStoryboard+CCF.h"
 #import "CCFShowThreadViewController.h"
-#import "Post.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "TransValueBundle.h"
 
 @interface CCFSimpleReplyViewController (){

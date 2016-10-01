@@ -7,7 +7,7 @@
 //
 
 #import "CCFWebViewController.h"
-#import "ShowThreadPage.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import <MJRefresh.h>
 #import "SDImageCache+URLCache.h"
 
@@ -15,7 +15,7 @@
 #import <NYTPhotoViewer/NYTPhoto.h>
 #import "NYTExamplePhoto.h"
 #import "LCActionSheet.h"
-#import "Thread.h"
+
 #import "TransValueDelegate.h"
 #import "UrlBuilder.h"
 #import "SVProgressHUD.h"

@@ -8,16 +8,15 @@
 
 #import "CCFProfileTableViewController.h"
 #import "CCFProfileTableViewCell.h"
-#import "PrivateMessage.h"
-#import "ShowPrivateMessage.h"
-#import "ThreadInSearch.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
+
 #import "TransValueUITableViewCell.h"
 #import "CCFUserThreadTableViewController.h"
-#import "Post.h"
+
 #import "CCFWritePMNavigationController.h"
 #import <UIImageView+WebCache.h>
 #import "UIStoryboard+CCF.h"
-#import "UserProfile.h"
+
 #import "ForumConfig.h"
 
 @interface CCFProfileTableViewController ()<TransValueDelegate>{

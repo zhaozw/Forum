@@ -8,10 +8,9 @@
 
 #import "CCFForumApi.h"
 #import "NSUserDefaults+Extensions.h"
-#import "ShowThreadPage.h"
-#import "ForumDisplayPage.h"
-#import "ShowPrivateMessage.h"
-#import "UserProfile.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
+
+
 #import "CCFPCH.pch"
 #import "ForumConfig.h"
 #import "ForumBrowser.h"

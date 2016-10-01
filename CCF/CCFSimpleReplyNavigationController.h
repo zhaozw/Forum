@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Thread.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "CCFShowThreadViewController.h"
 #import "TransValueBundle.h"
 

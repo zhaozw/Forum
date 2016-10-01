@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AutoRelayoutToolbar.h"
-#import "ShowPrivateMessage.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "TransValueDelegate.h"
 #import "CCFApiBaseViewController.h"
 #import "TransValueDelegate.h"

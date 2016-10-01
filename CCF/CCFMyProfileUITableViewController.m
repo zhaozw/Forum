@@ -20,9 +20,10 @@
 #import "LoginViewController.h"
 #import "UIStoryboard+CCF.h"
 #import "NSUserDefaults+Extensions.h"
-#import "UserProfile.h"
+
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
+
 #import "CCFShowThreadViewController.h"
-#import "NormalThread.h"
 
 @interface CCFMyProfileUITableViewController (){
     UserProfile * userProfile;

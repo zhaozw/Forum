@@ -10,8 +10,7 @@
 
 #import <AFNetworking.h>
 
-#import "LoginUser.h"
-#import "Forum.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 @class ShowThreadPage;
 

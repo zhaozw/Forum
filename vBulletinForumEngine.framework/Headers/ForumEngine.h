@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
-
+#import "LoginUser.h"
+#import "ForumDisplayPage.h"
+#import "ThreadInSearch.h"
+#import "SearchForumDisplayPage.h"
+#import "Forum.h"
 
 typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 

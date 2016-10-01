@@ -7,9 +7,9 @@
 //
 
 #import "CCFSearchViewController.h"
-#import "ThreadInSearch.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "CCFForumApi.h"
-#import "SearchForumDisplayPage.h"
+
 #import "CCFSearchResultCell.h"
 #import "CCFShowThreadViewController.h"
 #import "CCFProfileTableViewController.h"

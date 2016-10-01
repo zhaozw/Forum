@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <DTCoreText/DTCoreText.h>
-#import "ShowPrivateMessage.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "CCFThreadDetailCell.h"
 #import "BaseCCFTableViewCell.h"
 

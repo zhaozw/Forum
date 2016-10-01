@@ -10,8 +10,8 @@
 #import "CCFNavigationController.h"
 #import "PrivateMessageTableViewCell.h"
 #import "CCFShowPrivateMessageViewController.h"
-#import "PrivateMessage.h"
-#import "ForumDisplayPage.h"
+
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "CCFProfileTableViewController.h"
 #import "CCFWritePMNavigationController.h"
 #import "UIStoryboard+CCF.h"

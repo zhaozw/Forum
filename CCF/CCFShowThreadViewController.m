@@ -13,13 +13,15 @@
 #import "MJRefresh.h"
 #import "AutoRelayoutUITextView.h"
 
-#import "ShowThreadPage.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "TransValueDelegate.h"
 #import "CCFForumApi.h"
-#import "Thread.h"
+
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
+
 #import "TransValueUITableViewCell.h"
 #import "CCFProfileTableViewController.h"
 #import "CCFNavigationController.h"

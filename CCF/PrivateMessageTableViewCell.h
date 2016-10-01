@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PrivateMessage.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 
-#import "NormalThread.h"
+
 #import "UrlBuilder.h"
 #import "NSString+Extensions.h"
 #import <UIImageView+AFNetworking.h>

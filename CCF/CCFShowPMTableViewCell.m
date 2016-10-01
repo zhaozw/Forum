@@ -8,7 +8,7 @@
 
 #import "CCFShowPMTableViewCell.h"
 #import "UrlBuilder.h"
-#import "Post.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import <UIImageView+AFNetworking.h>
 #import "UrlBuilder.h"
 #import "ForumCoreDataManager.h"

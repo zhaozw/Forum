@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CCFApiBaseViewController.h"
-#import "ShowThreadPage.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "ReplyCallbackDelegate.h"
 
 @interface CCFSimpleReplyViewController : CCFApiBaseViewController

@@ -8,7 +8,7 @@
 
 #import "CCFApiBaseTableViewController.h"
 #import "TransValueDelegate.h"
-#import "NormalThread.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 @interface CCFProfileTableViewController : CCFApiBaseTableViewController
 

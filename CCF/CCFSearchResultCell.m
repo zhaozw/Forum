@@ -7,7 +7,7 @@
 //
 
 #import "CCFSearchResultCell.h"
-#import "ThreadInSearch.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 
 @implementation CCFSearchResultCell{

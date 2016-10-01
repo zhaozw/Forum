@@ -14,11 +14,11 @@
 #import "Utils.h"
 #import "ForumBrowser.h"
 
-#import "Post.h"
-#import "ShowThreadPage.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
+
 #import "NSUserDefaults+Extensions.h"
 #import "AFHTTPSessionManager+SimpleAction.h"
-#import "LoginUser.h"
+
 #import "NSUserDefaults+Setting.h"
 
 #import "ForumParser.h"

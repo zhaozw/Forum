@@ -8,7 +8,7 @@
 
 #import "CCFThreadDetailCell.h"
 #import "UrlBuilder.h"
-#import "Post.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "UrlBuilder.h"
 #import "ForumCoreDataManager.h"
 #import "UserEntry+CoreDataProperties.h"

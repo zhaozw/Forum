@@ -7,7 +7,7 @@
 //
 
 #import "CoreDataManager.h"
-#import "Forum.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 
 typedef NS_ENUM(NSInteger, EntryType) {

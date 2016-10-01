@@ -7,16 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Post.h"
-#import "User.h"
-#import "NormalThread.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
+
 #import "FormEntry+CoreDataProperties.h"
-#import "ForumDisplayPage.h"
-#import "ShowThreadPage.h"
-#import "Forum.h"
-#import "SearchForumDisplayPage.h"
-#import "UserProfile.h"
-#import "ShowPrivateMessage.h"
+
 
 
 @interface ForumParser : NSObject

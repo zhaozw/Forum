@@ -10,11 +10,11 @@
 
 #import "SelectPhotoCollectionViewCell.h"
 #import "TransValueDelegate.h"
-#import "Thread.h"
-#import "Post.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
+
 #import "TransValueBundle.h"
 #import <SVProgressHUD.h>
-#import "ShowThreadPage.h"
+
 #import "LCActionSheet.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "CCFSimpleReplyNavigationController.h"

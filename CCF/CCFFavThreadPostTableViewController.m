@@ -10,7 +10,7 @@
 #import "CCFNavigationController.h"
 #import "CCFSimpleThreadTableViewCell.h"
 #import "CCFShowThreadViewController.h"
-#import "Thread.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "DRLTabBarController.h"
 #import "CCFWebViewController.h"
 #import "CCFProfileTableViewController.h"

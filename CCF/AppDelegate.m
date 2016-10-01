@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-#import "Forum.h"
+
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
+
 #import "ForumCoreDataManager.h"
 #import "FormEntry.h"
 #import "NSUserDefaults+Extensions.h"

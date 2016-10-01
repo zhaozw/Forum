@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ThreadInSearch.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "UICircleImageView.h"
 #import "BaseCCFTableViewCell.h"
 

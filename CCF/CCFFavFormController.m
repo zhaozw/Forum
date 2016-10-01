@@ -12,7 +12,7 @@
 #import "ForumCoreDataManager.h"
 #import "NSUserDefaults+Extensions.h"
 
-#import "Forum.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "CCFThreadListTableViewController.h"
 #import "CCFNavigationController.h"
 #import "CCFForumApi.h"

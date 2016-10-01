@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <DTCoreText/DTCoreText.h>
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 
-#import "Post.h"
 #import "TransValueUITableViewCell.h"
 
 @protocol CCFThreadDetailCellDelegate <NSObject>

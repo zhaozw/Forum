@@ -8,17 +8,13 @@
 
 #import "ForumParser.h"
 #import <IGHTMLQuery.h>
-#import "ShowThreadPage.h"
-#import "ThreadInSearch.h"
-#import "ForumDisplayPage.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
+
 #import "FormEntry+CoreDataProperties.h"
 #import "ForumCoreDataManager.h"
 #import "NSUserDefaults+Extensions.h"
 #import "NSString+Extensions.h"
-#import "Forum.h"
-#import "PrivateMessage.h"
-#import "SimpleThread.h"
-#import "SearchForumDisplayPage.h"
+
 #import "IGHTMLDocument+QueryNode.h"
 #import "IGXMLNode+Children.h"
 #import "ForumConfig.h"

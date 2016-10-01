@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ShowThreadPage.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 @protocol ReplyCallbackDelegate<NSObject>
 

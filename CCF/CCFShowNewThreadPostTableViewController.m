@@ -8,10 +8,10 @@
 
 #import "CCFShowNewThreadPostTableViewController.h"
 #import "CCFNavigationController.h"
-#import "ForumDisplayPage.h"
-#import "ThreadInSearch.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
+
 #import "CCFSearchResultCell.h"
-#import "ThreadInSearch.h"
+
 #import "CCFProfileTableViewController.h"
 #import "DRLTabBarController.h"
 #import "CCFShowThreadViewController.h"
