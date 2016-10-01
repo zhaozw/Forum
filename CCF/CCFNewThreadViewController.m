@@ -7,7 +7,7 @@
 //
 
 #import "CCFNewThreadViewController.h"
-#import "CCFBrowser.h"
+#import "ForumParser.h"
 #import "ForumApi.h"
 #import "SelectPhotoCollectionViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
@@ -16,12 +16,13 @@
 #import "LCActionSheet.h"
 #import "ActionSheetStringPicker.h"
 #import "CCFNewThreadNavigationController.h"
+#import "ForumBrowser.h"
 
 
 @interface CCFNewThreadViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate>{
     
 
-    CCFBrowser * broswer;
+    Forum * broswer;
     ForumApi *_api;
 
     UIImagePickerController *pickControl;
@@ -37,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    broswer = [[CCFBrowser alloc]init];
+    broswer = [[ForumBrowser alloc]init];
     _api = [[ForumApi alloc] init];
     
     

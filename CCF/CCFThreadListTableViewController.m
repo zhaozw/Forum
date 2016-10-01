@@ -9,7 +9,7 @@
 #import "CCFThreadListTableViewController.h"
 
 #import "UrlBuilder.h"
-#import "CCFParser.h"
+#import "ForumBrowser.h"
 #import "CCFThreadListCell.h"
 #import "CCFShowThreadViewController.h"
 #import "MJRefresh.h"

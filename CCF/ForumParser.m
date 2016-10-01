@@ -6,7 +6,7 @@
 //  Copyright © 2015年 andforce. All rights reserved.
 //
 
-#import "CCFParser.h"
+#import "ForumParser.h"
 #import <IGHTMLQuery.h>
 #import "ShowThreadPage.h"
 #import "ThreadInSearch.h"
@@ -24,7 +24,7 @@
 #import "ForumConfig.h"
 
 
-@implementation CCFParser
+@implementation ForumParser
 
 -(ForumDisplayPage *)parseThreadListFromHtml:(NSString *)html withThread:(int) threadId andContainsTop:(BOOL)containTop{
     

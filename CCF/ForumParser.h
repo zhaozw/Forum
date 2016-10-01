@@ -19,7 +19,7 @@
 #import "ShowPrivateMessage.h"
 
 
-@interface CCFParser : NSObject
+@interface ForumParser : NSObject
 
 
 - (ShowThreadPage *) parseShowThreadWithHtml:(NSString*)html;

@@ -7,8 +7,6 @@
 //
 
 #import "ForumApi.h"
-#import "CCFBrowser.h"
-#import "CCFParser.h"
 #import "NSUserDefaults+Extensions.h"
 #import "ShowThreadPage.h"
 #import "ForumDisplayPage.h"
@@ -16,6 +14,8 @@
 #import "UserProfile.h"
 #import "CCFPCH.pch"
 #import "ForumConfig.h"
+#import "ForumBrowser.h"
+#import "ForumParser.h"
 
 
 #define kCCFCookie_User @"bbuserid"
@@ -30,15 +30,15 @@
 #define kSearchErrorTooFast @"本论坛允许的进行两次搜索的时间间隔必须大于 30 秒。"
 
 @implementation ForumApi{
-    CCFBrowser *_browser;
-    CCFParser *_praser;
+    ForumBrowser *_browser;
+    ForumParser *_praser;
     
 }
 
 -(instancetype)init{
     if (self = [super init]) {
-        _browser = [[CCFBrowser alloc] init];
-        _praser = [[CCFParser alloc] init];
+        _browser = [[ForumBrowser alloc] init];
+        _praser = [[ForumParser alloc] init];
     }
     return self;
 }

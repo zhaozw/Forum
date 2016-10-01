@@ -6,13 +6,13 @@
 //  Copyright © 2015年 andforce. All rights reserved.
 //
 
-#import "CCFBrowser.h"
+#import "ForumBrowser.h"
 #import "NSString+Extensions.h"
 #import "UrlBuilder.h"
 #import <AFImageDownloader.h>
 #import <UIImageView+AFNetworking.h>
 #import "Utils.h"
-#import "CCFParser.h"
+#import "ForumBrowser.h"
 
 #import "Post.h"
 #import "ShowThreadPage.h"
@@ -21,7 +21,7 @@
 #import "LoginUser.h"
 #import "NSUserDefaults+Setting.h"
 
-
+#import "ForumParser.h"
 
 #define kCCFCookie_User @"bbuserid"
 #define kCCFCookie_LastVisit @"bblastvisit"
@@ -30,7 +30,7 @@
 #import "ForumConfig.h"
 #import <iOSDeviceName/iOSDeviceName.h>
 
-@implementation CCFBrowser{
+@implementation ForumBrowser{
     NSString * listMyThreadSearchId;
 
     NSMutableDictionary * listUserThreadRedirectUrlDictionary;
@@ -38,7 +38,7 @@
     NSString *todayNewThreadPostSearchId;
     NSString *newThreadPostSearchId;
     
-    CCFParser * parser;
+    ForumParser * parser;
     
     NSString * iPhoneName;
 }
@@ -51,7 +51,7 @@
         _browser.responseSerializer = [AFHTTPResponseSerializer serializer];
         _browser.responseSerializer.acceptableContentTypes = [_browser.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
         
-        parser = [[CCFParser alloc] init];
+        parser = [[ForumParser alloc] init];
         
 
         iPhoneName = [DeviceName deviceNameDetail];

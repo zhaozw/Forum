@@ -13,18 +13,18 @@
 #import<CommonCrypto/CommonDigest.h>
 #import<Foundation/Foundation.h>
 
-#import "CCFBrowser.h"
-#import "CCFParser.h"
+#import "ForumBrowser.h"
 #import "AppDelegate.h"
 
 #import "UIStoryboard+CCF.h"
 #import "ForumApi.h"
 #import <SVProgressHUD.h>
 #import "ForumCoreDataManager.h"
+#import "FormEntry+CoreDataProperties.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>{
 
-    CCFBrowser *_browser;
+    ForumBrowser *_browser;
     CGRect screenSize;
     
     ForumApi *_ccfApi;
@@ -51,7 +51,7 @@
 
     
     
-    _browser = [[CCFBrowser alloc]init];
+    _browser = [[ForumBrowser alloc]init];
     
     screenSize = [UIScreen mainScreen].bounds;
     
