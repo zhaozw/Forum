@@ -176,7 +176,7 @@
 		3A3672AB1CAF713200756D8B /* TransValueBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransValueBundle.h; sourceTree = "<group>"; };
 		3A3672AC1CAF713200756D8B /* TransValueBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransValueBundle.m; sourceTree = "<group>"; };
 		3A6489AF1DA025ED00405CB7 /* iOSDeviceName.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iOSDeviceName.framework; sourceTree = "<group>"; };
-		3A6489B11DA0378000405CB7 /* ForumApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumApi.h; sourceTree = "<group>"; };
+		3A6489B11DA0378000405CB7 /* ForumEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumEngine.h; sourceTree = "<group>"; };
 		3A671EE21CB9E061001CC91E /* PageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageHeaderView.h; sourceTree = "<group>"; };
 		3A671EE31CB9E061001CC91E /* PageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageHeaderView.m; sourceTree = "<group>"; };
 		3A671EE51CB9E0E1001CC91E /* PageHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageHeaderView.xib; sourceTree = "<group>"; };
@@ -277,8 +277,8 @@
 		3AC65FFA1CF1687D000D3BDB /* UserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfile.m; sourceTree = "<group>"; };
 		3AC65FFC1CF16C2A000D3BDB /* ShowPrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPrivateMessage.h; sourceTree = "<group>"; };
 		3AC65FFD1CF16C2A000D3BDB /* ShowPrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPrivateMessage.m; sourceTree = "<group>"; };
-		3AC660051CF17D86000D3BDB /* CCFForumApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForumApi.h; sourceTree = "<group>"; };
-		3AC660061CF17D86000D3BDB /* CCFForumApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForumApi.m; sourceTree = "<group>"; };
+		3AC660051CF17D86000D3BDB /* CCFForumApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCFForumApi.h; path = CCF/CCFForumApi.h; sourceTree = "<group>"; };
+		3AC660061CF17D86000D3BDB /* CCFForumApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCFForumApi.m; path = CCF/CCFForumApi.m; sourceTree = "<group>"; };
 		3AC660081CF17F8A000D3BDB /* LoginUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginUser.h; sourceTree = "<group>"; };
 		3AC660091CF17F8A000D3BDB /* LoginUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUser.m; sourceTree = "<group>"; };
 		3AC660421CF1833F000D3BDB /* CCFApiBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFApiBaseTableViewController.h; sourceTree = "<group>"; };
@@ -671,9 +671,7 @@
 				3AC65FC11CF13AA1000D3BDB /* Utils.m */,
 				3AC65FCB1CF141D3000D3BDB /* UrlBuilder.h */,
 				3AC65FCC1CF141D3000D3BDB /* UrlBuilder.m */,
-				3A6489B11DA0378000405CB7 /* ForumApi.h */,
-				3AC660051CF17D86000D3BDB /* CCFForumApi.h */,
-				3AC660061CF17D86000D3BDB /* CCFForumApi.m */,
+				3A6489B11DA0378000405CB7 /* ForumEngine.h */,
 				3AC660081CF17F8A000D3BDB /* LoginUser.h */,
 				3AC660091CF17F8A000D3BDB /* LoginUser.m */,
 			);
@@ -707,6 +705,8 @@
 			children = (
 				3AC65FBC1CF13809000D3BDB /* CCF */,
 				3A141A1F1D0AD9D2001A1F78 /* ForumConfig.h */,
+				3AC660051CF17D86000D3BDB /* CCFForumApi.h */,
+				3AC660061CF17D86000D3BDB /* CCFForumApi.m */,
 				3A37ED921D85C72E003CDC58 /* Templet */,
 				3ACFFD311CFA640B000312DC /* PhotoView */,
 				3ACFFD271CF9D6B1000312DC /* NetWork */,

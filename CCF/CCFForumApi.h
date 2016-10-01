@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ForumApi.h"
+#import "ForumEngine.h"
 
 
-@interface CCFForumApi : NSObject<ForumApi>
+@interface CCFForumApi : NSObject<ForumEngine>
 
 
 @end
