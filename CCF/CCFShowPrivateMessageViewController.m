@@ -46,7 +46,7 @@
 
 
 
-#import "ForumApi.h"
+#import "CCFForumApi.h"
 
 @interface CCFShowPrivateMessageViewController ()<UIWebViewDelegate, UIScrollViewDelegate,TransValueDelegate>{
 

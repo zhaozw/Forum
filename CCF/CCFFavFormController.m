@@ -15,7 +15,7 @@
 #import "Forum.h"
 #import "CCFThreadListTableViewController.h"
 #import "CCFNavigationController.h"
-#import "ForumApi.h"
+#import "CCFForumApi.h"
 #import "DRLTabBarController.h"
 #import "MGSwipeTableCellWithIndexPath.h"
 

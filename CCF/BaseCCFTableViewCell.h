@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ForumCoreDataManager.h"
 #import "UserEntry+CoreDataProperties.h"
-#import "ForumApi.h"
+#import "CCFForumApi.h"
 #import "UrlBuilder.h"
 #import "TransValueUITableViewCell.h"
 

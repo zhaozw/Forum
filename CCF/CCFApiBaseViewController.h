@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ForumApi.h"
+#import "CCFForumApi.h"
 
 @interface CCFApiBaseViewController : UIViewController
 
-@property (nonatomic, strong) ForumApi *ccfApi;
+@property (nonatomic, strong) CCFForumApi *ccfApi;
 
 @end

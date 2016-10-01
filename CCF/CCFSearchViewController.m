@@ -8,7 +8,7 @@
 
 #import "CCFSearchViewController.h"
 #import "ThreadInSearch.h"
-#import "ForumApi.h"
+#import "CCFForumApi.h"
 #import "SearchForumDisplayPage.h"
 #import "CCFSearchResultCell.h"
 #import "CCFShowThreadViewController.h"

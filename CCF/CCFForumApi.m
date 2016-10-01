@@ -6,7 +6,7 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "ForumApi.h"
+#import "CCFForumApi.h"
 #import "NSUserDefaults+Extensions.h"
 #import "ShowThreadPage.h"
 #import "ForumDisplayPage.h"
@@ -29,7 +29,7 @@
 #define kSearchErrorTooshort @"对不起，没有匹配记录。请尝试采用其他条件查询。"
 #define kSearchErrorTooFast @"本论坛允许的进行两次搜索的时间间隔必须大于 30 秒。"
 
-@implementation ForumApi{
+@implementation CCFForumApi{
     ForumBrowser *_browser;
     ForumParser *_praser;
     

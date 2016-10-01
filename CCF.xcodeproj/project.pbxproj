@@ -80,7 +80,7 @@
 		3AC65FF81CF16040000D3BDB /* ForumDisplayPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FF71CF16040000D3BDB /* ForumDisplayPage.m */; };
 		3AC65FFB1CF1687D000D3BDB /* UserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FFA1CF1687D000D3BDB /* UserProfile.m */; };
 		3AC65FFE1CF16C2A000D3BDB /* ShowPrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FFD1CF16C2A000D3BDB /* ShowPrivateMessage.m */; };
-		3AC660071CF17D86000D3BDB /* ForumApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660061CF17D86000D3BDB /* ForumApi.m */; };
+		3AC660071CF17D86000D3BDB /* CCFForumApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660061CF17D86000D3BDB /* CCFForumApi.m */; };
 		3AC6600A1CF17F8A000D3BDB /* LoginUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660091CF17F8A000D3BDB /* LoginUser.m */; };
 		3AC660671CF1833F000D3BDB /* CCFApiBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660431CF1833F000D3BDB /* CCFApiBaseTableViewController.m */; };
 		3AC660681CF1833F000D3BDB /* CCFApiBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660451CF1833F000D3BDB /* CCFApiBaseViewController.m */; };
@@ -276,8 +276,8 @@
 		3AC65FFA1CF1687D000D3BDB /* UserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfile.m; sourceTree = "<group>"; };
 		3AC65FFC1CF16C2A000D3BDB /* ShowPrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPrivateMessage.h; sourceTree = "<group>"; };
 		3AC65FFD1CF16C2A000D3BDB /* ShowPrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPrivateMessage.m; sourceTree = "<group>"; };
-		3AC660051CF17D86000D3BDB /* ForumApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumApi.h; sourceTree = "<group>"; };
-		3AC660061CF17D86000D3BDB /* ForumApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumApi.m; sourceTree = "<group>"; };
+		3AC660051CF17D86000D3BDB /* CCFForumApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForumApi.h; sourceTree = "<group>"; };
+		3AC660061CF17D86000D3BDB /* CCFForumApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForumApi.m; sourceTree = "<group>"; };
 		3AC660081CF17F8A000D3BDB /* LoginUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginUser.h; sourceTree = "<group>"; };
 		3AC660091CF17F8A000D3BDB /* LoginUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUser.m; sourceTree = "<group>"; };
 		3AC660421CF1833F000D3BDB /* CCFApiBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFApiBaseTableViewController.h; sourceTree = "<group>"; };
@@ -670,8 +670,8 @@
 				3AC65FC11CF13AA1000D3BDB /* Utils.m */,
 				3AC65FCB1CF141D3000D3BDB /* UrlBuilder.h */,
 				3AC65FCC1CF141D3000D3BDB /* UrlBuilder.m */,
-				3AC660051CF17D86000D3BDB /* ForumApi.h */,
-				3AC660061CF17D86000D3BDB /* ForumApi.m */,
+				3AC660051CF17D86000D3BDB /* CCFForumApi.h */,
+				3AC660061CF17D86000D3BDB /* CCFForumApi.m */,
 				3AC660081CF17F8A000D3BDB /* LoginUser.h */,
 				3AC660091CF17F8A000D3BDB /* LoginUser.m */,
 			);
@@ -1104,7 +1104,7 @@
 				3AC660811CF18685000D3BDB /* NSUserDefaults+Setting.m in Sources */,
 				3AC660681CF1833F000D3BDB /* CCFApiBaseViewController.m in Sources */,
 				3A3672AD1CAF713200756D8B /* TransValueBundle.m in Sources */,
-				3AC660071CF17D86000D3BDB /* ForumApi.m in Sources */,
+				3AC660071CF17D86000D3BDB /* CCFForumApi.m in Sources */,
 				3AC65FEF1CF15414000D3BDB /* Thread.m in Sources */,
 				3AC6606B1CF1833F000D3BDB /* DRLForumTableViewController.m in Sources */,
 				3A92E7F71CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m in Sources */,

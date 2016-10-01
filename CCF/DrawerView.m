@@ -27,7 +27,7 @@
 #import <UIImageView+WebCache.h>
 #import "ForumCoreDataManager.h"
 #import "UserEntry+CoreDataProperties.h"
-#import "ForumApi.h"
+#import "CCFForumApi.h"
 #import "LoginUser.h"
 #import "DRLTabBarController.h"
 #import "DRLForumTableViewController.h"
@@ -38,7 +38,7 @@
     
     UIButton *_drawerMaskView;
     
-    ForumApi * _ccfapi;
+    CCFForumApi * _ccfapi;
     
     UIView *_rightEageView;
     
@@ -88,7 +88,7 @@
 -(id)init{
     if (self = [super init]) {
         
-        _ccfapi = [[ForumApi alloc] init];
+        _ccfapi = [[CCFForumApi alloc] init];
         [self setDrawerType:DrawerViewTypeLeft];
         
         [self initLeftDrawerView];
@@ -140,7 +140,7 @@
 
 -(id)initWithDrawerType:(DrawerViewType)drawerType andXib:(NSString *)name{
     if (self = [super init]) {
-        _ccfapi = [[ForumApi alloc] init];
+        _ccfapi = [[CCFForumApi alloc] init];
         
         // 和 xib 绑定
         [[NSBundle mainBundle] loadNibNamed:name owner:self options:nil];
@@ -194,7 +194,7 @@
     
     if (self = [super init]) {
         
-        _ccfapi = [[ForumApi alloc] init];
+        _ccfapi = [[CCFForumApi alloc] init];
         
         [self setDrawerType:drawerType];
         

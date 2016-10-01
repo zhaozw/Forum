@@ -8,7 +8,7 @@
 
 #import "CCFNewThreadViewController.h"
 #import "ForumParser.h"
-#import "ForumApi.h"
+#import "CCFForumApi.h"
 #import "SelectPhotoCollectionViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <SVProgressHUD.h>
@@ -22,7 +22,7 @@
 @interface CCFNewThreadViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate>{
     
 
-    ForumApi *_api;
+    CCFForumApi *_api;
 
     UIImagePickerController *pickControl;
     
@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    _api = [[ForumApi alloc] init];
+    _api = [[CCFForumApi alloc] init];
     
     
     _selectPhotos.delegate = self;

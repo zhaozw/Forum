@@ -18,7 +18,7 @@
 
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "TransValueDelegate.h"
-#import "ForumApi.h"
+#import "CCFForumApi.h"
 #import "Thread.h"
 #import "TransValueUITableViewCell.h"
 #import "CCFProfileTableViewController.h"
@@ -46,7 +46,7 @@
     int currentPageNumber;
     int totalPageCount;
 
-    ForumApi *_api;
+    CCFForumApi *_api;
     
     Thread * transThread;
     
@@ -85,7 +85,7 @@
     
     
     
-    _api = [[ForumApi alloc] init];
+    _api = [[CCFForumApi alloc] init];
     
     cellHeightDictionary = [NSMutableDictionary<NSIndexPath *, NSNumber *> dictionary];
     

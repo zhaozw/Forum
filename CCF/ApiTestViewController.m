@@ -7,7 +7,7 @@
 //
 
 #import "ApiTestViewController.h"
-#import "ForumApi.h"
+#import "CCFForumApi.h"
 
 @interface ApiTestViewController ()
 
@@ -19,7 +19,7 @@
     [super viewDidLoad];
     
     
-    ForumApi * api = [[ForumApi alloc] init];
+    CCFForumApi * api = [[CCFForumApi alloc] init];
 //     [api loginWithName:@"马小甲" andPassWord:@"CCF!@#456" handler:^(BOOL isSuccess, id message) {
 //         
 //     }];

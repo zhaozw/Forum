@@ -14,7 +14,7 @@
     UIImage * defaultAvatarImage;
     
     ForumCoreDataManager *coreDateManager;
-    ForumApi * ccfapi;
+    CCFForumApi * ccfapi;
     
     NSMutableDictionary * avatarCache;
     
@@ -38,7 +38,7 @@
 -(void) initData{
     defaultAvatarImage = [UIImage imageNamed:@"logo.jpg"];
     
-    ccfapi = [[ForumApi alloc] init];
+    ccfapi = [[CCFForumApi alloc] init];
     
     avatarCache = [NSMutableDictionary dictionary];
     

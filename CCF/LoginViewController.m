@@ -17,7 +17,7 @@
 #import "AppDelegate.h"
 
 #import "UIStoryboard+CCF.h"
-#import "ForumApi.h"
+#import "CCFForumApi.h"
 #import <SVProgressHUD.h>
 #import "ForumCoreDataManager.h"
 #import "FormEntry+CoreDataProperties.h"
@@ -27,7 +27,7 @@
     ForumBrowser *_browser;
     CGRect screenSize;
     
-    ForumApi *_ccfApi;
+    CCFForumApi *_ccfApi;
     
 }
 
@@ -55,7 +55,7 @@
     
     screenSize = [UIScreen mainScreen].bounds;
     
-    _ccfApi = [[ForumApi alloc] init];
+    _ccfApi = [[CCFForumApi alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
