@@ -7,7 +7,6 @@
 //
 
 #import "CCFSearchViewController.h"
-#import "ForumBrowser.h"
 #import "ThreadInSearch.h"
 #import "ForumApi.h"
 #import "SearchForumDisplayPage.h"

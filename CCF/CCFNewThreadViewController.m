@@ -16,7 +16,7 @@
 #import "LCActionSheet.h"
 #import "ActionSheetStringPicker.h"
 #import "CCFNewThreadNavigationController.h"
-#import "ForumBrowser.h"
+#import <AFNetworking.h>
 
 
 @interface CCFNewThreadViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate>{

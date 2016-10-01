@@ -10,7 +10,6 @@
 
 #import "CCFThreadDetailCell.h"
 #import "UrlBuilder.h"
-#import "ForumBrowser.h"
 
 #import "MJRefresh.h"
 #import "AutoRelayoutUITextView.h"
