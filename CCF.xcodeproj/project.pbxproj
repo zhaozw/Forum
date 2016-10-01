@@ -131,10 +131,6 @@
 		4DAFF55A1C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAFF5591C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m */; };
 		4DEB34C31C47BBE400063CBB /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEB34C21C47BBE400063CBB /* AssetsLibrary.framework */; };
 		4DEB34C61C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB34C51C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m */; };
-		4DF824BA1C34C4C6005BB858 /* CCFFormJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824B91C34C4C6005BB858 /* CCFFormJSONModel.m */; };
-		4DF824BC1C34E5EF005BB858 /* ccf.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DF824BB1C34E5EF005BB858 /* ccf.json */; };
-		4DF824BF1C34E9EF005BB858 /* CCFFormTreeJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824BE1C34E9EF005BB858 /* CCFFormTreeJSONModel.m */; };
-		4DF824C31C34F0B2005BB858 /* CCFFormDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824C21C34F0B2005BB858 /* CCFFormDao.m */; };
 		F98D9EA68FB327B72FDB5083 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A2A0B6B96C76030E628C93 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -379,13 +375,6 @@
 		4DEB34C21C47BBE400063CBB /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		4DEB34C41C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPSessionManager+SimpleAction.h"; sourceTree = "<group>"; };
 		4DEB34C51C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPSessionManager+SimpleAction.m"; sourceTree = "<group>"; };
-		4DF824B81C34C4C6005BB858 /* CCFFormJSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFFormJSONModel.h; sourceTree = "<group>"; };
-		4DF824B91C34C4C6005BB858 /* CCFFormJSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFormJSONModel.m; sourceTree = "<group>"; };
-		4DF824BB1C34E5EF005BB858 /* ccf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ccf.json; sourceTree = "<group>"; };
-		4DF824BD1C34E9EF005BB858 /* CCFFormTreeJSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFFormTreeJSONModel.h; sourceTree = "<group>"; };
-		4DF824BE1C34E9EF005BB858 /* CCFFormTreeJSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFormTreeJSONModel.m; sourceTree = "<group>"; };
-		4DF824C11C34F0B2005BB858 /* CCFFormDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFFormDao.h; sourceTree = "<group>"; };
-		4DF824C21C34F0B2005BB858 /* CCFFormDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFormDao.m; sourceTree = "<group>"; };
 		57A2A0B6B96C76030E628C93 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45EAE323577337DE9983928 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -706,7 +695,6 @@
 			children = (
 				4D796C021C45F99000B3C62D /* Search */,
 				4D796C001C45F2E100B3C62D /* Thread-Normal */,
-				4D796C011C45F38400B3C62D /* JsonModel */,
 				3AF86A7C1C83298C0036AD61 /* PrivateMessage */,
 			);
 			name = Model;
@@ -845,20 +833,6 @@
 			name = "Thread-Normal";
 			sourceTree = "<group>";
 		};
-		4D796C011C45F38400B3C62D /* JsonModel */ = {
-			isa = PBXGroup;
-			children = (
-				4DF824BB1C34E5EF005BB858 /* ccf.json */,
-				4DF824C11C34F0B2005BB858 /* CCFFormDao.h */,
-				4DF824C21C34F0B2005BB858 /* CCFFormDao.m */,
-				4DF824B81C34C4C6005BB858 /* CCFFormJSONModel.h */,
-				4DF824B91C34C4C6005BB858 /* CCFFormJSONModel.m */,
-				4DF824BD1C34E9EF005BB858 /* CCFFormTreeJSONModel.h */,
-				4DF824BE1C34E9EF005BB858 /* CCFFormTreeJSONModel.m */,
-			);
-			name = JsonModel;
-			sourceTree = "<group>";
-		};
 		4D796C021C45F99000B3C62D /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -966,7 +940,6 @@
 				3AD077C71CF73FBF006A8FBF /* post_view.html in Resources */,
 				4D339DA11C31454B0022A6A4 /* LaunchScreen.storyboard in Resources */,
 				4D339D9E1C31454B0022A6A4 /* Assets.xcassets in Resources */,
-				4DF824BC1C34E5EF005BB858 /* ccf.json in Resources */,
 				4D339D991C31454A0022A6A4 /* Main.storyboard in Resources */,
 				3A1CC3B11CB8F8B5007A0B97 /* paperclip.gif in Resources */,
 				3A690A481C3792D00076C8F1 /* CCFThreadDetailCell.xib in Resources */,
@@ -1040,13 +1013,11 @@
 				3AC660731CF1833F000D3BDB /* CCFUserThreadTableViewController.m in Sources */,
 				3AC660921CF1B578000D3BDB /* ForumCoreDataManager.m in Sources */,
 				3A8E054E1CC35515003D0D90 /* UILouCengLabel.m in Sources */,
-				4DF824BF1C34E9EF005BB858 /* CCFFormTreeJSONModel.m in Sources */,
 				3A734BE41CCCB2E600C4821A /* UIAutoResizeTextView.m in Sources */,
 				3A734BEF1CCCC92800C4821A /* TransBundleUINavigationController.m in Sources */,
 				3A734BDF1CCC63B300C4821A /* UILoginBgView.m in Sources */,
 				3AC6606A1CF1833F000D3BDB /* CCFFavThreadPostTableViewController.m in Sources */,
 				3AC65FFE1CF16C2A000D3BDB /* ShowPrivateMessage.m in Sources */,
-				4DF824C31C34F0B2005BB858 /* CCFFormDao.m in Sources */,
 				4DEB34C61C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m in Sources */,
 				3A256FA11CA57F4000419D67 /* CCFShowPrivateMessageViewController.m in Sources */,
 				3A734BFB1CCCD72400C4821A /* CCFWritePMNavigationController.m in Sources */,
@@ -1059,7 +1030,6 @@
 				3AC660841CF1AEA1000D3BDB /* AutoRelayoutToolbar.m in Sources */,
 				3AC6606D1CF1833F000D3BDB /* CCFMyThreadTableViewController.m in Sources */,
 				3AEC539A1CB9529F00E50390 /* CCFThreadListTitleCell.m in Sources */,
-				4DF824BA1C34C4C6005BB858 /* CCFFormJSONModel.m in Sources */,
 				3AC660761CF1833F000D3BDB /* CCFSearchViewController.m in Sources */,
 				3A1CF8761C54F8AB002E52EE /* CommonUtils.m in Sources */,
 				3AA935E21CF1BCB2009FC4A6 /* UserEntry.m in Sources */,
