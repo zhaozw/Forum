@@ -22,7 +22,6 @@
 @interface CCFNewThreadViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate>{
     
 
-    Forum * broswer;
     ForumApi *_api;
 
     UIImagePickerController *pickControl;
@@ -38,7 +37,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    broswer = [[ForumBrowser alloc]init];
     _api = [[ForumApi alloc] init];
     
     
