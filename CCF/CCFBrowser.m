@@ -28,7 +28,7 @@
 #define kCCFCookie_IDStack @"IDstack"
 #define kCCFSecurityToken @"securitytoken"
 #import "ForumConfig.h"
-#import "DeviceName.h"
+#import <iOSDeviceName/iOSDeviceName.h>
 
 @implementation CCFBrowser{
     NSString * listMyThreadSearchId;

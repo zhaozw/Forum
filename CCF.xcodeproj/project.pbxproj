@@ -27,7 +27,7 @@
 		3A2FCC771C953FCD00B469E4 /* UICircleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FCC761C953FCD00B469E4 /* UICircleImageView.m */; };
 		3A2FCC7E1C956DB100B469E4 /* PrivateMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FCC7D1C956DB100B469E4 /* PrivateMessageTableViewCell.m */; };
 		3A3672AD1CAF713200756D8B /* TransValueBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3672AC1CAF713200756D8B /* TransValueBundle.m */; };
-		3A37ED731D859029003CDC58 /* DeviceName.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A37ED721D859029003CDC58 /* DeviceName.m */; };
+		3A6489B01DA025ED00405CB7 /* iOSDeviceName.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6489AF1DA025ED00405CB7 /* iOSDeviceName.framework */; };
 		3A671EE41CB9E061001CC91E /* PageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A671EE31CB9E061001CC91E /* PageHeaderView.m */; };
 		3A671EE61CB9E0E1001CC91E /* PageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A671EE51CB9E0E1001CC91E /* PageHeaderView.xib */; };
 		3A671EE91CB9EA59001CC91E /* XibInflater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A671EE81CB9EA59001CC91E /* XibInflater.m */; };
@@ -179,8 +179,7 @@
 		3A2FCC7D1C956DB100B469E4 /* PrivateMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageTableViewCell.m; sourceTree = "<group>"; };
 		3A3672AB1CAF713200756D8B /* TransValueBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransValueBundle.h; sourceTree = "<group>"; };
 		3A3672AC1CAF713200756D8B /* TransValueBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransValueBundle.m; sourceTree = "<group>"; };
-		3A37ED711D859029003CDC58 /* DeviceName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceName.h; sourceTree = "<group>"; };
-		3A37ED721D859029003CDC58 /* DeviceName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceName.m; sourceTree = "<group>"; };
+		3A6489AF1DA025ED00405CB7 /* iOSDeviceName.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iOSDeviceName.framework; sourceTree = "<group>"; };
 		3A671EE21CB9E061001CC91E /* PageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageHeaderView.h; sourceTree = "<group>"; };
 		3A671EE31CB9E061001CC91E /* PageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageHeaderView.m; sourceTree = "<group>"; };
 		3A671EE51CB9E0E1001CC91E /* PageHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageHeaderView.xib; sourceTree = "<group>"; };
@@ -400,6 +399,7 @@
 				4DEB34C31C47BBE400063CBB /* AssetsLibrary.framework in Frameworks */,
 				3A93298D1C39648900A26249 /* CoreText.framework in Frameworks */,
 				F98D9EA68FB327B72FDB5083 /* libPods.a in Frameworks */,
+				3A6489B01DA025ED00405CB7 /* iOSDeviceName.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,8 +717,6 @@
 			isa = PBXGroup;
 			children = (
 				3AC65FBC1CF13809000D3BDB /* CCF */,
-				3A37ED711D859029003CDC58 /* DeviceName.h */,
-				3A37ED721D859029003CDC58 /* DeviceName.m */,
 				3A141A1F1D0AD9D2001A1F78 /* ForumConfig.h */,
 				3A37ED921D85C72E003CDC58 /* Templet */,
 				3ACFFD311CFA640B000312DC /* PhotoView */,
@@ -885,6 +883,7 @@
 		CC5E7A99B69535660B7F40C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A6489AF1DA025ED00405CB7 /* iOSDeviceName.framework */,
 				3A84A4371CE8BB1A009619DE /* CCFApiLibrary.framework */,
 				4DEB34C21C47BBE400063CBB /* AssetsLibrary.framework */,
 				3A93298C1C39648900A26249 /* CoreText.framework */,
@@ -1035,7 +1034,6 @@
 				3A842CA11C469AC1002944A9 /* CCFNewThreadViewController.m in Sources */,
 				3AA935E11CF1BCB2009FC4A6 /* UserEntry+CoreDataProperties.m in Sources */,
 				3A9FEDDA1C342CB800F30885 /* CCFParser.m in Sources */,
-				3A37ED731D859029003CDC58 /* DeviceName.m in Sources */,
 				3A671EE91CB9EA59001CC91E /* XibInflater.m in Sources */,
 				3A690A461C375B5B0076C8F1 /* CCFThreadDetailCell.m in Sources */,
 				3AC660701CF1833F000D3BDB /* CCFShowThreadViewController.m in Sources */,
