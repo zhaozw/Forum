@@ -355,8 +355,6 @@
         } else{
             avatar = NO_AVATAR_URL;
         }
-        
-        NSLog( @"showAvatar ==============   getAvatarWithUserId -> %@", avatar);
         handler(isSuccess, avatar);
     }];
 }
