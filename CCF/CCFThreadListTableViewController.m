@@ -8,7 +8,6 @@
 
 #import "CCFThreadListTableViewController.h"
 
-#import "UrlBuilder.h"
 #import "CCFThreadListCell.h"
 #import "CCFShowThreadViewController.h"
 #import "MJRefresh.h"

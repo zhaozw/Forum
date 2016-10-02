@@ -9,7 +9,6 @@
 #import "CCFShowPrivateMessageViewController.h"
 
 #import "CCFThreadDetailCell.h"
-#import "UrlBuilder.h"
 
 #import "MJRefresh.h"
 #import "AutoRelayoutUITextView.h"
@@ -32,7 +31,6 @@
 #import "LCActionSheet.h"
 
 #import "TransValueDelegate.h"
-#import "UrlBuilder.h"
 #import "SVProgressHUD.h"
 #import "UIStoryboard+CCF.h"
 #import "ActionSheetPicker.h"

@@ -15,7 +15,7 @@
 #import "CCFNavigationController.h"
 #import "UIStoryboard+CCF.h"
 #import "CCFFavFormController.h"
-#import "UrlBuilder.h"
+
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 #import "CCFPrivateMessageTableViewController.h"

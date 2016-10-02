@@ -67,7 +67,6 @@
 		3AC65FBF1CF13A8F000D3BDB /* NSUserDefaults+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FBE1CF13A8F000D3BDB /* NSUserDefaults+Extensions.m */; };
 		3AC65FC21CF13AA1000D3BDB /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FC11CF13AA1000D3BDB /* Utils.m */; };
 		3AC65FC81CF13AC5000D3BDB /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FC71CF13AC5000D3BDB /* NSString+Extensions.m */; };
-		3AC65FCD1CF141D3000D3BDB /* UrlBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FCC1CF141D3000D3BDB /* UrlBuilder.m */; };
 		3AC65FD61CF149CB000D3BDB /* ForumListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FD41CF149CB000D3BDB /* ForumListHeaderView.m */; };
 		3AC65FDA1CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FD91CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.m */; };
 		3AC660071CF17D86000D3BDB /* CCFForumApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660061CF17D86000D3BDB /* CCFForumApi.m */; };
@@ -237,8 +236,6 @@
 		3AC65FC11CF13AA1000D3BDB /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		3AC65FC61CF13AC5000D3BDB /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
 		3AC65FC71CF13AC5000D3BDB /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
-		3AC65FCB1CF141D3000D3BDB /* UrlBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlBuilder.h; sourceTree = "<group>"; };
-		3AC65FCC1CF141D3000D3BDB /* UrlBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlBuilder.m; sourceTree = "<group>"; };
 		3AC65FD31CF149CB000D3BDB /* ForumListHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumListHeaderView.h; sourceTree = "<group>"; };
 		3AC65FD41CF149CB000D3BDB /* ForumListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumListHeaderView.m; sourceTree = "<group>"; };
 		3AC65FD81CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCellWithIndexPath.h; sourceTree = "<group>"; };
@@ -628,8 +625,6 @@
 				3A734BE11CCCADF500C4821A /* CCFPCH.pch */,
 				3AC65FC01CF13AA1000D3BDB /* Utils.h */,
 				3AC65FC11CF13AA1000D3BDB /* Utils.m */,
-				3AC65FCB1CF141D3000D3BDB /* UrlBuilder.h */,
-				3AC65FCC1CF141D3000D3BDB /* UrlBuilder.m */,
 			);
 			name = Api;
 			path = CCF;
@@ -952,7 +947,6 @@
 				3A256FAD1CA62DA900419D67 /* IGHTMLDocument+QueryNode.m in Sources */,
 				3ABAFE411CAAD12300803085 /* TransValueUITableViewCell.m in Sources */,
 				3AC660671CF1833F000D3BDB /* CCFApiBaseTableViewController.m in Sources */,
-				3AC65FCD1CF141D3000D3BDB /* UrlBuilder.m in Sources */,
 				3A671EEF1CB9F294001CC91E /* UIRoundCornerButton.m in Sources */,
 				3AA935E31CF1BCB2009FC4A6 /* FormEntry+CoreDataProperties.m in Sources */,
 				3ACFFD301CF9DD3C000312DC /* HPURLProtocol.m in Sources */,

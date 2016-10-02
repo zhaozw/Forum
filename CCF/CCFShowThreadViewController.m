@@ -8,7 +8,6 @@
 
 #import "CCFShowThreadViewController.h"
 #import "CCFThreadDetailCell.h"
-#import "UrlBuilder.h"
 
 #import "MJRefresh.h"
 #import "AutoRelayoutUITextView.h"
@@ -37,7 +36,7 @@
 #import "CCFThreadNotLoadTableViewCell.h"
 #import "CCFSimpleReplyNavigationController.h"
 #import "CCFSimpleReplyViewController.h"
-
+#import "ForumConfig.h"
 
 
 #import "XibInflater.h"
@@ -625,13 +624,14 @@
         if (buttonIndex == 0) {
             // 复制贴链接
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-            pasteboard.string = [[UrlBuilder buildThreadURL:[transThread.threadID intValue] withPage:0] absoluteString];
+            pasteboard.string = BBS_SHOWTHREAD_PAGE([transThread.threadID intValue], 0);
             
             [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
             
         } else if (buttonIndex == 1){
             // 在浏览器种查看
-            [[UIApplication sharedApplication] openURL:[UrlBuilder buildThreadURL:[transThread.threadID intValue] withPage:1]];
+            NSString * url = BBS_SHOWTHREAD_PAGE([transThread.threadID intValue], 1);
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
         } else if (buttonIndex == 2){
             // 进入高级回帖
             UIStoryboard * storyBoard = [UIStoryboard mainStoryboard];

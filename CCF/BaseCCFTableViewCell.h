@@ -10,7 +10,6 @@
 #import "ForumCoreDataManager.h"
 #import "UserEntry+CoreDataProperties.h"
 #import "CCFForumApi.h"
-#import "UrlBuilder.h"
 #import "TransValueUITableViewCell.h"
 
 

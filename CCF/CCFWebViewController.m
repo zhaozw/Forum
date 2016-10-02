@@ -17,7 +17,6 @@
 #import "LCActionSheet.h"
 
 #import "TransValueDelegate.h"
-#import "UrlBuilder.h"
 #import "SVProgressHUD.h"
 #import "UIStoryboard+CCF.h"
 #import "ActionSheetPicker.h"
@@ -677,13 +676,13 @@
         if (buttonIndex == 0) {
             // 复制贴链接
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-            pasteboard.string = [[UrlBuilder buildThreadURL:threadID withPage:0] absoluteString];
+            pasteboard.string = BBS_SHOWTHREAD_PAGE(threadID,0);
             
             [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
             
         } else if (buttonIndex == 1){
             // 在浏览器种查看
-            NSURL * url = [UrlBuilder buildThreadURL:threadID withPage:1];
+            NSURL * url = [NSURL URLWithString:BBS_SHOWTHREAD_PAGE(threadID,1)];
             [[UIApplication sharedApplication] openURL:url];
         } else if (buttonIndex == 2){
             [self reply:self];
