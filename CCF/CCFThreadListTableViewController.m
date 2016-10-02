@@ -290,53 +290,27 @@
         
     } else if([segue.identifier isEqualToString:@"ShowThreadPosts"]){
         
-        if(YES){
-            CCFWebViewController * controller = segue.destinationViewController;
-            self.transValueDelegate = (id<TransValueDelegate>)controller;
-            
-            
-            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            
-            NormalThread * thread = nil;
-            
-            NSInteger section = indexPath.section;
-            
-            if ( section == 1) {
-                thread = self.threadTopList[indexPath.row];
-            } else if(section == 2){
-                thread = self.dataList[indexPath.row];
-            }
-            
-            TransValueBundle *transBundle = [[TransValueBundle alloc] init];
-            [transBundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
-            [transBundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
-            
-            [self.transValueDelegate transValue:transBundle];
-            
-            
-        } else{
-            CCFShowThreadViewController * controller = segue.destinationViewController;
-            self.transValueDelegate = (id<TransValueDelegate>)controller;
-            
-            
-            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            
-            NormalThread * thread = nil;
-            
-            NSInteger section = indexPath.section;
-            
-            if ( section == 1) {
-                thread = self.threadTopList[indexPath.row];
-            } else if(section == 2){
-                thread = self.dataList[indexPath.row];
-            }
-            
-            
-            [self.transValueDelegate transValue:thread];
+        CCFWebViewController * controller = segue.destinationViewController;
+        self.transValueDelegate = (id<TransValueDelegate>)controller;
+        
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        NormalThread * thread = nil;
+        
+        NSInteger section = indexPath.section;
+        
+        if ( section == 1) {
+            thread = self.threadTopList[indexPath.row];
+        } else if(section == 2){
+            thread = self.dataList[indexPath.row];
         }
         
+        TransValueBundle *transBundle = [[TransValueBundle alloc] init];
+        [transBundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
+        [transBundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
         
-        
+        [self.transValueDelegate transValue:transBundle];
         
     } else if ([segue.identifier isEqualToString:@"ShowChildForm"]){
         CCFThreadListForChildFormUITableViewController * controller = segue.destinationViewController;
