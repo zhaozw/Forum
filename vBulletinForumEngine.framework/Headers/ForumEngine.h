@@ -107,4 +107,5 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 // 显示用户信息页面
 -(void) showProfileWithUserId:(NSString*)userId handler:(HandlerWithBool) handler;
 
+-(void) refreshVCodeToUIImageView:(UIImageView* ) vCodeImageView;
 @end

@@ -24,7 +24,6 @@
 
 @interface LoginViewController ()<UITextFieldDelegate>{
 
-    ForumBrowser *_browser;
     CGRect screenSize;
     
     CCFForumApi *_ccfApi;
@@ -50,9 +49,6 @@
     _password.keyboardType = UIKeyboardTypeASCIICapable;
 
     
-    
-    _browser = [[ForumBrowser alloc]init];
-    
     screenSize = [UIScreen mainScreen].bounds;
     
     _ccfApi = [[CCFForumApi alloc] init];
@@ -60,7 +56,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
-    [_browser refreshVCodeToUIImageView:_doorImageView];
+    [_ccfApi refreshVCodeToUIImageView:_doorImageView];
     
 }
 
@@ -187,9 +183,7 @@
 
 
 - (IBAction)refreshDoor:(id)sender {
-    
-    [_browser refreshVCodeToUIImageView:_doorImageView];
-    
+    [_ccfApi refreshVCodeToUIImageView:_doorImageView];
 }
 
 @end

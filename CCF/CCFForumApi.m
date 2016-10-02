@@ -431,4 +431,8 @@
     }];
 }
 
+-(void)refreshVCodeToUIImageView:(UIImageView *)vCodeImageView{
+    [_browser refreshVCodeToUIImageView:vCodeImageView];
+}
+
 @end
