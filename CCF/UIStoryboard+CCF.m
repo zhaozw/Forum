@@ -28,7 +28,7 @@
     
     [[UIApplication sharedApplication].keyWindow setRootViewController:rootViewController];
     
-     AppDelegate *app = [[UIApplication sharedApplication] delegate];
+     AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     [UIView transitionWithView:app.window
                       duration:0.5
@@ -43,7 +43,7 @@
     
     [[UIApplication sharedApplication].keyWindow setRootViewController:controller];
     
-    AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     [UIView transitionWithView:app.window
                       duration:0.5

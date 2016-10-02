@@ -169,42 +169,24 @@
         
     } else if([sender isKindOfClass:[UITableViewCell class]]){
         
-        if(YES){
-            CCFWebViewController * controller = segue.destinationViewController;
-            self.transValueDelegate = (id<TransValueDelegate>)controller;
-            [self.transValueDelegate transValue:transForm];
-            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            
-            NormalThread * thread = nil;
-            
-            if (indexPath.section == 0) {
-                thread = self.threadTopList[indexPath.row];
-            } else{
-                thread = self.dataList[indexPath.row];
-            }
-            
-            TransValueBundle *transBundle = [[TransValueBundle alloc] init];
-            [transBundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
-            [transBundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
-            
-            [self.transValueDelegate transValue:transBundle];
-            
-            
+        CCFWebViewController * controller = segue.destinationViewController;
+        self.transValueDelegate = (id<TransValueDelegate>)controller;
+        [self.transValueDelegate transValue:transForm];
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        NormalThread * thread = nil;
+        
+        if (indexPath.section == 0) {
+            thread = self.threadTopList[indexPath.row];
         } else{
-            CCFShowThreadViewController * controller = segue.destinationViewController;
-            self.transValueDelegate = (id<TransValueDelegate>)controller;
-            [self.transValueDelegate transValue:transForm];
-            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            
-            NormalThread * thread = nil;
-            
-            if (indexPath.section == 0) {
-                thread = self.threadTopList[indexPath.row];
-            } else{
-                thread = self.dataList[indexPath.row];
-            }
-            [self.transValueDelegate transValue:thread];
+            thread = self.dataList[indexPath.row];
         }
+        
+        TransValueBundle *transBundle = [[TransValueBundle alloc] init];
+        [transBundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
+        [transBundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
+        
+        [self.transValueDelegate transValue:transBundle];
         
 
         

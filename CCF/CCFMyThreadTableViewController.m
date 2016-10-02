@@ -80,36 +80,14 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if([segue.identifier isEqualToString:@"ShowThreadPosts"]){
+        CCFWebViewController * controller = segue.destinationViewController;
+        self.transValueDelegate = (id<TransValueDelegate>)controller;
         
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
-        if(YES){
-            CCFWebViewController * controller = segue.destinationViewController;
-            self.transValueDelegate = (id<TransValueDelegate>)controller;
-            
-            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            
-            ThreadInSearch * thread = self.dataList[indexPath.row];
-            
-            [self.transValueDelegate transValue:thread];
-        } else{
-            CCFShowThreadViewController * controller = segue.destinationViewController;
-            self.transValueDelegate = (id<TransValueDelegate>)controller;
-            
-            
-            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            
-            ThreadInSearch * thread = self.dataList[indexPath.row];
-            
-            TransValueBundle *transBundle = [[TransValueBundle alloc] init];
-            [transBundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
-            [transBundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
-            
-            [self.transValueDelegate transValue:transBundle];
-        }
+        ThreadInSearch * thread = self.dataList[indexPath.row];
         
-        
-
-        
+        [self.transValueDelegate transValue:thread];
     }
 }
 

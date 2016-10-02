@@ -100,30 +100,18 @@
     
     if([segue.identifier isEqualToString:@"ShowThreadPosts"]){
         
+        CCFWebViewController * controller = segue.destinationViewController;
+        self.transValueDelegate = (id<TransValueDelegate>)controller;
         
-        if(YES){
-            CCFWebViewController * controller = segue.destinationViewController;
-            self.transValueDelegate = (id<TransValueDelegate>)controller;
-            
-            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            
-            Thread * thread = self.dataList[indexPath.row];
-            
-            TransValueBundle *transBundle = [[TransValueBundle alloc] init];
-            [transBundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
-            [transBundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
-            
-            [self.transValueDelegate transValue:transBundle];
-        } else{
-            CCFShowThreadViewController * controller = segue.destinationViewController;
-            self.transValueDelegate = (id<TransValueDelegate>)controller;
-            
-            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            
-            Thread * thread = self.dataList[indexPath.row];
-            
-            [self.transValueDelegate transValue:thread];
-        }
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        Thread * thread = self.dataList[indexPath.row];
+        
+        TransValueBundle *transBundle = [[TransValueBundle alloc] init];
+        [transBundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
+        [transBundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
+        
+        [self.transValueDelegate transValue:transBundle];
         
 
         

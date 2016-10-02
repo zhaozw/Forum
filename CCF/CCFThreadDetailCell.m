@@ -49,6 +49,8 @@
 
 - (void)awakeFromNib {
 
+    [super awakeFromNib];
+    
     self.htmlView.shouldDrawImages = NO;
     self.htmlView.shouldDrawLinks = NO;
     

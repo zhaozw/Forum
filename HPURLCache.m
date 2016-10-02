@@ -173,9 +173,8 @@ static dispatch_queue_t get_disk_io_queue() {
     return _diskIOQueue;
 }
 
-- (BOOL)shouldCache:(NSURLRequest *)request
-{
-    return NO;
+- (BOOL)shouldCache:(NSURLRequest *)request {
+
     if (request.cachePolicy != NSURLRequestReloadIgnoringLocalCacheData
         && [[request.URL absoluteString] hasSuffixes:@[@".jpg", @".jpeg", @".gif", @".png"]]) {
         return YES;
