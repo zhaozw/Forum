@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ForumEngine.h"
+#import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 
 @interface CCFForumApi : NSObject<ForumEngine>

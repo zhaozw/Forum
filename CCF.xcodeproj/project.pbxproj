@@ -163,7 +163,6 @@
 		3A3672AB1CAF713200756D8B /* TransValueBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransValueBundle.h; sourceTree = "<group>"; };
 		3A3672AC1CAF713200756D8B /* TransValueBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransValueBundle.m; sourceTree = "<group>"; };
 		3A6489AF1DA025ED00405CB7 /* iOSDeviceName.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iOSDeviceName.framework; sourceTree = "<group>"; };
-		3A6489B11DA0378000405CB7 /* ForumEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumEngine.h; sourceTree = "<group>"; };
 		3A648A3D1DA03E5700405CB7 /* vBulletinForumEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = vBulletinForumEngine.framework; sourceTree = "<group>"; };
 		3A671EE21CB9E061001CC91E /* PageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageHeaderView.h; sourceTree = "<group>"; };
 		3A671EE31CB9E061001CC91E /* PageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageHeaderView.m; sourceTree = "<group>"; };
@@ -631,7 +630,6 @@
 				3AC65FC11CF13AA1000D3BDB /* Utils.m */,
 				3AC65FCB1CF141D3000D3BDB /* UrlBuilder.h */,
 				3AC65FCC1CF141D3000D3BDB /* UrlBuilder.m */,
-				3A6489B11DA0378000405CB7 /* ForumEngine.h */,
 			);
 			name = Api;
 			path = CCF;
