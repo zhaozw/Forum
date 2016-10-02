@@ -30,7 +30,7 @@
 #import "CCFProfileTableViewController.h"
 #import "ForumConfig.h"
 
-@interface CCFWebViewController ()<UIWebViewDelegate, UIScrollViewDelegate,TransValueDelegate,ReplyCallbackDelegate>{
+@interface CCFWebViewController ()<UIWebViewDelegate, UIScrollViewDelegate,TransValueDelegate,ReplyCallbackDelegate,CAAnimationDelegate>{
     
     LCActionSheet * itemActionSheet;
     

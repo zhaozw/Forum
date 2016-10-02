@@ -156,7 +156,7 @@
     }
 
 
-    [AVOSCloudIM registerForRemoteNotification];
+    [AVOSCloud registerForRemoteNotification];
     
     
 
@@ -178,7 +178,7 @@
     }];
     
     // 向系统申请推送服务
-    [AVOSCloudIM handleRemoteNotificationsWithDeviceToken:deviceToken];
+    [AVOSCloud handleRemoteNotificationsWithDeviceToken:deviceToken];
 
     
     

@@ -17,7 +17,7 @@
 #import "UIStoryboard+CCF.h"
 #import "DRLTabBarController.h"
 
-@interface CCFPrivateMessageTableViewController ()<CCFThreadListCellDelegate>{
+@interface CCFPrivateMessageTableViewController ()<CCFThreadListCellDelegate, MGSwipeTableCellDelegate>{
     int messageType;
     UIStoryboardSegue * selectSegue;
 }
