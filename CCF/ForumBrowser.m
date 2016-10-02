@@ -63,7 +63,7 @@
 
 
 
--(void)browseWithUrl:(NSURL *)url :(Handler)callBack{
+-(void)browseWithUrl:(NSURL *)url :(HandlerWithBool)callBack{
     
     [_browser GETWithURL:url requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
@@ -79,7 +79,7 @@
 }
 
 // 获取所有的论坛列表
--(void) formList:(Handler)handler{
+-(void) formList:(HandlerWithBool)handler{
     [_browser GETWithURLString:BBS_ARCHIVE requestCallback:^(BOOL isSuccess, NSString *html) {
         
         handler(isSuccess, html);
@@ -87,7 +87,7 @@
 }
 
 
--(void) loginWithName:(NSString *)name andPassWord:(NSString *)passWord :(Handler)callBack{
+-(void) loginWithName:(NSString *)name andPassWord:(NSString *)passWord :(HandlerWithBool)callBack{
     NSURL * loginUrl = [UrlBuilder buildLoginURL];
     NSString * md5pwd = [passWord md5HexDigest];
     
@@ -202,7 +202,7 @@
     return sigature;
     
 }
--(void)replyThreadWithId:(int)threadId withMessage:(NSString *)message handler:(Handler)result{
+-(void)replyThreadWithId:(int)threadId withMessage:(NSString *)message handler:(HandlerWithBool)result{
     
     if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
         message = [message stringByAppendingString:[self buildSignature]];
@@ -250,14 +250,14 @@
     }];
 }
 
--(void)listSearchResultWithSearchid:(NSString *)searchid andPage:(int)page handler:(Handler)handler{
+-(void)listSearchResultWithSearchid:(NSString *)searchid andPage:(int)page handler:(HandlerWithBool)handler{
     NSString * searchedUrl = BBS_SEARCH_WITH_SEARCHID(searchid, page);
     [_browser GETWithURLString:searchedUrl requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess,html);
     }];
 }
 
--(void)searchWithKeyWord:(NSString *)keyWord forType:(int)type searchDone:(Handler)callback{
+-(void)searchWithKeyWord:(NSString *)keyWord forType:(int)type searchDone:(HandlerWithBool)callback{
 
     NSURL * searchUrl = [UrlBuilder buildSearchUrl];
     
@@ -345,7 +345,7 @@
     return nil;
 }
 
--(void)createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *)images handler:(Handler)handler{
+-(void)createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *)images handler:(HandlerWithBool)handler{
     
     if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
         message = [message stringByAppendingString:[self buildSignature]];
@@ -402,7 +402,7 @@
 
 
 // 正式开始发送
--(void) doPostThread:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withToken:(NSString*) token withHash:(NSString*) hash postTime:(NSString*)time handler:(Handler) handler{
+-(void) doPostThread:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withToken:(NSString*) token withHash:(NSString*) hash postTime:(NSString*)time handler:(HandlerWithBool) handler{
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     [parameters setValue:subject forKey:@"subject"];
     [parameters setValue:message forKey:@"message"];
@@ -438,7 +438,7 @@
 
 
 // 进入图片管理页面，准备上传图片
--(void)uploadImagePrepair:(int)formId startPostTime:(NSString*)time postHash:(NSString*)hash :(Handler) callback{
+-(void)uploadImagePrepair:(int)formId startPostTime:(NSString*)time postHash:(NSString*)hash :(HandlerWithBool) callback{
     NSURL * url = [UrlBuilder buildManageFileURL:formId postTime:time postHash:hash];
     
     [_browser GETWithURL:url requestCallback:^(BOOL isSuccess, NSString *html) {
@@ -446,7 +446,7 @@
     }];
 }
 
--(void)uploadImagePrepairFormSeniorReply:(int)threadId startPostTime:(NSString*)time postHash:(NSString*)hash :(Handler) callback{
+-(void)uploadImagePrepairFormSeniorReply:(int)threadId startPostTime:(NSString*)time postHash:(NSString*)hash :(HandlerWithBool) callback{
     NSString * url = BBS_NEWATTACHMENT_THREAD(threadId, time, hash);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         callback(isSuccess, html);
@@ -533,7 +533,7 @@
 
 }
 
--(void) uploadImage:(NSURL *)url :(NSString *)token fId:(int)fId postTime:(NSString *)postTime hash:(NSString *)hash :(NSData *) imageData callback:(Handler)callback{
+-(void) uploadImage:(NSURL *)url :(NSString *)token fId:(int)fId postTime:(NSString *)postTime hash:(NSString *)hash :(NSData *) imageData callback:(HandlerWithBool)callback{
     
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -623,19 +623,19 @@
     }];
 }
 
--(void)privateMessageWithType:(int)type andpage:(int)page handler:(Handler)handler{
+-(void)privateMessageWithType:(int)type andpage:(int)page handler:(HandlerWithBool)handler{
     [_browser GETWithURL:[UrlBuilder buildPrivateMessageWithType:type andPage:page] requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
 }
 
--(void)showPrivateContentById:(int)pmId handler:(Handler)handler{
+-(void)showPrivateContentById:(int)pmId handler:(HandlerWithBool)handler{
     [_browser GETWithURL:[UrlBuilder buildShowPrivateMessageURLWithId:pmId] requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
 }
 
--(void)replyPrivateMessageWithId:(int)pmId andMessage:(NSString *)message handler:(Handler)handler{
+-(void)replyPrivateMessageWithId:(int)pmId andMessage:(NSString *)message handler:(HandlerWithBool)handler{
 
     
     [_browser GETWithURL:[UrlBuilder buildShowPrivateMessageURLWithId:pmId] requestCallback:^(BOOL isSuccess, NSString *html) {
@@ -685,7 +685,7 @@
     
 }
 
--(void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(Handler)handler{
+-(void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(HandlerWithBool)handler{
 
     
     [_browser GETWithURL:[UrlBuilder buildNewPMUR] requestCallback:^(BOOL isSuccess,NSString *html) {
@@ -722,7 +722,7 @@
     }];
 }
 
--(void)listfavoriteForms:(Handler)handler{
+-(void)listfavoriteForms:(HandlerWithBool)handler{
     [_browser GETWithURL:[UrlBuilder buildFavFormURL] requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             handler(YES, html);
@@ -732,7 +732,7 @@
     }];
 }
 
--(void)listMyAllThreadPost:(Handler)handler{
+-(void)listMyAllThreadPost:(HandlerWithBool)handler{
     LoginUser * user = [self getCurrentCCFUser];
     if (user == nil || user.userID == nil) {
         handler(NO,@"未登录");
@@ -746,7 +746,7 @@
     }];
 }
 
--(void)listMyAllThreadsWithPage:(int)page handler:(Handler)handler{
+-(void)listMyAllThreadsWithPage:(int)page handler:(HandlerWithBool)handler{
     LoginUser * user = [self getCurrentCCFUser];
     if (user == nil || user.userID == nil) {
         handler(NO,@"未登录");
@@ -773,7 +773,7 @@
     
 }
 
--(void)favoriteFormsWithId:(NSString *)formId handler:(Handler)handler{
+-(void)favoriteFormsWithId:(NSString *)formId handler:(HandlerWithBool)handler{
     NSString* preUrl = BBS_SUBSCRIPTION(formId);
     
     [_browser GETWithURLString:preUrl requestCallback:^(BOOL isSuccess, NSString *html) {
@@ -804,14 +804,14 @@
 }
 
 
--(void)unfavoriteFormsWithId:(NSString *)formId handler:(Handler)handler{
+-(void)unfavoriteFormsWithId:(NSString *)formId handler:(HandlerWithBool)handler{
     NSString * url = BBS_UNFAV_FORM(formId);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess,html);
     }];
 }
 
--(void)favoriteThreadPostWithId:(NSString *)threadPostId handler:(Handler)handler{
+-(void)favoriteThreadPostWithId:(NSString *)threadPostId handler:(HandlerWithBool)handler{
     NSString * preUrl = BBS_FAV_THREAD(threadPostId);
     [_browser GETWithURLString:preUrl requestCallback:^(BOOL isSuccess, NSString *html) {
         if (!isSuccess) {
@@ -838,14 +838,14 @@
     }];
 }
 
--(void)unfavoriteThreadPostWithId:(NSString *)threadPostId handler:(Handler)handler{
+-(void)unfavoriteThreadPostWithId:(NSString *)threadPostId handler:(HandlerWithBool)handler{
     NSString * url = BBS_UNFAV_THREAD(threadPostId);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess,html);
     }];
 }
 
--(void)listFavoriteThreadPostsWithPage:(int)page handler:(Handler)handler{
+-(void)listFavoriteThreadPostsWithPage:(int)page handler:(HandlerWithBool)handler{
     NSString * url = BBS_LIST_FAV_POST(page);
     
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
@@ -854,7 +854,7 @@
 }
 
 
--(void)listNewThreadPostsWithPage:(int)page handler:(Handler)handler{
+-(void)listNewThreadPostsWithPage:(int)page handler:(HandlerWithBool)handler{
     if (newThreadPostSearchId == nil) {
         [_browser GETWithURLString:BBS_GET_NEW requestCallback:^(BOOL isSuccess, NSString *html) {
             if (isSuccess) {
@@ -873,7 +873,7 @@
 }
 
 
--(void)listTodayNewThreadsWithPage:(int)page handler:(Handler)handler{
+-(void)listTodayNewThreadsWithPage:(int)page handler:(HandlerWithBool)handler{
     if (todayNewThreadPostSearchId == nil) {
         [_browser GETWithURLString:BBS_GET_DAILY requestCallback:^(BOOL isSuccess, NSString *html) {
             
@@ -891,7 +891,7 @@
 
 }
 
--(void)quickReplyPostWithThreadId:(int)threadId forPostId:(int)postId andMessage:(NSString *)message securitytoken:(NSString *)token ajaxLastPost:(NSString *)ajax_lastpost handler:(Handler)handler{
+-(void)quickReplyPostWithThreadId:(int)threadId forPostId:(int)postId andMessage:(NSString *)message securitytoken:(NSString *)token ajaxLastPost:(NSString *)ajax_lastpost handler:(HandlerWithBool)handler{
     NSString * url = BBS_REPLY(threadId);
     
     if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
@@ -929,34 +929,34 @@
 
 
 
--(void)showThreadWithId:(int)threadId andPage:(int)page handler:(Handler)handler{
+-(void)showThreadWithId:(int)threadId andPage:(int)page handler:(HandlerWithBool)handler{
     NSURL * url = [UrlBuilder buildThreadURL:threadId withPage:page];
     [self browseWithUrl:url :^(BOOL isSuccess, id result) {
         handler(isSuccess, result);
     }];
 }
 
--(void)showThreadWithP:(NSString*)p handler:(Handler)handler{
+-(void)showThreadWithP:(NSString*)p handler:(HandlerWithBool)handler{
     NSString * url = BBS_SHOWTHREAD_WITH_P(p);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
 }
 
--(void)forumDisplayWithId:(int)formId andPage:(int)page handler:(Handler)handler{
+-(void)forumDisplayWithId:(int)formId andPage:(int)page handler:(HandlerWithBool)handler{
     [self browseWithUrl:[UrlBuilder buildFormURL:formId withPage:page] :^(BOOL isSuccess, id result) {
         handler(isSuccess, result);
     }];
 }
 
--(void)showProfileWithUserId:(NSString *)userId handler:(Handler)handler{
+-(void)showProfileWithUserId:(NSString *)userId handler:(HandlerWithBool)handler{
     NSURL * url = [UrlBuilder buildMemberURL:userId];
     [self browseWithUrl:url :^(BOOL isSuccess, id result) {
         handler(isSuccess, result);
     }];
 }
 
--(void)listAllUserThreads:(int)userId withPage:(int)page handler:(Handler)handler{
+-(void)listAllUserThreads:(int)userId withPage:(int)page handler:(HandlerWithBool)handler{
     NSString * baseUrl = BBS_FIND_USER_THREADS(userId);
     if (listUserThreadRedirectUrlDictionary == nil || [listUserThreadRedirectUrlDictionary objectForKey:[NSNumber numberWithInt:userId]] == nil) {
         
@@ -982,7 +982,7 @@
     }
 }
 
--(void)seniorReplyWithThreadId:(int)threadId andMessage:(NSString *)message securitytoken:(NSString *)token posthash:(NSString *)posthash poststarttime:(NSString *)poststarttime handler:(Handler)handler{
+-(void)seniorReplyWithThreadId:(int)threadId andMessage:(NSString *)message securitytoken:(NSString *)token posthash:(NSString *)posthash poststarttime:(NSString *)poststarttime handler:(HandlerWithBool)handler{
     
     NSString * url = BBS_REPLY(threadId);
     
@@ -1018,7 +1018,7 @@
 }
 
 
--(void)seniorReplyWithThreadId:(int)threadId forFormId:(int) formId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(Handler)handler{
+-(void)seniorReplyWithThreadId:(int)threadId forFormId:(int) formId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(HandlerWithBool)handler{
     NSString * url = BBS_REPLY(threadId);
     
     
@@ -1116,7 +1116,7 @@
     return randomString;
 }
 
--(void) uploadImageForSeniorReply:(NSURL *)url :(NSString *)token fId:(int)fId threadId:(int) threadId postTime:(NSString *)postTime hash:(NSString *)hash :(NSData *) imageData callback:(Handler)callback{
+-(void) uploadImageForSeniorReply:(NSURL *)url :(NSString *)token fId:(int)fId threadId:(int) threadId postTime:(NSString *)postTime hash:(NSString *)hash :(NSData *) imageData callback:(HandlerWithBool)callback{
     
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
