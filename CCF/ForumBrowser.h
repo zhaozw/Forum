@@ -8,11 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <AFNetworking.h>
-
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
-
-@class ShowThreadPage;
 
 typedef void (^Reply) (BOOL isSuccess, id result);
 
@@ -20,8 +16,6 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
 
 @interface ForumBrowser : NSObject
-
-@property (nonatomic, strong) AFHTTPSessionManager * browser;
 
 
 -(void) loginWithName:(NSString*)name andPassWord:(NSString*)passWord : (HandlerWithBool) callBack;
@@ -61,8 +55,9 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 // 显示我发表的主题
 -(void) listMyAllThreadsWithPage:(int)page handler:(HandlerWithBool)handler;
 
+// 收藏一个论坛
 -(void)favoriteFormsWithId:(NSString *)formId handler:(HandlerWithBool) handler;
-
+// 取消收藏一个论坛
 -(void)unfavoriteFormsWithId:(NSString *)formId handler:(HandlerWithBool) handler;
 
 // 取消收藏一个主题帖子

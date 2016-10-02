@@ -11,7 +11,6 @@
 #import <AFImageDownloader.h>
 #import <UIImageView+AFNetworking.h>
 #import "Utils.h"
-#import "ForumBrowser.h"
 
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 
@@ -19,7 +18,7 @@
 #import "AFHTTPSessionManager+SimpleAction.h"
 
 #import "NSUserDefaults+Setting.h"
-
+#import <AFNetworking.h>
 #import "CCFForumParser.h"
 
 #define kCCFCookie_User @"bbuserid"
@@ -35,11 +34,14 @@
     NSMutableDictionary * listUserThreadRedirectUrlDictionary;
     
     NSString *todayNewThreadPostSearchId;
+    
     NSString *newThreadPostSearchId;
+    
+    NSString * iPhoneName;
     
     CCFForumParser * parser;
     
-    NSString * iPhoneName;
+    AFHTTPSessionManager * _browser;
 }
 
 
