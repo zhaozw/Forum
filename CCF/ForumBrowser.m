@@ -65,7 +65,7 @@
 
 -(void)browseWithUrl:(NSURL *)url :(HandlerWithBool)callBack{
     
-    [_browser GETWithURL:url requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser GETWithURLString:[url absoluteString] requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             NSString * token = [parser parseSecurityToken:html];
             if (token != nil) {
@@ -102,7 +102,7 @@
     [parameters setValue:md5pwd forKey:@"vb_login_md5password"];
     [parameters setValue:md5pwd forKey:@"vb_login_md5password_utf"];
     
-    [_browser POSTWithURL:loginUrl parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser POSTWithURLString:[loginUrl absoluteString] parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             callBack(YES,html);
             
@@ -111,14 +111,12 @@
             userName = [userName substringWithRange:NSMakeRange(1, [userName length] -2)];
             
             [self saveUserName:userName];
-
+            
             // 保存Cookie
             [self saveCookie];
         } else{
             callBack(NO,html);
         }
-        
-        
     }];
 }
 
@@ -237,17 +235,18 @@
     
     [parameters setValue:@"" forKey:@"s"];
     
-    [_browser POSTWithURL:loginUrl parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser POSTWithURLString:[loginUrl absoluteString] parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             // 保存Cookie
             [self saveCookie];
             
             result(YES,html);
-
+            
         } else{
             result(NO,html);
         }
     }];
+
 }
 
 -(void)listSearchResultWithSearchid:(NSString *)searchid andPage:(int)page handler:(HandlerWithBool)handler{
@@ -309,8 +308,8 @@
             
             NSString * securitytoken = [self readSecurityToken];
             [parameters setValue:securitytoken forKey:@"securitytoken"];
-            
-            [_browser POSTWithURL:searchUrl parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+
+            [_browser POSTWithURLString:[searchUrl absoluteString] parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
                 if (isSuccess) {
                     [self saveCookie];
                     
@@ -427,7 +426,7 @@
     
     NSURL * newPostUrl = [UrlBuilder buildNewThreadURL:fId];
     
-    [_browser POSTWithURL:newPostUrl parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser POSTWithURLString:[newPostUrl absoluteString] parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             [self saveCookie];
         }
@@ -441,7 +440,7 @@
 -(void)uploadImagePrepair:(int)formId startPostTime:(NSString*)time postHash:(NSString*)hash :(HandlerWithBool) callback{
     NSURL * url = [UrlBuilder buildManageFileURL:formId postTime:time postHash:hash];
     
-    [_browser GETWithURL:url requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser GETWithURLString:[url absoluteString] requestCallback:^(BOOL isSuccess, NSString *html) {
       callback(isSuccess, html);
     }];
 }
@@ -490,7 +489,7 @@
     
     //[_browser.requestSerializer setValue:@"multipart/form-data; boundary=----WebKitFormBoundaryG9KMXkoSxJnZByFF" forHTTPHeaderField:@"Content-Type"];
 
-    [_browser POSTWithURL:uploadUrl parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [_browser POSTWithURLString:[uploadUrl absoluteString] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSString * type = [self contentTypeForImageData:image];
         
         //[formData appendPartWithFileData:image name:@"attachment[]" fileName:@"abc123.jpeg" mimeType:type];
@@ -517,7 +516,7 @@
     
     NSURL * newThreadUrl = [UrlBuilder buildNewThreadURL:formId];
     
-    [_browser GETWithURL:newThreadUrl requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser GETWithURLString:[newThreadUrl absoluteString] requestCallback:^(BOOL isSuccess, NSString *html) {
         
         if (isSuccess) {
             NSString * token = [parser parseSecurityToken:html];
@@ -624,22 +623,23 @@
 }
 
 -(void)privateMessageWithType:(int)type andpage:(int)page handler:(HandlerWithBool)handler{
-    [_browser GETWithURL:[UrlBuilder buildPrivateMessageWithType:type andPage:page] requestCallback:^(BOOL isSuccess, NSString *html) {
+    NSURL * url = [UrlBuilder buildPrivateMessageWithType:type andPage:page];
+    [_browser GETWithURLString:[url absoluteString] requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
 }
 
 -(void)showPrivateContentById:(int)pmId handler:(HandlerWithBool)handler{
-    [_browser GETWithURL:[UrlBuilder buildShowPrivateMessageURLWithId:pmId] requestCallback:^(BOOL isSuccess, NSString *html) {
+    NSURL * url = [UrlBuilder buildShowPrivateMessageURLWithId:pmId];
+    [_browser GETWithURLString:[url absoluteString] requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
 }
 
 -(void)replyPrivateMessageWithId:(int)pmId andMessage:(NSString *)message handler:(HandlerWithBool)handler{
 
-    
-    [_browser GETWithURL:[UrlBuilder buildShowPrivateMessageURLWithId:pmId] requestCallback:^(BOOL isSuccess, NSString *html) {
-        
+    NSURL * url =[UrlBuilder buildShowPrivateMessageURLWithId:pmId];
+    [_browser GETWithURLString:[url absoluteString] requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             NSString * token = [parser parseSecurityToken:html];
             
@@ -672,23 +672,21 @@
             [parameters setValue:@"1" forKey:@"savecopy"];
             [parameters setValue:@"提交信息" forKey:@"sbutton"];
             
-            [_browser POSTWithURL:replyUrl parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+            [_browser POSTWithURLString:[replyUrl absoluteString] parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
                 handler(isSuccess, html);
             }];
+
         } else{
             handler(NO, nil);
         }
-        
     }];
-    
-    
-    
 }
 
 -(void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(HandlerWithBool)handler{
 
+    NSURL * url =[UrlBuilder buildNewPMUR];
     
-    [_browser GETWithURL:[UrlBuilder buildNewPMUR] requestCallback:^(BOOL isSuccess,NSString *html) {
+    [_browser GETWithURLString:[url absoluteString] requestCallback:^(BOOL isSuccess,NSString *html) {
         if (isSuccess) {
             NSString * token = [parser parseSecurityToken:html];
             
@@ -711,7 +709,7 @@
             [parameters setValue:@"" forKey:@"bccrecipients"];
             [parameters setValue:@"0" forKey:@"iconid"];
             
-            [_browser POSTWithURL:sendPMUrl parameters:parameters requestCallback:^(BOOL isSuccess, NSString *sendresult) {
+            [_browser POSTWithURLString:[sendPMUrl absoluteString] parameters:parameters requestCallback:^(BOOL isSuccess, NSString *sendresult) {
                 handler(isSuccess, sendresult);
             }];
         } else{
@@ -723,7 +721,9 @@
 }
 
 -(void)listfavoriteForms:(HandlerWithBool)handler{
-    [_browser GETWithURL:[UrlBuilder buildFavFormURL] requestCallback:^(BOOL isSuccess, NSString *html) {
+    NSURL * url = [UrlBuilder buildFavFormURL];
+    
+    [_browser GETWithURLString:[url absoluteString] requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             handler(YES, html);
         } else{
@@ -741,7 +741,9 @@
     
     NSString * userId = user.userID;
     
-    [_browser GETWithURL:[UrlBuilder buildMyThreadPostsURLWithUserId:userId] requestCallback:^(BOOL isSuccess, NSString *html) {
+    NSURL * url = [UrlBuilder buildMyThreadPostsURLWithUserId:userId];
+    
+    [_browser GETWithURLString:[url absoluteString] requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
 }
@@ -756,7 +758,7 @@
     if (listMyThreadSearchId == nil) {
         
         NSURL * myUrl = [UrlBuilder buildMyThreadWithName:user.userName];
-        [_browser GETWithURL:myUrl requestCallback:^(BOOL isSuccess, NSString *html) {
+        [_browser GETWithURLString:[myUrl absoluteString] requestCallback:^(BOOL isSuccess, NSString *html) {
             
             if (listMyThreadSearchId == nil) {
                 listMyThreadSearchId = [parser parseListMyThreadSearchid:html];
