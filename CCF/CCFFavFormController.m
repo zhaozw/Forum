@@ -7,7 +7,7 @@
 //
 
 #import "CCFFavFormController.h"
-#import "ForumParser.h"
+#import "CCFForumParser.h"
 #import "ForumCoreDataManager.h"
 #import "NSUserDefaults+Extensions.h"
 

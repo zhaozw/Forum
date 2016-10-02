@@ -20,7 +20,7 @@
 
 #import "NSUserDefaults+Setting.h"
 
-#import "ForumParser.h"
+#import "CCFForumParser.h"
 
 #define kCCFCookie_User @"bbuserid"
 #define kCCFCookie_LastVisit @"bblastvisit"
@@ -37,7 +37,7 @@
     NSString *todayNewThreadPostSearchId;
     NSString *newThreadPostSearchId;
     
-    ForumParser * parser;
+    CCFForumParser * parser;
     
     NSString * iPhoneName;
 }
@@ -50,7 +50,7 @@
         _browser.responseSerializer = [AFHTTPResponseSerializer serializer];
         _browser.responseSerializer.acceptableContentTypes = [_browser.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
         
-        parser = [[ForumParser alloc] init];
+        parser = [[CCFForumParser alloc] init];
         
 
         iPhoneName = [DeviceName deviceNameDetail];

@@ -14,7 +14,7 @@
 #import "CCFPCH.pch"
 #import "ForumConfig.h"
 #import "ForumBrowser.h"
-#import "ForumParser.h"
+#import "CCFForumParser.h"
 
 
 #define kCCFCookie_User @"bbuserid"
@@ -30,14 +30,14 @@
 
 @implementation CCFForumApi{
     ForumBrowser *_browser;
-    ForumParser *_praser;
+    CCFForumParser *_praser;
     
 }
 
 -(instancetype)init{
     if (self = [super init]) {
         _browser = [[ForumBrowser alloc] init];
-        _praser = [[ForumParser alloc] init];
+        _praser = [[CCFForumParser alloc] init];
     }
     return self;
 }

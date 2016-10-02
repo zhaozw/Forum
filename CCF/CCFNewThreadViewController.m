@@ -7,7 +7,7 @@
 //
 
 #import "CCFNewThreadViewController.h"
-#import "ForumParser.h"
+#import "CCFForumParser.h"
 #import "CCFForumApi.h"
 #import "SelectPhotoCollectionViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>

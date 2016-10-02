@@ -1,12 +1,13 @@
 //
-//  CCGParser.m
+//  CCFForumParser.m
 //  CCF
 //
-//  Created by 迪远 王 on 15/12/30.
-//  Copyright © 2015年 andforce. All rights reserved.
+//  Created by 迪远 王 on 16/10/2.
+//  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "ForumParser.h"
+#import "CCFForumParser.h"
+
 #import <IGHTMLQuery.h>
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 
@@ -19,8 +20,7 @@
 #import "IGXMLNode+Children.h"
 #import "ForumConfig.h"
 
-
-@implementation ForumParser
+@implementation CCFForumParser
 
 -(ForumDisplayPage *)parseThreadListFromHtml:(NSString *)html withThread:(int) threadId andContainsTop:(BOOL)containTop{
     
@@ -44,7 +44,7 @@
             
             // 由于各个论坛的帖子格式可能不一样，因此此处的标题等所在的列也会发生变化
             // 需要根据不同的论坛计算不同的位置
-
+            
             NSInteger childColumnCount = normallThreadNode.children.count;
             
             int titlePosition = 2;
@@ -57,13 +57,13 @@
             
             // title Node
             IGXMLNode * threadTitleNode = [normallThreadNode childrenAtPosition:titlePosition];
-
+            
             // title all html
             NSString * titleHtml = [threadTitleNode html];
             
             // 回帖页数
             normalThread.totalPostPageCount = [self threadPostPageCount:titleHtml];
-        
+            
             // title inner html
             NSString * titleInnerHtml = [threadTitleNode innerHtml];
             
@@ -75,7 +75,7 @@
             
             // 是否包含小别针
             normalThread.isContainsImage = [self isContainsImagesThread:titleHtml];
-
+            
             // 主题和分类
             NSString *titleAndCategory = [self parseTitle: titleInnerHtml];
             IGHTMLDocument * titleTemp = [[IGHTMLDocument alloc]initWithXMLString:titleAndCategory error:nil];
@@ -269,7 +269,7 @@
     
     showThreadPage.dataList = [self parseShowThreadPosts:document];
     
-
+    
     IGXMLNode * titleNode = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tr/td[1]/table/tr[2]/td/strong"].firstObject;
     showThreadPage.threadTitle = titleNode.text;
     
@@ -341,7 +341,7 @@
         ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:@"style=\"margin:20px; margin-top:5px; \"" withString:@"class=\"post-quote\""];
         ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:@"<td class=\"alt2\" style=\"border:1px inset\">" withString:@"<td class=\"alt2\">"];
         
-
+        
         NSString *xPathAttImage = [NSString stringWithFormat:@"//*[@id='td_post_%@']/div[2]", postId];
         IGXMLNode *attImage = [postDocument queryWithXPath:xPathAttImage].firstObject;
         
@@ -356,7 +356,7 @@
         IGHTMLDocument * attImageDocument = [[IGHTMLDocument alloc] initWithHTMLString:attImageHtml error:nil];
         
         IGXMLNodeSet * attImageSet = [attImageDocument queryWithXPath:@"/html/body/div/fieldset/div/a[*]"];
-    
+        
         
         NSString * newImagePattern = @"<img src=\"%@\" />";
         for (IGXMLNode * node in attImageSet) {
@@ -395,7 +395,7 @@
         
     }
     
-
+    
     // 发帖账户信息 table -> td
     //*[@id='posts']/div[1]/div/div/div/table/tr[1]/td[1]
     IGXMLNodeSet *postUserInfo = [document queryWithXPath:@"//*[@id='posts']/div[*]/div/div/div/table/tr[1]/td[1]"];
@@ -426,7 +426,7 @@
         }
         
         NSLog(@"showAvatar   ==== detail %@", avatarLink);
-
+        
         //avatarLink = [[avatarLink componentsSeparatedByString:@"/"]lastObject];
         
         ccfuser.userAvatar = avatarLink;
@@ -452,7 +452,7 @@
         newPost.postUserInfo = ccfuser;
         [posts removeObjectAtIndex:postPointer];
         [posts insertObject:newPost atIndex:postPointer];
-
+        
         postPointer ++;
     }
     
@@ -595,9 +595,9 @@
     
     
     SearchForumDisplayPage * resultPage = [[SearchForumDisplayPage alloc]init];
-
+    
     IGXMLNode * postTotalCountNode = [document queryWithXPath:@"//*[@id='threadslist']/tr[1]/td/span[1]"].firstObject;
-
+    
     NSString * postTotalCount = [postTotalCountNode.text stringWithRegular:@"共计 \\d+ 条" andChild:@"\\d+"];
     // 1. 结果总条数
     resultPage.totalPageCount = [postTotalCount integerValue];
@@ -626,7 +626,7 @@
             
             NSString * postIdNode = [postForNode html];
             NSString * postId = [postIdNode stringWithRegular:@"id=\"thread_title_\\d+\"" andChild:@"\\d+"];
-
+            
             NSString * postTitle = [[[postForNode text] trim] componentsSeparatedByString:@"\n"].firstObject;
             NSString * postAuthor = [[node childrenAtPosition:3] text];
             NSString * postAuthorId = [[node.children[3] html] stringWithRegular:@"=\\d+" andChild:@"\\d+"];
@@ -672,7 +672,7 @@
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     IGXMLNodeSet * favFormNodeSet = [document queryWithXPath:@"//*[@id='collapseobj_usercp_forums']/tr[*]/td[2]/div[1]/a"];
     
-
+    
     NSMutableArray* ids = [NSMutableArray array];
     
     //<a href="forumdisplay.php?f=158">『手机◇移动数码』</a>
@@ -682,12 +682,12 @@
     }
     
     [[NSUserDefaults standardUserDefaults] saveFavFormIds:ids];
-
-
+    
+    
     // 通过ids 过滤出Form
     ForumCoreDataManager * manager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
     NSArray * result = [manager selectData:^NSPredicate *{
-         return [NSPredicate predicateWithFormat:@"formId IN %@", ids];
+        return [NSPredicate predicateWithFormat:@"formId IN %@", ids];
     }];
     
     NSMutableArray<Forum *> * forms = [NSMutableArray arrayWithCapacity:result.count];
@@ -698,7 +698,7 @@
         form.formId = [entry.formId intValue];
         [forms addObject:form];
     }
-
+    
     return forms;
 }
 
@@ -707,7 +707,7 @@
     ForumDisplayPage * page = [[ForumDisplayPage alloc] init];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
-
+    
     IGXMLNodeSet * totalPage = [document queryWithXPath:@"//*[@id='pmform']/table[1]/tr/td/div/table/tr/td[1]"];
     //<td class="vbmenu_control" style="font-weight:normal">第 1 页，共 5 页</td>
     NSString * fullText = [[totalPage firstObject] text];
@@ -767,7 +767,7 @@
                 authorId = [authorId stringWithRegular:@"\\d+"];
             }
             message.pmAuthorId = authorId;
-
+            
             // 5. 时间
             NSString * timeHour = [[author children] [0] text];
             message.pmTime = [[timeDay stringByAppendingString:@" "] stringByAppendingString:timeHour];
@@ -844,7 +844,7 @@
     pmAuthor.userPostCount = postCount;
     
     // 精华 和 解答
-
+    
     //===========
     
     privateMessage.pmUserInfo = pmAuthor;
@@ -956,9 +956,9 @@
     int replaceId = 10000;
     for (IGXMLNode * child in contents) {
         [forms addObject:[self node2Form:child parentFormId:-1 replaceId:replaceId ++]];
-
+        
     }
-
+    
     NSMutableArray<Forum *> * needInsert = [NSMutableArray array];
     
     for (Forum *form in forms) {
@@ -1006,24 +1006,5 @@
     
     return parent;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

@@ -18,6 +18,8 @@ FOUNDATION_EXPORT const unsigned char vBulletinForumEngineVersionString[];
 
 
 #import <vBulletinForumEngine/ForumEngine.h>
+#import <vBulletinForumEngine/ForumParser.h>
+
 #import <vBulletinForumEngine/LoginUser.h>
 #import <vBulletinForumEngine/PrivateMessage.h>
 #import <vBulletinForumEngine/ShowPrivateMessage.h>

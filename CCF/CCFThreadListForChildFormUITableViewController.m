@@ -8,7 +8,7 @@
 
 #import "CCFThreadListForChildFormUITableViewController.h"
 
-#import "ForumParser.h"
+#import "CCFForumParser.h"
 #import "CCFThreadListCell.h"
 #import "CCFShowThreadViewController.h"
 #import "MJRefresh.h"
