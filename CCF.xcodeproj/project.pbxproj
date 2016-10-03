@@ -30,7 +30,6 @@
 		3A671EE41CB9E061001CC91E /* PageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A671EE31CB9E061001CC91E /* PageHeaderView.m */; };
 		3A671EE61CB9E0E1001CC91E /* PageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A671EE51CB9E0E1001CC91E /* PageHeaderView.xib */; };
 		3A671EE91CB9EA59001CC91E /* XibInflater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A671EE81CB9EA59001CC91E /* XibInflater.m */; };
-		3A671EEC1CB9EEF1001CC91E /* UICircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A671EEB1CB9EEF1001CC91E /* UICircleButton.m */; };
 		3A671EEF1CB9F294001CC91E /* UIRoundCornerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A671EEE1CB9F294001CC91E /* UIRoundCornerButton.m */; };
 		3A690A431C3755C00076C8F1 /* CCFThreadListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A690A421C3755C00076C8F1 /* CCFThreadListCell.m */; };
 		3A690A461C375B5B0076C8F1 /* CCFThreadDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A690A451C375B5B0076C8F1 /* CCFThreadDetailCell.m */; };
@@ -166,8 +165,6 @@
 		3A671EE51CB9E0E1001CC91E /* PageHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageHeaderView.xib; sourceTree = "<group>"; };
 		3A671EE71CB9EA59001CC91E /* XibInflater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XibInflater.h; sourceTree = "<group>"; };
 		3A671EE81CB9EA59001CC91E /* XibInflater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XibInflater.m; sourceTree = "<group>"; };
-		3A671EEA1CB9EEF1001CC91E /* UICircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICircleButton.h; sourceTree = "<group>"; };
-		3A671EEB1CB9EEF1001CC91E /* UICircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICircleButton.m; sourceTree = "<group>"; };
 		3A671EED1CB9F294001CC91E /* UIRoundCornerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRoundCornerButton.h; sourceTree = "<group>"; };
 		3A671EEE1CB9F294001CC91E /* UIRoundCornerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIRoundCornerButton.m; sourceTree = "<group>"; };
 		3A690A411C3755C00076C8F1 /* CCFThreadListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListCell.h; sourceTree = "<group>"; };
@@ -669,8 +666,6 @@
 				4D796B671C3BDCA800B3C62D /* DrawerView.xib */,
 				3A1CF8701C54F8AB002E52EE /* CommonUtils.h */,
 				3A1CF8711C54F8AB002E52EE /* CommonUtils.m */,
-				3A671EEA1CB9EEF1001CC91E /* UICircleButton.h */,
-				3A671EEB1CB9EEF1001CC91E /* UICircleButton.m */,
 				3A734BDD1CCC63B300C4821A /* UILoginBgView.h */,
 				3A734BDE1CCC63B300C4821A /* UILoginBgView.m */,
 				3A1CF86D1C54F88C002E52EE /* LeftDrawerItem.h */,
@@ -929,7 +924,6 @@
 				4D60F3301CC89D01007FFD5A /* CCFNSAttributedStringBuilder.m in Sources */,
 				4D32560D1C4754E700053288 /* SelectPhotoCollectionViewCell.m in Sources */,
 				4D796BDB1C43666C00B3C62D /* CCFSearchResultCell.m in Sources */,
-				3A671EEC1CB9EEF1001CC91E /* UICircleButton.m in Sources */,
 				3A1CF86F1C54F88C002E52EE /* LeftDrawerItem.m in Sources */,
 				3A734BF61CCCCDAE00C4821A /* TransBundleUIViewController.m in Sources */,
 				3AA935B41CF1BABE009FC4A6 /* db.xcdatamodeld in Sources */,
