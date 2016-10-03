@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIRoundCornerButton.h"
 
 @interface PageHeaderView : UIView
 

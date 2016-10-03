@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3A0A997D1C4A5AFC00086DAB /* RoundCornerUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A997C1C4A5AFC00086DAB /* RoundCornerUITextView.m */; };
-		3A0A99801C4A6A4E00086DAB /* RoundCornerUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A997F1C4A6A4E00086DAB /* RoundCornerUIView.m */; };
 		3A0A99831C4A71B600086DAB /* CCFSeniorNewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A99821C4A71B600086DAB /* CCFSeniorNewPostViewController.m */; };
 		3A0B3A001D0962D40060F8A4 /* private_message.html in Resources */ = {isa = PBXBuildFile; fileRef = 3A0B39FF1D0962D40060F8A4 /* private_message.html */; };
 		3A1C2CD11C9E9B740068AF6B /* CCFProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C2CD01C9E9B740068AF6B /* CCFProfileTableViewController.m */; };
@@ -30,7 +29,6 @@
 		3A671EE41CB9E061001CC91E /* PageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A671EE31CB9E061001CC91E /* PageHeaderView.m */; };
 		3A671EE61CB9E0E1001CC91E /* PageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A671EE51CB9E0E1001CC91E /* PageHeaderView.xib */; };
 		3A671EE91CB9EA59001CC91E /* XibInflater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A671EE81CB9EA59001CC91E /* XibInflater.m */; };
-		3A671EEF1CB9F294001CC91E /* UIRoundCornerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A671EEE1CB9F294001CC91E /* UIRoundCornerButton.m */; };
 		3A690A431C3755C00076C8F1 /* CCFThreadListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A690A421C3755C00076C8F1 /* CCFThreadListCell.m */; };
 		3A690A461C375B5B0076C8F1 /* CCFThreadDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A690A451C375B5B0076C8F1 /* CCFThreadDetailCell.m */; };
 		3A690A481C3792D00076C8F1 /* CCFThreadDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A690A471C3792D00076C8F1 /* CCFThreadDetailCell.xib */; };
@@ -122,8 +120,6 @@
 /* Begin PBXFileReference section */
 		3A0A997B1C4A5AFC00086DAB /* RoundCornerUITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundCornerUITextView.h; sourceTree = "<group>"; };
 		3A0A997C1C4A5AFC00086DAB /* RoundCornerUITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundCornerUITextView.m; sourceTree = "<group>"; };
-		3A0A997E1C4A6A4E00086DAB /* RoundCornerUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundCornerUIView.h; sourceTree = "<group>"; };
-		3A0A997F1C4A6A4E00086DAB /* RoundCornerUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundCornerUIView.m; sourceTree = "<group>"; };
 		3A0A99811C4A71B600086DAB /* CCFSeniorNewPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSeniorNewPostViewController.h; sourceTree = "<group>"; };
 		3A0A99821C4A71B600086DAB /* CCFSeniorNewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSeniorNewPostViewController.m; sourceTree = "<group>"; };
 		3A0B39FF1D0962D40060F8A4 /* private_message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = private_message.html; path = CCF/private_message.html; sourceTree = "<group>"; };
@@ -165,8 +161,6 @@
 		3A671EE51CB9E0E1001CC91E /* PageHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageHeaderView.xib; sourceTree = "<group>"; };
 		3A671EE71CB9EA59001CC91E /* XibInflater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XibInflater.h; sourceTree = "<group>"; };
 		3A671EE81CB9EA59001CC91E /* XibInflater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XibInflater.m; sourceTree = "<group>"; };
-		3A671EED1CB9F294001CC91E /* UIRoundCornerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRoundCornerButton.h; sourceTree = "<group>"; };
-		3A671EEE1CB9F294001CC91E /* UIRoundCornerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIRoundCornerButton.m; sourceTree = "<group>"; };
 		3A690A411C3755C00076C8F1 /* CCFThreadListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListCell.h; sourceTree = "<group>"; };
 		3A690A421C3755C00076C8F1 /* CCFThreadListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadListCell.m; sourceTree = "<group>"; };
 		3A690A441C375B5B0076C8F1 /* CCFThreadDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadDetailCell.h; sourceTree = "<group>"; };
@@ -672,12 +666,8 @@
 				3A1CF86E1C54F88C002E52EE /* LeftDrawerItem.m */,
 				3A2FCC751C953FCD00B469E4 /* UICircleImageView.h */,
 				3A2FCC761C953FCD00B469E4 /* UICircleImageView.m */,
-				3A0A997E1C4A6A4E00086DAB /* RoundCornerUIView.h */,
-				3A0A997F1C4A6A4E00086DAB /* RoundCornerUIView.m */,
 				3AC660821CF1AEA1000D3BDB /* AutoRelayoutToolbar.h */,
 				3AC660831CF1AEA1000D3BDB /* AutoRelayoutToolbar.m */,
-				3A671EED1CB9F294001CC91E /* UIRoundCornerButton.h */,
-				3A671EEE1CB9F294001CC91E /* UIRoundCornerButton.m */,
 				3A734BE21CCCB2E600C4821A /* UIAutoResizeTextView.h */,
 				3A734BE31CCCB2E600C4821A /* UIAutoResizeTextView.m */,
 				3A0A997B1C4A5AFC00086DAB /* RoundCornerUITextView.h */,
@@ -931,7 +921,6 @@
 				3A256FAD1CA62DA900419D67 /* IGHTMLDocument+QueryNode.m in Sources */,
 				3ABAFE411CAAD12300803085 /* TransValueUITableViewCell.m in Sources */,
 				3AC660671CF1833F000D3BDB /* CCFApiBaseTableViewController.m in Sources */,
-				3A671EEF1CB9F294001CC91E /* UIRoundCornerButton.m in Sources */,
 				3AF8878E1DA155D20083A8D5 /* CCFForumParser.m in Sources */,
 				3AA935E31CF1BCB2009FC4A6 /* FormEntry+CoreDataProperties.m in Sources */,
 				3ACFFD301CF9DD3C000312DC /* HPURLProtocol.m in Sources */,
@@ -963,7 +952,6 @@
 				3A1CF8771C54F8AB002E52EE /* UIImage+Tint.m in Sources */,
 				3AC660721CF1833F000D3BDB /* CCFThreadListTableViewController.m in Sources */,
 				3AC660871CF1AF85000D3BDB /* AutoRelayoutUITextView.m in Sources */,
-				3A0A99801C4A6A4E00086DAB /* RoundCornerUIView.m in Sources */,
 				3A9ADC691C9D8BD4006055A8 /* UISquareRoundCornerImageView.m in Sources */,
 				4D339D901C31454A0022A6A4 /* main.m in Sources */,
 				3AC6606E1CF1833F000D3BDB /* CCFNavigationController.m in Sources */,
