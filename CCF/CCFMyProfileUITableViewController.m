@@ -23,7 +23,6 @@
 
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 
-#import "CCFShowThreadViewController.h"
 
 @interface CCFMyProfileUITableViewController (){
     UserProfile * userProfile;

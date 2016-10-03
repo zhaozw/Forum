@@ -11,7 +11,6 @@
 #import "SVProgressHUD.h"
 
 #import "UIStoryboard+CCF.h"
-#import "CCFShowThreadViewController.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "TransValueBundle.h"
 

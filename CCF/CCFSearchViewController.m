@@ -11,7 +11,6 @@
 #import "CCFForumApi.h"
 
 #import "CCFSearchResultCell.h"
-#import "CCFShowThreadViewController.h"
 #import "CCFProfileTableViewController.h"
 #import <SVProgressHUD.h>
 #import "CCFWebViewController.h"

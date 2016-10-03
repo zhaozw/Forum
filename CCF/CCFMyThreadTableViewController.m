@@ -9,7 +9,6 @@
 #import "CCFMyThreadTableViewController.h"
 #import "CCFNavigationController.h"
 #import "CCFSearchResultCell.h"
-#import "CCFShowThreadViewController.h"
 #import "CCFWebViewController.h"
 
 @interface CCFMyThreadTableViewController ()

@@ -9,7 +9,6 @@
 #import "CCFThreadListTableViewController.h"
 
 #import "CCFThreadListCell.h"
-#import "CCFShowThreadViewController.h"
 #import "MJRefresh.h"
 #import "CCFNewThreadViewController.h"
 #import "UITableView+FDTemplateLayoutCell.h"

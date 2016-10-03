@@ -14,7 +14,6 @@
 
 #import "CCFProfileTableViewController.h"
 #import "DRLTabBarController.h"
-#import "CCFShowThreadViewController.h"
 #import "CCFWebViewController.h"
 
 @interface CCFShowNewThreadPostTableViewController ()<CCFThreadListCellDelegate>{
