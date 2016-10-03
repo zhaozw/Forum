@@ -32,7 +32,6 @@
 		3A690A431C3755C00076C8F1 /* CCFThreadListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A690A421C3755C00076C8F1 /* CCFThreadListCell.m */; };
 		3A690A461C375B5B0076C8F1 /* CCFThreadDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A690A451C375B5B0076C8F1 /* CCFThreadDetailCell.m */; };
 		3A690A481C3792D00076C8F1 /* CCFThreadDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A690A471C3792D00076C8F1 /* CCFThreadDetailCell.xib */; };
-		3A734BDF1CCC63B300C4821A /* UILoginBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A734BDE1CCC63B300C4821A /* UILoginBgView.m */; };
 		3A734BE41CCCB2E600C4821A /* UIAutoResizeTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A734BE31CCCB2E600C4821A /* UIAutoResizeTextView.m */; };
 		3A734BEB1CCCC2B000C4821A /* CCFNewThreadNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A734BEA1CCCC2B000C4821A /* CCFNewThreadNavigationController.m */; };
 		3A734BEF1CCCC92800C4821A /* TransBundleUINavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A734BEE1CCCC92800C4821A /* TransBundleUINavigationController.m */; };
@@ -164,8 +163,6 @@
 		3A690A441C375B5B0076C8F1 /* CCFThreadDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadDetailCell.h; sourceTree = "<group>"; };
 		3A690A451C375B5B0076C8F1 /* CCFThreadDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadDetailCell.m; sourceTree = "<group>"; };
 		3A690A471C3792D00076C8F1 /* CCFThreadDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CCFThreadDetailCell.xib; sourceTree = "<group>"; };
-		3A734BDD1CCC63B300C4821A /* UILoginBgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILoginBgView.h; sourceTree = "<group>"; };
-		3A734BDE1CCC63B300C4821A /* UILoginBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILoginBgView.m; sourceTree = "<group>"; };
 		3A734BE11CCCADF500C4821A /* CCFPCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCFPCH.pch; sourceTree = "<group>"; };
 		3A734BE21CCCB2E600C4821A /* UIAutoResizeTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAutoResizeTextView.h; sourceTree = "<group>"; };
 		3A734BE31CCCB2E600C4821A /* UIAutoResizeTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAutoResizeTextView.m; sourceTree = "<group>"; };
@@ -652,8 +649,6 @@
 				4D796B671C3BDCA800B3C62D /* DrawerView.xib */,
 				3A1CF8701C54F8AB002E52EE /* CommonUtils.h */,
 				3A1CF8711C54F8AB002E52EE /* CommonUtils.m */,
-				3A734BDD1CCC63B300C4821A /* UILoginBgView.h */,
-				3A734BDE1CCC63B300C4821A /* UILoginBgView.m */,
 				3A1CF86D1C54F88C002E52EE /* LeftDrawerItem.h */,
 				3A1CF86E1C54F88C002E52EE /* LeftDrawerItem.m */,
 				3AC660821CF1AEA1000D3BDB /* AutoRelayoutToolbar.h */,
@@ -876,7 +871,6 @@
 				3AC660921CF1B578000D3BDB /* ForumCoreDataManager.m in Sources */,
 				3A734BE41CCCB2E600C4821A /* UIAutoResizeTextView.m in Sources */,
 				3A734BEF1CCCC92800C4821A /* TransBundleUINavigationController.m in Sources */,
-				3A734BDF1CCC63B300C4821A /* UILoginBgView.m in Sources */,
 				3AC6606A1CF1833F000D3BDB /* CCFFavThreadPostTableViewController.m in Sources */,
 				4DEB34C61C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m in Sources */,
 				3A256FA11CA57F4000419D67 /* CCFShowPrivateMessageViewController.m in Sources */,

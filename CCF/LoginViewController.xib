@@ -23,21 +23,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cnU-2D-N9K">
-                    <frame key="frameInset" width="600" height="600"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnU-2D-N9K">
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="image_logo" translatesAutoresizingMaskIntoConstraints="NO" id="KW9-CB-Ybn">
-                            <frame key="frameInset" minX="250" minY="100" width="100" height="100"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_logo" translatesAutoresizingMaskIntoConstraints="NO" id="KW9-CB-Ybn">
                             <constraints>
                                 <constraint firstAttribute="height" constant="100" id="9l1-BH-aul"/>
                                 <constraint firstAttribute="width" constant="100" id="hxM-iK-Lxc"/>
                             </constraints>
                         </imageView>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sdg-3A-ACc" customClass="UILoginBgView">
-                            <frame key="frameInset" minX="40" minY="233" width="520" height="135"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdg-3A-ACc">
                             <subviews>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cmi-2m-SRN">
-                                    <frame key="frameInset" minX="8" minY="5" width="504" height="40"/>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cmi-2m-SRN">
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="hzl-Yx-PQn"/>
@@ -45,15 +41,13 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7pU-wJ-J4u" userLabel="dividerTop">
-                                    <frame key="frameInset" minX="5" minY="44" width="510" height="1"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7pU-wJ-J4u" userLabel="dividerTop">
                                     <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="w7O-yl-Sbf"/>
                                     </constraints>
                                 </view>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fxb-5T-kYp">
-                                    <frame key="frameInset" minX="8" minY="45" width="504" height="40"/>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fxb-5T-kYp">
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="djd-YW-paD"/>
@@ -61,8 +55,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 </textField>
-                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4XR-KK-aro" userLabel="dividerBottom">
-                                    <frame key="frameInset" minX="5" minY="88" width="510" height="1"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4XR-KK-aro" userLabel="dividerBottom">
                                     <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="mkt-53-9Yy"/>
@@ -83,8 +76,7 @@
                                         <action selector="refreshDoor:" destination="-1" eventType="touchUpInside" id="AnS-iW-6Sx"/>
                                     </connections>
                                 </button>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pJd-BZ-qq9">
-                                    <frame key="frameInset" minX="92" minY="93" width="420" height="34"/>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pJd-BZ-qq9">
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="aJF-wa-t7Q"/>
                                     </constraints>
@@ -119,6 +111,14 @@
                                 <constraint firstItem="VLo-qB-BLl" firstAttribute="leading" secondItem="sdg-3A-ACc" secondAttribute="leading" constant="8" id="vT5-yA-Kgt"/>
                                 <constraint firstItem="pJd-BZ-qq9" firstAttribute="leading" secondItem="QDZ-td-Muk" secondAttribute="trailing" constant="8" id="y6i-pf-uip"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="0.5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <variation key="default">
                                 <mask key="constraints">
                                     <exclude reference="Puv-kb-6mk"/>
@@ -128,8 +128,7 @@
                                 </mask>
                             </variation>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oul-TD-2GN">
-                            <frame key="frameInset" minX="285" minY="434" width="30" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oul-TD-2GN">
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="Oul-TD-2GN" secondAttribute="height" multiplier="1:1" id="O6M-bF-v0h"/>
                             </constraints>
