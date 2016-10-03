@@ -23,9 +23,9 @@
 		3A256FAD1CA62DA900419D67 /* IGHTMLDocument+QueryNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A256FAC1CA62DA900419D67 /* IGHTMLDocument+QueryNode.m */; };
 		3A256FB01CA62FC600419D67 /* IGXMLNode+Children.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A256FAF1CA62FC600419D67 /* IGXMLNode+Children.m */; };
 		3A28267F1CFF30D20095EAE5 /* post_view_notitle.html in Resources */ = {isa = PBXBuildFile; fileRef = 3A28267E1CFF30D20095EAE5 /* post_view_notitle.html */; };
-		3A2FCC771C953FCD00B469E4 /* UICircleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FCC761C953FCD00B469E4 /* UICircleImageView.m */; };
 		3A2FCC7E1C956DB100B469E4 /* PrivateMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FCC7D1C956DB100B469E4 /* PrivateMessageTableViewCell.m */; };
 		3A3672AD1CAF713200756D8B /* TransValueBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3672AC1CAF713200756D8B /* TransValueBundle.m */; };
+		3A3AC5461DA24733000C9CED /* UIView+Corner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3AC5451DA24733000C9CED /* UIView+Corner.m */; };
 		3A671EE41CB9E061001CC91E /* PageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A671EE31CB9E061001CC91E /* PageHeaderView.m */; };
 		3A671EE61CB9E0E1001CC91E /* PageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A671EE51CB9E0E1001CC91E /* PageHeaderView.xib */; };
 		3A671EE91CB9EA59001CC91E /* XibInflater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A671EE81CB9EA59001CC91E /* XibInflater.m */; };
@@ -148,12 +148,12 @@
 		3A256FAE1CA62FC600419D67 /* IGXMLNode+Children.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IGXMLNode+Children.h"; sourceTree = "<group>"; };
 		3A256FAF1CA62FC600419D67 /* IGXMLNode+Children.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IGXMLNode+Children.m"; sourceTree = "<group>"; };
 		3A28267E1CFF30D20095EAE5 /* post_view_notitle.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = post_view_notitle.html; path = CCF/post_view_notitle.html; sourceTree = "<group>"; };
-		3A2FCC751C953FCD00B469E4 /* UICircleImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICircleImageView.h; sourceTree = "<group>"; };
-		3A2FCC761C953FCD00B469E4 /* UICircleImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICircleImageView.m; sourceTree = "<group>"; };
 		3A2FCC7C1C956DB100B469E4 /* PrivateMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageTableViewCell.h; sourceTree = "<group>"; };
 		3A2FCC7D1C956DB100B469E4 /* PrivateMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageTableViewCell.m; sourceTree = "<group>"; };
 		3A3672AB1CAF713200756D8B /* TransValueBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransValueBundle.h; sourceTree = "<group>"; };
 		3A3672AC1CAF713200756D8B /* TransValueBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransValueBundle.m; sourceTree = "<group>"; };
+		3A3AC5441DA24733000C9CED /* UIView+Corner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Corner.h"; sourceTree = "<group>"; };
+		3A3AC5451DA24733000C9CED /* UIView+Corner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Corner.m"; sourceTree = "<group>"; };
 		3A671EE21CB9E061001CC91E /* PageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageHeaderView.h; sourceTree = "<group>"; };
 		3A671EE31CB9E061001CC91E /* PageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageHeaderView.m; sourceTree = "<group>"; };
 		3A671EE51CB9E0E1001CC91E /* PageHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageHeaderView.xib; sourceTree = "<group>"; };
@@ -470,6 +470,8 @@
 				3AC660801CF18685000D3BDB /* NSUserDefaults+Setting.m */,
 				3AC65FBD1CF13A8F000D3BDB /* NSUserDefaults+Extensions.h */,
 				3AC65FBE1CF13A8F000D3BDB /* NSUserDefaults+Extensions.m */,
+				3A3AC5441DA24733000C9CED /* UIView+Corner.h */,
+				3A3AC5451DA24733000C9CED /* UIView+Corner.m */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -654,8 +656,6 @@
 				3A734BDE1CCC63B300C4821A /* UILoginBgView.m */,
 				3A1CF86D1C54F88C002E52EE /* LeftDrawerItem.h */,
 				3A1CF86E1C54F88C002E52EE /* LeftDrawerItem.m */,
-				3A2FCC751C953FCD00B469E4 /* UICircleImageView.h */,
-				3A2FCC761C953FCD00B469E4 /* UICircleImageView.m */,
 				3AC660821CF1AEA1000D3BDB /* AutoRelayoutToolbar.h */,
 				3AC660831CF1AEA1000D3BDB /* AutoRelayoutToolbar.m */,
 				3A734BE21CCCB2E600C4821A /* UIAutoResizeTextView.h */,
@@ -898,7 +898,6 @@
 				4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */,
 				3AC6606F1CF1833F000D3BDB /* CCFShowNewThreadPostTableViewController.m in Sources */,
 				3A256FB01CA62FC600419D67 /* IGXMLNode+Children.m in Sources */,
-				3A2FCC771C953FCD00B469E4 /* UICircleImageView.m in Sources */,
 				3AC65FDA1CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.m in Sources */,
 				4D60F3301CC89D01007FFD5A /* CCFNSAttributedStringBuilder.m in Sources */,
 				4D32560D1C4754E700053288 /* SelectPhotoCollectionViewCell.m in Sources */,
@@ -929,6 +928,7 @@
 				3AF887971DA16D2C0083A8D5 /* CCFForumBrowser.m in Sources */,
 				3ACFFD2D1CF9D6BF000312DC /* SDImageCache+URLCache.m in Sources */,
 				4D339D931C31454A0022A6A4 /* AppDelegate.m in Sources */,
+				3A3AC5461DA24733000C9CED /* UIView+Corner.m in Sources */,
 				4D796BEA1C44992700B3C62D /* UIStoryboard+CCF.m in Sources */,
 				3AC660711CF1833F000D3BDB /* CCFThreadListForChildFormUITableViewController.m in Sources */,
 				3A734BEB1CCCC2B000C4821A /* CCFNewThreadNavigationController.m in Sources */,

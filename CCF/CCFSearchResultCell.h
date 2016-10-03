@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
-#import "UICircleImageView.h"
 #import "BaseCCFTableViewCell.h"
 
 
@@ -19,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *postAuthor;
 @property (weak, nonatomic) IBOutlet UILabel *postTime;
 @property (weak, nonatomic) IBOutlet UILabel *postBelongForm;
-@property (weak, nonatomic) IBOutlet UICircleImageView *postAuthorAvatar;
+@property (weak, nonatomic) IBOutlet UIImage *postAuthorAvatar;
 @property (weak, nonatomic) IBOutlet UILabel *postCategory;
 
 -(void)setData:(id)data forIndexPath:(NSIndexPath *)indexPath;
