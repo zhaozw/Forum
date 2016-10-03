@@ -13,7 +13,7 @@
 
 #import "CCFPCH.pch"
 #import "ForumConfig.h"
-#import "ForumBrowser.h"
+#import "CCFForumBrowser.h"
 #import "CCFForumParser.h"
 
 
@@ -29,14 +29,14 @@
 #define kSearchErrorTooFast @"本论坛允许的进行两次搜索的时间间隔必须大于 30 秒。"
 
 @implementation CCFForumApi{
-    ForumBrowser *_browser;
+    CCFForumBrowser *_browser;
     CCFForumParser *_praser;
     
 }
 
 -(instancetype)init{
     if (self = [super init]) {
-        _browser = [[ForumBrowser alloc] init];
+        _browser = [[CCFForumBrowser alloc] init];
         _praser = [[CCFForumParser alloc] init];
     }
     return self;
@@ -44,24 +44,23 @@
 
 
 -(void)loginWithName:(NSString *)name andPassWord:(NSString *)passWord handler:(HandlerWithBool)handler{
-    [_browser loginWithName:name andPassWord:passWord :^(BOOL isSuccess, NSString* result) {
+    [_browser loginWithName:name andPassWord:passWord handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             LoginUser *user = [self getLoginUser];
             if (user.userID == nil) {
-                NSString* faildMessage = [_praser parseLoginErrorMessage:result];
+                NSString* faildMessage = [_praser parseLoginErrorMessage:message];
                 handler(NO, faildMessage);
             } else{
                 handler(YES, @"登录成功");
             }
         } else{
-            handler(NO,result);
+            handler(NO,message);
         }
-        
     }];
 }
 
 -(LoginUser *)getLoginUser{
-    return [_browser getCurrentCCFUser];
+    return [_browser getLoginUser];
 }
 
 -(void)logout{
@@ -122,7 +121,7 @@
                 handler(NO, @"未知错误");
             }
         } else{
-            handler(NO, result);
+            handler(NO, message);
         }
         
         
@@ -132,24 +131,23 @@
 
 
 -(void)replyThreadWithId:(int)threadId andMessage:(NSString *)message handler:(HandlerWithBool)handler{
-    [_browser replyThreadWithId:threadId withMessage:message handler:^(BOOL isSuccess, NSString* result) {
-        
+    [_browser replyThreadWithId:threadId andMessage:message handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             NSString * error = kErrorMessageTimeTooShort;
-            NSRange range = [result rangeOfString:error];
+            NSRange range = [message rangeOfString:error];
             if (range.location != NSNotFound) {
                 handler(NO, error);
                 return;
             }
             
             error = kErrorMessageTooShort;
-            range = [result rangeOfString:error];
+            range = [message rangeOfString:error];
             if (range.location != NSNotFound) {
                 handler(NO, error);
                 return;
             }
             
-            ShowThreadPage * thread = [_praser parseShowThreadWithHtml:result];
+            ShowThreadPage * thread = [_praser parseShowThreadWithHtml:message];
             
             
             
@@ -160,31 +158,29 @@
                 handler(NO, @"未知错误");
             }
         } else{
-            handler(NO, result);
+            handler(NO, message);
         }
-        
     }];
 }
 
 
 -(void)searchWithKeyWord:(NSString *)keyWord forType:(int)type handler:(HandlerWithBool)handler{
-    [_browser searchWithKeyWord:keyWord forType:type searchDone:^(BOOL isSuccess, NSString* result) {
-        
+    [_browser searchWithKeyWord:keyWord forType:type handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             
-            NSRange range = [result rangeOfString:kSearchErrorTooshort];
+            NSRange range = [message rangeOfString:kSearchErrorTooshort];
             if (range.location != NSNotFound) {
                 handler(NO,kSearchErrorTooshort);
                 return;
             }
             
-            range = [result rangeOfString:kSearchErrorTooFast];
+            range = [message rangeOfString:kSearchErrorTooFast];
             if (range.location != NSNotFound) {
                 handler(NO, kSearchErrorTooFast);
                 return;
             }
             
-            SearchForumDisplayPage * page = [_praser parseSearchPageFromHtml:result];
+            SearchForumDisplayPage * page = [_praser parseSearchPageFromHtml:message];
             
             if (page != nil && page.dataList != nil && page.dataList.count > 0) {
                 handler(YES, page);
@@ -192,22 +188,19 @@
                 handler(NO, @"未知错误");
             }
         } else{
-            handler(NO, result);
+            handler(NO, message);
         }
-        
     }];
 }
 
 -(void)listPrivateMessageWithType:(int)type andPage:(int)page handler:(HandlerWithBool)handler{
-    [_browser privateMessageWithType:type andpage:page handler:^(BOOL isSuccess, id result) {
-        
+    [_browser listPrivateMessageWithType:type andPage:page handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
-            ForumDisplayPage * page = [_praser parsePrivateMessageFormHtml:result];
+            ForumDisplayPage * page = [_praser parsePrivateMessageFormHtml:message];
             handler(YES, page);
         } else{
-            handler(NO, result);
+            handler(NO, message);
         }
-        
     }];
 }
 
@@ -246,9 +239,9 @@
 }
 
 -(void)listFavoriteForms:(HandlerWithBool)handler{
-    [_browser listfavoriteForms:^(BOOL isSuccess, id result) {
+    [_browser listFavoriteForms:^(BOOL isSuccess, id message) {
         if (isSuccess) {
-            NSMutableArray<Forum *> * favForms = [_praser parseFavFormFormHtml:result];
+            NSMutableArray<Forum *> * favForms = [_praser parseFavFormFormHtml:message];
             handler(YES, favForms);
         } else{
             handler(NO, nil);

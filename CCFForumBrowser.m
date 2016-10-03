@@ -1,12 +1,12 @@
 //
-//  CCFBrowser.m
+//  CCFForumBrowser.m
 //  CCF
 //
-//  Created by 迪远 王 on 15/12/30.
-//  Copyright © 2015年 andforce. All rights reserved.
+//  Created by 迪远 王 on 16/10/3.
+//  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "ForumBrowser.h"
+#import "CCFForumBrowser.h"
 #import "NSString+Extensions.h"
 #import <AFImageDownloader.h>
 #import <UIImageView+AFNetworking.h>
@@ -28,9 +28,13 @@
 #import "ForumConfig.h"
 #import <iOSDeviceName/iOSDeviceName.h>
 
-@implementation ForumBrowser{
-    NSString * listMyThreadSearchId;
+typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
+
+@implementation CCFForumBrowser{
+    
+    NSString * listMyThreadSearchId;
+    
     NSMutableDictionary * listUserThreadRedirectUrlDictionary;
     
     NSString *todayNewThreadPostSearchId;
@@ -54,7 +58,7 @@
         
         parser = [[CCFForumParser alloc] init];
         
-
+        
         iPhoneName = [DeviceName deviceNameDetail];
         [self loadCookie];
     }
@@ -63,32 +67,49 @@
 }
 
 
-
--(void)browseWithUrl:(NSURL *)url :(HandlerWithBool)callBack{
+// private
+-(NSString *) loadCookie{
+    return [[NSUserDefaults standardUserDefaults] loadCookie];
+}
+// private
+-(void) saveUserName:(NSString*) name{
+    [[NSUserDefaults standardUserDefaults] saveUserName:name];
+}
+//private
+-(NSString*) userName{
+    return [[NSUserDefaults standardUserDefaults] userName];
+}
+//private
+-(void) saveCookie{
+    [[NSUserDefaults standardUserDefaults] saveCookie];
+}
+// private
+-(NSString *) buildSignature{
+    NSString * sigature = [NSString stringWithFormat:@"\n\n发自 %@ 使用 CCF客户端", iPhoneName];
+    return sigature;
+}
+//private
+// 获取发新帖子的Posttime hash 和token
+-(void) createNewThreadPrepair:(int)formId :(CallBack) callback{
     
-    [_browser GETWithURLString:[url absoluteString] requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser GETWithURLString:BBS_NEW_THREAD(formId) requestCallback:^(BOOL isSuccess, NSString *html) {
+        
         if (isSuccess) {
             NSString * token = [parser parseSecurityToken:html];
-            if (token != nil) {
-                [self saveSecurityToken:token];
-            }
-            callBack(YES,html);
+            NSString * postTime = [[token componentsSeparatedByString:@"-"] firstObject];
+            NSString * hash = [parser parsePostHash:html];
+            
+            callback(token, hash, postTime);
         } else{
-            callBack(NO, html);
+            callback(nil, nil, nil);
         }
-    }];
-}
-
-// 获取所有的论坛列表
--(void) formList:(HandlerWithBool)handler{
-    [_browser GETWithURLString:BBS_ARCHIVE requestCallback:^(BOOL isSuccess, NSString *html) {
         
-        handler(isSuccess, html);
     }];
 }
 
 
--(void) loginWithName:(NSString *)name andPassWord:(NSString *)passWord :(HandlerWithBool)callBack{
+
+-(void)loginWithName:(NSString *)name andPassWord:(NSString *)passWord handler:(HandlerWithBool)handler{
     NSURL * loginUrl = [NSURL URLWithString:BBS_LOGIN];
     NSString * md5pwd = [passWord md5HexDigest];
     
@@ -105,7 +126,7 @@
     
     [_browser POSTWithURLString:[loginUrl absoluteString] parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            callBack(YES,html);
+            handler(YES,html);
             
             NSString * userName = [html stringWithRegular:@"<p><strong>.*</strong></p>" andChild:@"，.*。"];
             
@@ -116,40 +137,12 @@
             // 保存Cookie
             [self saveCookie];
         } else{
-            callBack(NO,html);
+            handler(NO,html);
         }
     }];
 }
 
-
--(void)refreshVCodeToUIImageView:(UIImageView* ) vCodeImageView{
-
-    NSString * url = BBS_VCODE;
-    
-    AFImageDownloader *downloader = [[vCodeImageView class] sharedImageDownloader];
-    id <AFImageRequestCache> imageCache = downloader.imageCache;
-    [imageCache removeImageWithIdentifier:url];
-    
-    
-    
-    NSURL *URL = [NSURL URLWithString:url];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    
-    UIImageView * view = vCodeImageView;
-    
-    [vCodeImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
-
-        [view setImage:image];
-        
-    } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
-
-        NSLog(@"refreshDoor failed");
-    }];
-
-}
-
--(LoginUser *)getCurrentCCFUser{
+-(LoginUser *)getLoginUser{
     NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
     
     LoginUser * user = [[LoginUser alloc] init];
@@ -169,158 +162,129 @@
     return user;
 }
 
-
--(void) saveUserName:(NSString*) name{
-    [[NSUserDefaults standardUserDefaults] saveUserName:name];
-}
-
--(NSString*) userName{
-    return [[NSUserDefaults standardUserDefaults] userName];
-}
-
--(void) saveCookie{
-        [[NSUserDefaults standardUserDefaults] saveCookie];
-}
-
--(NSString *) loadCookie{
-    return [[NSUserDefaults standardUserDefaults] loadCookie];
-}
-
-
--(void) saveSecurityToken:(NSString *) token{
-    [[NSUserDefaults standardUserDefaults] setValue:token forKey:kCCFSecurityToken];
-}
-
-- (NSString *) readSecurityToken{
-    return [[NSUserDefaults standardUserDefaults] valueForKey:kCCFSecurityToken];
-}
-
--(NSString *) buildSignature{
-    NSString * sigature = [NSString stringWithFormat:@"\n\n发自 %@ 使用 CCF客户端", iPhoneName];
-    return sigature;
+-(void)logout{
     
-}
--(void)replyThreadWithId:(int)threadId withMessage:(NSString *)message handler:(HandlerWithBool)result{
+    [[NSUserDefaults standardUserDefaults] clearCookie];
     
-    if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
-        message = [message stringByAppendingString:[self buildSignature]];
+    NSURL *url = [NSURL URLWithString:BBS_URL];
+    if (url) {
+        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url];
+        for (int i = 0; i < [cookies count]; i++) {
+            NSHTTPCookie *cookie = (NSHTTPCookie *)[cookies objectAtIndex:i];
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+        }
     }
     
-    
-    NSURL * loginUrl = [NSURL URLWithString:BBS_REPLY(threadId)];
-    
+}
+
+
+-(void)formList:(HandlerWithBool)handler{
+    [_browser GETWithURLString:BBS_ARCHIVE requestCallback:^(BOOL isSuccess, NSString *html) {
+        
+        handler(isSuccess, html);
+    }];
+}
+
+// 正式开始发送
+-(void) doPostThread:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withToken:(NSString*) token withHash:(NSString*) hash postTime:(NSString*)time handler:(HandlerWithBool) handler{
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
-    
-    NSString * securitytoken = [self readSecurityToken];
-    
-    [parameters setValue:securitytoken forKey:@"securitytoken"];
+    [parameters setValue:subject forKey:@"subject"];
     [parameters setValue:message forKey:@"message"];
-    
-    [parameters setValue:@"postreply" forKey:@"do"];
-    [parameters setValue:[NSString stringWithFormat:@"%d", threadId] forKey:@"t"];
-    [parameters setValue:@"who cares" forKey:@"p"];
-    
-    [parameters setValue:@"0" forKey:@"specifiedpost"];
-    
-    [parameters setValue:@"1" forKey:@"parseurl"];
-    
-    LoginUser * user = [self getCurrentCCFUser];
-    
-    [parameters setValue:user.userID forKey:@"loggedinuser"];
-    [parameters setValue:@"1" forKey:@"fromquickreply"];
-    
-    [parameters setValue:@"0" forKey:@"styleid"];
     [parameters setValue:@"0" forKey:@"wysiwyg"];
-    
-    
+    [parameters setValue:@"0" forKey:@"iconid"];
     [parameters setValue:@"" forKey:@"s"];
+    [parameters setValue:token forKey:@"securitytoken"];
+    NSString * formId = [NSString stringWithFormat:@"%d", fId];
+    [parameters setValue:formId forKey:@"f"];
+    [parameters setValue:@"postthread" forKey:@"do"];
+    [parameters setValue:hash forKey:@"posthash"];
     
-    [_browser POSTWithURLString:[loginUrl absoluteString] parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+    
+    [parameters setValue:time forKey:@"poststarttime"];
+    
+    LoginUser *user = [self getLoginUser];
+    [parameters setValue:user.userID forKey:@"loggedinuser"];
+    [parameters setValue:@"发表主题" forKey:@"sbutton"];
+    [parameters setValue:@"1" forKey:@"parseurl"];
+    [parameters setValue:@"9999" forKey:@"emailupdate"];
+    [parameters setValue:@"4" forKey:@"polloptions"];
+    
+    
+    [_browser POSTWithURLString:BBS_NEW_THREAD(fId) parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            // 保存Cookie
             [self saveCookie];
-            
-            result(YES,html);
-            
-        } else{
-            result(NO,html);
         }
-    }];
-
-}
-
--(void)listSearchResultWithSearchid:(NSString *)searchid andPage:(int)page handler:(HandlerWithBool)handler{
-    NSString * searchedUrl = BBS_SEARCH_WITH_SEARCHID(searchid, page);
-    [_browser GETWithURLString:searchedUrl requestCallback:^(BOOL isSuccess, NSString *html) {
-        handler(isSuccess,html);
+        handler(isSuccess, html);
+        
     }];
 }
 
--(void)searchWithKeyWord:(NSString *)keyWord forType:(int)type searchDone:(HandlerWithBool)callback{
+// 进入图片管理页面，准备上传图片
+-(void)uploadImagePrepair:(int)formId startPostTime:(NSString*)time postHash:(NSString*)hash :(HandlerWithBool) callback{
+    
+    [_browser GETWithURLString:BBS_NEWATTACHMENT_FORM(formId, time, hash) requestCallback:^(BOOL isSuccess, NSString *html) {
+        callback(isSuccess, html);
+    }];
+}
 
+-(void)uploadImagePrepairFormSeniorReply:(int)threadId startPostTime:(NSString*)time postHash:(NSString*)hash :(HandlerWithBool) callback{
+    NSString * url = BBS_NEWATTACHMENT_THREAD(threadId, time, hash);
+    [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
+        callback(isSuccess, html);
+    }];
+}
+
+// 开始上传图片
+- (void)uploadFile:(NSString *)token fId:(NSString *)fId postTime:(NSString *)postTime hash:(NSString *)hash image:(NSData *)image {
     
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     
-    
     [parameters setValue:@"" forKey:@"s"];
-    [parameters setValue:@"process" forKey:@"do"];
-    [parameters setValue:@"" forKey:@"searchthreadid"];
+    [parameters setValue:token forKey:@"securitytoken"];
+    [parameters setValue:@"manageattach" forKey:@"do"];
+    [parameters setValue:@"" forKey:@"t"];
+    [parameters setValue:fId forKey:@"f"];
+    [parameters setValue:@"" forKey:@"p"];
+    [parameters setValue:postTime forKey:@"poststarttime"];
+    [parameters setValue:@"0" forKey:@"editpost"];
+    [parameters setValue:hash forKey:@"posthash"];
+    [parameters setValue:@"16777216" forKey:@"MAX_FILE_SIZE"];
+    [parameters setValue:@"上传" forKey:@"upload"];
+    NSString * name = [NSString stringWithFormat:@"CCF_CLIENT_%f.jpg", [[NSDate date] timeIntervalSince1970]];
     
-    if (type == 0) {
-        [parameters setValue:keyWord forKey:@"query"];
-        [parameters setValue:@"1" forKey:@"titleonly"];
-        [parameters setValue:@"" forKey:@"searchuser"];
-        [parameters setValue:@"0" forKey:@"starteronly"];
-    } else if (type == 1){
-        [parameters setValue:keyWord forKey:@"query"];
-        [parameters setValue:@"0" forKey:@"titleonly"];
-        [parameters setValue:@"" forKey:@"searchuser"];
-        [parameters setValue:@"0" forKey:@"starteronly"];
-    } else if (type == 2){
-        [parameters setValue:@"1" forKey:@"starteronly"];
-        [parameters setValue:@"" forKey:@"query"];
-        [parameters setValue:@"1" forKey:@"titleonly"];
-        [parameters setValue:keyWord forKey:@"searchuser"];
-    }
-
+    [parameters setValue:name forKey:@"attachment[]"];
+    
+    [parameters setValue:@"" forKey:@"attachmenturl[]"];
     
     
-    [parameters setValue:@"1" forKey:@"exactname"];
-    [parameters setValue:@"0" forKey:@"replyless"];
-    [parameters setValue:@"0" forKey:@"replylimit"];
-    [parameters setValue:@"0" forKey:@"searchdate"];
-    [parameters setValue:@"after" forKey:@"beforeafter"];
-    [parameters setValue:@"lastpost" forKey:@"sortby"];
-    [parameters setValue:@"descending" forKey:@"order"];
-    [parameters setValue:@"0" forKey:@"showposts"];
-    [parameters setValue:@"" forKey:@"tag"];
-    [parameters setValue:@"0" forKey:@"forumchoice[]"];
-    [parameters setValue:@"1" forKey:@"childforums"];
-    [parameters setValue:@"1" forKey:@"saveprefs"];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    // 设置时间格式
+    formatter.dateFormat = @"yyyyMMddHHmmss";
+    NSString *str = [formatter stringFromDate:[NSDate date]];
+    NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
+    [parameters setValue:fileName forKey:@"attachment[]"];
     
-    [_browser GETWithURLString:BBS_SEARCH requestCallback:^(BOOL isSuccess, NSString *html) {
-        if (isSuccess) {
-            NSString * token = [parser parseSecurityToken:html];
-            if (token != nil) {
-                [self saveSecurityToken:token];
-            }
-            
-            NSString * securitytoken = [self readSecurityToken];
-            [parameters setValue:securitytoken forKey:@"securitytoken"];
-
-            [_browser POSTWithURLString:BBS_SEARCH parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
-                if (isSuccess) {
-                    [self saveCookie];
-                    
-                    callback(YES, html);
-                } else{
-                    callback(NO, html);
-                }
-                
-            }];
-        } else{
-            callback(NO,html);
-        }
+    
+    
+    //[_browser.requestSerializer setValue:@"multipart/form-data; boundary=----WebKitFormBoundaryG9KMXkoSxJnZByFF" forHTTPHeaderField:@"Content-Type"];
+    
+    [_browser POSTWithURLString:BBS_MANAGE_ATT parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        NSString * type = [self contentTypeForImageData:image];
+        
+        //[formData appendPartWithFileData:image name:@"attachment[]" fileName:@"abc123.jpeg" mimeType:type];
+        
+        UIImage *image = [UIImage imageNamed:@"test.jpg"];
+        NSData *data = UIImageJPEGRepresentation(image, 1);
+        
+        
+        [formData appendPartWithFileData:data name:@"attachment[]" fileName:fileName mimeType:type];
+        
+        //[formData appendPartWithFormData:data name:fileName];
+        
+    } requestCallback:^(BOOL isSuccess, NSString *html) {
+        
+        NSLog(@"上传结果-------->>>>>>>> :   %@", html);
+        NSLog(@"上传结果-------->>>>>>>> 上传结束");
     }];
     
 }
@@ -343,13 +307,103 @@
     return nil;
 }
 
+-(void) uploadImage:(NSURL *)url :(NSString *)token fId:(int)fId postTime:(NSString *)postTime hash:(NSString *)hash :(NSData *) imageData callback:(HandlerWithBool)callback{
+    
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    
+    [request setHTTPShouldHandleCookies:YES];
+    [request setTimeoutInterval:60];
+    [request setHTTPMethod:@"POST"];
+    
+    NSString * cookie = [self loadCookie];
+    [request setValue:cookie forHTTPHeaderField:@"Cookie"];
+    
+    NSString *boundary = [NSString stringWithFormat:@"----WebKitFormBoundary%@", [self uploadParamDivider]];
+    
+    // set Content-Type in HTTP header
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+    [request setValue:contentType forHTTPHeaderField: @"Content-Type"];
+    
+    [request setValue:token forHTTPHeaderField:@"securitytoken"];
+    
+    
+    
+    // post body
+    NSMutableData *body = [NSMutableData data];
+    
+    
+    
+    // add params (all params are strings)
+    NSMutableDictionary* parameters = [[NSMutableDictionary alloc] init];
+    [parameters setValue:@"" forKey:@"s"];
+    [parameters setValue:token forKey:@"securitytoken"];
+    [parameters setValue:@"manageattach" forKey:@"do"];
+    [parameters setValue:@"" forKey:@"t"];
+    NSString * formID = [NSString stringWithFormat:@"%d", fId];
+    [parameters setValue:formID forKey:@"f"];
+    [parameters setValue:@"" forKey:@"p"];
+    [parameters setValue:postTime forKey:@"poststarttime"];
+    [parameters setValue:@"0" forKey:@"editpost"];
+    [parameters setValue:hash forKey:@"posthash"];
+    [parameters setValue:@"16777216" forKey:@"MAX_FILE_SIZE"];
+    [parameters setValue:@"上传" forKey:@"upload"];
+    
+    
+    NSString * name = [NSString stringWithFormat:@"CCF_CLIENT_%f.jpg", [[NSDate date] timeIntervalSince1970]];
+    
+    [parameters setValue:name forKey:@"attachment[]"];
+    
+    [parameters setValue:name forKey:@"attachmenturl[]"];
+    
+    
+    for (NSString *param in parameters) {
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", param] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"%@\r\n", [parameters objectForKey:param]] dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
+    
+    
+    // add image data
+    if (imageData) {
+        
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", @"attachment[]", name] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:imageData];
+        [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // setting the body of the post to the reqeust
+    [request setHTTPBody:body];
+    
+    // set the content-length
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[body length]];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if(data.length > 0) {
+            //success
+            NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            callback(YES, responseString);
+        } else{
+            callback(NO, @"failed");
+        }
+    }];
+}
+
 -(void)createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *)images handler:(HandlerWithBool)handler{
     
     if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
         message = [message stringByAppendingString:[self buildSignature]];
         
     }
-
+    
     
     
     // 准备发帖
@@ -394,229 +448,135 @@
                 
             }];
         }
-
+        
     }];
+    
 }
 
+- (NSString *) readSecurityToken{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:kCCFSecurityToken];
+}
 
-
-
-// 正式开始发送
--(void) doPostThread:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withToken:(NSString*) token withHash:(NSString*) hash postTime:(NSString*)time handler:(HandlerWithBool) handler{
+-(void)replyThreadWithId:(int)threadId andMessage:(NSString *)message handler:(HandlerWithBool)handler{
+    if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
+        message = [message stringByAppendingString:[self buildSignature]];
+    }
+    
+    
+    NSURL * loginUrl = [NSURL URLWithString:BBS_REPLY(threadId)];
+    
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
-    [parameters setValue:subject forKey:@"subject"];
+    
+    NSString * securitytoken = [self readSecurityToken];
+    
+    [parameters setValue:securitytoken forKey:@"securitytoken"];
     [parameters setValue:message forKey:@"message"];
-    [parameters setValue:@"0" forKey:@"wysiwyg"];
-    [parameters setValue:@"0" forKey:@"iconid"];
-    [parameters setValue:@"" forKey:@"s"];
-    [parameters setValue:token forKey:@"securitytoken"];
-    NSString * formId = [NSString stringWithFormat:@"%d", fId];
-    [parameters setValue:formId forKey:@"f"];
-    [parameters setValue:@"postthread" forKey:@"do"];
-    [parameters setValue:hash forKey:@"posthash"];
     
+    [parameters setValue:@"postreply" forKey:@"do"];
+    [parameters setValue:[NSString stringWithFormat:@"%d", threadId] forKey:@"t"];
+    [parameters setValue:@"who cares" forKey:@"p"];
     
-    [parameters setValue:time forKey:@"poststarttime"];
+    [parameters setValue:@"0" forKey:@"specifiedpost"];
     
-    LoginUser *user = [self getCurrentCCFUser];
-    [parameters setValue:user.userID forKey:@"loggedinuser"];
-    [parameters setValue:@"发表主题" forKey:@"sbutton"];
     [parameters setValue:@"1" forKey:@"parseurl"];
-    [parameters setValue:@"9999" forKey:@"emailupdate"];
-    [parameters setValue:@"4" forKey:@"polloptions"];
-
     
-    [_browser POSTWithURLString:BBS_NEW_THREAD(fId) parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+    LoginUser * user = [self getLoginUser];
+    
+    [parameters setValue:user.userID forKey:@"loggedinuser"];
+    [parameters setValue:@"1" forKey:@"fromquickreply"];
+    
+    [parameters setValue:@"0" forKey:@"styleid"];
+    [parameters setValue:@"0" forKey:@"wysiwyg"];
+    
+    
+    [parameters setValue:@"" forKey:@"s"];
+    
+    [_browser POSTWithURLString:[loginUrl absoluteString] parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
+            // 保存Cookie
             [self saveCookie];
+            
+            handler(YES,html);
+            
+        } else{
+            handler(NO,html);
         }
-        handler(isSuccess, html);
-        
     }];
 }
 
 
-// 进入图片管理页面，准备上传图片
--(void)uploadImagePrepair:(int)formId startPostTime:(NSString*)time postHash:(NSString*)hash :(HandlerWithBool) callback{
-    
-    [_browser GETWithURLString:BBS_NEWATTACHMENT_FORM(formId, time, hash) requestCallback:^(BOOL isSuccess, NSString *html) {
-      callback(isSuccess, html);
-    }];
-}
-
--(void)uploadImagePrepairFormSeniorReply:(int)threadId startPostTime:(NSString*)time postHash:(NSString*)hash :(HandlerWithBool) callback{
-    NSString * url = BBS_NEWATTACHMENT_THREAD(threadId, time, hash);
-    [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
-        callback(isSuccess, html);
-    }];
-}
-
-// 开始上传图片
-- (void)uploadFile:(NSString *)token fId:(NSString *)fId postTime:(NSString *)postTime hash:(NSString *)hash image:(NSData *)image {
-    
+-(void)searchWithKeyWord:(NSString *)keyWord forType:(int)type handler:(HandlerWithBool)handler{
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     
+    
     [parameters setValue:@"" forKey:@"s"];
-    [parameters setValue:token forKey:@"securitytoken"];
-    [parameters setValue:@"manageattach" forKey:@"do"];
-    [parameters setValue:@"" forKey:@"t"];
-    [parameters setValue:fId forKey:@"f"];
-    [parameters setValue:@"" forKey:@"p"];
-    [parameters setValue:postTime forKey:@"poststarttime"];
-    [parameters setValue:@"0" forKey:@"editpost"];
-    [parameters setValue:hash forKey:@"posthash"];
-    [parameters setValue:@"16777216" forKey:@"MAX_FILE_SIZE"];
-    [parameters setValue:@"上传" forKey:@"upload"];
-    NSString * name = [NSString stringWithFormat:@"CCF_CLIENT_%f.jpg", [[NSDate date] timeIntervalSince1970]];
+    [parameters setValue:@"process" forKey:@"do"];
+    [parameters setValue:@"" forKey:@"searchthreadid"];
     
-    [parameters setValue:name forKey:@"attachment[]"];
+    if (type == 0) {
+        [parameters setValue:keyWord forKey:@"query"];
+        [parameters setValue:@"1" forKey:@"titleonly"];
+        [parameters setValue:@"" forKey:@"searchuser"];
+        [parameters setValue:@"0" forKey:@"starteronly"];
+    } else if (type == 1){
+        [parameters setValue:keyWord forKey:@"query"];
+        [parameters setValue:@"0" forKey:@"titleonly"];
+        [parameters setValue:@"" forKey:@"searchuser"];
+        [parameters setValue:@"0" forKey:@"starteronly"];
+    } else if (type == 2){
+        [parameters setValue:@"1" forKey:@"starteronly"];
+        [parameters setValue:@"" forKey:@"query"];
+        [parameters setValue:@"1" forKey:@"titleonly"];
+        [parameters setValue:keyWord forKey:@"searchuser"];
+    }
     
-    [parameters setValue:@"" forKey:@"attachmenturl[]"];
     
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    // 设置时间格式
-    formatter.dateFormat = @"yyyyMMddHHmmss";
-    NSString *str = [formatter stringFromDate:[NSDate date]];
-    NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
-    [parameters setValue:fileName forKey:@"attachment[]"];
+    [parameters setValue:@"1" forKey:@"exactname"];
+    [parameters setValue:@"0" forKey:@"replyless"];
+    [parameters setValue:@"0" forKey:@"replylimit"];
+    [parameters setValue:@"0" forKey:@"searchdate"];
+    [parameters setValue:@"after" forKey:@"beforeafter"];
+    [parameters setValue:@"lastpost" forKey:@"sortby"];
+    [parameters setValue:@"descending" forKey:@"order"];
+    [parameters setValue:@"0" forKey:@"showposts"];
+    [parameters setValue:@"" forKey:@"tag"];
+    [parameters setValue:@"0" forKey:@"forumchoice[]"];
+    [parameters setValue:@"1" forKey:@"childforums"];
+    [parameters setValue:@"1" forKey:@"saveprefs"];
     
-
-    
-    //[_browser.requestSerializer setValue:@"multipart/form-data; boundary=----WebKitFormBoundaryG9KMXkoSxJnZByFF" forHTTPHeaderField:@"Content-Type"];
-
-    [_browser POSTWithURLString:BBS_MANAGE_ATT parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        NSString * type = [self contentTypeForImageData:image];
-        
-        //[formData appendPartWithFileData:image name:@"attachment[]" fileName:@"abc123.jpeg" mimeType:type];
-        
-        UIImage *image = [UIImage imageNamed:@"test.jpg"];
-        NSData *data = UIImageJPEGRepresentation(image, 1);
-        
-        
-        [formData appendPartWithFileData:data name:@"attachment[]" fileName:fileName mimeType:type];
-        
-        //[formData appendPartWithFormData:data name:fileName];
-        
-    } requestCallback:^(BOOL isSuccess, NSString *html) {
-        
-        NSLog(@"上传结果-------->>>>>>>> :   %@", html);
-        NSLog(@"上传结果-------->>>>>>>> 上传结束");
-    }];
-    
-}
-
-
-// 获取发新帖子的Posttime hash 和token
--(void) createNewThreadPrepair:(int)formId :(CallBack) callback{
-    
-    [_browser GETWithURLString:BBS_NEW_THREAD(formId) requestCallback:^(BOOL isSuccess, NSString *html) {
-        
+    [_browser GETWithURLString:BBS_SEARCH requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             NSString * token = [parser parseSecurityToken:html];
-            NSString * postTime = [[token componentsSeparatedByString:@"-"] firstObject];
-            NSString * hash = [parser parsePostHash:html];
+            if (token != nil) {
+                [self saveSecurityToken:token];
+            }
             
-            callback(token, hash, postTime);
+            NSString * securitytoken = [self readSecurityToken];
+            [parameters setValue:securitytoken forKey:@"securitytoken"];
+            
+            [_browser POSTWithURLString:BBS_SEARCH parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+                if (isSuccess) {
+                    [self saveCookie];
+                    
+                    handler(YES, html);
+                } else{
+                    handler(NO, html);
+                }
+                
+            }];
         } else{
-            callback(nil, nil, nil);
-        }
-        
-    }];
-
-}
-
--(void) uploadImage:(NSURL *)url :(NSString *)token fId:(int)fId postTime:(NSString *)postTime hash:(NSString *)hash :(NSData *) imageData callback:(HandlerWithBool)callback{
-    
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    
-    [request setHTTPShouldHandleCookies:YES];
-    [request setTimeoutInterval:60];
-    [request setHTTPMethod:@"POST"];
-    
-    NSString * cookie = [self loadCookie];
-    [request setValue:cookie forHTTPHeaderField:@"Cookie"];
-    
-    NSString *boundary = [NSString stringWithFormat:@"----WebKitFormBoundary%@", [self uploadParamDivider]];
-    
-    // set Content-Type in HTTP header
-    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-    [request setValue:contentType forHTTPHeaderField: @"Content-Type"];
-    
-    [request setValue:token forHTTPHeaderField:@"securitytoken"];
-    
-    
-    
-    // post body
-    NSMutableData *body = [NSMutableData data];
-
-    
-    
-    // add params (all params are strings)
-    NSMutableDictionary* parameters = [[NSMutableDictionary alloc] init];
-    [parameters setValue:@"" forKey:@"s"];
-    [parameters setValue:token forKey:@"securitytoken"];
-    [parameters setValue:@"manageattach" forKey:@"do"];
-    [parameters setValue:@"" forKey:@"t"];
-    NSString * formID = [NSString stringWithFormat:@"%d", fId];
-    [parameters setValue:formID forKey:@"f"];
-    [parameters setValue:@"" forKey:@"p"];
-    [parameters setValue:postTime forKey:@"poststarttime"];
-    [parameters setValue:@"0" forKey:@"editpost"];
-    [parameters setValue:hash forKey:@"posthash"];
-    [parameters setValue:@"16777216" forKey:@"MAX_FILE_SIZE"];
-    [parameters setValue:@"上传" forKey:@"upload"];
-    
-    
-    NSString * name = [NSString stringWithFormat:@"CCF_CLIENT_%f.jpg", [[NSDate date] timeIntervalSince1970]];
-    
-    [parameters setValue:name forKey:@"attachment[]"];
-    
-    [parameters setValue:name forKey:@"attachmenturl[]"];
-    
-
-    for (NSString *param in parameters) {
-        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", param] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"%@\r\n", [parameters objectForKey:param]] dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
-    
-    
-    // add image data
-    if (imageData) {
-        
-        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", @"attachment[]", name] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:imageData];
-        [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    // setting the body of the post to the reqeust
-    [request setHTTPBody:body];
-    
-    // set the content-length
-    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[body length]];
-    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-
-        if(data.length > 0) {
-            //success
-            NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            callback(YES, responseString);
-        } else{
-            callback(NO, @"failed");
+            handler(NO,html);
         }
     }];
 }
 
--(void)privateMessageWithType:(int)type andpage:(int)page handler:(HandlerWithBool)handler{
+-(void) saveSecurityToken:(NSString *) token{
+    [[NSUserDefaults standardUserDefaults] setValue:token forKey:kCCFSecurityToken];
+}
+
+
+-(void)listPrivateMessageWithType:(int)type andPage:(int)page handler:(HandlerWithBool)handler{
     [_browser GETWithURLString:BBS_PM_WITH_TYPE(type, page) requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
@@ -628,8 +588,41 @@
     }];
 }
 
--(void)replyPrivateMessageWithId:(int)pmId andMessage:(NSString *)message handler:(HandlerWithBool)handler{
+-(void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(HandlerWithBool)handler{
+    [_browser GETWithURLString:BBS_NEW_PM requestCallback:^(BOOL isSuccess,NSString *html) {
+        if (isSuccess) {
+            NSString * token = [parser parseSecurityToken:html];
+            
+            NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+            
+            
+            [parameters setValue:message forKey:@"message"];
+            [parameters setValue:title forKey:@"title"];
+            [parameters setValue:@"0" forKey:@"pmid"];
+            [parameters setValue:name forKey:@"recipients"];
+            [parameters setValue:@"0" forKey:@"wysiwyg"];
+            [parameters setValue:@"" forKey:@"s"];
+            [parameters setValue:token forKey:@"securitytoken"];
+            [parameters setValue:@"0" forKey:@"forward"];
+            [parameters setValue:@"1" forKey:@"savecopy"];
+            [parameters setValue:@"提交信息" forKey:@"sbutton"];
+            [parameters setValue:@"1" forKey:@"parseurl"];
+            [parameters setValue:@"insertpm" forKey:@"do"];
+            [parameters setValue:@"" forKey:@"bccrecipients"];
+            [parameters setValue:@"0" forKey:@"iconid"];
+            
+            [_browser POSTWithURLString:BBS_SEND_PM parameters:parameters requestCallback:^(BOOL isSuccess, NSString *sendresult) {
+                handler(isSuccess, sendresult);
+            }];
+        } else{
+            handler(NO, nil);
+        }
+        
+        
+    }];
+}
 
+- (void)replyPrivateMessageWithId:(int)pmId andMessage:(NSString *)message handler:(HandlerWithBool)handler{
     [_browser GETWithURLString:BBS_SHOW_PM(pmId) requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             NSString * token = [parser parseSecurityToken:html];
@@ -664,50 +657,14 @@
             [_browser POSTWithURLString:BBS_REPLY_PM(pmId) parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
                 handler(isSuccess, html);
             }];
-
+            
         } else{
             handler(NO, nil);
         }
     }];
 }
 
--(void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(HandlerWithBool)handler{
-    
-    [_browser GETWithURLString:BBS_NEW_PM requestCallback:^(BOOL isSuccess,NSString *html) {
-        if (isSuccess) {
-            NSString * token = [parser parseSecurityToken:html];
-            
-            NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
-            
-            
-            [parameters setValue:message forKey:@"message"];
-            [parameters setValue:title forKey:@"title"];
-            [parameters setValue:@"0" forKey:@"pmid"];
-            [parameters setValue:name forKey:@"recipients"];
-            [parameters setValue:@"0" forKey:@"wysiwyg"];
-            [parameters setValue:@"" forKey:@"s"];
-            [parameters setValue:token forKey:@"securitytoken"];
-            [parameters setValue:@"0" forKey:@"forward"];
-            [parameters setValue:@"1" forKey:@"savecopy"];
-            [parameters setValue:@"提交信息" forKey:@"sbutton"];
-            [parameters setValue:@"1" forKey:@"parseurl"];
-            [parameters setValue:@"insertpm" forKey:@"do"];
-            [parameters setValue:@"" forKey:@"bccrecipients"];
-            [parameters setValue:@"0" forKey:@"iconid"];
-            
-            [_browser POSTWithURLString:BBS_SEND_PM parameters:parameters requestCallback:^(BOOL isSuccess, NSString *sendresult) {
-                handler(isSuccess, sendresult);
-            }];
-        } else{
-            handler(NO, nil);
-        }
-        
-    
-    }];
-}
-
--(void)listfavoriteForms:(HandlerWithBool)handler{
-    
+-(void)listFavoriteForms:(HandlerWithBool)handler{
     [_browser GETWithURLString:BBS_USER_CP requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             handler(YES, html);
@@ -718,7 +675,7 @@
 }
 
 -(void)listMyAllThreadPost:(HandlerWithBool)handler{
-    LoginUser * user = [self getCurrentCCFUser];
+    LoginUser * user = [self getLoginUser];
     if (user == nil || user.userID == nil) {
         handler(NO,@"未登录");
         return;
@@ -732,7 +689,7 @@
 }
 
 -(void)listMyAllThreadsWithPage:(int)page handler:(HandlerWithBool)handler{
-    LoginUser * user = [self getCurrentCCFUser];
+    LoginUser * user = [self getLoginUser];
     if (user == nil || user.userID == nil) {
         handler(NO,@"未登录");
         return;
@@ -754,7 +711,6 @@
             handler(isSuccess, html);
         }];
     }
-    
 }
 
 -(void)favoriteFormsWithId:(NSString *)formId handler:(HandlerWithBool)handler{
@@ -782,14 +738,60 @@
             [_browser POSTWithURLString:url parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
                 handler(isSuccess, html);
             }];
-           
+            
         }
     }];
 }
-
-
 -(void)unfavoriteFormsWithId:(NSString *)formId handler:(HandlerWithBool)handler{
     NSString * url = BBS_UNFAV_FORM(formId);
+    [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess,html);
+    }];
+}
+
+-(void)listFavoriteThreadPostsWithPage:(int)page handler:(HandlerWithBool)handler{
+    NSString * url = BBS_LIST_FAV_POST(page);
+    
+    [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess,html);
+    }];
+}
+
+-(void)listNewThreadPostsWithPage:(int)page handler:(HandlerWithBool)handler{
+    if (newThreadPostSearchId == nil) {
+        [_browser GETWithURLString:BBS_GET_NEW requestCallback:^(BOOL isSuccess, NSString *html) {
+            if (isSuccess) {
+                newThreadPostSearchId = [parser parseListMyThreadSearchid:html];
+            }
+            handler(isSuccess, html);
+        }];
+    } else{
+        NSString * url = BBS_SEARCH_WITH_SEARCHID(newThreadPostSearchId, page);
+        [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
+            handler(isSuccess, html);
+        }];
+    }
+}
+
+-(void)listTodayNewThreadsWithPage:(int)page handler:(HandlerWithBool)handler{
+    if (todayNewThreadPostSearchId == nil) {
+        [_browser GETWithURLString:BBS_GET_DAILY requestCallback:^(BOOL isSuccess, NSString *html) {
+            
+            if (isSuccess) {
+                todayNewThreadPostSearchId = [parser parseListMyThreadSearchid:html];
+            }
+            handler(isSuccess, html);
+        }];
+    } else{
+        NSString * url = BBS_SEARCH_WITH_SEARCHID(todayNewThreadPostSearchId, page);
+        [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
+            handler(isSuccess, html);
+        }];
+    }
+}
+
+-(void)unfavoriteThreadPostWithId:(NSString *)threadPostId handler:(HandlerWithBool)handler{
+    NSString * url = BBS_UNFAV_THREAD(threadPostId);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess,html);
     }];
@@ -822,57 +824,71 @@
     }];
 }
 
--(void)unfavoriteThreadPostWithId:(NSString *)threadPostId handler:(HandlerWithBool)handler{
-    NSString * url = BBS_UNFAV_THREAD(threadPostId);
+-(void)showThreadWithId:(int)threadId andPage:(int)page handler:(HandlerWithBool)handler{
+
+    [_browser GETWithURLString:BBS_SHOWTHREAD_PAGE(threadId, page) requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess, html);
+    }];
+
+}
+
+-(void)showThreadWithP:(NSString *)p handler:(HandlerWithBool)handler{
+    NSString * url = BBS_SHOWTHREAD_WITH_P(p);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
-        handler(isSuccess,html);
+        handler(isSuccess, html);
     }];
 }
 
--(void)listFavoriteThreadPostsWithPage:(int)page handler:(HandlerWithBool)handler{
-    NSString * url = BBS_LIST_FAV_POST(page);
+-(void)forumDisplayWithId:(int)formId andPage:(int)page handler:(HandlerWithBool)handler{
     
-    [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser GETWithURLString:BBS_FORMDISPLAY_PAGE(formId, page) requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess, html);
+    }];
+}
+
+-(void)getAvatarWithUserId:(NSString *)userId handler:(HandlerWithBool)handler{
+    [_browser GETWithURLString:BBS_USER(userId) requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess, html);
+    }];
+}
+
+-(void)listSearchResultWithSearchid:(NSString *)searchid andPage:(int)page handler:(HandlerWithBool)handler{
+    NSString * searchedUrl = BBS_SEARCH_WITH_SEARCHID(searchid, page);
+    [_browser GETWithURLString:searchedUrl requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess,html);
     }];
 }
 
+-(void)showProfileWithUserId:(NSString *)userId handler:(HandlerWithBool)handler{
+    [_browser GETWithURLString:BBS_USER(userId) requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess, html);
+    }];
+}
 
--(void)listNewThreadPostsWithPage:(int)page handler:(HandlerWithBool)handler{
-    if (newThreadPostSearchId == nil) {
-        [_browser GETWithURLString:BBS_GET_NEW requestCallback:^(BOOL isSuccess, NSString *html) {
-            if (isSuccess) {
-                newThreadPostSearchId = [parser parseListMyThreadSearchid:html];
+-(void)listAllUserThreads:(int)userId withPage:(int)page handler:(HandlerWithBool)handler{
+    NSString * baseUrl = BBS_FIND_USER_THREADS(userId);
+    if (listUserThreadRedirectUrlDictionary == nil || [listUserThreadRedirectUrlDictionary objectForKey:[NSNumber numberWithInt:userId]] == nil) {
+        
+        
+        [_browser GETWithURLString:baseUrl requestCallback:^(BOOL isSuccess, NSString *html) {
+            if (listUserThreadRedirectUrlDictionary == nil) {
+                listUserThreadRedirectUrlDictionary = [NSMutableDictionary dictionary];
             }
-            handler(isSuccess, html);
-        }];
-    } else{
-        NSString * url = BBS_SEARCH_WITH_SEARCHID(newThreadPostSearchId, page);
-        [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
-            handler(isSuccess, html);
-        }];
-    }
-    
-
-}
-
-
--(void)listTodayNewThreadsWithPage:(int)page handler:(HandlerWithBool)handler{
-    if (todayNewThreadPostSearchId == nil) {
-        [_browser GETWithURLString:BBS_GET_DAILY requestCallback:^(BOOL isSuccess, NSString *html) {
             
-            if (isSuccess) {
-                todayNewThreadPostSearchId = [parser parseListMyThreadSearchid:html];
-            }
+            NSString * searchId = [parser parseListMyThreadSearchid:html];
+            
+            [listUserThreadRedirectUrlDictionary setObject:searchId forKey:[NSNumber numberWithInt:userId]];
+            
             handler(isSuccess, html);
         }];
     } else{
-        NSString * url = BBS_SEARCH_WITH_SEARCHID(todayNewThreadPostSearchId, page);
+        NSString * searchId = [listUserThreadRedirectUrlDictionary objectForKey:[NSNumber numberWithInt:userId]];
+        
+        NSString * url = BBS_SEARCH_WITH_SEARCHID(searchId, page);
         [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
             handler(isSuccess, html);
         }];
     }
-
 }
 
 -(void)quickReplyPostWithThreadId:(int)threadId forPostId:(int)postId andMessage:(NSString *)message securitytoken:(NSString *)token ajaxLastPost:(NSString *)ajax_lastpost handler:(HandlerWithBool)handler{
@@ -901,7 +917,7 @@
     [parameters setValue:@"1" forKey:@"specifiedpost"];
     [parameters setValue:@"1" forKey:@"parseurl"];
     
-    LoginUser * user = [self getCurrentCCFUser];
+    LoginUser * user = [self getLoginUser];
     
     [parameters setValue:user.userID forKey:@"loggedinuser"];
     
@@ -909,62 +925,7 @@
     [_browser POSTWithURLString:url parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
-}
-
-
-
--(void)showThreadWithId:(int)threadId andPage:(int)page handler:(HandlerWithBool)handler{
-    NSURL * url = [NSURL URLWithString:BBS_SHOWTHREAD_PAGE(threadId, page)];
-    [self browseWithUrl:url :^(BOOL isSuccess, id result) {
-        handler(isSuccess, result);
-    }];
-}
-
--(void)showThreadWithP:(NSString*)p handler:(HandlerWithBool)handler{
-    NSString * url = BBS_SHOWTHREAD_WITH_P(p);
-    [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
-        handler(isSuccess, html);
-    }];
-}
-
--(void)forumDisplayWithId:(int)formId andPage:(int)page handler:(HandlerWithBool)handler{
-    NSURL * url = [NSURL URLWithString:BBS_FORMDISPLAY_PAGE(formId, page)];
-    [self browseWithUrl:url :^(BOOL isSuccess, id result) {
-        handler(isSuccess, result);
-    }];
-}
-
--(void)showProfileWithUserId:(NSString *)userId handler:(HandlerWithBool)handler{
-    NSURL * url = [NSURL URLWithString:BBS_USER(userId)];
-    [self browseWithUrl:url :^(BOOL isSuccess, id result) {
-        handler(isSuccess, result);
-    }];
-}
-
--(void)listAllUserThreads:(int)userId withPage:(int)page handler:(HandlerWithBool)handler{
-    NSString * baseUrl = BBS_FIND_USER_THREADS(userId);
-    if (listUserThreadRedirectUrlDictionary == nil || [listUserThreadRedirectUrlDictionary objectForKey:[NSNumber numberWithInt:userId]] == nil) {
-        
     
-        [_browser GETWithURLString:baseUrl requestCallback:^(BOOL isSuccess, NSString *html) {
-            if (listUserThreadRedirectUrlDictionary == nil) {
-                listUserThreadRedirectUrlDictionary = [NSMutableDictionary dictionary];
-            }
-            
-            NSString * searchId = [parser parseListMyThreadSearchid:html];
-            
-            [listUserThreadRedirectUrlDictionary setObject:searchId forKey:[NSNumber numberWithInt:userId]];
-            
-            handler(isSuccess, html);
-        }];
-    } else{
-        NSString * searchId = [listUserThreadRedirectUrlDictionary objectForKey:[NSNumber numberWithInt:userId]];
-        
-        NSString * url = BBS_SEARCH_WITH_SEARCHID(searchId, page);
-        [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
-            handler(isSuccess, html);
-        }];
-    }
 }
 
 -(void)seniorReplyWithThreadId:(int)threadId andMessage:(NSString *)message securitytoken:(NSString *)token posthash:(NSString *)posthash poststarttime:(NSString *)poststarttime handler:(HandlerWithBool)handler{
@@ -974,7 +935,7 @@
     if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
         message = [message stringByAppendingString:[self buildSignature]];
     }
-
+    
     
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     [parameters setValue:message forKey:@"message"];
@@ -988,7 +949,7 @@
     [parameters setValue:@"0" forKey:@"specifiedpost"];
     [parameters setValue:posthash forKey:@"posthash"];
     [parameters setValue:poststarttime forKey:@"poststarttime"];
-    LoginUser * user = [self getCurrentCCFUser];
+    LoginUser * user = [self getLoginUser];
     [parameters setValue:user.userID forKey:@"loggedinuser"];
     [parameters setValue:@"" forKey:@"multiquoteempty"];
     [parameters setValue:@"提交回复" forKey:@"sbutton"];
@@ -1002,94 +963,6 @@
     }];
 }
 
-
--(void)seniorReplyWithThreadId:(int)threadId forFormId:(int) formId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(HandlerWithBool)handler{
-    NSString * url = BBS_REPLY(threadId);
-    
-    
-    NSMutableDictionary * presparameters = [NSMutableDictionary dictionary];
-    [presparameters setValue:@"" forKey:@"message"];
-    [presparameters setValue:@"0" forKey:@"wysiwyg"];
-    [presparameters setValue:@"2" forKey:@"styleid"];
-    [presparameters setValue:@"1" forKey:@"signature"];
-    [presparameters setValue:@"1" forKey:@"fromquickreply"];
-    [presparameters setValue:@"" forKey:@"s"];
-    [presparameters setValue:token forKey:@"securitytoken"];
-    [presparameters setValue:@"postreply" forKey:@"do"];
-    [presparameters setValue:[NSString stringWithFormat:@"%d",threadId] forKey:@"t"];
-    [presparameters setValue:@"who cares" forKey:@"p"];
-    [presparameters setValue:@"0" forKey:@"specifiedpost"];
-    [presparameters setValue:@"1" forKey:@"parseurl"];
-    LoginUser * user = [self getCurrentCCFUser];
-    [presparameters setValue:user.userID forKey:@"loggedinuser"];
-    [presparameters setValue:@"进入高级模式" forKey:@"preview"];
-    
-    [_browser POSTWithURLString:url parameters:presparameters requestCallback:^(BOOL isSuccess, NSString *html) {
-        if (isSuccess) {
-            
-            NSString * token = [parser parseSecurityToken:html];
-            NSString * postHash = [parser parsePostHash:html];
-            NSString * postStartTime = [parser parserPostStartTime:html];
-            
-            if (images == nil || [images count] == 0) {
-                [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:token posthash:postHash poststarttime:postStartTime handler:^(BOOL isSuccess, id result) {
-                    if (isSuccess) {
-                        handler(YES,result);
-                    } else{
-                        handler(NO,@"回复失败");
-                    }
-                }];
-
-            } else{
-                
-                __block NSString * uploadImageToken = @"";
-                NSString * urlStr = BBS_MANAGE_ATT;
-                NSURL *uploadImageUrl = [NSURL URLWithString:urlStr];
-                // 如果有图片，先传图片
-                [self uploadImagePrepairFormSeniorReply:threadId startPostTime:postStartTime postHash:postHash :^(BOOL isSuccess, id result) {
-                    // 解析出上传图片需要的参数
-                    uploadImageToken = [parser parseSecurityToken:result];
-                    NSString * uploadTime = [[token componentsSeparatedByString:@"-"] firstObject];
-                    NSString * uploadHash = [parser parsePostHash:result];
-                    
-                    __block BOOL uploadSuccess = YES;
-                    int uploadCount = (int)images.count;
-                    for (int i = 0; i < uploadCount && uploadSuccess; i++) {
-                        NSData * image = images[i];
-                        
-                        [NSThread sleepForTimeInterval:2.0f];
-                        [self uploadImageForSeniorReply:uploadImageUrl :uploadImageToken fId:formId threadId:threadId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id uploadResultHtml) {
-                            uploadSuccess = isSuccess;
-                            // 更新token
-                            uploadImageToken = [parser parseSecurityToken:uploadResultHtml];
-                            
-                            NSLog(@" 上传第 %d 张图片", i);
-                            
-                            if (i == images.count -1) {
-                                [NSThread sleepForTimeInterval:2.0f];
-                                [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:uploadImageToken posthash:postHash poststarttime:postStartTime handler:^(BOOL isSuccess, id result) {
-                                    if (isSuccess) {
-                                        handler(YES,result);
-                                    } else{
-                                        handler(NO,@"回复失败");
-                                    }
-                                }];
-                            }
-                        }];
-                    }
-                    
-                    if (!uploadSuccess) {
-                        handler(NO, @"上传图片失败！");
-                    }
-                }];
-            }
-        } else{
-            handler(NO,@"回复失败");
-        }
-    }];
-    
-    
-}
 
 -(NSString *) uploadParamDivider{
     static const NSString *kRandomAlphabet = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -1148,7 +1021,7 @@
     NSString * name = [NSString stringWithFormat:@"CCF_CLIENT_%f.jpg", [[NSDate date] timeIntervalSince1970]];
     
     [parameters setValue:name forKey:@"attachment[]"];
-
+    
     [parameters setValue:@"" forKey:@"attachmenturl[]"];
     
     
@@ -1192,23 +1065,115 @@
     }];
 }
 
+-(void)seniorReplyWithThreadId:(int)threadId forFormId:(int) formId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(HandlerWithBool)handler{
+    NSString * url = BBS_REPLY(threadId);
+    
+    
+    NSMutableDictionary * presparameters = [NSMutableDictionary dictionary];
+    [presparameters setValue:@"" forKey:@"message"];
+    [presparameters setValue:@"0" forKey:@"wysiwyg"];
+    [presparameters setValue:@"2" forKey:@"styleid"];
+    [presparameters setValue:@"1" forKey:@"signature"];
+    [presparameters setValue:@"1" forKey:@"fromquickreply"];
+    [presparameters setValue:@"" forKey:@"s"];
+    [presparameters setValue:token forKey:@"securitytoken"];
+    [presparameters setValue:@"postreply" forKey:@"do"];
+    [presparameters setValue:[NSString stringWithFormat:@"%d",threadId] forKey:@"t"];
+    [presparameters setValue:@"who cares" forKey:@"p"];
+    [presparameters setValue:@"0" forKey:@"specifiedpost"];
+    [presparameters setValue:@"1" forKey:@"parseurl"];
+    LoginUser * user = [self getLoginUser];
+    [presparameters setValue:user.userID forKey:@"loggedinuser"];
+    [presparameters setValue:@"进入高级模式" forKey:@"preview"];
+    
+    [_browser POSTWithURLString:url parameters:presparameters requestCallback:^(BOOL isSuccess, NSString *html) {
+        if (isSuccess) {
+            
+            NSString * token = [parser parseSecurityToken:html];
+            NSString * postHash = [parser parsePostHash:html];
+            NSString * postStartTime = [parser parserPostStartTime:html];
+            
+            if (images == nil || [images count] == 0) {
+                [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:token posthash:postHash poststarttime:postStartTime handler:^(BOOL isSuccess, id result) {
+                    if (isSuccess) {
+                        handler(YES,result);
+                    } else{
+                        handler(NO,@"回复失败");
+                    }
+                }];
+                
+            } else{
+                
+                __block NSString * uploadImageToken = @"";
+                NSString * urlStr = BBS_MANAGE_ATT;
+                NSURL *uploadImageUrl = [NSURL URLWithString:urlStr];
+                // 如果有图片，先传图片
+                [self uploadImagePrepairFormSeniorReply:threadId startPostTime:postStartTime postHash:postHash :^(BOOL isSuccess, id result) {
+                    // 解析出上传图片需要的参数
+                    uploadImageToken = [parser parseSecurityToken:result];
+                    NSString * uploadTime = [[token componentsSeparatedByString:@"-"] firstObject];
+                    NSString * uploadHash = [parser parsePostHash:result];
+                    
+                    __block BOOL uploadSuccess = YES;
+                    int uploadCount = (int)images.count;
+                    for (int i = 0; i < uploadCount && uploadSuccess; i++) {
+                        NSData * image = images[i];
+                        
+                        [NSThread sleepForTimeInterval:2.0f];
+                        [self uploadImageForSeniorReply:uploadImageUrl :uploadImageToken fId:formId threadId:threadId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id uploadResultHtml) {
+                            uploadSuccess = isSuccess;
+                            // 更新token
+                            uploadImageToken = [parser parseSecurityToken:uploadResultHtml];
+                            
+                            NSLog(@" 上传第 %d 张图片", i);
+                            
+                            if (i == images.count -1) {
+                                [NSThread sleepForTimeInterval:2.0f];
+                                [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:uploadImageToken posthash:postHash poststarttime:postStartTime handler:^(BOOL isSuccess, id result) {
+                                    if (isSuccess) {
+                                        handler(YES,result);
+                                    } else{
+                                        handler(NO,@"回复失败");
+                                    }
+                                }];
+                            }
+                        }];
+                    }
+                    
+                    if (!uploadSuccess) {
+                        handler(NO, @"上传图片失败！");
+                    }
+                }];
+            }
+        } else{
+            handler(NO,@"回复失败");
+        }
+    }];
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-(void)refreshVCodeToUIImageView:(UIImageView *)vCodeImageView{
+    NSString * url = BBS_VCODE;
+    
+    AFImageDownloader *downloader = [[vCodeImageView class] sharedImageDownloader];
+    id <AFImageRequestCache> imageCache = downloader.imageCache;
+    [imageCache removeImageWithIdentifier:url];
+    
+    
+    
+    NSURL *URL = [NSURL URLWithString:url];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    UIImageView * view = vCodeImageView;
+    
+    [vCodeImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+        
+        [view setImage:image];
+        
+    } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+        
+        NSLog(@"refreshDoor failed");
+    }];
+}
 
 @end

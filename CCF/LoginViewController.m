@@ -13,7 +13,7 @@
 #import<CommonCrypto/CommonDigest.h>
 #import<Foundation/Foundation.h>
 
-#import "ForumBrowser.h"
+#import "CCFForumBrowser.h"
 #import "AppDelegate.h"
 
 #import "UIStoryboard+CCF.h"
