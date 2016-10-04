@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RoundCornerUITextView.h"
 #import "TransValueDelegate.h"
 #import "SelectPhotoCollectionViewCell.h"
 #import "TransBundleUIViewController.h"
@@ -18,7 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *subject;
 
-@property (weak, nonatomic) IBOutlet RoundCornerUITextView *message;
+@property (weak, nonatomic) IBOutlet UITextView *message;
 
 - (IBAction)createThread:(id)sender;
 
