@@ -23,7 +23,6 @@
 
 #import "TransValueUITableViewCell.h"
 #import "CCFProfileTableViewController.h"
-#import "CCFNavigationController.h"
 #import "UIStoryboard+CCF.h"
 #import "CCFSeniorNewPostViewController.h"
 #import "TransValueBundle.h"

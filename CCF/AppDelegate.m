@@ -19,7 +19,6 @@
 #import <AVOSCloud.h>
 #import <AVOSCloudIM.h>
 #import "CCFForumApi.h"
-#import "CCFNavigationController.h"
 #import "UIStoryboard+CCF.h"
 #import "HPURLProtocol.h"
 #import "AFNetworking.h"
@@ -66,11 +65,8 @@
         
         NSString * versionCode = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
         
-        CCFNavigationController * root = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"CCFWebViewNavigationController"];
-        
-        self.window.rootViewController = root;
-//        ApiTestViewController * testController = [[ApiTestViewController alloc] init];
-//        self.window.rootViewController = testController;
+        ApiTestViewController * testController = [[ApiTestViewController alloc] init];
+        self.window.rootViewController = testController;
         return YES;
     }
     

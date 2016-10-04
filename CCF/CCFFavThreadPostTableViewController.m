@@ -7,7 +7,6 @@
 //
 
 #import "CCFFavThreadPostTableViewController.h"
-#import "CCFNavigationController.h"
 #import "CCFSimpleThreadTableViewCell.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "DRLTabBarController.h"
@@ -140,10 +139,6 @@
 }
 
 - (IBAction)showLeftDrawer:(id)sender {
-//    CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;
-//    [rootController showLeftDrawer];
-//    [self.navigationController popViewControllerAnimated:YES];
-    
     DRLTabBarController * root = (DRLTabBarController *)self.tabBarController;
     [root showLeftDrawer];
 }

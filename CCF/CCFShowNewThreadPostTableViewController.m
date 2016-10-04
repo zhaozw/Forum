@@ -7,7 +7,6 @@
 //
 
 #import "CCFShowNewThreadPostTableViewController.h"
-#import "CCFNavigationController.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 #import "CCFSearchResultCell.h"
@@ -120,9 +119,6 @@
 }
 
 - (IBAction)showLeftDrawer:(id)sender {
-//    CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;
-//    [rootController showLeftDrawer];
-    
     DRLTabBarController * root = (DRLTabBarController *)self.tabBarController;
     [root showLeftDrawer];
 }

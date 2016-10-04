@@ -7,7 +7,6 @@
 //
 
 #import "CCFPrivateMessageTableViewController.h"
-#import "CCFNavigationController.h"
 #import "PrivateMessageTableViewCell.h"
 #import "CCFShowPrivateMessageViewController.h"
 

@@ -7,7 +7,6 @@
 //
 
 #import "CCFMyThreadPostTableViewController.h"
-#import "CCFNavigationController.h"
 
 @interface CCFMyThreadPostTableViewController ()
 

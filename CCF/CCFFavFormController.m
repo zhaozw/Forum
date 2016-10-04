@@ -13,7 +13,6 @@
 
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "CCFThreadListTableViewController.h"
-#import "CCFNavigationController.h"
 #import "CCFForumApi.h"
 #import "DRLTabBarController.h"
 #import "MGSwipeTableCellWithIndexPath.h"
@@ -155,8 +154,6 @@
 
 
 - (IBAction)showLeftDrawer:(id)sender {
-//    CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;
-//    [rootController showLeftDrawer];
     DRLTabBarController * root = (DRLTabBarController *)self.tabBarController;
     [root showLeftDrawer];
 }

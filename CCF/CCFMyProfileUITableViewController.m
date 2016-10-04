@@ -15,7 +15,6 @@
 #import "CCFShowNewThreadPostTableViewController.h"
 #import "CCFFavThreadPostTableViewController.h"
 #import "CCFMyProfileUITableViewController.h"
-#import "CCFNavigationController.h"
 #import "CCFSettingTableViewController.h"
 #import "LoginViewController.h"
 #import "UIStoryboard+CCF.h"

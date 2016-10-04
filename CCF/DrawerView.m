@@ -467,17 +467,6 @@
     [controller presentViewController:myProfileControllder animated:YES completion:^{
         
     }];
-    
-    
-    //    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
-    //        [self closeLeftDrawer];
-    //
-    //        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
-    //        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-    //        CCFMyProfileUITableViewController * myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileUITableViewController"];
-    //        [controller setRootViewController:myProfileControllder];
-    //    }
-    
 }
 // 切换Controller结束
 

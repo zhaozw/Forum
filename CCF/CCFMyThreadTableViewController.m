@@ -7,7 +7,6 @@
 //
 
 #import "CCFMyThreadTableViewController.h"
-#import "CCFNavigationController.h"
 #import "CCFSearchResultCell.h"
 #import "CCFWebViewController.h"
 
