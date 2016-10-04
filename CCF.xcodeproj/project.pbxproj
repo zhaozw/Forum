@@ -66,7 +66,6 @@
 		3AC6606B1CF1833F000D3BDB /* DRLForumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC6604B1CF1833F000D3BDB /* DRLForumTableViewController.m */; };
 		3AC6606C1CF1833F000D3BDB /* CCFMyThreadPostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC6604D1CF1833F000D3BDB /* CCFMyThreadPostTableViewController.m */; };
 		3AC6606D1CF1833F000D3BDB /* CCFMyThreadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC6604F1CF1833F000D3BDB /* CCFMyThreadTableViewController.m */; };
-		3AC6606E1CF1833F000D3BDB /* CCFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660511CF1833F000D3BDB /* CCFNavigationController.m */; };
 		3AC6606F1CF1833F000D3BDB /* CCFShowNewThreadPostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660531CF1833F000D3BDB /* CCFShowNewThreadPostTableViewController.m */; };
 		3AC660701CF1833F000D3BDB /* CCFShowThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660551CF1833F000D3BDB /* CCFShowThreadViewController.m */; };
 		3AC660711CF1833F000D3BDB /* CCFThreadListForChildFormUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660571CF1833F000D3BDB /* CCFThreadListForChildFormUITableViewController.m */; };
@@ -227,8 +226,6 @@
 		3AC6604D1CF1833F000D3BDB /* CCFMyThreadPostTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFMyThreadPostTableViewController.m; sourceTree = "<group>"; };
 		3AC6604E1CF1833F000D3BDB /* CCFMyThreadTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFMyThreadTableViewController.h; sourceTree = "<group>"; };
 		3AC6604F1CF1833F000D3BDB /* CCFMyThreadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFMyThreadTableViewController.m; sourceTree = "<group>"; };
-		3AC660501CF1833F000D3BDB /* CCFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFNavigationController.h; sourceTree = "<group>"; };
-		3AC660511CF1833F000D3BDB /* CCFNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFNavigationController.m; sourceTree = "<group>"; };
 		3AC660521CF1833F000D3BDB /* CCFShowNewThreadPostTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowNewThreadPostTableViewController.h; sourceTree = "<group>"; };
 		3AC660531CF1833F000D3BDB /* CCFShowNewThreadPostTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFShowNewThreadPostTableViewController.m; sourceTree = "<group>"; };
 		3AC660541CF1833F000D3BDB /* CCFShowThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowThreadViewController.h; sourceTree = "<group>"; };
@@ -543,8 +540,6 @@
 				3AD077C41CF73B50006A8FBF /* CCFWebViewController.m */,
 				3AC660461CF1833F000D3BDB /* CCFFavFormController.h */,
 				3AC660471CF1833F000D3BDB /* CCFFavFormController.m */,
-				3AC660501CF1833F000D3BDB /* CCFNavigationController.h */,
-				3AC660511CF1833F000D3BDB /* CCFNavigationController.m */,
 				3AC6605F1CF1833F000D3BDB /* CCFSearchViewController.h */,
 				3AC660601CF1833F000D3BDB /* CCFSearchViewController.m */,
 				3AC660441CF1833F000D3BDB /* CCFApiBaseViewController.h */,
@@ -926,7 +921,6 @@
 				3AC660721CF1833F000D3BDB /* CCFThreadListTableViewController.m in Sources */,
 				3AC660871CF1AF85000D3BDB /* AutoRelayoutUITextView.m in Sources */,
 				4D339D901C31454A0022A6A4 /* main.m in Sources */,
-				3AC6606E1CF1833F000D3BDB /* CCFNavigationController.m in Sources */,
 				4D93CFD71C85355D00852D28 /* ApiTestViewController.m in Sources */,
 				3A690A431C3755C00076C8F1 /* CCFThreadListCell.m in Sources */,
 				3AC660811CF18685000D3BDB /* NSUserDefaults+Setting.m in Sources */,

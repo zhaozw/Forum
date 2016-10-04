@@ -12,7 +12,6 @@
 #define kDefaultDrawerRatio 4/5
 #define kMaxMaskAlpha 0.6f
 
-#import "CCFNavigationController.h"
 #import "UIStoryboard+CCF.h"
 #import "CCFFavFormController.h"
 
@@ -356,105 +355,7 @@
 
 
 // 切换Controller
-- (IBAction)showMyFavForm:(id)sender {
-    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
-        [self closeLeftDrawer];
-        
-        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
-        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        CCFFavFormController * favController = [storyboard instantiateViewControllerWithIdentifier:kCCFFavFormController];
-        [controller setRootViewController:favController];
-    }
-    
-}
 
-- (IBAction)showMessage:(id)sender {
-    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
-        [self closeLeftDrawer];
-        
-        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
-        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        
-        CCFPrivateMessageTableViewController * privateMessageController = [storyboard instantiateViewControllerWithIdentifier:@"CCFPrivateMessageTableViewController"];
-        
-        [controller setRootViewController:privateMessageController];
-    }
-}
-
-- (IBAction)showFavThread:(id)sender {
-    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
-        [self closeLeftDrawer];
-        
-        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
-        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        
-        CCFFavThreadPostTableViewController * favThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFFavThreadPostTableViewController"];
-        
-        [controller setRootViewController:favThreadController];
-    }
-}
-
-- (IBAction)showNewThread:(id)sender {
-    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
-        [self closeLeftDrawer];
-        
-        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
-        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        
-        CCFShowNewThreadPostTableViewController * showNewThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFShowNewThreadPostTableViewController"];
-        
-        [controller setRootViewController:showNewThreadController];
-    }
-}
-
-- (IBAction)showMyPost:(id)sender {
-    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
-        [self closeLeftDrawer];
-        
-        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
-        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        
-        CCFMyThreadPostTableViewController * myThreadPostController = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyThreadPostTableViewController"];
-        
-        [controller setRootViewController:myThreadPostController];
-    }
-}
-
-- (IBAction)showMyThread:(id)sender {
-    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
-        [self closeLeftDrawer];
-        
-        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
-        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        
-        CCFMyThreadTableViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyThreadTableViewController"];
-        
-        [controller setRootViewController:myThreadController];
-    }
-}
-
-- (IBAction)showAllForms:(id)sender {
-    
-    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
-        [self closeLeftDrawer];
-        
-        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
-        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        DRLForumTableViewController * favController = [storyboard instantiateViewControllerWithIdentifier:@"DRLForumTableViewController"];
-        [controller setRootViewController:favController];
-    }
-}
-
-- (IBAction)showTodayNewThreadPost:(LeftDrawerItem *)sender {
-    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
-        [self closeLeftDrawer];
-        
-        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
-        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        CCFShowNewThreadPostTableViewController * todayNewThreadPostController = [storyboard instantiateViewControllerWithIdentifier:@"CCFShowTodayNewThreadPostTableViewController"];
-        [controller setRootViewController:todayNewThreadPostController];
-    }
-}
 
 - (IBAction)showMyProfile:(id)sender {
     
@@ -463,7 +364,7 @@
     
     
     UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-    CCFNavigationController * myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileNavigationController"];
+    UINavigationController * myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileNavigationController"];
     [controller presentViewController:myProfileControllder animated:YES completion:^{
         
     }];

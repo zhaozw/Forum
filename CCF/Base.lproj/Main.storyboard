@@ -968,7 +968,7 @@
         <!--主页-->
         <scene sceneID="Rsw-tr-lOi">
             <objects>
-                <navigationController storyboardIdentifier="CCFNavigationController" id="gbM-NL-yco" customClass="CCFNavigationController" sceneMemberID="viewController">
+                <navigationController id="gbM-NL-yco" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="主页" image="ic_account_balance_18pt" id="ebq-I9-XCO"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Bo8-Gq-c5Y">
@@ -2639,7 +2639,7 @@
         <!--订阅-->
         <scene sceneID="ZFS-Y5-Dum">
             <objects>
-                <navigationController id="9aC-0R-oSh" customClass="CCFNavigationController" sceneMemberID="viewController">
+                <navigationController id="9aC-0R-oSh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="订阅" image="ic_grade_18pt" id="Ar3-r8-w2J"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="FZ5-qQ-yrM">
@@ -2664,7 +2664,7 @@
         <!--Navigation Controller-->
         <scene sceneID="0xk-Jp-cIE">
             <objects>
-                <navigationController id="U4M-wk-P8x" customClass="CCFNavigationController" sceneMemberID="viewController">
+                <navigationController id="U4M-wk-P8x" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="X03-vC-IJU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2688,7 +2688,7 @@
         <!--新帖-->
         <scene sceneID="gv2-2h-9zI">
             <objects>
-                <navigationController id="XUg-aO-kWS" customClass="CCFNavigationController" sceneMemberID="viewController">
+                <navigationController id="XUg-aO-kWS" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="新帖" image="tab_new_post" id="JFA-s8-q1D"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="69U-37-o0Y">
@@ -2713,7 +2713,7 @@
         <!--消息-->
         <scene sceneID="rPf-XE-vr3">
             <objects>
-                <navigationController id="4Za-R5-YNS" customClass="CCFNavigationController" sceneMemberID="viewController">
+                <navigationController id="4Za-R5-YNS" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="消息" image="tab_message" id="w7A-Zi-YrB"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="THs-Dl-D1w">
@@ -2738,7 +2738,7 @@
         <!--Navigation Controller-->
         <scene sceneID="uNZ-8U-HL8">
             <objects>
-                <navigationController storyboardIdentifier="CCFMyProfileNavigationController" id="3Jm-yf-8VW" customClass="CCFNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CCFMyProfileNavigationController" id="3Jm-yf-8VW" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="nFA-Ho-k7Z">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2762,7 +2762,7 @@
         <!--收藏-->
         <scene sceneID="olg-xa-46v">
             <objects>
-                <navigationController id="58x-Lf-wZx" customClass="CCFNavigationController" sceneMemberID="viewController">
+                <navigationController id="58x-Lf-wZx" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="收藏" image="ic_alarm_18pt" id="D4D-HY-RWy"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="fy8-rw-ZOb">

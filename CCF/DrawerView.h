@@ -59,25 +59,8 @@ typedef NS_ENUM(NSInteger, DrawerIndex) {
 -(void)openRightDrawer;
 -(void)closeRightDrawer;
 
-- (IBAction)showMyFavForm:(id)sender;
-- (IBAction)showMessage:(id)sender;
-- (IBAction)showFavThread:(id)sender;
-- (IBAction)showNewThread:(id)sender;
-- (IBAction)showMyPost:(id)sender;
-- (IBAction)showMyThread:(id)sender;
-- (IBAction)showAllForms:(id)sender;
-- (IBAction)showTodayNewThreadPost:(LeftDrawerItem *)sender;
 
 - (IBAction)showMyProfile:(id)sender;
-
-@property (weak, nonatomic) IBOutlet LeftDrawerItem *favForm;
-@property (weak, nonatomic) IBOutlet LeftDrawerItem *allForm;
-@property (weak, nonatomic) IBOutlet LeftDrawerItem *message;
-@property (weak, nonatomic) IBOutlet LeftDrawerItem *favThread;
-@property (weak, nonatomic) IBOutlet LeftDrawerItem *showNewThread;
-@property (weak, nonatomic) IBOutlet LeftDrawerItem *myPost;
-@property (weak, nonatomic) IBOutlet LeftDrawerItem *myThread;
-@property (weak, nonatomic) IBOutlet LeftDrawerItem *todayNewThreadPost;
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarUIImageView;
