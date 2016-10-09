@@ -1720,7 +1720,7 @@
         <!--我的页面-->
         <scene sceneID="YlG-dB-QZF">
             <objects>
-                <tableViewController id="all-h2-fhh" sceneMemberID="viewController">
+                <tableViewController id="all-h2-fhh" customClass="MyProfileTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="wLl-yk-NnW">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -41,6 +41,7 @@
     return NO;
 }
 
+
 -(void)onPullRefresh{
     
     NSString * currentUserId = self.ccfApi.getLoginUser.userID;
@@ -56,20 +57,20 @@
 
 
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 44;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 44;
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return 4;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return 44;
+//}
+//
+//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+//    return 44;
+//}
+//
+//#pragma mark - Table view data source
+//
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//    
+//    return 4;
+//}
 //
 //- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //    
@@ -121,35 +122,35 @@
 //    }
 //}
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (indexPath.row == 0) {
-        
-        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        CCFSettingTableViewController *settingController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSettingTableViewController"];
-        [self.navigationController pushViewController:settingController animated:YES];
-        
-        
-    } else if (indexPath.row == 1){
-        
-        [self.ccfApi logout];
-        
-        
-        LoginViewController * rootController = [[LoginViewController alloc] init];
-        
-        UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
-        [stortboard changeRootViewControllerToController:rootController];
-        
-    } else if (indexPath.row == 2){
-        
-        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        CCFMyThreadTableViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyThreadTableViewController"];
-        [self.navigationController pushViewController:myThreadController animated:YES];
-        
-    }
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
-}
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//    if (indexPath.row == 0) {
+//        
+//        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+//        CCFSettingTableViewController *settingController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSettingTableViewController"];
+//        [self.navigationController pushViewController:settingController animated:YES];
+//        
+//        
+//    } else if (indexPath.row == 1){
+//        
+//        [self.ccfApi logout];
+//        
+//        
+//        LoginViewController * rootController = [[LoginViewController alloc] init];
+//        
+//        UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
+//        [stortboard changeRootViewControllerToController:rootController];
+//        
+//    } else if (indexPath.row == 2){
+//        
+//        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+//        CCFMyThreadTableViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyThreadTableViewController"];
+//        [self.navigationController pushViewController:myThreadController animated:YES];
+//        
+//    }
+//    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+//    
+//}
 
 #pragma mark Controller跳转
 

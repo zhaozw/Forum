@@ -21,6 +21,8 @@
 		3A256FAD1CA62DA900419D67 /* IGHTMLDocument+QueryNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A256FAC1CA62DA900419D67 /* IGHTMLDocument+QueryNode.m */; };
 		3A256FB01CA62FC600419D67 /* IGXMLNode+Children.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A256FAF1CA62FC600419D67 /* IGXMLNode+Children.m */; };
 		3A28267F1CFF30D20095EAE5 /* post_view_notitle.html in Resources */ = {isa = PBXBuildFile; fileRef = 3A28267E1CFF30D20095EAE5 /* post_view_notitle.html */; };
+		3A2CE7CE1DAA3C9000315C09 /* MyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2CE7CD1DAA3C9000315C09 /* MyProfileTableViewController.m */; };
+		3A2CE7D11DAA3DFD00315C09 /* BaseStaticTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2CE7D01DAA3DFD00315C09 /* BaseStaticTableViewController.m */; };
 		3A2FCC7E1C956DB100B469E4 /* PrivateMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FCC7D1C956DB100B469E4 /* PrivateMessageTableViewCell.m */; };
 		3A3672AD1CAF713200756D8B /* TransValueBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3672AC1CAF713200756D8B /* TransValueBundle.m */; };
 		3A3AC5461DA24733000C9CED /* UIView+Corner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3AC5451DA24733000C9CED /* UIView+Corner.m */; };
@@ -133,6 +135,10 @@
 		3A256FAE1CA62FC600419D67 /* IGXMLNode+Children.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IGXMLNode+Children.h"; sourceTree = "<group>"; };
 		3A256FAF1CA62FC600419D67 /* IGXMLNode+Children.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IGXMLNode+Children.m"; sourceTree = "<group>"; };
 		3A28267E1CFF30D20095EAE5 /* post_view_notitle.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = post_view_notitle.html; path = CCF/post_view_notitle.html; sourceTree = "<group>"; };
+		3A2CE7CC1DAA3C9000315C09 /* MyProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileTableViewController.h; sourceTree = "<group>"; };
+		3A2CE7CD1DAA3C9000315C09 /* MyProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileTableViewController.m; sourceTree = "<group>"; };
+		3A2CE7CF1DAA3DFD00315C09 /* BaseStaticTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseStaticTableViewController.h; sourceTree = "<group>"; };
+		3A2CE7D01DAA3DFD00315C09 /* BaseStaticTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseStaticTableViewController.m; sourceTree = "<group>"; };
 		3A2FCC7C1C956DB100B469E4 /* PrivateMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageTableViewCell.h; sourceTree = "<group>"; };
 		3A2FCC7D1C956DB100B469E4 /* PrivateMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageTableViewCell.m; sourceTree = "<group>"; };
 		3A3672AB1CAF713200756D8B /* TransValueBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransValueBundle.h; sourceTree = "<group>"; };
@@ -373,6 +379,8 @@
 				3A1C2CD01C9E9B740068AF6B /* CCFProfileTableViewController.m */,
 				3A92E7F51CA0386C000FD0B2 /* CCFMyProfileUITableViewController.h */,
 				3A92E7F61CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m */,
+				3A2CE7CC1DAA3C9000315C09 /* MyProfileTableViewController.h */,
+				3A2CE7CD1DAA3C9000315C09 /* MyProfileTableViewController.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -525,6 +533,8 @@
 				3AC6604B1CF1833F000D3BDB /* DRLForumTableViewController.m */,
 				3AC660611CF1833F000D3BDB /* CCFSettingTableViewController.h */,
 				3AC660621CF1833F000D3BDB /* CCFSettingTableViewController.m */,
+				3A2CE7CF1DAA3DFD00315C09 /* BaseStaticTableViewController.h */,
+				3A2CE7D01DAA3DFD00315C09 /* BaseStaticTableViewController.m */,
 				3AC660421CF1833F000D3BDB /* CCFApiBaseTableViewController.h */,
 				3AC660431CF1833F000D3BDB /* CCFApiBaseTableViewController.m */,
 				3AC6604E1CF1833F000D3BDB /* CCFMyThreadTableViewController.h */,
@@ -885,10 +895,12 @@
 				3AC660721CF1833F000D3BDB /* CCFThreadListTableViewController.m in Sources */,
 				3AC660871CF1AF85000D3BDB /* AutoRelayoutUITextView.m in Sources */,
 				4D339D901C31454A0022A6A4 /* main.m in Sources */,
+				3A2CE7CE1DAA3C9000315C09 /* MyProfileTableViewController.m in Sources */,
 				4D93CFD71C85355D00852D28 /* ApiTestViewController.m in Sources */,
 				3A690A431C3755C00076C8F1 /* CCFThreadListCell.m in Sources */,
 				3AC660811CF18685000D3BDB /* NSUserDefaults+Setting.m in Sources */,
 				3AC660681CF1833F000D3BDB /* CCFApiBaseViewController.m in Sources */,
+				3A2CE7D11DAA3DFD00315C09 /* BaseStaticTableViewController.m in Sources */,
 				3A3672AD1CAF713200756D8B /* TransValueBundle.m in Sources */,
 				3AC660071CF17D86000D3BDB /* CCFForumApi.m in Sources */,
 				3AC6606B1CF1833F000D3BDB /* DRLForumTableViewController.m in Sources */,
