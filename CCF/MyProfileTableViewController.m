@@ -11,6 +11,8 @@
 #import "ForumConfig.h"
 #import "ForumCoreDataManager.h"
 #import "UserEntry+CoreDataProperties.h"
+#import "LoginViewController.h"
+#import "UIStoryboard+CCF.h"
 
 
 @interface MyProfileTableViewController (){
@@ -149,6 +151,23 @@
             [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatarImage];
         }
     }
+    
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section == 3 && indexPath.row == 1){
+        
+        [self.ccfApi logout];
+        
+        
+        LoginViewController * rootController = [[LoginViewController alloc] init];
+        
+        UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
+        [stortboard changeRootViewControllerToController:rootController];
+        
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
 }
 

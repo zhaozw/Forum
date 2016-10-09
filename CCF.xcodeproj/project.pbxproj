@@ -37,7 +37,6 @@
 		3A734BF61CCCCDAE00C4821A /* TransBundleUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A734BF51CCCCDAE00C4821A /* TransBundleUIViewController.m */; };
 		3A734BFB1CCCD72400C4821A /* CCFWritePMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A734BFA1CCCD72400C4821A /* CCFWritePMNavigationController.m */; };
 		3A842CA11C469AC1002944A9 /* CCFNewThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A842CA01C469AC1002944A9 /* CCFNewThreadViewController.m */; };
-		3A92E7F71CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A92E7F61CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m */; };
 		3A93298D1C39648900A26249 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A93298C1C39648900A26249 /* CoreText.framework */; };
 		3A9ADC6C1C9D8F2C006055A8 /* BaseCCFTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ADC6B1C9D8F2C006055A8 /* BaseCCFTableViewCell.m */; };
 		3AA5B99A1CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA5B9991CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m */; };
@@ -168,8 +167,6 @@
 		3A734BFA1CCCD72400C4821A /* CCFWritePMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFWritePMNavigationController.m; sourceTree = "<group>"; };
 		3A842C9F1C469AC1002944A9 /* CCFNewThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFNewThreadViewController.h; sourceTree = "<group>"; };
 		3A842CA01C469AC1002944A9 /* CCFNewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFNewThreadViewController.m; sourceTree = "<group>"; };
-		3A92E7F51CA0386C000FD0B2 /* CCFMyProfileUITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFMyProfileUITableViewController.h; sourceTree = "<group>"; };
-		3A92E7F61CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFMyProfileUITableViewController.m; sourceTree = "<group>"; };
 		3A93298C1C39648900A26249 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		3A9ADC6A1C9D8F2C006055A8 /* BaseCCFTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCCFTableViewCell.h; sourceTree = "<group>"; };
 		3A9ADC6B1C9D8F2C006055A8 /* BaseCCFTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCCFTableViewCell.m; sourceTree = "<group>"; };
@@ -377,8 +374,6 @@
 			children = (
 				3A1C2CCF1C9E9B740068AF6B /* CCFProfileTableViewController.h */,
 				3A1C2CD01C9E9B740068AF6B /* CCFProfileTableViewController.m */,
-				3A92E7F51CA0386C000FD0B2 /* CCFMyProfileUITableViewController.h */,
-				3A92E7F61CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m */,
 				3A2CE7CC1DAA3C9000315C09 /* MyProfileTableViewController.h */,
 				3A2CE7CD1DAA3C9000315C09 /* MyProfileTableViewController.m */,
 			);
@@ -904,7 +899,6 @@
 				3A3672AD1CAF713200756D8B /* TransValueBundle.m in Sources */,
 				3AC660071CF17D86000D3BDB /* CCFForumApi.m in Sources */,
 				3AC6606B1CF1833F000D3BDB /* DRLForumTableViewController.m in Sources */,
-				3A92E7F71CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
