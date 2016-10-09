@@ -132,7 +132,6 @@
 		3A1CF8731C54F8AB002E52EE /* UIImage+Tint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tint.m"; sourceTree = "<group>"; };
 		3A1CF8741C54F8AB002E52EE /* UIColor+MyColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MyColor.h"; sourceTree = "<group>"; };
 		3A1CF8751C54F8AB002E52EE /* UIColor+MyColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MyColor.m"; sourceTree = "<group>"; };
-		3A1CF8791C54F8CD002E52EE /* Constances.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constances.h; sourceTree = "<group>"; };
 		3A256F9F1CA57F4000419D67 /* CCFShowPrivateMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowPrivateMessageViewController.h; sourceTree = "<group>"; };
 		3A256FA01CA57F4000419D67 /* CCFShowPrivateMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFShowPrivateMessageViewController.m; sourceTree = "<group>"; };
 		3A256FA51CA5995E00419D67 /* CCFShowPMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowPMTableViewCell.h; sourceTree = "<group>"; };
@@ -636,6 +635,7 @@
 				4D796B5E1C3BC17800B3C62D /* DrawerView.h */,
 				4D796B5F1C3BC17800B3C62D /* DrawerView.m */,
 				4D796B671C3BDCA800B3C62D /* DrawerView.xib */,
+				4D796B601C3BC17800B3C62D /* DrawerViewDelegate.h */,
 				3A1CF8701C54F8AB002E52EE /* CommonUtils.h */,
 				3A1CF8711C54F8AB002E52EE /* CommonUtils.m */,
 				3A1CF86D1C54F88C002E52EE /* LeftDrawerItem.h */,
@@ -646,8 +646,6 @@
 				3A734BE31CCCB2E600C4821A /* UIAutoResizeTextView.m */,
 				3AC660851CF1AF85000D3BDB /* AutoRelayoutUITextView.h */,
 				3AC660861CF1AF85000D3BDB /* AutoRelayoutUITextView.m */,
-				3A1CF8791C54F8CD002E52EE /* Constances.h */,
-				4D796B601C3BC17800B3C62D /* DrawerViewDelegate.h */,
 			);
 			name = "Public Views";
 			path = CCF;
