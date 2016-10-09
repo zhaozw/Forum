@@ -16,7 +16,7 @@
 @implementation CCFSimpleReplyNavigationController
 
 
--(void)transValue:(CCFShowThreadViewController *)controller withBundle:(TransValueBundle *)transBundle{
+-(void)transValue:(UIViewController *)controller withBundle:(TransValueBundle *)transBundle{
     self.controller = controller;
     self.bundle = transBundle;
 }

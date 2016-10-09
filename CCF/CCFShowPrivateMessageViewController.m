@@ -8,8 +8,6 @@
 
 #import "CCFShowPrivateMessageViewController.h"
 
-#import "CCFThreadDetailCell.h"
-
 #import "MJRefresh.h"
 #import "AutoRelayoutUITextView.h"
 

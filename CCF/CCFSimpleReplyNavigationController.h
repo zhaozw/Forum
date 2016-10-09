@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
-#import "CCFShowThreadViewController.h"
 #import "TransValueBundle.h"
 
 @interface CCFSimpleReplyNavigationController : UINavigationController
 
 @property (nonatomic, strong) TransValueBundle *bundle;
-@property (nonatomic, strong) CCFShowThreadViewController * controller;
+@property (nonatomic, strong) UIViewController * controller;
 
 @end
