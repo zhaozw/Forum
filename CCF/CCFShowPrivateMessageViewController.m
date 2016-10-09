@@ -18,8 +18,6 @@
 
 #import <UITableView+FDTemplateLayoutCell.h>
 
-#import "CCFShowPMTableViewCell.h"
-
 #import "CCFProfileTableViewController.h"
 
 #import <MJRefresh.h>

@@ -18,7 +18,6 @@
 		3A1CF8771C54F8AB002E52EE /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CF8731C54F8AB002E52EE /* UIImage+Tint.m */; };
 		3A1CF8781C54F8AB002E52EE /* UIColor+MyColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CF8751C54F8AB002E52EE /* UIColor+MyColor.m */; };
 		3A256FA11CA57F4000419D67 /* CCFShowPrivateMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A256FA01CA57F4000419D67 /* CCFShowPrivateMessageViewController.m */; };
-		3A256FA71CA5995E00419D67 /* CCFShowPMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A256FA61CA5995E00419D67 /* CCFShowPMTableViewCell.m */; };
 		3A256FAD1CA62DA900419D67 /* IGHTMLDocument+QueryNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A256FAC1CA62DA900419D67 /* IGHTMLDocument+QueryNode.m */; };
 		3A256FB01CA62FC600419D67 /* IGXMLNode+Children.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A256FAF1CA62FC600419D67 /* IGXMLNode+Children.m */; };
 		3A28267F1CFF30D20095EAE5 /* post_view_notitle.html in Resources */ = {isa = PBXBuildFile; fileRef = 3A28267E1CFF30D20095EAE5 /* post_view_notitle.html */; };
@@ -134,8 +133,6 @@
 		3A1CF8751C54F8AB002E52EE /* UIColor+MyColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MyColor.m"; sourceTree = "<group>"; };
 		3A256F9F1CA57F4000419D67 /* CCFShowPrivateMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowPrivateMessageViewController.h; sourceTree = "<group>"; };
 		3A256FA01CA57F4000419D67 /* CCFShowPrivateMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFShowPrivateMessageViewController.m; sourceTree = "<group>"; };
-		3A256FA51CA5995E00419D67 /* CCFShowPMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowPMTableViewCell.h; sourceTree = "<group>"; };
-		3A256FA61CA5995E00419D67 /* CCFShowPMTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFShowPMTableViewCell.m; sourceTree = "<group>"; };
 		3A256FAB1CA62DA900419D67 /* IGHTMLDocument+QueryNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IGHTMLDocument+QueryNode.h"; sourceTree = "<group>"; };
 		3A256FAC1CA62DA900419D67 /* IGHTMLDocument+QueryNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IGHTMLDocument+QueryNode.m"; sourceTree = "<group>"; };
 		3A256FAE1CA62FC600419D67 /* IGXMLNode+Children.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IGXMLNode+Children.h"; sourceTree = "<group>"; };
@@ -340,8 +337,6 @@
 				3A9ADC6B1C9D8F2C006055A8 /* BaseCCFTableViewCell.m */,
 				3A1C2CD51C9EB2C10068AF6B /* CCFProfileTableViewCell.h */,
 				3A1C2CD61C9EB2C10068AF6B /* CCFProfileTableViewCell.m */,
-				3A256FA51CA5995E00419D67 /* CCFShowPMTableViewCell.h */,
-				3A256FA61CA5995E00419D67 /* CCFShowPMTableViewCell.m */,
 				3ABAFE3F1CAAD12300803085 /* TransValueUITableViewCell.h */,
 				3ABAFE401CAAD12300803085 /* TransValueUITableViewCell.m */,
 				3A2FCC7C1C956DB100B469E4 /* PrivateMessageTableViewCell.h */,
@@ -914,7 +909,6 @@
 				3A1C2CD71C9EB2C10068AF6B /* CCFProfileTableViewCell.m in Sources */,
 				3AA935E41CF1BCB2009FC4A6 /* FormEntry.m in Sources */,
 				3A734BF31CCCCD8700C4821A /* TransBundleUITableViewController.m in Sources */,
-				3A256FA71CA5995E00419D67 /* CCFShowPMTableViewCell.m in Sources */,
 				3A1CF8771C54F8AB002E52EE /* UIImage+Tint.m in Sources */,
 				3AC660721CF1833F000D3BDB /* CCFThreadListTableViewController.m in Sources */,
 				3AC660871CF1AF85000D3BDB /* AutoRelayoutUITextView.m in Sources */,
