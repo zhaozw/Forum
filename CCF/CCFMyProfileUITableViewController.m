@@ -57,100 +57,100 @@
 
 
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    return 44;
-//}
-//
-//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-//    return 44;
-//}
-//
-//#pragma mark - Table view data source
-//
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    
-//    return 4;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    
-//    if (section == 0) {
-//        return userProfile == nil ? 0 : 1;;
-//    } else if (section == 1){
-//        return 3;
-//    } else{
-//        return 3;
-//    }
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    if (indexPath.section == 0) {
-//        static NSString *QuoteCellIdentifier = @"CCFProfileTableViewCell";
-//        CCFProfileTableViewCell *cell = (CCFProfileTableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
-//        
-//        [cell setData:userProfile];
-//        
-//        return cell;
-//    } else if (indexPath.section == 1){
-//        static NSString *QuoteCellIdentifier = @"CCFProfileActionCell";
-//        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
-//        
-//        if (indexPath.row == 0) {
-//            cell.textLabel.text = @"设置";
-//        } else if (indexPath.row == 1){
-//            cell.textLabel.text = @"注销";
-//        } else if (indexPath.row == 2){
-//            cell.textLabel.text = @"我发表的主题";
-//        }
-//        return cell;
-//        
-//    } else{
-//        static NSString *QuoteCellIdentifier = @"CCFProfileShowCell";
-//        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
-//        if (indexPath.row == 0) {
-//            cell.textLabel.text = @"注册日期";
-//            cell.detailTextLabel.text = userProfile.profileRegisterDate;
-//        } else if (indexPath.row == 1){
-//            cell.textLabel.text = @"最近活动时间";
-//            cell.detailTextLabel.text = userProfile.profileRecentLoginDate;
-//        } else if (indexPath.row == 2){
-//            cell.textLabel.text = @"帖子总数";
-//            cell.detailTextLabel.text = userProfile.profileTotalPostCount;
-//        }
-//        return cell;
-//    }
-//}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 44;
+}
 
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    
-//    if (indexPath.row == 0) {
-//        
-//        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-//        CCFSettingTableViewController *settingController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSettingTableViewController"];
-//        [self.navigationController pushViewController:settingController animated:YES];
-//        
-//        
-//    } else if (indexPath.row == 1){
-//        
-//        [self.ccfApi logout];
-//        
-//        
-//        LoginViewController * rootController = [[LoginViewController alloc] init];
-//        
-//        UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
-//        [stortboard changeRootViewControllerToController:rootController];
-//        
-//    } else if (indexPath.row == 2){
-//        
-//        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-//        CCFMyThreadTableViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyThreadTableViewController"];
-//        [self.navigationController pushViewController:myThreadController animated:YES];
-//        
-//    }
-//    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-//    
-//}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 44;
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    return 4;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if (section == 0) {
+        return userProfile == nil ? 0 : 1;;
+    } else if (section == 1){
+        return 3;
+    } else{
+        return 3;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0) {
+        static NSString *QuoteCellIdentifier = @"CCFProfileTableViewCell";
+        CCFProfileTableViewCell *cell = (CCFProfileTableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
+        
+        [cell setData:userProfile];
+        
+        return cell;
+    } else if (indexPath.section == 1){
+        static NSString *QuoteCellIdentifier = @"CCFProfileActionCell";
+        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
+        
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"设置";
+        } else if (indexPath.row == 1){
+            cell.textLabel.text = @"注销";
+        } else if (indexPath.row == 2){
+            cell.textLabel.text = @"我发表的主题";
+        }
+        return cell;
+        
+    } else{
+        static NSString *QuoteCellIdentifier = @"CCFProfileShowCell";
+        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"注册日期";
+            cell.detailTextLabel.text = userProfile.profileRegisterDate;
+        } else if (indexPath.row == 1){
+            cell.textLabel.text = @"最近活动时间";
+            cell.detailTextLabel.text = userProfile.profileRecentLoginDate;
+        } else if (indexPath.row == 2){
+            cell.textLabel.text = @"帖子总数";
+            cell.detailTextLabel.text = userProfile.profileTotalPostCount;
+        }
+        return cell;
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == 0) {
+        
+        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+        CCFSettingTableViewController *settingController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSettingTableViewController"];
+        [self.navigationController pushViewController:settingController animated:YES];
+        
+        
+    } else if (indexPath.row == 1){
+        
+        [self.ccfApi logout];
+        
+        
+        LoginViewController * rootController = [[LoginViewController alloc] init];
+        
+        UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
+        [stortboard changeRootViewControllerToController:rootController];
+        
+    } else if (indexPath.row == 2){
+        
+        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+        CCFMyThreadTableViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyThreadTableViewController"];
+        [self.navigationController pushViewController:myThreadController animated:YES];
+        
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+}
 
 #pragma mark Controller跳转
 

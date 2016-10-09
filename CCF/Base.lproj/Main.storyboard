@@ -1825,7 +1825,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gDA-ar-y1D">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gDA-ar-y1D">
                                                     <frame key="frameInset" minX="316" minY="11" width="44" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1933,6 +1933,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="我的页面" id="3WX-X4-Rtb"/>
+                    <connections>
+                        <outlet property="lastLoginTime" destination="EiT-0V-suF" id="RYE-mI-IeX"/>
+                        <outlet property="postCount" destination="tHd-ny-m5N" id="g9E-gU-4tK"/>
+                        <outlet property="prifileAvatar" destination="tBc-1n-g0a" id="aND-dU-NgF"/>
+                        <outlet property="profileName" destination="H9c-TD-LrS" id="PMX-zW-DgA"/>
+                        <outlet property="profileRank" destination="4lo-zw-w3r" id="S0D-Rh-WP4"/>
+                        <outlet property="registerDate" destination="gDA-ar-y1D" id="Z8p-G8-pep"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FXN-m4-gdm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
