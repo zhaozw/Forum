@@ -12,7 +12,7 @@
 #import "DRLTabBarController.h"
 #import "CCFWebViewController.h"
 #import "CCFProfileTableViewController.h"
-
+#import "UIStoryboard+CCF.h"
 
 @interface CCFFavThreadPostTableViewController ()<MGSwipeTableCellDelegate, CCFThreadListCellDelegate>{
     UIStoryboardSegue * selectSegue;
@@ -139,7 +139,13 @@
 }
 
 - (IBAction)showLeftDrawer:(id)sender {
-    DRLTabBarController * root = (DRLTabBarController *)self.tabBarController;
-    [root showLeftDrawer];
+    DRLTabBarController * controller = (DRLTabBarController *)self.tabBarController;
+    
+    
+    UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+    UINavigationController * myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileNavigationController"];
+    [controller presentViewController:myProfileControllder animated:YES completion:^{
+        
+    }];
 }
 @end

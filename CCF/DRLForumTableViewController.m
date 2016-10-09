@@ -14,6 +14,8 @@
 #import "MGSwipeTableCell.h"
 #import "MGSwipeTableCellWithIndexPath.h"
 #import "DRLTabBarController.h"
+#import "UIStoryboard+CCF.h"
+
 
 @interface DRLForumTableViewController ()<MGSwipeTableCellDelegate>
 
@@ -122,7 +124,13 @@
 }
 
 - (IBAction)showLeftDrawer:(id)sender {
-    DRLTabBarController * root = (DRLTabBarController *)self.tabBarController;
-    [root showLeftDrawer];
+    DRLTabBarController * controller = (DRLTabBarController *)self.tabBarController;
+    
+    
+    UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+    UINavigationController * myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileNavigationController"];
+    [controller presentViewController:myProfileControllder animated:YES completion:^{
+        
+    }];
 }
 @end

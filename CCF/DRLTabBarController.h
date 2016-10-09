@@ -10,6 +10,5 @@
 
 @interface DRLTabBarController : UITabBarController
 
--(void) showLeftDrawer;
 
 @end

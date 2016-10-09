@@ -10,7 +10,7 @@
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 #import "CCFSearchResultCell.h"
-
+#import "UIStoryboard+CCF.h"
 #import "CCFProfileTableViewController.h"
 #import "DRLTabBarController.h"
 #import "CCFWebViewController.h"
@@ -119,7 +119,14 @@
 }
 
 - (IBAction)showLeftDrawer:(id)sender {
-    DRLTabBarController * root = (DRLTabBarController *)self.tabBarController;
-    [root showLeftDrawer];
+    
+    DRLTabBarController * controller = (DRLTabBarController *)self.tabBarController;
+    
+    
+    UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+    UINavigationController * myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileNavigationController"];
+    [controller presentViewController:myProfileControllder animated:YES completion:^{
+        
+    }];
 }
 @end

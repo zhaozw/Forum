@@ -94,8 +94,6 @@
 		4D339DA11C31454B0022A6A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D339D9F1C31454B0022A6A4 /* LaunchScreen.storyboard */; };
 		4D60F3301CC89D01007FFD5A /* CCFNSAttributedStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60F32F1CC89D01007FFD5A /* CCFNSAttributedStringBuilder.m */; };
 		4D6B11CB1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6B11CA1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m */; };
-		4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796B5F1C3BC17800B3C62D /* DrawerView.m */; };
-		4D796B681C3BDCA800B3C62D /* DrawerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D796B671C3BDCA800B3C62D /* DrawerView.xib */; };
 		4D796BDB1C43666C00B3C62D /* CCFSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BDA1C43666C00B3C62D /* CCFSearchResultCell.m */; };
 		4D796BEA1C44992700B3C62D /* UIStoryboard+CCF.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BE91C44992700B3C62D /* UIStoryboard+CCF.m */; };
 		4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF91C44BE7800B3C62D /* CoreDataManager.m */; };
@@ -275,10 +273,6 @@
 		4D60F32F1CC89D01007FFD5A /* CCFNSAttributedStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFNSAttributedStringBuilder.m; sourceTree = "<group>"; };
 		4D6B11C91C9A582100E073A1 /* CCFSimpleThreadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSimpleThreadTableViewCell.h; sourceTree = "<group>"; };
 		4D6B11CA1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSimpleThreadTableViewCell.m; sourceTree = "<group>"; };
-		4D796B5E1C3BC17800B3C62D /* DrawerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerView.h; sourceTree = "<group>"; };
-		4D796B5F1C3BC17800B3C62D /* DrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerView.m; sourceTree = "<group>"; };
-		4D796B601C3BC17800B3C62D /* DrawerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewDelegate.h; sourceTree = "<group>"; };
-		4D796B671C3BDCA800B3C62D /* DrawerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawerView.xib; sourceTree = "<group>"; };
 		4D796BD91C43666C00B3C62D /* CCFSearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSearchResultCell.h; sourceTree = "<group>"; };
 		4D796BDA1C43666C00B3C62D /* CCFSearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSearchResultCell.m; sourceTree = "<group>"; };
 		4D796BE81C44992700B3C62D /* UIStoryboard+CCF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+CCF.h"; sourceTree = "<group>"; };
@@ -614,10 +608,6 @@
 		4D796B5D1C3BC15D00B3C62D /* Public Views */ = {
 			isa = PBXGroup;
 			children = (
-				4D796B5E1C3BC17800B3C62D /* DrawerView.h */,
-				4D796B5F1C3BC17800B3C62D /* DrawerView.m */,
-				4D796B671C3BDCA800B3C62D /* DrawerView.xib */,
-				4D796B601C3BC17800B3C62D /* DrawerViewDelegate.h */,
 				3A1CF8701C54F8AB002E52EE /* CommonUtils.h */,
 				3A1CF8711C54F8AB002E52EE /* CommonUtils.m */,
 				3A1CF86D1C54F88C002E52EE /* LeftDrawerItem.h */,
@@ -757,7 +747,6 @@
 				3AA935ED1CF1DFE9009FC4A6 /* ForumListHeaderView.xib in Resources */,
 				3A0B3A001D0962D40060F8A4 /* private_message.html in Resources */,
 				3A28267F1CFF30D20095EAE5 /* post_view_notitle.html in Resources */,
-				4D796B681C3BDCA800B3C62D /* DrawerView.xib in Resources */,
 				4D93CFD81C85355D00852D28 /* ApiTestViewController.xib in Resources */,
 				3AA935E91CF1C19A009FC4A6 /* LoginViewController.xib in Resources */,
 				3A671EE61CB9E0E1001CC91E /* PageHeaderView.xib in Resources */,
@@ -851,7 +840,6 @@
 				4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */,
 				4DAFF55A1C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m in Sources */,
 				3AC660691CF1833F000D3BDB /* CCFFavFormController.m in Sources */,
-				4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */,
 				3AC6606F1CF1833F000D3BDB /* CCFShowNewThreadPostTableViewController.m in Sources */,
 				3A256FB01CA62FC600419D67 /* IGXMLNode+Children.m in Sources */,
 				3AC65FDA1CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.m in Sources */,

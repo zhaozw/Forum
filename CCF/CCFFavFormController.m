@@ -10,7 +10,7 @@
 #import "CCFForumParser.h"
 #import "ForumCoreDataManager.h"
 #import "NSUserDefaults+Extensions.h"
-
+#import "UIStoryboard+CCF.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "CCFThreadListTableViewController.h"
 #import "CCFForumApi.h"
@@ -154,7 +154,13 @@
 
 
 - (IBAction)showLeftDrawer:(id)sender {
-    DRLTabBarController * root = (DRLTabBarController *)self.tabBarController;
-    [root showLeftDrawer];
+    DRLTabBarController * controller = (DRLTabBarController *)self.tabBarController;
+    
+    
+    UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+    UINavigationController * myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileNavigationController"];
+    [controller presentViewController:myProfileControllder animated:YES completion:^{
+        
+    }];
 }
 @end

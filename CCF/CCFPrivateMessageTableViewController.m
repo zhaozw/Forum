@@ -155,8 +155,14 @@
 
 
 - (IBAction)showLeftDrawer:(id)sender {
-    DRLTabBarController * root = (DRLTabBarController *)self.tabBarController;
-    [root showLeftDrawer];
+    DRLTabBarController * controller = (DRLTabBarController *)self.tabBarController;
+    
+    
+    UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+    UINavigationController * myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileNavigationController"];
+    [controller presentViewController:myProfileControllder animated:YES completion:^{
+        
+    }];
 }
 - (IBAction)writePrivateMessage:(UIBarButtonItem *)sender {
     UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
