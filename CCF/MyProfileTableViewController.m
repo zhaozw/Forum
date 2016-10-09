@@ -31,19 +31,19 @@
 
 -(instancetype)init{
     if (self = [super init]) {
-        [self initData];
+        [self initProfileData];
     }
     return self;
 }
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder{
     if (self = [super initWithCoder:aDecoder]) {
-        [self initData];
+        [self initProfileData];
     }
     return self;
 }
 
--(void) initData{
+-(void) initProfileData{
     
     defaultAvatarImage = [UIImage imageNamed:@"logo.jpg"];
     
@@ -84,6 +84,12 @@
         [self.tableView.mj_header endRefreshing];
         
         [self showAvatar:_prifileAvatar userId:userProfile.profileUserId];
+        _profileName.text = userProfile.profileName;
+        _profileRank.text = userProfile.profileRank;
+        
+        _registerDate.text = userProfile.profileRegisterDate;
+        _lastLoginTime.text = userProfile.profileRecentLoginDate;
+        _postCount.text = userProfile.profileTotalPostCount;
     }];
 }
 
