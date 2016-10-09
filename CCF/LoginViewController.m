@@ -148,6 +148,9 @@
                 if (isSuccess) {
                     NSMutableArray<Forum *> *needInsert = message;
                     ForumCoreDataManager * formManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
+                    // 需要先删除之前的老数据
+                    [formManager deleteData];
+                    
                     [formManager insertData:needInsert operation:^(NSManagedObject *target, id src) {
                         FormEntry *newsInfo = (FormEntry*)target;
                         newsInfo.formId = [src valueForKey:@"formId"];
