@@ -697,7 +697,9 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
     
     if (listMyThreadSearchId == nil) {
         
-        [_browser GETWithURLString:BBS_FIND_USER_WITH_NAME(user.userName) requestCallback:^(BOOL isSuccess, NSString *html) {
+        NSString * encodeName = [user.userName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        [_browser GETWithURLString:BBS_FIND_USER_WITH_NAME(encodeName) requestCallback:^(BOOL isSuccess, NSString *html) {
             
             if (listMyThreadSearchId == nil) {
                 listMyThreadSearchId = [parser parseListMyThreadSearchid:html];
