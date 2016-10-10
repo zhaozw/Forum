@@ -22,6 +22,9 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 // 登录论坛
 -(void) loginWithName:(NSString*)name andPassWord:(NSString*) passWord handler:(HandlerWithBool) handler;
 
+// 刷新验证码
+-(void) refreshVCodeToUIImageView:(UIImageView* ) vCodeImageView;
+
 // 获取当前登录的账户信息
 -(LoginUser *) getLoginUser;
 
@@ -68,7 +71,6 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 // 取消收藏一个主题帖子
 -(void)unfavoriteThreadPostWithId:(NSString *)threadPostId handler:(HandlerWithBool)handler;
 
-//------------------------------读取API-----------------------------------------//
 // 读取论坛站内私信List   type 0 表示收件箱   -1表示发件箱
 -(void) listPrivateMessageWithType:(int) type andPage:(int)page handler:(HandlerWithBool) handler;
 
@@ -107,5 +109,5 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 // 显示用户信息页面
 -(void) showProfileWithUserId:(NSString*)userId handler:(HandlerWithBool) handler;
 
--(void)refreshVCodeToUIImageView:(UIImageView* ) vCodeImageView;
+
 @end
