@@ -38,9 +38,7 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
     NSMutableDictionary * listUserThreadRedirectUrlDictionary;
     
     NSString *todayNewThreadPostSearchId;
-    
-    NSString *newThreadPostSearchId;
-    
+
     NSString * iPhoneName;
     
     CCFForumParser * parser;
@@ -760,15 +758,27 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 }
 
 -(void)listNewThreadPostsWithPage:(int)page handler:(HandlerWithBool)handler{
-    if (newThreadPostSearchId == nil) {
+    NSUserDefaults * userDefault = [NSUserDefaults standardUserDefaults];
+    
+    NSDate * date = [NSDate date];
+    NSInteger timeStamp = [date timeIntervalSince1970];
+    
+    NSInteger searchId = [userDefault integerForKey:@"search_id"];
+    NSInteger lastTimeStamp = [userDefault integerForKey:@"search_time"];
+    
+    long spaceTime = timeStamp - lastTimeStamp;
+    if (page == 1 && (searchId == 0 || spaceTime > 60 * 10)) {
         [_browser GETWithURLString:BBS_GET_NEW requestCallback:^(BOOL isSuccess, NSString *html) {
             if (isSuccess) {
-                newThreadPostSearchId = [parser parseListMyThreadSearchid:html];
+                NSUInteger newThreadPostSearchId = [[parser parseListMyThreadSearchid:html] integerValue];
+                [userDefault setInteger:timeStamp forKey:@"search_time"];
+                [userDefault setInteger:newThreadPostSearchId forKey:@"search_id"];
             }
             handler(isSuccess, html);
         }];
     } else{
-        NSString * url = BBS_SEARCH_WITH_SEARCHID(newThreadPostSearchId, page);
+        NSString * searchIdStr = [NSString stringWithFormat:@"%ld", searchId];
+        NSString * url = BBS_SEARCH_WITH_SEARCHID(searchIdStr, page);
         [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
             handler(isSuccess, html);
         }];
