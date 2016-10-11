@@ -15,10 +15,10 @@ pod 'ActionSheetPicker-3.0'
 pod 'FDFullscreenPopGesture', '1.1'
 pod 'SDWebImage', '~>3.7.5'
 
-pod 'MGSwipeTableCell'
+pod 'MGSwipeTableCell', '~>1.5.6'
 
-pod 'AVOSCloud'
+pod 'AVOSCloud', '~>3.5.0'
 
-pod 'AVOSCloudIM'
+pod 'AVOSCloudIM', '~>3.5.0'
 
 pod 'NYTPhotoViewer', :git => "https://github.com/andforce/NYTPhotoViewer.git", :commit => "659d4ac"
