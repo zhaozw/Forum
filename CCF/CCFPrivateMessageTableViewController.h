@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFApiBaseTableViewController.h"
+#import "ForumApiBaseTableViewController.h"
 
 
-@interface CCFPrivateMessageTableViewController : CCFApiBaseTableViewController
+@interface CCFPrivateMessageTableViewController : ForumApiBaseTableViewController
 
 - (IBAction)showLeftDrawer:(id)sender;
 

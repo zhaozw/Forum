@@ -1,32 +1,23 @@
 //
-//  CCFUserThreadTableViewController.m
+//  ForumMyThreadTableViewController.m
 //  CCF
 //
-//  Created by 迪远 王 on 16/3/29.
+//  Created by 迪远 王 on 16/3/6.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFUserThreadTableViewController.h"
+#import "ForumMyThreadTableViewController.h"
 #import "CCFSearchResultCell.h"
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
-#import "CCFWebViewController.h"
+#import "ForumWebViewController.h"
 
-
-@interface CCFUserThreadTableViewController () <TransValueDelegate> {
-    UserProfile *userProfile;
-}
+@interface ForumMyThreadTableViewController ()
 
 @end
 
-@implementation CCFUserThreadTableViewController
-
-- (void)transValue:(id)value {
-    userProfile = value;
-}
+@implementation ForumMyThreadTableViewController
 
 - (void)onPullRefresh {
-    int userId = [userProfile.profileUserId intValue];
-    [self.ccfApi listAllUserThreads:userId withPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *message) {
+    [self.ccfApi listMyAllThreadsWithPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *message) {
         [self.tableView.mj_header endRefreshing];
 
         if (isSuccess) {
@@ -39,12 +30,12 @@
             [self.tableView reloadData];
 
         }
+
     }];
 }
 
 - (void)onLoadMore {
-    int userId = [userProfile.profileUserId intValue];
-    [self.ccfApi listAllUserThreads:userId withPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage *message) {
+    [self.ccfApi listMyAllThreadsWithPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage *message) {
         [self.tableView.mj_footer endRefreshing];
 
         if (isSuccess) {
@@ -75,22 +66,6 @@
     }];
 }
 
-#pragma mark Controller跳转
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
-    if ([segue.identifier isEqualToString:@"ShowThreadPosts"]) {
-
-        CCFWebViewController *controller = segue.destinationViewController;
-        self.transValueDelegate = (id <TransValueDelegate>) controller;
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        ThreadInSearch *thread = self.dataList[indexPath.row];
-        TransValueBundle *transBundle = [[TransValueBundle alloc] init];
-        [transBundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
-        [transBundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
-        [self.transValueDelegate transValue:transBundle];
-    }
-}
 
 - (void)configureCell:(CCFSearchResultCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
@@ -98,7 +73,24 @@
     [cell setData:self.dataList[indexPath.row]];
 }
 
-- (IBAction)back:(id)sender {
+#pragma mark Controller跳转
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    if ([segue.identifier isEqualToString:@"ShowThreadPosts"]) {
+        ForumWebViewController *controller = segue.destinationViewController;
+        self.transValueDelegate = (id <TransValueDelegate>) controller;
+
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+
+        ThreadInSearch *thread = self.dataList[indexPath.row];
+
+        [self.transValueDelegate transValue:thread];
+    }
+}
+
+
+- (IBAction)showLeftDrawer:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

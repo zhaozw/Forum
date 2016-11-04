@@ -6,9 +6,9 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFApiBaseViewController.h"
+#import "ForumApiBaseViewController.h"
 
-@interface CCFWritePMViewController : CCFApiBaseViewController
+@interface CCFWritePMViewController : ForumApiBaseViewController
 - (IBAction)back:(id)sender;
 
 @property(weak, nonatomic) IBOutlet UITextField *toWho;

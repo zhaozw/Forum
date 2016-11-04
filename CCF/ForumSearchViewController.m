@@ -1,22 +1,22 @@
 //
-//  CCFSearchViewController.m
+//  ForumSearchViewController.m
 //  CCF
 //
 //  Created by WDY on 16/1/11.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFSearchViewController.h"
+#import "ForumSearchViewController.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "CCFForumApi.h"
 
 #import "CCFSearchResultCell.h"
 #import "CCFProfileTableViewController.h"
 #import <SVProgressHUD.h>
-#import "CCFWebViewController.h"
+#import "ForumWebViewController.h"
 
 
-@interface CCFSearchViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, CCFThreadListCellDelegate> {
+@interface ForumSearchViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, CCFThreadListCellDelegate> {
     NSString *_searchid;
     UIStoryboardSegue *selectSegue;
     NSString *searchText;
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation CCFSearchViewController
+@implementation ForumSearchViewController
 
 - (void)viewDidLoad {
     self.searchBar.delegate = self;
@@ -140,7 +140,7 @@
 
     if ([segue.identifier isEqualToString:@"ShowThreadPosts"]) {
 
-        CCFWebViewController *controller = segue.destinationViewController;
+        ForumWebViewController *controller = segue.destinationViewController;
         self.transValueDelegate = (id <TransValueDelegate>) controller;
 
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];

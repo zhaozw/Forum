@@ -20,7 +20,7 @@
 
 #import <MJRefresh.h>
 #import "SDImageCache+URLCache.h"
-#import "CCFWebViewController.h"
+#import "ForumWebViewController.h"
 #import <NYTPhotosViewController.h>
 #import <NYTPhotoViewer/NYTPhoto.h>
 #import "NYTExamplePhoto.h"
@@ -140,7 +140,7 @@
 
             UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
 
-            CCFWebViewController *showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFWebViewController"];
+            ForumWebViewController *showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"ForumWebViewController"];
 
             self.transValueDelegate = (id <TransValueDelegate>) showThreadController;
 

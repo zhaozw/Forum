@@ -1,18 +1,18 @@
 //
-//  CCFMyThreadPostTableViewController.m
+//  ForumMyThreadPostTableViewController.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/3/6.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFMyThreadPostTableViewController.h"
+#import "ForumMyThreadPostTableViewController.h"
 
-@interface CCFMyThreadPostTableViewController ()
+@interface ForumMyThreadPostTableViewController ()
 
 @end
 
-@implementation CCFMyThreadPostTableViewController
+@implementation ForumMyThreadPostTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

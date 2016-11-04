@@ -175,7 +175,7 @@
         <!--订阅论坛-->
         <scene sceneID="0Ce-NM-EC5">
             <objects>
-                <tableViewController storyboardIdentifier="CCFFavFormController" id="Jit-bj-gGf" customClass="CCFFavFormController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CCFFavFormController" id="Jit-bj-gGf" customClass="ForumFavFormController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="iTX-sQ-xzL">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -223,7 +223,7 @@
         <!--帖子列表-->
         <scene sceneID="ZSu-6M-hd2">
             <objects>
-                <tableViewController storyboardIdentifier="CCFThreadListTableViewController" id="owK-Jl-7fO" customClass="CCFThreadListTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CCFThreadListTableViewController" id="owK-Jl-7fO" customClass="ForumThreadListTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="W0o-qo-VEi">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -975,7 +975,7 @@
         <!--我的回帖-->
         <scene sceneID="3Ye-yX-vZ6">
             <objects>
-                <tableViewController storyboardIdentifier="CCFMyThreadPostTableViewController" id="HcJ-3E-ScV" customClass="CCFMyThreadPostTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CCFMyThreadPostTableViewController" id="HcJ-3E-ScV" customClass="ForumMyThreadPostTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Soz-hV-BTk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1106,7 +1106,7 @@
         <!--收藏主题-->
         <scene sceneID="B4V-EQ-cMU">
             <objects>
-                <tableViewController storyboardIdentifier="CCFFavThreadPostTableViewController" id="3SN-sr-Skg" customClass="CCFFavThreadPostTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CCFFavThreadPostTableViewController" id="3SN-sr-Skg" customClass="ForumFavThreadPostTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="rs4-qW-nhr">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1216,7 +1216,7 @@
         <!--设置-->
         <scene sceneID="jCf-dU-ha4">
             <objects>
-                <tableViewController storyboardIdentifier="CCFSettingTableViewController" id="9se-A7-pwf" customClass="CCFSettingTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CCFSettingTableViewController" id="9se-A7-pwf" customClass="ForumSettingTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ksl-wi-MPf">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1327,7 +1327,7 @@
         <!--我的主题-->
         <scene sceneID="NgB-yq-feA">
             <objects>
-                <tableViewController storyboardIdentifier="CCFMyThreadTableViewController" id="Js1-U2-h0I" customClass="CCFMyThreadTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CCFMyThreadTableViewController" id="Js1-U2-h0I" customClass="ForumMyThreadTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Va9-qQ-G4a">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1452,7 +1452,7 @@
         <!--查看新帖-->
         <scene sceneID="0aj-wj-Ipe">
             <objects>
-                <tableViewController storyboardIdentifier="CCFShowNewThreadPostTableViewController" id="vLT-xg-b6G" customClass="CCFShowNewThreadPostTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CCFShowNewThreadPostTableViewController" id="vLT-xg-b6G" customClass="ForumShowNewThreadPostTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="n6S-NC-xB5">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1577,7 +1577,7 @@
         <!--搜索帖子-->
         <scene sceneID="sf1-2L-Kr0">
             <objects>
-                <tableViewController storyboardIdentifier="CCFSearchViewController" id="9ek-Pz-X45" customClass="CCFSearchViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CCFSearchViewController" id="9ek-Pz-X45" customClass="ForumSearchViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Zqh-zN-47Y">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2006,7 +2006,7 @@
         <!--子论坛帖-->
         <scene sceneID="wBW-D6-BVd">
             <objects>
-                <tableViewController storyboardIdentifier="CCFThreadListForChildFormUITableViewController" id="afP-Oj-XhI" customClass="CCFThreadListForChildFormUITableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CCFThreadListForChildFormUITableViewController" id="afP-Oj-XhI" customClass="ForumThreadListForChildFormUITableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="8fY-Oy-iIQ">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2448,7 +2448,7 @@
         <!--他的主题-->
         <scene sceneID="kwO-6c-899">
             <objects>
-                <tableViewController storyboardIdentifier="CCFUserThreadTableViewController" id="l3g-AL-GdG" customClass="CCFUserThreadTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CCFUserThreadTableViewController" id="l3g-AL-GdG" customClass="ForumUserThreadTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="XcW-xB-IIx">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2740,7 +2740,7 @@
         <!--帖子详情-->
         <scene sceneID="aTR-2G-zAu">
             <objects>
-                <viewController storyboardIdentifier="CCFWebViewController" title="帖子详情" id="7tp-vM-md4" customClass="CCFWebViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CCFWebViewController" title="帖子详情" id="7tp-vM-md4" customClass="ForumWebViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fd7-is-dKM"/>
                         <viewControllerLayoutGuide type="bottom" id="Egh-zl-ZQU"/>

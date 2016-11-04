@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFApiBaseViewController.h"
+#import "ForumApiBaseViewController.h"
 #import "ReplyCallbackDelegate.h"
 
 
-@interface CCFSeniorNewPostViewController : CCFApiBaseViewController
+@interface CCFSeniorNewPostViewController : ForumApiBaseViewController
 
 
 @property(weak, nonatomic) IBOutlet UITextView *replyContent;

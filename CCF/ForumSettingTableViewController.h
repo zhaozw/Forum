@@ -1,5 +1,5 @@
 //
-//  CCFSettingTableViewController.h
+//  ForumSettingTableViewController.h
 //  CCF
 //
 //  Created by 迪远 王 on 16/4/2.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CCFSettingTableViewController : UITableViewController
+@interface ForumSettingTableViewController : UITableViewController
 - (IBAction)back:(UIBarButtonItem *)sender;
 
 - (IBAction)switchSignature:(UISwitch *)sender;

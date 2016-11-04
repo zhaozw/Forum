@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "LoginViewController.h"
+#import "ForumLoginViewController.h"
 
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 
@@ -95,7 +95,7 @@
     NSDate *date = [NSDate date];
 
     if (loginUser.userID == nil || [loginUser.expireTime compare:date] == NSOrderedAscending) {
-        self.window.rootViewController = [[LoginViewController alloc] init];
+        self.window.rootViewController = [[ForumLoginViewController alloc] init];
     }
 
 
@@ -138,7 +138,7 @@
 
         [browser logout];
 
-        LoginViewController *rootController = [[LoginViewController alloc] init];
+        ForumLoginViewController *rootController = [[ForumLoginViewController alloc] init];
 
         UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
         [stortboard changeRootViewControllerToController:rootController];

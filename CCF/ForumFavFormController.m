@@ -1,29 +1,29 @@
 //
-//  CCFFavFormController.m
+//  ForumFavFormController.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/1/10.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFFavFormController.h"
+#import "ForumFavFormController.h"
 #import "CCFForumParser.h"
 #import "ForumCoreDataManager.h"
 #import "NSUserDefaults+Extensions.h"
 #import "UIStoryboard+CCF.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
-#import "CCFThreadListTableViewController.h"
+#import "ForumThreadListTableViewController.h"
 #import "CCFForumApi.h"
 #import "ForumTabBarController.h"
 #import "MGSwipeTableCellWithIndexPath.h"
 
-@interface CCFFavFormController () <TransValueDelegate, MGSwipeTableCellDelegate> {
+@interface ForumFavFormController () <TransValueDelegate, MGSwipeTableCellDelegate> {
 
 }
 
 @end
 
-@implementation CCFFavFormController
+@implementation ForumFavFormController
 
 
 - (void)transValue:(Forum *)value {
@@ -82,8 +82,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
-    if ([segue.identifier isEqualToString:@"CCFThreadListTableViewController"]) {
-        CCFThreadListTableViewController *controller = segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"ForumThreadListTableViewController"]) {
+        ForumThreadListTableViewController *controller = segue.destinationViewController;
 
         self.transValueDelegate = (id <TransValueDelegate>) controller;
 

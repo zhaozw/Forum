@@ -1,5 +1,5 @@
 //
-//  CCFWebViewController.h
+//  ForumWebViewController.h
 //  CCF
 //
 //  Created by 迪远 王 on 16/5/26.
@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFApiBaseViewController.h"
+#import "ForumApiBaseViewController.h"
 #import "TransValueDelegate.h"
 #import "ReplyTransValueDelegate.h"
 
 
-@interface CCFWebViewController : CCFApiBaseViewController
+@interface ForumWebViewController : ForumApiBaseViewController
 @property(weak, nonatomic) IBOutlet UIWebView *webView;
 
 @property(nonatomic, strong) UIImageView *animatedFromView;

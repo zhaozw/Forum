@@ -1,12 +1,12 @@
 //
-//  CCFWebViewController.m
+//  ForumWebViewController.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/5/26.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFWebViewController.h"
+#import "ForumWebViewController.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import <MJRefresh.h>
 #import "SDImageCache+URLCache.h"
@@ -29,7 +29,7 @@
 #import "CCFProfileTableViewController.h"
 #import "ForumConfig.h"
 
-@interface CCFWebViewController () <UIWebViewDelegate, UIScrollViewDelegate, TransValueDelegate, ReplyCallbackDelegate, CAAnimationDelegate> {
+@interface ForumWebViewController () <UIWebViewDelegate, UIScrollViewDelegate, TransValueDelegate, ReplyCallbackDelegate, CAAnimationDelegate> {
 
     LCActionSheet *itemActionSheet;
 
@@ -52,7 +52,7 @@
 
 @end
 
-@implementation CCFWebViewController
+@implementation ForumWebViewController
 
 - (void)transValue:(id)value {
     transBundle = value;
@@ -600,7 +600,7 @@
 
 
             UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
-            CCFWebViewController *showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFWebViewController"];
+            ForumWebViewController *showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"ForumWebViewController"];
             self.transValueDelegate = (id <TransValueDelegate>) showThreadController;
             TransValueBundle *showTransBundle = [[TransValueBundle alloc] init];
             [showTransBundle putIntValue:[threadIdStr intValue] forKey:@"threadID"];

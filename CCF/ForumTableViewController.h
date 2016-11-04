@@ -6,9 +6,9 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFApiBaseTableViewController.h"
+#import "ForumApiBaseTableViewController.h"
 
-@interface ForumTableViewController : CCFApiBaseTableViewController
+@interface ForumTableViewController : ForumApiBaseTableViewController
 - (IBAction)showLeftDrawer:(id)sender;
 
 @end

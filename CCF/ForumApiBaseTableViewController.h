@@ -1,12 +1,13 @@
 //
-//  BaseStaticTableViewController.h
+//  ForumApiBaseTableViewController.h
 //  CCF
 //
-//  Created by 迪远 王 on 16/10/9.
+//  Created by 迪远 王 on 16/3/13.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "TransBundleUITableViewController.h"
+#import <UIKit/UIKit.h>
+
 #import "CCFForumApi.h"
 #import "MJRefresh.h"
 #import "UITableView+FDTemplateLayoutCell.h"
@@ -14,7 +15,8 @@
 #import "TransBundleUITableViewController.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 
-@interface BaseStaticTableViewController : TransBundleUITableViewController
+@interface ForumApiBaseTableViewController : TransBundleUITableViewController
+
 
 @property(nonatomic, strong) CCFForumApi *ccfApi;
 @property(nonatomic, strong) NSMutableArray *dataList;
@@ -33,5 +35,4 @@
 - (BOOL)setLoadMore:(BOOL)enable;
 
 - (BOOL)autoPullfresh;
-
 @end

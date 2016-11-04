@@ -1,12 +1,12 @@
 //
-//  CCFThreadListForChildFormUITableViewController.m
+//  ForumThreadListForChildFormUITableViewController.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/3/27.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFThreadListForChildFormUITableViewController.h"
+#import "ForumThreadListForChildFormUITableViewController.h"
 
 #import "CCFForumParser.h"
 #import "CCFThreadListCell.h"
@@ -15,10 +15,10 @@
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "CCFProfileTableViewController.h"
 #import "ForumCoreDataManager.h"
-#import "CCFWebViewController.h"
+#import "ForumWebViewController.h"
 
 
-@interface CCFThreadListForChildFormUITableViewController () {
+@interface ForumThreadListForChildFormUITableViewController () {
     Forum *transForm;
 
     NSArray *childForms;
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation CCFThreadListForChildFormUITableViewController
+@implementation ForumThreadListForChildFormUITableViewController
 
 #pragma mark trans value
 
@@ -168,7 +168,7 @@
 
     } else if ([sender isKindOfClass:[UITableViewCell class]]) {
 
-        CCFWebViewController *controller = segue.destinationViewController;
+        ForumWebViewController *controller = segue.destinationViewController;
         self.transValueDelegate = (id <TransValueDelegate>) controller;
         [self.transValueDelegate transValue:transForm];
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];

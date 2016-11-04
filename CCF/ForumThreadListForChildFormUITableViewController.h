@@ -1,17 +1,17 @@
 //
-//  CCFThreadListForChildFormUITableViewController.h
+//  ForumThreadListForChildFormUITableViewController.h
 //  CCF
 //
 //  Created by 迪远 王 on 16/3/27.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFApiBaseTableViewController.h"
-#import "CCFApiBaseTableViewController.h"
+#import "ForumApiBaseTableViewController.h"
+#import "ForumApiBaseTableViewController.h"
 #import "TransValueDelegate.h"
 
 
-@interface CCFThreadListForChildFormUITableViewController : CCFApiBaseTableViewController
+@interface ForumThreadListForChildFormUITableViewController : ForumApiBaseTableViewController
 
 // 置顶
 @property(nonatomic, strong) NSMutableArray *threadTopList;

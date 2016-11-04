@@ -1,5 +1,5 @@
 //
-//  CCFMyThreadPostTableViewController.h
+//  ForumShowNewThreadPostTableViewController.h
 //  CCF
 //
 //  Created by 迪远 王 on 16/3/6.
@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFApiBaseTableViewController.h"
+#import "ForumApiBaseTableViewController.h"
 
-@interface CCFMyThreadPostTableViewController : CCFApiBaseTableViewController
+@interface ForumShowNewThreadPostTableViewController : ForumApiBaseTableViewController
 
 - (IBAction)showLeftDrawer:(id)sender;
 

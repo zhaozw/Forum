@@ -6,11 +6,11 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFApiBaseTableViewController.h"
+#import "ForumApiBaseTableViewController.h"
 #import "TransValueDelegate.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 
-@interface CCFProfileTableViewController : CCFApiBaseTableViewController
+@interface CCFProfileTableViewController : ForumApiBaseTableViewController
 
 @property(weak, nonatomic) IBOutlet UIImageView *userAvatar;
 @property(weak, nonatomic) IBOutlet UILabel *userName;

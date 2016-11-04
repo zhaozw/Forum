@@ -1,27 +1,27 @@
 //
-//  CCFShowNewThreadPostTableViewController.m
+//  ForumShowNewThreadPostTableViewController.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/3/6.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFShowNewThreadPostTableViewController.h"
+#import "ForumShowNewThreadPostTableViewController.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 #import "CCFSearchResultCell.h"
 #import "UIStoryboard+CCF.h"
 #import "CCFProfileTableViewController.h"
 #import "ForumTabBarController.h"
-#import "CCFWebViewController.h"
+#import "ForumWebViewController.h"
 
-@interface CCFShowNewThreadPostTableViewController () <CCFThreadListCellDelegate> {
+@interface ForumShowNewThreadPostTableViewController () <CCFThreadListCellDelegate> {
     UIStoryboardSegue *selectSegue;
 }
 
 @end
 
-@implementation CCFShowNewThreadPostTableViewController
+@implementation ForumShowNewThreadPostTableViewController
 
 - (void)onPullRefresh {
     [self.ccfApi listNewThreadPostsWithPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *message) {
@@ -99,7 +99,7 @@
 
     if ([segue.identifier isEqualToString:@"ShowThreadPosts"]) {
 
-        CCFWebViewController *controller = segue.destinationViewController;
+        ForumWebViewController *controller = segue.destinationViewController;
         self.transValueDelegate = (id <TransValueDelegate>) controller;
 
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];

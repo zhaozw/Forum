@@ -1,5 +1,5 @@
 //
-//  LoginViewController.h
+//  ForumLoginViewController.h
 //  CCF
 //
 //  Created by WDY on 15/12/30.
@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFApiBaseViewController.h"
+#import "ForumApiBaseViewController.h"
 
 
-@interface LoginViewController : CCFApiBaseViewController
+@interface ForumLoginViewController : ForumApiBaseViewController
 
 @property(weak, nonatomic) IBOutlet UITextField *userName;
 @property(weak, nonatomic) IBOutlet UITextField *password;

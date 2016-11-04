@@ -1,12 +1,12 @@
 //
-//  LoginViewController.m
+//  ForumLoginViewController.m
 //  CCF
 //
 //  Created by WDY on 15/12/30.
 //  Copyright © 2015年 andforce. All rights reserved.
 //
 
-#import "LoginViewController.h"
+#import "ForumLoginViewController.h"
 #import <UIImageView+AFNetworking.h>
 #import <AFNetworking.h>
 #import <AFImageDownloader.h>
@@ -22,7 +22,7 @@
 #import "ForumCoreDataManager.h"
 #import "FormEntry+CoreDataProperties.h"
 
-@interface LoginViewController () <UITextFieldDelegate> {
+@interface ForumLoginViewController () <UITextFieldDelegate> {
 
     CGRect screenSize;
 
@@ -32,7 +32,7 @@
 
 @end
 
-@implementation LoginViewController
+@implementation ForumLoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

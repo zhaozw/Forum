@@ -1,5 +1,5 @@
 //
-//  CCFSearchViewController.h
+//  ForumSearchViewController.h
 //  CCF
 //
 //  Created by WDY on 16/1/11.
@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFApiBaseTableViewController.h"
+#import "ForumApiBaseTableViewController.h"
 
-@interface CCFSearchViewController : CCFApiBaseTableViewController
+@interface ForumSearchViewController : ForumApiBaseTableViewController
 
 
 @property(weak, nonatomic) IBOutlet UISearchBar *searchBar;

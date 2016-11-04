@@ -1,14 +1,14 @@
 //
-//  BaseStaticTableViewController.m
+//  ForumBaseStaticTableViewController.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/10/9.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "BaseStaticTableViewController.h"
+#import "ForumBaseStaticTableViewController.h"
 
-@interface BaseStaticTableViewController () {
+@interface ForumBaseStaticTableViewController () {
     BOOL disablePullrefresh;
 
     BOOL disableLoadMore;
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation BaseStaticTableViewController
+@implementation ForumBaseStaticTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

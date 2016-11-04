@@ -1,20 +1,20 @@
 //
-//  CCFSettingTableViewController.m
+//  ForumSettingTableViewController.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/4/2.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFSettingTableViewController.h"
+#import "ForumSettingTableViewController.h"
 #import "UIStoryboard+CCF.h"
 #import "NSUserDefaults+Setting.h"
 
-@interface CCFSettingTableViewController ()
+@interface ForumSettingTableViewController ()
 
 @end
 
-@implementation CCFSettingTableViewController
+@implementation ForumSettingTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,7 +35,7 @@
 
     if (indexPath.row == 0) {
         UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
-        CCFSettingTableViewController *settingController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSettingTableViewController"];
+        ForumSettingTableViewController *settingController = [storyboard instantiateViewControllerWithIdentifier:@"ForumSettingTableViewController"];
         [self.navigationController pushViewController:settingController animated:YES];
     }
 

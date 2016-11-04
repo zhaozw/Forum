@@ -6,27 +6,27 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFThreadListTableViewController.h"
+#import "ForumThreadListTableViewController.h"
 
 #import "CCFThreadListCell.h"
 #import "MJRefresh.h"
 #import "CCFNewThreadViewController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "CCFProfileTableViewController.h"
-#import "CCFThreadListForChildFormUITableViewController.h"
+#import "ForumThreadListForChildFormUITableViewController.h"
 #import "NSUserDefaults+Setting.h"
 #import "CCFNewThreadNavigationController.h"
 #import "UIStoryboard+CCF.h"
 #import <SVProgressHUD.h>
 #import "ForumCoreDataManager.h"
 #import "MGSwipeTableCellWithIndexPath.h"
-#import "CCFWebViewController.h"
+#import "ForumWebViewController.h"
 
 
 #define TypePullRefresh 0
 #define TypeLoadMore 1
 
-@interface CCFThreadListTableViewController () <TransValueDelegate, CCFThreadListCellDelegate, TransBundleDelegate, MGSwipeTableCellDelegate> {
+@interface ForumThreadListTableViewController () <TransValueDelegate, CCFThreadListCellDelegate, TransBundleDelegate, MGSwipeTableCellDelegate> {
     Forum *transForm;
 
     NSArray *childForms;
@@ -36,7 +36,7 @@
 
 @end
 
-@implementation CCFThreadListTableViewController
+@implementation ForumThreadListTableViewController
 
 #pragma mark trans value
 
@@ -290,7 +290,7 @@
 
     } else if ([segue.identifier isEqualToString:@"ShowThreadPosts"]) {
 
-        CCFWebViewController *controller = segue.destinationViewController;
+        ForumWebViewController *controller = segue.destinationViewController;
         self.transValueDelegate = (id <TransValueDelegate>) controller;
 
 
@@ -313,7 +313,7 @@
         [self.transValueDelegate transValue:transBundle];
 
     } else if ([segue.identifier isEqualToString:@"ShowChildForm"]) {
-        CCFThreadListForChildFormUITableViewController *controller = segue.destinationViewController;
+        ForumThreadListForChildFormUITableViewController *controller = segue.destinationViewController;
         self.transValueDelegate = (id <TransValueDelegate>) controller;
 
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];

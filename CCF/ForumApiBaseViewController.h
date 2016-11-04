@@ -1,5 +1,5 @@
 //
-//  CCFApiBaseViewController.h
+//  ForumApiBaseViewController.h
 //  CCF
 //
 //  Created by 迪远 王 on 16/4/2.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CCFForumApi.h"
 
-@interface CCFApiBaseViewController : UIViewController
+@interface ForumApiBaseViewController : UIViewController
 
 @property(nonatomic, strong) CCFForumApi *ccfApi;
 

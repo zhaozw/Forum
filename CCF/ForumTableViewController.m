@@ -8,7 +8,7 @@
 
 #import "ForumTableViewController.h"
 #import "ForumCoreDataManager.h"
-#import "CCFThreadListTableViewController.h"
+#import "ForumThreadListTableViewController.h"
 #import "ForumListHeaderView.h"
 #import "XibInflater.h"
 #import "MGSwipeTableCell.h"
@@ -106,7 +106,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ShowThreadList"]) {
-        CCFThreadListTableViewController *controller = segue.destinationViewController;
+        ForumThreadListTableViewController *controller = segue.destinationViewController;
 
         self.transValueDelegate = (id <TransValueDelegate>) controller;
 

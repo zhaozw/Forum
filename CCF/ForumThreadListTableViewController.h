@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFApiBaseTableViewController.h"
+#import "ForumApiBaseTableViewController.h"
 
 
-@interface CCFThreadListTableViewController : CCFApiBaseTableViewController
+@interface ForumThreadListTableViewController : ForumApiBaseTableViewController
 
 
 // 置顶

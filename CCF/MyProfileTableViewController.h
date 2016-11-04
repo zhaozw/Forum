@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseStaticTableViewController.h"
+#import "ForumBaseStaticTableViewController.h"
 
-@interface MyProfileTableViewController : BaseStaticTableViewController
+@interface MyProfileTableViewController : ForumBaseStaticTableViewController
 @property(weak, nonatomic) IBOutlet UILabel *profileName;
 
 

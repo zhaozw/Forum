@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFApiBaseViewController.h"
+#import "ForumApiBaseViewController.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "ReplyCallbackDelegate.h"
 
-@interface CCFSimpleReplyViewController : CCFApiBaseViewController
+@interface CCFSimpleReplyViewController : ForumApiBaseViewController
 
 @property(nonatomic, strong) id <ReplyCallbackDelegate> delegate;
 

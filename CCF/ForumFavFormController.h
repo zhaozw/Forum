@@ -1,5 +1,5 @@
 //
-//  CCFFavFormController.h
+//  ForumFavFormController.h
 //  CCF
 //
 //  Created by 迪远 王 on 16/1/10.
@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFApiBaseTableViewController.h"
+#import "ForumApiBaseTableViewController.h"
 #import "TransValueDelegate.h"
 
-@interface CCFFavFormController : CCFApiBaseTableViewController
+@interface ForumFavFormController : ForumApiBaseTableViewController
 
 - (IBAction)showLeftDrawer:(id)sender;
 

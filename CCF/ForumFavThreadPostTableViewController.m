@@ -1,26 +1,26 @@
 //
-//  CCFFavThreadPostTableViewController.m
+//  ForumFavThreadPostTableViewController.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/3/12.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFFavThreadPostTableViewController.h"
+#import "ForumFavThreadPostTableViewController.h"
 #import "CCFSimpleThreadTableViewCell.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "ForumTabBarController.h"
-#import "CCFWebViewController.h"
+#import "ForumWebViewController.h"
 #import "CCFProfileTableViewController.h"
 #import "UIStoryboard+CCF.h"
 
-@interface CCFFavThreadPostTableViewController () <MGSwipeTableCellDelegate, CCFThreadListCellDelegate> {
+@interface ForumFavThreadPostTableViewController () <MGSwipeTableCellDelegate, CCFThreadListCellDelegate> {
     UIStoryboardSegue *selectSegue;
 }
 
 @end
 
-@implementation CCFFavThreadPostTableViewController
+@implementation ForumFavThreadPostTableViewController
 
 - (void)onPullRefresh {
     [self.ccfApi listFavoriteThreadPostsWithPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *resultPage) {
@@ -110,7 +110,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
     if ([segue.identifier isEqualToString:@"ShowThreadPosts"]) {
-        CCFWebViewController *controller = segue.destinationViewController;
+        ForumWebViewController *controller = segue.destinationViewController;
         self.transValueDelegate = (id <TransValueDelegate>) controller;
 
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];

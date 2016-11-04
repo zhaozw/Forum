@@ -11,7 +11,7 @@
 #import "ForumConfig.h"
 #import "ForumCoreDataManager.h"
 #import "UserEntry+CoreDataProperties.h"
-#import "LoginViewController.h"
+#import "ForumLoginViewController.h"
 #import "UIStoryboard+CCF.h"
 
 
@@ -161,7 +161,7 @@
         [self.ccfApi logout];
 
 
-        LoginViewController *rootController = [[LoginViewController alloc] init];
+        ForumLoginViewController *rootController = [[ForumLoginViewController alloc] init];
 
         UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
         [stortboard changeRootViewControllerToController:rootController];

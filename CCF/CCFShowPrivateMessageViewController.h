@@ -10,12 +10,12 @@
 #import "AutoRelayoutToolbar.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "TransValueDelegate.h"
-#import "CCFApiBaseViewController.h"
+#import "ForumApiBaseViewController.h"
 #import "TransValueDelegate.h"
 #import "ReplyTransValueDelegate.h"
 
 
-@interface CCFShowPrivateMessageViewController : CCFApiBaseViewController
+@interface CCFShowPrivateMessageViewController : ForumApiBaseViewController
 
 
 @property(nonatomic, strong) NSMutableArray<ShowPrivateMessage *> *dataList;

@@ -1,14 +1,14 @@
 //
-//  CCFApiBaseTableViewController.m
+//  ForumApiBaseTableViewController.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/3/13.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFApiBaseTableViewController.h"
+#import "ForumApiBaseTableViewController.h"
 
-@interface CCFApiBaseTableViewController () {
+@interface ForumApiBaseTableViewController () {
     BOOL disablePullrefresh;
 
     BOOL disableLoadMore;
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation CCFApiBaseTableViewController
+@implementation ForumApiBaseTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

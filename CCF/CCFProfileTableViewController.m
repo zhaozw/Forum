@@ -11,7 +11,7 @@
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 #import "TransValueUITableViewCell.h"
-#import "CCFUserThreadTableViewController.h"
+#import "ForumUserThreadTableViewController.h"
 
 #import "CCFWritePMNavigationController.h"
 #import <UIImageView+WebCache.h>
@@ -143,7 +143,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
     if ([segue.identifier isEqualToString:@"ShowCCFUserThreadTableViewController"]) {
-        CCFUserThreadTableViewController *controller = segue.destinationViewController;
+        ForumUserThreadTableViewController *controller = segue.destinationViewController;
 
         self.transValueDelegate = (id <TransValueDelegate>) controller;
 
