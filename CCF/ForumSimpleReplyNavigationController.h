@@ -1,5 +1,5 @@
 //
-//  CCFSimpleReplyNavigationController.h
+//  ForumSimpleReplyNavigationController.h
 //  CCF
 //
 //  Created by 迪远 王 on 16/4/10.
@@ -10,7 +10,7 @@
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "TransValueBundle.h"
 
-@interface CCFSimpleReplyNavigationController : UINavigationController
+@interface ForumSimpleReplyNavigationController : UINavigationController
 
 @property(nonatomic, strong) TransValueBundle *bundle;
 @property(nonatomic, strong) UIViewController *controller;

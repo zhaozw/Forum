@@ -1,5 +1,5 @@
 //
-//  CCFProfileTableViewController.h
+//  ForumUserProfileTableViewController.h
 //  CCF
 //
 //  Created by 迪远 王 on 16/3/20.
@@ -10,7 +10,7 @@
 #import "TransValueDelegate.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 
-@interface CCFProfileTableViewController : ForumApiBaseTableViewController
+@interface ForumUserProfileTableViewController : ForumApiBaseTableViewController
 
 @property(weak, nonatomic) IBOutlet UIImageView *userAvatar;
 @property(weak, nonatomic) IBOutlet UILabel *userName;

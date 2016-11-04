@@ -21,12 +21,12 @@
 #import "UIStoryboard+CCF.h"
 #import "ActionSheetPicker.h"
 #import "ReplyCallbackDelegate.h"
-#import "CCFSimpleReplyNavigationController.h"
+#import "ForumSimpleReplyNavigationController.h"
 #import "CCFPCH.pch"
 #import "NSString+Extensions.h"
 #import "ForumTabBarController.h"
 #import "TransValueBundle.h"
-#import "CCFProfileTableViewController.h"
+#import "ForumUserProfileTableViewController.h"
 #import "ForumConfig.h"
 
 @interface ForumWebViewController () <UIWebViewDelegate, UIScrollViewDelegate, TransValueDelegate, ReplyCallbackDelegate, CAAnimationDelegate> {
@@ -401,7 +401,7 @@
 //            if (buttonIndex == 0) {
 //                UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
 //                
-//                CCFSimpleReplyNavigationController* simpleReplyController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSimpleReplyNavigationController"];
+//                ForumSimpleReplyNavigationController* simpleReplyController = [storyboard instantiateViewControllerWithIdentifier:@"ForumSimpleReplyNavigationController"];
 //                self.replyTransValueDelegate = (id<ReplyTransValueDelegate>)simpleReplyController;
 //                
 //                TransValueBundle * bundle = [[TransValueBundle alloc] init];
@@ -425,7 +425,7 @@
 //                
 //                UIStoryboard * storyBoard = [UIStoryboard mainStoryboard];
 //                
-//                CCFSimpleReplyNavigationController * controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
+//                ForumSimpleReplyNavigationController * controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
 //                self.replyTransValueDelegate = (id<ReplyTransValueDelegate>)controller;
 //                
 //                TransValueBundle * bundle = [[TransValueBundle alloc] init];
@@ -468,7 +468,7 @@
             if (buttonIndex == 0) {
                 UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
 
-                CCFSimpleReplyNavigationController *simpleReplyController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSimpleReplyNavigationController"];
+                ForumSimpleReplyNavigationController *simpleReplyController = [storyboard instantiateViewControllerWithIdentifier:@"ForumSimpleReplyNavigationController"];
                 self.replyTransValueDelegate = (id <ReplyTransValueDelegate>) simpleReplyController;
 
                 TransValueBundle *bundle = [[TransValueBundle alloc] init];
@@ -492,7 +492,7 @@
 
                 UIStoryboard *storyBoard = [UIStoryboard mainStoryboard];
 
-                CCFSimpleReplyNavigationController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
+                ForumSimpleReplyNavigationController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
                 self.replyTransValueDelegate = (id <ReplyTransValueDelegate>) controller;
 
                 TransValueBundle *bundle = [[TransValueBundle alloc] init];
@@ -577,7 +577,7 @@
 
 
         UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
-        CCFProfileTableViewController *showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFProfileTableViewController"];
+        ForumUserProfileTableViewController *showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"ForumUserProfileTableViewController"];
         self.transValueDelegate = (id <TransValueDelegate>) showThreadController;
         TransValueBundle *showTransBundle = [[TransValueBundle alloc] init];
         [showTransBundle putIntValue:[userid intValue] forKey:@"userid"];
@@ -706,7 +706,7 @@
 - (IBAction)reply:(id)sender {
 
     UIStoryboard *storyBoard = [UIStoryboard mainStoryboard];
-    CCFSimpleReplyNavigationController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
+    ForumSimpleReplyNavigationController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
     self.replyTransValueDelegate = (id <ReplyTransValueDelegate>) controller;
     TransValueBundle *bundle = [[TransValueBundle alloc] init];
     [bundle putIntValue:threadID forKey:@"THREAD_ID"];

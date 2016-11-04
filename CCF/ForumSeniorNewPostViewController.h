@@ -1,5 +1,5 @@
 //
-//  CCFSeniorNewPostViewController.h
+//  ForumSeniorNewPostViewController.h
 //  CCF
 //
 //  Created by 迪远 王 on 16/1/16.
@@ -11,7 +11,7 @@
 #import "ReplyCallbackDelegate.h"
 
 
-@interface CCFSeniorNewPostViewController : ForumApiBaseViewController
+@interface ForumSeniorNewPostViewController : ForumApiBaseViewController
 
 
 @property(weak, nonatomic) IBOutlet UITextView *replyContent;

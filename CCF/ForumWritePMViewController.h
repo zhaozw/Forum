@@ -1,5 +1,5 @@
 //
-//  CCFWritePMViewController.h
+//  ForumWritePMViewController.h
 //  CCF
 //
 //  Created by 迪远 王 on 16/4/9.
@@ -8,7 +8,7 @@
 
 #import "ForumApiBaseViewController.h"
 
-@interface CCFWritePMViewController : ForumApiBaseViewController
+@interface ForumWritePMViewController : ForumApiBaseViewController
 - (IBAction)back:(id)sender;
 
 @property(weak, nonatomic) IBOutlet UITextField *toWho;

@@ -1,31 +1,31 @@
 //
-//  CCFSimpleReplyViewController.m
+//  ForumSimpleReplyViewController.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/4/10.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFSimpleReplyViewController.h"
-#import "CCFSimpleReplyNavigationController.h"
+#import "ForumSimpleReplyViewController.h"
+#import "ForumSimpleReplyNavigationController.h"
 #import "SVProgressHUD.h"
 
 #import "UIStoryboard+CCF.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "TransValueBundle.h"
 
-@interface CCFSimpleReplyViewController () {
+@interface ForumSimpleReplyViewController () {
     TransValueBundle *bundle;
 }
 
 @end
 
-@implementation CCFSimpleReplyViewController
+@implementation ForumSimpleReplyViewController
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    CCFSimpleReplyNavigationController *navigationController = (CCFSimpleReplyNavigationController *) self.navigationController;
+    ForumSimpleReplyNavigationController *navigationController = (ForumSimpleReplyNavigationController *) self.navigationController;
 
     bundle = navigationController.bundle;
 
@@ -64,7 +64,7 @@
 
 //                CCFShowThreadPage * thread = message;
 //
-//                CCFSimpleReplyNavigationController * navigationController = (CCFSimpleReplyNavigationController *)self.navigationController;
+//                ForumSimpleReplyNavigationController * navigationController = (ForumSimpleReplyNavigationController *)self.navigationController;
 //                
 //                
 //                self.delegate = (id<SimpleReplyDelegate>)navigationController.controller;
@@ -89,7 +89,7 @@
                 ShowThreadPage *thread = message;
 
 
-                CCFSimpleReplyNavigationController *navigationController = (CCFSimpleReplyNavigationController *) self.navigationController;
+                ForumSimpleReplyNavigationController *navigationController = (ForumSimpleReplyNavigationController *) self.navigationController;
 
 
                 self.delegate = (id <ReplyCallbackDelegate>) navigationController.controller;

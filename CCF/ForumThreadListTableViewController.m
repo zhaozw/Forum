@@ -10,12 +10,12 @@
 
 #import "CCFThreadListCell.h"
 #import "MJRefresh.h"
-#import "CCFNewThreadViewController.h"
+#import "ForumNewThreadViewController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
-#import "CCFProfileTableViewController.h"
+#import "ForumUserProfileTableViewController.h"
 #import "ForumThreadListForChildFormUITableViewController.h"
 #import "NSUserDefaults+Setting.h"
-#import "CCFNewThreadNavigationController.h"
+#import "ForumNewThreadNavigationController.h"
 #import "UIStoryboard+CCF.h"
 #import <SVProgressHUD.h>
 #import "ForumCoreDataManager.h"
@@ -248,7 +248,7 @@
 
 - (void)showUserProfile:(NSIndexPath *)indexPath {
 
-    CCFProfileTableViewController *controller = (CCFProfileTableViewController *) selectSegue.destinationViewController;
+    ForumUserProfileTableViewController *controller = (ForumUserProfileTableViewController *) selectSegue.destinationViewController;
     self.transValueDelegate = (id <TransValueDelegate>) controller;
 
     NormalThread *thread = nil;
@@ -282,7 +282,7 @@
 
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
 
-        CCFNewThreadViewController *newPostController = segue.destinationViewController;
+        ForumNewThreadViewController *newPostController = segue.destinationViewController;
 
         self.transValueDelegate = (id <TransValueDelegate>) newPostController;
         [self.transValueDelegate transValue:transForm];
@@ -323,7 +323,7 @@
     } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]) {
         selectSegue = segue;
     } else if ([sender isKindOfClass:[UIButton class]]) {
-        CCFProfileTableViewController *controller = segue.destinationViewController;
+        ForumUserProfileTableViewController *controller = segue.destinationViewController;
         self.transValueDelegate = (id <TransValueDelegate>) controller;
 
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
@@ -352,7 +352,7 @@
 - (IBAction)createThread:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
 
-    CCFNewThreadNavigationController *createController = [storyboard instantiateViewControllerWithIdentifier:@"CCFNewThreadNavigationController"];
+    ForumNewThreadNavigationController *createController = [storyboard instantiateViewControllerWithIdentifier:@"ForumNewThreadNavigationController"];
     self.transBundleDelegate = (id <TransBundleDelegate>) createController;
 
     TransValueBundle *bundle = [[TransValueBundle alloc] init];

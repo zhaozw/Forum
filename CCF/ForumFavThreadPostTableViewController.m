@@ -11,7 +11,7 @@
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "ForumTabBarController.h"
 #import "ForumWebViewController.h"
-#import "CCFProfileTableViewController.h"
+#import "ForumUserProfileTableViewController.h"
 #import "UIStoryboard+CCF.h"
 
 @interface ForumFavThreadPostTableViewController () <MGSwipeTableCellDelegate, CCFThreadListCellDelegate> {
@@ -130,7 +130,7 @@
 
 - (void)showUserProfile:(NSIndexPath *)indexPath {
 
-    CCFProfileTableViewController *controller = (CCFProfileTableViewController *) selectSegue.destinationViewController;
+    ForumUserProfileTableViewController *controller = (ForumUserProfileTableViewController *) selectSegue.destinationViewController;
     self.transValueDelegate = (id <TransValueDelegate>) controller;
 
     SimpleThread *thread = self.dataList[indexPath.row];

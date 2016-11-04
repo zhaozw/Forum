@@ -1,5 +1,5 @@
 //
-//  CCFNewThreadViewController.h
+//  ForumNewThreadViewController.h
 //  CCF
 //
 //  Created by 迪远 王 on 16/1/13.
@@ -11,7 +11,7 @@
 #import "SelectPhotoCollectionViewCell.h"
 #import "TransBundleUIViewController.h"
 
-@interface CCFNewThreadViewController : TransBundleUIViewController
+@interface ForumNewThreadViewController : TransBundleUIViewController
 
 
 @property(weak, nonatomic) IBOutlet UITextField *subject;

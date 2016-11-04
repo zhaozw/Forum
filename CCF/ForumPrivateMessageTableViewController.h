@@ -1,5 +1,5 @@
 //
-//  CCFPrivateMessageTableViewController.h
+//  ForumPrivateMessageTableViewController.h
 //  CCF
 //
 //  Created by WDY on 16/3/10.
@@ -10,7 +10,7 @@
 #import "ForumApiBaseTableViewController.h"
 
 
-@interface CCFPrivateMessageTableViewController : ForumApiBaseTableViewController
+@interface ForumPrivateMessageTableViewController : ForumApiBaseTableViewController
 
 - (IBAction)showLeftDrawer:(id)sender;
 

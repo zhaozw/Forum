@@ -1,5 +1,5 @@
 //
-//  MyProfileTableViewController.h
+//  ForumMyProfileTableViewController.h
 //  CCF
 //
 //  Created by 迪远 王 on 16/10/9.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ForumBaseStaticTableViewController.h"
 
-@interface MyProfileTableViewController : ForumBaseStaticTableViewController
+@interface ForumMyProfileTableViewController : ForumBaseStaticTableViewController
 @property(weak, nonatomic) IBOutlet UILabel *profileName;
 
 

@@ -1,12 +1,12 @@
 //
-//  CCFShowPrivateMessageViewController.m
+//  ForumShowPrivateMessageViewController.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/3/25.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFShowPrivateMessageViewController.h"
+#import "ForumShowPrivateMessageViewController.h"
 
 #import "MJRefresh.h"
 #import "AutoRelayoutUITextView.h"
@@ -16,7 +16,7 @@
 
 #import <UITableView+FDTemplateLayoutCell.h>
 
-#import "CCFProfileTableViewController.h"
+#import "ForumUserProfileTableViewController.h"
 
 #import <MJRefresh.h>
 #import "SDImageCache+URLCache.h"
@@ -31,7 +31,7 @@
 #import "UIStoryboard+CCF.h"
 #import "ActionSheetPicker.h"
 #import "ReplyCallbackDelegate.h"
-#import "CCFSimpleReplyNavigationController.h"
+#import "ForumSimpleReplyNavigationController.h"
 #import "CCFPCH.pch"
 #import "NSString+Extensions.h"
 #import "ForumTabBarController.h"
@@ -40,7 +40,7 @@
 
 #import "CCFForumApi.h"
 
-@interface CCFShowPrivateMessageViewController () <UIWebViewDelegate, UIScrollViewDelegate, TransValueDelegate> {
+@interface ForumShowPrivateMessageViewController () <UIWebViewDelegate, UIScrollViewDelegate, TransValueDelegate> {
 
     PrivateMessage *transPrivateMessage;
 
@@ -49,7 +49,7 @@
 
 @end
 
-@implementation CCFShowPrivateMessageViewController
+@implementation ForumShowPrivateMessageViewController
 
 
 - (void)transValue:(PrivateMessage *)value {
@@ -96,7 +96,7 @@
 
 
 - (void)showUserProfile:(NSIndexPath *)indexPath {
-    CCFProfileTableViewController *controller = (CCFProfileTableViewController *) selectSegue.destinationViewController;
+    ForumUserProfileTableViewController *controller = (ForumUserProfileTableViewController *) selectSegue.destinationViewController;
     self.transValueDelegate = (id <TransValueDelegate>) controller;
 
     ShowPrivateMessage *message = self.dataList[indexPath.row];
@@ -171,7 +171,7 @@
 
 
         UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
-        CCFProfileTableViewController *showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFProfileTableViewController"];
+        ForumUserProfileTableViewController *showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"ForumUserProfileTableViewController"];
         self.transValueDelegate = (id <TransValueDelegate>) showThreadController;
         TransValueBundle *showTransBundle = [[TransValueBundle alloc] init];
         [showTransBundle putIntValue:[userid intValue] forKey:@"userid"];

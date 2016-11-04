@@ -1,5 +1,5 @@
 //
-//  CCFSimpleReplyViewController.h
+//  ForumSimpleReplyViewController.h
 //  CCF
 //
 //  Created by 迪远 王 on 16/4/10.
@@ -11,7 +11,7 @@
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "ReplyCallbackDelegate.h"
 
-@interface CCFSimpleReplyViewController : ForumApiBaseViewController
+@interface ForumSimpleReplyViewController : ForumApiBaseViewController
 
 @property(nonatomic, strong) id <ReplyCallbackDelegate> delegate;
 

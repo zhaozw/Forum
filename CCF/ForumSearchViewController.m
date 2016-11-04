@@ -11,7 +11,7 @@
 #import "CCFForumApi.h"
 
 #import "CCFSearchResultCell.h"
-#import "CCFProfileTableViewController.h"
+#import "ForumUserProfileTableViewController.h"
 #import <SVProgressHUD.h>
 #import "ForumWebViewController.h"
 
@@ -97,7 +97,7 @@
 }
 
 - (void)showUserProfile:(NSIndexPath *)indexPath {
-    CCFProfileTableViewController *controller = (CCFProfileTableViewController *) selectSegue.destinationViewController;
+    ForumUserProfileTableViewController *controller = (ForumUserProfileTableViewController *) selectSegue.destinationViewController;
     self.transValueDelegate = (id <TransValueDelegate>) controller;
 
     ThreadInSearch *thread = self.dataList[indexPath.row];

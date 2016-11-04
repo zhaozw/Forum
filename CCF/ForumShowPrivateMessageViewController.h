@@ -1,5 +1,5 @@
 //
-//  CCFShowPrivateMessageViewController.h
+//  ForumShowPrivateMessageViewController.h
 //  CCF
 //
 //  Created by 迪远 王 on 16/3/25.
@@ -15,7 +15,7 @@
 #import "ReplyTransValueDelegate.h"
 
 
-@interface CCFShowPrivateMessageViewController : ForumApiBaseViewController
+@interface ForumShowPrivateMessageViewController : ForumApiBaseViewController
 
 
 @property(nonatomic, strong) NSMutableArray<ShowPrivateMessage *> *dataList;

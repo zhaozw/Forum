@@ -1,12 +1,12 @@
 //
-//  CCFSeniorNewPostViewController.m
+//  ForumSeniorNewPostViewController.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/1/16.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFSeniorNewPostViewController.h"
+#import "ForumSeniorNewPostViewController.h"
 
 #import "SelectPhotoCollectionViewCell.h"
 #import "TransValueDelegate.h"
@@ -17,10 +17,10 @@
 
 #import "LCActionSheet.h"
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "CCFSimpleReplyNavigationController.h"
+#import "ForumSimpleReplyNavigationController.h"
 #import "Utils.h"
 
-@interface CCFSeniorNewPostViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate> {
+@interface ForumSeniorNewPostViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate> {
 
     UIImagePickerController *pickControl;
     NSMutableArray<UIImage *> *images;
@@ -29,14 +29,14 @@
 
 @end
 
-@implementation CCFSeniorNewPostViewController
+@implementation ForumSeniorNewPostViewController
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // 传递数据
-    CCFSimpleReplyNavigationController *controller = (CCFSimpleReplyNavigationController *) self.navigationController;
+    ForumSimpleReplyNavigationController *controller = (ForumSimpleReplyNavigationController *) self.navigationController;
     bundle = controller.bundle;
 
 
@@ -240,7 +240,7 @@
             ShowThreadPage *thread = message;
 
 
-            CCFSimpleReplyNavigationController *navigationController = (CCFSimpleReplyNavigationController *) self.navigationController;
+            ForumSimpleReplyNavigationController *navigationController = (ForumSimpleReplyNavigationController *) self.navigationController;
 
 
             self.delegate = (id <ReplyCallbackDelegate>) navigationController.controller;

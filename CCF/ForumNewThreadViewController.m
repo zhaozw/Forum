@@ -1,12 +1,12 @@
 //
-//  CCFNewThreadViewController.m
+//  ForumNewThreadViewController.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/1/13.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFNewThreadViewController.h"
+#import "ForumNewThreadViewController.h"
 #import "CCFForumParser.h"
 #import "CCFForumApi.h"
 #import "SelectPhotoCollectionViewCell.h"
@@ -15,11 +15,11 @@
 #import "Utils.h"
 #import "LCActionSheet.h"
 #import "ActionSheetStringPicker.h"
-#import "CCFNewThreadNavigationController.h"
+#import "ForumNewThreadNavigationController.h"
 #import <AFNetworking.h>
 
 
-@interface CCFNewThreadViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate> {
+@interface ForumNewThreadViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate> {
 
 
     CCFForumApi *_api;
@@ -32,7 +32,7 @@
 
 @end
 
-@implementation CCFNewThreadViewController
+@implementation ForumNewThreadViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -206,7 +206,7 @@
         [uploadData addObject:data];
     }
 
-    int formId = [((CCFNewThreadNavigationController *) self.navigationController).bundle getIntValue:@"FORM_ID"];
+    int formId = [((ForumNewThreadNavigationController *) self.navigationController).bundle getIntValue:@"FORM_ID"];
     [_api createNewThreadWithFormId:formId withSubject:title andMessage:message withImages:[uploadData copy] handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"发帖成功" maskType:SVProgressHUDMaskTypeBlack];

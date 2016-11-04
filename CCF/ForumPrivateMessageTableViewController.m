@@ -1,22 +1,22 @@
 //
-//  CCFPrivateMessageTableViewController.m
+//  ForumPrivateMessageTableViewController.m
 //  CCF
 //
 //  Created by WDY on 16/3/10.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFPrivateMessageTableViewController.h"
+#import "ForumPrivateMessageTableViewController.h"
 #import "PrivateMessageTableViewCell.h"
-#import "CCFShowPrivateMessageViewController.h"
+#import "ForumShowPrivateMessageViewController.h"
 
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
-#import "CCFProfileTableViewController.h"
-#import "CCFWritePMNavigationController.h"
+#import "ForumUserProfileTableViewController.h"
+#import "ForumWritePMNavigationController.h"
 #import "UIStoryboard+CCF.h"
 #import "ForumTabBarController.h"
 
-@interface CCFPrivateMessageTableViewController () <CCFThreadListCellDelegate, MGSwipeTableCellDelegate> {
+@interface ForumPrivateMessageTableViewController () <CCFThreadListCellDelegate, MGSwipeTableCellDelegate> {
     int messageType;
     UIStoryboardSegue *selectSegue;
 }
@@ -24,7 +24,7 @@
 @end
 
 
-@implementation CCFPrivateMessageTableViewController
+@implementation ForumPrivateMessageTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -114,7 +114,7 @@
 #pragma mark CCFThreadListCellDelegate
 
 - (void)showUserProfile:(NSIndexPath *)indexPath {
-    CCFProfileTableViewController *controller = (CCFProfileTableViewController *) selectSegue.destinationViewController;
+    ForumUserProfileTableViewController *controller = (ForumUserProfileTableViewController *) selectSegue.destinationViewController;
     self.transValueDelegate = (id <TransValueDelegate>) controller;
 
     PrivateMessage *message = self.dataList[indexPath.row];
@@ -139,7 +139,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
     if ([sender isKindOfClass:[UITableViewCell class]]) {
-        CCFShowPrivateMessageViewController *controller = segue.destinationViewController;
+        ForumShowPrivateMessageViewController *controller = segue.destinationViewController;
         self.transValueDelegate = (id <TransValueDelegate>) controller;
 
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
@@ -168,7 +168,7 @@
 - (IBAction)writePrivateMessage:(UIBarButtonItem *)sender {
     UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
 
-    CCFWritePMNavigationController *controller = [storyboard instantiateViewControllerWithIdentifier:@"CCFWritePMNavigationController"];
+    ForumWritePMNavigationController *controller = [storyboard instantiateViewControllerWithIdentifier:@"ForumWritePMNavigationController"];
     [self.navigationController presentViewController:controller animated:YES completion:^{
 
     }];

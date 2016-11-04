@@ -11,9 +11,9 @@
 #import "CCFForumParser.h"
 #import "CCFThreadListCell.h"
 #import "MJRefresh.h"
-#import "CCFNewThreadViewController.h"
+#import "ForumNewThreadViewController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
-#import "CCFProfileTableViewController.h"
+#import "ForumUserProfileTableViewController.h"
 #import "ForumCoreDataManager.h"
 #import "ForumWebViewController.h"
 
@@ -161,7 +161,7 @@
 
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
 
-        CCFNewThreadViewController *newPostController = segue.destinationViewController;
+        ForumNewThreadViewController *newPostController = segue.destinationViewController;
         self.transValueDelegate = (id <TransValueDelegate>) newPostController;
         [self.transValueDelegate transValue:transForm];
 
@@ -189,7 +189,7 @@
 
 
     } else if ([sender isKindOfClass:[UIButton class]]) {
-        CCFProfileTableViewController *controller = segue.destinationViewController;
+        ForumUserProfileTableViewController *controller = segue.destinationViewController;
         self.transValueDelegate = (id <TransValueDelegate>) controller;
 
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];

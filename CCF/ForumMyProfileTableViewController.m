@@ -1,12 +1,12 @@
 //
-//  MyProfileTableViewController.m
+//  ForumMyProfileTableViewController.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/10/9.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "MyProfileTableViewController.h"
+#import "ForumMyProfileTableViewController.h"
 #import <UIImageView+WebCache.h>
 #import "ForumConfig.h"
 #import "ForumCoreDataManager.h"
@@ -15,7 +15,7 @@
 #import "UIStoryboard+CCF.h"
 
 
-@interface MyProfileTableViewController () {
+@interface ForumMyProfileTableViewController () {
     UserProfile *userProfile;
 
     UIImage *defaultAvatarImage;
@@ -29,7 +29,7 @@
 
 @end
 
-@implementation MyProfileTableViewController
+@implementation ForumMyProfileTableViewController
 
 - (instancetype)init {
     if (self = [super init]) {

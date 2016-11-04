@@ -60,7 +60,7 @@
         <!--Private Message Table View Controller-->
         <scene sceneID="gWe-PG-MSc">
             <objects>
-                <tableViewController storyboardIdentifier="CCFPrivateMessageTableViewController" id="21g-L2-eCr" customClass="CCFPrivateMessageTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CCFPrivateMessageTableViewController" id="21g-L2-eCr" customClass="ForumPrivateMessageTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="119" sectionHeaderHeight="28" sectionFooterHeight="28" id="1sA-lp-kRb">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -399,7 +399,7 @@
         <!--新主题-->
         <scene sceneID="cr2-FS-gXj">
             <objects>
-                <viewController storyboardIdentifier="CCFNewThreadViewController" id="pXN-Qw-w0b" customClass="CCFNewThreadViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CCFNewThreadViewController" id="pXN-Qw-w0b" customClass="ForumNewThreadViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="e5j-8u-NEf"/>
                         <viewControllerLayoutGuide type="bottom" id="BTe-LE-Lmy"/>
@@ -748,7 +748,7 @@
         <!--Simple Reply Navigation Controller-->
         <scene sceneID="cca-k4-Mk4">
             <objects>
-                <navigationController storyboardIdentifier="CCFSimpleReplyNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="sO7-Q2-goh" customClass="CCFSimpleReplyNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CCFSimpleReplyNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="sO7-Q2-goh" customClass="ForumSimpleReplyNavigationController" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="8WL-Jb-k5P">
@@ -770,7 +770,7 @@
         <!--快速回复-->
         <scene sceneID="wwL-t1-EVb">
             <objects>
-                <viewController id="dRe-ho-YY5" customClass="CCFSimpleReplyViewController" sceneMemberID="viewController">
+                <viewController id="dRe-ho-YY5" customClass="ForumSimpleReplyViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3h9-jV-PLj"/>
                         <viewControllerLayoutGuide type="bottom" id="JrQ-CG-sbj"/>
@@ -818,7 +818,7 @@
         <!--高级回帖-->
         <scene sceneID="0ad-k0-Qjn">
             <objects>
-                <viewController storyboardIdentifier="CCFSeniorNewPostViewController" id="pPN-ZQ-aHh" customClass="CCFSeniorNewPostViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CCFSeniorNewPostViewController" id="pPN-ZQ-aHh" customClass="ForumSeniorNewPostViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8ZP-Ks-ema"/>
                         <viewControllerLayoutGuide type="bottom" id="dCe-aI-mg4"/>
@@ -1727,7 +1727,7 @@
         <!--我的页面-->
         <scene sceneID="YlG-dB-QZF">
             <objects>
-                <tableViewController id="all-h2-fhh" customClass="MyProfileTableViewController" sceneMemberID="viewController">
+                <tableViewController id="all-h2-fhh" customClass="ForumMyProfileTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="wLl-yk-NnW">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1961,7 +1961,7 @@
         <!--短信详情-->
         <scene sceneID="qyp-tv-9VR">
             <objects>
-                <viewController storyboardIdentifier="CCFShowPrivateMessageViewController" id="Q2o-k5-bi7" customClass="CCFShowPrivateMessageViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CCFShowPrivateMessageViewController" id="Q2o-k5-bi7" customClass="ForumShowPrivateMessageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="l3c-O7-wgy"/>
                         <viewControllerLayoutGuide type="bottom" id="6Un-MU-5jm"/>
@@ -2165,7 +2165,7 @@
         <!--会员信息-->
         <scene sceneID="Juh-h9-Ttr">
             <objects>
-                <tableViewController storyboardIdentifier="CCFProfileTableViewController" id="Kd2-6b-uhY" customClass="CCFProfileTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CCFProfileTableViewController" id="Kd2-6b-uhY" customClass="ForumUserProfileTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6tN-Pg-gRW">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2362,7 +2362,7 @@
         <!--发送私信-->
         <scene sceneID="sMo-OX-hpQ">
             <objects>
-                <viewController id="ldC-Z2-cxV" customClass="CCFWritePMViewController" sceneMemberID="viewController">
+                <viewController id="ldC-Z2-cxV" customClass="ForumWritePMViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ctd-kT-T9G"/>
                         <viewControllerLayoutGuide type="bottom" id="wfK-sM-R3G"/>
@@ -2570,7 +2570,7 @@
         <!--Simple Reply Navigation Controller-->
         <scene sceneID="CKB-b1-PTH">
             <objects>
-                <navigationController storyboardIdentifier="CCFSeniorNewPostNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="gBw-i8-805" customClass="CCFSimpleReplyNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CCFSeniorNewPostNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="gBw-i8-805" customClass="ForumSimpleReplyNavigationController" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="WUE-ZV-zcY">
@@ -2592,7 +2592,7 @@
         <!--New Thread Navigation Controller-->
         <scene sceneID="xBQ-EG-vCf">
             <objects>
-                <navigationController storyboardIdentifier="CCFNewThreadNavigationController" id="VHN-J2-LXw" customClass="CCFNewThreadNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CCFNewThreadNavigationController" id="VHN-J2-LXw" customClass="ForumNewThreadNavigationController" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="u2t-T6-8CQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2616,7 +2616,7 @@
         <!--WritePM Navigation Controller-->
         <scene sceneID="pmZ-Qb-ymY">
             <objects>
-                <navigationController storyboardIdentifier="CCFWritePMNavigationController" id="tGS-ab-K6j" customClass="CCFWritePMNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CCFWritePMNavigationController" id="tGS-ab-K6j" customClass="ForumWritePMNavigationController" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="CXw-Xr-NPb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

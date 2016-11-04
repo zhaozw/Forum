@@ -1,25 +1,25 @@
 //
-//  CCFProfileTableViewController.m
+//  ForumUserProfileTableViewController.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/3/20.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFProfileTableViewController.h"
+#import "ForumUserProfileTableViewController.h"
 #import "CCFProfileTableViewCell.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 #import "TransValueUITableViewCell.h"
 #import "ForumUserThreadTableViewController.h"
 
-#import "CCFWritePMNavigationController.h"
+#import "ForumWritePMNavigationController.h"
 #import <UIImageView+WebCache.h>
 #import "UIStoryboard+CCF.h"
 
 #import "ForumConfig.h"
 
-@interface CCFProfileTableViewController () <TransValueDelegate> {
+@interface ForumUserProfileTableViewController () <TransValueDelegate> {
 
     UserProfile *userProfile;
     int userId;
@@ -36,7 +36,7 @@
 
 @end
 
-@implementation CCFProfileTableViewController
+@implementation ForumUserProfileTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -190,7 +190,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
     if (indexPath.section == 1 && indexPath.row == 1) {
-        CCFWritePMNavigationController *controller = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"CCFWritePMNavigationController"];
+        ForumWritePMNavigationController *controller = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"ForumWritePMNavigationController"];
         TransValueBundle *bundle = [[TransValueBundle alloc] init];
         [bundle putStringValue:userProfile.profileName forKey:@"PROFILE_NAME"];
 

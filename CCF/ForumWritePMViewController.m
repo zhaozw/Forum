@@ -1,29 +1,29 @@
 
 //
-//  CCFWritePMViewController.m
+//  ForumWritePMViewController.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/4/9.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFWritePMViewController.h"
-#import "CCFWritePMNavigationController.h"
+#import "ForumWritePMViewController.h"
+#import "ForumWritePMNavigationController.h"
 #import <SVProgressHUD.h>
 
 
-@interface CCFWritePMViewController ()
+@interface ForumWritePMViewController ()
 
 @end
 
 
-@implementation CCFWritePMViewController
+@implementation ForumWritePMViewController
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    NSString *profileName = [((CCFWritePMNavigationController *) self.navigationController).bundle getStringValue:@"PROFILE_NAME"];
+    NSString *profileName = [((ForumWritePMNavigationController *) self.navigationController).bundle getStringValue:@"PROFILE_NAME"];
 
 
     if (profileName != nil) {
