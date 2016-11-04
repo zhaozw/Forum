@@ -82,7 +82,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
-    if ([segue.identifier isEqualToString:@"ForumThreadListTableViewController"]) {
+    if ([segue.identifier isEqualToString:@"ShowThreadListFormFavForumList"]) {
         ForumThreadListTableViewController *controller = segue.destinationViewController;
 
         self.transValueDelegate = (id <TransValueDelegate>) controller;
