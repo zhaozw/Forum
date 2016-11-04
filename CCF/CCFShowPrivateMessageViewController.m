@@ -34,7 +34,7 @@
 #import "CCFSimpleReplyNavigationController.h"
 #import "CCFPCH.pch"
 #import "NSString+Extensions.h"
-#import "DRLTabBarController.h"
+#import "ForumTabBarController.h"
 #import "ForumConfig.h"
 
 

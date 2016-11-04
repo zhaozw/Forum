@@ -1,21 +1,21 @@
 //
-//  DRLTabBarController.m
+//  ForumTabBarController.m
 //  DRL
 //
 //  Created by 迪远 王 on 16/5/21.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "DRLTabBarController.h"
+#import "ForumTabBarController.h"
 
 
-@interface DRLTabBarController () {
+@interface ForumTabBarController () {
 
 }
 
 @end
 
-@implementation DRLTabBarController
+@implementation ForumTabBarController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

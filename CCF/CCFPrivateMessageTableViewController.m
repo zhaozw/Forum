@@ -14,7 +14,7 @@
 #import "CCFProfileTableViewController.h"
 #import "CCFWritePMNavigationController.h"
 #import "UIStoryboard+CCF.h"
-#import "DRLTabBarController.h"
+#import "ForumTabBarController.h"
 
 @interface CCFPrivateMessageTableViewController () <CCFThreadListCellDelegate, MGSwipeTableCellDelegate> {
     int messageType;
@@ -155,7 +155,7 @@
 
 
 - (IBAction)showLeftDrawer:(id)sender {
-    DRLTabBarController *controller = (DRLTabBarController *) self.tabBarController;
+    ForumTabBarController *controller = (ForumTabBarController *) self.tabBarController;
 
 
     UIStoryboard *storyboard = [UIStoryboard mainStoryboard];

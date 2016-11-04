@@ -13,7 +13,7 @@
 #import "XibInflater.h"
 #import "MGSwipeTableCell.h"
 #import "MGSwipeTableCellWithIndexPath.h"
-#import "DRLTabBarController.h"
+#import "ForumTabBarController.h"
 #import "UIStoryboard+CCF.h"
 
 
@@ -122,7 +122,7 @@
 }
 
 - (IBAction)showLeftDrawer:(id)sender {
-    DRLTabBarController *controller = (DRLTabBarController *) self.tabBarController;
+    ForumTabBarController *controller = (ForumTabBarController *) self.tabBarController;
 
 
     UIStoryboard *storyboard = [UIStoryboard mainStoryboard];

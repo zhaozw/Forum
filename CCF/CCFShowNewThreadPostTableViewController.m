@@ -12,7 +12,7 @@
 #import "CCFSearchResultCell.h"
 #import "UIStoryboard+CCF.h"
 #import "CCFProfileTableViewController.h"
-#import "DRLTabBarController.h"
+#import "ForumTabBarController.h"
 #import "CCFWebViewController.h"
 
 @interface CCFShowNewThreadPostTableViewController () <CCFThreadListCellDelegate> {
@@ -120,7 +120,7 @@
 
 - (IBAction)showLeftDrawer:(id)sender {
 
-    DRLTabBarController *controller = (DRLTabBarController *) self.tabBarController;
+    ForumTabBarController *controller = (ForumTabBarController *) self.tabBarController;
 
 
     UIStoryboard *storyboard = [UIStoryboard mainStoryboard];

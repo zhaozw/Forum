@@ -9,7 +9,7 @@
 #import "CCFFavThreadPostTableViewController.h"
 #import "CCFSimpleThreadTableViewCell.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
-#import "DRLTabBarController.h"
+#import "ForumTabBarController.h"
 #import "CCFWebViewController.h"
 #import "CCFProfileTableViewController.h"
 #import "UIStoryboard+CCF.h"
@@ -140,7 +140,7 @@
 }
 
 - (IBAction)showLeftDrawer:(id)sender {
-    DRLTabBarController *controller = (DRLTabBarController *) self.tabBarController;
+    ForumTabBarController *controller = (ForumTabBarController *) self.tabBarController;
 
 
     UIStoryboard *storyboard = [UIStoryboard mainStoryboard];

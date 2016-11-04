@@ -14,7 +14,7 @@
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "CCFThreadListTableViewController.h"
 #import "CCFForumApi.h"
-#import "DRLTabBarController.h"
+#import "ForumTabBarController.h"
 #import "MGSwipeTableCellWithIndexPath.h"
 
 @interface CCFFavFormController () <TransValueDelegate, MGSwipeTableCellDelegate> {
@@ -153,7 +153,7 @@
 
 
 - (IBAction)showLeftDrawer:(id)sender {
-    DRLTabBarController *controller = (DRLTabBarController *) self.tabBarController;
+    ForumTabBarController *controller = (ForumTabBarController *) self.tabBarController;
 
 
     UIStoryboard *storyboard = [UIStoryboard mainStoryboard];

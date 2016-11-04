@@ -72,7 +72,7 @@
 		3AC660731CF1833F000D3BDB /* CCFUserThreadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC6605B1CF1833F000D3BDB /* CCFUserThreadTableViewController.m */; };
 		3AC660761CF1833F000D3BDB /* CCFSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660601CF1833F000D3BDB /* CCFSearchViewController.m */; };
 		3AC660771CF1833F000D3BDB /* CCFSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660621CF1833F000D3BDB /* CCFSettingTableViewController.m */; };
-		3AC660781CF1833F000D3BDB /* DRLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660641CF1833F000D3BDB /* DRLTabBarController.m */; };
+		3AC660781CF1833F000D3BDB /* ForumTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660641CF1833F000D3BDB /* ForumTabBarController.m */; };
 		3AC660811CF18685000D3BDB /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660801CF18685000D3BDB /* NSUserDefaults+Setting.m */; };
 		3AC660841CF1AEA1000D3BDB /* AutoRelayoutToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660831CF1AEA1000D3BDB /* AutoRelayoutToolbar.m */; };
 		3AC660871CF1AF85000D3BDB /* AutoRelayoutUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660861CF1AF85000D3BDB /* AutoRelayoutUITextView.m */; };
@@ -231,8 +231,8 @@
 		3AC660601CF1833F000D3BDB /* CCFSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSearchViewController.m; sourceTree = "<group>"; };
 		3AC660611CF1833F000D3BDB /* CCFSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSettingTableViewController.h; sourceTree = "<group>"; };
 		3AC660621CF1833F000D3BDB /* CCFSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSettingTableViewController.m; sourceTree = "<group>"; };
-		3AC660631CF1833F000D3BDB /* DRLTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRLTabBarController.h; sourceTree = "<group>"; };
-		3AC660641CF1833F000D3BDB /* DRLTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRLTabBarController.m; sourceTree = "<group>"; };
+		3AC660631CF1833F000D3BDB /* ForumTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumTabBarController.h; sourceTree = "<group>"; };
+		3AC660641CF1833F000D3BDB /* ForumTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumTabBarController.m; sourceTree = "<group>"; };
 		3AC660651CF1833F000D3BDB /* ReplyCallbackDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyCallbackDelegate.h; sourceTree = "<group>"; };
 		3AC660661CF1833F000D3BDB /* ReplyTransValueDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyTransValueDelegate.h; sourceTree = "<group>"; };
 		3AC6607F1CF18685000D3BDB /* NSUserDefaults+Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Setting.h"; sourceTree = "<group>"; };
@@ -514,8 +514,8 @@
 				3AA935E51CF1C19A009FC4A6 /* LoginViewController.h */,
 				3AA935E61CF1C19A009FC4A6 /* LoginViewController.m */,
 				3AA935E71CF1C19A009FC4A6 /* LoginViewController.xib */,
-				3AC660631CF1833F000D3BDB /* DRLTabBarController.h */,
-				3AC660641CF1833F000D3BDB /* DRLTabBarController.m */,
+				3AC660631CF1833F000D3BDB /* ForumTabBarController.h */,
+				3AC660641CF1833F000D3BDB /* ForumTabBarController.m */,
 				3AD077C31CF73B50006A8FBF /* CCFWebViewController.h */,
 				3AD077C41CF73B50006A8FBF /* CCFWebViewController.m */,
 				3AC660461CF1833F000D3BDB /* CCFFavFormController.h */,
@@ -863,7 +863,7 @@
 				3AA935E31CF1BCB2009FC4A6 /* FormEntry+CoreDataProperties.m in Sources */,
 				3ACFFD301CF9DD3C000312DC /* HPURLProtocol.m in Sources */,
 				3AC65FBF1CF13A8F000D3BDB /* NSUserDefaults+Extensions.m in Sources */,
-				3AC660781CF1833F000D3BDB /* DRLTabBarController.m in Sources */,
+				3AC660781CF1833F000D3BDB /* ForumTabBarController.m in Sources */,
 				3A671EE41CB9E061001CC91E /* PageHeaderView.m in Sources */,
 				3AA5B99D1CBA7D690008175A /* CCFSimpleReplyViewController.m in Sources */,
 				3AA5B9A01CBA8C6C0008175A /* CCFSimpleReplyNavigationController.m in Sources */,
