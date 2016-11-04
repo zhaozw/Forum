@@ -58,7 +58,7 @@
         NSString *securityToken = [bundle getStringValue:@"SECYRITY_TOKEN"];
         NSString *ajaxLastPost = [bundle getStringValue:@"AJAX_LAST_POST"];
 
-        [self.ccfApi quickReplyPostWithThreadId:threadId forPostId:postId andMessage:self.replyContent.text securitytoken:securityToken ajaxLastPost:ajaxLastPost handler:^(BOOL isSuccess, ShowThreadPage *message) {
+        [self.ccfForumApi quickReplyPostWithThreadId:threadId forPostId:postId andMessage:self.replyContent.text securitytoken:securityToken ajaxLastPost:ajaxLastPost handler:^(BOOL isSuccess, ShowThreadPage *message) {
             if (isSuccess && message != nil) {
                 [SVProgressHUD showSuccessWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
 
@@ -78,7 +78,7 @@
             }
         }];
     } else {
-        [self.ccfApi replyThreadWithId:threadId andMessage:self.replyContent.text handler:^(BOOL isSuccess, id message) {
+        [self.ccfForumApi replyThreadWithId:threadId andMessage:self.replyContent.text handler:^(BOOL isSuccess, id message) {
 
             if (isSuccess) {
 

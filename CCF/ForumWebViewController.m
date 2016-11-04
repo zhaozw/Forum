@@ -118,7 +118,7 @@
 }
 
 - (void)showThreadWithP:(NSString *)pID {
-    [self.ccfApi showThreadWithP:pID handler:^(BOOL isSuccess, id message) {
+    [self.ccfForumApi showThreadWithP:pID handler:^(BOOL isSuccess, id message) {
 
         ShowThreadPage *threadPage = message;
 
@@ -152,42 +152,36 @@
         html = [NSString stringWithFormat:THREAD_PAGE, threadPage.threadTitle, lis];
 
 
-        [pageDic setObject:html forKey:[NSNumber numberWithInt:currentPageNumber]];
+        pageDic[@(currentPageNumber)] = html;
 
         [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
 
         [self.webView.scrollView.mj_header endRefreshing];
 
 
-        if (YES) {
-            CABasicAnimation *stretchAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.y"];
-            [stretchAnimation setToValue:[NSNumber numberWithFloat:1.02]];
-            [stretchAnimation setRemovedOnCompletion:YES];
-            [stretchAnimation setFillMode:kCAFillModeRemoved];
-            [stretchAnimation setAutoreverses:YES];
-            [stretchAnimation setDuration:0.15];
-            [stretchAnimation setDelegate:self];
-
-            [stretchAnimation setBeginTime:CACurrentMediaTime() + 0.35];
-
-            [stretchAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-            //[self.webView setAnchorPoint:CGPointMake(0.0, 1) forView:self.webView];
-            [self.view.layer addAnimation:stretchAnimation forKey:@"stretchAnimation"];
-
-            CATransition *animation = [CATransition animation];
-            [animation setType:kCATransitionPush];
-            [animation setSubtype:kCATransitionFromBottom];
-            [animation setDuration:0.5f];
-            [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-            [[self.webView layer] addAnimation:animation forKey:nil];
-        }
+        CABasicAnimation *stretchAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.y"];
+        [stretchAnimation setToValue:@1.02F];
+        [stretchAnimation setRemovedOnCompletion:YES];
+        [stretchAnimation setFillMode:kCAFillModeRemoved];
+        [stretchAnimation setAutoreverses:YES];
+        [stretchAnimation setDuration:0.15];
+        [stretchAnimation setDelegate:self];
+        [stretchAnimation setBeginTime:CACurrentMediaTime() + 0.35];
+        [stretchAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+        [self.view.layer addAnimation:stretchAnimation forKey:@"stretchAnimation"];
+        CATransition *animation = [CATransition animation];
+        [animation setType:kCATransitionPush];
+        [animation setSubtype:kCATransitionFromBottom];
+        [animation setDuration:0.5f];
+        [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+        [[self.webView layer] addAnimation:animation forKey:nil];
     }];
 }
 
 - (void)prePage:(int)threadId page:(int)page withAnim:(BOOL)anim {
 
 
-    [self.ccfApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
+    [self.ccfForumApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
 
         ShowThreadPage *threadPage = message;
 
@@ -223,7 +217,7 @@
         }
 
 
-        [pageDic setObject:html forKey:[NSNumber numberWithInt:currentPageNumber]];
+        pageDic[@(currentPageNumber)] = html;
 
         [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
 
@@ -232,7 +226,7 @@
 
         if (anim) {
             CABasicAnimation *stretchAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.y"];
-            [stretchAnimation setToValue:[NSNumber numberWithFloat:1.02]];
+            [stretchAnimation setToValue:@1.02F];
             [stretchAnimation setRemovedOnCompletion:YES];
             [stretchAnimation setFillMode:kCAFillModeRemoved];
             [stretchAnimation setAutoreverses:YES];
@@ -259,9 +253,9 @@
 - (void)showThread:(int)threadId page:(int)page withAnim:(BOOL)anim {
 
 
-    NSString *cacheHtml = [pageDic objectForKey:[NSNumber numberWithInt:page]];
+    NSString *cacheHtml = pageDic[@(page)];
 
-    [self.ccfApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
+    [self.ccfForumApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
 
         [SVProgressHUD dismiss];
 
@@ -305,13 +299,13 @@
         if (![cacheHtml isEqualToString:currentHtml]) {
             [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
             currentHtml = html;
-            [pageDic setObject:html forKey:[NSNumber numberWithInt:page]];
+            pageDic[@(page)] = html;
         }
 
 
         if (anim && ![cacheHtml isEqualToString:currentHtml]) {
             CABasicAnimation *stretchAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.y"];
-            [stretchAnimation setToValue:[NSNumber numberWithFloat:1.02]];
+            [stretchAnimation setToValue:@1.02F];
             [stretchAnimation setRemovedOnCompletion:YES];
             [stretchAnimation setFillMode:kCAFillModeRemoved];
             [stretchAnimation setAutoreverses:YES];
@@ -372,10 +366,8 @@
         [scanner scanCharactersFromSet:delimiterSet intoString:NULL];
         NSArray *kvPair = [pairString componentsSeparatedByString:@"="];
         if (kvPair.count == 2) {
-            NSString *key = [[kvPair objectAtIndex:0]
-                    stringByReplacingPercentEscapesUsingEncoding:encoding];
-            NSString *value = [[kvPair objectAtIndex:1]
-                    stringByReplacingPercentEscapesUsingEncoding:encoding];
+            NSString *key = [[kvPair objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:encoding];
+            NSString *value = [[kvPair objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:encoding];
             [pairs setObject:value forKey:key];
         }
     }
@@ -387,7 +379,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 
     NSString *urlString = [[request URL] absoluteString];
-    NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> %@ %ld %@", urlString, navigationType, request.URL.scheme);
+    NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> %@ %d %@", urlString, navigationType, request.URL.scheme);
 
 
     if ([request.URL.scheme isEqualToString:@"postid"]) {
@@ -396,73 +388,6 @@
         NSString *userName = [[query valueForKey:@"postuser"] replaceUnicode];
         int postId = [[query valueForKey:@"postid"] intValue];
         NSString *louCeng = [query valueForKey:@"postlouceng"];
-
-//        itemActionSheet = [LCActionSheet sheetWithTitle:@"操作" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
-//            if (buttonIndex == 0) {
-//                UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-//                
-//                ForumSimpleReplyNavigationController* simpleReplyController = [storyboard instantiateViewControllerWithIdentifier:@"ForumSimpleReplyNavigationController"];
-//                self.replyTransValueDelegate = (id<ReplyTransValueDelegate>)simpleReplyController;
-//                
-//                TransValueBundle * bundle = [[TransValueBundle alloc] init];
-//                
-//                [bundle putIntValue:threadID forKey:@"THREAD_ID"];
-//                [bundle putIntValue:postId forKey:@"POST_ID"];
-//                
-//                NSString * token = currentThreadPage.securityToken;
-//                [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
-//                [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
-//                [bundle putStringValue:userName forKey:@"POST_USER"];
-//                
-//                [self.replyTransValueDelegate transValue:self withBundle:bundle];
-//                
-//                [self.navigationController presentViewController:simpleReplyController animated:YES completion:^{
-//                    
-//                }];
-//                
-//                
-//            } else if (buttonIndex == 1){
-//                
-//                UIStoryboard * storyBoard = [UIStoryboard mainStoryboard];
-//                
-//                ForumSimpleReplyNavigationController * controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
-//                self.replyTransValueDelegate = (id<ReplyTransValueDelegate>)controller;
-//                
-//                TransValueBundle * bundle = [[TransValueBundle alloc] init];
-//                
-//                [bundle putIntValue:threadID forKey:@"THREAD_ID"];
-//                
-//                
-//                [bundle putIntValue:postId forKey:@"POST_ID"];
-//                
-//                NSString * token = currentThreadPage.securityToken;
-//                
-//                
-//                [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
-//                
-//                [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
-//                
-//                [bundle putStringValue:userName forKey:@"USER_NAME"];
-//                
-//                [self.replyTransValueDelegate transValue:self withBundle:bundle];
-//                
-//                [self.navigationController presentViewController:controller animated:YES completion:^{
-//                    
-//                }];
-//                
-//                
-//            } else if (buttonIndex == 2){
-//                NSString * louceng = louCeng;
-//                
-//                NSString * postUrl = BBS_SHOWTHREAD_POSTCOUNT(postId, louCeng);
-//                
-//                UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-//                pasteboard.string = postUrl;
-//                
-//                [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
-//                
-//            }
-//        } otherButtonTitles:@"快速回复", @"高级回复", @"复制链接" , nil];
 
         itemActionSheet = [LCActionSheet sheetWithTitle:userName buttonTitles:@[@"快速回复", @"高级回复", @"复制链接"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
             if (buttonIndex == 0) {
@@ -657,6 +582,18 @@
 
 - (IBAction)back:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+
+
+
+//    NSString * currentHtml = [self.webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('list').innerHTML;"];
+//
+//    [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('list').innerHTML +='%@';", @"<li class=\"post-title\">\n            <div class=\"title\">\n\t 9999999 \n</div>\n        </li>"]];
+
+
+
+//    NSString *injectSrc = @"var i = document.createElement('div'); i.innerHTML = '%@';document.documentElement.appendChild(i);";
+//    NSString *runToInject = [NSString stringWithFormat:injectSrc, @"Hello World"];
+//    [self.webView stringByEvaluatingJavaScriptFromString:runToInject];
 }
 
 - (IBAction)changeNumber:(id)sender {
@@ -683,22 +620,6 @@
 
         }
     }];
-//    itemActionSheet = [LCActionSheet sheetWithTitle:nil cancelButtonTitle:nil clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
-//        if (buttonIndex == 0) {
-//            // 复制贴链接
-//            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-//            pasteboard.string = [[UrlBuilder buildThreadURL:threadID withPage:0] absoluteString];
-//            
-//            [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
-//            
-//        } else if (buttonIndex == 1){
-//            // 在浏览器种查看
-//            [[UIApplication sharedApplication] openURL:[UrlBuilder buildThreadURL:threadID withPage:1]];
-//        } else if (buttonIndex == 2){
-//            [self reply:self];
-//            
-//        }
-//    } otherButtonTitleArray:@[@"复制帖子链接", @"在浏览器中查看",@"高级回帖"]];
 
     [itemActionSheet show];
 }

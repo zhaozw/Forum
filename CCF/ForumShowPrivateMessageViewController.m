@@ -79,7 +79,7 @@
 
     self.webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 
-        [self.ccfApi showPrivateContentById:[transPrivateMessage.pmID intValue] handler:^(BOOL isSuccess, id message) {
+        [self.ccfForumApi showPrivateContentById:[transPrivateMessage.pmID intValue] handler:^(BOOL isSuccess, id message) {
             ShowPrivateMessage *content = message;
             NSString *postInfo = [NSString stringWithFormat:PRIVATE_MESSAGE, content.pmUserInfo.userID, content.pmUserInfo.userAvatar, content.pmUserInfo.userName, content.pmTime, content.pmContent];
 
