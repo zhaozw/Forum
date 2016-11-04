@@ -63,7 +63,7 @@
 		3AC660681CF1833F000D3BDB /* CCFApiBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660451CF1833F000D3BDB /* CCFApiBaseViewController.m */; };
 		3AC660691CF1833F000D3BDB /* CCFFavFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660471CF1833F000D3BDB /* CCFFavFormController.m */; };
 		3AC6606A1CF1833F000D3BDB /* CCFFavThreadPostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660491CF1833F000D3BDB /* CCFFavThreadPostTableViewController.m */; };
-		3AC6606B1CF1833F000D3BDB /* DRLForumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC6604B1CF1833F000D3BDB /* DRLForumTableViewController.m */; };
+		3AC6606B1CF1833F000D3BDB /* ForumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC6604B1CF1833F000D3BDB /* ForumTableViewController.m */; };
 		3AC6606C1CF1833F000D3BDB /* CCFMyThreadPostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC6604D1CF1833F000D3BDB /* CCFMyThreadPostTableViewController.m */; };
 		3AC6606D1CF1833F000D3BDB /* CCFMyThreadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC6604F1CF1833F000D3BDB /* CCFMyThreadTableViewController.m */; };
 		3AC6606F1CF1833F000D3BDB /* CCFShowNewThreadPostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660531CF1833F000D3BDB /* CCFShowNewThreadPostTableViewController.m */; };
@@ -213,8 +213,8 @@
 		3AC660471CF1833F000D3BDB /* CCFFavFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFavFormController.m; sourceTree = "<group>"; };
 		3AC660481CF1833F000D3BDB /* CCFFavThreadPostTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFFavThreadPostTableViewController.h; sourceTree = "<group>"; };
 		3AC660491CF1833F000D3BDB /* CCFFavThreadPostTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFavThreadPostTableViewController.m; sourceTree = "<group>"; };
-		3AC6604A1CF1833F000D3BDB /* DRLForumTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRLForumTableViewController.h; sourceTree = "<group>"; };
-		3AC6604B1CF1833F000D3BDB /* DRLForumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRLForumTableViewController.m; sourceTree = "<group>"; };
+		3AC6604A1CF1833F000D3BDB /* ForumTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumTableViewController.h; sourceTree = "<group>"; };
+		3AC6604B1CF1833F000D3BDB /* ForumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumTableViewController.m; sourceTree = "<group>"; };
 		3AC6604C1CF1833F000D3BDB /* CCFMyThreadPostTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFMyThreadPostTableViewController.h; sourceTree = "<group>"; };
 		3AC6604D1CF1833F000D3BDB /* CCFMyThreadPostTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFMyThreadPostTableViewController.m; sourceTree = "<group>"; };
 		3AC6604E1CF1833F000D3BDB /* CCFMyThreadTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFMyThreadTableViewController.h; sourceTree = "<group>"; };
@@ -524,8 +524,8 @@
 				3AC660601CF1833F000D3BDB /* CCFSearchViewController.m */,
 				3AC660441CF1833F000D3BDB /* CCFApiBaseViewController.h */,
 				3AC660451CF1833F000D3BDB /* CCFApiBaseViewController.m */,
-				3AC6604A1CF1833F000D3BDB /* DRLForumTableViewController.h */,
-				3AC6604B1CF1833F000D3BDB /* DRLForumTableViewController.m */,
+				3AC6604A1CF1833F000D3BDB /* ForumTableViewController.h */,
+				3AC6604B1CF1833F000D3BDB /* ForumTableViewController.m */,
 				3AC660611CF1833F000D3BDB /* CCFSettingTableViewController.h */,
 				3AC660621CF1833F000D3BDB /* CCFSettingTableViewController.m */,
 				3A2CE7CF1DAA3DFD00315C09 /* BaseStaticTableViewController.h */,
@@ -899,7 +899,7 @@
 				3A2CE7D11DAA3DFD00315C09 /* BaseStaticTableViewController.m in Sources */,
 				3A3672AD1CAF713200756D8B /* TransValueBundle.m in Sources */,
 				3AC660071CF17D86000D3BDB /* CCFForumApi.m in Sources */,
-				3AC6606B1CF1833F000D3BDB /* DRLForumTableViewController.m in Sources */,
+				3AC6606B1CF1833F000D3BDB /* ForumTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  DRLForumTableViewController.h
+//  ForumTableViewController.h
 //  DRL
 //
 //  Created by 迪远 王 on 16/5/21.
@@ -8,7 +8,7 @@
 
 #import "CCFApiBaseTableViewController.h"
 
-@interface DRLForumTableViewController : CCFApiBaseTableViewController
+@interface ForumTableViewController : CCFApiBaseTableViewController
 - (IBAction)showLeftDrawer:(id)sender;
 
 @end

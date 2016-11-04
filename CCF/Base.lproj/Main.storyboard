@@ -12,7 +12,7 @@
         <!--精品论坛-->
         <scene sceneID="ZKb-vl-Dqf">
             <objects>
-                <tableViewController storyboardIdentifier="DRLForumTableViewController" id="ASl-Ek-GKi" customClass="DRLForumTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="DRLForumTableViewController" id="ASl-Ek-GKi" customClass="ForumTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="gWF-b7-uhX">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

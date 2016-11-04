@@ -1,12 +1,12 @@
 //
-//  DRLForumTableViewController.m
+//  ForumTableViewController.m
 //  DRL
 //
 //  Created by 迪远 王 on 16/5/21.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "DRLForumTableViewController.h"
+#import "ForumTableViewController.h"
 #import "ForumCoreDataManager.h"
 #import "CCFThreadListTableViewController.h"
 #import "ForumListHeaderView.h"
@@ -17,11 +17,11 @@
 #import "UIStoryboard+CCF.h"
 
 
-@interface DRLForumTableViewController () <MGSwipeTableCellDelegate>
+@interface ForumTableViewController () <MGSwipeTableCellDelegate>
 
 @end
 
-@implementation DRLForumTableViewController
+@implementation ForumTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
