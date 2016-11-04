@@ -10,10 +10,10 @@
 
 @interface Forum : NSObject
 
-@property (nonatomic, assign) int formId;
-@property (nonatomic, strong) NSString * formName;
-@property (nonatomic, assign) int parentFormId;
+@property(nonatomic, assign) int formId;
+@property(nonatomic, strong) NSString *formName;
+@property(nonatomic, assign) int parentFormId;
 
-@property (nonatomic, strong) NSArray<Forum *> * childForms;
+@property(nonatomic, strong) NSArray<Forum *> *childForms;
 
 @end

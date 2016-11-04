@@ -15,12 +15,14 @@
 @implementation CCFApiBaseViewController
 
 #pragma mark initData
+
 - (void)initData {
-    self.ccfApi = [[CCFForumApi alloc]init];
+    self.ccfApi = [[CCFForumApi alloc] init];
 }
 
 #pragma mark override-init
--(instancetype)init{
+
+- (instancetype)init {
     if (self = [super init]) {
         [self initData];
     }
@@ -28,7 +30,8 @@
 }
 
 #pragma mark overide-initWithCoder
--(instancetype)initWithCoder:(NSCoder *)aDecoder{
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         [self initData];
     }
@@ -36,7 +39,8 @@
 }
 
 #pragma mark overide-initWithName
--(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         [self initData];
     }

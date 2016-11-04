@@ -22,12 +22,12 @@
 #import "ForumCoreDataManager.h"
 #import "FormEntry+CoreDataProperties.h"
 
-@interface LoginViewController ()<UITextFieldDelegate>{
+@interface LoginViewController () <UITextFieldDelegate> {
 
     CGRect screenSize;
-    
+
     CCFForumApi *_ccfApi;
-    
+
 }
 
 @end
@@ -40,67 +40,67 @@
     _userName.delegate = self;
     _password.delegate = self;
     _vCode.delegate = self;
-    
-    
-    
-    _userName.returnKeyType=UIReturnKeyNext;
-    _password.returnKeyType=UIReturnKeyNext;
+
+
+    _userName.returnKeyType = UIReturnKeyNext;
+    _password.returnKeyType = UIReturnKeyNext;
     _vCode.returnKeyType = UIReturnKeyDone;
     _password.keyboardType = UIKeyboardTypeASCIICapable;
 
-    
+
     screenSize = [UIScreen mainScreen].bounds;
-    
+
     _ccfApi = [[CCFForumApi alloc] init];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    
+
     [_ccfApi refreshVCodeToUIImageView:_doorImageView];
-    
+
 }
 
 #pragma mark UITextFieldDelegate
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == _userName) {
-         [_password becomeFirstResponder];
-    } else if (_password == textField){
+        [_password becomeFirstResponder];
+    } else if (_password == textField) {
         [_vCode becomeFirstResponder];
-    } else{
+    } else {
         [self login:self];
     }
     return YES;
 }
 
 #pragma mark KeynboardNotification
+
 - (void)keyboardWillShow:(id)sender {
     CGRect keyboardFrame;
     //    UIKeyboardBoundsUserInfoKey
-    [[[((NSNotification *)sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
-    
+    [[[((NSNotification *) sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+
     CGRect focusedFrame = _loginbgview.frame;
     int bottom = focusedFrame.origin.y + CGRectGetHeight(focusedFrame) + self.rootView.frame.origin.y;
-    
+
     int keyboardTop = CGRectGetHeight(screenSize) - CGRectGetHeight(keyboardFrame);
-    
+
     if (bottom > keyboardTop) {
         // 键盘被挡住了
         [UIView animateWithDuration:0.2 animations:^{
             CGRect frame = self.rootView.frame;
-            frame.origin.y  -=  (bottom - keyboardTop) + 20;
+            frame.origin.y -= (bottom - keyboardTop) + 20;
             self.rootView.frame = frame;
         }];
     }
-    
+
 }
 
--(void)keyboardWillHide:(id)sender{
+- (void)keyboardWillHide:(id)sender {
     CGRect keyboardFrame;
-    
-    [[[((NSNotification *)sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
- 
-    
+
+    [[[((NSNotification *) sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+
+
     if (self.rootView.frame.origin.y != 0) {
         [UIView animateWithDuration:0.2 animations:^{
             CGRect frame = self.rootView.frame;
@@ -111,77 +111,73 @@
 }
 
 
-
 - (IBAction)login:(id)sender {
-    
 
-    
+
     NSString *name = _userName.text;
     NSString *password = _password.text;
     NSString *code = _vCode.text;
-    
+
     [_userName resignFirstResponder];
     [_password resignFirstResponder];
     [_vCode resignFirstResponder];
-    
+
     if ([name isEqualToString:@""] || [password isEqualToString:@""]) {
 
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"错误" message:@"\n用户名或密码为空" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:@"\n用户名或密码为空" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-        
+
         [alert addAction:action];
-        
+
         [self presentViewController:alert animated:YES completion:nil];
 
         return;
     }
-    
+
     [SVProgressHUD showWithStatus:@"正在登录" maskType:SVProgressHUDMaskTypeBlack];
-    
+
     [_ccfApi loginWithName:name andPassWord:password handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
-            
+
             [_ccfApi formList:^(BOOL isSuccess, id message) {
-                
-                
+
+
                 [SVProgressHUD dismiss];
                 if (isSuccess) {
                     NSMutableArray<Forum *> *needInsert = message;
-                    ForumCoreDataManager * formManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
+                    ForumCoreDataManager *formManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
                     // 需要先删除之前的老数据
                     [formManager deleteData];
-                    
+
                     [formManager insertData:needInsert operation:^(NSManagedObject *target, id src) {
-                        FormEntry *newsInfo = (FormEntry*)target;
+                        FormEntry *newsInfo = (FormEntry *) target;
                         newsInfo.formId = [src valueForKey:@"formId"];
                         newsInfo.formName = [src valueForKey:@"formName"];
                         newsInfo.parentFormId = [src valueForKey:@"parentFormId"];
-                        
+
                     }];
-                    
+
                     UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
                     [stortboard changeRootViewControllerTo:kCCFRootController];
-                    
+
                 }
-                
+
             }];
-            
-            
-            
-            
-        } else{
+
+
+        } else {
             [SVProgressHUD dismiss];
-            
-            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"错误" message:message preferredStyle:UIAlertControllerStyleAlert];
+
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:message preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-            
+
             [alert addAction:action];
-            
+
             [self presentViewController:alert animated:YES completion:nil];
         }
     }];
 
-    
+
 }
 
 

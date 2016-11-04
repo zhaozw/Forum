@@ -8,9 +8,9 @@
 
 #import "IGHTMLDocument+QueryNode.h"
 
-@implementation IGHTMLDocument(QueryNode)
+@implementation IGHTMLDocument (QueryNode)
 
--(IGXMLNode *)queryNodeWithXPath:(NSString *)xpath{
+- (IGXMLNode *)queryNodeWithXPath:(NSString *)xpath {
     return [self queryWithXPath:xpath].firstObject;
 }
 @end

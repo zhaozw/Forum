@@ -9,8 +9,8 @@
 #import "BaseCCFTableViewCell.h"
 
 @interface CCFProfileTableViewCell : BaseCCFTableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *profileAvatar;
-@property (weak, nonatomic) IBOutlet UILabel *profileUserName;
-@property (weak, nonatomic) IBOutlet UILabel *profileRank;
+@property(weak, nonatomic) IBOutlet UIImageView *profileAvatar;
+@property(weak, nonatomic) IBOutlet UILabel *profileUserName;
+@property(weak, nonatomic) IBOutlet UILabel *profileRank;
 
 @end

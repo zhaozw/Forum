@@ -9,65 +9,63 @@
 #import "UIAutoResizeTextView.h"
 #import "CCFPCH.pch"
 
-@implementation UIAutoResizeTextView{
+@implementation UIAutoResizeTextView {
     float topY;
 }
 
--(void)didMoveToSuperview{
+- (void)didMoveToSuperview {
     topY = self.frame.origin.y + 64 + 10;
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
-    
-    
-    
-    
+
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)keyboardWillShow:(id)sender {
-    
+
     CGRect keyboardFrame;
-    
-    
-    [[[((NSNotification *)sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
-    
-    
+
+
+    [[[((NSNotification *) sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+
+
     [UIView animateWithDuration:0.3 animations:^{
-        
+
         CGRect frame = self.frame;
-        
+
         float keyboardHeight = CGRectGetHeight(keyboardFrame);
-        
-        float fieldHeight  = SCREEN_HEIGHT - topY - keyboardHeight;
-        
+
+        float fieldHeight = SCREEN_HEIGHT - topY - keyboardHeight;
+
         frame.size.height = fieldHeight;
-        
+
         self.frame = frame;
-        
+
     }];
-    
+
 }
 
--(void)keyboardWillHide:(id)sender{
+- (void)keyboardWillHide:(id)sender {
     CGRect keyboardFrame;
-    
-    [[[((NSNotification *)sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
-    
+
+    [[[((NSNotification *) sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+
 
     [UIView animateWithDuration:0.3 animations:^{
-        
+
         CGRect frame = self.frame;
-        
-        
-        float fieldHeight  = SCREEN_HEIGHT - topY;
-        
+
+
+        float fieldHeight = SCREEN_HEIGHT - topY;
+
         frame.size.height = fieldHeight;
-        
+
         self.frame = frame;
-        
+
     }];
-    
+
 }
 @end

@@ -9,10 +9,10 @@
 #import "CoreDataManager.h"
 #import "FormEntry.h"
 
-@implementation CoreDataManager{
-    NSString * _xcdatamodeld;
-    NSString * _persistent;
-    NSString * _entry;
+@implementation CoreDataManager {
+    NSString *_xcdatamodeld;
+    NSString *_persistent;
+    NSString *_entry;
 }
 
 
@@ -21,19 +21,18 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 
--(instancetype)initWithXcdatamodeld:(NSString *)name andWithPersistentName:(NSString *)persistentName andWithEntryName:(NSString *)entryName{
+- (instancetype)initWithXcdatamodeld:(NSString *)name andWithPersistentName:(NSString *)persistentName andWithEntryName:(NSString *)entryName {
     if (self = [super init]) {
         _xcdatamodeld = name;
         _persistent = persistentName;
         _entry = entryName;
-        
+
     }
     return self;
 }
 
 
-
-- (void)saveContext{
+- (void)saveContext {
     NSError *error = nil;
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
     if (managedObjectContext != nil) {
@@ -50,11 +49,11 @@
 
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
-- (NSManagedObjectContext *)managedObjectContext{
+- (NSManagedObjectContext *)managedObjectContext {
     if (_managedObjectContext != nil) {
         return _managedObjectContext;
     }
-    
+
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
         _managedObjectContext = [[NSManagedObjectContext alloc] init];
@@ -65,7 +64,7 @@
 
 // Returns the managed object model for the application.
 // If the model doesn't already exist, it is created from the application's model.
-- (NSManagedObjectModel *)managedObjectModel{
+- (NSManagedObjectModel *)managedObjectModel {
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
@@ -76,105 +75,104 @@
 
 // Returns the persistent store coordinator for the application.
 // If the coordinator doesn't already exist, it is created and the application's store added to it.
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator{
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
-    
+
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:_persistent];
-    
+
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
+
     return _persistentStoreCoordinator;
 }
 
 #pragma mark - Application's Documents directory
 
 // Returns the URL to the application's Documents directory.获取Documents路径
-- (NSURL *)applicationDocumentsDirectory
-{
+- (NSURL *)applicationDocumentsDirectory {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 //插入数据
-- (void)insertData:(NSMutableArray*)dataArray{
+- (void)insertData:(NSMutableArray *)dataArray {
     NSManagedObjectContext *context = [self managedObjectContext];
     for (NSManagedObject *info in dataArray) {
-        
-        
+
+
         NSManagedObject *needInsert = [NSEntityDescription insertNewObjectForEntityForName:_entry inManagedObjectContext:context];
-        
-        FormEntry *newsInfo = (FormEntry*)needInsert;
+
+        FormEntry *newsInfo = (FormEntry *) needInsert;
         newsInfo.formId = [info valueForKey:@"formId"];
         newsInfo.formName = [info valueForKey:@"formName"];
         newsInfo.parentFormId = [info valueForKey:@"parentFormId"];
-        
+
         NSError *error;
-        if(![context save:&error]) {
-            NSLog(@"不能保存：%@",[error localizedDescription]);
+        if (![context save:&error]) {
+            NSLog(@"不能保存：%@", [error localizedDescription]);
         }
     }
 }
 
--(void)insertData:(NSMutableArray *)dataArray operation:(Operation)operation{
+- (void)insertData:(NSMutableArray *)dataArray operation:(Operation)operation {
     NSManagedObjectContext *context = [self managedObjectContext];
     for (NSManagedObject *info in dataArray) {
-        
-        
+
+
         NSManagedObject *needInsert = [NSEntityDescription insertNewObjectForEntityForName:_entry inManagedObjectContext:context];
-        
+
 //        FormEntry *newsInfo = (FormEntry*)needInsert;
 //        newsInfo.formId = [info valueForKey:@"formId"];
 //        newsInfo.formName = [info valueForKey:@"formName"];
 //        newsInfo.parentFormId = [info valueForKey:@"parentFormId"];
         operation(needInsert, info);
-        
+
         NSError *error;
-        if(![context save:&error]) {
-            NSLog(@"不能保存：%@",[error localizedDescription]);
+        if (![context save:&error]) {
+            NSLog(@"不能保存：%@", [error localizedDescription]);
         }
     }
 }
 
--(void)insertOneData:(InsertOperation)operation{
+- (void)insertOneData:(InsertOperation)operation {
     NSManagedObjectContext *context = [self managedObjectContext];
-    
+
     NSManagedObject *needInsert = [NSEntityDescription insertNewObjectForEntityForName:_entry inManagedObjectContext:context];
-    
+
     operation(needInsert);
-    
+
     NSError *error;
-    if(![context save:&error]) {
-        NSLog(@"不能保存：%@",[error localizedDescription]);
+    if (![context save:&error]) {
+        NSLog(@"不能保存：%@", [error localizedDescription]);
     }
 }
 
 
 //查询
-- (NSMutableArray*)selectData:(int)pageSize andOffset:(int)currentPage{
+- (NSMutableArray *)selectData:(int)pageSize andOffset:(int)currentPage {
     NSManagedObjectContext *context = [self managedObjectContext];
-    
+
     // 限定查询结果的数量
     //setFetchLimit
     // 查询的偏移量
     //setFetchOffset
-    
+
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
+
     [fetchRequest setFetchLimit:pageSize];
     [fetchRequest setFetchOffset:currentPage];
-    
+
     NSEntityDescription *entity = [NSEntityDescription entityForName:_entry inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSError *error;
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     NSMutableArray *resultArray = [NSMutableArray array];
-    
+
     for (FormEntry *info in fetchedObjects) {
         NSLog(@"formName:%@", info.formName);
         NSLog(@"formId:%@", info.formId);
@@ -184,10 +182,10 @@
 }
 
 //删除
--(void)deleteData{
+- (void)deleteData {
     NSManagedObjectContext *context = [self managedObjectContext];
     NSEntityDescription *entity = [NSEntityDescription entityForName:_entry inManagedObjectContext:context];
-    
+
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setIncludesPropertyValues:NO];
     [request setEntity:entity];
@@ -198,18 +196,19 @@
             [context deleteObject:obj];
         }
         if (![context save:&error]) {
-            NSLog(@"error:%@",error);
+            NSLog(@"error:%@", error);
         }
     }
 }
+
 //更新
-- (void)updateData:(NSString*)newsId  withIsLook:(NSString*)islook{
+- (void)updateData:(NSString *)newsId withIsLook:(NSString *)islook {
     NSManagedObjectContext *context = [self managedObjectContext];
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"newsid like[cd] %@",newsId];
-    
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"newsid like[cd] %@", newsId];
+
     //首先你需要建立一个request
-    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:_entry inManagedObjectContext:context]];
     [request setPredicate:predicate];//这里相当于sqlite中的查询条件，具体格式参考苹果文档 https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/Predicates/Articles/pCreating.html
     NSError *error = nil;
@@ -217,7 +216,7 @@
 //    for (FormEntry *info in result) {
 //        info.islook = islook;
 //    }
-    
+
     //保存
     if ([context save:&error]) {
         //更新成功
@@ -225,36 +224,36 @@
     }
 }
 
--(NSMutableArray *)selectData{
+- (NSMutableArray *)selectData {
     NSManagedObjectContext *context = [self managedObjectContext];
-    
+
     // 限定查询结果的数量
     //setFetchLimit
     // 查询的偏移量
     //setFetchOffset
-    
+
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 
-    
+
     NSEntityDescription *entity = [NSEntityDescription entityForName:_entry inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSError *error;
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     NSMutableArray *resultArray = [NSMutableArray array];
-    
+
     [resultArray addObjectsFromArray:fetchedObjects];
-    
+
     return resultArray;
 }
 
--(NSArray *)selectData:(SelectOperation)operation{
+- (NSArray *)selectData:(SelectOperation)operation {
     NSManagedObjectContext *context = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    
+
+
     NSEntityDescription *entity = [NSEntityDescription entityForName:_entry inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
-    
+
     NSPredicate *predicate = operation();
     if (predicate != nil) {
         [fetchRequest setPredicate:predicate];

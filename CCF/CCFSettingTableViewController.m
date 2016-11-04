@@ -18,11 +18,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
+
+
     [self.signatureSwitch setOn:[NSUserDefaults standardUserDefaults].isSignatureEnabled];
     [self.topThreadPostSwitch setOn:[NSUserDefaults standardUserDefaults].isTopThreadPostCanShow];
-    
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,14 +31,14 @@
 }
 
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
     if (indexPath.row == 0) {
-        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+        UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
         CCFSettingTableViewController *settingController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSettingTableViewController"];
         [self.navigationController pushViewController:settingController animated:YES];
     }
-    
+
 }
 
 

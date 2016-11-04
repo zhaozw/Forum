@@ -10,19 +10,17 @@
 #import "BaseStaticTableViewController.h"
 
 @interface MyProfileTableViewController : BaseStaticTableViewController
-@property (weak, nonatomic) IBOutlet UILabel *profileName;
+@property(weak, nonatomic) IBOutlet UILabel *profileName;
 
 
-@property (weak, nonatomic) IBOutlet UIImageView *prifileAvatar;
-@property (weak, nonatomic) IBOutlet UILabel *profileRank;
+@property(weak, nonatomic) IBOutlet UIImageView *prifileAvatar;
+@property(weak, nonatomic) IBOutlet UILabel *profileRank;
 
 
+@property(weak, nonatomic) IBOutlet UILabel *registerDate;
+@property(weak, nonatomic) IBOutlet UILabel *lastLoginTime;
 
-
-@property (weak, nonatomic) IBOutlet UILabel *registerDate;
-@property (weak, nonatomic) IBOutlet UILabel *lastLoginTime;
-
-@property (weak, nonatomic) IBOutlet UILabel *postCount;
+@property(weak, nonatomic) IBOutlet UILabel *postCount;
 
 
 @end

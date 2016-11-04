@@ -13,21 +13,21 @@
 
 
 @interface CCFWebViewController : CCFApiBaseViewController
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property(weak, nonatomic) IBOutlet UIWebView *webView;
 
-@property (nonatomic, strong) UIImageView *animatedFromView;
+@property(nonatomic, strong) UIImageView *animatedFromView;
 
-@property (nonatomic, weak) id<TransValueDelegate> transValueDelegate;
+@property(nonatomic, weak) id <TransValueDelegate> transValueDelegate;
 
 - (IBAction)back:(UIBarButtonItem *)sender;
 
 - (IBAction)showMoreAction:(UIBarButtonItem *)sender;
 
-@property (nonatomic, weak) id<ReplyTransValueDelegate> replyTransValueDelegate;
+@property(nonatomic, weak) id <ReplyTransValueDelegate> replyTransValueDelegate;
 
 - (IBAction)changeNumber:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *pageNumber;
+@property(weak, nonatomic) IBOutlet UIBarButtonItem *pageNumber;
 
 - (IBAction)reply:(id)sender;
 

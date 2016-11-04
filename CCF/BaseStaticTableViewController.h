@@ -16,22 +16,22 @@
 
 @interface BaseStaticTableViewController : TransBundleUITableViewController
 
-@property (nonatomic, strong) CCFForumApi *ccfApi;
-@property (nonatomic, strong) NSMutableArray *dataList;
-@property (nonatomic, assign) int currentPage;
-@property (nonatomic, assign) int totalPage;
+@property(nonatomic, strong) CCFForumApi *ccfApi;
+@property(nonatomic, strong) NSMutableArray *dataList;
+@property(nonatomic, assign) int currentPage;
+@property(nonatomic, assign) int totalPage;
 
-@property (weak, nonatomic) id<TransValueDelegate> transValueDelegate;
+@property(weak, nonatomic) id <TransValueDelegate> transValueDelegate;
 
--(void)onPullRefresh;
+- (void)onPullRefresh;
 
 
--(void)onLoadMore;
+- (void)onLoadMore;
 
--(BOOL)setPullRefresh:(BOOL) enable;
+- (BOOL)setPullRefresh:(BOOL)enable;
 
--(BOOL)setLoadMore:(BOOL) enable;
+- (BOOL)setLoadMore:(BOOL)enable;
 
-- (BOOL) autoPullfresh;
+- (BOOL)autoPullfresh;
 
 @end

@@ -34,9 +34,9 @@ webview 请求一个image
 @interface NSString (hasSuffixes)
 - (BOOL)hasSuffixes:(NSArray *)suffixes;
 @end
+
 @implementation NSString (hasSuffixes)
-- (BOOL)hasSuffixes:(NSArray *)suffixes
-{
+- (BOOL)hasSuffixes:(NSArray *)suffixes {
     __block BOOL f = NO;
     [suffixes enumerateObjectsUsingBlock:^(NSString *suffix, NSUInteger idx, BOOL *stop) {
         if ([self hasSuffix:suffix]) {
@@ -52,8 +52,7 @@ webview 请求一个image
 
 #pragma mark - NSURLCache
 
-- (NSCachedURLResponse *)cachedResponseForRequest:(NSURLRequest *)request
-{
+- (NSCachedURLResponse *)cachedResponseForRequest:(NSURLRequest *)request {
     if (![self shouldCache:request]) {
         NSLog(@"should not cache %@ %@", request.URL, @(request.cachePolicy));
         return [super cachedResponseForRequest:request];
@@ -95,7 +94,7 @@ webview 请求一个image
 
         if (data) {
             //https://github.com/evermeer/EVURLCache/blob/master/EVURLCache.m:87
-            NSURLResponse *response = [[NSURLResponse alloc] initWithURL:request.URL MIMEType:@"cache" expectedContentLength:[data length] textEncodingName:nil] ;
+            NSURLResponse *response = [[NSURLResponse alloc] initWithURL:request.URL MIMEType:@"cache" expectedContentLength:[data length] textEncodingName:nil];
             cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:data];
         } else {
             NSLog(@"not get cachedImage");
@@ -110,8 +109,7 @@ webview 请求一个image
  
  NSURLConnection doesn't even call storeCachedResponse:forRequest: for files over about 50KB (>= 52428 bytes, to be exact).
 */
-- (void)storeCachedResponse:(NSCachedURLResponse *)cachedResponse forRequest:(NSURLRequest *)request
-{
+- (void)storeCachedResponse:(NSCachedURLResponse *)cachedResponse forRequest:(NSURLRequest *)request {
     if ([self shouldCache:request]) {
 
         NSLog(@"storeCachedResponse %@", request.URL);
@@ -130,28 +128,25 @@ webview 请求一个image
                 //404, ...
             }
         });
-        
+
         return;
     }
     [super storeCachedResponse:cachedResponse forRequest:request];
 }
 
-- (void)removeCachedResponseForRequest:(NSURLRequest *)request
-{
+- (void)removeCachedResponseForRequest:(NSURLRequest *)request {
 
     [super removeCachedResponseForRequest:request];
 }
 
-- (void)removeAllCachedResponses
-{
+- (void)removeAllCachedResponses {
 
     [super removeAllCachedResponses];
 }
 
 #pragma mark -
 
-static dispatch_queue_t get_disk_cache_queue()
-{
+static dispatch_queue_t get_disk_cache_queue() {
     static dispatch_once_t onceToken;
     static dispatch_queue_t _diskCacheQueue;
     dispatch_once(&onceToken, ^{
@@ -165,7 +160,7 @@ static dispatch_queue_t get_disk_io_queue() {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _diskIOQueue = dispatch_queue_create("com.jichaowu.disk-cache.io", NULL);
-        
+
         // set priority
         dispatch_queue_t globalLowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
         dispatch_set_target_queue(_diskIOQueue, globalLowQueue);
@@ -176,7 +171,7 @@ static dispatch_queue_t get_disk_io_queue() {
 - (BOOL)shouldCache:(NSURLRequest *)request {
 
     if (request.cachePolicy != NSURLRequestReloadIgnoringLocalCacheData
-        && [[request.URL absoluteString] hasSuffixes:@[@".jpg", @".jpeg", @".gif", @".png"]]) {
+            && [[request.URL absoluteString] hasSuffixes:@[@".jpg", @".jpeg", @".gif", @".png"]]) {
         return YES;
     }
 

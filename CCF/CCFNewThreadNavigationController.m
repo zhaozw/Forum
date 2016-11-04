@@ -8,7 +8,7 @@
 
 #import "CCFNewThreadNavigationController.h"
 
-@interface CCFNewThreadNavigationController ()<TransBundleDelegate>
+@interface CCFNewThreadNavigationController () <TransBundleDelegate>
 
 @end
 
@@ -25,7 +25,7 @@
 }
 
 
--(void)transBundle:(TransValueBundle *)bundle{
+- (void)transBundle:(TransValueBundle *)bundle {
     self.bundle = bundle;
 }
 @end

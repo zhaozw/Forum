@@ -18,12 +18,13 @@
 @interface CCFShowPrivateMessageViewController : CCFApiBaseViewController
 
 
-@property (nonatomic, strong) NSMutableArray<ShowPrivateMessage *> * dataList;
+@property(nonatomic, strong) NSMutableArray<ShowPrivateMessage *> *dataList;
 
 
 - (IBAction)back:(id)sender;
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
-@property (weak, nonatomic) id<TransValueDelegate> transValueDelegate;
+@property(weak, nonatomic) IBOutlet UIWebView *webView;
+
+@property(weak, nonatomic) id <TransValueDelegate> transValueDelegate;
 
 @end

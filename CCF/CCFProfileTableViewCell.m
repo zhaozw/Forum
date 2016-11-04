@@ -19,7 +19,7 @@
 }
 */
 
--(void)setData:(UserProfile *)data{
+- (void)setData:(UserProfile *)data {
     self.profileRank.text = data.profileRank;
     self.profileUserName.text = data.profileName;
     [self showAvatar:self.profileAvatar userId:data.profileUserId];

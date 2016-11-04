@@ -13,8 +13,8 @@
 
 @interface TransBundleUINavigationController : UINavigationController
 
-@property (nonatomic, strong) id<TransBundleDelegate> transBundleDelegate;
+@property(nonatomic, strong) id <TransBundleDelegate> transBundleDelegate;
 
-@property (nonatomic, strong) TransValueBundle * bundle;
+@property(nonatomic, strong) TransValueBundle *bundle;
 
 @end

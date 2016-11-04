@@ -8,28 +8,28 @@
 
 #import "AutoRelayoutToolbar.h"
 
-@implementation AutoRelayoutToolbar{
+@implementation AutoRelayoutToolbar {
     CGRect screenSize;
 }
 
 
--(void)didMoveToSuperview{
+- (void)didMoveToSuperview {
     screenSize = [UIScreen mainScreen].bounds;
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)keyboardWillShow:(id)sender {
-    
+
     CGRect keyboardFrame;
     //    UIKeyboardBoundsUserInfoKey
-    [[[((NSNotification *)sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+    [[[((NSNotification *) sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
 //    int keyboardHeight = CGRectGetHeight(keyboardFrame);
-    
-    
+
+
     //CGSize keyboardSize = CGSizeMake(CGRectGetWidth(screenSize), keyboardHeight);
-    
+
     [UIView beginAnimations:nil context:NULL];
     // 设置动画
     [UIView setAnimationDuration:0.3];
@@ -40,28 +40,28 @@
     float keyboardHeight = CGRectGetHeight(keyboardFrame);
     frame.origin.y = screenHeight - toolbarHeight - 64 - keyboardHeight;
     self.frame = frame;
-    
+
     [UIView commitAnimations];
-    
+
 }
 
--(void)keyboardWillHide:(id)sender{
+- (void)keyboardWillHide:(id)sender {
     CGRect keyboardFrame;
-    
-    [[[((NSNotification *)sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
 
-    
+    [[[((NSNotification *) sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+
+
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
-    
+
     CGRect frame = self.frame;
     float screenHeight = CGRectGetHeight(screenSize);
     float toolbarHeight = CGRectGetHeight(self.frame);
     frame.origin.y = screenHeight - toolbarHeight - 64;
-    
+
     self.frame = frame;
 
-    
+
     [UIView commitAnimations];
 
 }

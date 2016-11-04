@@ -8,9 +8,9 @@
 
 #import <IGHTMLQuery/IGHTMLQuery.h>
 
-@interface IGXMLNode(Children)
+@interface IGXMLNode (Children)
 
--(IGXMLNode*) childrenAtPosition:(int)position;
+- (IGXMLNode *)childrenAtPosition:(int)position;
 
-- (int) childrenCount;
+- (int)childrenCount;
 @end

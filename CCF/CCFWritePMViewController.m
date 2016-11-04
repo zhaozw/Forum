@@ -17,22 +17,19 @@
 @end
 
 
-
 @implementation CCFWritePMViewController
-
-
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSString * profileName = [((CCFWritePMNavigationController*)self.navigationController).bundle getStringValue:@"PROFILE_NAME"];
-    
-    
+
+    NSString *profileName = [((CCFWritePMNavigationController *) self.navigationController).bundle getStringValue:@"PROFILE_NAME"];
+
+
     if (profileName != nil) {
         self.toWho.text = profileName;
         [self.privateMessageTitle becomeFirstResponder];
-    } else{
+    } else {
         [self.toWho becomeFirstResponder];
     }
 }
@@ -45,35 +42,35 @@
 
 - (IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
-        
+
     }];
 }
 
 - (IBAction)sendPrivateMessage:(id)sender {
     if ([self.toWho.text isEqualToString:@""]) {
         [SVProgressHUD showErrorWithStatus:@"无收件人" maskType:SVProgressHUDMaskTypeBlack];
-    } else if ([self.privateMessageTitle.text isEqualToString:@""]){
+    } else if ([self.privateMessageTitle.text isEqualToString:@""]) {
         [SVProgressHUD showErrorWithStatus:@"无标题" maskType:SVProgressHUDMaskTypeBlack];
-    } else if ([self.privateMessageContent.text isEqualToString:@""]){
+    } else if ([self.privateMessageContent.text isEqualToString:@""]) {
         [SVProgressHUD showErrorWithStatus:@"无内容" maskType:SVProgressHUDMaskTypeBlack];
-    } else{
-        
+    } else {
+
         [self.privateMessageContent resignFirstResponder];
-        
+
         [SVProgressHUD showWithStatus:@"正在发送" maskType:SVProgressHUDMaskTypeBlack];
-        
+
         [self.ccfApi sendPrivateMessageToUserName:self.toWho.text andTitle:self.privateMessageTitle.text andMessage:self.privateMessageContent.text handler:^(BOOL isSuccess, id message) {
 
             [SVProgressHUD dismiss];
-            
+
             if (isSuccess) {
                 [self.navigationController popViewControllerAnimated:YES];
-            } else{
+            } else {
                 [SVProgressHUD showErrorWithStatus:message maskType:SVProgressHUDMaskTypeBlack];
             }
-            
+
         }];
-        
+
     }
 }
 @end

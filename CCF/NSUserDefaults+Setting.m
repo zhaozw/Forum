@@ -9,30 +9,28 @@
 #import "NSUserDefaults+Setting.h"
 
 
-@implementation NSUserDefaults(Setting)
+@implementation NSUserDefaults (Setting)
 
 
+- (void)setSignature:(BOOL)enable {
 
-
--(void)setSignature:(BOOL)enable{
-    
-    NSNumber * value = enable ? [NSNumber numberWithInt:1]: [NSNumber numberWithInt:0];
+    NSNumber *value = enable ? [NSNumber numberWithInt:1] : [NSNumber numberWithInt:0];
     [self setValue:value forKey:kSIGNATURE];
 }
 
--(void)setTopThreadPost:(BOOL)show{
-    NSNumber * value = show ? [NSNumber numberWithInt:1]: [NSNumber numberWithInt:0];
+- (void)setTopThreadPost:(BOOL)show {
+    NSNumber *value = show ? [NSNumber numberWithInt:1] : [NSNumber numberWithInt:0];
     [self setValue:value forKey:kTOP_THREAD];
 }
 
 
--(BOOL)isSignatureEnabled{
-    NSNumber * value = [self valueForKey:kSIGNATURE];
+- (BOOL)isSignatureEnabled {
+    NSNumber *value = [self valueForKey:kSIGNATURE];
     return [value intValue] == 1;
 }
 
--(BOOL)isTopThreadPostCanShow{
-    NSNumber * value = [self valueForKey:kTOP_THREAD];
+- (BOOL)isTopThreadPostCanShow {
+    NSNumber *value = [self valueForKey:kTOP_THREAD];
     return [value intValue] == 1;
 }
 @end

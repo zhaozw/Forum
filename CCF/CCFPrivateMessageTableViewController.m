@@ -16,9 +16,9 @@
 #import "UIStoryboard+CCF.h"
 #import "DRLTabBarController.h"
 
-@interface CCFPrivateMessageTableViewController ()<CCFThreadListCellDelegate, MGSwipeTableCellDelegate>{
+@interface CCFPrivateMessageTableViewController () <CCFThreadListCellDelegate, MGSwipeTableCellDelegate> {
     int messageType;
-    UIStoryboardSegue * selectSegue;
+    UIStoryboardSegue *selectSegue;
 }
 
 @end
@@ -28,14 +28,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 180.0;
-    
+
     [self.messageSegmentedControl addTarget:self action:@selector(didClicksegmentedControlAction:) forControlEvents:UIControlEventValueChanged];
 }
 
--(void)didClicksegmentedControlAction:(UISegmentedControl *)Seg{
+- (void)didClicksegmentedControlAction:(UISegmentedControl *)Seg {
     NSInteger index = Seg.selectedSegmentIndex;
     switch (index) {
         case 0:
@@ -56,37 +56,36 @@
     }
 }
 
--(void)onPullRefresh{
+- (void)onPullRefresh {
     [self refreshMessage:1];
 }
 
 
--(void) refreshMessage:(int)page{
+- (void)refreshMessage:(int)page {
     [self.ccfApi listPrivateMessageWithType:messageType andPage:page handler:^(BOOL isSuccess, ForumDisplayPage *message) {
         [self.tableView.mj_header endRefreshing];
-        
+
         if (isSuccess) {
-            
+
             [self.tableView.mj_footer endRefreshing];
-            
+
             self.currentPage = 1;
-            
+
             [self.dataList removeAllObjects];
             [self.dataList addObjectsFromArray:message.dataList];
-            
+
             [self.tableView reloadData];
         }
     }];
 }
 
 
-
--(void)onLoadMore{
+- (void)onLoadMore {
     [self.ccfApi listPrivateMessageWithType:messageType andPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage *message) {
         [self.tableView.mj_footer endRefreshing];
         if (isSuccess) {
             self.currentPage++;
-            
+
             if (self.currentPage >= message.totalPageCount) {
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }
@@ -97,33 +96,33 @@
 }
 
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     static NSString *identifier = @"PrivateMessageTableViewCell";
-    PrivateMessageTableViewCell *cell = (PrivateMessageTableViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+    PrivateMessageTableViewCell *cell = (PrivateMessageTableViewCell *) [tableView dequeueReusableCellWithIdentifier:identifier];
     cell.delegate = self;
     cell.showUserProfileDelegate = self;
-    
+
     PrivateMessage *message = self.dataList[indexPath.row];
-    
+
     [cell setData:message forIndexPath:indexPath];
-    
-    
+
+
     return cell;
 }
 
 #pragma mark CCFThreadListCellDelegate
--(void)showUserProfile:(NSIndexPath *)indexPath{
-    CCFProfileTableViewController * controller = (CCFProfileTableViewController *)selectSegue.destinationViewController;
-    self.transValueDelegate = (id<TransValueDelegate>)controller;
-    
-    PrivateMessage * message = self.dataList[indexPath.row];
+
+- (void)showUserProfile:(NSIndexPath *)indexPath {
+    CCFProfileTableViewController *controller = (CCFProfileTableViewController *) selectSegue.destinationViewController;
+    self.transValueDelegate = (id <TransValueDelegate>) controller;
+
+    PrivateMessage *message = self.dataList[indexPath.row];
 
     [self.transValueDelegate transValue:message];
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [tableView fd_heightForCellWithIdentifier:@"PrivateMessageTableViewCell" configuration:^(PrivateMessageTableViewCell *cell) {
         [self configureCell:cell atIndexPath:indexPath];
     }];
@@ -131,45 +130,47 @@
 
 - (void)configureCell:(PrivateMessageTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
-    
+
     [cell setData:self.dataList[indexPath.row]];
 }
 
 #pragma mark Controller跳转
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-    if ([sender isKindOfClass:[UITableViewCell class]]){
-        CCFShowPrivateMessageViewController * controller = segue.destinationViewController;
-        self.transValueDelegate = (id<TransValueDelegate>)controller;
-        
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    if ([sender isKindOfClass:[UITableViewCell class]]) {
+        CCFShowPrivateMessageViewController *controller = segue.destinationViewController;
+        self.transValueDelegate = (id <TransValueDelegate>) controller;
+
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        
+
         PrivateMessage *message = self.dataList[indexPath.row];
-        
+
         [self.transValueDelegate transValue:message];
-        
-    }else if ([segue.identifier isEqualToString:@"ShowUserProfile"]){
+
+    } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]) {
         selectSegue = segue;
     }
 }
 
 
 - (IBAction)showLeftDrawer:(id)sender {
-    DRLTabBarController * controller = (DRLTabBarController *)self.tabBarController;
-    
-    
-    UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-    UINavigationController * myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileNavigationController"];
+    DRLTabBarController *controller = (DRLTabBarController *) self.tabBarController;
+
+
+    UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
+    UINavigationController *myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileNavigationController"];
     [controller presentViewController:myProfileControllder animated:YES completion:^{
-        
+
     }];
 }
+
 - (IBAction)writePrivateMessage:(UIBarButtonItem *)sender {
-    UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-    
-    CCFWritePMNavigationController * controller = [storyboard instantiateViewControllerWithIdentifier:@"CCFWritePMNavigationController"];
+    UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
+
+    CCFWritePMNavigationController *controller = [storyboard instantiateViewControllerWithIdentifier:@"CCFWritePMNavigationController"];
     [self.navigationController presentViewController:controller animated:YES completion:^{
-        
+
     }];
 }
 @end

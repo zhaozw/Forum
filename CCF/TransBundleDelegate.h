@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol TransBundleDelegate<NSObject>
+@protocol TransBundleDelegate <NSObject>
 
 
 @required
--(void)transBundle:(TransValueBundle *)bundle;
+- (void)transBundle:(TransValueBundle *)bundle;
 
 @end

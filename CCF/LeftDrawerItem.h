@@ -10,5 +10,5 @@
 
 @interface LeftDrawerItem : UIButton
 
--(id)initWithLeftIcon:(NSString *) name andRightText:(NSString *)text;
+- (id)initWithLeftIcon:(NSString *)name andRightText:(NSString *)text;
 @end

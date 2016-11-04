@@ -11,6 +11,6 @@
 
 @interface NormalThread : Thread
 
-@property (nonatomic, assign) BOOL isTopThread;             // 是否置顶帖子
+@property(nonatomic, assign) BOOL isTopThread;             // 是否置顶帖子
 
 @end

@@ -10,6 +10,6 @@
 
 @interface PageHeaderView : UIView
 
-@property (weak, nonatomic) IBOutlet UILabel *pageNumber;
+@property(weak, nonatomic) IBOutlet UILabel *pageNumber;
 
 @end

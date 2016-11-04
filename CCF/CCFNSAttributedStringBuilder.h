@@ -12,6 +12,6 @@
 
 @interface CCFNSAttributedStringBuilder : NSObject
 
--(NSAttributedString*) buildNSAttributedString:(NSString *)html withImageSize:(CGSize)imageSize;
+- (NSAttributedString *)buildNSAttributedString:(NSString *)html withImageSize:(CGSize)imageSize;
 
 @end

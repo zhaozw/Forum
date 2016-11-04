@@ -25,7 +25,7 @@
 #import "AFNetworkActivityIndicatorManager.h"
 
 
-@interface AppDelegate (){
+@interface AppDelegate () {
     BOOL API_DEBUG;
     int DB_VERSION;
 }
@@ -35,85 +35,79 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+
     NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:10 * 1024 * 1024 diskCapacity:50 * 1024 * 1024 diskPath:nil];
     [NSURLCache setSharedURLCache:cache];
-    
+
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
-    
+
     [HPURLProtocol registerURLProtocolIfNeed];
-    
-    
-    
-    
-    
+
+
+
+
+
     // 这地方要换成你自己的ID，别用我这个，否则签名不对你也无法收到推送
     [AVOSCloud setApplicationId:@"x67DOcrRJjpYs5Qb6H13PrMY-gzGzoHsz" clientKey:@"LGvFICq1HK7z01ybiNQcDQNu"];
-    
+
     application.applicationIconBadgeNumber = 0;
-    
-    
+
+
     DB_VERSION = 5;
-    
-    
-    
+
+
     API_DEBUG = NO;
-    
+
     if (API_DEBUG) {
-        
+
         NSDictionary *dic = [[NSBundle mainBundle] infoDictionary];
-        
-        NSString * versionCode = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-        
-        ApiTestViewController * testController = [[ApiTestViewController alloc] init];
+
+        NSString *versionCode = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+
+        ApiTestViewController *testController = [[ApiTestViewController alloc] init];
         self.window.rootViewController = testController;
         return YES;
     }
-    
-
 
 
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];//Documents目录
-    
-    
+
+
     NSLog(@"CCF->>>>>%@", documentsDirectory);
-    
+
     //[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    
+
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
 
 
     // 设置默认数值
-    NSUserDefaults * setting = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary * dictonary = [NSMutableDictionary dictionary];
+    NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *dictonary = [NSMutableDictionary dictionary];
     [dictonary setValue:[NSNumber numberWithInt:1] forKey:kSIGNATURE];
     [dictonary setValue:[NSNumber numberWithInt:1] forKey:kTOP_THREAD];
     [setting registerDefaults:dictonary];
-    
-    
-    
-    CCFForumApi * browser = [[CCFForumApi alloc]init];
-    LoginUser * loginUser = [browser getLoginUser];
-    
-    NSDate * date = [NSDate date];
-    
+
+
+    CCFForumApi *browser = [[CCFForumApi alloc] init];
+    LoginUser *loginUser = [browser getLoginUser];
+
+    NSDate *date = [NSDate date];
+
     if (loginUser.userID == nil || [loginUser.expireTime compare:date] == NSOrderedAscending) {
-        self.window.rootViewController = [[LoginViewController alloc]init];
+        self.window.rootViewController = [[LoginViewController alloc] init];
     }
-    
-    
-    
-    
-    NSUserDefaults * data = [NSUserDefaults standardUserDefaults];
-    
+
+
+    NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+
     if ([data dbVersion] != DB_VERSION) {
-        
-        ForumCoreDataManager * formManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
-        
+
+        ForumCoreDataManager *formManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
+
         // 清空数据库
         [formManager deleteData];
-        
+
 //        NSString *path = [[NSBundle mainBundle]pathForResource:@"ccf" ofType:@"json"];
 //        NSArray<CCFForm*> * forms = [[[CCFFormDao alloc]init] parseCCFForms:path];
 //
@@ -133,34 +127,32 @@
 //            newsInfo.parentFormId = [src valueForKey:@"parentFormId"];
 //            newsInfo.isNeedLogin = [src valueForKey:@"isNeedLogin"];
 //        }];
-        
-        
-        
-        ForumCoreDataManager * userManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
+
+
+
+        ForumCoreDataManager *userManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
         [userManager deleteData];
-        
+
         [data setDBVersion:DB_VERSION];
-        
-        
+
+
         [browser logout];
-        
-        LoginViewController * rootController = [[LoginViewController alloc] init];
-        
+
+        LoginViewController *rootController = [[LoginViewController alloc] init];
+
         UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
         [stortboard changeRootViewControllerToController:rootController];
-        
+
     }
 
 
     [AVOSCloud registerForRemoteNotification];
-    
-    
 
-    
+
     return YES;
 }
 
--(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
     // 首先要想LeanCloud保存installation
     AVInstallation *currentInstallation = [AVInstallation currentInstallation];
@@ -172,21 +164,17 @@
         }
 
     }];
-    
+
     // 向系统申请推送服务
     [AVOSCloud handleRemoteNotificationsWithDeviceToken:deviceToken];
 
-    
-    
 
 }
 
 
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 
--(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
-    
-    
     if (application.applicationState == UIApplicationStateActive) {
         // 转换成一个本地通知，显示到通知栏，你也可以直接显示出一个 alertView，只是那样稍显 aggressive：）
         UILocalNotification *localNotification = [[UILocalNotification alloc] init];
@@ -203,15 +191,10 @@
 }
 
 
-
-
-
-
-
-- (NSArray*) flatForm:(Forum*) form{
-    NSMutableArray * resultArray = [NSMutableArray array];
+- (NSArray *)flatForm:(Forum *)form {
+    NSMutableArray *resultArray = [NSMutableArray array];
     [resultArray addObject:form];
-    for (Forum * childForm in form.childForms) {
+    for (Forum *childForm in form.childForms) {
         [resultArray addObjectsFromArray:[self flatForm:childForm]];
     }
     return resultArray;
@@ -267,9 +250,9 @@
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
-    
+
     // Create the coordinator and store
-    
+
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"CCF.sqlite"];
     NSError *error = nil;
@@ -286,7 +269,7 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
+
     return _persistentStoreCoordinator;
 }
 
@@ -296,7 +279,7 @@
     if (_managedObjectContext != nil) {
         return _managedObjectContext;
     }
-    
+
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (!coordinator) {
         return nil;

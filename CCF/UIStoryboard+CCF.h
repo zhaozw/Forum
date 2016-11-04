@@ -15,14 +15,13 @@
 //收藏的论坛
 #define kCCFFavFormController @"CCFFavFormController"
 
-@interface UIStoryboard(CCF)
+@interface UIStoryboard (CCF)
 
-+(UIStoryboard *)mainStoryboard;
++ (UIStoryboard *)mainStoryboard;
 
--(void) changeRootViewControllerTo:(NSString *)identifier;
+- (void)changeRootViewControllerTo:(NSString *)identifier;
 
--(void) changeRootViewControllerToController:(UIViewController *)controller;
-
+- (void)changeRootViewControllerToController:(UIViewController *)controller;
 
 
 @end

@@ -8,26 +8,26 @@
 
 #import "TransValueBundle.h"
 
-@implementation TransValueBundle{
-    NSMutableDictionary * dictonary;
+@implementation TransValueBundle {
+    NSMutableDictionary *dictonary;
 }
 
--(instancetype)init{
+- (instancetype)init {
     if (self = [super init]) {
         dictonary = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
--(void)putIntValue:(int)value forKey:(NSString *)key{
+- (void)putIntValue:(int)value forKey:(NSString *)key {
     [dictonary setValue:[NSNumber numberWithInt:value] forKey:key];
 }
 
--(void)putStringValue:(NSString *)value forKey:(NSString *)key{
+- (void)putStringValue:(NSString *)value forKey:(NSString *)key {
     [dictonary setValue:value forKey:key];
 }
 
--(int)getIntValue:(NSString *)key{
+- (int)getIntValue:(NSString *)key {
     NSNumber *value = [dictonary valueForKey:key];
     if (value == nil) {
         return -1;
@@ -35,7 +35,7 @@
     return value.intValue;
 }
 
--(NSString *)getStringValue:(NSString *)key{
+- (NSString *)getStringValue:(NSString *)key {
     return [dictonary valueForKey:key];
 }
 

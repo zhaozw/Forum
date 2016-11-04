@@ -8,14 +8,14 @@
 
 #import "UIColor+MyColor.h"
 
-@implementation UIColor(MyColor)
+@implementation UIColor (MyColor)
 
-+(UIColor *) colorWithButtonHighLight{
++ (UIColor *)colorWithButtonHighLight {
     return [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
 }
 
-+(UIColor *)colorWithBlueHighLight{
-    return [UIColor colorWithRed:82 / 255.0 green:135 /255.0 blue:238 /255.0 alpha:1];
++ (UIColor *)colorWithBlueHighLight {
+    return [UIColor colorWithRed:82 / 255.0 green:135 / 255.0 blue:238 / 255.0 alpha:1];
 }
 
 @end

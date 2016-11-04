@@ -15,11 +15,11 @@
 #import "UserEntry+CoreDataProperties.h"
 #import "CCFForumApi.h"
 
-@implementation CCFThreadListCell{
+@implementation CCFThreadListCell {
 
     ForumCoreDataManager *_coreDateManager;
-    CCFForumApi * ccfapi;
-    NSIndexPath * selectIndexPath;
+    CCFForumApi *ccfapi;
+    NSIndexPath *selectIndexPath;
 }
 
 @synthesize threadAuthor = _threadAuthor;
@@ -29,50 +29,50 @@
 @synthesize threadType = _threadType;
 @synthesize avatarImage = _avatarImage;
 
-- (instancetype)initWithCoder:(NSCoder *)coder{
+- (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
 
         ccfapi = [[CCFForumApi alloc] init];
         _coreDateManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
-        
+
         [self.avatarImage setContentScaleFactor:[[UIScreen mainScreen] scale]];
-        self.avatarImage.contentMode =  UIViewContentModeScaleAspectFit;
+        self.avatarImage.contentMode = UIViewContentModeScaleAspectFit;
         self.avatarImage.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        self.avatarImage.clipsToBounds  = YES;
+        self.avatarImage.clipsToBounds = YES;
 
     }
     return self;
 }
 
--(void)setData:(NormalThread *)data{
+- (void)setData:(NormalThread *)data {
     self.threadAuthor.text = data.threadAuthorName;
-    
+
     self.threadType.text = data.threadCategory;
     self.threadPostCount.text = data.postCount;
     self.threadOpenCount.text = data.openCount;
     self.threadCreateTime.text = data.lastPostTime;
-    
+
     self.threadTopFlag.hidden = !data.isTopThread;
 
-    
+
     self.threadContainsImage.hidden = !data.isContainsImage;
-    
-     NSString * title = [NSString stringWithFormat:@"[%@]%@", data.threadCategory, data.threadTitle];
-    
+
+    NSString *title = [NSString stringWithFormat:@"[%@]%@", data.threadCategory, data.threadTitle];
+
     if (data.isGoodNess) {
-        NSString * goodNessTitle = [@"[精]" stringByAppendingString:title];
+        NSString *goodNessTitle = [@"[精]" stringByAppendingString:title];
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:goodNessTitle];
         [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 3)];
-        
+
         self.threadTitle.attributedText = attrStr;
-    } else{
+    } else {
         self.threadTitle.text = title;
     }
     [self showAvatar:self.avatarImage userId:data.threadAuthorID];
 }
 
--(void)setData:(id)data forIndexPath:(NSIndexPath *)indexPath{
+- (void)setData:(id)data forIndexPath:(NSIndexPath *)indexPath {
     selectIndexPath = indexPath;
     [self setData:data];
 }

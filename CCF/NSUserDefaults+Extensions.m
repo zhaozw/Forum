@@ -15,23 +15,21 @@
 #define kUserName @"CCF-UserName"
 
 
+@implementation NSUserDefaults (Extensions)
 
-@implementation NSUserDefaults(Extensions)
-
--(NSString *)loadCookie{
+- (NSString *)loadCookie {
     NSData *cookiesdata = [self objectForKey:kCCFCookie];
-    
-    
-    if([cookiesdata length]) {
+
+
+    if ([cookiesdata length]) {
         NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData:cookiesdata];
-        
+
         NSHTTPCookie *cookie;
         for (cookie in cookies) {
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
         }
     }
-    
-    
+
 
     NSString *result = [[NSString alloc] initWithData:cookiesdata encoding:NSUTF8StringEncoding];
 
@@ -39,40 +37,39 @@
 }
 
 
--(void)saveCookie{
+- (void)saveCookie {
     NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cookies];
     [self setObject:data forKey:kCCFCookie];
 }
 
--(void)saveFavFormIds:(NSArray *)ids{
+- (void)saveFavFormIds:(NSArray *)ids {
     [self setObject:ids forKey:kCCFFavFormIds];
 }
 
--(NSArray *)favFormIds{
+- (NSArray *)favFormIds {
     return [self objectForKey:kCCFFavFormIds];
 }
 
 
-
--(int)dbVersion{
+- (int)dbVersion {
     return [[self objectForKey:kDB_VERSION] intValue];
 }
 
--(void)setDBVersion:(int)version{
+- (void)setDBVersion:(int)version {
     [self setObject:[NSNumber numberWithInt:version] forKey:kDB_VERSION];
 }
 
--(void)clearCookie{
+- (void)clearCookie {
     [self removeObjectForKey:kCCFCookie];
 }
 
 
--(void)saveUserName:(NSString *)name{
+- (void)saveUserName:(NSString *)name {
     [self setValue:name forKey:kUserName];
 }
 
--(NSString*)userName{
+- (NSString *)userName {
     return [self valueForKey:kUserName];
 }
 @end

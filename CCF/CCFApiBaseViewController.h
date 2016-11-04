@@ -11,6 +11,6 @@
 
 @interface CCFApiBaseViewController : UIViewController
 
-@property (nonatomic, strong) CCFForumApi *ccfApi;
+@property(nonatomic, strong) CCFForumApi *ccfApi;
 
 @end

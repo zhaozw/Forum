@@ -13,9 +13,8 @@
 @interface CCFThreadListTableViewController : CCFApiBaseTableViewController
 
 
-
 // 置顶
-@property (nonatomic, strong) NSMutableArray * threadTopList;
+@property(nonatomic, strong) NSMutableArray *threadTopList;
 
 - (IBAction)back:(UIBarButtonItem *)sender;
 
@@ -23,6 +22,6 @@
 - (IBAction)createThread:(id)sender;
 
 
-@property (weak, nonatomic) IBOutlet UINavigationItem *titleNavigationItem;
+@property(weak, nonatomic) IBOutlet UINavigationItem *titleNavigationItem;
 
 @end

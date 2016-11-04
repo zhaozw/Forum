@@ -25,8 +25,7 @@
     return data;
 }
 
-- (UIImage *)hp_imageWithData:(NSData *)data key:(NSString *)key
-{
+- (UIImage *)hp_imageWithData:(NSData *)data key:(NSString *)key {
     UIImage *image = [UIImage sd_imageWithData:data];
     image = [self scaledImageForKey:key image:image];
     image = [UIImage decodedImageWithImage:image];

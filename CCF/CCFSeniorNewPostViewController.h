@@ -14,7 +14,7 @@
 @interface CCFSeniorNewPostViewController : CCFApiBaseViewController
 
 
-@property (weak, nonatomic) IBOutlet UITextView *replyContent;
+@property(weak, nonatomic) IBOutlet UITextView *replyContent;
 
 - (IBAction)insertSmile:(id)sender;
 
@@ -24,8 +24,8 @@
 
 - (IBAction)sendSeniorMessage:(UIBarButtonItem *)sender;
 
-@property (weak, nonatomic) IBOutlet UICollectionView *insertCollectionView;
+@property(weak, nonatomic) IBOutlet UICollectionView *insertCollectionView;
 
-@property (nonatomic, strong) id<ReplyCallbackDelegate> delegate;
+@property(nonatomic, strong) id <ReplyCallbackDelegate> delegate;
 
 @end

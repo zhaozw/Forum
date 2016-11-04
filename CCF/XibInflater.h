@@ -12,6 +12,6 @@
 @interface XibInflater : NSObject
 
 
-+(id) inflateViewByXibName:(NSString*) xibName;
++ (id)inflateViewByXibName:(NSString *)xibName;
 
 @end

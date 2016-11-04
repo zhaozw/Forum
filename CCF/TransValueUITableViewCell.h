@@ -12,13 +12,13 @@
 @protocol CCFThreadListCellDelegate <NSObject>
 
 @required
--(void) showUserProfile:(NSIndexPath*)indexPath;
+- (void)showUserProfile:(NSIndexPath *)indexPath;
 
 @end
 
 
 @interface TransValueUITableViewCell : MGSwipeTableCellWithIndexPath
 
-@property (weak, nonatomic) id<CCFThreadListCellDelegate> showUserProfileDelegate;
+@property(weak, nonatomic) id <CCFThreadListCellDelegate> showUserProfileDelegate;
 
 @end

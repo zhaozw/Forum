@@ -40,7 +40,8 @@
  You may choose to only call this method on debug builds (#if DEBUG).
  @note You can only call this method once during your application lifecycle.
  */
-+ (void)registerURLProtocolWithURLMapping:(id<HPURLMapping>)URLMapping;
++ (void)registerURLProtocolWithURLMapping:(id <HPURLMapping>)URLMapping;
+
 + (void)registerURLProtocolIfNeed;
 
 @end

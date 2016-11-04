@@ -14,7 +14,7 @@ typedef NS_ENUM(NSInteger, EntryType) {
     EntryTypeForm = 0,
     EntryTypePost,
     EntryTypeUser
-    
+
 };
 
 
@@ -27,12 +27,12 @@ typedef NS_ENUM(NSInteger, EntryType) {
 
 @interface ForumCoreDataManager : CoreDataManager
 
--(instancetype)initWithEntryType:(EntryType) enrty;
+- (instancetype)initWithEntryType:(EntryType)enrty;
 
--(NSArray<Forum *> *)selectFavForms:(NSArray *) ids;
+- (NSArray<Forum *> *)selectFavForms:(NSArray *)ids;
 
--(NSArray<Forum *> *)selectChildFormsForId:(int)formId;
+- (NSArray<Forum *> *)selectChildFormsForId:(int)formId;
 
--(NSArray<Forum *> *)selectAllForms;
+- (NSArray<Forum *> *)selectAllForms;
 
 @end

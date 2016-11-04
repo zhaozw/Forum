@@ -14,11 +14,11 @@
 @interface CCFThreadListForChildFormUITableViewController : CCFApiBaseTableViewController
 
 // 置顶
-@property (nonatomic, strong) NSMutableArray * threadTopList;
+@property(nonatomic, strong) NSMutableArray *threadTopList;
 
 - (IBAction)back:(UIBarButtonItem *)sender;
-- (IBAction)createThread:(id)sender;
 
+- (IBAction)createThread:(id)sender;
 
 
 @end

@@ -10,9 +10,9 @@
 
 @implementation XibInflater
 
-+(id)inflateViewByXibName:(NSString *)xibName{
++ (id)inflateViewByXibName:(NSString *)xibName {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:xibName owner:self options:nil];
-    
+
     return [nib objectAtIndex:0];
 }
 @end

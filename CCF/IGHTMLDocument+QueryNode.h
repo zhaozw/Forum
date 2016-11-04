@@ -8,8 +8,8 @@
 
 #import <IGHTMLQuery/IGHTMLQuery.h>
 
-@interface IGHTMLDocument(QueryNode)
+@interface IGHTMLDocument (QueryNode)
 
-- (IGXMLNode*) queryNodeWithXPath:(NSString*)xpath;
+- (IGXMLNode *)queryNodeWithXPath:(NSString *)xpath;
 
 @end

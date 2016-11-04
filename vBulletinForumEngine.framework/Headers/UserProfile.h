@@ -10,12 +10,12 @@
 
 @interface UserProfile : NSObject
 
-@property (nonatomic, strong) NSString * profileUserId;
-@property (nonatomic, strong) NSString * profileRank;
-@property (nonatomic, strong) NSString * profileName;
-@property (nonatomic, strong) NSString * profileRegisterDate;
-@property (nonatomic, strong) NSString * profileRecentLoginDate;
-@property (nonatomic, strong) NSString * profileTotalPostCount;
+@property(nonatomic, strong) NSString *profileUserId;
+@property(nonatomic, strong) NSString *profileRank;
+@property(nonatomic, strong) NSString *profileName;
+@property(nonatomic, strong) NSString *profileRegisterDate;
+@property(nonatomic, strong) NSString *profileRecentLoginDate;
+@property(nonatomic, strong) NSString *profileTotalPostCount;
 
 
 @end

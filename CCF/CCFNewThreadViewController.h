@@ -14,10 +14,9 @@
 @interface CCFNewThreadViewController : TransBundleUIViewController
 
 
+@property(weak, nonatomic) IBOutlet UITextField *subject;
 
-@property (weak, nonatomic) IBOutlet UITextField *subject;
-
-@property (weak, nonatomic) IBOutlet UITextView *message;
+@property(weak, nonatomic) IBOutlet UITextView *message;
 
 - (IBAction)createThread:(id)sender;
 
@@ -26,8 +25,8 @@
 - (IBAction)pickPhoto:(id)sender;
 
 
-@property (weak, nonatomic) IBOutlet UICollectionView *selectPhotos;
+@property(weak, nonatomic) IBOutlet UICollectionView *selectPhotos;
 
-- (IBAction)showCategory:(UIButton*)sender;
+- (IBAction)showCategory:(UIButton *)sender;
 
 @end

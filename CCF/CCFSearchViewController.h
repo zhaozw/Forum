@@ -12,9 +12,8 @@
 @interface CCFSearchViewController : CCFApiBaseTableViewController
 
 
-
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property(weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property(weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 
 - (IBAction)back:(id)sender;

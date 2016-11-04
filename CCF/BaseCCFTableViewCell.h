@@ -13,16 +13,15 @@
 #import "TransValueUITableViewCell.h"
 
 
-
 @interface BaseCCFTableViewCell : TransValueUITableViewCell
 
--(void) setData:(id) data;
+- (void)setData:(id)data;
 
--(void)setData:(id)data forIndexPath:(NSIndexPath *)indexPath;
+- (void)setData:(id)data forIndexPath:(NSIndexPath *)indexPath;
 
--(void) showAvatar:(UIImageView *)avatarImageView userId:(NSString*)userId;
+- (void)showAvatar:(UIImageView *)avatarImageView userId:(NSString *)userId;
 
-@property(nonatomic,weak) NSIndexPath * selectIndexPath;
+@property(nonatomic, weak) NSIndexPath *selectIndexPath;
 
 
 @end

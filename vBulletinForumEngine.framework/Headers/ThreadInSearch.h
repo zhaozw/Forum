@@ -11,6 +11,6 @@
 
 @interface ThreadInSearch : Thread
 
-@property (nonatomic, strong) NSString* fromFormName;       // 所属论坛名称
+@property(nonatomic, strong) NSString *fromFormName;       // 所属论坛名称
 
 @end

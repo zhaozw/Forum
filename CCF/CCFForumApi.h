@@ -11,7 +11,7 @@
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 
-@interface CCFForumApi : NSObject<ForumEngine>
+@interface CCFForumApi : NSObject <ForumEngine>
 
 
 @end

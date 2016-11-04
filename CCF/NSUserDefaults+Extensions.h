@@ -9,23 +9,23 @@
 #import <Foundation/Foundation.h>
 
 
-@interface NSUserDefaults(Extensions)
+@interface NSUserDefaults (Extensions)
 
--(NSString *)loadCookie;
+- (NSString *)loadCookie;
 
--(void)saveCookie;
+- (void)saveCookie;
 
--(void) saveFavFormIds:(NSArray*) ids;
+- (void)saveFavFormIds:(NSArray *)ids;
 
--(NSArray *) favFormIds;
+- (NSArray *)favFormIds;
 
--(int)dbVersion;
+- (int)dbVersion;
 
--(void) setDBVersion:(int)version;
+- (void)setDBVersion:(int)version;
 
--(void) clearCookie;
+- (void)clearCookie;
 
--(void) saveUserName:(NSString*)name;
+- (void)saveUserName:(NSString *)name;
 
--(NSString*)userName;
+- (NSString *)userName;
 @end

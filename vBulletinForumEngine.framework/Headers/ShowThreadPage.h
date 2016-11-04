@@ -12,9 +12,9 @@
 
 @interface ShowThreadPage : ForumDisplayPage
 
-@property (nonatomic, strong) NSString* threadID;
-@property (nonatomic, strong) NSString* threadLink;
-@property (nonatomic, strong) NSString * threadTitle;
-@property (nonatomic, strong) NSString * formId;            // 主题所属论坛
+@property(nonatomic, strong) NSString *threadID;
+@property(nonatomic, strong) NSString *threadLink;
+@property(nonatomic, strong) NSString *threadTitle;
+@property(nonatomic, strong) NSString *formId;            // 主题所属论坛
 
 @end

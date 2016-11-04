@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CCFThreadListTitleCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *threadTitle;
+@property(weak, nonatomic) IBOutlet UILabel *threadTitle;
 
 @end

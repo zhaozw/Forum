@@ -8,7 +8,7 @@
 
 #import "UIView+Corner.h"
 
-@implementation UIView(Corner)
+@implementation UIView (Corner)
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -18,21 +18,21 @@
 }
 */
 
-@dynamic borderColor,borderWidth,cornerRadius,masksToBounds;
+@dynamic borderColor, borderWidth, cornerRadius, masksToBounds;
 
--(void)setBorderColor:(UIColor *)borderColor{
+- (void)setBorderColor:(UIColor *)borderColor {
     [self.layer setBorderColor:borderColor.CGColor];
 }
 
--(void)setBorderWidth:(CGFloat)borderWidth{
+- (void)setBorderWidth:(CGFloat)borderWidth {
     [self.layer setBorderWidth:borderWidth];
 }
 
--(void)setCornerRadius:(CGFloat)cornerRadius{
+- (void)setCornerRadius:(CGFloat)cornerRadius {
     [self.layer setCornerRadius:cornerRadius];
 }
 
--(void)setMasksToBounds:(BOOL)masksToBounds{
+- (void)setMasksToBounds:(BOOL)masksToBounds {
     [self.layer setMasksToBounds:masksToBounds];
 }
 

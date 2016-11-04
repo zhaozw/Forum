@@ -15,160 +15,160 @@
 #import "UIStoryboard+CCF.h"
 
 
-@interface MyProfileTableViewController (){
-    UserProfile * userProfile;
-    
-    UIImage * defaultAvatarImage;
-    
+@interface MyProfileTableViewController () {
+    UserProfile *userProfile;
+
+    UIImage *defaultAvatarImage;
+
     ForumCoreDataManager *coreDateManager;
-    
-    NSMutableDictionary * avatarCache;
-    
-    NSMutableArray<UserEntry*> * cacheUsers;
+
+    NSMutableDictionary *avatarCache;
+
+    NSMutableArray<UserEntry *> *cacheUsers;
 }
 
 @end
 
 @implementation MyProfileTableViewController
 
--(instancetype)init{
+- (instancetype)init {
     if (self = [super init]) {
         [self initProfileData];
     }
     return self;
 }
 
--(instancetype)initWithCoder:(NSCoder *)aDecoder{
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         [self initProfileData];
     }
     return self;
 }
 
--(void) initProfileData{
-    
+- (void)initProfileData {
+
     defaultAvatarImage = [UIImage imageNamed:@"logo.jpg"];
-    
+
     avatarCache = [NSMutableDictionary dictionary];
-    
-    
+
+
     coreDateManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
     if (cacheUsers == nil) {
-        cacheUsers = [[coreDateManager selectData:^NSPredicate *{
+        cacheUsers = [[coreDateManager selectData:^NSPredicate * {
             return [NSPredicate predicateWithFormat:@"userID > %d", 0];
         }] copy];
     }
-    
-    for (UserEntry * user in cacheUsers) {
+
+    for (UserEntry *user in cacheUsers) {
         [avatarCache setValue:user.userAvatar forKey:user.userID];
     }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
+
+
 }
 
--(BOOL)setLoadMore:(BOOL)enable{
+- (BOOL)setLoadMore:(BOOL)enable {
     return NO;
 }
 
 
--(void)onPullRefresh{
-    CCFForumApi * api = self.ccfApi;
-    
-    NSString * currentUserId = api.getLoginUser.userID;
-    
-    [self.ccfApi showProfileWithUserId:currentUserId handler:^(BOOL isSuccess, UserProfile* message) {
+- (void)onPullRefresh {
+    CCFForumApi *api = self.ccfApi;
+
+    NSString *currentUserId = api.getLoginUser.userID;
+
+    [self.ccfApi showProfileWithUserId:currentUserId handler:^(BOOL isSuccess, UserProfile *message) {
         userProfile = message;
-        
+
         [self.tableView.mj_header endRefreshing];
-        
+
         [self showAvatar:_prifileAvatar userId:userProfile.profileUserId];
         _profileName.text = userProfile.profileName;
         _profileRank.text = userProfile.profileRank;
-        
+
         _registerDate.text = userProfile.profileRegisterDate;
         _lastLoginTime.text = userProfile.profileRecentLoginDate;
         _postCount.text = userProfile.profileTotalPostCount;
     }];
 }
 
--(void)showAvatar:(UIImageView *)avatarImageView userId:(NSString*)userId{
-    
+- (void)showAvatar:(UIImageView *)avatarImageView userId:(NSString *)userId {
+
     // 不知道什么原因，userID可能是nil
     if (userId == nil) {
         [avatarImageView setImage:defaultAvatarImage];
         return;
     }
-    NSString * avatarInArray = [avatarCache valueForKey:userId];
-    
-    NSLog( @"showAvatar incache -> %@", avatarInArray);
-    
+    NSString *avatarInArray = [avatarCache valueForKey:userId];
+
+    NSLog(@"showAvatar incache -> %@", avatarInArray);
+
     if (avatarInArray == nil) {
-        
+
         [self.ccfApi getAvatarWithUserId:userId handler:^(BOOL isSuccess, NSString *avatar) {
-            
+
             if (isSuccess) {
                 // 存入数据库
                 [coreDateManager insertOneData:^(id src) {
-                    UserEntry * user =(UserEntry *)src;
+                    UserEntry *user = (UserEntry *) src;
                     user.userID = userId;
                     user.userAvatar = avatar;
                 }];
                 // 添加到Cache中
                 [avatarCache setValue:avatar forKey:userId];
-                
+
                 // 显示头像
                 if (avatar == nil) {
                     [avatarImageView setImage:defaultAvatarImage];
-                } else{
-                    NSURL * avatarUrl = [NSURL URLWithString:avatar];
+                } else {
+                    NSURL *avatarUrl = [NSURL URLWithString:avatar];
                     [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatarImage];
                 }
-            } else{
+            } else {
                 [avatarImageView setImage:defaultAvatarImage];
             }
-            
+
         }];
-    } else{
-        
-        NSLog( @"showAvatar %@", avatarInArray);
-        
+    } else {
+
+        NSLog(@"showAvatar %@", avatarInArray);
+
         if ([avatarInArray isEqualToString:NO_AVATAR_URL]) {
             [avatarImageView setImage:defaultAvatarImage];
-        } else{
-            
-            NSURL * avatarUrl = [NSURL URLWithString:avatarInArray];
-            
+        } else {
+
+            NSURL *avatarUrl = [NSURL URLWithString:avatarInArray];
+
             if (/* DISABLES CODE */ (NO)) {
                 NSString *cacheImageKey = [[SDWebImageManager sharedManager] cacheKeyForURL:avatarUrl];
                 NSString *cacheImagePath = [[SDImageCache sharedImageCache] defaultCachePathForKey:cacheImageKey];
                 NSLog(@"cache_image_path %@", cacheImagePath);
             }
-            
+
             [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatarImage];
         }
     }
-    
+
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (indexPath.section == 3 && indexPath.row == 1){
-        
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (indexPath.section == 3 && indexPath.row == 1) {
+
         [self.ccfApi logout];
-        
-        
-        LoginViewController * rootController = [[LoginViewController alloc] init];
-        
+
+
+        LoginViewController *rootController = [[LoginViewController alloc] init];
+
         UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
         [stortboard changeRootViewControllerToController:rootController];
-        
+
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
+
 }
 
 @end

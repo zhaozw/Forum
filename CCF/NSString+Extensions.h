@@ -10,19 +10,19 @@
 
 #import<CommonCrypto/CommonDigest.h>
 
-@interface NSString(Extensions)
--(NSString*) replaceUnicode;
+@interface NSString (Extensions)
+- (NSString *)replaceUnicode;
 
--(NSString*) md5HexDigest;
+- (NSString *)md5HexDigest;
 
 
--(NSString*) stringWithRegular:(NSString *) regular;
+- (NSString *)stringWithRegular:(NSString *)regular;
 
--(NSString*) stringWithRegular:(NSString *) regular andChild:(NSString *) childRegular;
+- (NSString *)stringWithRegular:(NSString *)regular andChild:(NSString *)childRegular;
 
--(NSString*) trim;
+- (NSString *)trim;
 
--(NSArray*) arrayWithRegulat:(NSString *) regular;
+- (NSArray *)arrayWithRegulat:(NSString *)regular;
 
 
 @end

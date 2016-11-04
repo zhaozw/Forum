@@ -17,7 +17,7 @@
 #import "UIStoryboard+CCF.h"
 
 
-@interface DRLForumTableViewController ()<MGSwipeTableCellDelegate>
+@interface DRLForumTableViewController () <MGSwipeTableCellDelegate>
 
 @end
 
@@ -25,20 +25,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    ForumCoreDataManager * formManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
-    
+
+    ForumCoreDataManager *formManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
+
     self.dataList = [[formManager selectAllForms] copy];
-    
+
     [self.tableView reloadData];
-    
+
 }
 
--(BOOL)setPullRefresh:(BOOL)enable{
+- (BOOL)setPullRefresh:(BOOL)enable {
     return NO;
 }
 
--(BOOL)setLoadMore:(BOOL)enable{
+- (BOOL)setLoadMore:(BOOL)enable {
     return NO;
 }
 
@@ -50,87 +50,85 @@
 }
 
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 44;
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 
     ForumListHeaderView *headerView = [XibInflater inflateViewByXibName:@"ForumListHeaderView"];
-    Forum * parent = self.dataList[section];
+    Forum *parent = self.dataList[section];
     headerView.textLabel.text = parent.formName;
     return headerView;
-    
-    
+
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    Forum * forum = self.dataList[section];
+    Forum *forum = self.dataList[section];
     return forum.childForms.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MGSwipeTableCellWithIndexPath *cell = (MGSwipeTableCellWithIndexPath*)[tableView dequeueReusableCellWithIdentifier:@"DRLForumCell"];
-    
+    MGSwipeTableCellWithIndexPath *cell = (MGSwipeTableCellWithIndexPath *) [tableView dequeueReusableCellWithIdentifier:@"DRLForumCell"];
+
     cell.indexPath = indexPath;
     cell.delegate = self;
     //configure right buttons
     cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"订阅此论坛" backgroundColor:[UIColor lightGrayColor]]];
     cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
-    
-    
-    
-    
-    Forum * parent = self.dataList[indexPath.section];
-    Forum * child = parent.childForms[indexPath.row];
-                     
+
+
+    Forum *parent = self.dataList[indexPath.section];
+    Forum *child = parent.childForms[indexPath.row];
+
     cell.textLabel.text = child.formName;
     return cell;
 }
 
--(BOOL)swipeTableCell:(MGSwipeTableCellWithIndexPath *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion{
-    
-    Forum * parent = self.dataList[cell.indexPath.section];
-    Forum * child = parent.childForms[cell.indexPath.row];
-    
-    [self.ccfApi favoriteFormsWithId:[NSString stringWithFormat:@"%d",child.formId] handler:^(BOOL isSuccess, id message) {
+- (BOOL)swipeTableCell:(MGSwipeTableCellWithIndexPath *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
+
+    Forum *parent = self.dataList[cell.indexPath.section];
+    Forum *child = parent.childForms[cell.indexPath.row];
+
+    [self.ccfApi favoriteFormsWithId:[NSString stringWithFormat:@"%d", child.formId] handler:^(BOOL isSuccess, id message) {
         NSLog(@">>>>>>>>>>>> %@", message);
     }];
-    
+
     return YES;
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 54;
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ShowThreadList"]) {
-        CCFThreadListTableViewController * controller = segue.destinationViewController;
-        
-        self.transValueDelegate = (id<TransValueDelegate>)controller;
-        
+        CCFThreadListTableViewController *controller = segue.destinationViewController;
+
+        self.transValueDelegate = (id <TransValueDelegate>) controller;
+
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        
-        
-        Forum * select = self.dataList[path.section];
-        Forum * child = select.childForms[path.row];
-        
+
+
+        Forum *select = self.dataList[path.section];
+        Forum *child = select.childForms[path.row];
+
         [self.transValueDelegate transValue:child];
     }
-    
+
 }
 
 - (IBAction)showLeftDrawer:(id)sender {
-    DRLTabBarController * controller = (DRLTabBarController *)self.tabBarController;
-    
-    
-    UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-    UINavigationController * myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileNavigationController"];
+    DRLTabBarController *controller = (DRLTabBarController *) self.tabBarController;
+
+
+    UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
+    UINavigationController *myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileNavigationController"];
     [controller presentViewController:myProfileControllder animated:YES completion:^{
-        
+
     }];
 }
 @end

@@ -10,9 +10,9 @@
 #import "TransValueBundle.h"
 
 
-@protocol ReplyTransValueDelegate<NSObject>
+@protocol ReplyTransValueDelegate <NSObject>
 
 @required
--(void)transValue:(id)controller withBundle:(TransValueBundle *) transBundle;
+- (void)transValue:(id)controller withBundle:(TransValueBundle *)transBundle;
 
 @end

@@ -10,6 +10,6 @@
 
 @interface SearchForumDisplayPage : ForumDisplayPage
 
-@property (nonatomic, strong) NSString * searchid;
+@property(nonatomic, strong) NSString *searchid;
 
 @end

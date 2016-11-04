@@ -16,14 +16,13 @@
 @end
 
 
-
-
 @interface SelectPhotoCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, weak) id<DeleteDelegate> deleteImageDelete;
+@property(nonatomic, weak) id <DeleteDelegate> deleteImageDelete;
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
--(void) setData:(UIImage *)image forIndexPath:(NSIndexPath *) indexPath;
+@property(weak, nonatomic) IBOutlet UIImageView *imageView;
+
+- (void)setData:(UIImage *)image forIndexPath:(NSIndexPath *)indexPath;
 
 - (IBAction)deleteCurrentImage:(UIButton *)sender;
 

@@ -9,45 +9,45 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-typedef void(^Operation) (NSManagedObject * target, id src);
+typedef void(^Operation)(NSManagedObject *target, id src);
 
 
-typedef void(^InsertOperation) (id src);
+typedef void(^InsertOperation)(id src);
 
-typedef NSPredicate *(^SelectOperation) ();
+typedef NSPredicate *(^SelectOperation)();
 
 
 @interface CoreDataManager : NSObject
 
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property(readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property(readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property(readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
--(instancetype)initWithXcdatamodeld:(NSString *)name andWithPersistentName:(NSString *)persistentName andWithEntryName:(NSString *)entryName;
+- (instancetype)initWithXcdatamodeld:(NSString *)name andWithPersistentName:(NSString *)persistentName andWithEntryName:(NSString *)entryName;
 
 - (void)saveContext;
 
 //插入数据
 //- (void)insertData:(NSMutableArray*)dataArray;
 
-- (void)insertData:(NSMutableArray*)dataArray operation:(Operation) operation;
+- (void)insertData:(NSMutableArray *)dataArray operation:(Operation)operation;
 
-- (void)insertOneData:(InsertOperation) operation;
+- (void)insertOneData:(InsertOperation)operation;
 
 
 // 取出所有的数据
-- (NSArray*) selectData;
+- (NSArray *)selectData;
 
-- (NSArray*) selectData:(SelectOperation) operation;
+- (NSArray *)selectData:(SelectOperation)operation;
 
 
 //查询
-- (NSArray*)selectData:(int)pageSize andOffset:(int)currentPage;
+- (NSArray *)selectData:(int)pageSize andOffset:(int)currentPage;
 
 //删除
 - (void)deleteData;
 
 //更新
-- (void)updateData:(NSString*)newsId withIsLook:(NSString*)islook;
+- (void)updateData:(NSString *)newsId withIsLook:(NSString *)islook;
 
 @end

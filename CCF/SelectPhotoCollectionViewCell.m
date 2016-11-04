@@ -8,14 +8,15 @@
 
 #import "SelectPhotoCollectionViewCell.h"
 
-@implementation SelectPhotoCollectionViewCell{
-    NSIndexPath * path;
+@implementation SelectPhotoCollectionViewCell {
+    NSIndexPath *path;
 }
 
--(void)setData:(UIImage *)image forIndexPath:(NSIndexPath *)indexPath{
+- (void)setData:(UIImage *)image forIndexPath:(NSIndexPath *)indexPath {
     path = indexPath;
     self.imageView.image = image;
 }
+
 - (IBAction)deleteCurrentImage:(UIButton *)sender {
     [self.deleteImageDelete deleteCurrentImageForIndexPath:path];
 }

@@ -11,10 +11,10 @@
 
 @interface Utils : NSObject
 
-+(NSString *) getTimeSp;
++ (NSString *)getTimeSp;
 
-+(NSString *) getSHA1:(NSString *) src;
++ (NSString *)getSHA1:(NSString *)src;
 
-+(UIImage *) scaleUIImage:(UIImage *) sourceImage andMaxSize:(CGSize)maxSize;
++ (UIImage *)scaleUIImage:(UIImage *)sourceImage andMaxSize:(CGSize)maxSize;
 
 @end

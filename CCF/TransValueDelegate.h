@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol TransValueDelegate<NSObject>
+@protocol TransValueDelegate <NSObject>
 
 
 @required
--(void)transValue:(id)value;
+- (void)transValue:(id)value;
 
 @end

@@ -8,13 +8,13 @@
 
 #import "TransBundleUITableViewController.h"
 
-@interface TransBundleUITableViewController ()<TransBundleDelegate>
+@interface TransBundleUITableViewController () <TransBundleDelegate>
 
 @end
 
 @implementation TransBundleUITableViewController
 
--(void)transBundle:(TransValueBundle *)bundle{
+- (void)transBundle:(TransValueBundle *)bundle {
     self.bundle = bundle;
 }
 

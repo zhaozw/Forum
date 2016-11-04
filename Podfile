@@ -10,7 +10,7 @@ pod 'UITableView+FDTemplateLayoutCell', '~> 1.4'
 pod 'SVProgressHUD', '~> 1.1.3'
 
 
-pod 'LCActionSheet','~>1.2.3'
+pod 'LCActionSheet', '~>1.2.3'
 pod 'ActionSheetPicker-3.0'
 pod 'FDFullscreenPopGesture', '1.1'
 pod 'SDWebImage', '~>3.7.5'

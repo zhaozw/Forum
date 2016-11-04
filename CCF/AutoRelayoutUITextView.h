@@ -14,16 +14,16 @@
 @protocol AutoRelayoutUITextViewDelegate <NSObject>
 
 @required
--(void)heightChanged:(CGFloat) height;
+- (void)heightChanged:(CGFloat)height;
 
 @end
 
 
 @interface AutoRelayoutUITextView : UITextView
 
-@property (nonatomic, strong) id<AutoRelayoutUITextViewDelegate> heightDelegate;
+@property(nonatomic, strong) id <AutoRelayoutUITextViewDelegate> heightDelegate;
 
 
--(void) showPlaceHolder:(BOOL) show;
+- (void)showPlaceHolder:(BOOL)show;
 
 @end

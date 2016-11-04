@@ -12,15 +12,15 @@
 
 @interface Post : NSObject
 
-@property (nonatomic, strong) User* postUserInfo;
-@property (nonatomic, strong) NSString* postLouCeng;    // 帖子楼层
-@property (nonatomic, strong) NSString* postID;
-@property (nonatomic, strong) NSString* postLink;
-@property (nonatomic, strong) NSString* postTitle;
-@property (nonatomic, strong) NSString* postTime;
-@property (nonatomic, strong) NSString* postContent;
+@property(nonatomic, strong) User *postUserInfo;
+@property(nonatomic, strong) NSString *postLouCeng;    // 帖子楼层
+@property(nonatomic, strong) NSString *postID;
+@property(nonatomic, strong) NSString *postLink;
+@property(nonatomic, strong) NSString *postTitle;
+@property(nonatomic, strong) NSString *postTime;
+@property(nonatomic, strong) NSString *postContent;
 
-@property (nonatomic, assign) NSInteger postTotalPage; // 帖子总页数
+@property(nonatomic, assign) NSInteger postTotalPage; // 帖子总页数
 
 
 

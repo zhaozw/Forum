@@ -10,6 +10,6 @@
 
 @interface MGSwipeTableCellWithIndexPath : MGSwipeTableCell
 
-@property (nonatomic, weak) NSIndexPath * indexPath;
+@property(nonatomic, weak) NSIndexPath *indexPath;
 
 @end

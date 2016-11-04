@@ -13,12 +13,12 @@
 
 @interface CCFSimpleReplyViewController : CCFApiBaseViewController
 
-@property (nonatomic, strong) id<ReplyCallbackDelegate> delegate;
+@property(nonatomic, strong) id <ReplyCallbackDelegate> delegate;
 
 - (IBAction)sendSimpleReply:(id)sender;
 
 - (IBAction)back:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UITextView *replyContent;
+@property(weak, nonatomic) IBOutlet UITextView *replyContent;
 
 @end

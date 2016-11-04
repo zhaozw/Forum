@@ -15,9 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FormEntry (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSNumber *formId;
-@property (nullable, nonatomic, retain) NSString *formName;
-@property (nullable, nonatomic, retain) NSNumber *parentFormId;
+@property(nullable, nonatomic, retain) NSNumber *formId;
+@property(nullable, nonatomic, retain) NSString *formName;
+@property(nullable, nonatomic, retain) NSNumber *parentFormId;
 
 @end
 

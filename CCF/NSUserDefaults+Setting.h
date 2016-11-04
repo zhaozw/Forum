@@ -11,14 +11,14 @@
 #define kSIGNATURE @"setting_signature"
 #define kTOP_THREAD @"setting_top_thread"
 
-@interface NSUserDefaults(Setting)
+@interface NSUserDefaults (Setting)
 
--(void) setSignature:(BOOL) enable;
+- (void)setSignature:(BOOL)enable;
 
--(void) setTopThreadPost:(BOOL) show;
+- (void)setTopThreadPost:(BOOL)show;
 
--(BOOL) isSignatureEnabled;
+- (BOOL)isSignatureEnabled;
 
--(BOOL) isTopThreadPostCanShow;
+- (BOOL)isTopThreadPostCanShow;
 
 @end

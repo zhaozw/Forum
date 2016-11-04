@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 
-@protocol ReplyCallbackDelegate<NSObject>
+@protocol ReplyCallbackDelegate <NSObject>
 
--(void) transReplyValue:(ShowThreadPage *) value;
+- (void)transReplyValue:(ShowThreadPage *)value;
 
 @end

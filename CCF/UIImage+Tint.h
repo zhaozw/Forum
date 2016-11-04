@@ -10,8 +10,7 @@
 
 @interface UIImage (Tint)
 
-- (UIImage *) imageWithTintColor:(UIColor *)tintColor;
-
+- (UIImage *)imageWithTintColor:(UIColor *)tintColor;
 
 
 @end

@@ -8,13 +8,13 @@
 
 #import "IGXMLNode+Children.h"
 
-@implementation IGXMLNode(Children)
+@implementation IGXMLNode (Children)
 
--(IGXMLNode *)childrenAtPosition:(int)position{
-    return self.children [position];
+- (IGXMLNode *)childrenAtPosition:(int)position {
+    return self.children[position];
 }
 
--(int)childrenCount{
-    return (int)[self.children count];
+- (int)childrenCount {
+    return (int) [self.children count];
 }
 @end

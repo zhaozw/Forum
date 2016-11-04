@@ -18,10 +18,10 @@
 #import "CCFWebViewController.h"
 
 
-@interface CCFThreadListForChildFormUITableViewController (){
-    Forum * transForm;
-    
-    NSArray * childForms;
+@interface CCFThreadListForChildFormUITableViewController () {
+    Forum *transForm;
+
+    NSArray *childForms;
 }
 
 @end
@@ -29,118 +29,120 @@
 @implementation CCFThreadListForChildFormUITableViewController
 
 #pragma mark trans value
--(void)transValue:(Forum *)value{
+
+- (void)transValue:(Forum *)value {
     transForm = value;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    ForumCoreDataManager * manager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
+
+    ForumCoreDataManager *manager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
     childForms = [[manager selectChildFormsForId:transForm.formId] mutableCopy];
-    
+
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 180.0;
-    
+
     if (self.threadTopList == nil) {
         self.threadTopList = [NSMutableArray array];
     }
 }
 
 
--(void)onPullRefresh{
+- (void)onPullRefresh {
     [self.ccfApi forumDisplayWithId:transForm.formId andPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *page) {
-        
+
         [self.tableView.mj_header endRefreshing];
-        
+
         if (isSuccess) {
-            self.totalPage = (int)page.totalPageCount;
+            self.totalPage = (int) page.totalPageCount;
             self.currentPage = 1;
             if (self.currentPage >= self.totalPage) {
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }
-            
+
             [self.threadTopList removeAllObjects];
             [self.dataList removeAllObjects];
-            
-            for (NormalThread * thread in page.dataList) {
+
+            for (NormalThread *thread in page.dataList) {
                 if (thread.isTopThread) {
                     [self.threadTopList addObject:thread];
-                }else{
+                } else {
                     [self.dataList addObject:thread];
                 }
             }
-            
+
             [self.tableView reloadData];
         }
     }];
 }
 
--(void)onLoadMore{
+- (void)onLoadMore {
     [self.ccfApi forumDisplayWithId:transForm.formId andPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage *page) {
-        
+
         [self.tableView.mj_footer endRefreshing];
-        
+
         if (isSuccess) {
-            self.totalPage = (int)page.totalPageCount;
-            self.currentPage ++;
+            self.totalPage = (int) page.totalPageCount;
+            self.currentPage++;
             if (self.currentPage >= self.totalPage) {
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }
-            
-            for (NormalThread * thread in page.dataList) {
+
+            for (NormalThread *thread in page.dataList) {
                 if (!thread.isTopThread) {
                     [self.dataList addObject:thread];
                 }
             }
-            
+
             [self.tableView reloadData];
         }
     }];
 }
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 1;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 10;
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
+
     return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    if (section == 0){
+
+    if (section == 0) {
         return self.threadTopList.count;
-    } else{
+    } else {
         return self.dataList.count;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     // 帖子内容
     static NSString *reusedIdentifier = @"CCFThreadListCellIdentifier";
-    
-    CCFThreadListCell *cell = (CCFThreadListCell*)[tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
-    
+
+    CCFThreadListCell *cell = (CCFThreadListCell *) [tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
+
     if (indexPath.section == 0) {
         NormalThread *play = self.threadTopList[indexPath.row];
         [cell setData:play];
-    } else{
+    } else {
         NormalThread *play = self.dataList[indexPath.row];
         [cell setData:play];
     }
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [tableView fd_heightForCellWithIdentifier:@"CCFThreadListCellIdentifier" configuration:^(CCFThreadListCell *cell) {
         [self configureCell:cell atIndexPath:indexPath];
     }];
@@ -148,65 +150,63 @@
 
 - (void)configureCell:(CCFThreadListCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
-    
+
     [cell setData:self.dataList[indexPath.row]];
 }
 
 
-
-
 #pragma mark Controller跳转
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        
-        CCFNewThreadViewController * newPostController = segue.destinationViewController;
-        self.transValueDelegate = (id<TransValueDelegate>)newPostController;
+
+        CCFNewThreadViewController *newPostController = segue.destinationViewController;
+        self.transValueDelegate = (id <TransValueDelegate>) newPostController;
         [self.transValueDelegate transValue:transForm];
-        
-        
-    } else if([sender isKindOfClass:[UITableViewCell class]]){
-        
-        CCFWebViewController * controller = segue.destinationViewController;
-        self.transValueDelegate = (id<TransValueDelegate>)controller;
+
+
+    } else if ([sender isKindOfClass:[UITableViewCell class]]) {
+
+        CCFWebViewController *controller = segue.destinationViewController;
+        self.transValueDelegate = (id <TransValueDelegate>) controller;
         [self.transValueDelegate transValue:transForm];
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        
-        NormalThread * thread = nil;
-        
+
+        NormalThread *thread = nil;
+
         if (indexPath.section == 0) {
             thread = self.threadTopList[indexPath.row];
-        } else{
+        } else {
             thread = self.dataList[indexPath.row];
         }
-        
+
         TransValueBundle *transBundle = [[TransValueBundle alloc] init];
         [transBundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
         [transBundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
-        
-        [self.transValueDelegate transValue:transBundle];
-        
 
-        
-    } else if ([sender isKindOfClass:[UIButton class]]){
-        CCFProfileTableViewController * controller = segue.destinationViewController;
-        self.transValueDelegate = (id<TransValueDelegate>)controller;
-        
+        [self.transValueDelegate transValue:transBundle];
+
+
+    } else if ([sender isKindOfClass:[UIButton class]]) {
+        CCFProfileTableViewController *controller = segue.destinationViewController;
+        self.transValueDelegate = (id <TransValueDelegate>) controller;
+
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        
-        NormalThread * thread = nil;
-        
+
+        NormalThread *thread = nil;
+
         if (indexPath.section == 0) {
             thread = self.threadTopList[indexPath.row];
-        } else{
+        } else {
             thread = self.dataList[indexPath.row];
         }
-        
+
         [self.transValueDelegate transValue:thread];
-        
+
     }
-    
-    
+
+
 }
 
 

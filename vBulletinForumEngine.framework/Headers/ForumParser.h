@@ -24,42 +24,42 @@
 
 @protocol ForumParser <NSObject>
 
-- (ShowThreadPage *) parseShowThreadWithHtml:(NSString*)html;
+- (ShowThreadPage *)parseShowThreadWithHtml:(NSString *)html;
 
 
-- (ForumDisplayPage *) parseThreadListFromHtml: (NSString *) html withThread:(int) threadId andContainsTop:(BOOL)containTop;
+- (ForumDisplayPage *)parseThreadListFromHtml:(NSString *)html withThread:(int)threadId andContainsTop:(BOOL)containTop;
 
-- (ForumDisplayPage *) parseFavThreadListFormHtml: (NSString *) html;
+- (ForumDisplayPage *)parseFavThreadListFormHtml:(NSString *)html;
 
-- (NSString *) parseSecurityToken:(NSString *)html;
+- (NSString *)parseSecurityToken:(NSString *)html;
 
-- (NSString *) parsePostHash:(NSString *)html;
+- (NSString *)parsePostHash:(NSString *)html;
 
-- (NSString *) parserPostStartTime:(NSString *)html;
+- (NSString *)parserPostStartTime:(NSString *)html;
 
 
-- (NSString *) parseLoginErrorMessage:(NSString *)html;
+- (NSString *)parseLoginErrorMessage:(NSString *)html;
 
-- (SearchForumDisplayPage *) parseSearchPageFromHtml:( NSString*) html;
+- (SearchForumDisplayPage *)parseSearchPageFromHtml:(NSString *)html;
 
-- (NSMutableArray<Forum *> *) parseFavFormFormHtml:(NSString *)html;
+- (NSMutableArray<Forum *> *)parseFavFormFormHtml:(NSString *)html;
 
-- (ForumDisplayPage*) parsePrivateMessageFormHtml:(NSString*) html;
+- (ForumDisplayPage *)parsePrivateMessageFormHtml:(NSString *)html;
 
-- (ShowPrivateMessage *) parsePrivateMessageContent:(NSString*) html;
+- (ShowPrivateMessage *)parsePrivateMessageContent:(NSString *)html;
 
-- (NSString *) parseQuickReplyQuoteContent:(NSString*) html;
+- (NSString *)parseQuickReplyQuoteContent:(NSString *)html;
 
-- (NSString *) parseQuickReplyTitle:(NSString *)html;
+- (NSString *)parseQuickReplyTitle:(NSString *)html;
 
-- (NSString *) parseQuickReplyTo:(NSString *)html;
+- (NSString *)parseQuickReplyTo:(NSString *)html;
 
-- (NSString *) parseUserAvatar:(NSString *)html userId:(NSString*) userId;
+- (NSString *)parseUserAvatar:(NSString *)html userId:(NSString *)userId;
 
-- (NSString *) parseListMyThreadSearchid:(NSString *)html;
+- (NSString *)parseListMyThreadSearchid:(NSString *)html;
 
-- (UserProfile *) parserProfile:(NSString*)html userId:(NSString*)userId;
+- (UserProfile *)parserProfile:(NSString *)html userId:(NSString *)userId;
 
-- (NSArray<Forum *> *) parserForms:(NSString *) html;
+- (NSArray<Forum *> *)parserForms:(NSString *)html;
 
 @end

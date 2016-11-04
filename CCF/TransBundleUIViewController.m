@@ -8,13 +8,13 @@
 
 #import "TransBundleUIViewController.h"
 
-@interface TransBundleUIViewController ()<TransBundleDelegate>
+@interface TransBundleUIViewController () <TransBundleDelegate>
 
 @end
 
 @implementation TransBundleUIViewController
 
--(void)transBundle:(TransValueBundle *)bundle{
+- (void)transBundle:(TransValueBundle *)bundle {
     self.bundle = bundle;
 }
 

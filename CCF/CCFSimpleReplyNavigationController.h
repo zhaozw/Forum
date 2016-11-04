@@ -12,7 +12,7 @@
 
 @interface CCFSimpleReplyNavigationController : UINavigationController
 
-@property (nonatomic, strong) TransValueBundle *bundle;
-@property (nonatomic, strong) UIViewController * controller;
+@property(nonatomic, strong) TransValueBundle *bundle;
+@property(nonatomic, strong) UIViewController *controller;
 
 @end

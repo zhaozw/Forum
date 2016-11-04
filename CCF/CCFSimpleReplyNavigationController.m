@@ -9,14 +9,14 @@
 #import "CCFSimpleReplyNavigationController.h"
 #import "ReplyTransValueDelegate.h"
 
-@interface CCFSimpleReplyNavigationController ()<ReplyTransValueDelegate>
+@interface CCFSimpleReplyNavigationController () <ReplyTransValueDelegate>
 
 @end
 
 @implementation CCFSimpleReplyNavigationController
 
 
--(void)transValue:(UIViewController *)controller withBundle:(TransValueBundle *)transBundle{
+- (void)transValue:(UIViewController *)controller withBundle:(TransValueBundle *)transBundle {
     self.controller = controller;
     self.bundle = transBundle;
 }

@@ -10,9 +10,9 @@
 
 @interface LoginUser : NSObject
 
-@property (nonatomic, strong) NSString* userName;
-@property (nonatomic, strong) NSString* userID;
-@property (nonatomic, strong) NSDate* expireTime;
-@property (nonatomic, strong) NSString* lastVisit;
+@property(nonatomic, strong) NSString *userName;
+@property(nonatomic, strong) NSString *userID;
+@property(nonatomic, strong) NSDate *expireTime;
+@property(nonatomic, strong) NSString *lastVisit;
 
 @end

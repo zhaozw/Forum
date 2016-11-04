@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 
-@interface CCFForumBrowser : NSObject<ForumEngine>
+@interface CCFForumBrowser : NSObject <ForumEngine>
 
 @end

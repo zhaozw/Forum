@@ -15,8 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UserEntry (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSString *userAvatar;
-@property (nullable, nonatomic, retain) NSString *userID;
+@property(nullable, nonatomic, retain) NSString *userAvatar;
+@property(nullable, nonatomic, retain) NSString *userID;
 
 @end
 

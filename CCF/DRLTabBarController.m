@@ -9,8 +9,8 @@
 #import "DRLTabBarController.h"
 
 
-@interface DRLTabBarController (){
-    
+@interface DRLTabBarController () {
+
 }
 
 @end
@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
 }
 
 - (void)didReceiveMemoryWarning {

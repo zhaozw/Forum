@@ -8,9 +8,9 @@
 
 #import "CCFApiBaseTableViewController.h"
 
-@interface CCFApiBaseTableViewController (){
+@interface CCFApiBaseTableViewController () {
     BOOL disablePullrefresh;
-    
+
     BOOL disableLoadMore;
 }
 
@@ -18,21 +18,21 @@
 
 @implementation CCFApiBaseTableViewController
 
--(void)viewDidLoad{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
+
+
     if ([self setPullRefresh:YES]) {
         self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             [self onPullRefresh];
         }];
-        
+
         if ([self autoPullfresh]) {
             [self.tableView.mj_header beginRefreshing];
         }
     }
 
-    
+
     if ([self setLoadMore:YES]) {
         self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             [self onLoadMore];
@@ -42,43 +42,45 @@
 
 }
 
--(void)onPullRefresh{
-    
+- (void)onPullRefresh {
+
 }
 
--(void)onLoadMore{
-    
+- (void)onLoadMore {
+
 }
 
--(BOOL)autoPullfresh{
+- (BOOL)autoPullfresh {
     return YES;
 }
 
--(BOOL)setPullRefresh:(BOOL)enable{
+- (BOOL)setPullRefresh:(BOOL)enable {
     return YES;
 }
 
--(BOOL)setLoadMore:(BOOL)enable{
+- (BOOL)setLoadMore:(BOOL)enable {
     return YES;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 1;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 1;
 }
 
 #pragma mark initData
+
 - (void)initData {
-    self.ccfApi = [[CCFForumApi alloc]init];
-    self.dataList =[[NSMutableArray alloc]init];
+    self.ccfApi = [[CCFForumApi alloc] init];
+    self.dataList = [[NSMutableArray alloc] init];
 }
 
 
 #pragma mark override-init
--(instancetype)init{
+
+- (instancetype)init {
     if (self = [super init]) {
         [self initData];
     }
@@ -86,7 +88,8 @@
 }
 
 #pragma mark overide-initWithCoder
--(instancetype)initWithCoder:(NSCoder *)aDecoder{
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         [self initData];
     }
@@ -94,7 +97,8 @@
 }
 
 #pragma mark overide-initWithName
--(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         [self initData];
     }
@@ -102,7 +106,8 @@
 }
 
 #pragma mark overide-initWithStyle
--(instancetype)initWithStyle:(UITableViewStyle)style{
+
+- (instancetype)initWithStyle:(UITableViewStyle)style {
     if (self = [super initWithStyle:style]) {
         [self initData];
     }
@@ -110,7 +115,8 @@
 }
 
 #pragma mark overide-numberOfRowsInSection
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataList.count;
 }
 

@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIColor(MyColor)
+@interface UIColor (MyColor)
 
-+(UIColor *) colorWithButtonHighLight;
++ (UIColor *)colorWithButtonHighLight;
 
-+(UIColor *) colorWithBlueHighLight;
++ (UIColor *)colorWithBlueHighLight;
 
 @end

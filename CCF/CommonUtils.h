@@ -11,11 +11,11 @@
 
 @interface CommonUtils : NSObject
 
-+(UIImage *)createImageWithColor:(UIColor *)color;
++ (UIImage *)createImageWithColor:(UIColor *)color;
 
-+(NSInteger) readUserData:(NSString *)key;
++ (NSInteger)readUserData:(NSString *)key;
 
-+(void) writeUserData:(NSString *)key withValue:(NSInteger) value;
++ (void)writeUserData:(NSString *)key withValue:(NSInteger)value;
 
 
 @end
