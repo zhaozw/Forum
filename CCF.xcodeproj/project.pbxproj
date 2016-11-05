@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F34CADF83517CAFD6C03311 /* append_post_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 2F34C4DA4FA7BEF14D1932AD /* append_post_content.html */; };
+		2F34CFE0A8D88142C21C7417 /* append_post.js in Resources */ = {isa = PBXBuildFile; fileRef = 2F34CAFB4248BA4D1BE6E027 /* append_post.js */; };
 		3A0A99831C4A71B600086DAB /* ForumSeniorNewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A99821C4A71B600086DAB /* ForumSeniorNewPostViewController.m */; };
 		3A0B3A001D0962D40060F8A4 /* private_message.html in Resources */ = {isa = PBXBuildFile; fileRef = 3A0B39FF1D0962D40060F8A4 /* private_message.html */; };
 		3A1C2CD11C9E9B740068AF6B /* ForumUserProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C2CD01C9E9B740068AF6B /* ForumUserProfileTableViewController.m */; };
@@ -106,6 +108,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F34C4DA4FA7BEF14D1932AD /* append_post_content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = append_post_content.html; path = CCF/append_post_content.html; sourceTree = "<group>"; };
+		2F34CAFB4248BA4D1BE6E027 /* append_post.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = append_post.js; path = CCF/append_post.js; sourceTree = "<group>"; };
 		3A0A99811C4A71B600086DAB /* ForumSeniorNewPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumSeniorNewPostViewController.h; sourceTree = "<group>"; };
 		3A0A99821C4A71B600086DAB /* ForumSeniorNewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumSeniorNewPostViewController.m; sourceTree = "<group>"; };
 		3A0B39FF1D0962D40060F8A4 /* private_message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = private_message.html; path = CCF/private_message.html; sourceTree = "<group>"; };
@@ -344,6 +348,8 @@
 				3ACFFD251CF9B151000312DC /* post_message.html */,
 				3A28267E1CFF30D20095EAE5 /* post_view_notitle.html */,
 				3A0B39FF1D0962D40060F8A4 /* private_message.html */,
+				2F34CAFB4248BA4D1BE6E027 /* append_post.js */,
+				2F34C4DA4FA7BEF14D1932AD /* append_post_content.html */,
 			);
 			name = Templet;
 			sourceTree = "<group>";
@@ -757,6 +763,8 @@
 				4D339D991C31454A0022A6A4 /* Main.storyboard in Resources */,
 				3A1CC3B11CB8F8B5007A0B97 /* paperclip.gif in Resources */,
 				3ACFFD261CF9B151000312DC /* post_message.html in Resources */,
+				2F34CFE0A8D88142C21C7417 /* append_post.js in Resources */,
+				2F34CADF83517CAFD6C03311 /* append_post_content.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

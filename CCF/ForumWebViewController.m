@@ -28,6 +28,7 @@
 #import "TransValueBundle.h"
 #import "ForumUserProfileTableViewController.h"
 #import "ForumConfig.h"
+#import "DTCoreText.h"
 
 @interface ForumWebViewController () <UIWebViewDelegate, UIScrollViewDelegate, TransValueDelegate, ReplyCallbackDelegate, CAAnimationDelegate> {
 
@@ -274,7 +275,6 @@
 
         NSMutableArray<Post *> *posts = threadPage.dataList;
 
-
         NSString *lis = @"";
 
         for (Post *post in posts) {
@@ -284,6 +284,10 @@
             NSString *postInfo = [NSString stringWithFormat:POST_MESSAGE, post.postID, post.postID, post.postUserInfo.userName, louceng, post.postUserInfo.userID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
 
             lis = [lis stringByAppendingString:postInfo];
+
+            //[self addPostByJSElement:post avatar:avatar louceng:louceng];
+
+
         }
 
         NSString *html = nil;
@@ -295,6 +299,10 @@
         }
 
         [self.webView.scrollView.mj_footer endRefreshing];
+
+
+
+
 
         if (![cacheHtml isEqualToString:currentHtml]) {
             [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
@@ -325,8 +333,22 @@
             [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
             [[self.webView layer] addAnimation:animation forKey:nil];
         }
-
     }];
+}
+
+- (void)addPostByJSElement:(Post *)post avatar:(NSString *)avatar louceng:(NSString *)louceng {
+    NSString *pattern = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"append_post" ofType:@"js"] encoding:NSUTF8StringEncoding error:nil];
+    NSString *contentPattern = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"append_post_content" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
+    NSString *content = [NSString stringWithFormat:contentPattern, post.postUserInfo.userID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
+    NSString *deleteEnter = [content stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    NSString *deleteT = [deleteEnter stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+    NSString *deleteR = [deleteT stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+    NSString *deleteLine = [deleteR stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+
+
+    NSString *js = [NSString stringWithFormat:pattern, post.postID, post.postID, post.postUserInfo.userName, louceng, deleteLine];
+
+    [self.webView stringByEvaluatingJavaScriptFromString:js];
 }
 
 - (void)showMoreAction {

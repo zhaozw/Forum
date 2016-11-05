@@ -432,7 +432,7 @@
         // 注册日期
         IGXMLNode *signDateNode = [[subInfoNode children][1] children][1];
         ccfuser.userSignDate = signDateNode.text;
-        // 帖子数量
+        // 帖子数量html
         IGXMLNode *postCountNode = [[subInfoNode children][1] children][2];
         ccfuser.userPostCount = postCountNode.text;
         // 精华 解答 暂时先不处理
