@@ -37,8 +37,6 @@
 
     NSMutableDictionary *pageDic;
 
-    NSString *currentHtml;
-
     int threadID;
     NSString *threadAuthorName;
 
@@ -142,12 +140,11 @@
             lis = [lis stringByAppendingString:postInfo];
         }
 
-        NSString *html = nil;
-
-        html = [NSString stringWithFormat:THREAD_PAGE, threadPage.threadTitle, lis];
+        NSString *html = [NSString stringWithFormat:THREAD_PAGE, threadPage.threadTitle, lis];
 
 
-        pageDic[@(currentPageNumber)] = html;
+        // 缓存当前页面
+        pageDic[@(currentPageNumber)] = threadPage.originalHtml;
 
         [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
 
@@ -212,7 +209,7 @@
         }
 
 
-        pageDic[@(currentPageNumber)] = html;
+        pageDic[@(currentPageNumber)] = threadPage.originalHtml;
 
         [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
 
@@ -292,41 +289,36 @@
             html = [NSString stringWithFormat:THREAD_PAGE_NOTITLE, lis];
         }
 
+        if (![cacheHtml isEqualToString:threadPage.originalHtml]) {
+            [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
+            pageDic[@(page)] = html;
+
+            if (anim) {
+                CABasicAnimation *stretchAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.y"];
+                [stretchAnimation setToValue:@1.02F];
+                [stretchAnimation setRemovedOnCompletion:YES];
+                [stretchAnimation setFillMode:kCAFillModeRemoved];
+                [stretchAnimation setAutoreverses:YES];
+                [stretchAnimation setDuration:0.15];
+                [stretchAnimation setDelegate:self];
+
+                [stretchAnimation setBeginTime:CACurrentMediaTime() + 0.35];
+
+                [stretchAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+                //[self.webView setAnchorPoint:CGPointMake(0.0, 1) forView:self.webView];
+                [self.view.layer addAnimation:stretchAnimation forKey:@"stretchAnimation"];
+
+                CATransition *animation = [CATransition animation];
+                [animation setType:kCATransitionPush];
+                [animation setSubtype:kCATransitionFromTop];
+                [animation setDuration:0.5f];
+                [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+                [[self.webView layer] addAnimation:animation forKey:nil];
+            }
+        }
+
         [self.webView.scrollView.mj_footer endRefreshing];
 
-
-
-
-
-        if (![cacheHtml isEqualToString:currentHtml]) {
-            [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
-            currentHtml = html;
-            pageDic[@(page)] = html;
-        }
-
-
-        if (anim && ![cacheHtml isEqualToString:currentHtml]) {
-            CABasicAnimation *stretchAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.y"];
-            [stretchAnimation setToValue:@1.02F];
-            [stretchAnimation setRemovedOnCompletion:YES];
-            [stretchAnimation setFillMode:kCAFillModeRemoved];
-            [stretchAnimation setAutoreverses:YES];
-            [stretchAnimation setDuration:0.15];
-            [stretchAnimation setDelegate:self];
-
-            [stretchAnimation setBeginTime:CACurrentMediaTime() + 0.35];
-
-            [stretchAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-            //[self.webView setAnchorPoint:CGPointMake(0.0, 1) forView:self.webView];
-            [self.view.layer addAnimation:stretchAnimation forKey:@"stretchAnimation"];
-
-            CATransition *animation = [CATransition animation];
-            [animation setType:kCATransitionPush];
-            [animation setSubtype:kCATransitionFromTop];
-            [animation setDuration:0.5f];
-            [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-            [[self.webView layer] addAnimation:animation forKey:nil];
-        }
     }];
 }
 

@@ -256,6 +256,8 @@
     NSString *formId = [fuxkHttp stringWithRegular:@"newthread.php\\?do=newthread&amp;f=\\d+" andChild:@"\\d+"];
 
     ShowThreadPage *showThreadPage = [[ShowThreadPage alloc] init];
+    showThreadPage.originalHtml = [self postMessages:fuxkHttp];
+
     showThreadPage.formId = formId;
 
     NSString *securityToken = [self parseSecurityToken:html];
@@ -300,6 +302,20 @@
     return showThreadPage;
 }
 
+/**
+ * @param html
+ * @return
+ */
+- (NSString *)postMessages:(NSString *)html {
+    IGHTMLDocument *document = [[IGHTMLDocument alloc] initWithHTMLString:html error:nil];
+    IGXMLNodeSet *postMessages = [document queryWithXPath:@"//*[@id='posts']/div[*]/div/div/div/table/tr[1]/td[2]"];
+    NSMutableString * messages = [NSMutableString string];
+
+    for (IGXMLNode *node in postMessages) {
+        [messages appendString:node.text];
+    }
+    return [messages copy];
+}
 
 - (NSMutableArray<Post *> *)parseShowThreadPosts:(IGHTMLDocument *)document {
 
