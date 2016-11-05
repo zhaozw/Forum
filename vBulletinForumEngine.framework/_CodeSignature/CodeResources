@@ -6,67 +6,67 @@
 	<dict>
 		<key>Headers/Forum.h</key>
 		<data>
-		+qIGeMbY+t+2PWKPP6MO7Sr9pSc=
+		fmrf3Bl1u0FnQjjwDhQCooCWCkU=
 		</data>
 		<key>Headers/ForumDisplayPage.h</key>
 		<data>
-		PVzfBQlkrjXd3vAUm6avfI5bYg0=
+		TWjDDDj7ZykzASM0e8AOSsP2OIw=
 		</data>
 		<key>Headers/ForumEngine.h</key>
 		<data>
-		22oPbB/VDYB9JiuPgFo7855LM7s=
+		9UJl3wlwcehFOzHqlirojnTyGR0=
 		</data>
 		<key>Headers/ForumParser.h</key>
 		<data>
-		CHpxi16/FahpBJWaYlnxqWIbQ0Q=
+		wwglWhE5Pe/vExwY+frKs+18DFY=
 		</data>
 		<key>Headers/LoginUser.h</key>
 		<data>
-		yIFm3rHql9VYxfZ6E1glD5QSD3c=
+		SGVC2zerIDJWO03UH2duI6f56+0=
 		</data>
 		<key>Headers/NormalThread.h</key>
 		<data>
-		Erzsfcf6W8otDcnjXFs3zRvRRjc=
+		gqoPYOW8OJi+u6Y4CzUWRLIPb0o=
 		</data>
 		<key>Headers/Post.h</key>
 		<data>
-		CsX84Yuov7kbGRZw1uJ5WxLTM8M=
+		SNiaXeR2C2QbsH0p5icASKtqiVA=
 		</data>
 		<key>Headers/PrivateMessage.h</key>
 		<data>
-		RxHM9GzKR1DHPbSxL/OFTEgJqEs=
+		yc8NBugKmDgHzULoRvMHVfpwPWA=
 		</data>
 		<key>Headers/SearchForumDisplayPage.h</key>
 		<data>
-		Z4eBITgimd3XWgZR4sMnTp1fgk4=
+		maHX2UNJKNpx3mPEpelqjJC7JiE=
 		</data>
 		<key>Headers/ShowPrivateMessage.h</key>
 		<data>
-		+yZzjlarg2cWcVKB2+h4eTgcFGI=
+		5Dn945reoVK7XZ5/peVQYHmcwMw=
 		</data>
 		<key>Headers/ShowThreadPage.h</key>
 		<data>
-		EdqQ04XQ7o0bmjaM7THQ9inskAs=
+		R1BPUSkZSC2r4R4TiUzjlnoEk1g=
 		</data>
 		<key>Headers/SimpleThread.h</key>
 		<data>
-		V0ZGq3DJR29YiAU2PFatSGGj0Io=
+		Lcct/rR/FUQjlpRGH/hgflaSiiI=
 		</data>
 		<key>Headers/Thread.h</key>
 		<data>
-		xnxivw67dYiVjeKB0erEMo0e1vs=
+		pzOcvw6w5Pu+UirIaIxcjwDaKZk=
 		</data>
 		<key>Headers/ThreadInSearch.h</key>
 		<data>
-		E81j7g/GkQG/J9+D0LhXhHIBRVw=
+		VdEvk8hAYXbfauCq6YFR3Qryrdo=
 		</data>
 		<key>Headers/User.h</key>
 		<data>
-		aNOqo9q2jonDXnu+gXc/R7PbJ7w=
+		sk3wqDAtky91Xs626ia0eEEP1IY=
 		</data>
 		<key>Headers/UserProfile.h</key>
 		<data>
-		kXeGDWMWpISKqUCvkPtrWk5CpQc=
+		W4x2Pv76oZsmz7SOCEiezLQfuxA=
 		</data>
 		<key>Headers/vBulletinForumEngine.h</key>
 		<data>
@@ -74,7 +74,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		QAqqStIT5B+m7bDrMGPpvz1jHb8=
+		aTM9cCWXMA03rAn9jfyM15QdquY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -87,176 +87,176 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			+qIGeMbY+t+2PWKPP6MO7Sr9pSc=
+			fmrf3Bl1u0FnQjjwDhQCooCWCkU=
 			</data>
 			<key>hash2</key>
 			<data>
-			Y1RCq/3652kV60KGJN76/pOrtl3J/oUiKhDfrMr2FDo=
+			1yT4K8SPD1LO4Y1dXSgI/gu430+tAQhMNmGc+a/1dfA=
 			</data>
 		</dict>
 		<key>Headers/ForumDisplayPage.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			PVzfBQlkrjXd3vAUm6avfI5bYg0=
+			TWjDDDj7ZykzASM0e8AOSsP2OIw=
 			</data>
 			<key>hash2</key>
 			<data>
-			ASX2Ig9JuNec/MvAKVdwgrPlJdOvGJV9gXHnv6UTI2c=
+			UQ20LTBHuhIriavvqYNoQnZGHvOOgMKKauCBB1r+V/A=
 			</data>
 		</dict>
 		<key>Headers/ForumEngine.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			22oPbB/VDYB9JiuPgFo7855LM7s=
+			9UJl3wlwcehFOzHqlirojnTyGR0=
 			</data>
 			<key>hash2</key>
 			<data>
-			UM0TV5mc43ZrR+mxnn+VP3TENSbHPw+6df2azjofoXo=
+			H6bH0bcsnJRxecp3cf9vs8Sk5hLUP5ZdjdQT5VkPMH8=
 			</data>
 		</dict>
 		<key>Headers/ForumParser.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			CHpxi16/FahpBJWaYlnxqWIbQ0Q=
+			wwglWhE5Pe/vExwY+frKs+18DFY=
 			</data>
 			<key>hash2</key>
 			<data>
-			t2vermmDe7GpurQJ445lV2kJr8oMZw8lG6AKnVZVFXI=
+			6fvYDpoSzKhRKo8idnu22omQxBDl4SzrpO8wKcIr0y8=
 			</data>
 		</dict>
 		<key>Headers/LoginUser.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			yIFm3rHql9VYxfZ6E1glD5QSD3c=
+			SGVC2zerIDJWO03UH2duI6f56+0=
 			</data>
 			<key>hash2</key>
 			<data>
-			rQqbB74J6A3cEdjRkdJuCrkhmfG2Kf0GNy8eHGzwrvY=
+			W1VRWbVdi5lMqEHpzmDDK72lLypUtYtmiU/kJZPxXfQ=
 			</data>
 		</dict>
 		<key>Headers/NormalThread.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Erzsfcf6W8otDcnjXFs3zRvRRjc=
+			gqoPYOW8OJi+u6Y4CzUWRLIPb0o=
 			</data>
 			<key>hash2</key>
 			<data>
-			Gt5ZYP9AajRQQmN6BaU5hJObnezqnBOIwCFbBb2Kyfg=
+			FJNzkDlKhuEI45tb0qafctcxa2Lv2LEiJ+NpCJ1mD44=
 			</data>
 		</dict>
 		<key>Headers/Post.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			CsX84Yuov7kbGRZw1uJ5WxLTM8M=
+			SNiaXeR2C2QbsH0p5icASKtqiVA=
 			</data>
 			<key>hash2</key>
 			<data>
-			XPeX71FQ7V0L89yhfg5sl6T/cZKlq1rO7GJu3LryO8c=
+			qOeyHXHuAWRXKJyFbMH1Efnejpk++rN/WRnQ5BqZj/g=
 			</data>
 		</dict>
 		<key>Headers/PrivateMessage.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			RxHM9GzKR1DHPbSxL/OFTEgJqEs=
+			yc8NBugKmDgHzULoRvMHVfpwPWA=
 			</data>
 			<key>hash2</key>
 			<data>
-			Q2Cemi8rsmKigLTnxRtqYbfchOU9xfcpgMWF7+3SiSA=
+			LW94DirA+KRggcuJc5yDtfCDEMl/aZmuABSnEIc1vF0=
 			</data>
 		</dict>
 		<key>Headers/SearchForumDisplayPage.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Z4eBITgimd3XWgZR4sMnTp1fgk4=
+			maHX2UNJKNpx3mPEpelqjJC7JiE=
 			</data>
 			<key>hash2</key>
 			<data>
-			5lYgXgjhhuGzQq+l9hvavekX0h6z+kd+Rk2C3jYe6Rc=
+			6SoDKSAuoUD/2/XLDKzExYErRX3r7LBCAvUwT22R4j4=
 			</data>
 		</dict>
 		<key>Headers/ShowPrivateMessage.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			+yZzjlarg2cWcVKB2+h4eTgcFGI=
+			5Dn945reoVK7XZ5/peVQYHmcwMw=
 			</data>
 			<key>hash2</key>
 			<data>
-			vPJFTJv/A572Fzu9fs1DSOzl2XqDyJZoJ6VFfTmbRww=
+			QqchuESeRVu9u9FloC4BqDd52pRLT08XcjySsd/Ia64=
 			</data>
 		</dict>
 		<key>Headers/ShowThreadPage.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EdqQ04XQ7o0bmjaM7THQ9inskAs=
+			R1BPUSkZSC2r4R4TiUzjlnoEk1g=
 			</data>
 			<key>hash2</key>
 			<data>
-			r6GZbRnB/cGwyh2Dj8GliXSJS11mrIjAKxAR1BlsKxU=
+			juyYafJaUG1MwpdDLuzb8PXAC7D5kPcNemu6FlCxgG4=
 			</data>
 		</dict>
 		<key>Headers/SimpleThread.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			V0ZGq3DJR29YiAU2PFatSGGj0Io=
+			Lcct/rR/FUQjlpRGH/hgflaSiiI=
 			</data>
 			<key>hash2</key>
 			<data>
-			LFZ66/45JKxmRALO0hVNDuqVm8ek2Ss0XTd1ieicmcU=
+			dhRkHJSzqolWcs46DEtiZwcIEnClfpKfqvjXV82S2co=
 			</data>
 		</dict>
 		<key>Headers/Thread.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			xnxivw67dYiVjeKB0erEMo0e1vs=
+			pzOcvw6w5Pu+UirIaIxcjwDaKZk=
 			</data>
 			<key>hash2</key>
 			<data>
-			bQ8Wn/2kwBKmKL2oGm5fmVfg4D6d6lzNYHPtDuOqcR0=
+			E+XZ4745sjyu3NW7hGZ17lUdU4/Tc+SHVGeEod4j7c8=
 			</data>
 		</dict>
 		<key>Headers/ThreadInSearch.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			E81j7g/GkQG/J9+D0LhXhHIBRVw=
+			VdEvk8hAYXbfauCq6YFR3Qryrdo=
 			</data>
 			<key>hash2</key>
 			<data>
-			tgt8YCBliHXXfBfHs7mHakVzj7FIrS+BOcUSzoqHxOk=
+			3HF+0Fl/rzIe4cXrTJVYecGyK0HT1/n/R2wZmg0TLzc=
 			</data>
 		</dict>
 		<key>Headers/User.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			aNOqo9q2jonDXnu+gXc/R7PbJ7w=
+			sk3wqDAtky91Xs626ia0eEEP1IY=
 			</data>
 			<key>hash2</key>
 			<data>
-			zwkV6RueM9H3mvh47JuqGbQVDoQ21K3quYmZ1ZUofT4=
+			nf3aOeMq7WSeiNjCEVzZU3D13P5MF0lHiFeHY5pp1nE=
 			</data>
 		</dict>
 		<key>Headers/UserProfile.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			kXeGDWMWpISKqUCvkPtrWk5CpQc=
+			W4x2Pv76oZsmz7SOCEiezLQfuxA=
 			</data>
 			<key>hash2</key>
 			<data>
-			aHiuNEtkTgOVHwYpA7KHR69l1ZQgaJ1FvtIGWeHcILs=
+			0GU7dO07Uryykzl+XGeryty3RxQJw9AvEMPnx8CH8n8=
 			</data>
 		</dict>
 		<key>Headers/vBulletinForumEngine.h</key>
@@ -299,6 +299,11 @@
 			<true/>
 			<key>weight</key>
 			<real>1100</real>
+		</dict>
+		<key>^Base\.lproj/</key>
+		<dict>
+			<key>weight</key>
+			<real>1010</real>
 		</dict>
 		<key>^version.plist$</key>
 		<true/>
@@ -344,6 +349,11 @@
 			<true/>
 			<key>weight</key>
 			<real>1100</real>
+		</dict>
+		<key>^Base\.lproj/</key>
+		<dict>
+			<key>weight</key>
+			<real>1010</real>
 		</dict>
 		<key>^Info\.plist$</key>
 		<dict>

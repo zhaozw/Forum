@@ -10,6 +10,9 @@
 
 @interface ForumDisplayPage : NSObject
 
+
+@property (nonatomic, strong) NSString * originalHtml;
+
 @property(nonatomic, strong) NSMutableArray *dataList;
 
 @property(nonatomic, assign) NSUInteger totalCount;
