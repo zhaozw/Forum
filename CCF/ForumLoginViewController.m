@@ -7,17 +7,9 @@
 //
 
 #import "ForumLoginViewController.h"
-#import <UIImageView+AFNetworking.h>
-#import <AFNetworking.h>
-#import <AFImageDownloader.h>
-#import<CommonCrypto/CommonDigest.h>
-#import<Foundation/Foundation.h>
-
-#import "CCFForumBrowser.h"
 #import "AppDelegate.h"
 
 #import "UIStoryboard+CCF.h"
-#import "CCFForumApi.h"
 #import <SVProgressHUD.h>
 #import "ForumCoreDataManager.h"
 #import "FormEntry+CoreDataProperties.h"

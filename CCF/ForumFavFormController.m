@@ -7,13 +7,10 @@
 //
 
 #import "ForumFavFormController.h"
-#import "CCFForumParser.h"
 #import "ForumCoreDataManager.h"
 #import "NSUserDefaults+Extensions.h"
 #import "UIStoryboard+CCF.h"
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "ForumThreadListTableViewController.h"
-#import "CCFForumApi.h"
 #import "ForumTabBarController.h"
 #import "MGSwipeTableCellWithIndexPath.h"
 

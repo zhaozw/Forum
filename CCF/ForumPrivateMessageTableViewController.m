@@ -10,7 +10,6 @@
 #import "PrivateMessageTableViewCell.h"
 #import "ForumShowPrivateMessageViewController.h"
 
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "ForumUserProfileTableViewController.h"
 #import "ForumWritePMNavigationController.h"
 #import "UIStoryboard+CCF.h"

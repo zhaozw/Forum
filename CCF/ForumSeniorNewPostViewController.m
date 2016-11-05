@@ -9,8 +9,6 @@
 #import "ForumSeniorNewPostViewController.h"
 
 #import "SelectPhotoCollectionViewCell.h"
-#import "TransValueDelegate.h"
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 #import "TransValueBundle.h"
 #import <SVProgressHUD.h>

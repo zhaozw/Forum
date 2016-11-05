@@ -9,17 +9,12 @@
 #import "ForumThreadListTableViewController.h"
 
 #import "CCFThreadListCell.h"
-#import "MJRefresh.h"
 #import "ForumNewThreadViewController.h"
-#import "UITableView+FDTemplateLayoutCell.h"
 #import "ForumUserProfileTableViewController.h"
 #import "ForumThreadListForChildFormUITableViewController.h"
 #import "NSUserDefaults+Setting.h"
 #import "ForumNewThreadNavigationController.h"
 #import "UIStoryboard+CCF.h"
-#import <SVProgressHUD.h>
-#import "ForumCoreDataManager.h"
-#import "MGSwipeTableCellWithIndexPath.h"
 #import "ForumWebViewController.h"
 
 

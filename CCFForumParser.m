@@ -9,7 +9,6 @@
 #import "CCFForumParser.h"
 
 #import <IGHTMLQuery.h>
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 #import "FormEntry+CoreDataProperties.h"
 #import "ForumCoreDataManager.h"

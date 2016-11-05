@@ -8,9 +8,6 @@
 
 #import "ForumUserProfileTableViewController.h"
 #import "CCFProfileTableViewCell.h"
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
-
-#import "TransValueUITableViewCell.h"
 #import "ForumUserThreadTableViewController.h"
 
 #import "ForumWritePMNavigationController.h"

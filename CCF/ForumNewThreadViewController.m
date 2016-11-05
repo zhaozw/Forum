@@ -9,7 +9,6 @@
 #import "ForumNewThreadViewController.h"
 #import "CCFForumParser.h"
 #import "CCFForumApi.h"
-#import "SelectPhotoCollectionViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <SVProgressHUD.h>
 #import "Utils.h"
