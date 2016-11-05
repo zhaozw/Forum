@@ -30,10 +30,7 @@
 
     TransValueBundle *transBundle;
 
-    ShowThreadPage *currentThreadPage;
-
-    int currentPageNumber;
-    int totalPageCount;
+    ShowThreadPage *currentShowThreadPage;
 
     NSMutableDictionary *pageDic;
 
@@ -62,9 +59,6 @@
 
     pageDic = [NSMutableDictionary dictionary];
 
-    currentPageNumber = 1;
-
-
     [self.webView setScalesPageToFit:YES];
     self.webView.dataDetectorTypes = UIDataDetectorTypeNone;
     self.webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
@@ -86,11 +80,16 @@
         if (threadID == -1) {
             [self showThreadWithP:[NSString stringWithFormat:@"%d", p]];
         } else {
-            if (currentPageNumber > 1) {
-                int page = currentPageNumber - 1;
-                [self prePage:threadID page:page withAnim:YES];
-            } else {
+            if (currentShowThreadPage == nil){
                 [self prePage:threadID page:1 withAnim:NO];
+            } else if (currentShowThreadPage.currentPage == 1){
+                [self prePage:threadID page:1 withAnim:NO];
+            } else{
+                int page = currentShowThreadPage.currentPage - 1;
+                if (page <= 1){
+                    page = 1;
+                }
+                [self prePage:threadID page:page withAnim:YES];
             }
         }
     }];
@@ -98,34 +97,24 @@
 
     self.webView.scrollView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
 
-        int toPageNumber = currentPageNumber + 1;
+        // 当前页面 == 页面的最大数，只刷新当前页面就可以了
 
-        if (toPageNumber >= totalPageCount) {
-            toPageNumber = totalPageCount;
-        }
-        [self showThread:threadID page:toPageNumber withAnim:YES];
+        [self showNextPageOrRefreshCurrentPage:currentShowThreadPage.currentPage forThreadId:threadID];
 
     }];
 
     [self.webView.scrollView.mj_header beginRefreshing];
 }
 
+
 - (void)showThreadWithP:(NSString *)pID {
     [self.ccfForumApi showThreadWithP:pID handler:^(BOOL isSuccess, id message) {
 
         ShowThreadPage *threadPage = message;
-
-        currentThreadPage = threadPage;
-        totalPageCount = (int) currentThreadPage.totalPageCount;
-        currentPageNumber = (int) threadPage.currentPage;
-
+        currentShowThreadPage = threadPage;
         threadID = [threadPage.threadID intValue];
 
-        if (currentPageNumber >= totalPageCount) {
-            currentPageNumber = totalPageCount;
-        }
-
-        NSString *title = [NSString stringWithFormat:@"%d/%d", currentPageNumber, totalPageCount];
+        NSString *title = [NSString stringWithFormat:@"%d/%d", currentShowThreadPage.currentPage, currentShowThreadPage.totalPageCount];
         self.pageNumber.title = title;
 
         NSMutableArray<Post *> *posts = threadPage.dataList;
@@ -144,7 +133,7 @@
 
 
         // 缓存当前页面
-        pageDic[@(currentPageNumber)] = threadPage.originalHtml;
+        pageDic[@(currentShowThreadPage.currentPage)] = threadPage.originalHtml;
 
         [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
 
@@ -177,15 +166,10 @@
 
         ShowThreadPage *threadPage = message;
 
-        currentThreadPage = threadPage;
-        totalPageCount = (int) currentThreadPage.totalPageCount;
-        currentPageNumber = page;
+        currentShowThreadPage = threadPage;
 
-        if (currentPageNumber >= totalPageCount) {
-            currentPageNumber = totalPageCount;
-        }
 
-        NSString *title = [NSString stringWithFormat:@"%d/%d", currentPageNumber, totalPageCount];
+        NSString *title = [NSString stringWithFormat:@"%d/%d", currentShowThreadPage.currentPage, currentShowThreadPage.totalPageCount];
         self.pageNumber.title = title;
 
         NSMutableArray<Post *> *posts = threadPage.dataList;
@@ -209,7 +193,7 @@
         }
 
 
-        pageDic[@(currentPageNumber)] = threadPage.originalHtml;
+        pageDic[@(currentShowThreadPage.currentPage)] = threadPage.originalHtml;
 
         [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
 
@@ -242,6 +226,33 @@
     }];
 }
 
+- (void)showNextPageOrRefreshCurrentPage:(NSUInteger) currentPage forThreadId:(int) threadId{
+
+    if (currentPage < currentShowThreadPage.totalPageCount) {
+        [self showThread:threadId page:currentPage + 1 withAnim:YES];
+    } else{
+        [self.ccfForumApi showThreadWithId:threadId andPage:currentPage handler:^(BOOL isSuccess, id message) {
+            ShowThreadPage *threadPage = message;
+            if (currentShowThreadPage.dataList.count < threadPage.dataList.count){
+
+                NSMutableArray * posts = threadPage.dataList;
+
+                for (int i = currentShowThreadPage.dataList.count; i < posts.count; i++) {
+                    Post * post = posts[i];
+                    NSString *avatar = BBS_AVATAR(post.postUserInfo.userAvatar);
+                    NSString *louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
+
+                    [self addPostByJSElement:post avatar:avatar louceng:louceng];
+
+                }
+
+                currentShowThreadPage = threadPage;
+            }
+            [self.webView.scrollView.mj_footer endRefreshing];
+        }];
+    }
+}
+
 - (void)showThread:(int)threadId page:(int)page withAnim:(BOOL)anim {
 
 
@@ -253,15 +264,10 @@
 
         ShowThreadPage *threadPage = message;
 
-        currentThreadPage = threadPage;
-        totalPageCount = (int) currentThreadPage.totalPageCount;
-        currentPageNumber = page;
+        currentShowThreadPage = threadPage;
 
-        if (currentPageNumber >= totalPageCount) {
-            currentPageNumber = totalPageCount;
-        }
 
-        NSString *title = [NSString stringWithFormat:@"%d/%d", currentPageNumber, totalPageCount];
+        NSString *title = [NSString stringWithFormat:@"%d/%d", currentShowThreadPage.currentPage, currentShowThreadPage.totalPageCount];
         self.pageNumber.title = title;
 
         NSMutableArray<Post *> *posts = threadPage.dataList;
@@ -278,7 +284,6 @@
 
             //[self addPostByJSElement:post avatar:avatar louceng:louceng];
 
-
         }
 
         NSString *html = nil;
@@ -292,29 +297,29 @@
         if (![cacheHtml isEqualToString:threadPage.originalHtml]) {
             [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
             pageDic[@(page)] = html;
+        }
 
-            if (anim) {
-                CABasicAnimation *stretchAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.y"];
-                [stretchAnimation setToValue:@1.02F];
-                [stretchAnimation setRemovedOnCompletion:YES];
-                [stretchAnimation setFillMode:kCAFillModeRemoved];
-                [stretchAnimation setAutoreverses:YES];
-                [stretchAnimation setDuration:0.15];
-                [stretchAnimation setDelegate:self];
+        if (anim) {
+            CABasicAnimation *stretchAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.y"];
+            [stretchAnimation setToValue:@1.02F];
+            [stretchAnimation setRemovedOnCompletion:YES];
+            [stretchAnimation setFillMode:kCAFillModeRemoved];
+            [stretchAnimation setAutoreverses:YES];
+            [stretchAnimation setDuration:0.15];
+            [stretchAnimation setDelegate:self];
 
-                [stretchAnimation setBeginTime:CACurrentMediaTime() + 0.35];
+            [stretchAnimation setBeginTime:CACurrentMediaTime() + 0.35];
 
-                [stretchAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-                //[self.webView setAnchorPoint:CGPointMake(0.0, 1) forView:self.webView];
-                [self.view.layer addAnimation:stretchAnimation forKey:@"stretchAnimation"];
+            [stretchAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+            //[self.webView setAnchorPoint:CGPointMake(0.0, 1) forView:self.webView];
+            [self.view.layer addAnimation:stretchAnimation forKey:@"stretchAnimation"];
 
-                CATransition *animation = [CATransition animation];
-                [animation setType:kCATransitionPush];
-                [animation setSubtype:kCATransitionFromTop];
-                [animation setDuration:0.5f];
-                [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-                [[self.webView layer] addAnimation:animation forKey:nil];
-            }
+            CATransition *animation = [CATransition animation];
+            [animation setType:kCATransitionPush];
+            [animation setSubtype:kCATransitionFromTop];
+            [animation setDuration:0.5f];
+            [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+            [[self.webView layer] addAnimation:animation forKey:nil];
         }
 
         [self.webView.scrollView.mj_footer endRefreshing];
@@ -353,12 +358,12 @@
 
 - (void)transReplyValue:(ShowThreadPage *)value {
 
-    currentThreadPage = value;
-
-    currentPageNumber = (int) value.currentPage;
-    totalPageCount = (int) value.totalPageCount;
-
-    NSMutableArray<Post *> *parsedPosts = value.dataList;
+//    currentShowThreadPage = value;
+//
+//    currentPageNumber = (int) value.currentPage;
+//    totalPageCount = (int) value.totalPageCount;
+//
+//    NSMutableArray<Post *> *parsedPosts = value.dataList;
 
 
 }
@@ -409,9 +414,9 @@
                 [bundle putIntValue:threadID forKey:@"THREAD_ID"];
                 [bundle putIntValue:postId forKey:@"POST_ID"];
 
-                NSString *token = currentThreadPage.securityToken;
+                NSString *token = currentShowThreadPage.securityToken;
                 [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
-                [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
+                [bundle putStringValue:currentShowThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
                 [bundle putStringValue:userName forKey:@"POST_USER"];
 
                 [self.replyTransValueDelegate transValue:self withBundle:bundle];
@@ -435,12 +440,12 @@
 
                 [bundle putIntValue:postId forKey:@"POST_ID"];
 
-                NSString *token = currentThreadPage.securityToken;
+                NSString *token = currentShowThreadPage.securityToken;
 
 
                 [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
 
-                [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
+                [bundle putStringValue:currentShowThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
 
                 [bundle putStringValue:userName forKey:@"USER_NAME"];
 
@@ -553,17 +558,17 @@
 
 - (void)showChangePageActionSheet:(UIBarButtonItem *)sender {
     NSMutableArray<NSString *> *pages = [NSMutableArray array];
-    for (int i = 0; i < currentThreadPage.totalPageCount; i++) {
+    for (int i = 0; i < currentShowThreadPage.totalPageCount; i++) {
         NSString *page = [NSString stringWithFormat:@"第 %d 页", i + 1];
         [pages addObject:page];
     }
 
 
-    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle:@"选择页面" rows:pages initialSelection:currentPageNumber - 1 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle:@"选择页面" rows:pages initialSelection:currentShowThreadPage.currentPage - 1 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
 
         int selectPage = (int) selectedIndex + 1;
 
-        if (selectPage != currentPageNumber) {
+        if (selectPage != currentShowThreadPage.currentPage) {
 
             [SVProgressHUD showWithStatus:@"正在切换" maskType:SVProgressHUDMaskTypeBlack];
             [self showThread:threadID page:selectPage withAnim:YES];
@@ -639,10 +644,10 @@
     self.replyTransValueDelegate = (id <ReplyTransValueDelegate>) controller;
     TransValueBundle *bundle = [[TransValueBundle alloc] init];
     [bundle putIntValue:threadID forKey:@"THREAD_ID"];
-    NSString *token = currentThreadPage.securityToken;
+    NSString *token = currentShowThreadPage.securityToken;
     [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
     [bundle putStringValue:threadAuthorName forKey:@"POST_USER"];
-    [bundle putStringValue:currentThreadPage.formId forKey:@"FORM_ID"];
+    [bundle putStringValue:currentShowThreadPage.formId forKey:@"FORM_ID"];
     [self.replyTransValueDelegate transValue:self withBundle:bundle];
     [self.navigationController presentViewController:controller animated:YES completion:^{
 
