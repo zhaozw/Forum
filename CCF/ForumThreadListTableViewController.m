@@ -347,7 +347,7 @@
 - (IBAction)createThread:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
 
-    ForumNewThreadNavigationController *createController = [storyboard instantiateViewControllerWithIdentifier:@"ForumNewThreadNavigationController"];
+    ForumNewThreadNavigationController *createController = [storyboard instantiateViewControllerWithIdentifier:@"CreateNewThread"];
     self.transBundleDelegate = (id <TransBundleDelegate>) createController;
 
     TransValueBundle *bundle = [[TransValueBundle alloc] init];
