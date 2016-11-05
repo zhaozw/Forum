@@ -536,7 +536,7 @@
 
 
             UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
-            ForumWebViewController *showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"ForumWebViewController"];
+            ForumWebViewController *showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"ShowThreadDetail"];
             self.transValueDelegate = (id <TransValueDelegate>) showThreadController;
             TransValueBundle *showTransBundle = [[TransValueBundle alloc] init];
             [showTransBundle putIntValue:[threadIdStr intValue] forKey:@"threadID"];

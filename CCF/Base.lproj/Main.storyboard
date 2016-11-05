@@ -2422,7 +2422,7 @@
         <!--帖子详情-->
         <scene sceneID="aTR-2G-zAu">
             <objects>
-                <viewController storyboardIdentifier="CCFWebViewController" title="帖子详情" id="7tp-vM-md4" customClass="ForumWebViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShowThreadDetail" title="帖子详情" id="7tp-vM-md4" customClass="ForumWebViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fd7-is-dKM"/>
                         <viewControllerLayoutGuide type="bottom" id="Egh-zl-ZQU"/>
