@@ -40,6 +40,8 @@ typedef NSPredicate *(^SelectOperation)();
 
 - (NSArray *)selectData:(SelectOperation)operation;
 
+- (void)deleteData:(SelectOperation)operation;
+
 
 //查询
 - (NSArray *)selectData:(int)pageSize andOffset:(int)currentPage;

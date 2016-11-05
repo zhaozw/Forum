@@ -148,7 +148,14 @@
                 NSLog(@"cache_image_path %@", cacheImagePath);
             }
 
-            [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatarImage];
+            [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatarImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if (error) {
+                    [coreDateManager deleteData:^NSPredicate *{
+                        return [NSPredicate predicateWithFormat:@"userID = %@", userId];
+                    }];
+                }
+                //NSError * e = error;
+            }];
         }
     }
 

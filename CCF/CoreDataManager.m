@@ -181,6 +181,32 @@
     return resultArray;
 }
 
+- (void)deleteData:(SelectOperation)operation {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+
+
+    NSEntityDescription *entity = [NSEntityDescription entityForName:_entry inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+
+    NSPredicate *predicate = operation();
+    if (predicate != nil) {
+        [fetchRequest setPredicate:predicate];
+    }
+
+    NSError *error;
+    NSArray *datas = [context executeFetchRequest:fetchRequest error:&error];
+    if (!error && datas && [datas count]) {
+        for (NSManagedObject *obj in datas) {
+            [context deleteObject:obj];
+        }
+        if (![context save:&error]) {
+            NSLog(@"error:%@", error);
+        }
+    }
+
+}
+
 //删除
 - (void)deleteData {
     NSManagedObjectContext *context = [self managedObjectContext];
