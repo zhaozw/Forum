@@ -392,8 +392,6 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 
     NSString *urlString = [[request URL] absoluteString];
-    NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> %@ %d %@", urlString, navigationType, request.URL.scheme);
-
 
     if ([request.URL.scheme isEqualToString:@"postid"]) {
         NSDictionary *query = [self dictionaryFromQuery:request.URL.query usingEncoding:NSUTF8StringEncoding];
@@ -406,7 +404,7 @@
             if (buttonIndex == 0) {
                 UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
 
-                ForumSimpleReplyNavigationController *simpleReplyController = [storyboard instantiateViewControllerWithIdentifier:@"ForumSimpleReplyNavigationController"];
+                ForumSimpleReplyNavigationController *simpleReplyController = [storyboard instantiateViewControllerWithIdentifier:@"QuickReplySomeOne"];
                 self.replyTransValueDelegate = (id <ReplyTransValueDelegate>) simpleReplyController;
 
                 TransValueBundle *bundle = [[TransValueBundle alloc] init];

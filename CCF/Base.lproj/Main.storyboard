@@ -785,7 +785,7 @@
         <!--Forum Simple Reply Navigation Controller-->
         <scene sceneID="cca-k4-Mk4">
             <objects>
-                <navigationController storyboardIdentifier="CCFSimpleReplyNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="sO7-Q2-goh" customClass="ForumSimpleReplyNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="QuickReplySomeOne" automaticallyAdjustsScrollViewInsets="NO" id="sO7-Q2-goh" customClass="ForumSimpleReplyNavigationController" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="8WL-Jb-k5P">
