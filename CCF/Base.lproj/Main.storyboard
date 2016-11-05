@@ -555,7 +555,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xfo-dw-K7M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-129" y="-5107"/>
+            <point key="canvasLocation" x="631" y="-5948"/>
         </scene>
         <!--Show Thread View Controller-->
         <scene sceneID="Kid-kF-uIx">
@@ -2551,7 +2551,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Sr-o4-WcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1978" y="-4853"/>
+            <point key="canvasLocation" x="2655" y="-5678"/>
         </scene>
         <!--他的主题-->
         <scene sceneID="kwO-6c-899">
@@ -2705,10 +2705,10 @@
             </objects>
             <point key="canvasLocation" x="1159" y="606"/>
         </scene>
-        <!--Forum New Thread Navigation Controller-->
+        <!--新主题-->
         <scene sceneID="xBQ-EG-vCf">
             <objects>
-                <navigationController storyboardIdentifier="CreateNewThread" id="VHN-J2-LXw" customClass="ForumNewThreadNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CreateNewThread" title="新主题" id="VHN-J2-LXw" customClass="ForumNewThreadNavigationController" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="u2t-T6-8CQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2729,10 +2729,10 @@
             </objects>
             <point key="canvasLocation" x="-129" y="-5948"/>
         </scene>
-        <!--Forum WritePM Navigation Controller-->
+        <!--发送私信-->
         <scene sceneID="pmZ-Qb-ymY">
             <objects>
-                <navigationController storyboardIdentifier="CCFWritePMNavigationController" id="tGS-ab-K6j" customClass="ForumWritePMNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CreatePM" title="发送私信" id="tGS-ab-K6j" customClass="ForumWritePMNavigationController" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="CXw-Xr-NPb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2933,9 +2933,9 @@
         <image name="tab_new_post" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BtX-d5-2Dd"/>
+        <segue reference="b8A-CD-rhQ"/>
         <segue reference="lf3-Ra-lJN"/>
+        <segue reference="BtX-d5-2Dd"/>
         <segue reference="M28-BR-HO4"/>
-        <segue reference="Qk9-TF-3w3"/>
     </inferredMetricsTieBreakers>
 </document>
