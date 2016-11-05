@@ -45,7 +45,7 @@
 		3AA397391DABB6FF00F74E32 /* iOSDeviceName.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA397381DABB6FF00F74E32 /* iOSDeviceName.framework */; };
 		3AA5B99A1CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA5B9991CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m */; };
 		3AA5B99D1CBA7D690008175A /* ForumSimpleReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA5B99C1CBA7D690008175A /* ForumSimpleReplyViewController.m */; };
-		3AA5B9A01CBA8C6C0008175A /* ForumSimpleReplyNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA5B99F1CBA8C6C0008175A /* ForumSimpleReplyNavigationController.m */; };
+		3AA5B9A01CBA8C6C0008175A /* ForumReplyNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA5B99F1CBA8C6C0008175A /* ForumReplyNavigationController.m */; };
 		3AA935B41CF1BABE009FC4A6 /* db.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3AA935B21CF1BABE009FC4A6 /* db.xcdatamodeld */; };
 		3AA935E11CF1BCB2009FC4A6 /* UserEntry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA935DA1CF1BCB2009FC4A6 /* UserEntry+CoreDataProperties.m */; };
 		3AA935E21CF1BCB2009FC4A6 /* UserEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA935DC1CF1BCB2009FC4A6 /* UserEntry.m */; };
@@ -179,8 +179,8 @@
 		3AA5B9991CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadNotLoadTableViewCell.m; sourceTree = "<group>"; };
 		3AA5B99B1CBA7D690008175A /* ForumSimpleReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumSimpleReplyViewController.h; sourceTree = "<group>"; };
 		3AA5B99C1CBA7D690008175A /* ForumSimpleReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumSimpleReplyViewController.m; sourceTree = "<group>"; };
-		3AA5B99E1CBA8C6C0008175A /* ForumSimpleReplyNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumSimpleReplyNavigationController.h; sourceTree = "<group>"; };
-		3AA5B99F1CBA8C6C0008175A /* ForumSimpleReplyNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumSimpleReplyNavigationController.m; sourceTree = "<group>"; };
+		3AA5B99E1CBA8C6C0008175A /* ForumReplyNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumReplyNavigationController.h; sourceTree = "<group>"; };
+		3AA5B99F1CBA8C6C0008175A /* ForumReplyNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumReplyNavigationController.m; sourceTree = "<group>"; };
 		3AA935B31CF1BABE009FC4A6 /* db.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = db.xcdatamodel; sourceTree = "<group>"; };
 		3AA935D91CF1BCB2009FC4A6 /* UserEntry+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserEntry+CoreDataProperties.h"; sourceTree = "<group>"; };
 		3AA935DA1CF1BCB2009FC4A6 /* UserEntry+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserEntry+CoreDataProperties.m"; sourceTree = "<group>"; };
@@ -452,8 +452,8 @@
 				3AA5B99C1CBA7D690008175A /* ForumSimpleReplyViewController.m */,
 				3A0A99811C4A71B600086DAB /* ForumSeniorNewPostViewController.h */,
 				3A0A99821C4A71B600086DAB /* ForumSeniorNewPostViewController.m */,
-				3AA5B99E1CBA8C6C0008175A /* ForumSimpleReplyNavigationController.h */,
-				3AA5B99F1CBA8C6C0008175A /* ForumSimpleReplyNavigationController.m */,
+				3AA5B99E1CBA8C6C0008175A /* ForumReplyNavigationController.h */,
+				3AA5B99F1CBA8C6C0008175A /* ForumReplyNavigationController.m */,
 			);
 			name = ReplyController;
 			sourceTree = "<group>";
@@ -868,7 +868,7 @@
 				3AC660781CF1833F000D3BDB /* ForumTabBarController.m in Sources */,
 				3A671EE41CB9E061001CC91E /* PageHeaderView.m in Sources */,
 				3AA5B99D1CBA7D690008175A /* ForumSimpleReplyViewController.m in Sources */,
-				3AA5B9A01CBA8C6C0008175A /* ForumSimpleReplyNavigationController.m in Sources */,
+				3AA5B9A01CBA8C6C0008175A /* ForumReplyNavigationController.m in Sources */,
 				3A9ADC6C1C9D8F2C006055A8 /* BaseCCFTableViewCell.m in Sources */,
 				3AC660771CF1833F000D3BDB /* ForumSettingTableViewController.m in Sources */,
 				3A1CC3E01CB922F5007A0B97 /* ForumWritePMViewController.m in Sources */,

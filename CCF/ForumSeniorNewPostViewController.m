@@ -15,7 +15,7 @@
 
 #import "LCActionSheet.h"
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "ForumSimpleReplyNavigationController.h"
+#import "ForumReplyNavigationController.h"
 #import "Utils.h"
 
 @interface ForumSeniorNewPostViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate> {
@@ -34,7 +34,7 @@
     [super viewDidLoad];
 
     // 传递数据
-    ForumSimpleReplyNavigationController *controller = (ForumSimpleReplyNavigationController *) self.navigationController;
+    ForumReplyNavigationController *controller = (ForumReplyNavigationController *) self.navigationController;
     bundle = controller.bundle;
 
 
@@ -238,7 +238,7 @@
             ShowThreadPage *thread = message;
 
 
-            ForumSimpleReplyNavigationController *navigationController = (ForumSimpleReplyNavigationController *) self.navigationController;
+            ForumReplyNavigationController *navigationController = (ForumReplyNavigationController *) self.navigationController;
 
 
             self.delegate = (id <ReplyCallbackDelegate>) navigationController.controller;

@@ -1,19 +1,19 @@
 //
-//  ForumSimpleReplyNavigationController.m
+//  ForumReplyNavigationController.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/4/10.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "ForumSimpleReplyNavigationController.h"
+#import "ForumReplyNavigationController.h"
 #import "ReplyTransValueDelegate.h"
 
-@interface ForumSimpleReplyNavigationController () <ReplyTransValueDelegate>
+@interface ForumReplyNavigationController () <ReplyTransValueDelegate>
 
 @end
 
-@implementation ForumSimpleReplyNavigationController
+@implementation ForumReplyNavigationController
 
 
 - (void)transValue:(UIViewController *)controller withBundle:(TransValueBundle *)transBundle {

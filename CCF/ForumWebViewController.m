@@ -19,7 +19,7 @@
 #import "UIStoryboard+CCF.h"
 #import "ActionSheetPicker.h"
 #import "ReplyCallbackDelegate.h"
-#import "ForumSimpleReplyNavigationController.h"
+#import "ForumReplyNavigationController.h"
 #import "NSString+Extensions.h"
 #import "ForumUserProfileTableViewController.h"
 #import "ForumConfig.h"
@@ -404,7 +404,7 @@
             if (buttonIndex == 0) {
                 UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
 
-                ForumSimpleReplyNavigationController *simpleReplyController = [storyboard instantiateViewControllerWithIdentifier:@"QuickReplySomeOne"];
+                ForumReplyNavigationController *simpleReplyController = [storyboard instantiateViewControllerWithIdentifier:@"QuickReplySomeOne"];
                 self.replyTransValueDelegate = (id <ReplyTransValueDelegate>) simpleReplyController;
 
                 TransValueBundle *bundle = [[TransValueBundle alloc] init];
@@ -428,7 +428,7 @@
 
                 UIStoryboard *storyBoard = [UIStoryboard mainStoryboard];
 
-                ForumSimpleReplyNavigationController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
+                ForumReplyNavigationController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"SeniorReplySomeOne"];
                 self.replyTransValueDelegate = (id <ReplyTransValueDelegate>) controller;
 
                 TransValueBundle *bundle = [[TransValueBundle alloc] init];
@@ -638,7 +638,7 @@
 - (IBAction)reply:(id)sender {
 
     UIStoryboard *storyBoard = [UIStoryboard mainStoryboard];
-    ForumSimpleReplyNavigationController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
+    ForumReplyNavigationController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
     self.replyTransValueDelegate = (id <ReplyTransValueDelegate>) controller;
     TransValueBundle *bundle = [[TransValueBundle alloc] init];
     [bundle putIntValue:threadID forKey:@"THREAD_ID"];

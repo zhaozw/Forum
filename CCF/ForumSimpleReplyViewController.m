@@ -7,7 +7,7 @@
 //
 
 #import "ForumSimpleReplyViewController.h"
-#import "ForumSimpleReplyNavigationController.h"
+#import "ForumReplyNavigationController.h"
 #import "SVProgressHUD.h"
 
 #import "UIStoryboard+CCF.h"
@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    ForumSimpleReplyNavigationController *navigationController = (ForumSimpleReplyNavigationController *) self.navigationController;
+    ForumReplyNavigationController *navigationController = (ForumReplyNavigationController *) self.navigationController;
 
     bundle = navigationController.bundle;
 
@@ -64,7 +64,7 @@
 
 //                CCFShowThreadPage * thread = message;
 //
-//                ForumSimpleReplyNavigationController * navigationController = (ForumSimpleReplyNavigationController *)self.navigationController;
+//                ForumReplyNavigationController * navigationController = (ForumReplyNavigationController *)self.navigationController;
 //                
 //                
 //                self.delegate = (id<SimpleReplyDelegate>)navigationController.controller;
@@ -89,7 +89,7 @@
                 ShowThreadPage *thread = message;
 
 
-                ForumSimpleReplyNavigationController *navigationController = (ForumSimpleReplyNavigationController *) self.navigationController;
+                ForumReplyNavigationController *navigationController = (ForumReplyNavigationController *) self.navigationController;
 
 
                 self.delegate = (id <ReplyCallbackDelegate>) navigationController.controller;
