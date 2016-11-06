@@ -17,7 +17,7 @@
 
 #import "ForumWritePMNavigationController.h"
 
-#import "TransBundleDelegate.h"
+#import "UIViewController+TransBundle.h"
 
 @interface ForumShowPrivateMessageViewController () <UIWebViewDelegate, UIScrollViewDelegate, TransValueDelegate> {
 
@@ -182,13 +182,9 @@
 
     ForumWritePMNavigationController *controller = [storyboard instantiateViewControllerWithIdentifier:@"CreatePM"];
 
-
-
-    UIViewController * child = [controller childViewControllers].firstObject;
-
-    TransValueBundle * bundle = [[TransValueBundle alloc] init];
+    TransBundle * bundle = [[TransBundle alloc] init];
     [bundle putStringValue:@"123456" forKey:@"test"];
-    [self.navigationController presentViewController:controller animated:YES completion:^{
+    [self.navigationController presentViewController:controller withBundle:bundle forRootController:YES animated:YES completion:^{
 
     }];
 }

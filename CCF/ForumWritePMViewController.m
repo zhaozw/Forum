@@ -11,6 +11,8 @@
 #import "ForumWritePMNavigationController.h"
 #import <SVProgressHUD.h>
 
+#import "TransBundle.h"
+#import "UIViewController+TransBundle.h"
 
 @interface ForumWritePMViewController ()<TransBundleDelegate>
 
@@ -20,8 +22,8 @@
 @implementation ForumWritePMViewController
 
 // 上一Cotroller传递过来的数据
-- (void)transBundle:(TransValueBundle *)bundle {
-
+- (void)transBundle:(id)bundle {
+    TransValueBundle * valueBundle = bundle;
 }
 
 

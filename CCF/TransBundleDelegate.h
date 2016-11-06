@@ -12,6 +12,6 @@
 
 
 @required
-- (void)transBundle:(TransValueBundle *)bundle;
+- (void)transBundle:(id)bundle;
 
 @end

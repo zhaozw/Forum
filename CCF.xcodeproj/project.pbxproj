@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F34C2318A205D6A20FAA12F /* TransBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F34C1E22F2A44DADCDF38C3 /* TransBundle.m */; };
 		2F34CADF83517CAFD6C03311 /* append_post_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 2F34C4DA4FA7BEF14D1932AD /* append_post_content.html */; };
 		2F34CE759D17D0CF3B704ACD /* UIViewController+TransBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F34CB526BB60D1CBBEAA627 /* UIViewController+TransBundle.m */; };
 		2F34CFE0A8D88142C21C7417 /* append_post.js in Resources */ = {isa = PBXBuildFile; fileRef = 2F34CAFB4248BA4D1BE6E027 /* append_post.js */; };
@@ -109,6 +110,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F34C1E22F2A44DADCDF38C3 /* TransBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransBundle.m; sourceTree = "<group>"; };
+		2F34C3077FB8CFC3594C5C65 /* TransBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransBundle.h; sourceTree = "<group>"; };
 		2F34C3A6AAC2AE063D72CDFC /* UIViewController+TransBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TransBundle.h"; sourceTree = "<group>"; };
 		2F34C4DA4FA7BEF14D1932AD /* append_post_content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = append_post_content.html; path = CCF/append_post_content.html; sourceTree = "<group>"; };
 		2F34CAFB4248BA4D1BE6E027 /* append_post.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = append_post.js; path = CCF/append_post.js; sourceTree = "<group>"; };
@@ -425,6 +428,8 @@
 				3A1C2CD81C9EE6150068AF6B /* TransValueDelegate.h */,
 				2F34CB526BB60D1CBBEAA627 /* UIViewController+TransBundle.m */,
 				2F34C3A6AAC2AE063D72CDFC /* UIViewController+TransBundle.h */,
+				2F34C1E22F2A44DADCDF38C3 /* TransBundle.m */,
+				2F34C3077FB8CFC3594C5C65 /* TransBundle.h */,
 			);
 			name = TransBundle;
 			sourceTree = "<group>";
@@ -908,6 +913,7 @@
 				3AC660071CF17D86000D3BDB /* CCFForumApi.m in Sources */,
 				3AC6606B1CF1833F000D3BDB /* ForumTableViewController.m in Sources */,
 				2F34CE759D17D0CF3B704ACD /* UIViewController+TransBundle.m in Sources */,
+				2F34C2318A205D6A20FAA12F /* TransBundle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
