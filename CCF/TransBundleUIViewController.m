@@ -7,15 +7,28 @@
 //
 
 #import "TransBundleUIViewController.h"
+#import "TransBundleDelegate.h"
 
-@interface TransBundleUIViewController () <TransBundleDelegate>
+
+@interface TransBundleUIViewController ()
+
+@property(nonatomic, strong) id <TransBundleDelegate> delegate;
+
+@property(nonatomic, strong) TransValueBundle *bundle;
 
 @end
 
 @implementation TransBundleUIViewController
 
-- (void)transBundle:(TransValueBundle *)bundle {
-    self.bundle = bundle;
-}
 
+- (void)presentViewController:(UIViewController *)viewControllerToPresent withBundle:(TransValueBundle *)bundle animated:(BOOL)flag completion:(void (^ __nullable)(void))completion {
+
+    assert(![viewControllerToPresent conformsToProtocol:@protocol (TransBundleDelegate)]);
+
+    self.delegate = (id <TransBundleDelegate>) viewControllerToPresent;
+
+    [self.delegate transBundle:bundle];
+    [self presentViewController:viewControllerToPresent animated:flag completion:completion];
+
+}
 @end

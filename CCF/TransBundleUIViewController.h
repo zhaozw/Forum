@@ -10,11 +10,9 @@
 
 #import "TransValueBundle.h"
 
-#import "TransBundleDelegate.h"
-
-
 @interface TransBundleUIViewController : UIViewController
-@property(nonatomic, strong) id <TransBundleDelegate> transBundleDelegate;
 
-@property(nonatomic, strong) TransValueBundle *bundle;
+
+- (void)presentViewController:(UIViewController *)viewControllerToPresent withBundle:(TransValueBundle *) bundle animated: (BOOL)flag completion:(void (^ __nullable)(void))completion NS_AVAILABLE_IOS(5_0);
+
 @end

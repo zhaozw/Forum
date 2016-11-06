@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F34CADF83517CAFD6C03311 /* append_post_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 2F34C4DA4FA7BEF14D1932AD /* append_post_content.html */; };
+		2F34CE759D17D0CF3B704ACD /* UIViewController+TransBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F34CB526BB60D1CBBEAA627 /* UIViewController+TransBundle.m */; };
 		2F34CFE0A8D88142C21C7417 /* append_post.js in Resources */ = {isa = PBXBuildFile; fileRef = 2F34CAFB4248BA4D1BE6E027 /* append_post.js */; };
 		3A0A99831C4A71B600086DAB /* ForumSeniorNewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A99821C4A71B600086DAB /* ForumSeniorNewPostViewController.m */; };
 		3A0B3A001D0962D40060F8A4 /* private_message.html in Resources */ = {isa = PBXBuildFile; fileRef = 3A0B39FF1D0962D40060F8A4 /* private_message.html */; };
@@ -108,8 +109,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F34C3A6AAC2AE063D72CDFC /* UIViewController+TransBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TransBundle.h"; sourceTree = "<group>"; };
 		2F34C4DA4FA7BEF14D1932AD /* append_post_content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = append_post_content.html; path = CCF/append_post_content.html; sourceTree = "<group>"; };
 		2F34CAFB4248BA4D1BE6E027 /* append_post.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = append_post.js; path = CCF/append_post.js; sourceTree = "<group>"; };
+		2F34CB526BB60D1CBBEAA627 /* UIViewController+TransBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TransBundle.m"; sourceTree = "<group>"; };
 		3A0A99811C4A71B600086DAB /* ForumSeniorNewPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumSeniorNewPostViewController.h; sourceTree = "<group>"; };
 		3A0A99821C4A71B600086DAB /* ForumSeniorNewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumSeniorNewPostViewController.m; sourceTree = "<group>"; };
 		3A0B39FF1D0962D40060F8A4 /* private_message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = private_message.html; path = CCF/private_message.html; sourceTree = "<group>"; };
@@ -420,6 +423,8 @@
 				3A734BEE1CCCC92800C4821A /* TransBundleUINavigationController.m */,
 				3A734BF81CCCCEE600C4821A /* TransBundleDelegate.h */,
 				3A1C2CD81C9EE6150068AF6B /* TransValueDelegate.h */,
+				2F34CB526BB60D1CBBEAA627 /* UIViewController+TransBundle.m */,
+				2F34C3A6AAC2AE063D72CDFC /* UIViewController+TransBundle.h */,
 			);
 			name = TransBundle;
 			sourceTree = "<group>";
@@ -902,6 +907,7 @@
 				3A3672AD1CAF713200756D8B /* TransValueBundle.m in Sources */,
 				3AC660071CF17D86000D3BDB /* CCFForumApi.m in Sources */,
 				3AC6606B1CF1833F000D3BDB /* ForumTableViewController.m in Sources */,
+				2F34CE759D17D0CF3B704ACD /* UIViewController+TransBundle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

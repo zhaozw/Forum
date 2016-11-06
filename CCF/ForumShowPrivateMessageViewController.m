@@ -15,8 +15,9 @@
 #import "UIStoryboard+CCF.h"
 #import "ForumConfig.h"
 
+#import "ForumWritePMNavigationController.h"
 
-#import "CCFForumApi.h"
+#import "TransBundleDelegate.h"
 
 @interface ForumShowPrivateMessageViewController () <UIWebViewDelegate, UIScrollViewDelegate, TransValueDelegate> {
 
@@ -175,5 +176,20 @@
 
 - (IBAction)back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)replyPM:(id)sender {
+    UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
+
+    ForumWritePMNavigationController *controller = [storyboard instantiateViewControllerWithIdentifier:@"CreatePM"];
+
+
+
+    UIViewController * child = [controller childViewControllers].firstObject;
+
+    TransValueBundle * bundle = [[TransValueBundle alloc] init];
+    [bundle putStringValue:@"123456" forKey:@"test"];
+    [self.navigationController presentViewController:controller animated:YES completion:^{
+
+    }];
 }
 @end

@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CCFForumApi.h"
 
-@interface ForumApiBaseViewController : UIViewController
+#import "TransBundleUIViewController.h"
+
+@interface ForumApiBaseViewController : TransBundleUIViewController
 
 @property(nonatomic, strong) CCFForumApi *ccfForumApi;
 

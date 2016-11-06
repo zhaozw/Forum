@@ -26,5 +26,6 @@
 @property(weak, nonatomic) IBOutlet UIWebView *webView;
 
 @property(weak, nonatomic) id <TransValueDelegate> transValueDelegate;
+- (IBAction)replyPM:(id)sender;
 
 @end

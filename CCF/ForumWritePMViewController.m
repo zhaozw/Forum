@@ -12,12 +12,17 @@
 #import <SVProgressHUD.h>
 
 
-@interface ForumWritePMViewController ()
+@interface ForumWritePMViewController ()<TransBundleDelegate>
 
 @end
 
 
 @implementation ForumWritePMViewController
+
+// 上一Cotroller传递过来的数据
+- (void)transBundle:(TransValueBundle *)bundle {
+
+}
 
 
 - (void)viewDidLoad {
