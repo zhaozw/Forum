@@ -161,7 +161,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
     if (indexPath.section == 1 && indexPath.row == 1) {
-        ForumWritePMNavigationController *controller = (id) [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"ForumWritePMNavigationController"];
+        ForumWritePMNavigationController *controller = (id) [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"CreatePM"];
         TransBundle *bundle = [[TransBundle alloc] init];
         [bundle putStringValue:userProfile.profileName forKey:@"PROFILE_NAME"];
 
