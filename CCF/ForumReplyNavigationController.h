@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
-#import "TransValueBundle.h"
 
 @interface ForumReplyNavigationController : UINavigationController
 
-@property(nonatomic, strong) TransValueBundle *bundle;
 @property(nonatomic, strong) UIViewController *controller;
 
 @end

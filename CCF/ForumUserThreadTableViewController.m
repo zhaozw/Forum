@@ -8,11 +8,11 @@
 
 #import "ForumUserThreadTableViewController.h"
 #import "CCFSearchResultCell.h"
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "ForumWebViewController.h"
+#import "TransBundleDelegate.h"
+#import "UIViewController+TransBundle.h"
 
-
-@interface ForumUserThreadTableViewController () <TransValueDelegate> {
+@interface ForumUserThreadTableViewController () <TransBundleDelegate> {
     UserProfile *userProfile;
 }
 
@@ -20,9 +20,10 @@
 
 @implementation ForumUserThreadTableViewController
 
-- (void)transValue:(id)value {
-    userProfile = value;
+- (void)transBundle:(TransBundle *)bundle {
+    userProfile = [bundle getObjectValue:@"UserProfile"];
 }
+
 
 - (void)onPullRefresh {
     int userId = [userProfile.profileUserId intValue];
@@ -63,7 +64,7 @@
     static NSString *cellId = @"CCFSearchResultCell";
     CCFSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
 
-    ThreadInSearch *thread = self.dataList[indexPath.row];
+    ThreadInSearch *thread = self.dataList[(NSUInteger) indexPath.row];
     [cell setData:thread];
 
     return cell;
@@ -82,20 +83,21 @@
     if ([segue.identifier isEqualToString:@"ShowThreadPosts"]) {
 
         ForumWebViewController *controller = segue.destinationViewController;
-        self.transValueDelegate = (id <TransValueDelegate>) controller;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        ThreadInSearch *thread = self.dataList[indexPath.row];
-        TransValueBundle *transBundle = [[TransValueBundle alloc] init];
-        [transBundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
-        [transBundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
-        [self.transValueDelegate transValue:transBundle];
+        ThreadInSearch *thread = self.dataList[(NSUInteger) indexPath.row];
+
+
+        TransBundle *bundle = [[TransBundle alloc] init];
+        [bundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
+        [bundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
+        [self transBundle:bundle forController:controller];
     }
 }
 
 - (void)configureCell:(CCFSearchResultCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
 
-    [cell setData:self.dataList[indexPath.row]];
+    [cell setData:self.dataList[(NSUInteger) indexPath.row]];
 }
 
 - (IBAction)back:(id)sender {

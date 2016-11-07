@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TransValueDelegate.h"
-#import "SelectPhotoCollectionViewCell.h"
-#import "TransBundleUIViewController.h"
 
-@interface ForumNewThreadViewController : TransBundleUIViewController
+#import "SelectPhotoCollectionViewCell.h"
+
+@interface ForumNewThreadViewController : UIViewController
 
 
 @property(weak, nonatomic) IBOutlet UITextField *subject;

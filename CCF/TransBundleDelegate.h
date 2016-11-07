@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TransBundle.h"
 
 @protocol TransBundleDelegate <NSObject>
 
 
 @required
-- (void)transBundle:(id)bundle;
+- (void)transBundle:(TransBundle *)bundle;
 
 @end

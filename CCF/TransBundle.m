@@ -18,7 +18,7 @@
 }
 
 - (void)putIntValue:(int)value forKey:(NSString *)key {
-    [dictonary setValue:[NSNumber numberWithInt:value] forKey:key];
+    [dictonary setValue:@(value) forKey:key];
 }
 
 - (void)putStringValue:(NSString *)value forKey:(NSString *)key {
@@ -36,4 +36,14 @@
 - (NSString *)getStringValue:(NSString *)key {
     return [dictonary valueForKey:key];
 }
+
+- (void)putObjectValue:(id)value forKey:(NSString *)key {
+    dictonary[key] = value;
+}
+
+- (id)getObjectValue:(NSString *)key {
+    return dictonary[key];
+}
+
+
 @end

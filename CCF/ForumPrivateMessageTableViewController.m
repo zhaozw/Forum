@@ -14,6 +14,7 @@
 #import "ForumWritePMNavigationController.h"
 #import "UIStoryboard+CCF.h"
 #import "ForumTabBarController.h"
+#import "UIViewController+TransBundle.h"
 
 @interface ForumPrivateMessageTableViewController () <CCFThreadListCellDelegate, MGSwipeTableCellDelegate> {
     int messageType;
@@ -102,7 +103,7 @@
     cell.delegate = self;
     cell.showUserProfileDelegate = self;
 
-    PrivateMessage *message = self.dataList[indexPath.row];
+    PrivateMessage *message = self.dataList[(NSUInteger) indexPath.row];
 
     [cell setData:message forIndexPath:indexPath];
 
@@ -113,12 +114,11 @@
 #pragma mark CCFThreadListCellDelegate
 
 - (void)showUserProfile:(NSIndexPath *)indexPath {
-    ForumUserProfileTableViewController *controller = (ForumUserProfileTableViewController *) selectSegue.destinationViewController;
-    self.transValueDelegate = (id <TransValueDelegate>) controller;
-
-    PrivateMessage *message = self.dataList[indexPath.row];
-
-    [self.transValueDelegate transValue:message];
+    ForumUserProfileTableViewController *controller = selectSegue.destinationViewController;
+    PrivateMessage *message = self.dataList[(NSUInteger) indexPath.row];
+    TransBundle *bundle = [[TransBundle alloc] init];
+    [bundle putIntValue:[message.pmAuthorId intValue] forKey:@"UserId"];
+    [self transBundle:bundle forController:controller];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -130,7 +130,7 @@
 - (void)configureCell:(PrivateMessageTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
 
-    [cell setData:self.dataList[indexPath.row]];
+    [cell setData:self.dataList[(NSUInteger) indexPath.row]];
 }
 
 #pragma mark Controller跳转
@@ -139,13 +139,16 @@
 
     if ([sender isKindOfClass:[UITableViewCell class]]) {
         ForumShowPrivateMessageViewController *controller = segue.destinationViewController;
-        self.transValueDelegate = (id <TransValueDelegate>) controller;
+
 
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 
-        PrivateMessage *message = self.dataList[indexPath.row];
+        PrivateMessage *message = self.dataList[(NSUInteger) indexPath.row];
 
-        [self.transValueDelegate transValue:message];
+        TransBundle *bundle = [[TransBundle alloc] init];
+        [bundle putObjectValue:message forKey:@"TransPrivateMessage"];
+
+        [self transBundle:bundle forController:controller];
 
     } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]) {
         selectSegue = segue;

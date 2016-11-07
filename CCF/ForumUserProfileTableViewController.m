@@ -16,7 +16,11 @@
 
 #import "ForumConfig.h"
 
-@interface ForumUserProfileTableViewController () <TransValueDelegate> {
+#import "TransBundle.h"
+#import "UIViewController+TransBundle.h"
+#import "TransBundleDelegate.h"
+
+@interface ForumUserProfileTableViewController () <TransBundleDelegate> {
 
     UserProfile *userProfile;
     int userId;
@@ -34,6 +38,10 @@
 @end
 
 @implementation ForumUserProfileTableViewController
+
+- (void)transBundle:(TransBundle *)bundle {
+    userId = [bundle getIntValue:@"UserId"];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,6 +67,7 @@
 - (BOOL)setLoadMore:(BOOL)enable {
     return NO;
 }
+
 
 - (void)transValue:(id)value {
 
@@ -107,7 +116,6 @@
     }];
 }
 
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 5;
 }
@@ -142,9 +150,10 @@
     if ([segue.identifier isEqualToString:@"ShowCCFUserThreadTableViewController"]) {
         ForumUserThreadTableViewController *controller = segue.destinationViewController;
 
-        self.transValueDelegate = (id <TransValueDelegate>) controller;
+        TransBundle * bundle = [[TransBundle alloc] init];
+        [bundle putObjectValue:userProfile forKey:@"UserProfile"];
+        [self transBundle:bundle forController:controller];
 
-        [self.transValueDelegate transValue:userProfile];
     }
 
 }
@@ -183,26 +192,23 @@
     }
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
     if (indexPath.section == 1 && indexPath.row == 1) {
-        ForumWritePMNavigationController *controller = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"ForumWritePMNavigationController"];
-        TransValueBundle *bundle = [[TransValueBundle alloc] init];
+        ForumWritePMNavigationController *controller = (id) [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"ForumWritePMNavigationController"];
+        TransBundle * bundle = [[TransBundle alloc] init];
         [bundle putStringValue:userProfile.profileName forKey:@"PROFILE_NAME"];
 
-        self.transBundleDelegate = (id <TransBundleDelegate>) controller;
-
-        [self.transBundleDelegate transBundle:bundle];
-
-        [self.navigationController presentViewController:controller animated:YES completion:^{
+        [self presentViewController:(id) controller withBundle:bundle forRootController:YES animated:YES completion:^{
 
         }];
     }
 }
 
-
 - (IBAction)back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 @end

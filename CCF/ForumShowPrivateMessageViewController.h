@@ -9,10 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AutoRelayoutToolbar.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
-#import "TransValueDelegate.h"
 #import "ForumApiBaseViewController.h"
-#import "TransValueDelegate.h"
-#import "ReplyTransValueDelegate.h"
 
 
 @interface ForumShowPrivateMessageViewController : ForumApiBaseViewController
@@ -25,7 +22,6 @@
 
 @property(weak, nonatomic) IBOutlet UIWebView *webView;
 
-@property(weak, nonatomic) id <TransValueDelegate> transValueDelegate;
 - (IBAction)replyPM:(id)sender;
 
 @end

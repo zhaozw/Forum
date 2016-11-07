@@ -18,8 +18,9 @@
 #import "ForumWritePMNavigationController.h"
 
 #import "UIViewController+TransBundle.h"
+#import "TransBundleDelegate.h"
 
-@interface ForumShowPrivateMessageViewController () <UIWebViewDelegate, UIScrollViewDelegate, TransValueDelegate> {
+@interface ForumShowPrivateMessageViewController () <UIWebViewDelegate, UIScrollViewDelegate, TransBundleDelegate> {
 
     PrivateMessage *transPrivateMessage;
 
@@ -31,9 +32,14 @@
 @implementation ForumShowPrivateMessageViewController
 
 
+- (void)transBundle:(TransBundle *)bundle {
+    transPrivateMessage = [bundle getObjectValue:@"TransPrivateMessage"];
+}
+
 - (void)transValue:(PrivateMessage *)value {
     transPrivateMessage = value;
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -73,14 +79,14 @@
     [self.webView.scrollView.mj_header beginRefreshing];
 }
 
-
 - (void)showUserProfile:(NSIndexPath *)indexPath {
-    ForumUserProfileTableViewController *controller = (ForumUserProfileTableViewController *) selectSegue.destinationViewController;
-    self.transValueDelegate = (id <TransValueDelegate>) controller;
+    ForumUserProfileTableViewController *controller = selectSegue.destinationViewController;
 
-    ShowPrivateMessage *message = self.dataList[indexPath.row];
+    ShowPrivateMessage *message = self.dataList[(NSUInteger) indexPath.row];
+    TransBundle *bundle = [[TransBundle alloc] init];
+    [bundle putIntValue:[message.pmUserInfo.userID intValue] forKey:@"UserId"];
 
-    [self.transValueDelegate transValue:message];
+    [self transBundle:bundle forController:controller];
 }
 
 - (NSDictionary *)dictionaryFromQuery:(NSString *)query usingEncoding:(NSStringEncoding)encoding {
@@ -104,6 +110,7 @@
     return [NSDictionary dictionaryWithDictionary:pairs];
 }
 
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 
     if (navigationType == UIWebViewNavigationTypeLinkClicked && ([request.URL.scheme isEqualToString:@"http"] || [request.URL.scheme isEqualToString:@"https"])) {
@@ -120,25 +127,21 @@
             UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
 
             ForumWebViewController *showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"ShowThreadDetail"];
-
-            self.transValueDelegate = (id <TransValueDelegate>) showThreadController;
-
-            TransValueBundle *transBundle = [[TransValueBundle alloc] init];
+            TransBundle *bundle = [[TransBundle alloc] init];
             if (t) {
-                [transBundle putIntValue:[t intValue] forKey:@"threadID"];
+                [bundle putIntValue:[t intValue] forKey:@"threadID"];
             } else {
                 NSString *p = [query valueForKey:@"p"];
-                [transBundle putIntValue:[p intValue] forKey:@"p"];
+                [bundle putIntValue:[p intValue] forKey:@"p"];
             }
 
 
-            [self.transValueDelegate transValue:transBundle];
+            [self transBundle:bundle forController:showThreadController];
             [self.navigationController pushViewController:showThreadController animated:YES];
 
             return NO;
         } else {
             [[UIApplication sharedApplication] openURL:request.URL];
-
             return NO;
         }
     }
@@ -151,10 +154,11 @@
 
         UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
         ForumUserProfileTableViewController *showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"ForumUserProfileTableViewController"];
-        self.transValueDelegate = (id <TransValueDelegate>) showThreadController;
-        TransValueBundle *showTransBundle = [[TransValueBundle alloc] init];
-        [showTransBundle putIntValue:[userid intValue] forKey:@"userid"];
-        [self.transValueDelegate transValue:showTransBundle];
+
+        TransBundle *bundle = [[TransBundle alloc] init];
+        [bundle putIntValue:[userid intValue] forKey:@"UserId"];
+
+        [self transBundle:bundle forController:showThreadController];
 
         [self.navigationController pushViewController:showThreadController animated:YES];
 
@@ -163,7 +167,6 @@
 
     return YES;
 }
-
 
 #pragma mark Controller跳转
 
@@ -177,15 +180,17 @@
 - (IBAction)back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (IBAction)replyPM:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
 
     ForumWritePMNavigationController *controller = [storyboard instantiateViewControllerWithIdentifier:@"CreatePM"];
 
-    TransBundle * bundle = [[TransBundle alloc] init];
+    TransBundle *bundle = [[TransBundle alloc] init];
     [bundle putStringValue:@"123456" forKey:@"test"];
     [self.navigationController presentViewController:controller withBundle:bundle forRootController:YES animated:YES completion:^{
 
     }];
 }
+
 @end

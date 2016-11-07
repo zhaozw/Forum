@@ -8,11 +8,11 @@
 
 #import "ForumFavThreadPostTableViewController.h"
 #import "CCFSimpleThreadTableViewCell.h"
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
 #import "ForumTabBarController.h"
 #import "ForumWebViewController.h"
 #import "ForumUserProfileTableViewController.h"
 #import "UIStoryboard+CCF.h"
+#import "UIViewController+TransBundle.h"
 
 @interface ForumFavThreadPostTableViewController () <MGSwipeTableCellDelegate, CCFThreadListCellDelegate> {
     UIStoryboardSegue *selectSegue;
@@ -71,7 +71,7 @@
     cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"取消收藏" backgroundColor:[UIColor lightGrayColor]]];
     cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
 
-    SimpleThread *list = self.dataList[indexPath.row];
+    SimpleThread *list = self.dataList[(NSUInteger) indexPath.row];
     [cell setData:list forIndexPath:indexPath];
 
     return cell;
@@ -80,13 +80,13 @@
 
 - (BOOL)swipeTableCell:(MGSwipeTableCellWithIndexPath *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
 
-    SimpleThread *list = self.dataList[cell.indexPath.row];
+    SimpleThread *list = self.dataList[(NSUInteger) cell.indexPath.row];
 
     [self.ccfApi unfavoriteThreadPostWithId:list.threadID handler:^(BOOL isSuccess, id message) {
         NSLog(@">>>>>>>>>>>> %@", message);
     }];
 
-    [self.dataList removeObjectAtIndex:cell.indexPath.row];
+    [self.dataList removeObjectAtIndex:(NSUInteger) cell.indexPath.row];
     [self.tableView deleteRowsAtIndexPaths:@[cell.indexPath] withRowAnimation:UITableViewRowAnimationLeft];
 
     return YES;
@@ -102,7 +102,7 @@
 - (void)configureCell:(CCFSimpleThreadTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
 
-    [cell setData:self.dataList[indexPath.row]];
+    [cell setData:self.dataList[(NSUInteger) indexPath.row]];
 }
 
 #pragma mark Controller跳转
@@ -111,17 +111,16 @@
 
     if ([segue.identifier isEqualToString:@"ShowThreadPosts"]) {
         ForumWebViewController *controller = segue.destinationViewController;
-        self.transValueDelegate = (id <TransValueDelegate>) controller;
 
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 
-        Thread *thread = self.dataList[indexPath.row];
+        Thread *thread = self.dataList[(NSUInteger) indexPath.row];
 
-        TransValueBundle *transBundle = [[TransValueBundle alloc] init];
-        [transBundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
-        [transBundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
+        TransBundle *bundle = [[TransBundle alloc] init];
+        [bundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
+        [bundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
 
-        [self.transValueDelegate transValue:transBundle];
+        [self transBundle:bundle forController:controller];
 
     } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]) {
         selectSegue = segue;
@@ -130,12 +129,12 @@
 
 - (void)showUserProfile:(NSIndexPath *)indexPath {
 
-    ForumUserProfileTableViewController *controller = (ForumUserProfileTableViewController *) selectSegue.destinationViewController;
-    self.transValueDelegate = (id <TransValueDelegate>) controller;
+    ForumUserProfileTableViewController *controller = selectSegue.destinationViewController;
 
-    SimpleThread *thread = self.dataList[indexPath.row];
-
-    [self.transValueDelegate transValue:thread];
+    TransBundle *bundle = [[TransBundle alloc] init];
+    SimpleThread *thread = self.dataList[(NSUInteger) indexPath.row];
+    [bundle putIntValue:[thread.threadAuthorID intValue] forKey:@"UserId"];
+    [self transBundle:bundle forController:controller];
 
 }
 

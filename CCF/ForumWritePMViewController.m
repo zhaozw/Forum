@@ -8,13 +8,14 @@
 //
 
 #import "ForumWritePMViewController.h"
-#import "ForumWritePMNavigationController.h"
 #import <SVProgressHUD.h>
 
-#import "TransBundle.h"
-#import "UIViewController+TransBundle.h"
 
-@interface ForumWritePMViewController ()<TransBundleDelegate>
+#import "TransBundleDelegate.h"
+
+@interface ForumWritePMViewController () <TransBundleDelegate> {
+    NSString *profileName;
+}
 
 @end
 
@@ -22,17 +23,12 @@
 @implementation ForumWritePMViewController
 
 // 上一Cotroller传递过来的数据
-- (void)transBundle:(id)bundle {
-    TransValueBundle * valueBundle = bundle;
+- (void)transBundle:(TransBundle *)bundle {
+    profileName = [bundle getStringValue:@"PROFILE_NAME"];
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    NSString *profileName = [((ForumWritePMNavigationController *) self.navigationController).bundle getStringValue:@"PROFILE_NAME"];
-
-
     if (profileName != nil) {
         self.toWho.text = profileName;
         [self.privateMessageTitle becomeFirstResponder];
@@ -41,11 +37,11 @@
     }
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 - (IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
@@ -80,4 +76,5 @@
 
     }
 }
+
 @end

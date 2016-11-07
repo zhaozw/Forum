@@ -18,17 +18,18 @@
 #import "SVProgressHUD.h"
 #import "UIStoryboard+CCF.h"
 #import "ActionSheetPicker.h"
-#import "ReplyCallbackDelegate.h"
 #import "ForumReplyNavigationController.h"
 #import "NSString+Extensions.h"
 #import "ForumUserProfileTableViewController.h"
 #import "ForumConfig.h"
 
-@interface ForumWebViewController () <UIWebViewDelegate, UIScrollViewDelegate, TransValueDelegate, ReplyCallbackDelegate, CAAnimationDelegate> {
+#import "TransBundleDelegate.h"
+#import "UIViewController+TransBundle.h"
+
+
+@interface ForumWebViewController () <UIWebViewDelegate, UIScrollViewDelegate, TransBundleDelegate, CAAnimationDelegate> {
 
     LCActionSheet *itemActionSheet;
-
-    TransValueBundle *transBundle;
 
     ShowThreadPage *currentShowThreadPage;
 
@@ -44,18 +45,16 @@
 
 @implementation ForumWebViewController
 
-- (void)transValue:(id)value {
-    transBundle = value;
+- (void)transBundle:(TransBundle *)bundle {
+    threadID = [bundle getIntValue:@"threadID"];
+    p = [bundle getIntValue:@"p"];
+
+    threadAuthorName = [bundle getStringValue:@"threadAuthorName"];
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    threadID = [transBundle getIntValue:@"threadID"];
-    p = [transBundle getIntValue:@"p"];
-
-    threadAuthorName = [transBundle getStringValue:@"threadAuthorName"];
-
 
     pageDic = [NSMutableDictionary dictionary];
 

@@ -33,4 +33,31 @@
     [self presentViewController:viewControllerToPresent animated:flag completion:completion];
 }
 
+- (void)dismissViewControllerAnimated:(BOOL)flag backToViewController:(UIViewController *)controller withBundle:(TransBundle *)bundle completion:(void (^ __nullable)(void))completion {
+    UIViewController *target = controller;
+
+    NSAssert([target conformsToProtocol:@protocol(TransBundleDelegate)], @"目标Controller未实现TransBundleDelegate协议");
+
+
+    NSAssert([target respondsToSelector:@selector(transBundle:)], @"目标Controller未实现transBundle:方法");
+
+    self.delegate = (id <TransBundleDelegate>) target;
+
+    [self.delegate transBundle:bundle];
+
+    [self dismissViewControllerAnimated:flag completion:completion];
+}
+
+- (void)transBundle:(TransBundle *)bundle forController:(UIViewController *)controller {
+    UIViewController *target = controller;
+
+    NSAssert([target conformsToProtocol:@protocol(TransBundleDelegate)], @"目标Controller未实现TransBundleDelegate协议");
+
+
+    NSAssert([target respondsToSelector:@selector(transBundle:)], @"目标Controller未实现transBundle:方法");
+
+    self.delegate = (id <TransBundleDelegate>) target;
+
+    [self.delegate transBundle:bundle];
+}
 @end

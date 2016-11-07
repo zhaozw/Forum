@@ -7,7 +7,6 @@
 //
 
 #import "ForumApiBaseTableViewController.h"
-#import "TransValueDelegate.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 @interface ForumUserProfileTableViewController : ForumApiBaseTableViewController

@@ -16,12 +16,14 @@
 #import "ForumNewThreadNavigationController.h"
 #import "UIStoryboard+CCF.h"
 #import "ForumWebViewController.h"
+#import "TransBundle.h"
+#import "UIViewController+TransBundle.h"
 
 
 #define TypePullRefresh 0
 #define TypeLoadMore 1
 
-@interface ForumThreadListTableViewController () <TransValueDelegate, CCFThreadListCellDelegate, TransBundleDelegate, MGSwipeTableCellDelegate> {
+@interface ForumThreadListTableViewController () <CCFThreadListCellDelegate, MGSwipeTableCellDelegate> {
     Forum *transForm;
 
     NSArray *childForms;
@@ -159,14 +161,14 @@
         cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"订阅此论坛" backgroundColor:[UIColor lightGrayColor]]];
         cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
 
-        Forum *form = childForms[indexPath.row];
+        Forum *form = childForms[(NSUInteger) indexPath.row];
         cell.textLabel.text = form.formName;
         return cell;
     } else if (indexPath.section == 1) {
 
         CCFThreadListCell *cell = (CCFThreadListCell *) [tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
 
-        NormalThread *play = self.threadTopList[indexPath.row];
+        NormalThread *play = self.threadTopList[(NSUInteger) indexPath.row];
 
         [cell setData:play forIndexPath:indexPath];
 
@@ -185,7 +187,7 @@
 
         CCFThreadListCell *cell = (CCFThreadListCell *) [tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
 
-        NormalThread *play = self.dataList[indexPath.row];
+        NormalThread *play = self.dataList[(NSUInteger) indexPath.row];
 
         [cell setData:play forIndexPath:indexPath];
 
@@ -206,13 +208,13 @@
 - (BOOL)swipeTableCell:(MGSwipeTableCellWithIndexPath *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
     NSIndexPath *indexPath = cell.indexPath;
     if (indexPath.section == 0) {
-        Forum *parent = childForms[cell.indexPath.section];
+        Forum *parent = childForms[(NSUInteger) cell.indexPath.section];
 
         [self.ccfApi favoriteFormsWithId:[NSString stringWithFormat:@"%d", parent.formId] handler:^(BOOL isSuccess, id message) {
             NSLog(@">>>>>>>>>>>> %@", message);
         }];
     } else {
-        NormalThread *play = self.threadTopList[indexPath.row];
+        NormalThread *play = self.threadTopList[(NSUInteger) indexPath.row];
 
         [self.ccfApi favoriteThreadPostWithId:play.threadID handler:^(BOOL isSuccess, id message) {
 
@@ -237,33 +239,31 @@
 - (void)configureCell:(CCFThreadListCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
 
-    [cell setData:self.dataList[indexPath.row]];
+    [cell setData:self.dataList[(NSUInteger) indexPath.row]];
 }
 
 
 - (void)showUserProfile:(NSIndexPath *)indexPath {
 
-    ForumUserProfileTableViewController *controller = (ForumUserProfileTableViewController *) selectSegue.destinationViewController;
-    self.transValueDelegate = (id <TransValueDelegate>) controller;
-
+    ForumUserProfileTableViewController *controller = selectSegue.destinationViewController;
     NormalThread *thread = nil;
 
     if (childForms.count == 0) {
         if (indexPath.section == 0) {
-            thread = self.threadTopList[indexPath.row];
+            thread = self.threadTopList[(NSUInteger) indexPath.row];
         } else {
-            thread = self.dataList[indexPath.row];
+            thread = self.dataList[(NSUInteger) indexPath.row];
         }
     } else {
         if (indexPath.section == 1) {
-            thread = self.threadTopList[indexPath.row];
+            thread = self.threadTopList[(NSUInteger) indexPath.row];
         } else {
-            thread = self.dataList[indexPath.row];
+            thread = self.dataList[(NSUInteger) indexPath.row];
         }
     }
-
-
-    [self.transValueDelegate transValue:thread];
+    TransBundle * bundle = [[TransBundle alloc] init];
+    [bundle putIntValue:[thread.threadAuthorID intValue] forKey:@"UserId"];
+    [self transBundle:bundle forController:controller];
 
 }
 

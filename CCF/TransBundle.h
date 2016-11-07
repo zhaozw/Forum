@@ -7,6 +7,7 @@
 
 
 @interface TransBundle : NSObject
+
 - (void)putIntValue:(int)value forKey:(NSString *)key;
 
 - (void)putStringValue:(NSString *)value forKey:(NSString *)key;
@@ -14,4 +15,8 @@
 - (int)getIntValue:(NSString *)key;
 
 - (NSString *)getStringValue:(NSString *)key;
+
+- (void)putObjectValue:(id)value forKey:(NSString *)key;
+
+- (id)getObjectValue:(NSString *)key;
 @end
