@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ForumApiBaseViewController.h"
-#import "ReplyCallbackDelegate.h"
 
 
 @interface ForumSeniorNewPostViewController : ForumApiBaseViewController
@@ -25,7 +24,5 @@
 - (IBAction)sendSeniorMessage:(UIBarButtonItem *)sender;
 
 @property(weak, nonatomic) IBOutlet UICollectionView *insertCollectionView;
-
-@property(nonatomic, strong) id <ReplyCallbackDelegate> delegate;
 
 @end

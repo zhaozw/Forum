@@ -404,9 +404,8 @@
                 UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
 
                 ForumReplyNavigationController *simpleReplyController = [storyboard instantiateViewControllerWithIdentifier:@"QuickReplySomeOne"];
-                self.replyTransValueDelegate = (id <ReplyTransValueDelegate>) simpleReplyController;
 
-                TransValueBundle *bundle = [[TransValueBundle alloc] init];
+                TransBundle *bundle = [[TransBundle alloc] init];
 
                 [bundle putIntValue:threadID forKey:@"THREAD_ID"];
                 [bundle putIntValue:postId forKey:@"POST_ID"];
@@ -416,21 +415,18 @@
                 [bundle putStringValue:currentShowThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
                 [bundle putStringValue:userName forKey:@"POST_USER"];
 
-                [self.replyTransValueDelegate transValue:self withBundle:bundle];
-
-                [self.navigationController presentViewController:simpleReplyController animated:YES completion:^{
+                [self presentViewController:simpleReplyController withBundle:bundle forRootController:YES animated:YES completion:^{
 
                 }];
-
 
             } else if (buttonIndex == 1) {
 
                 UIStoryboard *storyBoard = [UIStoryboard mainStoryboard];
 
                 ForumReplyNavigationController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"SeniorReplySomeOne"];
-                self.replyTransValueDelegate = (id <ReplyTransValueDelegate>) controller;
 
-                TransValueBundle *bundle = [[TransValueBundle alloc] init];
+
+                TransBundle *bundle = [[TransBundle alloc] init];
 
                 [bundle putIntValue:threadID forKey:@"THREAD_ID"];
 
@@ -446,12 +442,9 @@
 
                 [bundle putStringValue:userName forKey:@"USER_NAME"];
 
-                [self.replyTransValueDelegate transValue:self withBundle:bundle];
-
-                [self.navigationController presentViewController:controller animated:YES completion:^{
+                [self presentViewController:controller withBundle:bundle forRootController:YES animated:YES completion:^{
 
                 }];
-
 
             } else if (buttonIndex == 2) {
                 NSString *postUrl = BBS_SHOWTHREAD_POSTCOUNT(postId, louCeng);
@@ -642,8 +635,7 @@
     [bundle putStringValue:threadAuthorName forKey:@"POST_USER"];
     [bundle putStringValue:currentShowThreadPage.formId forKey:@"FORM_ID"];
 
-    [self.replyTransValueDelegate transValue:self withBundle:bundle];
-    [self.navigationController presentViewController:controller animated:YES completion:^{
+    [self presentViewController:controller withBundle:bundle forRootController:YES animated:YES completion:^{
 
     }];
 }

@@ -7,19 +7,12 @@
 //
 
 #import "ForumReplyNavigationController.h"
-#import "ReplyTransValueDelegate.h"
 
-@interface ForumReplyNavigationController () <ReplyTransValueDelegate>
+@interface ForumReplyNavigationController ()
 
 @end
 
 @implementation ForumReplyNavigationController
-
-
-- (void)transValue:(UIViewController *)controller withBundle:(TransValueBundle *)transBundle {
-    self.controller = controller;
-    self.bundle = transBundle;
-}
 
 
 - (void)viewDidLoad {

@@ -8,7 +8,7 @@
 
 #import "ForumNewThreadNavigationController.h"
 
-@interface ForumNewThreadNavigationController () <TransBundleDelegate>
+@interface ForumNewThreadNavigationController ()
 
 @end
 
@@ -24,8 +24,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (void)transBundle:(TransValueBundle *)bundle {
-    self.bundle = bundle;
-}
 @end

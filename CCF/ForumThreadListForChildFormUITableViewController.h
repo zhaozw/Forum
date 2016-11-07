@@ -8,7 +8,6 @@
 
 #import "ForumApiBaseTableViewController.h"
 #import "ForumApiBaseTableViewController.h"
-#import "TransValueDelegate.h"
 
 
 @interface ForumThreadListForChildFormUITableViewController : ForumApiBaseTableViewController

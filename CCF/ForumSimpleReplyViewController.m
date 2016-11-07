@@ -12,30 +12,37 @@
 
 #import "UIStoryboard+CCF.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
-#import "TransValueBundle.h"
+#import "TransBundle.h"
+#import "TransBundleDelegate.h"
 
-@interface ForumSimpleReplyViewController () {
-    TransValueBundle *bundle;
+@interface ForumSimpleReplyViewController ()<TransBundleDelegate> {
+    NSString * userName;
+    int threadId;
+    int postId;
+    NSString *securityToken;
+    NSString *ajaxLastPost;
 }
 
 @end
 
 @implementation ForumSimpleReplyViewController
 
+- (void)transBundle:(TransBundle *)bundle {
+    userName = [bundle getStringValue:@"POST_USER"];
+
+    threadId = [bundle getIntValue:@"THREAD_ID"];
+    postId = [bundle getIntValue:@"POST_ID"];
+    securityToken = [bundle getStringValue:@"SECYRITY_TOKEN"];
+    ajaxLastPost = [bundle getStringValue:@"AJAX_LAST_POST"];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    ForumReplyNavigationController *navigationController = (ForumReplyNavigationController *) self.navigationController;
 
-    bundle = navigationController.bundle;
-
-
-    NSString *userName = [bundle getStringValue:@"POST_USER"];
     if (userName != nil) {
         self.replyContent.text = [NSString stringWithFormat:@"@%@\n", userName];
     }
-
-
     [self.replyContent becomeFirstResponder];
 }
 
@@ -51,13 +58,9 @@
     [SVProgressHUD showWithStatus:@"正在回复" maskType:SVProgressHUDMaskTypeBlack];
 
 
-    int threadId = [bundle getIntValue:@"THREAD_ID"];
-    int postId = [bundle getIntValue:@"POST_ID"];
+
 
     if (postId != -1) {
-        NSString *securityToken = [bundle getStringValue:@"SECYRITY_TOKEN"];
-        NSString *ajaxLastPost = [bundle getStringValue:@"AJAX_LAST_POST"];
-
         [self.ccfForumApi quickReplyPostWithThreadId:threadId forPostId:postId andMessage:self.replyContent.text securitytoken:securityToken ajaxLastPost:ajaxLastPost handler:^(BOOL isSuccess, ShowThreadPage *message) {
             if (isSuccess && message != nil) {
                 [SVProgressHUD showSuccessWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
@@ -88,16 +91,12 @@
 
                 ShowThreadPage *thread = message;
 
-
-                ForumReplyNavigationController *navigationController = (ForumReplyNavigationController *) self.navigationController;
-
-
-                self.delegate = (id <ReplyCallbackDelegate>) navigationController.controller;
-
-                [self dismissViewControllerAnimated:YES completion:^{
-                    [self.delegate transReplyValue:thread];
-                }];
-
+//                ForumReplyNavigationController *navigationController = (ForumReplyNavigationController *) self.navigationController;
+//                self.delegate = (id <ReplyCallbackDelegate>) navigationController.controller;
+//
+//                [self dismissViewControllerAnimated:YES completion:^{
+//                    [self.delegate transReplyValue:thread];
+//                }];
 
             } else {
                 [SVProgressHUD showErrorWithStatus:@"回复失败" maskType:SVProgressHUDMaskTypeBlack];

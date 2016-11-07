@@ -236,11 +236,11 @@
             ForumReplyNavigationController *navigationController = (ForumReplyNavigationController *) self.navigationController;
 
 
-            self.delegate = (id <ReplyCallbackDelegate>) navigationController.controller;
-
-            [self dismissViewControllerAnimated:YES completion:^{
-                [self.delegate transReplyValue:thread];
-            }];
+//            self.delegate = (id <ReplyCallbackDelegate>) navigationController.controller;
+//
+//            [self dismissViewControllerAnimated:YES completion:^{
+//                [self.delegate transReplyValue:thread];
+//            }];
 
         } else {
             [SVProgressHUD showErrorWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];

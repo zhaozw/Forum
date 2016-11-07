@@ -16,6 +16,8 @@
 #import "ForumTabBarController.h"
 #import "UIStoryboard+CCF.h"
 
+#import "TransBundle.h"
+#import "UIViewController+TransBundle.h"
 
 @interface ForumTableViewController () <MGSwipeTableCellDelegate>
 
@@ -108,15 +110,13 @@
     if ([segue.identifier isEqualToString:@"ShowThreadList"]) {
         ForumThreadListTableViewController *controller = segue.destinationViewController;
 
-        self.transValueDelegate = (id <TransValueDelegate>) controller;
-
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        Forum *select = self.dataList[(NSUInteger) path.section];
+        Forum *child = select.childForms[(NSUInteger) path.row];
+        TransBundle * bundle = [[TransBundle alloc] init];
+        [bundle putObjectValue:child forKey:@"TransForm"];
+        [self transBundle:bundle forController:controller];
 
-
-        Forum *select = self.dataList[path.section];
-        Forum *child = select.childForms[path.row];
-
-        [self.transValueDelegate transValue:child];
     }
 
 }

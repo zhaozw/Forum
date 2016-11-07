@@ -9,11 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ForumApiBaseViewController.h"
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
-#import "ReplyCallbackDelegate.h"
 
 @interface ForumSimpleReplyViewController : ForumApiBaseViewController
-
-@property(nonatomic, strong) id <ReplyCallbackDelegate> delegate;
 
 - (IBAction)sendSimpleReply:(id)sender;
 
