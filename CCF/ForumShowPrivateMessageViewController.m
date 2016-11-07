@@ -152,7 +152,7 @@
 
 
         UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
-        ForumUserProfileTableViewController *showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"ForumUserProfileTableViewController"];
+        ForumUserProfileTableViewController *showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"ShowUserProfile"];
 
         TransBundle *bundle = [[TransBundle alloc] init];
         [bundle putIntValue:[userid intValue] forKey:@"UserId"];
