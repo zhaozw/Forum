@@ -12,8 +12,6 @@
 #import "ForumUserProfileTableViewController.h"
 #import <SVProgressHUD.h>
 #import "ForumWebViewController.h"
-#import "TransBundle.h"
-#import "UIViewController+TransBundle.h"
 
 @interface ForumSearchViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, CCFThreadListCellDelegate> {
     NSString *_searchid;

@@ -9,8 +9,6 @@
 #import "ForumMyThreadTableViewController.h"
 #import "CCFSearchResultCell.h"
 #import "ForumWebViewController.h"
-#import "TransBundle.h"
-#import "UIViewController+TransBundle.h"
 
 @interface ForumMyThreadTableViewController ()
 

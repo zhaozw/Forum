@@ -9,8 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "ForumApiBaseTableViewController.h"
 
+@protocol TransBundleDelegate;
+@class TransBundle;
+
 @interface ForumShowNewThreadPostTableViewController : ForumApiBaseTableViewController
 
 - (IBAction)showLeftDrawer:(id)sender;
+
+@property(nonatomic, strong) id <TransBundleDelegate> delegate;
+
+@property(nonatomic, strong) TransBundle *bundle;
 
 @end

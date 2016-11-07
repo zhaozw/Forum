@@ -17,7 +17,6 @@
 
 #import "ForumWritePMNavigationController.h"
 
-#import "UIViewController+TransBundle.h"
 #import "TransBundleDelegate.h"
 
 @interface ForumShowPrivateMessageViewController () <UIWebViewDelegate, UIScrollViewDelegate, TransBundleDelegate> {
@@ -188,9 +187,7 @@
 
     TransBundle *bundle = [[TransBundle alloc] init];
     [bundle putStringValue:@"123456" forKey:@"test"];
-    [self.navigationController presentViewController:controller withBundle:bundle forRootController:YES animated:YES completion:^{
 
-    }];
 }
 
 @end

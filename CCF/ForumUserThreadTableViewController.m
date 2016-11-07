@@ -10,7 +10,6 @@
 #import "CCFSearchResultCell.h"
 #import "ForumWebViewController.h"
 #import "TransBundleDelegate.h"
-#import "UIViewController+TransBundle.h"
 
 @interface ForumUserThreadTableViewController () <TransBundleDelegate> {
     UserProfile *userProfile;

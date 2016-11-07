@@ -1,21 +1,16 @@
 //
-// Created by 迪远 王 on 2016/11/6.
+// Created by WDY on 2016/11/7.
 // Copyright (c) 2016 andforce. All rights reserved.
 //
 
-#import "UIViewController+TransBundle.h"
+#import "TransBundleUIViewController.h"
+#import "TransBundle.h"
 #import "TransBundleDelegate.h"
 
-@interface UIViewController ()
 
-@property(nonatomic, strong) id <TransBundleDelegate> delegate;
+@implementation TransBundleUIViewController {
 
-@property(nonatomic, strong) TransBundle *bundle;
-
-@end
-
-@implementation UIViewController (TransBundle)
-
+}
 
 - (void)presentViewController:(UIViewController *)viewControllerToPresent withBundle:(TransBundle *)bundle forRootController:(BOOL)forRootController animated:(BOOL)flag completion:(void (^ __nullable)(void))completion {
 
@@ -60,4 +55,5 @@
 
     [self.delegate transBundle:bundle];
 }
+
 @end

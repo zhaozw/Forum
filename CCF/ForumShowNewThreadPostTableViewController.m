@@ -13,9 +13,8 @@
 #import "ForumUserProfileTableViewController.h"
 #import "ForumTabBarController.h"
 #import "ForumWebViewController.h"
+#import "TransBundleDelegate.h"
 #import "TransBundle.h"
-
-#import "UIViewController+TransBundle.h"
 
 @interface ForumShowNewThreadPostTableViewController () <CCFThreadListCellDelegate> {
     UIStoryboardSegue *selectSegue;

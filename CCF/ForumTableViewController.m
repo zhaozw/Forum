@@ -16,8 +16,6 @@
 #import "ForumTabBarController.h"
 #import "UIStoryboard+CCF.h"
 
-#import "TransBundle.h"
-#import "UIViewController+TransBundle.h"
 
 @interface ForumTableViewController () <MGSwipeTableCellDelegate>
 

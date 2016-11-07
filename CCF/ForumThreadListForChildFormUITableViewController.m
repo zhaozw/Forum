@@ -12,9 +12,6 @@
 #import "ForumNewThreadViewController.h"
 #import "ForumUserProfileTableViewController.h"
 #import "ForumWebViewController.h"
-#import "TransBundle.h"
-#import "UIViewController+TransBundle.h"
-#import "TransBundleDelegate.h"
 
 @interface ForumThreadListForChildFormUITableViewController ()<TransBundleDelegate> {
     NSArray *childForms;

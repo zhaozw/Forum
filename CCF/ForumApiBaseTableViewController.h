@@ -13,8 +13,9 @@
 #import "UITableView+FDTemplateLayoutCell.h"
 
 #import <vBulletinForumEngine/vBulletinForumEngine.h>
+#import "TranBundleUITableViewController.h"
 
-@interface ForumApiBaseTableViewController : UITableViewController
+@interface ForumApiBaseTableViewController : TranBundleUITableViewController
 
 @property(nonatomic, strong) CCFForumApi *ccfApi;
 @property(nonatomic, strong) NSMutableArray *dataList;

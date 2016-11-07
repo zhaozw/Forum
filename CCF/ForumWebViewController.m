@@ -24,8 +24,6 @@
 #import "ForumConfig.h"
 
 #import "TransBundleDelegate.h"
-#import "UIViewController+TransBundle.h"
-
 
 @interface ForumWebViewController () <UIWebViewDelegate, UIScrollViewDelegate, TransBundleDelegate, CAAnimationDelegate> {
 

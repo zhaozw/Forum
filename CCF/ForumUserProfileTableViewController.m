@@ -16,10 +16,6 @@
 
 #import "ForumConfig.h"
 
-#import "TransBundle.h"
-#import "UIViewController+TransBundle.h"
-#import "TransBundleDelegate.h"
-
 @interface ForumUserProfileTableViewController () <TransBundleDelegate> {
 
     UserProfile *userProfile;

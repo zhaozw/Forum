@@ -13,7 +13,6 @@
 #import "ForumThreadListTableViewController.h"
 #import "ForumTabBarController.h"
 #import "MGSwipeTableCellWithIndexPath.h"
-#import "UIViewController+TransBundle.h"
 
 @interface ForumFavFormController () <MGSwipeTableCellDelegate> {
 

@@ -14,7 +14,6 @@
 #import "ForumWritePMNavigationController.h"
 #import "UIStoryboard+CCF.h"
 #import "ForumTabBarController.h"
-#import "UIViewController+TransBundle.h"
 
 @interface ForumPrivateMessageTableViewController () <CCFThreadListCellDelegate, MGSwipeTableCellDelegate> {
     int messageType;

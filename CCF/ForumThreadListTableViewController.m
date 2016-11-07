@@ -15,10 +15,7 @@
 #import "NSUserDefaults+Setting.h"
 #import "UIStoryboard+CCF.h"
 #import "ForumWebViewController.h"
-#import "TransBundle.h"
-#import "UIViewController+TransBundle.h"
 #import "ForumNewThreadNavigationController.h"
-#import "TransBundleDelegate.h"
 
 
 @interface ForumThreadListTableViewController () <TransBundleDelegate, CCFThreadListCellDelegate, MGSwipeTableCellDelegate> {

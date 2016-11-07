@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2F34C2318A205D6A20FAA12F /* TransBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F34C1E22F2A44DADCDF38C3 /* TransBundle.m */; };
 		2F34CADF83517CAFD6C03311 /* append_post_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 2F34C4DA4FA7BEF14D1932AD /* append_post_content.html */; };
-		2F34CE759D17D0CF3B704ACD /* UIViewController+TransBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F34CB526BB60D1CBBEAA627 /* UIViewController+TransBundle.m */; };
 		2F34CFE0A8D88142C21C7417 /* append_post.js in Resources */ = {isa = PBXBuildFile; fileRef = 2F34CAFB4248BA4D1BE6E027 /* append_post.js */; };
 		3A0A99831C4A71B600086DAB /* ForumSeniorNewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A99821C4A71B600086DAB /* ForumSeniorNewPostViewController.m */; };
 		3A0B3A001D0962D40060F8A4 /* private_message.html in Resources */ = {isa = PBXBuildFile; fileRef = 3A0B39FF1D0962D40060F8A4 /* private_message.html */; };
@@ -102,16 +101,17 @@
 		4DAFF55A1C91AB2E000E72C8 /* ForumPrivateMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAFF5591C91AB2E000E72C8 /* ForumPrivateMessageTableViewController.m */; };
 		4DEB34C31C47BBE400063CBB /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEB34C21C47BBE400063CBB /* AssetsLibrary.framework */; };
 		4DEB34C61C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB34C51C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m */; };
+		C7B593E096D9917A12EDBC57 /* TransBundleUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B59AA7107634802B9208BE /* TransBundleUIViewController.m */; };
+		C7B59881688117523FB59B18 /* TransBudleUINavigatioController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B593DF37912CFD5EA823A5 /* TransBudleUINavigatioController.m */; };
+		C7B59E72D9580AF3CD42302E /* TranBundleUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B590AB42B8175D5E01C121 /* TranBundleUITableViewController.m */; };
 		F98D9EA68FB327B72FDB5083 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A2A0B6B96C76030E628C93 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2F34C1E22F2A44DADCDF38C3 /* TransBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransBundle.m; sourceTree = "<group>"; };
 		2F34C3077FB8CFC3594C5C65 /* TransBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransBundle.h; sourceTree = "<group>"; };
-		2F34C3A6AAC2AE063D72CDFC /* UIViewController+TransBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TransBundle.h"; sourceTree = "<group>"; };
 		2F34C4DA4FA7BEF14D1932AD /* append_post_content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = append_post_content.html; path = CCF/append_post_content.html; sourceTree = "<group>"; };
 		2F34CAFB4248BA4D1BE6E027 /* append_post.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = append_post.js; path = CCF/append_post.js; sourceTree = "<group>"; };
-		2F34CB526BB60D1CBBEAA627 /* UIViewController+TransBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TransBundle.m"; sourceTree = "<group>"; };
 		3A0A99811C4A71B600086DAB /* ForumSeniorNewPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumSeniorNewPostViewController.h; sourceTree = "<group>"; };
 		3A0A99821C4A71B600086DAB /* ForumSeniorNewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumSeniorNewPostViewController.m; sourceTree = "<group>"; };
 		3A0B39FF1D0962D40060F8A4 /* private_message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = private_message.html; path = CCF/private_message.html; sourceTree = "<group>"; };
@@ -283,6 +283,12 @@
 		4DEB34C41C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPSessionManager+SimpleAction.h"; sourceTree = "<group>"; };
 		4DEB34C51C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPSessionManager+SimpleAction.m"; sourceTree = "<group>"; };
 		57A2A0B6B96C76030E628C93 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7B590AB42B8175D5E01C121 /* TranBundleUITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranBundleUITableViewController.m; sourceTree = "<group>"; };
+		C7B59272F91FD28BCCA0E5CE /* TranBundleUITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranBundleUITableViewController.h; sourceTree = "<group>"; };
+		C7B593DF37912CFD5EA823A5 /* TransBudleUINavigatioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransBudleUINavigatioController.m; sourceTree = "<group>"; };
+		C7B5974FAC6495EE944B9DAE /* TransBundleUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransBundleUIViewController.h; sourceTree = "<group>"; };
+		C7B599FD25E488F22DD38042 /* TransBudleUINavigatioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransBudleUINavigatioController.h; sourceTree = "<group>"; };
+		C7B59AA7107634802B9208BE /* TransBundleUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransBundleUIViewController.m; sourceTree = "<group>"; };
 		D45EAE323577337DE9983928 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -402,10 +408,14 @@
 			isa = PBXGroup;
 			children = (
 				3A734BF81CCCCEE600C4821A /* TransBundleDelegate.h */,
-				2F34CB526BB60D1CBBEAA627 /* UIViewController+TransBundle.m */,
-				2F34C3A6AAC2AE063D72CDFC /* UIViewController+TransBundle.h */,
 				2F34C1E22F2A44DADCDF38C3 /* TransBundle.m */,
 				2F34C3077FB8CFC3594C5C65 /* TransBundle.h */,
+				C7B59AA7107634802B9208BE /* TransBundleUIViewController.m */,
+				C7B5974FAC6495EE944B9DAE /* TransBundleUIViewController.h */,
+				C7B590AB42B8175D5E01C121 /* TranBundleUITableViewController.m */,
+				C7B59272F91FD28BCCA0E5CE /* TranBundleUITableViewController.h */,
+				C7B593DF37912CFD5EA823A5 /* TransBudleUINavigatioController.m */,
+				C7B599FD25E488F22DD38042 /* TransBudleUINavigatioController.h */,
 			);
 			name = TransBundle;
 			sourceTree = "<group>";
@@ -882,8 +892,10 @@
 				3A2CE7D11DAA3DFD00315C09 /* ForumBaseStaticTableViewController.m in Sources */,
 				3AC660071CF17D86000D3BDB /* CCFForumApi.m in Sources */,
 				3AC6606B1CF1833F000D3BDB /* ForumTableViewController.m in Sources */,
-				2F34CE759D17D0CF3B704ACD /* UIViewController+TransBundle.m in Sources */,
 				2F34C2318A205D6A20FAA12F /* TransBundle.m in Sources */,
+				C7B593E096D9917A12EDBC57 /* TransBundleUIViewController.m in Sources */,
+				C7B59E72D9580AF3CD42302E /* TranBundleUITableViewController.m in Sources */,
+				C7B59881688117523FB59B18 /* TransBudleUINavigatioController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
