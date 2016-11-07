@@ -14,24 +14,29 @@
 #import "Utils.h"
 #import "LCActionSheet.h"
 #import "ActionSheetStringPicker.h"
-#import "ForumNewThreadNavigationController.h"
 #import <AFNetworking.h>
+#import "TransBundle.h"
+#import "TransBundleDelegate.h"
 
-
-@interface ForumNewThreadViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate> {
+@interface ForumNewThreadViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate,
+        UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,
+        DeleteDelegate, TransBundleDelegate> {
 
 
     CCFForumApi *_api;
-
+    int forumId;
     UIImagePickerController *pickControl;
-
-
     NSMutableArray<UIImage *> *images;
 }
 
 @end
 
 @implementation ForumNewThreadViewController
+
+- (void)transBundle:(TransBundle *)bundle {
+    forumId = [bundle getIntValue:@"FORM_ID"];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,12 +64,9 @@
 
 - (long long)fileSizeAtPathWithString:(NSString *)filePath {
 
-
     NSFileManager *manager = [NSFileManager defaultManager];
 
-
     if ([manager fileExistsAtPath:filePath]) {
-
         return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
     }
     return 0;
@@ -73,7 +75,7 @@
 - (void)fileSizeAtPath:(NSURL *)filePath {
     //return [self fileSizeAtPathWithString:filePath.path];
     ALAssetsLibrary *alLibrary = [[ALAssetsLibrary alloc] init];
-    __block long long fileSize = 0.0;
+    __block long long fileSize = (long long int) 0.0;
 
     [alLibrary assetForURL:filePath resultBlock:^(ALAsset *asset) {
         ALAssetRepresentation *representation = [asset defaultRepresentation];
@@ -177,13 +179,13 @@
 
     SelectPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:QuoteCellIdentifier forIndexPath:indexPath];
     cell.deleteImageDelete = self;
-    [cell setData:images[indexPath.row] forIndexPath:indexPath];
+    [cell setData:images[(NSUInteger) indexPath.row] forIndexPath:indexPath];
     return cell;
 
 }
 
 - (void)deleteCurrentImageForIndexPath:(NSIndexPath *)indexPath {
-    [images removeObjectAtIndex:indexPath.row];
+    [images removeObjectAtIndex:(NSUInteger) indexPath.row];
     [self.selectPhotos reloadData];
 }
 
@@ -205,8 +207,7 @@
         [uploadData addObject:data];
     }
 
-    int formId = [((ForumNewThreadNavigationController *) self.navigationController).bundle getIntValue:@"FORM_ID"];
-    [_api createNewThreadWithFormId:formId withSubject:title andMessage:message withImages:[uploadData copy] handler:^(BOOL isSuccess, id message) {
+    [_api createNewThreadWithFormId:forumId withSubject:title andMessage:message withImages:[uploadData copy] handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"发帖成功" maskType:SVProgressHUDMaskTypeBlack];
             [self.navigationController popViewControllerAnimated:YES];
@@ -237,19 +238,6 @@
             [self presentViewController:pickControl animated:YES completion:nil];
         }
     }];
-
-//    LCActionSheet * itemActionSheet = [LCActionSheet sheetWithTitle:nil cancelButtonTitle:nil clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
-//        if (buttonIndex == 0) {
-//            [pickControl setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-//            
-//            [self presentViewController:pickControl animated:YES completion:nil];
-//        } else if (buttonIndex == 1){
-//            [pickControl setSourceType:UIImagePickerControllerSourceTypeCamera];
-//            
-//            [self presentViewController:pickControl animated:YES completion:nil];
-//        }
-//    } otherButtonTitleArray:@[@"相册", @"拍照"]];
-
     [itemActionSheet show];
 
 }
@@ -257,7 +245,7 @@
 - (IBAction)showCategory:(UIButton *)sender {
     NSArray *categorys = @[@"【分享】", @"【推荐】", @"【求助】", @"【注意】", @"【ＣＸ】", @"【高兴】", @"【难过】", @"【转帖】", @"【原创】", @"【讨论】"];
     ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle:@"选择分类" rows:categorys initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-        self.subject.text = [NSString stringWithFormat:@"%@%@", self.subject.text, categorys[selectedIndex]];
+        self.subject.text = [NSString stringWithFormat:@"%@%@", self.subject.text, categorys[(NSUInteger) selectedIndex]];
 
     }                                                                    cancelBlock:^(ActionSheetStringPicker *picker) {
 

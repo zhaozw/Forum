@@ -7,13 +7,15 @@
 //
 
 #import "ForumShowNewThreadPostTableViewController.h"
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
 
 #import "CCFSearchResultCell.h"
 #import "UIStoryboard+CCF.h"
 #import "ForumUserProfileTableViewController.h"
 #import "ForumTabBarController.h"
 #import "ForumWebViewController.h"
+#import "TransBundle.h"
+
+#import "UIViewController+TransBundle.h"
 
 @interface ForumShowNewThreadPostTableViewController () <CCFThreadListCellDelegate> {
     UIStoryboardSegue *selectSegue;
@@ -66,18 +68,17 @@
     CCFSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     cell.showUserProfileDelegate = self;
 
-    ThreadInSearch *thread = self.dataList[indexPath.row];
+    ThreadInSearch *thread = self.dataList[(NSUInteger) indexPath.row];
     [cell setData:thread forIndexPath:indexPath];
     return cell;
 }
 
 - (void)showUserProfile:(NSIndexPath *)indexPath {
     ForumUserProfileTableViewController *controller = selectSegue.destinationViewController;
-    self.transValueDelegate = (id <TransValueDelegate>) controller;
-
-    ThreadInSearch *thread = self.dataList[indexPath.row];
-
-    [self.transValueDelegate transValue:thread];
+    TransBundle * bundle = [[TransBundle alloc] init];
+    ThreadInSearch *thread = self.dataList[(NSUInteger) indexPath.row];
+    [bundle putIntValue:[thread.threadAuthorID intValue] forKey:@"UserId"];
+    [self transBundle:bundle forController:controller];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -89,7 +90,7 @@
 - (void)configureCell:(CCFSearchResultCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
 
-    [cell setData:self.dataList[indexPath.row] forIndexPath:indexPath];
+    [cell setData:self.dataList[(NSUInteger) indexPath.row] forIndexPath:indexPath];
 }
 
 
@@ -100,18 +101,14 @@
     if ([segue.identifier isEqualToString:@"ShowThreadPosts"]) {
 
         ForumWebViewController *controller = segue.destinationViewController;
-        self.transValueDelegate = (id <TransValueDelegate>) controller;
-
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 
-        Thread *thread = self.dataList[indexPath.row];
-
-        TransValueBundle *transBundle = [[TransValueBundle alloc] init];
+        ThreadInSearch *thread = self.dataList[(NSUInteger) indexPath.row];
+        TransBundle *transBundle = [[TransBundle alloc] init];
         [transBundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
         [transBundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
 
-        [self.transValueDelegate transValue:transBundle];
-
+        [self transBundle:transBundle forController:controller];
 
     } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]) {
         selectSegue = segue;

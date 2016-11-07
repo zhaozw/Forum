@@ -96,7 +96,7 @@
 }
 
 - (void)showUserProfile:(NSIndexPath *)indexPath {
-    ForumUserProfileTableViewController *controller = (ForumUserProfileTableViewController *) selectSegue.destinationViewController;
+    ForumUserProfileTableViewController *controller = selectSegue.destinationViewController;
     ThreadInSearch *thread = self.dataList[(NSUInteger) indexPath.row];
     TransBundle *bundle = [[TransBundle alloc] init];
     [bundle putIntValue:[thread.threadAuthorID intValue] forKey:@"UserId"];

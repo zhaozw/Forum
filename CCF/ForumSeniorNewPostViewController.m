@@ -9,20 +9,24 @@
 #import "ForumSeniorNewPostViewController.h"
 
 #import "SelectPhotoCollectionViewCell.h"
-
-#import "TransValueBundle.h"
 #import <SVProgressHUD.h>
-
 #import "LCActionSheet.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "ForumReplyNavigationController.h"
 #import "Utils.h"
+#import "TransBundleDelegate.h"
+#import "TransBundle.h"
 
-@interface ForumSeniorNewPostViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate> {
+@interface ForumSeniorNewPostViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,
+        UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate, TransBundleDelegate> {
 
     UIImagePickerController *pickControl;
     NSMutableArray<UIImage *> *images;
-    TransValueBundle *bundle;
+    NSString * userName;
+    int threadId ;
+    NSString *securityToken;
+
+    NSString *formIdStr;
 }
 
 @end
@@ -30,12 +34,20 @@
 @implementation ForumSeniorNewPostViewController
 
 
+- (void)transBundle:(TransBundle *)bundle {
+    userName = [bundle getStringValue:@"USER_NAME"];
+    threadId = [bundle getIntValue:@"THREAD_ID"];
+    securityToken = [bundle getStringValue:@"SECYRITY_TOKEN"];
+
+    formIdStr = [bundle getStringValue:@"FORM_ID"];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // 传递数据
-    ForumReplyNavigationController *controller = (ForumReplyNavigationController *) self.navigationController;
-    bundle = controller.bundle;
+
 
 
     _insertCollectionView.delegate = self;
@@ -54,10 +66,8 @@
 
     [self.replyContent becomeFirstResponder];
 
-    NSString *user = [bundle getStringValue:@"USER_NAME"];
-
-    if (user != nil) {
-        self.replyContent.text = [NSString stringWithFormat:@"@%@\n", user];
+    if (userName != nil) {
+        self.replyContent.text = [NSString stringWithFormat:@"@%@\n", userName];
     }
 
 }
@@ -79,7 +89,7 @@
 - (void)fileSizeAtPath:(NSURL *)filePath {
     //return [self fileSizeAtPathWithString:filePath.path];
     ALAssetsLibrary *alLibrary = [[ALAssetsLibrary alloc] init];
-    __block long long fileSize = 0.0;
+    __block long long fileSize = (long long int) 0.0;
 
     [alLibrary assetForURL:filePath resultBlock:^(ALAsset *asset) {
         ALAssetRepresentation *representation = [asset defaultRepresentation];
@@ -159,7 +169,7 @@
 
 
 - (void)deleteCurrentImageForIndexPath:(NSIndexPath *)indexPath {
-    [images removeObjectAtIndex:indexPath.row];
+    [images removeObjectAtIndex:(NSUInteger) indexPath.row];
     [self.insertCollectionView reloadData];
 }
 
@@ -170,7 +180,7 @@
     SelectPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:Identifier forIndexPath:indexPath];
     cell.deleteImageDelete = self;
 
-    [cell setData:images[indexPath.row] forIndexPath:indexPath];
+    [cell setData:images[(NSUInteger) indexPath.row] forIndexPath:indexPath];
 
     return cell;
 
@@ -194,18 +204,6 @@
         }
     }];
 
-//    LCActionSheet *itemActionSheet = [LCActionSheet sheetWithTitle:nil cancelButtonTitle:nil clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
-//        if (buttonIndex == 0) {
-//            [pickControl setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-//            
-//            [self presentViewController:pickControl animated:YES completion:nil];
-//        } else if (buttonIndex == 1){
-//            [pickControl setSourceType:UIImagePickerControllerSourceTypeCamera];
-//            
-//            [self presentViewController:pickControl animated:YES completion:nil];
-//        }
-//    } otherButtonTitleArray:@[@"相册", @"拍照"]];
-
     [itemActionSheet show];
 
 }
@@ -219,10 +217,7 @@
 
     [SVProgressHUD showWithStatus:@"高级回复" maskType:SVProgressHUDMaskTypeBlack];
 
-    int threadId = [bundle getIntValue:@"THREAD_ID"];
-    NSString *securityToken = [bundle getStringValue:@"SECYRITY_TOKEN"];
 
-    NSString *formIdStr = [bundle getStringValue:@"FORM_ID"];
 
     NSMutableArray < NSData * > *uploadData = [NSMutableArray array];
     for (UIImage *image in images) {

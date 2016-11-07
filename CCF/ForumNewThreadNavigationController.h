@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TransBundleUINavigationController.h"
 
-@interface ForumNewThreadNavigationController : TransBundleUINavigationController
+@interface ForumNewThreadNavigationController : UINavigationController
 
 @end

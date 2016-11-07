@@ -13,21 +13,17 @@
 #import "ForumUserProfileTableViewController.h"
 #import "ForumThreadListForChildFormUITableViewController.h"
 #import "NSUserDefaults+Setting.h"
-#import "ForumNewThreadNavigationController.h"
 #import "UIStoryboard+CCF.h"
 #import "ForumWebViewController.h"
 #import "TransBundle.h"
 #import "UIViewController+TransBundle.h"
+#import "ForumNewThreadNavigationController.h"
+#import "TransBundleDelegate.h"
 
 
-#define TypePullRefresh 0
-#define TypeLoadMore 1
-
-@interface ForumThreadListTableViewController () <CCFThreadListCellDelegate, MGSwipeTableCellDelegate> {
+@interface ForumThreadListTableViewController () <TransBundleDelegate, CCFThreadListCellDelegate, MGSwipeTableCellDelegate> {
     Forum *transForm;
-
     NSArray *childForms;
-
     UIStoryboardSegue *selectSegue;
 }
 
@@ -37,10 +33,9 @@
 
 #pragma mark trans value
 
-- (void)transValue:(Forum *)value {
-    transForm = value;
+- (void)transBundle:(TransBundle *)bundle {
+    transForm = [bundle getObjectValue:@"TransForm"];
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,7 +53,6 @@
     self.titleNavigationItem.title = transForm.formName;
 
 }
-
 
 - (void)onPullRefresh {
     [self.ccfApi forumDisplayWithId:transForm.formId andPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *page) {
@@ -152,7 +146,7 @@
     if (indexPath.section == 0) {
         // 子论坛
         static NSString *reusedIdentifierForm = @"CCFThreadListCellShowChildForm";
-        MGSwipeTableCellWithIndexPath *cell = (MGSwipeTableCellWithIndexPath *) [tableView dequeueReusableCellWithIdentifier:reusedIdentifierForm];
+        MGSwipeTableCellWithIndexPath *cell = [tableView dequeueReusableCellWithIdentifier:reusedIdentifierForm];
 
         cell.indexPath = indexPath;
 
@@ -166,7 +160,7 @@
         return cell;
     } else if (indexPath.section == 1) {
 
-        CCFThreadListCell *cell = (CCFThreadListCell *) [tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
+        CCFThreadListCell *cell = [tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
 
         NormalThread *play = self.threadTopList[(NSUInteger) indexPath.row];
 
@@ -185,7 +179,7 @@
         return cell;
     } else {
 
-        CCFThreadListCell *cell = (CCFThreadListCell *) [tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
+        CCFThreadListCell *cell = [tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
 
         NormalThread *play = self.dataList[(NSUInteger) indexPath.row];
 
@@ -204,6 +198,7 @@
         return cell;
     }
 }
+
 
 - (BOOL)swipeTableCell:(MGSwipeTableCellWithIndexPath *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
     NSIndexPath *indexPath = cell.indexPath;
@@ -225,7 +220,6 @@
     return YES;
 }
 
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return 44;
@@ -236,12 +230,12 @@
     }
 }
 
+
 - (void)configureCell:(CCFThreadListCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
 
     [cell setData:self.dataList[(NSUInteger) indexPath.row]];
 }
-
 
 - (void)showUserProfile:(NSIndexPath *)indexPath {
 
@@ -273,89 +267,80 @@
 
 #pragma mark Controller跳转
 
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
 
         ForumNewThreadViewController *newPostController = segue.destinationViewController;
+        TransBundle * bundle = [[TransBundle alloc] init];
+        [bundle putIntValue:transForm.formId forKey:@"FORM_ID"];
+        [self transBundle:bundle forController:newPostController];
 
-        self.transValueDelegate = (id <TransValueDelegate>) newPostController;
-        [self.transValueDelegate transValue:transForm];
 
 
     } else if ([segue.identifier isEqualToString:@"ShowThreadPosts"]) {
 
         ForumWebViewController *controller = segue.destinationViewController;
-        self.transValueDelegate = (id <TransValueDelegate>) controller;
 
 
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-
         NormalThread *thread = nil;
-
         NSInteger section = indexPath.section;
-
         if (section == 1) {
-            thread = self.threadTopList[indexPath.row];
+            thread = self.threadTopList[(NSUInteger) indexPath.row];
         } else if (section == 2) {
-            thread = self.dataList[indexPath.row];
+            thread = self.dataList[(NSUInteger) indexPath.row];
         }
 
-        TransValueBundle *transBundle = [[TransValueBundle alloc] init];
-        [transBundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
-        [transBundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
+        TransBundle *bundle = [[TransBundle alloc] init];
+        [bundle putIntValue:[thread.threadID intValue] forKey:@"threadID"];
+        [bundle putStringValue:thread.threadAuthorName forKey:@"threadAuthorName"];
 
-        [self.transValueDelegate transValue:transBundle];
+        [self transBundle:bundle forController:controller];
 
     } else if ([segue.identifier isEqualToString:@"ShowChildForm"]) {
         ForumThreadListForChildFormUITableViewController *controller = segue.destinationViewController;
-        self.transValueDelegate = (id <TransValueDelegate>) controller;
 
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         int row = indexPath.row;
-        [self.transValueDelegate transValue:childForms[row]];
+        Forum * forum = childForms[(NSUInteger) row];
+        TransBundle * bundle = [[TransBundle alloc] init];
+        [bundle putIntValue:forum.formId forKey:@"ForumId"];
+        [self transBundle:bundle forController:controller];
 
     } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]) {
         selectSegue = segue;
     } else if ([sender isKindOfClass:[UIButton class]]) {
         ForumUserProfileTableViewController *controller = segue.destinationViewController;
-        self.transValueDelegate = (id <TransValueDelegate>) controller;
-
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 
         NormalThread *thread = nil;
-
         if (indexPath.section == 0) {
-            thread = self.threadTopList[indexPath.row];
+            thread = self.threadTopList[(NSUInteger) indexPath.row];
         } else {
-            thread = self.dataList[indexPath.row];
+            thread = self.dataList[(NSUInteger) indexPath.row];
         }
-
-        [self.transValueDelegate transValue:thread];
+        TransBundle * bundle = [[TransBundle alloc] init];
+        [bundle putIntValue:[thread.threadAuthorID intValue] forKey:@"UserId"];
+        [self transBundle:bundle forController:controller];
     }
 }
-
 
 - (IBAction)back:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)transBundle:(TransValueBundle *)bundle {
-
-}
-
 - (IBAction)createThread:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
 
-    ForumNewThreadNavigationController *createController = [storyboard instantiateViewControllerWithIdentifier:@"CreateNewThread"];
-    self.transBundleDelegate = (id <TransBundleDelegate>) createController;
+    ForumNewThreadNavigationController *createController = (id) [storyboard instantiateViewControllerWithIdentifier:@"CreateNewThread"];
 
-    TransValueBundle *bundle = [[TransValueBundle alloc] init];
+    TransBundle *bundle = [[TransBundle alloc] init];
     [bundle putIntValue:transForm.formId forKey:@"FORM_ID"];
-    [self.transBundleDelegate transBundle:bundle];
-
-    [self.navigationController presentViewController:createController animated:YES completion:^{
+    [self presentViewController:(id) createController withBundle:bundle forRootController:YES animated:YES completion:^{
 
     }];
 }
+
 @end

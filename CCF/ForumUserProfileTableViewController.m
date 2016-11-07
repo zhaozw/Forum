@@ -24,15 +24,12 @@
 
     UserProfile *userProfile;
     int userId;
-
     UIImage *defaultAvatarImage;
-
     ForumCoreDataManager *coreDateManager;
     CCFForumApi *ccfapi;
-
     NSMutableDictionary *avatarCache;
-
     NSMutableArray<UserEntry *> *cacheUsers;
+
 }
 
 @end
@@ -67,35 +64,6 @@
 - (BOOL)setLoadMore:(BOOL)enable {
     return NO;
 }
-
-
-- (void)transValue:(id)value {
-
-
-    if ([value isKindOfClass:[PrivateMessage class]]) {
-        PrivateMessage *message = value;
-        userId = [message.pmAuthorId intValue];
-    } else if ([value isKindOfClass:[NormalThread class]]) {
-        NormalThread *thread = value;
-        userId = [thread.threadAuthorID intValue];
-    } else if ([value isKindOfClass:[ShowPrivateMessage class]]) {
-        ShowPrivateMessage *message = value;
-        userId = [message.pmUserInfo.userID intValue];
-    } else if ([value isKindOfClass:[ThreadInSearch class]]) {
-        ThreadInSearch *message = value;
-        userId = [message.threadAuthorID intValue];
-    } else if ([value isKindOfClass:[Post class]]) {
-        Post *message = value;
-        userId = [message.postUserInfo.userID intValue];
-    } else if ([value isKindOfClass:[TransValueBundle class]]) {
-        TransValueBundle *transBundle = value;
-        userId = [transBundle getIntValue:@"userid"];
-    } else if ([value isKindOfClass:[SimpleThread class]]) {
-        SimpleThread *thread = value;
-        userId = [thread.threadAuthorID intValue];
-    }
-}
-
 
 - (void)onPullRefresh {
     NSString *userIdString = [NSString stringWithFormat:@"%d", userId];
@@ -150,7 +118,7 @@
     if ([segue.identifier isEqualToString:@"ShowCCFUserThreadTableViewController"]) {
         ForumUserThreadTableViewController *controller = segue.destinationViewController;
 
-        TransBundle * bundle = [[TransBundle alloc] init];
+        TransBundle *bundle = [[TransBundle alloc] init];
         [bundle putObjectValue:userProfile forKey:@"UserProfile"];
         [self transBundle:bundle forController:controller];
 
@@ -198,7 +166,7 @@
 
     if (indexPath.section == 1 && indexPath.row == 1) {
         ForumWritePMNavigationController *controller = (id) [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"ForumWritePMNavigationController"];
-        TransBundle * bundle = [[TransBundle alloc] init];
+        TransBundle *bundle = [[TransBundle alloc] init];
         [bundle putStringValue:userProfile.profileName forKey:@"PROFILE_NAME"];
 
         [self presentViewController:(id) controller withBundle:bundle forRootController:YES animated:YES completion:^{

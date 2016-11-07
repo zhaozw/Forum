@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ForumApiBaseTableViewController.h"
-#import "TransValueDelegate.h"
 
 @interface ForumFavFormController : ForumApiBaseTableViewController
 

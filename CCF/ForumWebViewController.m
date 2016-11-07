@@ -454,15 +454,10 @@
 
 
             } else if (buttonIndex == 2) {
-                NSString *louceng = louCeng;
-
                 NSString *postUrl = BBS_SHOWTHREAD_POSTCOUNT(postId, louCeng);
-
                 UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
                 pasteboard.string = postUrl;
-
                 [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
-
             }
         }];
 
@@ -513,10 +508,10 @@
 
         UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
         ForumUserProfileTableViewController *showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"ForumUserProfileTableViewController"];
-        self.transValueDelegate = (id <TransValueDelegate>) showThreadController;
-        TransValueBundle *showTransBundle = [[TransValueBundle alloc] init];
-        [showTransBundle putIntValue:[userid intValue] forKey:@"userid"];
-        [self.transValueDelegate transValue:showTransBundle];
+
+        TransBundle *bundle = [[TransBundle alloc] init];
+        [bundle putIntValue:[userid intValue] forKey:@"UserId"];
+        [self transBundle:bundle forController:showThreadController];
 
         [self.navigationController pushViewController:showThreadController animated:YES];
 
@@ -536,10 +531,11 @@
 
             UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
             ForumWebViewController *showThreadController = [storyboard instantiateViewControllerWithIdentifier:@"ShowThreadDetail"];
-            self.transValueDelegate = (id <TransValueDelegate>) showThreadController;
-            TransValueBundle *showTransBundle = [[TransValueBundle alloc] init];
-            [showTransBundle putIntValue:[threadIdStr intValue] forKey:@"threadID"];
-            [self.transValueDelegate transValue:showTransBundle];
+
+            TransBundle *bundle = [[TransBundle alloc] init];
+            [bundle putIntValue:[threadIdStr intValue] forKey:@"threadID"];
+
+            [self transBundle:bundle forController:showThreadController];
 
             [self.navigationController pushViewController:showThreadController animated:YES];
 
@@ -638,13 +634,14 @@
 
     UIStoryboard *storyBoard = [UIStoryboard mainStoryboard];
     ForumReplyNavigationController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
-    self.replyTransValueDelegate = (id <ReplyTransValueDelegate>) controller;
-    TransValueBundle *bundle = [[TransValueBundle alloc] init];
+
+    TransBundle *bundle = [[TransBundle alloc] init];
     [bundle putIntValue:threadID forKey:@"THREAD_ID"];
     NSString *token = currentShowThreadPage.securityToken;
     [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
     [bundle putStringValue:threadAuthorName forKey:@"POST_USER"];
     [bundle putStringValue:currentShowThreadPage.formId forKey:@"FORM_ID"];
+
     [self.replyTransValueDelegate transValue:self withBundle:bundle];
     [self.navigationController presentViewController:controller animated:YES completion:^{
 

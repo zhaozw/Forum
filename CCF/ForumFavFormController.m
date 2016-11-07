@@ -13,19 +13,15 @@
 #import "ForumThreadListTableViewController.h"
 #import "ForumTabBarController.h"
 #import "MGSwipeTableCellWithIndexPath.h"
+#import "UIViewController+TransBundle.h"
 
-@interface ForumFavFormController () <TransValueDelegate, MGSwipeTableCellDelegate> {
+@interface ForumFavFormController () <MGSwipeTableCellDelegate> {
 
 }
 
 @end
 
 @implementation ForumFavFormController
-
-
-- (void)transValue:(Forum *)value {
-
-}
 
 - (BOOL)setPullRefresh:(BOOL)enable {
     return YES;
@@ -81,14 +77,11 @@
 
     if ([segue.identifier isEqualToString:@"ShowThreadListFormFavForumList"]) {
         ForumThreadListTableViewController *controller = segue.destinationViewController;
-
-        self.transValueDelegate = (id <TransValueDelegate>) controller;
-
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-
-        Forum *select = self.dataList[path.row];
-
-        [self.transValueDelegate transValue:select];
+        Forum *select = self.dataList[(NSUInteger) path.row];
+        TransBundle *bundle = [[TransBundle alloc] init];
+        [bundle putObjectValue:select forKey:@"TransForm"];
+        [self transBundle:bundle forController:controller];
     }
 
 }
@@ -121,7 +114,7 @@
     cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
 
 
-    Forum *form = self.dataList[indexPath.row];
+    Forum *form = self.dataList[(NSUInteger) indexPath.row];
 
     cell.textLabel.text = form.formName;
 
@@ -136,13 +129,13 @@
 - (BOOL)swipeTableCell:(MGSwipeTableCellWithIndexPath *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
 
 
-    Forum *parent = self.dataList[cell.indexPath.row];
+    Forum *parent = self.dataList[(NSUInteger) cell.indexPath.row];
 
     [self.ccfApi unfavoriteFormsWithId:[NSString stringWithFormat:@"%d", parent.formId] handler:^(BOOL isSuccess, id message) {
 
     }];
 
-    [self.dataList removeObjectAtIndex:cell.indexPath.row];
+    [self.dataList removeObjectAtIndex:(NSUInteger) cell.indexPath.row];
     [self.tableView deleteRowsAtIndexPaths:@[cell.indexPath] withRowAnimation:UITableViewRowAnimationLeft];
 
     return YES;
