@@ -37,6 +37,8 @@
     NSString *threadAuthorName;
 
     int p;
+    
+    BOOL shouldScrollEnd;
 }
 
 @end
@@ -51,7 +53,7 @@
         currentShowThreadPage = threadPage;
 
 
-        NSString *title = [NSString stringWithFormat:@"%d/%d", currentShowThreadPage.currentPage, currentShowThreadPage.totalPageCount];
+        NSString *title = [NSString stringWithFormat:@"%lu/%lu", (unsigned long)currentShowThreadPage.currentPage, (unsigned long)currentShowThreadPage.totalPageCount];
         self.pageNumber.title = title;
 
         NSMutableArray<Post *> *posts = threadPage.dataList;
@@ -84,28 +86,7 @@
             pageDic[@(currentShowThreadPage.currentPage)] = html;
         }
 
-        if (YES) {
-            CABasicAnimation *stretchAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.y"];
-            [stretchAnimation setToValue:@1.02F];
-            [stretchAnimation setRemovedOnCompletion:YES];
-            [stretchAnimation setFillMode:kCAFillModeRemoved];
-            [stretchAnimation setAutoreverses:YES];
-            [stretchAnimation setDuration:0.15];
-            [stretchAnimation setDelegate:self];
-
-            [stretchAnimation setBeginTime:CACurrentMediaTime() + 0.35];
-
-            [stretchAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-            //[self.webView setAnchorPoint:CGPointMake(0.0, 1) forView:self.webView];
-            [self.view.layer addAnimation:stretchAnimation forKey:@"stretchAnimation"];
-
-            CATransition *animation = [CATransition animation];
-            [animation setType:kCATransitionPush];
-            [animation setSubtype:kCATransitionFromTop];
-            [animation setDuration:0.5f];
-            [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-            [[self.webView layer] addAnimation:animation forKey:nil];
-        }
+        shouldScrollEnd = YES;
 
     } else{
         threadID = [bundle getIntValue:@"threadID"];
@@ -419,17 +400,6 @@
     [itemActionSheet show];
 }
 
-- (void)transReplyValue:(ShowThreadPage *)value {
-
-//    currentShowThreadPage = value;
-//
-//    currentPageNumber = (int) value.currentPage;
-//    totalPageCount = (int) value.totalPageCount;
-//
-//    NSMutableArray<Post *> *parsedPosts = value.dataList;
-
-
-}
 
 
 - (NSDictionary *)dictionaryFromQuery:(NSString *)query usingEncoding:(NSStringEncoding)encoding {
@@ -451,6 +421,15 @@
     return [NSDictionary dictionaryWithDictionary:pairs];
 }
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    if (shouldScrollEnd) {
+        NSInteger height = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight;"] intValue];
+        NSString* javascript = [NSString stringWithFormat:@"window.scrollBy(0, %ld);", (long)height];
+        [webView stringByEvaluatingJavaScriptFromString:javascript];
+        shouldScrollEnd = NO;
+    }
+
+}
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 
