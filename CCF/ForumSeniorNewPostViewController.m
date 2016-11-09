@@ -243,9 +243,6 @@
 
             }];
 
-            //[self dismissViewControllerAnimated:YES completion:^{
-            //}];
-
         } else {
             [SVProgressHUD showErrorWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
         }

@@ -917,17 +917,14 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 
-    [parameters setValue:token forKey:@"securitytoken"];
-
-    [parameters setValue:@"1" forKey:@"ajax"];
-    [parameters setValue:ajax_lastpost forKey:@"ajax_lastpost"];
-
     [parameters setValue:message forKey:@"message"];
     [parameters setValue:@"0" forKey:@"wysiwyg"];
     [parameters setValue:@"0" forKey:@"styleid"];
+    [parameters setValue:@"1" forKey:@"signature"];
     [parameters setValue:@"1" forKey:@"quickreply"];
     [parameters setValue:@"1" forKey:@"fromquickreply"];
-
+    [parameters setValue:@"" forKey:@"s"];
+    [parameters setValue:token forKey:@"securitytoken"];
     [parameters setValue:@"postreply" forKey:@"do"];
     [parameters setValue:[NSString stringWithFormat:@"%d", threadId] forKey:@"t"];
     [parameters setValue:[NSString stringWithFormat:@"%d", postId] forKey:@"p"];
@@ -935,8 +932,14 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     [parameters setValue:@"1" forKey:@"parseurl"];
 
     LoginUser *user = [self getLoginUser];
-
     [parameters setValue:user.userID forKey:@"loggedinuser"];
+    [parameters setValue:@"sbutton" forKey:@"快速回复帖子"];
+    //[parameters setValue:@"1" forKey:@"ajax"];
+    //[parameters setValue:ajax_lastpost forKey:@"ajax_lastpost"];
+
+
+
+
 
 
     [_browser POSTWithURLString:url parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {

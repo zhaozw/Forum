@@ -65,15 +65,17 @@
             if (isSuccess && message != nil) {
                 [SVProgressHUD showSuccessWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
 
-//                CCFShowThreadPage * thread = message;
-//
-//                ForumReplyNavigationController * navigationController = (ForumReplyNavigationController *)self.navigationController;
-//                
-//                
-//                self.delegate = (id<SimpleReplyDelegate>)navigationController.controller;
+                ShowThreadPage *thread = message;
 
-                [self dismissViewControllerAnimated:YES completion:^{
-                    //[self.delegate transReplyValue:thread];
+                TransBundle * bundle = [[TransBundle alloc] init];
+                [bundle putObjectValue:thread forKey:@"Simple_Reply_Callback"];
+
+                UITabBarController * presenting = (UITabBarController *) self.presentingViewController;
+                UINavigationController * selected = presenting.selectedViewController;
+                UIViewController * detail = selected.topViewController;
+
+                [self dismissViewControllerAnimated:YES backToViewController:detail withBundle:bundle completion:^{
+
                 }];
 
             } else {

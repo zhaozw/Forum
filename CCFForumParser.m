@@ -288,14 +288,14 @@
         NSString *currentPageAndTotalPageString = currentPageAndTotalPageNode.text;
         NSArray *pageAndTotalPage = [currentPageAndTotalPageString componentsSeparatedByString:@"页，共"];
 
-        showThreadPage.totalPageCount = [[[pageAndTotalPage.lastObject stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"页" withString:@""] intValue];
-        showThreadPage.currentPage = [[[pageAndTotalPage.firstObject stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"第" withString:@""] intValue];
+        showThreadPage.totalPageCount = (NSUInteger) [[[pageAndTotalPage.lastObject stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"页" withString:@""] intValue];
+        showThreadPage.currentPage = (NSUInteger) [[[pageAndTotalPage.firstObject stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"第" withString:@""] intValue];
 
         IGXMLNode *totalPostCount = [threadInfoSet.firstObject children][1];
 
         NSString *totalPostString = [totalPostCount.firstChild attribute:@"title"];
         NSString *tmp = [totalPostString componentsSeparatedByString:@"共计 "].lastObject;
-        showThreadPage.totalCount = [[tmp stringByReplacingOccurrencesOfString:@" 条." withString:@""] intValue];
+        showThreadPage.totalCount = (NSUInteger) [[tmp stringByReplacingOccurrencesOfString:@" 条." withString:@""] intValue];
 
     }
 
