@@ -624,7 +624,7 @@
 - (IBAction)reply:(id)sender {
 
     UIStoryboard *storyBoard = [UIStoryboard mainStoryboard];
-    ForumReplyNavigationController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
+    ForumReplyNavigationController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"SeniorReplySomeOne"];
 
     TransBundle *bundle = [[TransBundle alloc] init];
     [bundle putIntValue:threadID forKey:@"THREAD_ID"];
