@@ -45,5 +45,8 @@
     return dictonary[key];
 }
 
+- (BOOL)containsKey:(NSString *)key {
+    return [dictonary.allKeys containsObject:key];
+}
 
 @end

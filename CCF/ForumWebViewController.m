@@ -44,10 +44,76 @@
 @implementation ForumWebViewController
 
 - (void)transBundle:(TransBundle *)bundle {
-    threadID = [bundle getIntValue:@"threadID"];
-    p = [bundle getIntValue:@"p"];
 
-    threadAuthorName = [bundle getStringValue:@"threadAuthorName"];
+    if ([bundle containsKey:@"Senior_Reply_Callback"]){
+        ShowThreadPage *threadPage = [bundle getObjectValue:@"Senior_Reply_Callback"];
+
+        currentShowThreadPage = threadPage;
+
+
+        NSString *title = [NSString stringWithFormat:@"%d/%d", currentShowThreadPage.currentPage, currentShowThreadPage.totalPageCount];
+        self.pageNumber.title = title;
+
+        NSMutableArray<Post *> *posts = threadPage.dataList;
+
+        NSString *lis = @"";
+
+        for (Post *post in posts) {
+
+            NSString *avatar = BBS_AVATAR(post.postUserInfo.userAvatar);
+            NSString *louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
+            NSString *postInfo = [NSString stringWithFormat:POST_MESSAGE, post.postID, post.postID, post.postUserInfo.userName, louceng, post.postUserInfo.userID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
+
+            lis = [lis stringByAppendingString:postInfo];
+
+            //[self addPostByJSElement:post avatar:avatar louceng:louceng];
+
+        }
+
+        NSString *html = nil;
+
+        if (threadPage.currentPage <= 1) {
+            html = [NSString stringWithFormat:THREAD_PAGE, threadPage.threadTitle, lis];
+        } else {
+            html = [NSString stringWithFormat:THREAD_PAGE_NOTITLE, lis];
+        }
+
+        NSString *cacheHtml = pageDic[@(currentShowThreadPage.currentPage)];
+        if (![cacheHtml isEqualToString:threadPage.originalHtml]) {
+            [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
+            pageDic[@(currentShowThreadPage.currentPage)] = html;
+        }
+
+        if (YES) {
+            CABasicAnimation *stretchAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.y"];
+            [stretchAnimation setToValue:@1.02F];
+            [stretchAnimation setRemovedOnCompletion:YES];
+            [stretchAnimation setFillMode:kCAFillModeRemoved];
+            [stretchAnimation setAutoreverses:YES];
+            [stretchAnimation setDuration:0.15];
+            [stretchAnimation setDelegate:self];
+
+            [stretchAnimation setBeginTime:CACurrentMediaTime() + 0.35];
+
+            [stretchAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+            //[self.webView setAnchorPoint:CGPointMake(0.0, 1) forView:self.webView];
+            [self.view.layer addAnimation:stretchAnimation forKey:@"stretchAnimation"];
+
+            CATransition *animation = [CATransition animation];
+            [animation setType:kCATransitionPush];
+            [animation setSubtype:kCATransitionFromTop];
+            [animation setDuration:0.5f];
+            [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+            [[self.webView layer] addAnimation:animation forKey:nil];
+        }
+
+    } else{
+        threadID = [bundle getIntValue:@"threadID"];
+        p = [bundle getIntValue:@"p"];
+
+        threadAuthorName = [bundle getStringValue:@"threadAuthorName"];
+
+    }
 }
 
 

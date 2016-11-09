@@ -19,4 +19,6 @@
 - (void)putObjectValue:(id)value forKey:(NSString *)key;
 
 - (id)getObjectValue:(NSString *)key;
+
+- (BOOL) containsKey:(NSString *)key;
 @end

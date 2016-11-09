@@ -232,15 +232,19 @@
 
             ShowThreadPage *thread = message;
 
+            TransBundle * bundle = [[TransBundle alloc] init];
+            [bundle putObjectValue:thread forKey:@"Senior_Reply_Callback"];
 
-            ForumReplyNavigationController *navigationController = (ForumReplyNavigationController *) self.navigationController;
+            UITabBarController * presenting = (UITabBarController *) self.presentingViewController;
+            UINavigationController * selected = presenting.selectedViewController;
+            UIViewController * detail = selected.topViewController;
+            
+            [self dismissViewControllerAnimated:YES backToViewController:detail withBundle:bundle completion:^{
 
+            }];
 
-//            self.delegate = (id <ReplyCallbackDelegate>) navigationController.controller;
-//
-//            [self dismissViewControllerAnimated:YES completion:^{
-//                [self.delegate transReplyValue:thread];
-//            }];
+            //[self dismissViewControllerAnimated:YES completion:^{
+            //}];
 
         } else {
             [SVProgressHUD showErrorWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
