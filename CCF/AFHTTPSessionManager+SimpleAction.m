@@ -25,9 +25,9 @@
 }
 
 - (void)POSTWithURL:(NSURL *)url parameters:(id)parameters requestCallback:(RequestCallback)callback {
-    [self setTaskWillPerformHTTPRedirectionBlock:^NSURLRequest *(NSURLSession *session, NSURLSessionTask *task, NSURLResponse *response, NSURLRequest *request) {
-        return request;
-    }];
+//    [self setTaskWillPerformHTTPRedirectionBlock:^NSURLRequest *(NSURLSession *session, NSURLSessionTask *task, NSURLResponse *response, NSURLRequest *request) {
+//        return request;
+//    }];
     [self POST:[url absoluteString] parameters:parameters progress:nil success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject) {
         NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
         callback(YES, html);

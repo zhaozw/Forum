@@ -244,7 +244,7 @@
             }];
 
         } else {
-            [SVProgressHUD showErrorWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
+            [SVProgressHUD showErrorWithStatus:message maskType:SVProgressHUDMaskTypeBlack];
         }
     }];
 

@@ -400,6 +400,10 @@
 
 - (void)quickReplyPostWithThreadId:(int)threadId forPostId:(int)postId andMessage:(NSString *)message securitytoken:(NSString *)token ajaxLastPost:(NSString *)ajax_lastpost handler:(HandlerWithBool)handler {
     [_browser quickReplyPostWithThreadId:threadId forPostId:postId andMessage:message securitytoken:token ajaxLastPost:ajax_lastpost handler:^(BOOL isSuccess, NSString *result) {
+        if ([result containsString:@"<ol><li>本论坛允许的发表两个帖子的时间间隔必须大于 30 秒。请等待 "] || [result containsString:@"<ol><li>本論壇允許的發表兩個文章的時間間隔必須大於 30 秒。請等待"]){
+            handler(NO, @"本论坛允许的发表两个帖子的时间间隔必须大于 30 秒");
+            return;
+        }
         if (isSuccess) {
             ShowThreadPage *detail = [_praser parseShowThreadWithHtml:result];
             handler(isSuccess, detail);
@@ -412,6 +416,11 @@
 
 - (void)seniorReplyWithThreadId:(int)threadId forFormId:(int)formId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(HandlerWithBool)handler {
     [_browser seniorReplyWithThreadId:threadId forFormId:(int) formId andMessage:message withImages:(NSArray *) images securitytoken:token handler:^(BOOL isSuccess, id result) {
+        if ([result containsString:@"<ol><li>本论坛允许的发表两个帖子的时间间隔必须大于 30 秒。请等待 "] || [result containsString:@"<ol><li>本論壇允許的發表兩個文章的時間間隔必須大於 30 秒。請等待"]){
+            handler(NO, @"本论坛允许的发表两个帖子的时间间隔必须大于 30 秒");
+            return;
+        }
+
         if (isSuccess) {
             ShowThreadPage *detail = [_praser parseShowThreadWithHtml:result];
             handler(isSuccess, detail);

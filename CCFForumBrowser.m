@@ -937,11 +937,6 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     //[parameters setValue:@"1" forKey:@"ajax"];
     //[parameters setValue:ajax_lastpost forKey:@"ajax_lastpost"];
 
-
-
-
-
-
     [_browser POSTWithURLString:url parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
