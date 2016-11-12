@@ -128,6 +128,9 @@
     cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"收藏此主题" backgroundColor:[UIColor lightGrayColor]]];
     cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
 
+    [cell setSeparatorInset:UIEdgeInsetsZero];
+    [cell setLayoutMargins:UIEdgeInsetsZero];
+
     return cell;
 }
 
