@@ -57,6 +57,9 @@
     ThreadInSearch *thread = self.dataList[indexPath.row];
     [cell setData:thread];
 
+    [cell setSeparatorInset:UIEdgeInsetsZero];
+    [cell setLayoutMargins:UIEdgeInsetsZero];
+
     return cell;
 }
 
