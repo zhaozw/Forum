@@ -37,7 +37,7 @@
     NSString *threadAuthorName;
 
     int p;
-    
+
     BOOL shouldScrollEnd;
 }
 
@@ -47,13 +47,13 @@
 
 - (void)transBundle:(TransBundle *)bundle {
 
-    if ([bundle containsKey:@"Senior_Reply_Callback"]){
+    if ([bundle containsKey:@"Senior_Reply_Callback"]) {
         ShowThreadPage *threadPage = [bundle getObjectValue:@"Senior_Reply_Callback"];
 
         currentShowThreadPage = threadPage;
 
 
-        NSString *title = [NSString stringWithFormat:@"%lu/%lu", (unsigned long)currentShowThreadPage.currentPage, (unsigned long)currentShowThreadPage.totalPageCount];
+        NSString *title = [NSString stringWithFormat:@"%lu/%lu", (unsigned long) currentShowThreadPage.currentPage, (unsigned long) currentShowThreadPage.totalPageCount];
         self.pageNumber.title = title;
 
         NSMutableArray<Post *> *posts = threadPage.dataList;
@@ -88,13 +88,13 @@
 
         shouldScrollEnd = YES;
 
-    } else if([bundle containsKey:@"Simple_Reply_Callback"]){
+    } else if ([bundle containsKey:@"Simple_Reply_Callback"]) {
         ShowThreadPage *threadPage = [bundle getObjectValue:@"Simple_Reply_Callback"];
 
         currentShowThreadPage = threadPage;
 
 
-        NSString *title = [NSString stringWithFormat:@"%lu/%lu", (unsigned long)currentShowThreadPage.currentPage, (unsigned long)currentShowThreadPage.totalPageCount];
+        NSString *title = [NSString stringWithFormat:@"%lu/%lu", (unsigned long) currentShowThreadPage.currentPage, (unsigned long) currentShowThreadPage.totalPageCount];
         self.pageNumber.title = title;
 
         NSMutableArray<Post *> *posts = threadPage.dataList;
@@ -128,7 +128,7 @@
         }
 
         shouldScrollEnd = YES;
-    } else{
+    } else {
         threadID = [bundle getIntValue:@"threadID"];
         p = [bundle getIntValue:@"p"];
 
@@ -164,13 +164,13 @@
         if (threadID == -1) {
             [self showThreadWithP:[NSString stringWithFormat:@"%d", p]];
         } else {
-            if (currentShowThreadPage == nil){
+            if (currentShowThreadPage == nil) {
                 [self prePage:threadID page:1 withAnim:NO];
-            } else if (currentShowThreadPage.currentPage == 1){
+            } else if (currentShowThreadPage.currentPage == 1) {
                 [self prePage:threadID page:1 withAnim:NO];
-            } else{
+            } else {
                 int page = currentShowThreadPage.currentPage - 1;
-                if (page <= 1){
+                if (page <= 1) {
                     page = 1;
                 }
                 [self prePage:threadID page:page withAnim:YES];
@@ -250,10 +250,34 @@
 
         ShowThreadPage *threadPage = message;
 
+        if (threadPage.threadTitle == nil) {
+
+            [self.webView.scrollView.mj_header endRefreshing];
+
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:@"\n此帖包含乱码无法正确解析，使用浏览器打开？" preferredStyle:UIAlertControllerStyleAlert];
+
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [self.navigationController popViewControllerAnimated:YES];
+                NSURL *nsurl = [NSURL URLWithString:BBS_SHOWTHREAD_PAGE(threadId, page)];
+                [[UIApplication sharedApplication] openURL:nsurl];
+            }];
+
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+
+            [alert addAction:action];
+            [alert addAction:cancel];
+
+            [self presentViewController:alert animated:YES completion:^{
+
+            }];
+            return;
+        }
         currentShowThreadPage = threadPage;
 
 
-        NSString *title = [NSString stringWithFormat:@"%d/%d", currentShowThreadPage.currentPage, currentShowThreadPage.totalPageCount];
+        NSString *title = [NSString stringWithFormat:@"%lu/%lu", (unsigned long) currentShowThreadPage.currentPage, (unsigned long) currentShowThreadPage.totalPageCount];
         self.pageNumber.title = title;
 
         NSMutableArray<Post *> *posts = threadPage.dataList;
@@ -310,19 +334,19 @@
     }];
 }
 
-- (void)showNextPageOrRefreshCurrentPage:(NSUInteger) currentPage forThreadId:(int) threadId{
+- (void)showNextPageOrRefreshCurrentPage:(NSUInteger)currentPage forThreadId:(int)threadId {
 
     if (currentPage < currentShowThreadPage.totalPageCount) {
         [self showThread:threadId page:currentPage + 1 withAnim:YES];
-    } else{
+    } else {
         [self.ccfForumApi showThreadWithId:threadId andPage:currentPage handler:^(BOOL isSuccess, id message) {
             ShowThreadPage *threadPage = message;
-            if (currentShowThreadPage.dataList.count < threadPage.dataList.count){
+            if (currentShowThreadPage.dataList.count < threadPage.dataList.count) {
 
-                NSMutableArray * posts = threadPage.dataList;
+                NSMutableArray *posts = threadPage.dataList;
 
                 for (int i = currentShowThreadPage.dataList.count; i < posts.count; i++) {
-                    Post * post = posts[i];
+                    Post *post = posts[i];
                     NSString *avatar = BBS_AVATAR(post.postUserInfo.userAvatar);
                     NSString *louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
 
@@ -441,7 +465,6 @@
 }
 
 
-
 - (NSDictionary *)dictionaryFromQuery:(NSString *)query usingEncoding:(NSStringEncoding)encoding {
     NSCharacterSet *delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];
     NSMutableDictionary *pairs = [NSMutableDictionary dictionary];
@@ -464,7 +487,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     if (shouldScrollEnd) {
         NSInteger height = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight;"] intValue];
-        NSString* javascript = [NSString stringWithFormat:@"window.scrollBy(0, %ld);", (long)height];
+        NSString *javascript = [NSString stringWithFormat:@"window.scrollBy(0, %ld);", (long) height];
         [webView stringByEvaluatingJavaScriptFromString:javascript];
         shouldScrollEnd = NO;
     }
