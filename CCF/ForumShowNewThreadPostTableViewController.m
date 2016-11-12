@@ -16,7 +16,7 @@
 #import "TransBundleDelegate.h"
 #import "TransBundle.h"
 
-@interface ForumShowNewThreadPostTableViewController () <CCFThreadListCellDelegate> {
+@interface ForumShowNewThreadPostTableViewController () <CCFThreadListCellDelegate, MGSwipeTableCellDelegate> {
     UIStoryboardSegue *selectSegue;
 }
 
@@ -69,7 +69,36 @@
 
     ThreadInSearch *thread = self.dataList[(NSUInteger) indexPath.row];
     [cell setData:thread forIndexPath:indexPath];
+
+
+    [cell setData:thread forIndexPath:indexPath];
+
+    cell.showUserProfileDelegate = self;
+
+    cell.indexPath = indexPath;
+
+    cell.delegate = self;
+
+    cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"收藏此主题" backgroundColor:[UIColor lightGrayColor]]];
+    cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
+
+
     return cell;
+}
+
+
+- (BOOL)swipeTableCell:(MGSwipeTableCellWithIndexPath *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
+    NSIndexPath *indexPath = cell.indexPath;
+
+
+    NormalThread *play = self.dataList[(NSUInteger) indexPath.row];
+
+    [self.ccfApi favoriteThreadPostWithId:play.threadID handler:^(BOOL isSuccess, id message) {
+
+    }];
+
+
+    return YES;
 }
 
 - (void)showUserProfile:(NSIndexPath *)indexPath {
