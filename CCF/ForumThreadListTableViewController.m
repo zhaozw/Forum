@@ -157,7 +157,8 @@
         Forum *form = childForms[(NSUInteger) indexPath.row];
         cell.textLabel.text = form.formName;
 
-        [cell setSeparatorInset:UIEdgeInsetsZero];
+        UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0,16,0,16);
+        [cell setSeparatorInset:edgeInsets];
         [cell setLayoutMargins:UIEdgeInsetsZero];
 
         return cell;
@@ -231,7 +232,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        return 44;
+        return 54;
     } else {
         return [tableView fd_heightForCellWithIdentifier:@"CCFThreadListCellIdentifier" configuration:^(CCFThreadListCell *cell) {
             [self configureCell:cell atIndexPath:indexPath];
