@@ -79,10 +79,20 @@
     cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"收藏此主题" backgroundColor:[UIColor lightGrayColor]]];
     cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
 
+    [cell setSeparatorInset:UIEdgeInsetsZero];
+    [cell setLayoutMargins:UIEdgeInsetsZero];
 
     return cell;
 }
 
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+
+}
 
 - (BOOL)swipeTableCell:(MGSwipeTableCellWithIndexPath *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
     NSIndexPath *indexPath = cell.indexPath;

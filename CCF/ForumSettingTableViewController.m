@@ -33,10 +33,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    if (indexPath.row == 0) {
-        UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
-        ForumSettingTableViewController *settingController = [storyboard instantiateViewControllerWithIdentifier:@"ForumSettingTableViewController"];
-        [self.navigationController pushViewController:settingController animated:YES];
+    if (indexPath.section == 1 && indexPath.row == 0) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/andforce/CCF-2.0"]];
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
     }
 
 }
