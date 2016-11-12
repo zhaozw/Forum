@@ -49,6 +49,8 @@
 
     self.titleNavigationItem.title = transForm.formName;
 
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    [self.tableView setLayoutMargins:UIEdgeInsetsZero];
 }
 
 - (void)onPullRefresh {
@@ -154,6 +156,10 @@
 
         Forum *form = childForms[(NSUInteger) indexPath.row];
         cell.textLabel.text = form.formName;
+
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+
         return cell;
     } else if (indexPath.section == 1) {
 
@@ -173,6 +179,9 @@
         cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
 
 
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+
         return cell;
     } else {
 
@@ -191,6 +200,9 @@
 
         cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"收藏此主题" backgroundColor:[UIColor lightGrayColor]]];
         cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
+
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+        [cell setLayoutMargins:UIEdgeInsetsZero];
 
         return cell;
     }
