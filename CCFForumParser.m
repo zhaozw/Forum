@@ -37,7 +37,7 @@
     for (int i = 0; i < contents.count; i++) {
         IGXMLNode *normallThreadNode = contents[i];
 
-        if (normallThreadNode.children.count > 4) { // 要大于4的原因是：过滤已经被删除的帖子
+        if (normallThreadNode.children.count >= 8) { // 要>=8的原因是：过滤已经被删除的帖子 以及 被移动的帖子
 
             NormalThread *normalThread = [[NormalThread alloc] init];
 
