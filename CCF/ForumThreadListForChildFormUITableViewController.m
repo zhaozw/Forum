@@ -38,6 +38,9 @@
     if (self.threadTopList == nil) {
         self.threadTopList = [NSMutableArray array];
     }
+
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    [self.tableView setLayoutMargins:UIEdgeInsetsZero];
 }
 
 - (void)onPullRefresh {
@@ -129,6 +132,9 @@
         NormalThread *play = self.dataList[(NSUInteger) indexPath.row];
         [cell setData:play];
     }
+
+    [cell setSeparatorInset:UIEdgeInsetsZero];
+    [cell setLayoutMargins:UIEdgeInsetsZero];
     return cell;
 }
 
