@@ -68,6 +68,9 @@
     [super viewDidLoad];
 
 
+    UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0,16,0,16);
+    [self.tableView setSeparatorInset:edgeInsets];
+    [self.tableView setLayoutMargins:UIEdgeInsetsZero];
 }
 
 - (BOOL)setLoadMore:(BOOL)enable {

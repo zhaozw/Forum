@@ -117,6 +117,10 @@
 
     cell.textLabel.text = form.formName;
 
+    UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0,16,0,16);
+    [cell setSeparatorInset:edgeInsets];
+    [cell setLayoutMargins:UIEdgeInsetsZero];
+
     return cell;
 }
 
