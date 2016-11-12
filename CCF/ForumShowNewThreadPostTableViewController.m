@@ -70,9 +70,6 @@
     ThreadInSearch *thread = self.dataList[(NSUInteger) indexPath.row];
     [cell setData:thread forIndexPath:indexPath];
 
-
-    [cell setData:thread forIndexPath:indexPath];
-
     cell.showUserProfileDelegate = self;
 
     cell.indexPath = indexPath;

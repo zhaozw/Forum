@@ -13,7 +13,7 @@
 #import <SVProgressHUD.h>
 #import "ForumWebViewController.h"
 
-@interface ForumSearchViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, CCFThreadListCellDelegate> {
+@interface ForumSearchViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, CCFThreadListCellDelegate, MGSwipeTableCellDelegate> {
     NSString *_searchid;
     UIStoryboardSegue *selectSegue;
     NSString *searchText;
@@ -80,6 +80,7 @@
             [self.tableView reloadData];
         } else {
             NSLog(@"searchBarSearchButtonClicked   ERROR %@", message);
+            [SVProgressHUD showErrorWithStatus:message maskType:SVProgressHUDMaskTypeBlack];
         }
     }];
 }
@@ -107,17 +108,43 @@
     return YES;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     static NSString *QuoteCellIdentifier = @"CCFSearchResultCell";
 
     CCFSearchResultCell *cell = (CCFSearchResultCell *) [tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
     cell.showUserProfileDelegate = self;
-    [cell setData:self.dataList[(NSUInteger) indexPath.row]];
 
+    ThreadInSearch *thread = self.dataList[(NSUInteger) indexPath.row];
+
+    [cell setData:thread forIndexPath:indexPath];
+
+    cell.showUserProfileDelegate = self;
+
+    cell.indexPath = indexPath;
+
+    cell.delegate = self;
+
+    cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"收藏此主题" backgroundColor:[UIColor lightGrayColor]]];
+    cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
 
     return cell;
+}
+
+
+- (BOOL)swipeTableCell:(MGSwipeTableCellWithIndexPath *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
+    NSIndexPath *indexPath = cell.indexPath;
+
+
+    ThreadInSearch *play = self.dataList[(NSUInteger) indexPath.row];
+
+    [self.ccfApi favoriteThreadPostWithId:play.threadID handler:^(BOOL isSuccess, id message) {
+        BOOL success = isSuccess;
+        NSString * result = message;
+    }];
+
+
+    return YES;
 }
 
 

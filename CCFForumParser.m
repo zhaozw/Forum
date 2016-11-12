@@ -529,7 +529,7 @@
     for (int i = 0; i < contents.count; i++) {
         IGXMLNode *threadListNode = contents[i];
 
-        if (threadListNode.children.count > 4) { // 要大于4的原因是：过滤已经被删除的帖子
+        if (threadListNode.children.count >= 8) { // 要大于4的原因是：过滤已经被删除的帖子 和已经被移动的帖子
 
             SimpleThread *simpleThread = [[SimpleThread alloc] init];
 
