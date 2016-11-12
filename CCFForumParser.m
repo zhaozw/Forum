@@ -629,10 +629,15 @@
 
             IGXMLNode *postForNode = [node childrenAtPosition:2];
 
-            NSLog(@"--------------------- %ld", [postForNode children].count);
+            NSLog(@"--------------------- %ld title: %@", [postForNode children].count, [[postForNode text] trim]);
 
             NSString *postIdNode = [postForNode html];
             NSString *postId = [postIdNode stringWithRegular:@"id=\"thread_title_\\d+\"" andChild:@"\\d+"];
+
+
+            NSString *titleAndCategory = [self parseTitle:[postForNode html]];
+            IGHTMLDocument *titleTemp = [[IGHTMLDocument alloc] initWithXMLString:titleAndCategory error:nil];
+            NSString *titleText = [titleTemp text];
 
             NSString *postTitle = [[[postForNode text] trim] componentsSeparatedByString:@"\n"].firstObject;
             NSString *postAuthor = [[node childrenAtPosition:3] text];
@@ -643,10 +648,10 @@
 
             searchThread.threadID = postId;
 
-            NSString *fullTitle = [postTitle trim];
 
-            searchThread.threadTitle = [self spliteTitle:fullTitle];
-            searchThread.threadCategory = [self spliteCategory:fullTitle];
+            searchThread.threadTitle = [self spliteTitle:titleText];
+            searchThread.threadCategory = [self spliteCategory:titleText];
+
             searchThread.threadAuthorName = postAuthor;
             searchThread.threadAuthorID = postAuthorId;
             searchThread.lastPostTime = [self timeForShort:[postTime trim] withFormat:@"yyyy-MM-dd HH:mm:ss"];
