@@ -35,10 +35,6 @@
     transPrivateMessage = [bundle getObjectValue:@"TransPrivateMessage"];
 }
 
-- (void)transValue:(PrivateMessage *)value {
-    transPrivateMessage = value;
-}
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -186,7 +182,12 @@
     ForumWritePMNavigationController *controller = [storyboard instantiateViewControllerWithIdentifier:@"CreatePM"];
 
     TransBundle *bundle = [[TransBundle alloc] init];
-    [bundle putStringValue:@"123456" forKey:@"test"];
+    [bundle putObjectValue:transPrivateMessage forKey:@"toReplyMessage"];
+    [bundle putIntValue:1 forKey:@"isReply"];
+
+    [self presentViewController:(id) controller withBundle:bundle forRootController:YES animated:YES completion:^{
+
+    }];
 
 }
 

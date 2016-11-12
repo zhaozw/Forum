@@ -15,6 +15,8 @@
 
 @interface ForumWritePMViewController () <TransBundleDelegate> {
     NSString *profileName;
+    BOOL isReply;
+    PrivateMessage *_privateMessage;
 }
 
 @end
@@ -24,16 +26,32 @@
 
 // 上一Cotroller传递过来的数据
 - (void)transBundle:(TransBundle *)bundle {
-    profileName = [bundle getStringValue:@"PROFILE_NAME"];
+    if ([bundle containsKey:@"isReply"]) {
+        isReply = YES;
+        _privateMessage = [bundle getObjectValue:@"toReplyMessage"];
+
+
+    } else {
+        profileName = [bundle getStringValue:@"PROFILE_NAME"];
+    }
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (profileName != nil) {
-        self.toWho.text = profileName;
-        [self.privateMessageTitle becomeFirstResponder];
+
+    if (isReply) {
+        self.toWho.text = _privateMessage.pmAuthor;
+        self.privateMessageTitle.text = [NSString stringWithFormat:@"回复：%@", _privateMessage.pmTitle];
+        [self.privateMessageContent becomeFirstResponder];
     } else {
-        [self.toWho becomeFirstResponder];
+        if (profileName != nil) {
+            self.toWho.text = profileName;
+            [self.privateMessageTitle becomeFirstResponder];
+        } else {
+            [self.toWho becomeFirstResponder];
+        }
+
     }
 }
 
@@ -50,6 +68,7 @@
 }
 
 - (IBAction)sendPrivateMessage:(id)sender {
+
     if ([self.toWho.text isEqualToString:@""]) {
         [SVProgressHUD showErrorWithStatus:@"无收件人" maskType:SVProgressHUDMaskTypeBlack];
     } else if ([self.privateMessageTitle.text isEqualToString:@""]) {
@@ -62,17 +81,33 @@
 
         [SVProgressHUD showWithStatus:@"正在发送" maskType:SVProgressHUDMaskTypeBlack];
 
-        [self.ccfForumApi sendPrivateMessageToUserName:self.toWho.text andTitle:self.privateMessageTitle.text andMessage:self.privateMessageContent.text handler:^(BOOL isSuccess, id message) {
+        if (isReply) {
+            [self.ccfForumApi replyPrivateMessageWithId:[_privateMessage.pmID intValue] andMessage:self.privateMessageContent.text handler:^(BOOL isSuccess, id message) {
+                [SVProgressHUD dismiss];
 
-            [SVProgressHUD dismiss];
+                if (isSuccess) {
+                    [self dismissViewControllerAnimated:YES completion:^{
 
-            if (isSuccess) {
-                [self.navigationController popViewControllerAnimated:YES];
-            } else {
-                [SVProgressHUD showErrorWithStatus:message maskType:SVProgressHUDMaskTypeBlack];
-            }
+                    }];
+                } else {
+                    [SVProgressHUD showErrorWithStatus:message maskType:SVProgressHUDMaskTypeBlack];
+                }
+            }];
+        } else {
+            [self.ccfForumApi sendPrivateMessageToUserName:self.toWho.text andTitle:self.privateMessageTitle.text andMessage:self.privateMessageContent.text handler:^(BOOL isSuccess, id message) {
 
-        }];
+                [SVProgressHUD dismiss];
+
+                if (isSuccess) {
+                    [self dismissViewControllerAnimated:YES completion:^{
+
+                    }];
+                } else {
+                    [SVProgressHUD showErrorWithStatus:message maskType:SVProgressHUDMaskTypeBlack];
+                }
+
+            }];
+        }
 
     }
 }
