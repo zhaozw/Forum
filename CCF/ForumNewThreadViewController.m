@@ -23,7 +23,7 @@
         DeleteDelegate, TransBundleDelegate> {
 
 
-    CCFForumApi *_api;
+    CCFForumApi *_ccfForumApi;
     int forumId;
     UIImagePickerController *pickControl;
     NSMutableArray<UIImage *> *images;
@@ -41,7 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    _api = [[CCFForumApi alloc] init];
+    _ccfForumApi = [[CCFForumApi alloc] init];
 
 
     _selectPhotos.delegate = self;
@@ -85,7 +85,7 @@
 
         NSLog(@"图片大小:   %lld", fileSize);
 
-    }         failureBlock:nil];
+    } failureBlock:nil];
 
 }
 
@@ -133,10 +133,9 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
 
-    NSLog(@"imagePickerController %@", info);
     //    UIImage *image=info[@"UIImagePickerControllerOriginalImage"];
 
-//    UIImage *image=info[@"UIImagePickerControllerEditedImage"];
+    //    UIImage *image=info[@"UIImagePickerControllerEditedImage"];
 
     UIImage *select = [info valueForKey:UIImagePickerControllerOriginalImage];
 
@@ -144,20 +143,13 @@
 
     NSData *date = UIImageJPEGRepresentation(select, 1.0);
 
-
-    NSLog(@"----------&&&&&&&    %@", [self contentTypeForImageData:date]);
-
     [self fileSizeAtPath:selectUrl];
 
-
     UIImage *scaleImage = [Utils scaleUIImage:select andMaxSize:CGSizeMake(800, 800)];
+
     [images addObject:scaleImage];
 
-
     [_selectPhotos reloadData];
-
-
-//    [self.imageView setImage:image];
 
     //选取完图片之后关闭视图
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -207,10 +199,14 @@
         [uploadData addObject:data];
     }
 
-    [_api createNewThreadWithFormId:forumId withSubject:title andMessage:message withImages:[uploadData copy] handler:^(BOOL isSuccess, id message) {
+    [_ccfForumApi createNewThreadWithFormId:forumId withSubject:title andMessage:message withImages:[uploadData copy] handler:^(BOOL isSuccess, id message) {
+
+        [self dismissViewControllerAnimated:YES completion:^{
+
+        }];
+
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"发帖成功" maskType:SVProgressHUDMaskTypeBlack];
-            [self.navigationController popViewControllerAnimated:YES];
         } else {
             [SVProgressHUD showErrorWithStatus:@"发帖失败" maskType:SVProgressHUDMaskTypeBlack];
         }
@@ -219,13 +215,14 @@
 }
 
 - (IBAction)back:(id)sender {
-    //[self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:^{
 
     }];
 }
 
 - (IBAction)pickPhoto:(id)sender {
+
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 
     LCActionSheet *itemActionSheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"相册", @"拍照", @"取消"] redButtonIndex:2 clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
@@ -243,6 +240,9 @@
 }
 
 - (IBAction)showCategory:(UIButton *)sender {
+
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+
     NSArray *categorys = @[@"【分享】", @"【推荐】", @"【求助】", @"【注意】", @"【ＣＸ】", @"【高兴】", @"【难过】", @"【转帖】", @"【原创】", @"【讨论】"];
     ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle:@"选择分类" rows:categorys initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         self.subject.text = [NSString stringWithFormat:@"%@%@", self.subject.text, categorys[(NSUInteger) selectedIndex]];
