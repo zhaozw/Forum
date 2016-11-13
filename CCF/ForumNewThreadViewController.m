@@ -251,7 +251,7 @@
 
     NSArray *categorys = @[@"【分享】", @"【推荐】", @"【求助】", @"【注意】", @"【ＣＸ】", @"【高兴】", @"【难过】", @"【转帖】", @"【原创】", @"【讨论】"];
     ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle:@"选择分类" rows:categorys initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-        self.subject.text = [NSString stringWithFormat:@"%@%@", self.subject.text, categorys[(NSUInteger) selectedIndex]];
+        self.subject.text = [NSString stringWithFormat:@"%@%@", categorys[(NSUInteger) selectedIndex],self.subject.text];
 
     }                                                                    cancelBlock:^(ActionSheetStringPicker *picker) {
 
