@@ -420,11 +420,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgS-Gn-TxU">
-                                        <rect key="frame" x="16" y="16" width="31" height="44"/>
+                                        <rect key="frame" x="16" y="16" width="47" height="44"/>
                                         <color key="backgroundColor" red="0.94893664121627808" green="0.94907277822494507" blue="0.94890683889389038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="oKP-h5-KVF"/>
                                         </constraints>
+                                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                         <state key="normal" title="分类">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
@@ -496,7 +497,7 @@
                                         </cells>
                                     </collectionView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="标题:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G9m-d8-4BV">
-                                        <rect key="frame" x="47" y="16" width="312" height="44"/>
+                                        <rect key="frame" x="63" y="16" width="296" height="44"/>
                                         <color key="backgroundColor" red="0.95026940107345581" green="0.95026940107345581" blue="0.95026940107345581" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="cJf-bV-OlG"/>
