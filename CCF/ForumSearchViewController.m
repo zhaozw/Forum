@@ -30,7 +30,6 @@
         [self onLoadMore];
     }];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)onLoadMore {
@@ -61,7 +60,13 @@
 }
 
 
-- (void)keyboardDidHide:(id)sender {
+#pragma mark UISearchBarDelegate
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    searchText = searchBar.text;
+
+    [searchBar resignFirstResponder];
+
     [SVProgressHUD showWithStatus:@"搜索中" maskType:SVProgressHUDMaskTypeBlack];
 
     int select = (int) self.segmentedControl.selectedSegmentIndex;
@@ -83,14 +88,6 @@
             [SVProgressHUD showErrorWithStatus:message maskType:SVProgressHUDMaskTypeBlack];
         }
     }];
-}
-
-#pragma mark UISearchBarDelegate
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    searchText = searchBar.text;
-
-    [searchBar resignFirstResponder];
 
 }
 
