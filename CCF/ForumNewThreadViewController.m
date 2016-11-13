@@ -20,7 +20,7 @@
 
 @interface ForumNewThreadViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate,
         UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,
-        DeleteDelegate, TransBundleDelegate> {
+        DeleteDelegate, TransBundleDelegate, UIScrollViewDelegate> {
 
 
     CCFForumApi *_ccfForumApi;
@@ -46,7 +46,7 @@
 
     _selectPhotos.delegate = self;
     _selectPhotos.dataSource = self;
-
+    _scrollView.delegate = self;
 
     //实例化照片选择控制器
     pickControl = [[UIImagePickerController alloc] init];
@@ -61,6 +61,10 @@
     images = [NSMutableArray array];
 }
 
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+}
 
 - (long long)fileSizeAtPathWithString:(NSString *)filePath {
 

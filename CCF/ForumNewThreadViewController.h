@@ -16,6 +16,7 @@
 @property(weak, nonatomic) IBOutlet UITextField *subject;
 
 @property(weak, nonatomic) IBOutlet UITextView *message;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 - (IBAction)createThread:(id)sender;
 
