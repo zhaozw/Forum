@@ -24,5 +24,6 @@
 - (IBAction)sendSeniorMessage:(UIBarButtonItem *)sender;
 
 @property(weak, nonatomic) IBOutlet UICollectionView *insertCollectionView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end

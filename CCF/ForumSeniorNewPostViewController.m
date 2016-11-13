@@ -18,7 +18,7 @@
 #import "TransBundle.h"
 
 @interface ForumSeniorNewPostViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,
-        UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate, TransBundleDelegate> {
+        UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate, TransBundleDelegate, UIScrollViewDelegate> {
 
     UIImagePickerController *pickControl;
     NSMutableArray<UIImage *> *images;
@@ -52,6 +52,7 @@
 
     _insertCollectionView.delegate = self;
     _insertCollectionView.dataSource = self;
+    _scrollView.delegate = self;
 
     //实例化照片选择控制器
     pickControl = [[UIImagePickerController alloc] init];
@@ -72,6 +73,9 @@
 
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+}
 
 - (long long)fileSizeAtPathWithString:(NSString *)filePath {
 
@@ -209,6 +213,8 @@
 }
 
 - (IBAction)back:(id)sender {
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

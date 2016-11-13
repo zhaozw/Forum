@@ -594,7 +594,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SelectPhotoCollectionViewCell" id="7bS-93-Vf4" customClass="SelectPhotoCollectionViewCell">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CCFSeniorNewPostViewControllerCell" id="7bS-93-Vf4" customClass="SelectPhotoCollectionViewCell">
                                                 <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -692,6 +692,7 @@
                     <connections>
                         <outlet property="insertCollectionView" destination="ai3-6W-cIA" id="O6Q-HF-ySE"/>
                         <outlet property="replyContent" destination="acq-4R-1JW" id="5Qq-XC-t5h"/>
+                        <outlet property="scrollView" destination="rgw-V6-r6n" id="ubg-SR-H62"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R4C-zz-DaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
