@@ -73,8 +73,6 @@
     }
     NSString *avatarInArray = [avatarCache valueForKey:userId];
 
-    NSLog(@"showAvatar incache -> %@", avatarInArray);
-
     if (avatarInArray == nil) {
 
         [ccfapi getAvatarWithUserId:userId handler:^(BOOL isSuccess, NSString *avatar) {
@@ -102,8 +100,6 @@
 
         }];
     } else {
-
-        NSLog(@"showAvatar %@", avatarInArray);
 
         if ([avatarInArray isEqualToString:NO_AVATAR_URL]) {
             [avatarImageView setImage:defaultAvatarImage];

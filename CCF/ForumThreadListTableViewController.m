@@ -139,7 +139,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    // 帖子内容
     static NSString *reusedIdentifier = @"CCFThreadListCellIdentifier";
 
     if (indexPath.section == 0) {
@@ -164,6 +163,7 @@
         return cell;
     } else if (indexPath.section == 1) {
 
+        // 置顶帖子
         CCFThreadListCell *cell = [tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
 
         NormalThread *play = self.threadTopList[(NSUInteger) indexPath.row];
@@ -186,6 +186,7 @@
         return cell;
     } else {
 
+        // 普通帖子
         CCFThreadListCell *cell = [tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
 
         NormalThread *play = self.dataList[(NSUInteger) indexPath.row];
@@ -218,8 +219,14 @@
         [self.ccfApi favoriteFormsWithId:[NSString stringWithFormat:@"%d", parent.formId] handler:^(BOOL isSuccess, id message) {
             NSLog(@">>>>>>>>>>>> %@", message);
         }];
-    } else {
+    } else if (indexPath.section == 1) {
         NormalThread *play = self.threadTopList[(NSUInteger) indexPath.row];
+
+        [self.ccfApi favoriteThreadPostWithId:play.threadID handler:^(BOOL isSuccess, id message) {
+
+        }];
+    } else {
+        NormalThread *play = self.dataList[(NSUInteger) indexPath.row];
 
         [self.ccfApi favoriteThreadPostWithId:play.threadID handler:^(BOOL isSuccess, id message) {
 

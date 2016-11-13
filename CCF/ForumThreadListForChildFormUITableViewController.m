@@ -13,7 +13,7 @@
 #import "ForumUserProfileTableViewController.h"
 #import "ForumWebViewController.h"
 
-@interface ForumThreadListForChildFormUITableViewController ()<TransBundleDelegate> {
+@interface ForumThreadListForChildFormUITableViewController ()<TransBundleDelegate, MGSwipeTableCellDelegate> {
     NSArray *childForms;
     int forumId;
 }
@@ -133,9 +133,35 @@
         [cell setData:play];
     }
 
+    cell.indexPath = indexPath;
+
+    cell.delegate = self;
+
+    cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"收藏此主题" backgroundColor:[UIColor lightGrayColor]]];
+    cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
+
     [cell setSeparatorInset:UIEdgeInsetsZero];
     [cell setLayoutMargins:UIEdgeInsetsZero];
     return cell;
+}
+
+- (BOOL)swipeTableCell:(MGSwipeTableCellWithIndexPath *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
+    NSIndexPath *indexPath = cell.indexPath;
+    if (indexPath.section == 0) {
+        NormalThread *play = self.threadTopList[(NSUInteger) indexPath.row];
+
+        [self.ccfApi favoriteThreadPostWithId:play.threadID handler:^(BOOL isSuccess, id message) {
+
+        }];
+    } else {
+        NormalThread *play = self.threadTopList[(NSUInteger) indexPath.row];
+
+        [self.ccfApi favoriteThreadPostWithId:play.threadID handler:^(BOOL isSuccess, id message) {
+
+        }];
+    }
+
+    return YES;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

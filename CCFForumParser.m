@@ -433,8 +433,6 @@
             avatarLink = @"/no_avatar.gif";
         }
 
-        NSLog(@"showAvatar   ==== detail %@", avatarLink);
-
         //avatarLink = [[avatarLink componentsSeparatedByString:@"/"]lastObject];
 
         ccfuser.userAvatar = avatarLink;
