@@ -1721,7 +1721,7 @@
                                     <outlet property="threadPostCount" destination="9sj-lg-egn" id="qDV-JS-IzE"/>
                                     <outlet property="threadTitle" destination="sLH-nt-fh7" id="Ugx-ef-CzJ"/>
                                     <outlet property="threadTopFlag" destination="X35-yl-o2u" id="RKY-VY-WXe"/>
-                                    <segue destination="7tp-vM-md4" kind="show" identifier="ShowThreadPosts" id="6A8-Kk-las"/>
+                                    <segue destination="7tp-vM-md4" kind="show" id="6A8-Kk-las"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -2131,7 +2131,7 @@
                                     <outlet property="postBelongForm" destination="pcf-97-VHk" id="DXS-ze-IIq"/>
                                     <outlet property="postTime" destination="2mW-fz-Sg5" id="8EQ-gC-zHh"/>
                                     <outlet property="postTitle" destination="Sqd-rq-KUH" id="RTY-Wl-RRL"/>
-                                    <segue destination="7tp-vM-md4" kind="show" identifier="ShowThreadPosts" id="zzk-qa-6cI"/>
+                                    <segue destination="7tp-vM-md4" kind="show" id="zzk-qa-6cI"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -2476,8 +2476,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="8DQ-zi-woY"/>
+        <segue reference="bvY-WW-r79"/>
         <segue reference="FiC-V2-LqH"/>
-        <segue reference="Ysv-Xy-VAF"/>
         <segue reference="Klt-aO-3La"/>
     </inferredMetricsTieBreakers>
 </document>
