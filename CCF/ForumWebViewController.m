@@ -190,9 +190,30 @@
     [self.webView.scrollView.mj_header beginRefreshing];
 }
 
+-(void) showFailedMessage:(id) message{
+    [self.webView.scrollView.mj_header endRefreshing];
+
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:message preferredStyle:UIAlertControllerStyleAlert];
+
+
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+
+    [alert addAction:cancel];
+
+    [self presentViewController:alert animated:YES completion:^{
+
+    }];
+}
 
 - (void)showThreadWithP:(NSString *)pID {
     [self.ccfForumApi showThreadWithP:pID handler:^(BOOL isSuccess, id message) {
+
+        if (!isSuccess){
+            [self showFailedMessage:message];
+            return;
+        }
 
         ShowThreadPage *threadPage = message;
         currentShowThreadPage = threadPage;
@@ -247,6 +268,11 @@
 
 
     [self.ccfForumApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
+
+        if (!isSuccess){
+            [self showFailedMessage:message];
+            return;
+        }
 
         ShowThreadPage *threadPage = message;
 
@@ -340,6 +366,12 @@
         [self showThread:threadId page:currentPage + 1 withAnim:YES];
     } else {
         [self.ccfForumApi showThreadWithId:threadId andPage:currentPage handler:^(BOOL isSuccess, id message) {
+
+            if (!isSuccess){
+                [self showFailedMessage:message];
+                return;
+            }
+
             ShowThreadPage *threadPage = message;
             if (currentShowThreadPage.dataList.count < threadPage.dataList.count) {
 
@@ -367,6 +399,11 @@
     NSString *cacheHtml = pageDic[@(page)];
 
     [self.ccfForumApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
+
+        if (!isSuccess){
+            [self showFailedMessage:message];
+            return;
+        }
 
         [SVProgressHUD dismiss];
 
