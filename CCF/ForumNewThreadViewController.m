@@ -215,6 +215,8 @@
 }
 
 - (IBAction)back:(id)sender {
+
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
     [self dismissViewControllerAnimated:YES completion:^{
 
     }];
