@@ -308,7 +308,7 @@
 - (void)showThreadWithId:(int)threadId andPage:(int)page handler:(HandlerWithBool)handler {
     [_browser showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, NSString *html) {
 
-        if ([html containsString:@"<div style=\"margin: 10px\">没有指定 主题 。如果您来自一个有效链接，请通知<a href=\"sendmessage.php\">管理员</a></div>"] ||
+        if (html == nil || [html containsString:@"<div style=\"margin: 10px\">没有指定 主题 。如果您来自一个有效链接，请通知<a href=\"sendmessage.php\">管理员</a></div>"] ||
                 [html containsString:@"<div style=\"margin: 10px\">沒有指定主題 。如果您來自一個有效連結，請通知<a href=\"sendmessage.php\">管理員</a></div>"]){
             handler(NO, @"没有指定主題，可能被删除或无权查看");
             return;
@@ -325,7 +325,7 @@
 
 - (void)showThreadWithP:(NSString *)p handler:(HandlerWithBool)handler {
     [_browser showThreadWithP:p handler:^(BOOL isSuccess, id result) {
-        if ([result containsString:@"<div style=\"margin: 10px\">没有指定 主题 。如果您来自一个有效链接，请通知<a href=\"sendmessage.php\">管理员</a></div>"] ||
+        if (result == nil || [result containsString:@"<div style=\"margin: 10px\">没有指定 主题 。如果您来自一个有效链接，请通知<a href=\"sendmessage.php\">管理员</a></div>"] ||
                 [result containsString:@"<div style=\"margin: 10px\">沒有指定主題 。如果您來自一個有效連結，請通知<a href=\"sendmessage.php\">管理員</a></div>"]) {
             handler(NO, @"没有指定主題，可能被删除或无权查看");
             return;
