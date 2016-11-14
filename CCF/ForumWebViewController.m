@@ -400,19 +400,20 @@
 
     [self.ccfForumApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
 
+        
+        [SVProgressHUD dismiss];
+        
         if (!isSuccess){
             [self showFailedMessage:message];
             return;
         }
-
-        [SVProgressHUD dismiss];
 
         ShowThreadPage *threadPage = message;
 
         currentShowThreadPage = threadPage;
 
 
-        NSString *title = [NSString stringWithFormat:@"%d/%d", currentShowThreadPage.currentPage, currentShowThreadPage.totalPageCount];
+        NSString *title = [NSString stringWithFormat:@"%lu/%lu", (unsigned long)currentShowThreadPage.currentPage, (unsigned long)currentShowThreadPage.totalPageCount];
         self.pageNumber.title = title;
 
         NSMutableArray<Post *> *posts = threadPage.dataList;
