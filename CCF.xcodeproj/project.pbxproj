@@ -49,7 +49,7 @@
 		3AA935E31CF1BCB2009FC4A6 /* FormEntry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA935DE1CF1BCB2009FC4A6 /* FormEntry+CoreDataProperties.m */; };
 		3AA935E41CF1BCB2009FC4A6 /* FormEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA935E01CF1BCB2009FC4A6 /* FormEntry.m */; };
 		3AA935E81CF1C19A009FC4A6 /* ForumLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA935E61CF1C19A009FC4A6 /* ForumLoginViewController.m */; };
-		3AA935E91CF1C19A009FC4A6 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA935E71CF1C19A009FC4A6 /* LoginViewController.xib */; };
+		3AA935E91CF1C19A009FC4A6 /* ForumLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA935E71CF1C19A009FC4A6 /* ForumLoginViewController.xib */; };
 		3AA935ED1CF1DFE9009FC4A6 /* ForumListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA935EC1CF1DFE9009FC4A6 /* ForumListHeaderView.xib */; };
 		3ABAFE411CAAD12300803085 /* TransValueUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABAFE401CAAD12300803085 /* TransValueUITableViewCell.m */; };
 		3AC65FBF1CF13A8F000D3BDB /* NSUserDefaults+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FBE1CF13A8F000D3BDB /* NSUserDefaults+Extensions.m */; };
@@ -185,7 +185,7 @@
 		3AA935E01CF1BCB2009FC4A6 /* FormEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormEntry.m; sourceTree = "<group>"; };
 		3AA935E51CF1C19A009FC4A6 /* ForumLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumLoginViewController.h; sourceTree = "<group>"; };
 		3AA935E61CF1C19A009FC4A6 /* ForumLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumLoginViewController.m; sourceTree = "<group>"; };
-		3AA935E71CF1C19A009FC4A6 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		3AA935E71CF1C19A009FC4A6 /* ForumLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForumLoginViewController.xib; sourceTree = "<group>"; };
 		3AA935EC1CF1DFE9009FC4A6 /* ForumListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForumListHeaderView.xib; sourceTree = "<group>"; };
 		3ABAFE3F1CAAD12300803085 /* TransValueUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransValueUITableViewCell.h; sourceTree = "<group>"; };
 		3ABAFE401CAAD12300803085 /* TransValueUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransValueUITableViewCell.m; sourceTree = "<group>"; };
@@ -510,7 +510,7 @@
 				3A734BEC1CCCC2CF00C4821A /* PrivateMessage */,
 				3AA935E51CF1C19A009FC4A6 /* ForumLoginViewController.h */,
 				3AA935E61CF1C19A009FC4A6 /* ForumLoginViewController.m */,
-				3AA935E71CF1C19A009FC4A6 /* LoginViewController.xib */,
+				3AA935E71CF1C19A009FC4A6 /* ForumLoginViewController.xib */,
 				3AC660631CF1833F000D3BDB /* ForumTabBarController.h */,
 				3AC660641CF1833F000D3BDB /* ForumTabBarController.m */,
 				3AD077C31CF73B50006A8FBF /* ForumWebViewController.h */,
@@ -749,7 +749,7 @@
 				3A0B3A001D0962D40060F8A4 /* private_message.html in Resources */,
 				3A28267F1CFF30D20095EAE5 /* post_view_notitle.html in Resources */,
 				4D93CFD81C85355D00852D28 /* ApiTestViewController.xib in Resources */,
-				3AA935E91CF1C19A009FC4A6 /* LoginViewController.xib in Resources */,
+				3AA935E91CF1C19A009FC4A6 /* ForumLoginViewController.xib in Resources */,
 				3A671EE61CB9E0E1001CC91E /* PageHeaderView.xib in Resources */,
 				3AD077C71CF73FBF006A8FBF /* post_view.html in Resources */,
 				4D339DA11C31454B0022A6A4 /* LaunchScreen.storyboard in Resources */,
