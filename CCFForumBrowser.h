@@ -11,4 +11,6 @@
 
 @interface CCFForumBrowser : NSObject <ForumEngine>
 
+- (void)reportThreadPost:(int)postId andMessage:(NSString *)message handler:(HandlerWithBool)handler;
+
 @end

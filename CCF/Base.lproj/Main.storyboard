@@ -2496,6 +2496,77 @@
             </objects>
             <point key="canvasLocation" x="-1378" y="-6733"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Wvp-Pc-RZo">
+            <objects>
+                <navigationController storyboardIdentifier="ReportThreadPost" automaticallyAdjustsScrollViewInsets="NO" id="nt7-FE-iY2" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="rFV-BX-a3u">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.1843137255" green="0.27058823529999998" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="6JW-h0-SxQ" kind="relationship" relationship="rootViewController" id="vJP-sL-IwY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A6w-N5-gCo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-338" y="-6714"/>
+        </scene>
+        <!--举报此帖-->
+        <scene sceneID="ddD-8s-RUr">
+            <objects>
+                <viewController id="6JW-h0-SxQ" userLabel="举报此帖" customClass="ForumReportViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Uov-sl-f6W"/>
+                        <viewControllerLayoutGuide type="bottom" id="WGJ-sz-YNS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="e9L-2v-D7N">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gb1-CM-e7u" customClass="UIAutoResizeTextView">
+                                <rect key="frame" x="16" y="8" width="343" height="587"/>
+                                <color key="backgroundColor" red="0.94999998809999997" green="0.94999998809999997" blue="0.94999998809999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="gb1-CM-e7u" firstAttribute="top" secondItem="Uov-sl-f6W" secondAttribute="bottom" constant="8" id="84F-AG-xsF"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="gb1-CM-e7u" secondAttribute="leading" id="Rfg-Ee-eJh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gb1-CM-e7u" secondAttribute="trailing" id="Yfh-E5-Z3e"/>
+                            <constraint firstItem="WGJ-sz-YNS" firstAttribute="top" secondItem="gb1-CM-e7u" secondAttribute="bottom" constant="8" id="a7E-Br-rmu"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="举报此帖" id="mdu-LS-HPa">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="165-Ys-oZ1">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="back:" destination="6JW-h0-SxQ" id="OaC-w9-fla"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="举报" id="0yT-Np-g5s">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="reportThreadPost:" destination="6JW-h0-SxQ" id="QTf-cm-7eA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="reportMessage" destination="gb1-CM-e7u" id="YGn-rq-bHh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="20c-7Q-KJL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="366" y="-6713"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ic_account_balance_18pt" width="18" height="18"/>

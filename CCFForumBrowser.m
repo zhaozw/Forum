@@ -1190,4 +1190,26 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
+- (void)reportThreadPost:(int)postId andMessage:(NSString *)message handler:(HandlerWithBool)handler {
+    [_browser GETWithURLString:BBS_REPORT_THREAD_POST(postId) requestCallback:^(BOOL isSuccess, NSString *html) {
+        if (isSuccess) {
+
+            NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+            [parameters setValue:@"" forKey:@"s"];
+            NSString * token = [parser parseSecurityToken:html];
+            [parameters setValue:token forKey:@"securitytoken"];
+            [parameters setValue:message forKey:@"reason"];
+            [parameters setValue:[NSString stringWithFormat:@"%d", postId] forKey:@"postid"];
+            [parameters setValue:@"sendemail" forKey:@"do"];
+            [parameters setValue:[NSString stringWithFormat:@"showthread.php?p=%d#post%d", postId, postId] forKey:@"url"];
+
+            [_browser POSTWithURLString:BBS_REPORT_SENDEMAIL parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+                handler(isSuccess, html);
+            }];
+        } else {
+            handler(NO, html);
+        }
+    }];
+}
+
 @end

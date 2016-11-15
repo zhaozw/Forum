@@ -445,4 +445,9 @@
     [_browser refreshVCodeToUIImageView:vCodeImageView];
 }
 
+- (void)reportThreadPost:(int)postId andMessage:(NSString *)message handler:(HandlerWithBool)handler {
+    [_browser reportThreadPost:postId andMessage:message handler:^(BOOL isSuccess, id message) {
+        handler(isSuccess, message);
+    }];
+}
 @end

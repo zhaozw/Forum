@@ -17,8 +17,8 @@
 
 @interface ForumSimpleReplyViewController ()<TransBundleDelegate> {
     NSString * userName;
-    int threadId;
     int postId;
+    int threadId;
     NSString *securityToken;
     NSString *ajaxLastPost;
 }

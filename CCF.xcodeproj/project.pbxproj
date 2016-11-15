@@ -11,6 +11,7 @@
 		2F34CADF83517CAFD6C03311 /* append_post_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 2F34C4DA4FA7BEF14D1932AD /* append_post_content.html */; };
 		2F34CFE0A8D88142C21C7417 /* append_post.js in Resources */ = {isa = PBXBuildFile; fileRef = 2F34CAFB4248BA4D1BE6E027 /* append_post.js */; };
 		3A0A99831C4A71B600086DAB /* ForumSeniorNewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A99821C4A71B600086DAB /* ForumSeniorNewPostViewController.m */; };
+		3A0B2C541DDAAE5100FF4ABD /* ForumReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0B2C531DDAAE5100FF4ABD /* ForumReportViewController.m */; };
 		3A0B3A001D0962D40060F8A4 /* private_message.html in Resources */ = {isa = PBXBuildFile; fileRef = 3A0B39FF1D0962D40060F8A4 /* private_message.html */; };
 		3A1C2CD11C9E9B740068AF6B /* ForumUserProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C2CD01C9E9B740068AF6B /* ForumUserProfileTableViewController.m */; };
 		3A1C2CD71C9EB2C10068AF6B /* CCFProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C2CD61C9EB2C10068AF6B /* CCFProfileTableViewCell.m */; };
@@ -114,6 +115,8 @@
 		2F34CAFB4248BA4D1BE6E027 /* append_post.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = append_post.js; path = CCF/append_post.js; sourceTree = "<group>"; };
 		3A0A99811C4A71B600086DAB /* ForumSeniorNewPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumSeniorNewPostViewController.h; sourceTree = "<group>"; };
 		3A0A99821C4A71B600086DAB /* ForumSeniorNewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumSeniorNewPostViewController.m; sourceTree = "<group>"; };
+		3A0B2C521DDAAE5100FF4ABD /* ForumReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumReportViewController.h; sourceTree = "<group>"; };
+		3A0B2C531DDAAE5100FF4ABD /* ForumReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumReportViewController.m; sourceTree = "<group>"; };
 		3A0B39FF1D0962D40060F8A4 /* private_message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = private_message.html; path = CCF/private_message.html; sourceTree = "<group>"; };
 		3A141A1F1D0AD9D2001A1F78 /* ForumConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ForumConfig.h; path = CCF/ForumConfig.h; sourceTree = "<group>"; };
 		3A1C2CCF1C9E9B740068AF6B /* ForumUserProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumUserProfileTableViewController.h; sourceTree = "<group>"; };
@@ -308,6 +311,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A0B2C511DDAADD300FF4ABD /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				3A0B2C521DDAAE5100FF4ABD /* ForumReportViewController.h */,
+				3A0B2C531DDAAE5100FF4ABD /* ForumReportViewController.m */,
+			);
+			name = Report;
+			sourceTree = "<group>";
+		};
 		3A2FCC7B1C956D5C00B469E4 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,6 +515,7 @@
 		3AEA1F341C365E2100710BD6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3A0B2C511DDAADD300FF4ABD /* Report */,
 				3A8E05561CC3AA28003D0D90 /* ReplyController */,
 				3A734BDC1CCC55EF00C4821A /* Profile */,
 				3A734BE81CCCC23700C4821A /* CreateNewThread */,
@@ -859,6 +872,7 @@
 				3AC65FBF1CF13A8F000D3BDB /* NSUserDefaults+Extensions.m in Sources */,
 				3AC660781CF1833F000D3BDB /* ForumTabBarController.m in Sources */,
 				3A671EE41CB9E061001CC91E /* PageHeaderView.m in Sources */,
+				3A0B2C541DDAAE5100FF4ABD /* ForumReportViewController.m in Sources */,
 				3AA5B99D1CBA7D690008175A /* ForumSimpleReplyViewController.m in Sources */,
 				3AA5B9A01CBA8C6C0008175A /* ForumReplyNavigationController.m in Sources */,
 				3A9ADC6C1C9D8F2C006055A8 /* BaseCCFTableViewCell.m in Sources */,

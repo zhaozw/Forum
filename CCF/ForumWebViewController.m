@@ -543,7 +543,7 @@
         int postId = [[query valueForKey:@"postid"] intValue];
         NSString *louCeng = [query valueForKey:@"postlouceng"];
 
-        itemActionSheet = [LCActionSheet sheetWithTitle:userName buttonTitles:@[@"快速回复", @"高级回复", @"复制链接"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
+        itemActionSheet = [LCActionSheet sheetWithTitle:userName buttonTitles:@[@"快速回复", @"高级回复", @"复制链接", @"举报此帖"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
             if (buttonIndex == 0) {
                 UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
 
@@ -595,6 +595,18 @@
                 UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
                 pasteboard.string = postUrl;
                 [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
+            } else if (buttonIndex == 3){
+                UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
+
+                UINavigationController *simpleReplyController = [storyboard instantiateViewControllerWithIdentifier:@"ReportThreadPost"];
+
+                TransBundle *bundle = [[TransBundle alloc] init];
+                [bundle putIntValue:postId forKey:@"POST_ID"];
+                [bundle putStringValue:userName forKey:@"POST_USER"];
+
+                [self presentViewController:simpleReplyController withBundle:bundle forRootController:YES animated:YES completion:^{
+
+                }];
             }
         }];
 

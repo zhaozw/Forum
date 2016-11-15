@@ -101,8 +101,10 @@
 // UserCP
 #define BBS_USER_CP [NSString stringWithFormat:@"%@usercp.php", BBS_URL]
 
+// report
+#define BBS_REPORT_SENDEMAIL [NSString stringWithFormat:@"%@report.php?do=sendemail", BBS_URL]
 
-
+#define BBS_REPORT_THREAD_POST(postId) [NSString stringWithFormat:@"%@report.php?p=%d", BBS_URL,postId]
 
 
 
