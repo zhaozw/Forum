@@ -17,7 +17,7 @@
 #import "ForumNewThreadNavigationController.h"
 
 
-@interface ForumThreadListTableViewController () <TransBundleDelegate, CCFThreadListCellDelegate, MGSwipeTableCellDelegate> {
+@interface ForumThreadListTableViewController () <TransBundleDelegate, ThreadListCellDelegate, MGSwipeTableCellDelegate> {
     Forum *transForm;
     NSArray *childForms;
     UIStoryboardSegue *selectSegue;

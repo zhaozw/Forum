@@ -15,7 +15,7 @@
 #import "TransBundleDelegate.h"
 #import "TransBundle.h"
 
-@interface ForumShowNewThreadPostTableViewController () <CCFThreadListCellDelegate, MGSwipeTableCellDelegate> {
+@interface ForumShowNewThreadPostTableViewController () <ThreadListCellDelegate, MGSwipeTableCellDelegate> {
     UIStoryboardSegue *selectSegue;
 }
 

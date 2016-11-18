@@ -12,7 +12,7 @@
 #import "ForumUserProfileTableViewController.h"
 #import "UIStoryboard+Forum.h"
 
-@interface ForumFavThreadPostTableViewController () <MGSwipeTableCellDelegate, CCFThreadListCellDelegate> {
+@interface ForumFavThreadPostTableViewController () <MGSwipeTableCellDelegate, ThreadListCellDelegate> {
     UIStoryboardSegue *selectSegue;
 }
 

@@ -12,7 +12,7 @@
 #import <SVProgressHUD.h>
 #import "ForumWebViewController.h"
 
-@interface ForumSearchViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, CCFThreadListCellDelegate, MGSwipeTableCellDelegate> {
+@interface ForumSearchViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, ThreadListCellDelegate, MGSwipeTableCellDelegate> {
     NSString *_searchid;
     UIStoryboardSegue *selectSegue;
     NSString *searchText;

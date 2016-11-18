@@ -14,7 +14,7 @@
 #import "UIStoryboard+Forum.h"
 #import "ForumTabBarController.h"
 
-@interface ForumPrivateMessageTableViewController () <CCFThreadListCellDelegate, MGSwipeTableCellDelegate> {
+@interface ForumPrivateMessageTableViewController () <ThreadListCellDelegate, MGSwipeTableCellDelegate> {
     int messageType;
     UIStoryboardSegue *selectSegue;
 }
