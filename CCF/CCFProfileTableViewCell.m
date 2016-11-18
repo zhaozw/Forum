@@ -8,6 +8,7 @@
 
 #import "CCFProfileTableViewCell.h"
 #import "vBulletinForumEngine.h"
+#import "UserProfile.h"
 
 @implementation CCFProfileTableViewCell
 
