@@ -7,7 +7,7 @@
 //
 
 #import "ForumFavThreadPostTableViewController.h"
-#import "CCFSimpleThreadTableViewCell.h"
+#import "ForumSimpleThreadTableViewCell.h"
 #import "ForumTabBarController.h"
 #import "ForumWebViewController.h"
 #import "ForumUserProfileTableViewController.h"
@@ -61,7 +61,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"CCFSimpleThreadTableViewCell";
-    CCFSimpleThreadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    ForumSimpleThreadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 
     cell.indexPath = indexPath;
     cell.delegate = self;
@@ -93,12 +93,12 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [tableView fd_heightForCellWithIdentifier:@"CCFSimpleThreadTableViewCell" configuration:^(CCFSimpleThreadTableViewCell *cell) {
+    return [tableView fd_heightForCellWithIdentifier:@"CCFSimpleThreadTableViewCell" configuration:^(ForumSimpleThreadTableViewCell *cell) {
         [self configureCell:cell atIndexPath:indexPath];
     }];
 }
 
-- (void)configureCell:(CCFSimpleThreadTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(ForumSimpleThreadTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
 
     [cell setData:self.dataList[(NSUInteger) indexPath.row]];

@@ -90,7 +90,7 @@
 		4D339D991C31454A0022A6A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D339D971C31454A0022A6A4 /* Main.storyboard */; };
 		4D339D9E1C31454B0022A6A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D339D9D1C31454B0022A6A4 /* Assets.xcassets */; };
 		4D339DA11C31454B0022A6A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D339D9F1C31454B0022A6A4 /* LaunchScreen.storyboard */; };
-		4D6B11CB1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6B11CA1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m */; };
+		4D6B11CB1C9A582100E073A1 /* ForumSimpleThreadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6B11CA1C9A582100E073A1 /* ForumSimpleThreadTableViewCell.m */; };
 		4D796BDB1C43666C00B3C62D /* ForumSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BDA1C43666C00B3C62D /* ForumSearchResultCell.m */; };
 		4D796BEA1C44992700B3C62D /* UIStoryboard+Forum.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BE91C44992700B3C62D /* UIStoryboard+Forum.m */; };
 		4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF91C44BE7800B3C62D /* CoreDataManager.m */; };
@@ -275,8 +275,8 @@
 		4D339D9D1C31454B0022A6A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D339DA01C31454B0022A6A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D339DA21C31454B0022A6A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4D6B11C91C9A582100E073A1 /* CCFSimpleThreadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSimpleThreadTableViewCell.h; sourceTree = "<group>"; };
-		4D6B11CA1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSimpleThreadTableViewCell.m; sourceTree = "<group>"; };
+		4D6B11C91C9A582100E073A1 /* ForumSimpleThreadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumSimpleThreadTableViewCell.h; sourceTree = "<group>"; };
+		4D6B11CA1C9A582100E073A1 /* ForumSimpleThreadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumSimpleThreadTableViewCell.m; sourceTree = "<group>"; };
 		4D796BD91C43666C00B3C62D /* ForumSearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumSearchResultCell.h; sourceTree = "<group>"; };
 		4D796BDA1C43666C00B3C62D /* ForumSearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumSearchResultCell.m; sourceTree = "<group>"; };
 		4D796BE81C44992700B3C62D /* UIStoryboard+Forum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+Forum.h"; sourceTree = "<group>"; };
@@ -373,8 +373,8 @@
 				3A2FCC7D1C956DB100B469E4 /* PrivateMessageTableViewCell.m */,
 				4D32560B1C4754E700053288 /* SelectPhotoCollectionViewCell.h */,
 				4D32560C1C4754E700053288 /* SelectPhotoCollectionViewCell.m */,
-				4D6B11C91C9A582100E073A1 /* CCFSimpleThreadTableViewCell.h */,
-				4D6B11CA1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m */,
+				4D6B11C91C9A582100E073A1 /* ForumSimpleThreadTableViewCell.h */,
+				4D6B11CA1C9A582100E073A1 /* ForumSimpleThreadTableViewCell.m */,
 				3AC65FD81CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.h */,
 				3AC65FD91CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.m */,
 			);
@@ -992,7 +992,7 @@
 				3AC660771CF1833F000D3BDB /* ForumSettingTableViewController.m in Sources */,
 				3A1CC3E01CB922F5007A0B97 /* ForumWritePMViewController.m in Sources */,
 				3AC6606C1CF1833F000D3BDB /* ForumMyThreadPostTableViewController.m in Sources */,
-				4D6B11CB1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m in Sources */,
+				4D6B11CB1C9A582100E073A1 /* ForumSimpleThreadTableViewCell.m in Sources */,
 				3A2FCC7E1C956DB100B469E4 /* PrivateMessageTableViewCell.m in Sources */,
 				3AA935E81CF1C19A009FC4A6 /* ForumLoginViewController.m in Sources */,
 				3A1CF8781C54F8AB002E52EE /* UIColor+MyColor.m in Sources */,

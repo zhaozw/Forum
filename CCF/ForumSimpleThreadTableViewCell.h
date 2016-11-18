@@ -1,5 +1,5 @@
 //
-//  CCFSimpleThreadTableViewCell.h
+//  ForumSimpleThreadTableViewCell.h
 //  CCF
 //
 //  Created by WDY on 16/3/17.
@@ -11,7 +11,7 @@
 #import "BaseFourmTableViewCell.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 
-@interface CCFSimpleThreadTableViewCell : BaseFourmTableViewCell
+@interface ForumSimpleThreadTableViewCell : BaseFourmTableViewCell
 
 @property(weak, nonatomic) IBOutlet UILabel *threadAuthorName;
 @property(weak, nonatomic) IBOutlet UILabel *lastPostTime;

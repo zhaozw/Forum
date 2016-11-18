@@ -1,14 +1,14 @@
 //
-//  CCFSimpleThreadTableViewCell.m
+//  ForumSimpleThreadTableViewCell.m
 //  CCF
 //
 //  Created by WDY on 16/3/17.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFSimpleThreadTableViewCell.h"
+#import "ForumSimpleThreadTableViewCell.h"
 
-@implementation CCFSimpleThreadTableViewCell {
+@implementation ForumSimpleThreadTableViewCell {
     NSIndexPath *selectIndexPath;
 }
 
