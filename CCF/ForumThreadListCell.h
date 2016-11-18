@@ -11,7 +11,7 @@
 #import "vBulletinForumEngine.h"
 
 
-@interface CCFThreadListCell : BaseFourmTableViewCell
+@interface ForumThreadListCell : BaseFourmTableViewCell
 
 
 @property(weak, nonatomic) IBOutlet UILabel *threadAuthor;

@@ -6,7 +6,7 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFThreadListCell.h"
+#import "ForumThreadListCell.h"
 #import "vBulletinForumEngine.h"
 
 #import "NSString+Extensions.h"
@@ -15,7 +15,7 @@
 #import "UserEntry+CoreDataProperties.h"
 #import "CCFForumApi.h"
 
-@implementation CCFThreadListCell {
+@implementation ForumThreadListCell {
 
     ForumCoreDataManager *_coreDateManager;
     CCFForumApi *ccfapi;

@@ -8,7 +8,7 @@
 
 #import "ForumThreadListTableViewController.h"
 
-#import "CCFThreadListCell.h"
+#import "ForumThreadListCell.h"
 #import "ForumNewThreadViewController.h"
 #import "ForumUserProfileTableViewController.h"
 #import "ForumThreadListForChildFormUITableViewController.h"
@@ -164,7 +164,7 @@
     } else if (indexPath.section == 1) {
 
         // 置顶帖子
-        CCFThreadListCell *cell = [tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
+        ForumThreadListCell *cell = [tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
 
         NormalThread *play = self.threadTopList[(NSUInteger) indexPath.row];
 
@@ -187,7 +187,7 @@
     } else {
 
         // 普通帖子
-        CCFThreadListCell *cell = [tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
+        ForumThreadListCell *cell = [tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
 
         NormalThread *play = self.dataList[(NSUInteger) indexPath.row];
 
@@ -241,14 +241,14 @@
     if (indexPath.section == 0) {
         return 54;
     } else {
-        return [tableView fd_heightForCellWithIdentifier:@"CCFThreadListCellIdentifier" configuration:^(CCFThreadListCell *cell) {
+        return [tableView fd_heightForCellWithIdentifier:@"CCFThreadListCellIdentifier" configuration:^(ForumThreadListCell *cell) {
             [self configureCell:cell atIndexPath:indexPath];
         }];
     }
 }
 
 
-- (void)configureCell:(CCFThreadListCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(ForumThreadListCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
 
     [cell setData:self.dataList[(NSUInteger) indexPath.row]];
