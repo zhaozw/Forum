@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
+#import "vBulletinForumEngine.h"
 
 @interface CCFForumParser : NSObject <ForumParser>
 

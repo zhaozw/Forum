@@ -8,7 +8,7 @@
 
 #import "CCFForumApi.h"
 #import "NSUserDefaults+Extensions.h"
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
+#import "vBulletinForumEngine.h"
 
 
 #import "CCFPCH.pch"
@@ -43,8 +43,8 @@
 }
 
 
-- (void)loginWithName:(NSString *)name andPassWord:(NSString *)passWord handler:(HandlerWithBool)handler {
-    [_browser loginWithName:name andPassWord:passWord handler:^(BOOL isSuccess, id message) {
+-(void)loginWithName:(NSString *)name andPassWord:(NSString *)passWord withCode:(NSString *)code handler:(HandlerWithBool)handler{
+    [_browser loginWithName:name andPassWord:passWord withCode:code handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             LoginUser *user = [self getLoginUser];
             if (user.userID == nil) {

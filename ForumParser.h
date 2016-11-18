@@ -7,20 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <vBulletinForumEngine/LoginUser.h>
-#import <vBulletinForumEngine/PrivateMessage.h>
-#import <vBulletinForumEngine/ShowPrivateMessage.h>
-#import <vBulletinForumEngine/Post.h>
-#import <vBulletinForumEngine/User.h>
-#import <vBulletinForumEngine/Forum.h>
-#import <vBulletinForumEngine/Thread.h>
-#import <vBulletinForumEngine/UserProfile.h>
-#import <vBulletinForumEngine/SimpleThread.h>
-#import <vBulletinForumEngine/NormalThread.h>
-#import <vBulletinForumEngine/ShowThreadPage.h>
-#import <vBulletinForumEngine/ForumDisplayPage.h>
-#import <vBulletinForumEngine/ThreadInSearch.h>
-#import <vBulletinForumEngine/SearchForumDisplayPage.h>
+#import "LoginUser.h"
+#import "PrivateMessage.h"
+#import "ShowPrivateMessage.h"
+#import "Post.h"
+#import "User.h"
+#import "Forum.h"
+#import "Thread.h"
+#import "UserProfile.h"
+#import "SimpleThread.h"
+#import "NormalThread.h"
+#import "ShowThreadPage.h"
+#import "ForumDisplayPage.h"
+#import "ThreadInSearch.h"
+#import "SearchForumDisplayPage.h"
 
 @protocol ForumParser <NSObject>
 

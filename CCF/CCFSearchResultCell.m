@@ -7,7 +7,7 @@
 //
 
 #import "CCFSearchResultCell.h"
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
+#import "vBulletinForumEngine.h"
 
 
 @implementation CCFSearchResultCell {

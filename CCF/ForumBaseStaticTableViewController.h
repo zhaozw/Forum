@@ -9,7 +9,7 @@
 #import "CCFForumApi.h"
 #import "MJRefresh.h"
 #import "UITableView+FDTemplateLayoutCell.h"
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
+#import "vBulletinForumEngine.h"
 
 @interface ForumBaseStaticTableViewController : UITableViewController
 

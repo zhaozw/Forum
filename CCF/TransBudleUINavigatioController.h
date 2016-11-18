@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
+#import "vBulletinForumEngine.h"
 
 #import "TransBundle.h"
 #import "TransBundleDelegate.h"

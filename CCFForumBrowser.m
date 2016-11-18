@@ -12,7 +12,7 @@
 #import <UIImageView+AFNetworking.h>
 #import "Utils.h"
 
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
+#import "vBulletinForumEngine.h"
 
 #import "NSUserDefaults+Extensions.h"
 #import "AFHTTPSessionManager+SimpleAction.h"

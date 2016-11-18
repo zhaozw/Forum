@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "ForumLoginViewController.h"
 
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
+#import "vBulletinForumEngine.h"
 
 #import "ForumCoreDataManager.h"
 #import "FormEntry.h"

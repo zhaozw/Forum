@@ -12,7 +12,7 @@
 #import "MJRefresh.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
+#import "vBulletinForumEngine.h"
 #import "TranBundleUITableViewController.h"
 
 @interface ForumApiBaseTableViewController : TranBundleUITableViewController

@@ -19,7 +19,7 @@ typedef void (^HandlerWithBool)(BOOL isSuccess, id message);
 @protocol ForumEngine <NSObject>
 
 // 登录论坛
-- (void)loginWithName:(NSString *)name andPassWord:(NSString *)passWord handler:(HandlerWithBool)handler;
+- (void)loginWithName:(NSString *)name andPassWord:(NSString *)passWord withCode:(NSString*) code handler:(HandlerWithBool)handler;
 
 // 刷新验证码
 - (void)refreshVCodeToUIImageView:(UIImageView *)vCodeImageView;

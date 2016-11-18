@@ -1,6 +1,0 @@
-framework module vBulletinForumEngine {
-  umbrella header "vBulletinForumEngine.h"
-
-  export *
-  module * { export * }
-}

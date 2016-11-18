@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseCCFTableViewCell.h"
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
+#import "vBulletinForumEngine.h"
 
 
 @interface CCFThreadListCell : BaseCCFTableViewCell

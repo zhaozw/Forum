@@ -7,7 +7,7 @@
 //
 
 #import "CCFThreadListCell.h"
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
+#import "vBulletinForumEngine.h"
 
 #import "NSString+Extensions.h"
 #import <UIImageView+AFNetworking.h>

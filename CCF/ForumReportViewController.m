@@ -10,7 +10,7 @@
 #import "SVProgressHUD.h"
 
 #import "UIStoryboard+CCF.h"
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
+#import "vBulletinForumEngine.h"
 #import "TransBundle.h"
 #import "TransBundleDelegate.h"
 

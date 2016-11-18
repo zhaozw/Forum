@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AutoRelayoutToolbar.h"
-#import <vBulletinForumEngine/vBulletinForumEngine.h>
+#import "vBulletinForumEngine.h"
 #import "ForumApiBaseViewController.h"
 
 
