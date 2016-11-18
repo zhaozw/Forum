@@ -149,7 +149,7 @@
 
 
     UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
-    UINavigationController *myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileNavigationController"];
+    UINavigationController *myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"MyProfileNavigationController"];
     [controller presentViewController:myProfileControllder animated:YES completion:^{
 
     }];

@@ -59,7 +59,7 @@
 #pragma mark - Table view data source
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *identifier = @"CCFSimpleThreadTableViewCell";
+    static NSString *identifier = @"SimpleThreadTableViewCell";
     ForumSimpleThreadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 
     cell.indexPath = indexPath;
@@ -92,7 +92,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [tableView fd_heightForCellWithIdentifier:@"CCFSimpleThreadTableViewCell" configuration:^(ForumSimpleThreadTableViewCell *cell) {
+    return [tableView fd_heightForCellWithIdentifier:@"SimpleThreadTableViewCell" configuration:^(ForumSimpleThreadTableViewCell *cell) {
         [self configureCell:cell atIndexPath:indexPath];
     }];
 }
@@ -141,7 +141,7 @@
 
 
     UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
-    UINavigationController *myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileNavigationController"];
+    UINavigationController *myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"MyProfileNavigationController"];
     [controller presentViewController:myProfileControllder animated:YES completion:^{
 
     }];

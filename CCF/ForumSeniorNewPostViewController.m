@@ -178,7 +178,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-    static NSString *Identifier = @"CCFSeniorNewPostViewControllerCell";
+    static NSString *Identifier = @"SelectPhotoCollectionViewCell";
 
     SelectPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:Identifier forIndexPath:indexPath];
     cell.deleteImageDelete = self;

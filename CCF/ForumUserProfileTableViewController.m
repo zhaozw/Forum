@@ -110,7 +110,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
-    if ([segue.identifier isEqualToString:@"ShowCCFUserThreadTableViewController"]) {
+    if ([segue.identifier isEqualToString:@"ShowUserProfile"]) {
         ForumUserThreadTableViewController *controller = segue.destinationViewController;
 
         TransBundle *bundle = [[TransBundle alloc] init];

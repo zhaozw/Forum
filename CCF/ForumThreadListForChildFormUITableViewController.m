@@ -120,7 +120,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     // 帖子内容
-    static NSString *reusedIdentifier = @"CCFThreadListCellIdentifier";
+    static NSString *reusedIdentifier = @"ThreadListCellIdentifier";
 
     ForumThreadListCell *cell = (ForumThreadListCell *) [tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
 
@@ -164,7 +164,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [tableView fd_heightForCellWithIdentifier:@"CCFThreadListCellIdentifier" configuration:^(ForumThreadListCell *cell) {
+    return [tableView fd_heightForCellWithIdentifier:@"ThreadListCellIdentifier" configuration:^(ForumThreadListCell *cell) {
         [self configureCell:cell atIndexPath:indexPath];
     }];
 }

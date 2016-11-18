@@ -107,28 +107,6 @@
         // 清空数据库
         [formManager deleteData];
 
-//        NSString *path = [[NSBundle mainBundle]pathForResource:@"ccf" ofType:@"json"];
-//        NSArray<CCFForm*> * forms = [[[CCFFormDao alloc]init] parseCCFForms:path];
-//
-//        
-//        NSMutableArray<CCFForm *> * needInsert = [NSMutableArray array];
-//        
-//        for (CCFForm *form in forms) {
-//            [needInsert addObjectsFromArray:[self flatForm:form]];
-//        }
-//        
-//        
-//        
-//        [formManager insertData:needInsert operation:^(NSManagedObject *target, id src) {
-//            FormEntry *newsInfo = (FormEntry*)target;
-//            newsInfo.formId = [src valueForKey:@"formId"];
-//            newsInfo.formName = [src valueForKey:@"formName"];
-//            newsInfo.parentFormId = [src valueForKey:@"parentFormId"];
-//            newsInfo.isNeedLogin = [src valueForKey:@"isNeedLogin"];
-//        }];
-
-
-
         ForumCoreDataManager *userManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
         [userManager deleteData];
 

@@ -138,11 +138,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    static NSString *reusedIdentifier = @"CCFThreadListCellIdentifier";
+    static NSString *reusedIdentifier = @"ThreadListCellIdentifier";
 
     if (indexPath.section == 0) {
         // 子论坛
-        static NSString *reusedIdentifierForm = @"CCFThreadListCellShowChildForm";
+        static NSString *reusedIdentifierForm = @"ThreadListCellShowChildForm";
         MGSwipeTableCellWithIndexPath *cell = [tableView dequeueReusableCellWithIdentifier:reusedIdentifierForm];
 
         cell.indexPath = indexPath;
@@ -240,7 +240,7 @@
     if (indexPath.section == 0) {
         return 54;
     } else {
-        return [tableView fd_heightForCellWithIdentifier:@"CCFThreadListCellIdentifier" configuration:^(ForumThreadListCell *cell) {
+        return [tableView fd_heightForCellWithIdentifier:@"ThreadListCellIdentifier" configuration:^(ForumThreadListCell *cell) {
             [self configureCell:cell atIndexPath:indexPath];
         }];
     }
