@@ -14,7 +14,7 @@
 #import "MGSwipeTableCell.h"
 #import "MGSwipeTableCellWithIndexPath.h"
 #import "ForumTabBarController.h"
-#import "UIStoryboard+CCF.h"
+#import "UIStoryboard+Forum.h"
 
 
 @interface ForumTableViewController () <MGSwipeTableCellDelegate>

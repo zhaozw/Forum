@@ -12,7 +12,7 @@
 
 #import "ForumWritePMNavigationController.h"
 #import <UIImageView+WebCache.h>
-#import "UIStoryboard+CCF.h"
+#import "UIStoryboard+Forum.h"
 
 #import "ForumConfig.h"
 

@@ -12,7 +12,7 @@
 
 #import "ForumUserProfileTableViewController.h"
 #import "ForumWritePMNavigationController.h"
-#import "UIStoryboard+CCF.h"
+#import "UIStoryboard+Forum.h"
 #import "ForumTabBarController.h"
 
 @interface ForumPrivateMessageTableViewController () <CCFThreadListCellDelegate, MGSwipeTableCellDelegate> {

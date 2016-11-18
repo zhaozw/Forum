@@ -9,7 +9,7 @@
 #import "ForumFavFormController.h"
 #import "ForumCoreDataManager.h"
 #import "NSUserDefaults+Extensions.h"
-#import "UIStoryboard+CCF.h"
+#import "UIStoryboard+Forum.h"
 #import "ForumThreadListTableViewController.h"
 #import "ForumTabBarController.h"
 #import "MGSwipeTableCellWithIndexPath.h"

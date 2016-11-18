@@ -19,7 +19,7 @@
 #import <AVOSCloud.h>
 #import <AVOSCloudIM.h>
 #import "CCFForumApi.h"
-#import "UIStoryboard+CCF.h"
+#import "UIStoryboard+Forum.h"
 #import "HPURLProtocol.h"
 #import "AFNetworking.h"
 #import "AFNetworkActivityIndicatorManager.h"

@@ -16,7 +16,7 @@
 #import "LCActionSheet.h"
 
 #import "SVProgressHUD.h"
-#import "UIStoryboard+CCF.h"
+#import "UIStoryboard+Forum.h"
 #import "ActionSheetPicker.h"
 #import "ForumReplyNavigationController.h"
 #import "NSString+Extensions.h"

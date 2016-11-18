@@ -12,7 +12,7 @@
 #import "ForumCoreDataManager.h"
 #import "UserEntry+CoreDataProperties.h"
 #import "ForumLoginViewController.h"
-#import "UIStoryboard+CCF.h"
+#import "UIStoryboard+Forum.h"
 
 
 @interface ForumMyProfileTableViewController () {

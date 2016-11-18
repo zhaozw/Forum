@@ -11,7 +11,7 @@
 #import "ForumTabBarController.h"
 #import "ForumWebViewController.h"
 #import "ForumUserProfileTableViewController.h"
-#import "UIStoryboard+CCF.h"
+#import "UIStoryboard+Forum.h"
 
 @interface ForumFavThreadPostTableViewController () <MGSwipeTableCellDelegate, CCFThreadListCellDelegate> {
     UIStoryboardSegue *selectSegue;

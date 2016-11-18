@@ -13,7 +13,7 @@
 #import "ForumUserProfileTableViewController.h"
 #import "ForumThreadListForChildFormUITableViewController.h"
 #import "NSUserDefaults+Setting.h"
-#import "UIStoryboard+CCF.h"
+#import "UIStoryboard+Forum.h"
 #import "ForumWebViewController.h"
 #import "ForumNewThreadNavigationController.h"
 

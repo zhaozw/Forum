@@ -7,7 +7,7 @@
 //
 
 #import "ForumSettingTableViewController.h"
-#import "UIStoryboard+CCF.h"
+#import "UIStoryboard+Forum.h"
 #import "NSUserDefaults+Setting.h"
 
 @interface ForumSettingTableViewController ()

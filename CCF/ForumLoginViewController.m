@@ -9,7 +9,7 @@
 #import "ForumLoginViewController.h"
 #import "AppDelegate.h"
 
-#import "UIStoryboard+CCF.h"
+#import "UIStoryboard+Forum.h"
 #import <SVProgressHUD.h>
 #import "ForumCoreDataManager.h"
 #import "FormEntry+CoreDataProperties.h"

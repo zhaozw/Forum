@@ -6,7 +6,7 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "UIStoryboard+CCF.h"
+#import "UIStoryboard+Forum.h"
 
 #import "AppDelegate.h"
 
@@ -14,7 +14,7 @@
 #define kCCFStoryboard @"Main"
 
 
-@implementation UIStoryboard (CCF)
+@implementation UIStoryboard (Forum)
 
 + (UIStoryboard *)mainStoryboard {
     return [UIStoryboard storyboardWithName:kCCFStoryboard bundle:nil];

@@ -12,7 +12,7 @@
 #import "ForumUserProfileTableViewController.h"
 
 #import "ForumWebViewController.h"
-#import "UIStoryboard+CCF.h"
+#import "UIStoryboard+Forum.h"
 #import "ForumConfig.h"
 
 #import "ForumWritePMNavigationController.h"

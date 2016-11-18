@@ -10,12 +10,7 @@
 
 #define kCCFRootController @"DRLTabBarController"
 
-//所有的论坛
-
-//收藏的论坛
-#define kCCFFavFormController @"CCFFavFormController"
-
-@interface UIStoryboard (CCF)
+@interface UIStoryboard (Forum)
 
 + (UIStoryboard *)mainStoryboard;
 

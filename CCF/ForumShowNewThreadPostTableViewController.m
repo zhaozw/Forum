@@ -9,7 +9,7 @@
 #import "ForumShowNewThreadPostTableViewController.h"
 
 #import "CCFSearchResultCell.h"
-#import "UIStoryboard+CCF.h"
+#import "UIStoryboard+Forum.h"
 #import "ForumUserProfileTableViewController.h"
 #import "ForumTabBarController.h"
 #import "ForumWebViewController.h"
