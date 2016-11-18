@@ -7,17 +7,17 @@
 
 #import "NSUserDefaults+Extensions.h"
 
-#define kCCFCookie @"CCF-Cookies"
-#define kCCFFavFormIds @"CCF-FavIds"
+#define kCookie @"ForumCookie"
+#define kFavForumIds @"FavIds"
 
 #define kDB_VERSION @"DB_VERSION"
-#define kUserName @"CCF-UserName"
+#define kUserName @"UserName"
 
 
 @implementation NSUserDefaults (Extensions)
 
 - (NSString *)loadCookie {
-    NSData *cookiesdata = [self objectForKey:kCCFCookie];
+    NSData *cookiesdata = [self objectForKey:kCookie];
 
 
     if ([cookiesdata length]) {
@@ -39,15 +39,15 @@
 - (void)saveCookie {
     NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cookies];
-    [self setObject:data forKey:kCCFCookie];
+    [self setObject:data forKey:kCookie];
 }
 
 - (void)saveFavFormIds:(NSArray *)ids {
-    [self setObject:ids forKey:kCCFFavFormIds];
+    [self setObject:ids forKey:kFavForumIds];
 }
 
 - (NSArray *)favFormIds {
-    return [self objectForKey:kCCFFavFormIds];
+    return [self objectForKey:kFavForumIds];
 }
 
 
@@ -60,7 +60,7 @@
 }
 
 - (void)clearCookie {
-    [self removeObjectForKey:kCCFCookie];
+    [self removeObjectForKey:kCookie];
 }
 
 
