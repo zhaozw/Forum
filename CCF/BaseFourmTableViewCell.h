@@ -1,5 +1,5 @@
 //
-//  BaseCCFTableViewCell.h
+//  BaseFourmTableViewCell.h
 //  CCF
 //
 //  Created by 迪远 王 on 16/3/19.
@@ -13,7 +13,7 @@
 #import "TransValueUITableViewCell.h"
 
 
-@interface BaseCCFTableViewCell : TransValueUITableViewCell
+@interface BaseFourmTableViewCell : TransValueUITableViewCell
 
 - (void)setData:(id)data;
 

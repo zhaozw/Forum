@@ -14,9 +14,9 @@
 #import "ForumCoreDataManager.h"
 #import "UserEntry+CoreDataProperties.h"
 #import "CCFForumApi.h"
-#import "BaseCCFTableViewCell.h"
+#import "BaseFourmTableViewCell.h"
 
-@interface PrivateMessageTableViewCell : BaseCCFTableViewCell
+@interface PrivateMessageTableViewCell : BaseFourmTableViewCell
 
 @property(weak, nonatomic) IBOutlet UILabel *privateMessageTitle;
 @property(weak, nonatomic) IBOutlet UILabel *privateMessageAuthor;

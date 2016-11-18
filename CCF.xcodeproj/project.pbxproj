@@ -38,7 +38,7 @@
 		3A734BFB1CCCD72400C4821A /* ForumWritePMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A734BFA1CCCD72400C4821A /* ForumWritePMNavigationController.m */; };
 		3A842CA11C469AC1002944A9 /* ForumNewThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A842CA01C469AC1002944A9 /* ForumNewThreadViewController.m */; };
 		3A93298D1C39648900A26249 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A93298C1C39648900A26249 /* CoreText.framework */; };
-		3A9ADC6C1C9D8F2C006055A8 /* BaseCCFTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ADC6B1C9D8F2C006055A8 /* BaseCCFTableViewCell.m */; };
+		3A9ADC6C1C9D8F2C006055A8 /* BaseFourmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ADC6B1C9D8F2C006055A8 /* BaseFourmTableViewCell.m */; };
 		3AA397391DABB6FF00F74E32 /* iOSDeviceName.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA397381DABB6FF00F74E32 /* iOSDeviceName.framework */; };
 		3AA5B99A1CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA5B9991CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m */; };
 		3AA5B99D1CBA7D690008175A /* ForumSimpleReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA5B99C1CBA7D690008175A /* ForumSimpleReplyViewController.m */; };
@@ -180,8 +180,8 @@
 		3A842C9F1C469AC1002944A9 /* ForumNewThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumNewThreadViewController.h; sourceTree = "<group>"; };
 		3A842CA01C469AC1002944A9 /* ForumNewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumNewThreadViewController.m; sourceTree = "<group>"; };
 		3A93298C1C39648900A26249 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		3A9ADC6A1C9D8F2C006055A8 /* BaseCCFTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCCFTableViewCell.h; sourceTree = "<group>"; };
-		3A9ADC6B1C9D8F2C006055A8 /* BaseCCFTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCCFTableViewCell.m; sourceTree = "<group>"; };
+		3A9ADC6A1C9D8F2C006055A8 /* BaseFourmTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseFourmTableViewCell.h; sourceTree = "<group>"; };
+		3A9ADC6B1C9D8F2C006055A8 /* BaseFourmTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseFourmTableViewCell.m; sourceTree = "<group>"; };
 		3AA397381DABB6FF00F74E32 /* iOSDeviceName.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iOSDeviceName.framework; sourceTree = "<group>"; };
 		3AA5B9981CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadNotLoadTableViewCell.h; sourceTree = "<group>"; };
 		3AA5B9991CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadNotLoadTableViewCell.m; sourceTree = "<group>"; };
@@ -371,8 +371,8 @@
 				4D796BDA1C43666C00B3C62D /* CCFSearchResultCell.m */,
 				3AEC53981CB9529F00E50390 /* CCFThreadListTitleCell.h */,
 				3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */,
-				3A9ADC6A1C9D8F2C006055A8 /* BaseCCFTableViewCell.h */,
-				3A9ADC6B1C9D8F2C006055A8 /* BaseCCFTableViewCell.m */,
+				3A9ADC6A1C9D8F2C006055A8 /* BaseFourmTableViewCell.h */,
+				3A9ADC6B1C9D8F2C006055A8 /* BaseFourmTableViewCell.m */,
 				3A1C2CD51C9EB2C10068AF6B /* CCFProfileTableViewCell.h */,
 				3A1C2CD61C9EB2C10068AF6B /* CCFProfileTableViewCell.m */,
 				3ABAFE3F1CAAD12300803085 /* TransValueUITableViewCell.h */,
@@ -1000,7 +1000,7 @@
 				4DF7371F1DDECC8D00BF1896 /* NormalThread.m in Sources */,
 				3AA5B9A01CBA8C6C0008175A /* ForumReplyNavigationController.m in Sources */,
 				4DF737211DDECC8D00BF1896 /* ForumDisplayPage.m in Sources */,
-				3A9ADC6C1C9D8F2C006055A8 /* BaseCCFTableViewCell.m in Sources */,
+				3A9ADC6C1C9D8F2C006055A8 /* BaseFourmTableViewCell.m in Sources */,
 				3AC660771CF1833F000D3BDB /* ForumSettingTableViewController.m in Sources */,
 				3A1CC3E01CB922F5007A0B97 /* ForumWritePMViewController.m in Sources */,
 				3AC6606C1CF1833F000D3BDB /* ForumMyThreadPostTableViewController.m in Sources */,

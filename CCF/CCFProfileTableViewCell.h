@@ -6,9 +6,9 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "BaseCCFTableViewCell.h"
+#import "BaseFourmTableViewCell.h"
 
-@interface CCFProfileTableViewCell : BaseCCFTableViewCell
+@interface CCFProfileTableViewCell : BaseFourmTableViewCell
 @property(weak, nonatomic) IBOutlet UIImageView *profileAvatar;
 @property(weak, nonatomic) IBOutlet UILabel *profileUserName;
 @property(weak, nonatomic) IBOutlet UILabel *profileRank;

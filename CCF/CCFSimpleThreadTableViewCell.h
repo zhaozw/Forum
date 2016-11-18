@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "vBulletinForumEngine.h"
-#import "BaseCCFTableViewCell.h"
+#import "BaseFourmTableViewCell.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 
-@interface CCFSimpleThreadTableViewCell : BaseCCFTableViewCell
+@interface CCFSimpleThreadTableViewCell : BaseFourmTableViewCell
 
 @property(weak, nonatomic) IBOutlet UILabel *threadAuthorName;
 @property(weak, nonatomic) IBOutlet UILabel *lastPostTime;

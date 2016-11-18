@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseCCFTableViewCell.h"
+#import "BaseFourmTableViewCell.h"
 #import "vBulletinForumEngine.h"
 
 
-@interface CCFThreadListCell : BaseCCFTableViewCell
+@interface CCFThreadListCell : BaseFourmTableViewCell
 
 
 @property(weak, nonatomic) IBOutlet UILabel *threadAuthor;

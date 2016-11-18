@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "vBulletinForumEngine.h"
-#import "BaseCCFTableViewCell.h"
+#import "BaseFourmTableViewCell.h"
 
 
-@interface CCFSearchResultCell : BaseCCFTableViewCell
+@interface CCFSearchResultCell : BaseFourmTableViewCell
 
 
 @property(weak, nonatomic) IBOutlet UILabel *postTitle;
