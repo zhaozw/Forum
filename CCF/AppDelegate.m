@@ -1,6 +1,5 @@
 //
 //  AppDelegate.m
-//  CCF
 //
 //  Created by WDY on 15/12/28.
 //  Copyright © 2015年 andforce. All rights reserved.
@@ -74,7 +73,7 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];//Documents目录
 
 
-    NSLog(@"CCF->>>>>%@", documentsDirectory);
+    NSLog(@"文件路径: %@", documentsDirectory);
 
     //[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 

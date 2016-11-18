@@ -1,6 +1,5 @@
 //
-//  CCFForumBrowser.m
-//  CCF
+//  ForumBrowser.m
 //
 //  Created by 迪远 王 on 16/10/3.
 //  Copyright © 2016年 andforce. All rights reserved.
@@ -21,10 +20,10 @@
 #import <AFNetworking.h>
 #import "ForumHtmlParser.h"
 
-#define kCCFCookie_User @"bbuserid"
-#define kCCFCookie_LastVisit @"bblastvisit"
-#define kCCFCookie_IDStack @"IDstack"
-#define kCCFSecurityToken @"securitytoken"
+#define kCookieUser @"bbuserid"
+#define kCookieLastVisit @"bblastvisit"
+#define kCookieIDStack @"IDstack"
+#define kSecurityToken @"securitytoken"
 
 #import "ForumConfig.h"
 #import <iOSDeviceName/iOSDeviceName.h>
@@ -154,11 +153,11 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     for (int i = 0; i < cookies.count; i++) {
         NSHTTPCookie *cookie = cookies[i];
 
-        if ([cookie.name isEqualToString:kCCFCookie_LastVisit]) {
+        if ([cookie.name isEqualToString:kCookieLastVisit]) {
             user.lastVisit = cookie.value;
-        } else if ([cookie.name isEqualToString:kCCFCookie_User]) {
+        } else if ([cookie.name isEqualToString:kCookieUser]) {
             user.userID = cookie.value;
-        } else if ([cookie.name isEqualToString:kCCFCookie_IDStack]) {
+        } else if ([cookie.name isEqualToString:kCookieIDStack]) {
             user.expireTime = cookie.expiresDate;
         }
     }
@@ -457,7 +456,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (NSString *)readSecurityToken {
-    return [[NSUserDefaults standardUserDefaults] valueForKey:kCCFSecurityToken];
+    return [[NSUserDefaults standardUserDefaults] valueForKey:kSecurityToken];
 }
 
 - (void)replyThreadWithId:(int)threadId andMessage:(NSString *)message handler:(HandlerWithBool)handler {
@@ -574,7 +573,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)saveSecurityToken:(NSString *)token {
-    [[NSUserDefaults standardUserDefaults] setValue:token forKey:kCCFSecurityToken];
+    [[NSUserDefaults standardUserDefaults] setValue:token forKey:kSecurityToken];
 }
 
 

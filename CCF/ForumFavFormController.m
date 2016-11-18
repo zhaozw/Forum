@@ -102,7 +102,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *ID = @"CCFFavFormControllerCell";
+    static NSString *ID = @"FavFormControllerCell";
     MGSwipeTableCellWithIndexPath *cell = [tableView dequeueReusableCellWithIdentifier:ID];
 
     cell.indexPath = indexPath;

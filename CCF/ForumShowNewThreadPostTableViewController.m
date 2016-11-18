@@ -62,7 +62,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellId = @"CCFSearchResultCell";
+    static NSString *cellId = @"SearchResultCell";
     ForumSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     cell.showUserProfileDelegate = self;
 
@@ -116,7 +116,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [tableView fd_heightForCellWithIdentifier:@"CCFSearchResultCell" configuration:^(ForumSearchResultCell *cell) {
+    return [tableView fd_heightForCellWithIdentifier:@"SearchResultCell" configuration:^(ForumSearchResultCell *cell) {
         [self configureCell:cell atIndexPath:indexPath];
     }];
 }

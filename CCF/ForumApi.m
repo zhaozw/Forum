@@ -16,10 +16,10 @@
 #import "ForumHtmlParser.h"
 
 
-#define kCCFCookie_User @"bbuserid"
-#define kCCFCookie_LastVisit @"bblastvisit"
-#define kCCFCookie_IDStack @"IDstack"
-#define kCCFSecurityToken @"securitytoken"
+#define kCookieUser @"bbuserid"
+#define kCookieLastVisit @"bblastvisit"
+#define kCookieIDStack @"IDstack"
+#define kSecurityToken @"securitytoken"
 
 #define kErrorMessageTooShort @"您输入的信息太短，您发布的信息至少为 5 个字符。"
 #define kErrorMessageTimeTooShort @"此帖是您在最后 5 分钟发表的帖子的副本，您将返回该主题。"
