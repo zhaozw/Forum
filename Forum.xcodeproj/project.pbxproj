@@ -37,7 +37,6 @@
 		3A734BEB1CCCC2B000C4821A /* ForumNewThreadNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A734BEA1CCCC2B000C4821A /* ForumNewThreadNavigationController.m */; };
 		3A734BFB1CCCD72400C4821A /* ForumWritePMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A734BFA1CCCD72400C4821A /* ForumWritePMNavigationController.m */; };
 		3A842CA11C469AC1002944A9 /* ForumNewThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A842CA01C469AC1002944A9 /* ForumNewThreadViewController.m */; };
-		3A93298D1C39648900A26249 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A93298C1C39648900A26249 /* CoreText.framework */; };
 		3A9ADC6C1C9D8F2C006055A8 /* BaseFourmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ADC6B1C9D8F2C006055A8 /* BaseFourmTableViewCell.m */; };
 		3AA397391DABB6FF00F74E32 /* iOSDeviceName.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA397381DABB6FF00F74E32 /* iOSDeviceName.framework */; };
 		3AA5B99D1CBA7D690008175A /* ForumSimpleReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA5B99C1CBA7D690008175A /* ForumSimpleReplyViewController.m */; };
@@ -177,7 +176,6 @@
 		3A734BFA1CCCD72400C4821A /* ForumWritePMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumWritePMNavigationController.m; sourceTree = "<group>"; };
 		3A842C9F1C469AC1002944A9 /* ForumNewThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumNewThreadViewController.h; sourceTree = "<group>"; };
 		3A842CA01C469AC1002944A9 /* ForumNewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumNewThreadViewController.m; sourceTree = "<group>"; };
-		3A93298C1C39648900A26249 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		3A9ADC6A1C9D8F2C006055A8 /* BaseFourmTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseFourmTableViewCell.h; sourceTree = "<group>"; };
 		3A9ADC6B1C9D8F2C006055A8 /* BaseFourmTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseFourmTableViewCell.m; sourceTree = "<group>"; };
 		3AA397381DABB6FF00F74E32 /* iOSDeviceName.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iOSDeviceName.framework; sourceTree = "<group>"; };
@@ -322,7 +320,6 @@
 		4DF737251DDECC9600BF1896 /* ShowPrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPrivateMessage.m; sourceTree = "<group>"; };
 		4DF737281DDECCA200BF1896 /* LoginUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginUser.h; sourceTree = "<group>"; };
 		4DF737291DDECCA200BF1896 /* LoginUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUser.m; sourceTree = "<group>"; };
-		57A2A0B6B96C76030E628C93 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7B590AB42B8175D5E01C121 /* TranBundleUITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranBundleUITableViewController.m; sourceTree = "<group>"; };
 		C7B59272F91FD28BCCA0E5CE /* TranBundleUITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranBundleUITableViewController.h; sourceTree = "<group>"; };
 		C7B593DF37912CFD5EA823A5 /* TransBudleUINavigatioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransBudleUINavigatioController.m; sourceTree = "<group>"; };
@@ -342,7 +339,6 @@
 			files = (
 				3AA397391DABB6FF00F74E32 /* iOSDeviceName.framework in Frameworks */,
 				4DEB34C31C47BBE400063CBB /* AssetsLibrary.framework in Frameworks */,
-				3A93298D1C39648900A26249 /* CoreText.framework in Frameworks */,
 				757C88B17FCB5AFBB7C0CA0B /* libPods-Forum.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -794,8 +790,6 @@
 			children = (
 				3AA397381DABB6FF00F74E32 /* iOSDeviceName.framework */,
 				4DEB34C21C47BBE400063CBB /* AssetsLibrary.framework */,
-				3A93298C1C39648900A26249 /* CoreText.framework */,
-				57A2A0B6B96C76030E628C93 /* libPods.a */,
 				EA91F0D805959E8525B7BE0D /* libPods-Forum.a */,
 			);
 			name = Frameworks;
