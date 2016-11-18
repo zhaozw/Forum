@@ -129,7 +129,7 @@
 		3A0B2C521DDAAE5100FF4ABD /* ForumReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumReportViewController.h; sourceTree = "<group>"; };
 		3A0B2C531DDAAE5100FF4ABD /* ForumReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumReportViewController.m; sourceTree = "<group>"; };
 		3A0B39FF1D0962D40060F8A4 /* private_message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = private_message.html; path = CCF/private_message.html; sourceTree = "<group>"; };
-		3A141A1F1D0AD9D2001A1F78 /* ForumConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ForumConfig.h; path = CCF/ForumConfig.h; sourceTree = "<group>"; };
+		3A141A1F1D0AD9D2001A1F78 /* ForumConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumConfig.h; sourceTree = "<group>"; };
 		3A1C2CCF1C9E9B740068AF6B /* ForumUserProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumUserProfileTableViewController.h; sourceTree = "<group>"; };
 		3A1C2CD01C9E9B740068AF6B /* ForumUserProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumUserProfileTableViewController.m; sourceTree = "<group>"; };
 		3A1C2CD51C9EB2C10068AF6B /* ForumProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumProfileTableViewCell.h; sourceTree = "<group>"; };
@@ -210,8 +210,8 @@
 		3AC65FD41CF149CB000D3BDB /* ForumListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumListHeaderView.m; sourceTree = "<group>"; };
 		3AC65FD81CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCellWithIndexPath.h; sourceTree = "<group>"; };
 		3AC65FD91CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCellWithIndexPath.m; sourceTree = "<group>"; };
-		3AC660051CF17D86000D3BDB /* CCFForumApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCFForumApi.h; path = CCF/CCFForumApi.h; sourceTree = "<group>"; };
-		3AC660061CF17D86000D3BDB /* CCFForumApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCFForumApi.m; path = CCF/CCFForumApi.m; sourceTree = "<group>"; };
+		3AC660051CF17D86000D3BDB /* CCFForumApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForumApi.h; sourceTree = "<group>"; };
+		3AC660061CF17D86000D3BDB /* CCFForumApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForumApi.m; sourceTree = "<group>"; };
 		3AC660421CF1833F000D3BDB /* ForumApiBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumApiBaseTableViewController.h; sourceTree = "<group>"; };
 		3AC660431CF1833F000D3BDB /* ForumApiBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumApiBaseTableViewController.m; sourceTree = "<group>"; };
 		3AC660441CF1833F000D3BDB /* ForumApiBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumApiBaseViewController.h; sourceTree = "<group>"; };
@@ -260,21 +260,21 @@
 		3AD077C31CF73B50006A8FBF /* ForumWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumWebViewController.h; sourceTree = "<group>"; };
 		3AD077C41CF73B50006A8FBF /* ForumWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumWebViewController.m; sourceTree = "<group>"; };
 		3AD077C61CF73FBF006A8FBF /* post_view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = post_view.html; path = CCF/post_view.html; sourceTree = "<group>"; };
-		3AF8878C1DA155D20083A8D5 /* CCFForumParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForumParser.h; sourceTree = "<group>"; };
-		3AF8878D1DA155D20083A8D5 /* CCFForumParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForumParser.m; sourceTree = "<group>"; };
-		3AF887951DA16D2C0083A8D5 /* CCFForumBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForumBrowser.h; sourceTree = "<group>"; };
-		3AF887961DA16D2C0083A8D5 /* CCFForumBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForumBrowser.m; sourceTree = "<group>"; };
+		3AF8878C1DA155D20083A8D5 /* CCFForumParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForumParser.h; sourceTree = SOURCE_ROOT; };
+		3AF8878D1DA155D20083A8D5 /* CCFForumParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForumParser.m; sourceTree = SOURCE_ROOT; };
+		3AF887951DA16D2C0083A8D5 /* CCFForumBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForumBrowser.h; sourceTree = SOURCE_ROOT; };
+		3AF887961DA16D2C0083A8D5 /* CCFForumBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForumBrowser.m; sourceTree = SOURCE_ROOT; };
 		4AD749A3A2E07798AF7D58D5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4D32560B1C4754E700053288 /* SelectPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPhotoCollectionViewCell.h; sourceTree = "<group>"; };
 		4D32560C1C4754E700053288 /* SelectPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		4D339D8B1C31454A0022A6A4 /* CCF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D339D8F1C31454A0022A6A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4D339D911C31454A0022A6A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		4D339D921C31454A0022A6A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4D339D911C31454A0022A6A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = CCF/AppDelegate.h; sourceTree = "<group>"; };
+		4D339D921C31454A0022A6A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = CCF/AppDelegate.m; sourceTree = "<group>"; };
 		4D339D981C31454A0022A6A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4D339D9D1C31454B0022A6A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4D339D9D1C31454B0022A6A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = CCF/Assets.xcassets; sourceTree = "<group>"; };
 		4D339DA01C31454B0022A6A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		4D339DA21C31454B0022A6A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D339DA21C31454B0022A6A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = CCF/Info.plist; sourceTree = "<group>"; };
 		4D6B11C91C9A582100E073A1 /* ForumSimpleThreadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumSimpleThreadTableViewCell.h; sourceTree = "<group>"; };
 		4D6B11CA1C9A582100E073A1 /* ForumSimpleThreadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumSimpleThreadTableViewCell.m; sourceTree = "<group>"; };
 		4D796BD91C43666C00B3C62D /* ForumSearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumSearchResultCell.h; sourceTree = "<group>"; };
@@ -501,13 +501,13 @@
 		3AC65FBC1CF13809000D3BDB /* CCF */ = {
 			isa = PBXGroup;
 			children = (
-				4D339D8E1C31454A0022A6A4 /* Supporting Files */,
-				4D339D911C31454A0022A6A4 /* AppDelegate.h */,
-				4D339D921C31454A0022A6A4 /* AppDelegate.m */,
-				4D339D971C31454A0022A6A4 /* Main.storyboard */,
-				4D339D9D1C31454B0022A6A4 /* Assets.xcassets */,
-				4D339D9F1C31454B0022A6A4 /* LaunchScreen.storyboard */,
-				4D339DA21C31454B0022A6A4 /* Info.plist */,
+				3A141A1F1D0AD9D2001A1F78 /* ForumConfig.h */,
+				3AC660051CF17D86000D3BDB /* CCFForumApi.h */,
+				3AC660061CF17D86000D3BDB /* CCFForumApi.m */,
+				3AF8878C1DA155D20083A8D5 /* CCFForumParser.h */,
+				3AF8878D1DA155D20083A8D5 /* CCFForumParser.m */,
+				3AF887951DA16D2C0083A8D5 /* CCFForumBrowser.h */,
+				3AF887961DA16D2C0083A8D5 /* CCFForumBrowser.m */,
 			);
 			path = CCF;
 			sourceTree = "<group>";
@@ -610,15 +610,9 @@
 		4D339D821C31454A0022A6A4 = {
 			isa = PBXGroup;
 			children = (
-				4DF736F91DDECC3700BF1896 /* Engine */,
 				3AC65FBC1CF13809000D3BDB /* CCF */,
-				3A141A1F1D0AD9D2001A1F78 /* ForumConfig.h */,
-				3AC660051CF17D86000D3BDB /* CCFForumApi.h */,
-				3AC660061CF17D86000D3BDB /* CCFForumApi.m */,
-				3AF8878C1DA155D20083A8D5 /* CCFForumParser.h */,
-				3AF8878D1DA155D20083A8D5 /* CCFForumParser.m */,
-				3AF887951DA16D2C0083A8D5 /* CCFForumBrowser.h */,
-				3AF887961DA16D2C0083A8D5 /* CCFForumBrowser.m */,
+				4DF7372B1DDF152D00BF1896 /* Forum */,
+				4DF736F91DDECC3700BF1896 /* Engine */,
 				3A37ED921D85C72E003CDC58 /* Templet */,
 				3ACFFD311CFA640B000312DC /* PhotoView */,
 				3ACFFD271CF9D6B1000312DC /* NetWork */,
@@ -649,6 +643,7 @@
 				4D339D8F1C31454A0022A6A4 /* main.m */,
 			);
 			name = "Supporting Files";
+			path = CCF;
 			sourceTree = "<group>";
 		};
 		4D796B5D1C3BC15D00B3C62D /* Public Views */ = {
@@ -771,6 +766,20 @@
 				4DF737251DDECC9600BF1896 /* ShowPrivateMessage.m */,
 			);
 			name = PrivateMessage;
+			sourceTree = "<group>";
+		};
+		4DF7372B1DDF152D00BF1896 /* Forum */ = {
+			isa = PBXGroup;
+			children = (
+				4D339D8E1C31454A0022A6A4 /* Supporting Files */,
+				4D339D911C31454A0022A6A4 /* AppDelegate.h */,
+				4D339D921C31454A0022A6A4 /* AppDelegate.m */,
+				4D339D971C31454A0022A6A4 /* Main.storyboard */,
+				4D339D9D1C31454B0022A6A4 /* Assets.xcassets */,
+				4D339D9F1C31454B0022A6A4 /* LaunchScreen.storyboard */,
+				4D339DA21C31454B0022A6A4 /* Info.plist */,
+			);
+			name = Forum;
 			sourceTree = "<group>";
 		};
 		849509D36740A6FFD960CDA8 /* Pods */ = {
@@ -1036,6 +1045,7 @@
 				4D339D981C31454A0022A6A4 /* Base */,
 			);
 			name = Main.storyboard;
+			path = CCF;
 			sourceTree = "<group>";
 		};
 		4D339D9F1C31454B0022A6A4 /* LaunchScreen.storyboard */ = {
@@ -1044,6 +1054,7 @@
 				4D339DA01C31454B0022A6A4 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = CCF;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
