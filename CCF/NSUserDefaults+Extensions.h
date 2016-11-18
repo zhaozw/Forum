@@ -1,6 +1,5 @@
 //
-//  NSUserDefaults+CCF.h
-//  CCF
+//  NSUserDefaults+Extensions.h
 //
 //  Created by WDY on 16/1/13.
 //  Copyright © 2016年 andforce. All rights reserved.

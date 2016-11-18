@@ -1,6 +1,5 @@
 //
-//  UIStoryboard+CCF.m
-//  CCF
+//  UIStoryboard+Forum.m
 //
 //  Created by WDY on 16/1/12.
 //  Copyright © 2016年 andforce. All rights reserved.

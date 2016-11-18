@@ -1,6 +1,5 @@
 //
-//  CCFCoreDataManager.h
-//  CCF
+//  CoreDataManager.h
 //
 //  Created by WDY on 16/1/12.
 //  Copyright © 2016年 andforce. All rights reserved.

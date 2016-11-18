@@ -1,6 +1,5 @@
 //
-//  CCFUtils.m
-//  CCF
+//  Utils.m
 //
 //  Created by WDY on 16/1/7.
 //  Copyright © 2016年 andforce. All rights reserved.

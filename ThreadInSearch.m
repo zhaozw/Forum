@@ -1,6 +1,5 @@
 //
-//  CCFSearchResult.m
-//  CCF
+//  ThreadInSearch.m
 //
 //  Created by WDY on 16/1/11.
 //  Copyright © 2016年 andforce. All rights reserved.

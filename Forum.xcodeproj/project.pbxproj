@@ -71,7 +71,6 @@
 		3AC660771CF1833F000D3BDB /* ForumSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660621CF1833F000D3BDB /* ForumSettingTableViewController.m */; };
 		3AC660781CF1833F000D3BDB /* ForumTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660641CF1833F000D3BDB /* ForumTabBarController.m */; };
 		3AC660811CF18685000D3BDB /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660801CF18685000D3BDB /* NSUserDefaults+Setting.m */; };
-		3AC660841CF1AEA1000D3BDB /* AutoRelayoutToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660831CF1AEA1000D3BDB /* AutoRelayoutToolbar.m */; };
 		3AC660871CF1AF85000D3BDB /* AutoRelayoutUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660861CF1AF85000D3BDB /* AutoRelayoutUITextView.m */; };
 		3AC660921CF1B578000D3BDB /* ForumCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660911CF1B578000D3BDB /* ForumCoreDataManager.m */; };
 		3ACFFD261CF9B151000312DC /* post_message.html in Resources */ = {isa = PBXBuildFile; fileRef = 3ACFFD251CF9B151000312DC /* post_message.html */; };
@@ -240,8 +239,6 @@
 		3AC660641CF1833F000D3BDB /* ForumTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumTabBarController.m; sourceTree = "<group>"; };
 		3AC6607F1CF18685000D3BDB /* NSUserDefaults+Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Setting.h"; sourceTree = "<group>"; };
 		3AC660801CF18685000D3BDB /* NSUserDefaults+Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Setting.m"; sourceTree = "<group>"; };
-		3AC660821CF1AEA1000D3BDB /* AutoRelayoutToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoRelayoutToolbar.h; sourceTree = "<group>"; };
-		3AC660831CF1AEA1000D3BDB /* AutoRelayoutToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoRelayoutToolbar.m; sourceTree = "<group>"; };
 		3AC660851CF1AF85000D3BDB /* AutoRelayoutUITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoRelayoutUITextView.h; sourceTree = "<group>"; };
 		3AC660861CF1AF85000D3BDB /* AutoRelayoutUITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoRelayoutUITextView.m; sourceTree = "<group>"; };
 		3AC660901CF1B578000D3BDB /* ForumCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumCoreDataManager.h; sourceTree = "<group>"; };
@@ -657,8 +654,6 @@
 				3A1CF8711C54F8AB002E52EE /* CommonUtils.m */,
 				3A1CF86D1C54F88C002E52EE /* LeftDrawerItem.h */,
 				3A1CF86E1C54F88C002E52EE /* LeftDrawerItem.m */,
-				3AC660821CF1AEA1000D3BDB /* AutoRelayoutToolbar.h */,
-				3AC660831CF1AEA1000D3BDB /* AutoRelayoutToolbar.m */,
 				3A734BE21CCCB2E600C4821A /* UIAutoResizeTextView.h */,
 				3A734BE31CCCB2E600C4821A /* UIAutoResizeTextView.m */,
 				3AC660851CF1AF85000D3BDB /* AutoRelayoutUITextView.h */,
@@ -947,7 +942,6 @@
 				3ACFFD2C1CF9D6BF000312DC /* HPURLCache.m in Sources */,
 				3AC65FC21CF13AA1000D3BDB /* Utils.m in Sources */,
 				3ACFFD341CFA641F000312DC /* NYTExamplePhoto.m in Sources */,
-				3AC660841CF1AEA1000D3BDB /* AutoRelayoutToolbar.m in Sources */,
 				3AC6606D1CF1833F000D3BDB /* ForumMyThreadTableViewController.m in Sources */,
 				3AC660761CF1833F000D3BDB /* ForumSearchViewController.m in Sources */,
 				3A1CF8761C54F8AB002E52EE /* CommonUtils.m in Sources */,

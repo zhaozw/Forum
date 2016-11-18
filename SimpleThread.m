@@ -1,6 +1,5 @@
 //
-//  CCFSimpleThread.m
-//  CCF
+//  SimpleThread.m
 //
 //  Created by WDY on 16/3/17.
 //  Copyright © 2016年 andforce. All rights reserved.
