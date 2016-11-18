@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "vBulletinForumEngine.h"
 
-@interface CCFForumParser : NSObject <ForumParser>
+@interface ForumHtmlParser : NSObject <ForumParser>
 
 @end

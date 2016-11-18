@@ -6,7 +6,7 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFForumBrowser.h"
+#import "ForumBrowser.h"
 #import "NSString+Extensions.h"
 #import <AFImageDownloader.h>
 #import <UIImageView+AFNetworking.h>
@@ -19,7 +19,7 @@
 
 #import "NSUserDefaults+Setting.h"
 #import <AFNetworking.h>
-#import "CCFForumParser.h"
+#import "ForumHtmlParser.h"
 
 #define kCCFCookie_User @"bbuserid"
 #define kCCFCookie_LastVisit @"bblastvisit"
@@ -32,7 +32,7 @@
 typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 
 
-@implementation CCFForumBrowser {
+@implementation ForumBrowser {
 
     NSString *listMyThreadSearchId;
 
@@ -42,7 +42,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 
     NSString *iPhoneName;
 
-    CCFForumParser *parser;
+    ForumHtmlParser *parser;
 
     AFHTTPSessionManager *_browser;
 }
@@ -55,7 +55,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
         _browser.responseSerializer = [AFHTTPResponseSerializer serializer];
         _browser.responseSerializer.acceptableContentTypes = [_browser.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
 
-        parser = [[CCFForumParser alloc] init];
+        parser = [[ForumHtmlParser alloc] init];
 
 
         iPhoneName = [DeviceName deviceNameDetail];

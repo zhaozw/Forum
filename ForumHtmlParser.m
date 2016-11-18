@@ -6,7 +6,7 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFForumParser.h"
+#import "ForumHtmlParser.h"
 
 #import <IGHTMLQuery.h>
 
@@ -19,7 +19,7 @@
 #import "IGXMLNode+Children.h"
 #import "ForumConfig.h"
 
-@implementation CCFForumParser
+@implementation ForumHtmlParser
 
 - (ForumDisplayPage *)parseThreadListFromHtml:(NSString *)html withThread:(int)threadId andContainsTop:(BOOL)containTop {
 
