@@ -79,7 +79,7 @@
 
 
 - (void)onPullRefresh {
-    CCFForumApi *api = self.ccfApi;
+    ForumApi *api = self.ccfApi;
 
     NSString *currentUserId = api.getLoginUser.userID;
 

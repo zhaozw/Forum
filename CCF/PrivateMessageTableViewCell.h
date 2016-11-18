@@ -13,7 +13,7 @@
 #import <UIImageView+AFNetworking.h>
 #import "ForumCoreDataManager.h"
 #import "UserEntry+CoreDataProperties.h"
-#import "CCFForumApi.h"
+#import "ForumApi.h"
 #import "BaseFourmTableViewCell.h"
 
 @interface PrivateMessageTableViewCell : BaseFourmTableViewCell

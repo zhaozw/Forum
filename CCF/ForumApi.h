@@ -11,7 +11,7 @@
 #import "vBulletinForumEngine.h"
 
 
-@interface CCFForumApi : NSObject <ForumEngine>
+@interface ForumApi : NSObject <ForumEngine>
 
 - (void)reportThreadPost:(int)postId andMessage:(NSString *)message handler:(HandlerWithBool)handler;
 
