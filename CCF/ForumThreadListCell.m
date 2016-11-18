@@ -13,12 +13,12 @@
 #import <UIImageView+AFNetworking.h>
 #import "ForumCoreDataManager.h"
 #import "UserEntry+CoreDataProperties.h"
-#import "CCFForumApi.h"
+#import "ForumApi.h"
 
 @implementation ForumThreadListCell {
 
     ForumCoreDataManager *_coreDateManager;
-    CCFForumApi *ccfapi;
+    ForumApi *ccfapi;
     NSIndexPath *selectIndexPath;
 }
 
@@ -33,7 +33,7 @@
     self = [super initWithCoder:coder];
     if (self) {
 
-        ccfapi = [[CCFForumApi alloc] init];
+        ccfapi = [[ForumApi alloc] init];
         _coreDateManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
 
         [self.avatarImage setContentScaleFactor:[[UIScreen mainScreen] scale]];

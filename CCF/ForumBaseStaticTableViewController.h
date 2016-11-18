@@ -6,14 +6,14 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFForumApi.h"
+#import "ForumApi.h"
 #import "MJRefresh.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "vBulletinForumEngine.h"
 
 @interface ForumBaseStaticTableViewController : UITableViewController
 
-@property(nonatomic, strong) CCFForumApi *ccfApi;
+@property(nonatomic, strong) ForumApi *ccfApi;
 @property(nonatomic, strong) NSMutableArray *dataList;
 @property(nonatomic, assign) int currentPage;
 @property(nonatomic, assign) int totalPage;

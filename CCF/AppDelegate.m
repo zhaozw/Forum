@@ -18,7 +18,7 @@
 #import "NSUserDefaults+Setting.h"
 #import <AVOSCloud.h>
 #import <AVOSCloudIM.h>
-#import "CCFForumApi.h"
+#import "ForumApi.h"
 #import "UIStoryboard+Forum.h"
 #import "HPURLProtocol.h"
 #import "AFNetworking.h"
@@ -89,7 +89,7 @@
     [setting registerDefaults:dictonary];
 
 
-    CCFForumApi *browser = [[CCFForumApi alloc] init];
+    ForumApi *browser = [[ForumApi alloc] init];
     LoginUser *loginUser = [browser getLoginUser];
 
     NSDate *date = [NSDate date];

@@ -73,7 +73,7 @@
 #pragma mark initData
 
 - (void)initData {
-    self.ccfApi = [[CCFForumApi alloc] init];
+    self.ccfApi = [[ForumApi alloc] init];
     self.dataList = [[NSMutableArray alloc] init];
 }
 
