@@ -1,5 +1,5 @@
 //
-//  CCFProfileTableViewCell.h
+//  ForumProfileTableViewCell.h
 //  CCF
 //
 //  Created by 迪远 王 on 16/3/20.
@@ -8,7 +8,7 @@
 
 #import "BaseFourmTableViewCell.h"
 
-@interface CCFProfileTableViewCell : BaseFourmTableViewCell
+@interface ForumProfileTableViewCell : BaseFourmTableViewCell
 @property(weak, nonatomic) IBOutlet UIImageView *profileAvatar;
 @property(weak, nonatomic) IBOutlet UILabel *profileUserName;
 @property(weak, nonatomic) IBOutlet UILabel *profileRank;

@@ -1,16 +1,16 @@
 //
-//  CCFProfileTableViewCell.m
+//  ForumProfileTableViewCell.m
 //  CCF
 //
 //  Created by 迪远 王 on 16/3/20.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFProfileTableViewCell.h"
+#import "ForumProfileTableViewCell.h"
 #import "vBulletinForumEngine.h"
 #import "UserProfile.h"
 
-@implementation CCFProfileTableViewCell
+@implementation ForumProfileTableViewCell
 
 /*
 // Only override drawRect: if you perform custom drawing.

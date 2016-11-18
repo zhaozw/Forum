@@ -14,7 +14,7 @@
 		3A0B2C541DDAAE5100FF4ABD /* ForumReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0B2C531DDAAE5100FF4ABD /* ForumReportViewController.m */; };
 		3A0B3A001D0962D40060F8A4 /* private_message.html in Resources */ = {isa = PBXBuildFile; fileRef = 3A0B39FF1D0962D40060F8A4 /* private_message.html */; };
 		3A1C2CD11C9E9B740068AF6B /* ForumUserProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C2CD01C9E9B740068AF6B /* ForumUserProfileTableViewController.m */; };
-		3A1C2CD71C9EB2C10068AF6B /* CCFProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C2CD61C9EB2C10068AF6B /* CCFProfileTableViewCell.m */; };
+		3A1C2CD71C9EB2C10068AF6B /* ForumProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C2CD61C9EB2C10068AF6B /* ForumProfileTableViewCell.m */; };
 		3A1CC3B11CB8F8B5007A0B97 /* paperclip.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3A1CC3B01CB8F8B5007A0B97 /* paperclip.gif */; };
 		3A1CC3E01CB922F5007A0B97 /* ForumWritePMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CC3DF1CB922F5007A0B97 /* ForumWritePMViewController.m */; };
 		3A1CF86F1C54F88C002E52EE /* LeftDrawerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CF86E1C54F88C002E52EE /* LeftDrawerItem.m */; };
@@ -132,8 +132,8 @@
 		3A141A1F1D0AD9D2001A1F78 /* ForumConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ForumConfig.h; path = CCF/ForumConfig.h; sourceTree = "<group>"; };
 		3A1C2CCF1C9E9B740068AF6B /* ForumUserProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumUserProfileTableViewController.h; sourceTree = "<group>"; };
 		3A1C2CD01C9E9B740068AF6B /* ForumUserProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumUserProfileTableViewController.m; sourceTree = "<group>"; };
-		3A1C2CD51C9EB2C10068AF6B /* CCFProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFProfileTableViewCell.h; sourceTree = "<group>"; };
-		3A1C2CD61C9EB2C10068AF6B /* CCFProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFProfileTableViewCell.m; sourceTree = "<group>"; };
+		3A1C2CD51C9EB2C10068AF6B /* ForumProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumProfileTableViewCell.h; sourceTree = "<group>"; };
+		3A1C2CD61C9EB2C10068AF6B /* ForumProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumProfileTableViewCell.m; sourceTree = "<group>"; };
 		3A1CC3B01CB8F8B5007A0B97 /* paperclip.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = paperclip.gif; sourceTree = "<group>"; };
 		3A1CC3DE1CB922F5007A0B97 /* ForumWritePMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumWritePMViewController.h; sourceTree = "<group>"; };
 		3A1CC3DF1CB922F5007A0B97 /* ForumWritePMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumWritePMViewController.m; sourceTree = "<group>"; };
@@ -365,8 +365,8 @@
 				4D796BDA1C43666C00B3C62D /* CCFSearchResultCell.m */,
 				3A9ADC6A1C9D8F2C006055A8 /* BaseFourmTableViewCell.h */,
 				3A9ADC6B1C9D8F2C006055A8 /* BaseFourmTableViewCell.m */,
-				3A1C2CD51C9EB2C10068AF6B /* CCFProfileTableViewCell.h */,
-				3A1C2CD61C9EB2C10068AF6B /* CCFProfileTableViewCell.m */,
+				3A1C2CD51C9EB2C10068AF6B /* ForumProfileTableViewCell.h */,
+				3A1C2CD61C9EB2C10068AF6B /* ForumProfileTableViewCell.m */,
 				3ABAFE3F1CAAD12300803085 /* TransValueUITableViewCell.h */,
 				3ABAFE401CAAD12300803085 /* TransValueUITableViewCell.m */,
 				3A2FCC7C1C956DB100B469E4 /* PrivateMessageTableViewCell.h */,
@@ -1005,7 +1005,7 @@
 				3A734BEB1CCCC2B000C4821A /* ForumNewThreadNavigationController.m in Sources */,
 				3A0A99831C4A71B600086DAB /* ForumSeniorNewPostViewController.m in Sources */,
 				3AC65FD61CF149CB000D3BDB /* ForumListHeaderView.m in Sources */,
-				3A1C2CD71C9EB2C10068AF6B /* CCFProfileTableViewCell.m in Sources */,
+				3A1C2CD71C9EB2C10068AF6B /* ForumProfileTableViewCell.m in Sources */,
 				3AA935E41CF1BCB2009FC4A6 /* FormEntry.m in Sources */,
 				3A1CF8771C54F8AB002E52EE /* UIImage+Tint.m in Sources */,
 				3AC660721CF1833F000D3BDB /* ForumThreadListTableViewController.m in Sources */,

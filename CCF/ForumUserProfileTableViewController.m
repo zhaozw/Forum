@@ -7,7 +7,7 @@
 //
 
 #import "ForumUserProfileTableViewController.h"
-#import "CCFProfileTableViewCell.h"
+#import "ForumProfileTableViewCell.h"
 #import "ForumUserThreadTableViewController.h"
 
 #import "ForumWritePMNavigationController.h"
