@@ -614,8 +614,14 @@
 		4D339D821C31454A0022A6A4 = {
 			isa = PBXGroup;
 			children = (
+				4D339D8E1C31454A0022A6A4 /* Supporting Files */,
+				4D339D911C31454A0022A6A4 /* AppDelegate.h */,
+				4D339D921C31454A0022A6A4 /* AppDelegate.m */,
+				4D339D971C31454A0022A6A4 /* Main.storyboard */,
+				4D339D9D1C31454B0022A6A4 /* Assets.xcassets */,
+				4D339D9F1C31454B0022A6A4 /* LaunchScreen.storyboard */,
+				4D339DA21C31454B0022A6A4 /* Info.plist */,
 				3AC65FBC1CF13809000D3BDB /* Custom */,
-				4DF7372B1DDF152D00BF1896 /* Forum */,
 				4DF736F91DDECC3700BF1896 /* Engine */,
 				3A37ED921D85C72E003CDC58 /* Templet */,
 				3ACFFD311CFA640B000312DC /* PhotoView */,
@@ -770,20 +776,6 @@
 				4DF737251DDECC9600BF1896 /* ShowPrivateMessage.m */,
 			);
 			name = PrivateMessage;
-			sourceTree = "<group>";
-		};
-		4DF7372B1DDF152D00BF1896 /* Forum */ = {
-			isa = PBXGroup;
-			children = (
-				4D339D8E1C31454A0022A6A4 /* Supporting Files */,
-				4D339D911C31454A0022A6A4 /* AppDelegate.h */,
-				4D339D921C31454A0022A6A4 /* AppDelegate.m */,
-				4D339D971C31454A0022A6A4 /* Main.storyboard */,
-				4D339D9D1C31454B0022A6A4 /* Assets.xcassets */,
-				4D339D9F1C31454B0022A6A4 /* LaunchScreen.storyboard */,
-				4D339DA21C31454B0022A6A4 /* Info.plist */,
-			);
-			name = Forum;
 			sourceTree = "<group>";
 		};
 		849509D36740A6FFD960CDA8 /* Pods */ = {
