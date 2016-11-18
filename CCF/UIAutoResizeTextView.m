@@ -7,7 +7,7 @@
 //
 
 #import "UIAutoResizeTextView.h"
-#import "CCFPCH.pch"
+#import "Forum.pch"
 
 @implementation UIAutoResizeTextView {
     float topY;

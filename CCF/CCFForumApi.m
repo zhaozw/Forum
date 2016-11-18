@@ -11,7 +11,7 @@
 #import "vBulletinForumEngine.h"
 
 
-#import "CCFPCH.pch"
+#import "Forum.pch"
 #import "ForumConfig.h"
 #import "CCFForumBrowser.h"
 #import "CCFForumParser.h"

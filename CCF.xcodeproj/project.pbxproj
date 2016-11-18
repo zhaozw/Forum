@@ -167,7 +167,7 @@
 		3A671EE81CB9EA59001CC91E /* XibInflater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XibInflater.m; sourceTree = "<group>"; };
 		3A690A411C3755C00076C8F1 /* ForumThreadListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumThreadListCell.h; sourceTree = "<group>"; };
 		3A690A421C3755C00076C8F1 /* ForumThreadListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumThreadListCell.m; sourceTree = "<group>"; };
-		3A734BE11CCCADF500C4821A /* CCFPCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCFPCH.pch; sourceTree = "<group>"; };
+		3A734BE11CCCADF500C4821A /* Forum.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Forum.pch; sourceTree = "<group>"; };
 		3A734BE21CCCB2E600C4821A /* UIAutoResizeTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAutoResizeTextView.h; sourceTree = "<group>"; };
 		3A734BE31CCCB2E600C4821A /* UIAutoResizeTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAutoResizeTextView.m; sourceTree = "<group>"; };
 		3A734BE91CCCC2B000C4821A /* ForumNewThreadNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumNewThreadNavigationController.h; sourceTree = "<group>"; };
@@ -599,7 +599,7 @@
 				3A84A4431CE8BF97009619DE /* Extension */,
 				4D796BB31C3DF88F00B3C62D /* AddonsExtension */,
 				3AC65FC91CF13C42000D3BDB /* ApiTest */,
-				3A734BE11CCCADF500C4821A /* CCFPCH.pch */,
+				3A734BE11CCCADF500C4821A /* Forum.pch */,
 				3AC65FC01CF13AA1000D3BDB /* Utils.h */,
 				3AC65FC11CF13AA1000D3BDB /* Utils.m */,
 			);
@@ -1145,7 +1145,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PREFIX_HEADER = CCF/CCFPCH.pch;
+				GCC_PREFIX_HEADER = CCF/Forum.pch;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1176,7 +1176,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PREFIX_HEADER = CCF/CCFPCH.pch;
+				GCC_PREFIX_HEADER = CCF/Forum.pch;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
