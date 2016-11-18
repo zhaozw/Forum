@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "vBulletinForumEngine.h"
 
-@interface CCFForumBrowser : NSObject <ForumEngine>
+@interface ForumBrowser : NSObject <ForumEngine>
 
 - (void)reportThreadPost:(int)postId andMessage:(NSString *)message handler:(HandlerWithBool)handler;
 
