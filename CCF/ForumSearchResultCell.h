@@ -1,5 +1,5 @@
 //
-//  CCFSearchResultCell.h
+//  ForumSearchResultCell.h
 //  CCF
 //
 //  Created by WDY on 16/1/11.
@@ -11,7 +11,7 @@
 #import "BaseFourmTableViewCell.h"
 
 
-@interface CCFSearchResultCell : BaseFourmTableViewCell
+@interface ForumSearchResultCell : BaseFourmTableViewCell
 
 
 @property(weak, nonatomic) IBOutlet UILabel *postTitle;

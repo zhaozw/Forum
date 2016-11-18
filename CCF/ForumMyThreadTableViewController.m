@@ -7,7 +7,7 @@
 //
 
 #import "ForumMyThreadTableViewController.h"
-#import "CCFSearchResultCell.h"
+#import "ForumSearchResultCell.h"
 #import "ForumWebViewController.h"
 
 @interface ForumMyThreadTableViewController ()
@@ -52,7 +52,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellId = @"CCFSearchResultCell";
-    CCFSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    ForumSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
 
     ThreadInSearch *thread = self.dataList[indexPath.row];
     [cell setData:thread];
@@ -64,13 +64,13 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [tableView fd_heightForCellWithIdentifier:@"CCFSearchResultCell" configuration:^(CCFSearchResultCell *cell) {
+    return [tableView fd_heightForCellWithIdentifier:@"CCFSearchResultCell" configuration:^(ForumSearchResultCell *cell) {
         [self configureCell:cell atIndexPath:indexPath];
     }];
 }
 
 
-- (void)configureCell:(CCFSearchResultCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(ForumSearchResultCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
 
     [cell setData:self.dataList[(NSUInteger) indexPath.row]];

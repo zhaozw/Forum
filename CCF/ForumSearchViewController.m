@@ -8,7 +8,7 @@
 
 #import "ForumSearchViewController.h"
 
-#import "CCFSearchResultCell.h"
+#import "ForumSearchResultCell.h"
 #import "ForumUserProfileTableViewController.h"
 #import <SVProgressHUD.h>
 #import "ForumWebViewController.h"
@@ -109,7 +109,7 @@
 
     static NSString *QuoteCellIdentifier = @"CCFSearchResultCell";
 
-    CCFSearchResultCell *cell = (CCFSearchResultCell *) [tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
+    ForumSearchResultCell *cell = (ForumSearchResultCell *) [tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
     cell.showUserProfileDelegate = self;
 
     ThreadInSearch *thread = self.dataList[(NSUInteger) indexPath.row];
@@ -149,12 +149,12 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [tableView fd_heightForCellWithIdentifier:@"CCFSearchResultCell" configuration:^(CCFSearchResultCell *cell) {
+    return [tableView fd_heightForCellWithIdentifier:@"CCFSearchResultCell" configuration:^(ForumSearchResultCell *cell) {
         [self configureCell:cell atIndexPath:indexPath];
     }];
 }
 
-- (void)configureCell:(CCFSearchResultCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(ForumSearchResultCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
 
     [cell setData:self.dataList[(NSUInteger) indexPath.row]];

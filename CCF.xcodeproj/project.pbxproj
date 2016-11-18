@@ -91,7 +91,7 @@
 		4D339D9E1C31454B0022A6A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D339D9D1C31454B0022A6A4 /* Assets.xcassets */; };
 		4D339DA11C31454B0022A6A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D339D9F1C31454B0022A6A4 /* LaunchScreen.storyboard */; };
 		4D6B11CB1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6B11CA1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m */; };
-		4D796BDB1C43666C00B3C62D /* CCFSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BDA1C43666C00B3C62D /* CCFSearchResultCell.m */; };
+		4D796BDB1C43666C00B3C62D /* ForumSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BDA1C43666C00B3C62D /* ForumSearchResultCell.m */; };
 		4D796BEA1C44992700B3C62D /* UIStoryboard+Forum.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BE91C44992700B3C62D /* UIStoryboard+Forum.m */; };
 		4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF91C44BE7800B3C62D /* CoreDataManager.m */; };
 		4D93CFD71C85355D00852D28 /* ApiTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D93CFD51C85355D00852D28 /* ApiTestViewController.m */; };
@@ -277,8 +277,8 @@
 		4D339DA21C31454B0022A6A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D6B11C91C9A582100E073A1 /* CCFSimpleThreadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSimpleThreadTableViewCell.h; sourceTree = "<group>"; };
 		4D6B11CA1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSimpleThreadTableViewCell.m; sourceTree = "<group>"; };
-		4D796BD91C43666C00B3C62D /* CCFSearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSearchResultCell.h; sourceTree = "<group>"; };
-		4D796BDA1C43666C00B3C62D /* CCFSearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSearchResultCell.m; sourceTree = "<group>"; };
+		4D796BD91C43666C00B3C62D /* ForumSearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumSearchResultCell.h; sourceTree = "<group>"; };
+		4D796BDA1C43666C00B3C62D /* ForumSearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumSearchResultCell.m; sourceTree = "<group>"; };
 		4D796BE81C44992700B3C62D /* UIStoryboard+Forum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+Forum.h"; sourceTree = "<group>"; };
 		4D796BE91C44992700B3C62D /* UIStoryboard+Forum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboard+Forum.m"; sourceTree = "<group>"; };
 		4D796BF81C44BE7800B3C62D /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
@@ -361,8 +361,8 @@
 			children = (
 				3A690A411C3755C00076C8F1 /* CCFThreadListCell.h */,
 				3A690A421C3755C00076C8F1 /* CCFThreadListCell.m */,
-				4D796BD91C43666C00B3C62D /* CCFSearchResultCell.h */,
-				4D796BDA1C43666C00B3C62D /* CCFSearchResultCell.m */,
+				4D796BD91C43666C00B3C62D /* ForumSearchResultCell.h */,
+				4D796BDA1C43666C00B3C62D /* ForumSearchResultCell.m */,
 				3A9ADC6A1C9D8F2C006055A8 /* BaseFourmTableViewCell.h */,
 				3A9ADC6B1C9D8F2C006055A8 /* BaseFourmTableViewCell.m */,
 				3A1C2CD51C9EB2C10068AF6B /* ForumProfileTableViewCell.h */,
@@ -965,7 +965,7 @@
 				3AC65FDA1CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.m in Sources */,
 				4D32560D1C4754E700053288 /* SelectPhotoCollectionViewCell.m in Sources */,
 				4DF7371D1DDECC8D00BF1896 /* UserProfile.m in Sources */,
-				4D796BDB1C43666C00B3C62D /* CCFSearchResultCell.m in Sources */,
+				4D796BDB1C43666C00B3C62D /* ForumSearchResultCell.m in Sources */,
 				3A1CF86F1C54F88C002E52EE /* LeftDrawerItem.m in Sources */,
 				4DF7371E1DDECC8D00BF1896 /* SimpleThread.m in Sources */,
 				3AA935B41CF1BABE009FC4A6 /* db.xcdatamodeld in Sources */,
