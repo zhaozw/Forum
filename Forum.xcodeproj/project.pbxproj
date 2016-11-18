@@ -267,7 +267,7 @@
 		4AD749A3A2E07798AF7D58D5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4D32560B1C4754E700053288 /* SelectPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPhotoCollectionViewCell.h; sourceTree = "<group>"; };
 		4D32560C1C4754E700053288 /* SelectPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPhotoCollectionViewCell.m; sourceTree = "<group>"; };
-		4D339D8B1C31454A0022A6A4 /* CCF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCF.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D339D8B1C31454A0022A6A4 /* Forum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D339D8F1C31454A0022A6A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4D339D911C31454A0022A6A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = CCF/AppDelegate.h; sourceTree = "<group>"; };
 		4D339D921C31454A0022A6A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = CCF/AppDelegate.m; sourceTree = "<group>"; };
@@ -631,7 +631,7 @@
 		4D339D8C1C31454A0022A6A4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4D339D8B1C31454A0022A6A4 /* CCF.app */,
+				4D339D8B1C31454A0022A6A4 /* Forum.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -805,9 +805,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4D339D8A1C31454A0022A6A4 /* CCF */ = {
+		4D339D8A1C31454A0022A6A4 /* Forum */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4D339DA51C31454B0022A6A4 /* Build configuration list for PBXNativeTarget "CCF" */;
+			buildConfigurationList = 4D339DA51C31454B0022A6A4 /* Build configuration list for PBXNativeTarget "Forum" */;
 			buildPhases = (
 				98749DBAA66B0ED95FEFB0A0 /* Check Pods Manifest.lock */,
 				4D339D871C31454A0022A6A4 /* Sources */,
@@ -820,9 +820,9 @@
 			);
 			dependencies = (
 			);
-			name = CCF;
+			name = Forum;
 			productName = CCF;
-			productReference = 4D339D8B1C31454A0022A6A4 /* CCF.app */;
+			productReference = 4D339D8B1C31454A0022A6A4 /* Forum.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -846,7 +846,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4D339D861C31454A0022A6A4 /* Build configuration list for PBXProject "CCF" */;
+			buildConfigurationList = 4D339D861C31454A0022A6A4 /* Build configuration list for PBXProject "Forum" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -859,7 +859,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4D339D8A1C31454A0022A6A4 /* CCF */,
+				4D339D8A1C31454A0022A6A4 /* Forum */,
 			);
 		};
 /* End PBXProject section */
@@ -1210,7 +1210,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4D339D861C31454A0022A6A4 /* Build configuration list for PBXProject "CCF" */ = {
+		4D339D861C31454A0022A6A4 /* Build configuration list for PBXProject "Forum" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4D339DA31C31454B0022A6A4 /* Debug */,
@@ -1219,7 +1219,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4D339DA51C31454B0022A6A4 /* Build configuration list for PBXNativeTarget "CCF" */ = {
+		4D339DA51C31454B0022A6A4 /* Build configuration list for PBXNativeTarget "Forum" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4D339DA61C31454B0022A6A4 /* Debug */,
