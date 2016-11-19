@@ -10,7 +10,7 @@
 #define POST_MESSAGE [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil]
 #define PRIVATE_MESSAGE [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"private_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil]
 
-#define BBS_URL @"换成你论坛的网址"
+#define BBS_URL @"https://bbs.et8.net/bbs/"
 #define AVATAR_BASE_URL [BBS_URL stringByAppendingString:@"customavatars"]
 #define NO_AVATAR_URL [AVATAR_BASE_URL stringByAppendingString:@"/no_avatar.gif"]
 

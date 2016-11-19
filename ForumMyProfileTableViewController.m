@@ -78,7 +78,7 @@
 
 
 - (void)onPullRefresh {
-    ForumApi *api = self.ccfApi;
+    ForumBrowser *api = self.ccfApi;
 
     NSString *currentUserId = api.getLoginUser.userID;
 

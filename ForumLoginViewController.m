@@ -17,7 +17,7 @@
 
     CGRect screenSize;
 
-    ForumApi *_ccfApi;
+    ForumBrowser *_ccfApi;
 
 }
 
@@ -41,7 +41,7 @@
 
     screenSize = [UIScreen mainScreen].bounds;
 
-    _ccfApi = [[ForumApi alloc] init];
+    _ccfApi = [[ForumBrowser alloc] init];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
