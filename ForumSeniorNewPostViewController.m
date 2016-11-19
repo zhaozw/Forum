@@ -12,9 +12,9 @@
 #import "LCActionSheet.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "ForumReplyNavigationController.h"
-#import "Utils.h"
 #import "TransBundleDelegate.h"
 #import "TransBundle.h"
+#import "UIImage+Tint.h"
 
 @interface ForumSeniorNewPostViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,
         UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate, TransBundleDelegate, UIScrollViewDelegate> {
@@ -148,8 +148,7 @@
 
     CGSize maxImageSize = CGSizeMake(800, 800);
 
-    [images addObject:[Utils scaleUIImage:select andMaxSize:maxImageSize]];
-
+    [images addObject:[select scaleUIImage:maxImageSize]];
 
     [_insertCollectionView reloadData];
 

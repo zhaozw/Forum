@@ -12,5 +12,6 @@
 
 - (UIImage *)imageWithTintColor:(UIColor *)tintColor;
 
+- (UIImage *)scaleUIImage:(CGSize)maxSize;
 
 @end

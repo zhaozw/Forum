@@ -10,12 +10,12 @@
 #import "ForumApi.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <SVProgressHUD.h>
-#import "Utils.h"
 #import "LCActionSheet.h"
 #import "ActionSheetStringPicker.h"
 #import <AFNetworking.h>
 #import "TransBundle.h"
 #import "TransBundleDelegate.h"
+#import "UIImage+Tint.h"
 
 @interface ForumNewThreadViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate,
         UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,
@@ -148,7 +148,7 @@
 
     [self fileSizeAtPath:selectUrl];
 
-    UIImage *scaleImage = [Utils scaleUIImage:select andMaxSize:CGSizeMake(800, 800)];
+    UIImage *scaleImage = [select scaleUIImage:CGSizeMake(800, 800)];
 
     [images addObject:scaleImage];
 
