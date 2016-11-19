@@ -72,6 +72,9 @@
     SimpleThread *list = self.dataList[(NSUInteger) indexPath.row];
     [cell setData:list forIndexPath:indexPath];
 
+    [cell setSeparatorInset:UIEdgeInsetsZero];
+    [cell setLayoutMargins:UIEdgeInsetsZero];
+
     return cell;
 }
 
