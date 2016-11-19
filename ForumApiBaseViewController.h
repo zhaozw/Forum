@@ -6,11 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ForumApi.h"
+#import "ForumBrowser.h"
 #import "TransBundleUIViewController.h"
 
 @interface ForumApiBaseViewController : TransBundleUIViewController
 
-@property(nonatomic, strong) ForumApi *ccfForumApi;
+@property(nonatomic, strong) ForumBrowser *ccfForumApi;
 
 @end

@@ -16,7 +16,7 @@
 #pragma mark initData
 
 - (void)initData {
-    self.ccfForumApi = [[ForumApi alloc] init];
+    self.ccfForumApi = [[ForumBrowser alloc] init];
 }
 
 #pragma mark override-init

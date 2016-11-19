@@ -7,7 +7,7 @@
 
 #import "ForumNewThreadViewController.h"
 #import "ForumHtmlParser.h"
-#import "ForumApi.h"
+#import "ForumBrowser.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <SVProgressHUD.h>
 #import "LCActionSheet.h"
@@ -22,7 +22,7 @@
         DeleteDelegate, TransBundleDelegate, UIScrollViewDelegate> {
 
 
-    ForumApi *_ccfForumApi;
+    ForumBrowser *_ccfForumApi;
     int forumId;
     UIImagePickerController *pickControl;
     NSMutableArray<UIImage *> *images;
@@ -40,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    _ccfForumApi = [[ForumApi alloc] init];
+    _ccfForumApi = [[ForumBrowser alloc] init];
 
 
     _selectPhotos.delegate = self;

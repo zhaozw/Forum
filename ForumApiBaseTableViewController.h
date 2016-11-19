@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ForumApi.h"
+#import "ForumBrowser.h"
 #import "MJRefresh.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 
@@ -16,7 +16,7 @@
 
 @interface ForumApiBaseTableViewController : TranBundleUITableViewController
 
-@property(nonatomic, strong) ForumApi *ccfApi;
+@property(nonatomic, strong) ForumBrowser *ccfApi;
 @property(nonatomic, strong) NSMutableArray *dataList;
 @property(nonatomic, assign) int currentPage;
 @property(nonatomic, assign) int totalPage;

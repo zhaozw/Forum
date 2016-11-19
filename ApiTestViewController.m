@@ -6,7 +6,7 @@
 //
 
 #import "ApiTestViewController.h"
-#import "ForumApi.h"
+#import "ForumBrowser.h"
 
 @interface ApiTestViewController ()
 
@@ -18,7 +18,7 @@
     [super viewDidLoad];
 
 
-    ForumApi *api = [[ForumApi alloc] init];
+    ForumBrowser *api = [[ForumBrowser alloc] init];
 
     [api formList:^(BOOL isSuccess, id message) {
 
