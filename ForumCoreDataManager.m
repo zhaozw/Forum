@@ -6,7 +6,7 @@
 //
 
 #import "ForumCoreDataManager.h"
-#import "FormEntry.h"
+#import "ForumEntry+CoreDataClass.h"
 
 
 @implementation ForumCoreDataManager
@@ -26,13 +26,13 @@
 
 - (NSArray<Forum *> *)selectFavForms:(NSArray *)ids {
 
-    NSArray<FormEntry *> *entrys = [self selectData:^NSPredicate * {
+    NSArray<ForumEntry *> *entrys = [self selectData:^NSPredicate * {
         return [NSPredicate predicateWithFormat:@"formId IN %@", ids];
     }];
 
     NSMutableArray<Forum *> *forms = [NSMutableArray arrayWithCapacity:entrys.count];
 
-    for (FormEntry *entry in entrys) {
+    for (ForumEntry *entry in entrys) {
         Forum *form = [[Forum alloc] init];
         form.formName = entry.formName;
         form.formId = [entry.formId intValue];
@@ -44,13 +44,13 @@
 
 - (NSArray<Forum *> *)selectAllForms {
 
-    NSArray<FormEntry *> *entrys = [self selectData:^NSPredicate * {
+    NSArray<ForumEntry *> *entrys = [self selectData:^NSPredicate * {
         return [NSPredicate predicateWithFormat:@"parentFormId = %d", -1];
     }];
 
     NSMutableArray<Forum *> *forms = [NSMutableArray arrayWithCapacity:entrys.count];
 
-    for (FormEntry *entry in entrys) {
+    for (ForumEntry *entry in entrys) {
         Forum *form = [[Forum alloc] init];
         form.formName = entry.formName;
         form.formId = [entry.formId intValue];
@@ -69,13 +69,13 @@
 
 - (NSArray<Forum *> *)selectChildFormsForId:(int)formId {
 
-    NSArray<FormEntry *> *entrys = [self selectData:^NSPredicate * {
+    NSArray<ForumEntry *> *entrys = [self selectData:^NSPredicate * {
         return [NSPredicate predicateWithFormat:@"parentFormId = %d", formId];
     }];
 
     NSMutableArray<Forum *> *forms = [NSMutableArray arrayWithCapacity:entrys.count];
 
-    for (FormEntry *entry in entrys) {
+    for (ForumEntry *entry in entrys) {
         Forum *form = [[Forum alloc] init];
         form.formName = entry.formName;
         form.formId = [entry.formId intValue];

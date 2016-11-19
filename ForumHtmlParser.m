@@ -11,7 +11,7 @@
 #import "ForumConfig.h"
 #import <IGHTMLQuery.h>
 
-#import "FormEntry+CoreDataProperties.h"
+#import "ForumEntry+CoreDataClass.h"
 #import "ForumCoreDataManager.h"
 #import "NSUserDefaults+Extensions.h"
 #import "NSString+Extensions.h"
@@ -693,7 +693,7 @@
     
     NSMutableArray<Forum *> *forms = [NSMutableArray arrayWithCapacity:result.count];
     
-    for (FormEntry *entry in result) {
+    for (ForumEntry *entry in result) {
         Forum *form = [[Forum alloc] init];
         form.formName = entry.formName;
         form.formId = [entry.formId intValue];

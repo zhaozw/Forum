@@ -17,11 +17,7 @@
 		3A2C3F1E1DDFBAD000576151 /* post_view_notitle.html in Resources */ = {isa = PBXBuildFile; fileRef = 3A2C3F1B1DDFBAD000576151 /* post_view_notitle.html */; };
 		3A2C3F1F1DDFBAD000576151 /* post_view.html in Resources */ = {isa = PBXBuildFile; fileRef = 3A2C3F1C1DDFBAD000576151 /* post_view.html */; };
 		3A2C3F211DDFBADA00576151 /* private_message.html in Resources */ = {isa = PBXBuildFile; fileRef = 3A2C3F201DDFBADA00576151 /* private_message.html */; };
-		3A2C3F2A1DDFBC3100576151 /* UserEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3F271DDFBC3100576151 /* UserEntry.m */; };
-		3A2C3F2B1DDFBC3100576151 /* UserEntry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3F291DDFBC3100576151 /* UserEntry+CoreDataProperties.m */; };
 		3A2C3F321DDFBCE800576151 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3F2D1DDFBCE800576151 /* CoreDataManager.m */; };
-		3A2C3F331DDFBCE800576151 /* FormEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3F2F1DDFBCE800576151 /* FormEntry.m */; };
-		3A2C3F341DDFBCE800576151 /* FormEntry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3F311DDFBCE800576151 /* FormEntry+CoreDataProperties.m */; };
 		3A2C3F371DDFBD2700576151 /* ForumCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3F361DDFBD2700576151 /* ForumCoreDataManager.m */; };
 		3A2C3F3A1DDFBF3900576151 /* BaseFourmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3F391DDFBF3900576151 /* BaseFourmTableViewCell.m */; };
 		3A2C3F4B1DDFBF5900576151 /* ForumProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3F3C1DDFBF5900576151 /* ForumProfileTableViewCell.m */; };
@@ -91,6 +87,10 @@
 		3A2C40021DDFE30300576151 /* TransBundleUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FFC1DDFE30300576151 /* TransBundleUIViewController.m */; };
 		3A2C40061DDFE3AD00576151 /* TransValueUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C40051DDFE3AD00576151 /* TransValueUITableViewCell.m */; };
 		3A2C400A1DE0015C00576151 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C40091DE0015C00576151 /* main.m */; };
+		3A2C401B1DE09DB400576151 /* UserEntry+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C40141DE09DB400576151 /* UserEntry+CoreDataClass.m */; };
+		3A2C401C1DE09DB400576151 /* UserEntry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C40161DE09DB400576151 /* UserEntry+CoreDataProperties.m */; };
+		3A2C401D1DE09DB400576151 /* ForumEntry+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C40181DE09DB400576151 /* ForumEntry+CoreDataClass.m */; };
+		3A2C401E1DE09DB400576151 /* ForumEntry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C401A1DE09DB400576151 /* ForumEntry+CoreDataProperties.m */; };
 		3AA397391DABB6FF00F74E32 /* iOSDeviceName.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA397381DABB6FF00F74E32 /* iOSDeviceName.framework */; };
 		3ACFFD2C1CF9D6BF000312DC /* HPURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACFFD291CF9D6BF000312DC /* HPURLCache.m */; };
 		3ACFFD2D1CF9D6BF000312DC /* SDImageCache+URLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACFFD2B1CF9D6BF000312DC /* SDImageCache+URLCache.m */; };
@@ -129,16 +129,8 @@
 		3A2C3F1C1DDFBAD000576151 /* post_view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = post_view.html; sourceTree = "<group>"; };
 		3A2C3F201DDFBADA00576151 /* private_message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = private_message.html; sourceTree = "<group>"; };
 		3A2C3F241DDFBB3900576151 /* ForumConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumConfig.h; sourceTree = "<group>"; };
-		3A2C3F261DDFBC3100576151 /* UserEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserEntry.h; sourceTree = "<group>"; };
-		3A2C3F271DDFBC3100576151 /* UserEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserEntry.m; sourceTree = "<group>"; };
-		3A2C3F281DDFBC3100576151 /* UserEntry+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserEntry+CoreDataProperties.h"; sourceTree = "<group>"; };
-		3A2C3F291DDFBC3100576151 /* UserEntry+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserEntry+CoreDataProperties.m"; sourceTree = "<group>"; };
 		3A2C3F2C1DDFBCE800576151 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
 		3A2C3F2D1DDFBCE800576151 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
-		3A2C3F2E1DDFBCE800576151 /* FormEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormEntry.h; sourceTree = "<group>"; };
-		3A2C3F2F1DDFBCE800576151 /* FormEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormEntry.m; sourceTree = "<group>"; };
-		3A2C3F301DDFBCE800576151 /* FormEntry+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FormEntry+CoreDataProperties.h"; sourceTree = "<group>"; };
-		3A2C3F311DDFBCE800576151 /* FormEntry+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormEntry+CoreDataProperties.m"; sourceTree = "<group>"; };
 		3A2C3F351DDFBD2700576151 /* ForumCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumCoreDataManager.h; sourceTree = "<group>"; };
 		3A2C3F361DDFBD2700576151 /* ForumCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumCoreDataManager.m; sourceTree = "<group>"; };
 		3A2C3F381DDFBF3900576151 /* BaseFourmTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseFourmTableViewCell.h; sourceTree = "<group>"; };
@@ -271,6 +263,14 @@
 		3A2C40041DDFE3AD00576151 /* TransValueUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransValueUITableViewCell.h; sourceTree = "<group>"; };
 		3A2C40051DDFE3AD00576151 /* TransValueUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransValueUITableViewCell.m; sourceTree = "<group>"; };
 		3A2C40091DE0015C00576151 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3A2C40131DE09DB400576151 /* UserEntry+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserEntry+CoreDataClass.h"; sourceTree = "<group>"; };
+		3A2C40141DE09DB400576151 /* UserEntry+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserEntry+CoreDataClass.m"; sourceTree = "<group>"; };
+		3A2C40151DE09DB400576151 /* UserEntry+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserEntry+CoreDataProperties.h"; sourceTree = "<group>"; };
+		3A2C40161DE09DB400576151 /* UserEntry+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserEntry+CoreDataProperties.m"; sourceTree = "<group>"; };
+		3A2C40171DE09DB400576151 /* ForumEntry+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ForumEntry+CoreDataClass.h"; sourceTree = "<group>"; };
+		3A2C40181DE09DB400576151 /* ForumEntry+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ForumEntry+CoreDataClass.m"; sourceTree = "<group>"; };
+		3A2C40191DE09DB400576151 /* ForumEntry+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ForumEntry+CoreDataProperties.h"; sourceTree = "<group>"; };
+		3A2C401A1DE09DB400576151 /* ForumEntry+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ForumEntry+CoreDataProperties.m"; sourceTree = "<group>"; };
 		3AA397381DABB6FF00F74E32 /* iOSDeviceName.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iOSDeviceName.framework; sourceTree = "<group>"; };
 		3ACFFD281CF9D6BF000312DC /* HPURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPURLCache.h; sourceTree = "<group>"; };
 		3ACFFD291CF9D6BF000312DC /* HPURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPURLCache.m; sourceTree = "<group>"; };
@@ -357,17 +357,17 @@
 		3A2C400B1DE001B800576151 /* ForumCoreData */ = {
 			isa = PBXGroup;
 			children = (
-				3A2C3F2E1DDFBCE800576151 /* FormEntry.h */,
-				3A2C3F2F1DDFBCE800576151 /* FormEntry.m */,
-				3A2C3F301DDFBCE800576151 /* FormEntry+CoreDataProperties.h */,
-				3A2C3F311DDFBCE800576151 /* FormEntry+CoreDataProperties.m */,
+				3A2C40131DE09DB400576151 /* UserEntry+CoreDataClass.h */,
+				3A2C40141DE09DB400576151 /* UserEntry+CoreDataClass.m */,
+				3A2C40151DE09DB400576151 /* UserEntry+CoreDataProperties.h */,
+				3A2C40161DE09DB400576151 /* UserEntry+CoreDataProperties.m */,
+				3A2C40171DE09DB400576151 /* ForumEntry+CoreDataClass.h */,
+				3A2C40181DE09DB400576151 /* ForumEntry+CoreDataClass.m */,
+				3A2C40191DE09DB400576151 /* ForumEntry+CoreDataProperties.h */,
+				3A2C401A1DE09DB400576151 /* ForumEntry+CoreDataProperties.m */,
 				3A2C3F351DDFBD2700576151 /* ForumCoreDataManager.h */,
 				3A2C3F361DDFBD2700576151 /* ForumCoreDataManager.m */,
-				3A2C3F261DDFBC3100576151 /* UserEntry.h */,
-				3A2C3F271DDFBC3100576151 /* UserEntry.m */,
 				3A2C3FEC1DDFE10900576151 /* db.xcdatamodeld */,
-				3A2C3F281DDFBC3100576151 /* UserEntry+CoreDataProperties.h */,
-				3A2C3F291DDFBC3100576151 /* UserEntry+CoreDataProperties.m */,
 				3A2C3F2C1DDFBCE800576151 /* CoreDataManager.h */,
 				3A2C3F2D1DDFBCE800576151 /* CoreDataManager.m */,
 			);
@@ -873,6 +873,7 @@
 				3A2C3F7F1DDFC0CD00576151 /* UIStoryboard+Forum.m in Sources */,
 				4DF737201DDECC8D00BF1896 /* ShowThreadPage.m in Sources */,
 				3A2C3F4D1DDFBF5900576151 /* ForumSimpleThreadTableViewCell.m in Sources */,
+				3A2C401D1DE09DB400576151 /* ForumEntry+CoreDataClass.m in Sources */,
 				3A2C3F7A1DDFC0CD00576151 /* NSString+Extensions.m in Sources */,
 				3A2C3F871DDFDF9200576151 /* AFHTTPSessionManager+SimpleAction.m in Sources */,
 				4DF7371D1DDECC8D00BF1896 /* UserProfile.m in Sources */,
@@ -882,6 +883,7 @@
 				3A2C3FE01DDFE0C900576151 /* ForumShowNewThreadPostTableViewController.m in Sources */,
 				3A2C3FE31DDFE0C900576151 /* ForumTabBarController.m in Sources */,
 				3A2C3FEE1DDFE10900576151 /* db.xcdatamodeld in Sources */,
+				3A2C401B1DE09DB400576151 /* UserEntry+CoreDataClass.m in Sources */,
 				3AF8878E1DA155D20083A8D5 /* ForumHtmlParser.m in Sources */,
 				4DF737261DDECC9600BF1896 /* PrivateMessage.m in Sources */,
 				3A2C3F7C1DDFC0CD00576151 /* NSUserDefaults+Setting.m in Sources */,
@@ -896,10 +898,10 @@
 				3A2C3F5D1DDFBFC500576151 /* PageHeaderView.m in Sources */,
 				3A2C40021DDFE30300576151 /* TransBundleUIViewController.m in Sources */,
 				3A2C3F511DDFBF5900576151 /* SelectPhotoCollectionViewCell.m in Sources */,
+				3A2C401E1DE09DB400576151 /* ForumEntry+CoreDataProperties.m in Sources */,
 				3A2C3FD51DDFE0C900576151 /* ForumMyProfileTableViewController.m in Sources */,
 				4DF737191DDECC8D00BF1896 /* Post.m in Sources */,
 				3A2C3FCE1DDFE0C900576151 /* ForumApiBaseTableViewController.m in Sources */,
-				3A2C3F2A1DDFBC3100576151 /* UserEntry.m in Sources */,
 				4DF737061DDECC8500BF1896 /* SearchForumDisplayPage.m in Sources */,
 				4DF7371C1DDECC8D00BF1896 /* Thread.m in Sources */,
 				4DF7371F1DDECC8D00BF1896 /* NormalThread.m in Sources */,
@@ -911,8 +913,8 @@
 				3AF887971DA16D2C0083A8D5 /* ForumBrowser.m in Sources */,
 				3A2C3FE91DDFE0C900576151 /* ForumWebViewController.m in Sources */,
 				3A2C3FD21DDFE0C900576151 /* ForumFavThreadPostTableViewController.m in Sources */,
-				3A2C3F341DDFBCE800576151 /* FormEntry+CoreDataProperties.m in Sources */,
 				3A2C3F7B1DDFC0CD00576151 /* NSUserDefaults+Extensions.m in Sources */,
+				3A2C401C1DE09DB400576151 /* UserEntry+CoreDataProperties.m in Sources */,
 				3ACFFD2D1CF9D6BF000312DC /* SDImageCache+URLCache.m in Sources */,
 				3A2C3F3A1DDFBF3900576151 /* BaseFourmTableViewCell.m in Sources */,
 				3A2C400A1DE0015C00576151 /* main.m in Sources */,
@@ -921,9 +923,7 @@
 				3A2C3FDE1DDFE0C900576151 /* ForumSeniorNewPostViewController.m in Sources */,
 				3A2C3FEB1DDFE0C900576151 /* ForumWritePMViewController.m in Sources */,
 				3A2C3FCF1DDFE0C900576151 /* ForumApiBaseViewController.m in Sources */,
-				3A2C3F2B1DDFBC3100576151 /* UserEntry+CoreDataProperties.m in Sources */,
 				3A2C3FD31DDFE0C900576151 /* ForumLoginViewController.m in Sources */,
-				3A2C3F331DDFBCE800576151 /* FormEntry.m in Sources */,
 				3A2C3F7E1DDFC0CD00576151 /* UIImage+Tint.m in Sources */,
 				3A2C3F6A1DDFC03400576151 /* LeftDrawerItem.m in Sources */,
 				3A2C3F691DDFC03400576151 /* CommonUtils.m in Sources */,

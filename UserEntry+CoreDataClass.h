@@ -1,8 +1,9 @@
 //
-//  UserEntry.h
+//  UserEntry+CoreDataClass.h
+//  
 //
-//  Created by 迪远 王 on 16/5/22.
-//  Copyright © 2016年 andforce. All rights reserved.
+//  Created by 迪远 王 on 2016/11/19.
+//
 //
 
 #import <Foundation/Foundation.h>
@@ -11,8 +12,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UserEntry : NSManagedObject
-
-// Insert code here to declare functionality of your managed object subclass
 
 @end
 

@@ -6,7 +6,7 @@
 //
 
 #import "CoreDataManager.h"
-#import "FormEntry.h"
+#import "ForumEntry+CoreDataClass.h"
 
 @implementation CoreDataManager {
     NSString *_xcdatamodeld;
@@ -106,7 +106,7 @@
 
         NSManagedObject *needInsert = [NSEntityDescription insertNewObjectForEntityForName:_entry inManagedObjectContext:context];
 
-        FormEntry *newsInfo = (FormEntry *) needInsert;
+        ForumEntry *newsInfo = (ForumEntry *) needInsert;
         newsInfo.formId = [info valueForKey:@"formId"];
         newsInfo.formName = [info valueForKey:@"formName"];
         newsInfo.parentFormId = [info valueForKey:@"parentFormId"];
@@ -172,7 +172,7 @@
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     NSMutableArray *resultArray = [NSMutableArray array];
 
-    for (FormEntry *info in fetchedObjects) {
+    for (ForumEntry *info in fetchedObjects) {
         NSLog(@"formName:%@", info.formName);
         NSLog(@"formId:%@", info.formId);
         [resultArray addObject:info];

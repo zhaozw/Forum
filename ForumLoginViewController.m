@@ -11,7 +11,7 @@
 #import "UIStoryboard+Forum.h"
 #import <SVProgressHUD.h>
 #import "ForumCoreDataManager.h"
-#import "FormEntry+CoreDataProperties.h"
+#import "ForumEntry+CoreDataClass.h"
 
 @interface ForumLoginViewController () <UITextFieldDelegate> {
 
@@ -141,7 +141,7 @@
                     [formManager deleteData];
 
                     [formManager insertData:needInsert operation:^(NSManagedObject *target, id src) {
-                        FormEntry *newsInfo = (FormEntry *) target;
+                        ForumEntry *newsInfo = (ForumEntry *) target;
                         newsInfo.formId = [src valueForKey:@"formId"];
                         newsInfo.formName = [src valueForKey:@"formName"];
                         newsInfo.parentFormId = [src valueForKey:@"parentFormId"];

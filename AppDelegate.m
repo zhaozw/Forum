@@ -11,7 +11,7 @@
 #import "vBulletinForumEngine.h"
 
 #import "ForumCoreDataManager.h"
-#import "FormEntry.h"
+#import "ForumEntry+CoreDataClass.h"
 #import "NSUserDefaults+Extensions.h"
 #import "ApiTestViewController.h"
 #import "NSUserDefaults+Setting.h"
@@ -52,7 +52,7 @@
     application.applicationIconBadgeNumber = 0;
 
 
-    DB_VERSION = 5;
+    DB_VERSION = 6;
 
 
     API_DEBUG = NO;
