@@ -535,6 +535,17 @@
 			name = ApiTest;
 			sourceTree = "<group>";
 		};
+		3A2C40121DE0439500576151 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				3AF8878C1DA155D20083A8D5 /* ForumHtmlParser.h */,
+				3AF8878D1DA155D20083A8D5 /* ForumHtmlParser.m */,
+				3AF887951DA16D2C0083A8D5 /* ForumBrowser.h */,
+				3AF887961DA16D2C0083A8D5 /* ForumBrowser.m */,
+			);
+			name = Custom;
+			sourceTree = "<group>";
+		};
 		3A37ED921D85C72E003CDC58 /* Templet */ = {
 			isa = PBXGroup;
 			children = (
@@ -546,18 +557,6 @@
 				3A2C3F161DDFBAB200576151 /* append_post_content.html */,
 			);
 			name = Templet;
-			sourceTree = "<group>";
-		};
-		3AC65FBC1CF13809000D3BDB /* Custom */ = {
-			isa = PBXGroup;
-			children = (
-				3AF8878C1DA155D20083A8D5 /* ForumHtmlParser.h */,
-				3AF8878D1DA155D20083A8D5 /* ForumHtmlParser.m */,
-				3AF887951DA16D2C0083A8D5 /* ForumBrowser.h */,
-				3AF887961DA16D2C0083A8D5 /* ForumBrowser.m */,
-			);
-			name = Custom;
-			path = CCF;
 			sourceTree = "<group>";
 		};
 		3ACFFD271CF9D6B1000312DC /* NetWork */ = {
@@ -585,7 +584,7 @@
 		4D339D821C31454A0022A6A4 = {
 			isa = PBXGroup;
 			children = (
-				3AC65FBC1CF13809000D3BDB /* Custom */,
+				3A2C40121DE0439500576151 /* Custom */,
 				3A2C40111DE0423500576151 /* ApiTest */,
 				3A2C40101DE0029D00576151 /* Extension */,
 				3A2C400F1DE0026400576151 /* ForumControllers */,
