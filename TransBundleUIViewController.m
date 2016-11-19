@@ -21,9 +21,9 @@
 
     NSAssert([target respondsToSelector:@selector(transBundle:)], @"目标Controller未实现transBundle:方法");
 
-    self.delegate = (id <TransBundleDelegate>) target;
+    self.transDelegate = (id <TransBundleDelegate>) target;
 
-    [self.delegate transBundle:bundle];
+    [self.transDelegate transBundle:bundle];
 
     [self presentViewController:viewControllerToPresent animated:flag completion:completion];
 }
@@ -36,9 +36,9 @@
 
     NSAssert([target respondsToSelector:@selector(transBundle:)], @"目标Controller未实现transBundle:方法");
 
-    self.delegate = (id <TransBundleDelegate>) target;
+    self.transDelegate = (id <TransBundleDelegate>) target;
 
-    [self.delegate transBundle:bundle];
+    [self.transDelegate transBundle:bundle];
 
     [self dismissViewControllerAnimated:flag completion:completion];
 }
@@ -51,9 +51,9 @@
 
     NSAssert([target respondsToSelector:@selector(transBundle:)], @"目标Controller未实现transBundle:方法");
 
-    self.delegate = (id <TransBundleDelegate>) target;
+    self.transDelegate = (id <TransBundleDelegate>) target;
 
-    [self.delegate transBundle:bundle];
+    [self.transDelegate transBundle:bundle];
 }
 
 @end

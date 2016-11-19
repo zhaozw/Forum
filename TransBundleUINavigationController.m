@@ -7,10 +7,10 @@
 
 #import "ForumReplyNavigationController.h"
 #import "TransBundleDelegate.h"
-#import "TransBudleUINavigatioController.h"
+#import "TransBundleUINavigationController.h"
 
 
-@implementation TransBudleUINavigatioController
+@implementation TransBundleUINavigationController
 
 
 - (void)presentViewController:(UIViewController *)viewControllerToPresent withBundle:(TransBundle *)bundle forRootController:(BOOL)forRootController animated:(BOOL)flag completion:(void (^ __nullable)(void))completion {

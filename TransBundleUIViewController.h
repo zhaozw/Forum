@@ -10,7 +10,7 @@
 #import "TransBundleDelegate.h"
 
 @interface TransBundleUIViewController : UIViewController
-@property(nonatomic, strong) id <TransBundleDelegate> delegate;
+@property(nonatomic, strong) id <TransBundleDelegate> transDelegate;
 
 @property(nonatomic, strong) TransBundle *bundle;
 
