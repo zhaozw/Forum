@@ -825,6 +825,7 @@
                                     <outlet property="lastPostTime" destination="J77-gc-BHi" id="F7y-dk-K05"/>
                                     <outlet property="threadAuthorName" destination="aOe-gT-cl2" id="VvL-0w-Vrs"/>
                                     <outlet property="threadTitle" destination="JGA-bW-LAD" id="xC2-nI-aCF"/>
+                                    <segue destination="7tp-vM-md4" kind="show" identifier="ShowThreadPosts" id="ru3-3V-unv"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -2574,6 +2575,6 @@
         <segue reference="BtX-d5-2Dd"/>
         <segue reference="FiC-V2-LqH"/>
         <segue reference="Ysv-Xy-VAF"/>
-        <segue reference="A7b-At-eSm"/>
+        <segue reference="ru3-3V-unv"/>
     </inferredMetricsTieBreakers>
 </document>
