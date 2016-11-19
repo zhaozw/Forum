@@ -541,10 +541,10 @@
 				3A2C3F241DDFBB3900576151 /* ForumConfig.h */,
 				3A2C3F221DDFBB3900576151 /* ForumApi.h */,
 				3A2C3F231DDFBB3900576151 /* ForumApi.m */,
-				3AF8878C1DA155D20083A8D5 /* ForumHtmlParser.h */,
-				3AF8878D1DA155D20083A8D5 /* ForumHtmlParser.m */,
 				3AF887951DA16D2C0083A8D5 /* ForumBrowser.h */,
 				3AF887961DA16D2C0083A8D5 /* ForumBrowser.m */,
+				3AF8878C1DA155D20083A8D5 /* ForumHtmlParser.h */,
+				3AF8878D1DA155D20083A8D5 /* ForumHtmlParser.m */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
