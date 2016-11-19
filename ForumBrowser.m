@@ -110,11 +110,10 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
-
-- (void)loginWithName:(NSString *)name andPassWord:(NSString *)passWord handler:(HandlerWithBool)handler {
+-(void)loginWithName:(NSString *)name andPassWord:(NSString *)passWord withCode:(NSString *)code handler:(HandlerWithBool)handler{
     NSURL *loginUrl = [NSURL URLWithString:BBS_LOGIN];
     NSString *md5pwd = [passWord md5HexDigest];
-
+    
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:name forKey:@"vb_login_username"];
     [parameters setValue:@"" forKey:@"vb_login_password"];
@@ -125,17 +124,17 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     [parameters setValue:@"login" forKey:@"do"];
     [parameters setValue:md5pwd forKey:@"vb_login_md5password"];
     [parameters setValue:md5pwd forKey:@"vb_login_md5password_utf"];
-
+    
     [_browser POSTWithURLString:[loginUrl absoluteString] parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             handler(YES, html);
-
+            
             NSString *userName = [html stringWithRegular:@"<p><strong>.*</strong></p>" andChild:@"，.*。"];
-
+            
             userName = [userName substringWithRange:NSMakeRange(1, [userName length] - 2)];
-
+            
             [self saveUserName:userName];
-
+            
             // 保存Cookie
             [self saveCookie];
         } else {
@@ -143,6 +142,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
         }
     }];
 }
+
 
 - (LoginUser *)getLoginUser {
     NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
