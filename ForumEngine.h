@@ -107,5 +107,6 @@ typedef void (^HandlerWithBool)(BOOL isSuccess, id message);
 // 显示用户信息页面
 - (void)showProfileWithUserId:(NSString *)userId handler:(HandlerWithBool)handler;
 
-
+// 举报违规帖子
+- (void)reportThreadPost:(int)postId andMessage:(NSString *)message handler:(HandlerWithBool)handler;
 @end

@@ -538,6 +538,9 @@
 		3A2C40121DE0439500576151 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				3A2C3F241DDFBB3900576151 /* ForumConfig.h */,
+				3A2C3F221DDFBB3900576151 /* ForumApi.h */,
+				3A2C3F231DDFBB3900576151 /* ForumApi.m */,
 				3AF8878C1DA155D20083A8D5 /* ForumHtmlParser.h */,
 				3AF8878D1DA155D20083A8D5 /* ForumHtmlParser.m */,
 				3AF887951DA16D2C0083A8D5 /* ForumBrowser.h */,
@@ -621,9 +624,6 @@
 		4DF736F91DDECC3700BF1896 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
-				3A2C3F221DDFBB3900576151 /* ForumApi.h */,
-				3A2C3F231DDFBB3900576151 /* ForumApi.m */,
-				3A2C3F241DDFBB3900576151 /* ForumConfig.h */,
 				4DF736FA1DDECC5000BF1896 /* ForumEngine.h */,
 				4DF736FB1DDECC5000BF1896 /* ForumParser.h */,
 				4DF736FC1DDECC5000BF1896 /* vBulletinForumEngine.h */,

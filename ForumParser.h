@@ -26,7 +26,6 @@
 
 - (ShowThreadPage *)parseShowThreadWithHtml:(NSString *)html;
 
-
 - (ForumDisplayPage *)parseThreadListFromHtml:(NSString *)html withThread:(int)threadId andContainsTop:(BOOL)containTop;
 
 - (ForumDisplayPage *)parseFavThreadListFormHtml:(NSString *)html;
@@ -36,7 +35,6 @@
 - (NSString *)parsePostHash:(NSString *)html;
 
 - (NSString *)parserPostStartTime:(NSString *)html;
-
 
 - (NSString *)parseLoginErrorMessage:(NSString *)html;
 
