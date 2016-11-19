@@ -28,7 +28,7 @@
 
 - (ForumDisplayPage *)parseThreadListFromHtml:(NSString *)html withThread:(int)threadId andContainsTop:(BOOL)containTop;
 
-- (ForumDisplayPage *)parseFavThreadListFormHtml:(NSString *)html;
+- (ForumDisplayPage *)parseFavThreadListFromHtml:(NSString *)html;
 
 - (NSString *)parseSecurityToken:(NSString *)html;
 
@@ -40,9 +40,9 @@
 
 - (SearchForumDisplayPage *)parseSearchPageFromHtml:(NSString *)html;
 
-- (NSMutableArray<Forum *> *)parseFavFormFormHtml:(NSString *)html;
+- (NSMutableArray<Forum *> *)parseFavForumFromHtml:(NSString *)html;
 
-- (ForumDisplayPage *)parsePrivateMessageFormHtml:(NSString *)html;
+- (ForumDisplayPage *)parsePrivateMessageFromHtml:(NSString *)html;
 
 - (ShowPrivateMessage *)parsePrivateMessageContent:(NSString *)html;
 
@@ -58,6 +58,6 @@
 
 - (UserProfile *)parserProfile:(NSString *)html userId:(NSString *)userId;
 
-- (NSArray<Forum *> *)parserForms:(NSString *)html;
+- (NSArray<Forum *> *)parserForums:(NSString *)html;
 
 @end

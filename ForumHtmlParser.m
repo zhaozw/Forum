@@ -482,7 +482,7 @@
     return page;
 }
 
-- (ForumDisplayPage *)parseFavThreadListFormHtml:(NSString *)html {
+- (ForumDisplayPage *)parseFavThreadListFromHtml:(NSString *)html {
     ForumDisplayPage *page = [[ForumDisplayPage alloc] init];
     
     NSString *path = @"/html/body/div[2]/div/div/table[3]/tr/td[3]/form[2]/table/tr[position()>2]";
@@ -669,7 +669,7 @@
     return resultPage;
 }
 
-- (NSMutableArray<Forum *> *)parseFavFormFormHtml:(NSString *)html {
+- (NSMutableArray<Forum *> *)parseFavForumFromHtml:(NSString *)html {
     IGHTMLDocument *document = [[IGHTMLDocument alloc] initWithHTMLString:html error:nil];
     IGXMLNodeSet *favFormNodeSet = [document queryWithXPath:@"//*[@id='collapseobj_usercp_forums']/tr[*]/td[2]/div[1]/a"];
     
@@ -703,7 +703,7 @@
     return forms;
 }
 
-- (ForumDisplayPage *)parsePrivateMessageFormHtml:(NSString *)html {
+- (ForumDisplayPage *)parsePrivateMessageFromHtml:(NSString *)html {
     ForumDisplayPage *page = [[ForumDisplayPage alloc] init];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc] initWithHTMLString:html error:nil];
@@ -966,7 +966,7 @@
     return resultArray;
 }
 
-- (NSArray<Forum *> *)parserForms:(NSString *)html {
+- (NSArray<Forum *> *)parserForums:(NSString *)html {
     IGHTMLDocument *document = [[IGHTMLDocument alloc] initWithHTMLString:html error:nil];
     
     NSMutableArray<Forum *> *forms = [NSMutableArray array];

@@ -230,19 +230,19 @@
     }
 
 
-    [self.ccfForumApi seniorReplyWithThreadId:threadId forFormId:[formIdStr intValue] andMessage:self.replyContent.text withImages:uploadData securitytoken:securityToken handler:^(BOOL isSuccess, id message) {
+    [self.ccfForumApi seniorReplyWithThreadId:threadId forForumId:[formIdStr intValue] andMessage:self.replyContent.text withImages:uploadData securitytoken:securityToken handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
 
             ShowThreadPage *thread = message;
 
-            TransBundle * bundle = [[TransBundle alloc] init];
+            TransBundle *bundle = [[TransBundle alloc] init];
             [bundle putObjectValue:thread forKey:@"Senior_Reply_Callback"];
 
-            UITabBarController * presenting = (UITabBarController *) self.presentingViewController;
-            UINavigationController * selected = presenting.selectedViewController;
-            UIViewController * detail = selected.topViewController;
-            
+            UITabBarController *presenting = (UITabBarController *) self.presentingViewController;
+            UINavigationController *selected = presenting.selectedViewController;
+            UIViewController *detail = selected.topViewController;
+
             [self dismissViewControllerAnimated:YES backToViewController:detail withBundle:bundle completion:^{
 
             }];

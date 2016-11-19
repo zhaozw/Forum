@@ -173,10 +173,10 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }
 }
 
-- (void)formList:(HandlerWithBool)handler {
+- (void)listAllForums:(HandlerWithBool)handler {
     [_browser GETWithURLString:BBS_ARCHIVE requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            NSArray<Forum *> *parserForums = [_htmlParser parserForms:html];
+            NSArray<Forum *> *parserForums = [_htmlParser parserForums:html];
             if (parserForums != nil && parserForums.count > 0) {
                 handler(YES, parserForums);
             } else {
@@ -421,7 +421,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
-- (void)createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *)images handler:(HandlerWithBool)handler {
+- (void)createNewThreadWithForumId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *)images handler:(HandlerWithBool)handler {
     if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
         message = [message stringByAppendingString:[self buildSignature]];
 
@@ -756,7 +756,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
-- (void)seniorReplyWithThreadId:(int)threadId forFormId:(int)formId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(HandlerWithBool)handler {
+- (void)seniorReplyWithThreadId:(int)threadId forForumId:(int)formId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(HandlerWithBool)handler {
     NSString *url = BBS_REPLY(threadId);
 
 
@@ -1026,7 +1026,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
-- (void)favoriteFormsWithId:(NSString *)formId handler:(HandlerWithBool)handler {
+- (void)favoriteForumsWithId:(NSString *)formId handler:(HandlerWithBool)handler {
     NSString *preUrl = BBS_SUBSCRIPTION(formId);
 
     [_browser GETWithURLString:preUrl requestCallback:^(BOOL isSuccess, NSString *html) {
@@ -1056,7 +1056,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
-- (void)unfavoriteFormsWithId:(NSString *)formId handler:(HandlerWithBool)handler {
+- (void)unfavouriteForumsWithId:(NSString *)formId handler:(HandlerWithBool)handler {
     NSString *url = BBS_UNFAV_FORM(formId);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
@@ -1100,7 +1100,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 - (void)listPrivateMessageWithType:(int)type andPage:(int)page handler:(HandlerWithBool)handler {
     [_browser GETWithURLString:BBS_PM_WITH_TYPE(type, page) requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            ForumDisplayPage *page = [_htmlParser parsePrivateMessageFormHtml:html];
+            ForumDisplayPage *page = [_htmlParser parsePrivateMessageFromHtml:html];
             handler(YES, page);
         } else {
             handler(NO, html);
@@ -1108,10 +1108,10 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
-- (void)listFavoriteForms:(HandlerWithBool)handler {
+- (void)listFavoriteForums:(HandlerWithBool)handler {
     [_browser GETWithURLString:BBS_USER_CP requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            NSMutableArray<Forum *> *favForms = [_htmlParser parseFavFormFormHtml:html];
+            NSMutableArray<Forum *> *favForms = [_htmlParser parseFavForumFromHtml:html];
             handler(YES, favForms);
         } else {
             handler(NO, html);
@@ -1123,7 +1123,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     NSString *url = BBS_LIST_FAV_POST(page);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            ForumDisplayPage *page = [_htmlParser parseFavThreadListFormHtml:html];
+            ForumDisplayPage *page = [_htmlParser parseFavThreadListFromHtml:html];
             handler(isSuccess, page);
         } else{
             handler(NO, html);

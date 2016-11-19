@@ -215,7 +215,7 @@
     if (indexPath.section == 0) {
         Forum *parent = childForms[(NSUInteger) cell.indexPath.section];
 
-        [self.ccfApi favoriteFormsWithId:[NSString stringWithFormat:@"%d", parent.formId] handler:^(BOOL isSuccess, id message) {
+        [self.ccfApi favoriteForumsWithId:[NSString stringWithFormat:@"%d", parent.formId] handler:^(BOOL isSuccess, id message) {
             NSLog(@">>>>>>>>>>>> %@", message);
         }];
     } else if (indexPath.section == 1) {

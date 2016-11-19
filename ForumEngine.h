@@ -30,10 +30,10 @@ typedef void (^HandlerWithBool)(BOOL isSuccess, id message);
 - (void)logout;
 
 // 获取所有的论坛列表
-- (void)formList:(HandlerWithBool)handler;
+- (void)listAllForums:(HandlerWithBool)handler;
 
 // 发表一个新的帖子
-- (void)createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *)images handler:(HandlerWithBool)handler;
+- (void)createNewThreadWithForumId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *)images handler:(HandlerWithBool)handler;
 
 // 发表一个回帖
 - (void)replyThreadWithId:(int)threadId andMessage:(NSString *)message handler:(HandlerWithBool)handler;
@@ -42,7 +42,7 @@ typedef void (^HandlerWithBool)(BOOL isSuccess, id message);
 - (void)quickReplyPostWithThreadId:(int)threadId forPostId:(int)postId andMessage:(NSString *)message securitytoken:(NSString *)token ajaxLastPost:(NSString *)ajax_lastpost handler:(HandlerWithBool)handler;
 
 // 高级模式回复
-- (void)seniorReplyWithThreadId:(int)threadId forFormId:(int)formId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(HandlerWithBool)handler;
+- (void)seniorReplyWithThreadId:(int)threadId forForumId:(int)forumId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(HandlerWithBool)handler;
 
 // 搜索论坛
 // 0.标题 1. 内容 2. 用户
@@ -58,10 +58,10 @@ typedef void (^HandlerWithBool)(BOOL isSuccess, id message);
 - (void)replyPrivateMessageWithId:(int)pmId andMessage:(NSString *)message handler:(HandlerWithBool)handler;
 
 // 收藏这个论坛
-- (void)favoriteFormsWithId:(NSString *)formId handler:(HandlerWithBool)handler;
+- (void)favoriteForumsWithId:(NSString *)forumId handler:(HandlerWithBool)handler;
 
 // 取消收藏论坛
-- (void)unfavoriteFormsWithId:(NSString *)formId handler:(HandlerWithBool)handler;
+- (void)unfavouriteForumsWithId:(NSString *)forumId handler:(HandlerWithBool)handler;
 
 // 收藏一个主题帖子
 - (void)favoriteThreadPostWithId:(NSString *)threadPostId handler:(HandlerWithBool)handler;
@@ -73,7 +73,7 @@ typedef void (^HandlerWithBool)(BOOL isSuccess, id message);
 - (void)listPrivateMessageWithType:(int)type andPage:(int)page handler:(HandlerWithBool)handler;
 
 // 获取收藏的论坛板块
-- (void)listFavoriteForms:(HandlerWithBool)handler;
+- (void)listFavoriteForums:(HandlerWithBool)handler;
 
 // 获取收藏的主题帖子
 - (void)listFavoriteThreadPostsWithPage:(int)page handler:(HandlerWithBool)handler;
@@ -98,7 +98,7 @@ typedef void (^HandlerWithBool)(BOOL isSuccess, id message);
 
 - (void)showThreadWithP:(NSString *)p handler:(HandlerWithBool)handler;
 
-- (void)forumDisplayWithId:(int)formId andPage:(int)page handler:(HandlerWithBool)handler;
+- (void)forumDisplayWithId:(int)forumId andPage:(int)page handler:(HandlerWithBool)handler;
 
 - (void)getAvatarWithUserId:(NSString *)userId handler:(HandlerWithBool)handler;
 

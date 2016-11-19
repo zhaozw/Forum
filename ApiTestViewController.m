@@ -20,7 +20,7 @@
 
     ForumBrowser *api = [[ForumBrowser alloc] init];
 
-    [api formList:^(BOOL isSuccess, id message) {
+    [api listAllForums:^(BOOL isSuccess, id message) {
 
     }];
 

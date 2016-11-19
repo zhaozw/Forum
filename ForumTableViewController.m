@@ -96,7 +96,7 @@
     Forum *parent = self.dataList[cell.indexPath.section];
     Forum *child = parent.childForms[cell.indexPath.row];
 
-    [self.ccfApi favoriteFormsWithId:[NSString stringWithFormat:@"%d", child.formId] handler:^(BOOL isSuccess, id message) {
+    [self.ccfApi favoriteForumsWithId:[NSString stringWithFormat:@"%d", child.formId] handler:^(BOOL isSuccess, id message) {
         NSLog(@">>>>>>>>>>>> %@", message);
     }];
 
