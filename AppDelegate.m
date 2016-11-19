@@ -60,9 +60,10 @@
     if (API_DEBUG) {
 
         NSDictionary *dic = [[NSBundle mainBundle] infoDictionary];
+        NSLog(@"infoDictionary %@",dic);
 
         NSString *versionCode = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-
+        NSLog(@"versionCode %@",versionCode);
         ApiTestViewController *testController = [[ApiTestViewController alloc] init];
         self.window.rootViewController = testController;
         return YES;

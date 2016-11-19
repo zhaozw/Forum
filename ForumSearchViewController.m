@@ -84,7 +84,8 @@
             [self.tableView reloadData];
         } else {
             NSLog(@"searchBarSearchButtonClicked   ERROR %@", message);
-            [SVProgressHUD showErrorWithStatus:message maskType:SVProgressHUDMaskTypeBlack];
+            NSString * msg = (NSString *)message;
+            [SVProgressHUD showErrorWithStatus:msg maskType:SVProgressHUDMaskTypeBlack];
         }
     }];
 
