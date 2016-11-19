@@ -1286,7 +1286,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 - (void)showThreadWithId:(int)threadId andPage:(int)page handler:(HandlerWithBool)handler {
     [_browser GETWithURLString:BBS_SHOWTHREAD_PAGE(threadId, page) requestCallback:^(BOOL isSuccess, NSString *html) {
         if (html == nil || [html containsString:@"<div style=\"margin: 10px\">没有指定 主题 。如果您来自一个有效链接，请通知<a href=\"sendmessage.php\">管理员</a></div>"] ||
-           [html containsString:@"<div style=\"margin: 10px\">沒有指定主題 。如果您來自一個有效連結，請通知<a href=\"sendmessage.php\">管理員</a></div>"]){
+            [html containsString:@"<div style=\"margin: 10px\">沒有指定主題 。如果您來自一個有效連結，請通知<a href=\"sendmessage.php\">管理員</a></div>"] || [html containsString:@"<li>您的账号可能没有足够的权限访问此页面或执行需要授权的操作。</li>"]
+            || [html containsString:@"<li>您的帳號可能沒有足夠的權限存取此頁面。您是否正在嘗試編輯別人的文章、存取論壇管理功能或是一些其他需要授權存取的系統?</li>"]){
             handler(NO, @"没有指定主題，可能被删除或无权查看");
             return;
         }
@@ -1303,7 +1304,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     NSString *url = BBS_SHOWTHREAD_WITH_P(p);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         if (html == nil || [html containsString:@"<div style=\"margin: 10px\">没有指定 主题 。如果您来自一个有效链接，请通知<a href=\"sendmessage.php\">管理员</a></div>"] ||
-            [html containsString:@"<div style=\"margin: 10px\">沒有指定主題 。如果您來自一個有效連結，請通知<a href=\"sendmessage.php\">管理員</a></div>"]) {
+            [html containsString:@"<div style=\"margin: 10px\">沒有指定主題 。如果您來自一個有效連結，請通知<a href=\"sendmessage.php\">管理員</a></div>"] || [html containsString:@"<li>您的账号可能没有足够的权限访问此页面或执行需要授权的操作。</li>"]
+            || [html containsString:@"<li>您的帳號可能沒有足夠的權限存取此頁面。您是否正在嘗試編輯別人的文章、存取論壇管理功能或是一些其他需要授權存取的系統?</li>"]){
             handler(NO, @"没有指定主題，可能被删除或无权查看");
             return;
         }
