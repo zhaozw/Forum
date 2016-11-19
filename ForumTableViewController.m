@@ -28,7 +28,7 @@
 
     ForumCoreDataManager *formManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
 
-    self.dataList = [[formManager selectAllForms] copy];
+    self.dataList = [[formManager selectAllForums] copy];
 
     [self.tableView reloadData];
 
@@ -58,7 +58,7 @@
 
     ForumListHeaderView *headerView = [XibInflater inflateViewByXibName:@"ForumListHeaderView"];
     Forum *parent = self.dataList[section];
-    headerView.textLabel.text = parent.formName;
+    headerView.textLabel.text = parent.forumName;
     return headerView;
 
 
@@ -66,7 +66,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     Forum *forum = self.dataList[section];
-    return forum.childForms.count;
+    return forum.childForums.count;
 }
 
 
@@ -81,9 +81,9 @@
 
 
     Forum *parent = self.dataList[indexPath.section];
-    Forum *child = parent.childForms[indexPath.row];
+    Forum *child = parent.childForums[indexPath.row];
 
-    cell.textLabel.text = child.formName;
+    cell.textLabel.text = child.forumName;
 
     UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0,16,0,16);
     [cell setSeparatorInset:edgeInsets];
@@ -94,9 +94,9 @@
 - (BOOL)swipeTableCell:(MGSwipeTableCellWithIndexPath *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
 
     Forum *parent = self.dataList[cell.indexPath.section];
-    Forum *child = parent.childForms[cell.indexPath.row];
+    Forum *child = parent.childForums[cell.indexPath.row];
 
-    [self.ccfApi favoriteFormsWithId:[NSString stringWithFormat:@"%d", child.formId] handler:^(BOOL isSuccess, id message) {
+    [self.ccfApi favoriteForumsWithId:[NSString stringWithFormat:@"%d", child.forumId] handler:^(BOOL isSuccess, id message) {
         NSLog(@">>>>>>>>>>>> %@", message);
     }];
 
@@ -114,7 +114,7 @@
 
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         Forum *select = self.dataList[(NSUInteger) path.section];
-        Forum *child = select.childForms[(NSUInteger) path.row];
+        Forum *child = select.childForums[(NSUInteger) path.row];
         TransBundle * bundle = [[TransBundle alloc] init];
         [bundle putObjectValue:child forKey:@"TransForm"];
         [self transBundle:bundle forController:controller];

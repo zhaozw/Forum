@@ -11,7 +11,7 @@
 #import "ForumConfig.h"
 #import <IGHTMLQuery.h>
 
-#import "FormEntry+CoreDataProperties.h"
+#import "ForumEntry+CoreDataClass.h"
 #import "ForumCoreDataManager.h"
 #import "NSUserDefaults+Extensions.h"
 #import "NSString+Extensions.h"
@@ -219,12 +219,12 @@
     IGHTMLDocument *document = [[IGHTMLDocument alloc] initWithHTMLString:fuxkHttp error:nil];
     
     
-    NSString *formId = [fuxkHttp stringWithRegular:@"newthread.php\\?do=newthread&amp;f=\\d+" andChild:@"\\d+"];
+    NSString *forumId = [fuxkHttp stringWithRegular:@"newthread.php\\?do=newthread&amp;f=\\d+" andChild:@"\\d+"];
     
     ShowThreadPage *showThreadPage = [[ShowThreadPage alloc] init];
     showThreadPage.originalHtml = [self postMessages:fuxkHttp];
     
-    showThreadPage.formId = formId;
+    showThreadPage.forumId = forumId;
     
     NSString *securityToken = [self parseSecurityToken:html];
     showThreadPage.securityToken = securityToken;
@@ -482,7 +482,7 @@
     return page;
 }
 
-- (ForumDisplayPage *)parseFavThreadListFormHtml:(NSString *)html {
+- (ForumDisplayPage *)parseFavThreadListFromHtml:(NSString *)html {
     ForumDisplayPage *page = [[ForumDisplayPage alloc] init];
     
     NSString *path = @"/html/body/div[2]/div/div/table[3]/tr/td[3]/form[2]/table/tr[position()>2]";
@@ -669,7 +669,7 @@
     return resultPage;
 }
 
-- (NSMutableArray<Forum *> *)parseFavFormFormHtml:(NSString *)html {
+- (NSMutableArray<Forum *> *)parseFavForumFromHtml:(NSString *)html {
     IGHTMLDocument *document = [[IGHTMLDocument alloc] initWithHTMLString:html error:nil];
     IGXMLNodeSet *favFormNodeSet = [document queryWithXPath:@"//*[@id='collapseobj_usercp_forums']/tr[*]/td[2]/div[1]/a"];
     
@@ -688,22 +688,22 @@
     // 通过ids 过滤出Form
     ForumCoreDataManager *manager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
     NSArray *result = [manager selectData:^NSPredicate * {
-        return [NSPredicate predicateWithFormat:@"formId IN %@", ids];
+        return [NSPredicate predicateWithFormat:@"forumId IN %@", ids];
     }];
     
     NSMutableArray<Forum *> *forms = [NSMutableArray arrayWithCapacity:result.count];
     
-    for (FormEntry *entry in result) {
+    for (ForumEntry *entry in result) {
         Forum *form = [[Forum alloc] init];
-        form.formName = entry.formName;
-        form.formId = [entry.formId intValue];
+        form.forumName = entry.forumName;
+        form.forumId = [entry.forumId intValue];
         [forms addObject:form];
     }
     
     return forms;
 }
 
-- (ForumDisplayPage *)parsePrivateMessageFormHtml:(NSString *)html {
+- (ForumDisplayPage *)parsePrivateMessageFromHtml:(NSString *)html {
     ForumDisplayPage *page = [[ForumDisplayPage alloc] init];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc] initWithHTMLString:html error:nil];
@@ -937,20 +937,20 @@
     Forum *parent = [[Forum alloc] init];
     NSString *name = [[node childrenAtPosition:0] text];
     NSString *url = [[node childrenAtPosition:0] html];
-    int formId = [[url stringWithRegular:@"f-\\d+" andChild:@"\\d+"] intValue];
-    int fixFormId = formId == 0 ? replaceId : formId;
-    parent.formId = fixFormId;
-    parent.parentFormId = parentFormId;
-    parent.formName = name;
+    int forumId = [[url stringWithRegular:@"f-\\d+" andChild:@"\\d+"] intValue];
+    int fixForumId = forumId == 0 ? replaceId : forumId;
+    parent.forumId = fixForumId;
+    parent.parentForumId = parentFormId;
+    parent.forumName = name;
     
     if (node.childrenCount == 2) {
         IGXMLNodeSet *childSet = [node childrenAtPosition:1].children;
         NSMutableArray<Forum *> *childForms = [NSMutableArray array];
         
         for (IGXMLNode *childNode in childSet) {
-            [childForms addObject:[self node2Form:childNode parentFormId:fixFormId replaceId:replaceId]];
+            [childForms addObject:[self node2Form:childNode parentFormId:fixForumId replaceId:replaceId]];
         }
-        parent.childForms = childForms;
+        parent.childForums = childForms;
     }
     
     return parent;
@@ -960,13 +960,13 @@
 - (NSArray *)flatForm:(Forum *)form {
     NSMutableArray *resultArray = [NSMutableArray array];
     [resultArray addObject:form];
-    for (Forum *childForm in form.childForms) {
+    for (Forum *childForm in form.childForums) {
         [resultArray addObjectsFromArray:[self flatForm:childForm]];
     }
     return resultArray;
 }
 
-- (NSArray<Forum *> *)parserForms:(NSString *)html {
+- (NSArray<Forum *> *)parserForums:(NSString *)html {
     IGHTMLDocument *document = [[IGHTMLDocument alloc] initWithHTMLString:html error:nil];
     
     NSMutableArray<Forum *> *forms = [NSMutableArray array];
@@ -985,12 +985,12 @@
     
     NSMutableArray<Forum *> *needInsert = [NSMutableArray array];
     
-    for (Forum *form in forms) {
-        [needInsert addObjectsFromArray:[self flatForm:form]];
+    for (Forum *forum in forms) {
+        [needInsert addObjectsFromArray:[self flatForm:forum]];
     }
     
     for (Forum *form in needInsert) {
-        NSLog(@">>>>>>>>>>>>>>>>>>>>>>> %@     formId: %d     parentFormId:%d\n\n\n", form.formName, form.formId, form.parentFormId);
+        NSLog(@">>>>>>>>>>>>>>>>>>>>>>> %@     forumId: %d     parentForumId:%d\n\n\n", form.forumName, form.forumId, form.parentForumId);
     }
     
     

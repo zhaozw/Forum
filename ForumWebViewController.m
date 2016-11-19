@@ -788,7 +788,7 @@
     NSString *token = currentShowThreadPage.securityToken;
     [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
     [bundle putStringValue:threadAuthorName forKey:@"POST_USER"];
-    [bundle putStringValue:currentShowThreadPage.formId forKey:@"FORM_ID"];
+    [bundle putStringValue:currentShowThreadPage.forumId forKey:@"FORM_ID"];
 
     [self presentViewController:controller withBundle:bundle forRootController:YES animated:YES completion:^{
 

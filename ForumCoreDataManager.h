@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, EntryType) {
 
 
 #pragma mark Form 相关
-#define kFormEntry @"FormEntry"
+#define kFormEntry @"ForumEntry"
 #define kFormXcda @"db"
 #define kFormDBName @"db.sqlite"
 
@@ -28,10 +28,10 @@ typedef NS_ENUM(NSInteger, EntryType) {
 
 - (instancetype)initWithEntryType:(EntryType)enrty;
 
-- (NSArray<Forum *> *)selectFavForms:(NSArray *)ids;
+- (NSArray<Forum *> *)selectFavForums:(NSArray *)ids;
 
-- (NSArray<Forum *> *)selectChildFormsForId:(int)formId;
+- (NSArray<Forum *> *)selectChildForumsById:(int)forumId;
 
-- (NSArray<Forum *> *)selectAllForms;
+- (NSArray<Forum *> *)selectAllForums;
 
 @end

@@ -1,21 +1,22 @@
 //
 //  UserEntry+CoreDataProperties.h
+//  
 //
-//  Created by 迪远 王 on 16/5/22.
-//  Copyright © 2016年 andforce. All rights reserved.
+//  Created by 迪远 王 on 2016/11/19.
 //
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
-#import "UserEntry.h"
+#import "UserEntry+CoreDataClass.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UserEntry (CoreDataProperties)
 
-@property(nullable, nonatomic, retain) NSString *userAvatar;
-@property(nullable, nonatomic, retain) NSString *userID;
++ (NSFetchRequest<UserEntry *> *)fetchRequest;
+
+@property (nullable, nonatomic, copy) NSString *userAvatar;
+@property (nullable, nonatomic, copy) NSString *userID;
 
 @end
 

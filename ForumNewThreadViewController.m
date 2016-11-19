@@ -202,7 +202,7 @@
         [uploadData addObject:data];
     }
 
-    [_ccfForumApi createNewThreadWithFormId:forumId withSubject:title andMessage:message withImages:[uploadData copy] handler:^(BOOL isSuccess, id message) {
+    [_ccfForumApi createNewThreadWithForumId:forumId withSubject:title andMessage:message withImages:[uploadData copy] handler:^(BOOL isSuccess, id message) {
 
         [self dismissViewControllerAnimated:YES completion:^{
 

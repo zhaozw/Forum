@@ -36,7 +36,7 @@
 
 - (void)onPullRefresh {
 
-    [self.ccfApi listFavoriteForms:^(BOOL isSuccess, NSMutableArray<Forum *> *message) {
+    [self.ccfApi listFavoriteForums:^(BOOL isSuccess, NSMutableArray<Forum *> *message) {
 
 
         [self.tableView.mj_header endRefreshing];
@@ -56,13 +56,13 @@
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
 
     if (userDef.favFormIds == nil) {
-        [self.ccfApi listFavoriteForms:^(BOOL isSuccess, NSMutableArray<Forum *> *message) {
+        [self.ccfApi listFavoriteForums:^(BOOL isSuccess, NSMutableArray<Forum *> *message) {
             self.dataList = message;
             [self.tableView reloadData];
         }];
     } else {
         ForumCoreDataManager *manager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
-        NSArray *forms = [[manager selectFavForms:userDef.favFormIds] mutableCopy];
+        NSArray *forms = [[manager selectFavForums:userDef.favFormIds] mutableCopy];
 
         [self.dataList addObjectsFromArray:forms];
 
@@ -114,7 +114,7 @@
 
     Forum *form = self.dataList[(NSUInteger) indexPath.row];
 
-    cell.textLabel.text = form.formName;
+    cell.textLabel.text = form.forumName;
 
     UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0,16,0,16);
     [cell setSeparatorInset:edgeInsets];
@@ -133,7 +133,7 @@
 
     Forum *parent = self.dataList[(NSUInteger) cell.indexPath.row];
 
-    [self.ccfApi unfavoriteFormsWithId:[NSString stringWithFormat:@"%d", parent.formId] handler:^(BOOL isSuccess, id message) {
+    [self.ccfApi unfavouriteForumsWithId:[NSString stringWithFormat:@"%d", parent.forumId] handler:^(BOOL isSuccess, id message) {
 
     }];
 

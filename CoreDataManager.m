@@ -6,7 +6,7 @@
 //
 
 #import "CoreDataManager.h"
-#import "FormEntry.h"
+#import "ForumEntry+CoreDataClass.h"
 
 @implementation CoreDataManager {
     NSString *_xcdatamodeld;
@@ -106,10 +106,10 @@
 
         NSManagedObject *needInsert = [NSEntityDescription insertNewObjectForEntityForName:_entry inManagedObjectContext:context];
 
-        FormEntry *newsInfo = (FormEntry *) needInsert;
-        newsInfo.formId = [info valueForKey:@"formId"];
-        newsInfo.formName = [info valueForKey:@"formName"];
-        newsInfo.parentFormId = [info valueForKey:@"parentFormId"];
+        ForumEntry *newsInfo = (ForumEntry *) needInsert;
+        newsInfo.forumId = [info valueForKey:@"forumId"];
+        newsInfo.forumName = [info valueForKey:@"forumName"];
+        newsInfo.parentForumId = [info valueForKey:@"parentForumId"];
 
         NSError *error;
         if (![context save:&error]) {
@@ -125,10 +125,6 @@
 
         NSManagedObject *needInsert = [NSEntityDescription insertNewObjectForEntityForName:_entry inManagedObjectContext:context];
 
-//        FormEntry *newsInfo = (FormEntry*)needInsert;
-//        newsInfo.formId = [info valueForKey:@"formId"];
-//        newsInfo.formName = [info valueForKey:@"formName"];
-//        newsInfo.parentFormId = [info valueForKey:@"parentFormId"];
         operation(needInsert, info);
 
         NSError *error;
@@ -172,9 +168,9 @@
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     NSMutableArray *resultArray = [NSMutableArray array];
 
-    for (FormEntry *info in fetchedObjects) {
-        NSLog(@"formName:%@", info.formName);
-        NSLog(@"formId:%@", info.formId);
+    for (ForumEntry *info in fetchedObjects) {
+        NSLog(@"forumName:%@", info.forumName);
+        NSLog(@"forumId:%@", info.forumId);
         [resultArray addObject:info];
     }
     return resultArray;

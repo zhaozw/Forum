@@ -11,7 +11,7 @@
 #import "UIStoryboard+Forum.h"
 #import <SVProgressHUD.h>
 #import "ForumCoreDataManager.h"
-#import "FormEntry+CoreDataProperties.h"
+#import "ForumEntry+CoreDataClass.h"
 
 @interface ForumLoginViewController () <UITextFieldDelegate> {
 
@@ -129,30 +129,30 @@
 
     [_ccfApi loginWithName:name andPassWord:password withCode:code handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
-            
-            [_ccfApi formList:^(BOOL isSuccess, id message) {
-                
-                
+
+            [_ccfApi listAllForums:^(BOOL isSuccess, id message) {
+
+
                 [SVProgressHUD dismiss];
                 if (isSuccess) {
                     NSMutableArray<Forum *> *needInsert = message;
                     ForumCoreDataManager *formManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
                     // 需要先删除之前的老数据
                     [formManager deleteData];
-                    
+
                     [formManager insertData:needInsert operation:^(NSManagedObject *target, id src) {
-                        FormEntry *newsInfo = (FormEntry *) target;
-                        newsInfo.formId = [src valueForKey:@"formId"];
-                        newsInfo.formName = [src valueForKey:@"formName"];
-                        newsInfo.parentFormId = [src valueForKey:@"parentFormId"];
-                        
+                        ForumEntry *newsInfo = (ForumEntry *) target;
+                        newsInfo.forumId = [src valueForKey:@"forumId"];
+                        newsInfo.forumName = [src valueForKey:@"forumName"];
+                        newsInfo.parentForumId = [src valueForKey:@"parentForumId"];
+
                     }];
-                    
+
                     UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
                     [stortboard changeRootViewControllerTo:kCCFRootController];
-                    
+
                 }
-                
+
             }];
             
             

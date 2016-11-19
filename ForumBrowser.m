@@ -173,10 +173,10 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }
 }
 
-- (void)formList:(HandlerWithBool)handler {
+- (void)listAllForums:(HandlerWithBool)handler {
     [_browser GETWithURLString:BBS_ARCHIVE requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            NSArray<Forum *> *parserForums = [_htmlParser parserForms:html];
+            NSArray<Forum *> *parserForums = [_htmlParser parserForums:html];
             if (parserForums != nil && parserForums.count > 0) {
                 handler(YES, parserForums);
             } else {
@@ -197,8 +197,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     [parameters setValue:@"0" forKey:@"iconid"];
     [parameters setValue:@"" forKey:@"s"];
     [parameters setValue:token forKey:@"securitytoken"];
-    NSString *formId = [NSString stringWithFormat:@"%d", fId];
-    [parameters setValue:formId forKey:@"f"];
+    NSString *forumId = [NSString stringWithFormat:@"%d", fId];
+    [parameters setValue:forumId forKey:@"f"];
     [parameters setValue:@"postthread" forKey:@"do"];
     [parameters setValue:hash forKey:@"posthash"];
 
@@ -223,9 +223,9 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 // private 进入图片管理页面，准备上传图片
-- (void)uploadImagePrepair:(int)formId startPostTime:(NSString *)time postHash:(NSString *)hash :(HandlerWithBool)callback {
+- (void)uploadImagePrepair:(int)forumId startPostTime:(NSString *)time postHash:(NSString *)hash :(HandlerWithBool)callback {
 
-    [_browser GETWithURLString:BBS_NEWATTACHMENT_FORM(formId, time, hash) requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser GETWithURLString:BBS_NEWATTACHMENT_FORM(forumId, time, hash) requestCallback:^(BOOL isSuccess, NSString *html) {
         callback(isSuccess, html);
     }];
 }
@@ -346,8 +346,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     [parameters setValue:token forKey:@"securitytoken"];
     [parameters setValue:@"manageattach" forKey:@"do"];
     [parameters setValue:@"" forKey:@"t"];
-    NSString *formID = [NSString stringWithFormat:@"%d", fId];
-    [parameters setValue:formID forKey:@"f"];
+    NSString *forumId = [NSString stringWithFormat:@"%d", fId];
+    [parameters setValue:forumId forKey:@"f"];
     [parameters setValue:@"" forKey:@"p"];
     [parameters setValue:postTime forKey:@"poststarttime"];
     [parameters setValue:@"0" forKey:@"editpost"];
@@ -404,9 +404,9 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 //private  获取发新帖子的Posttime hash 和token
-- (void)createNewThreadPrepair:(int)formId :(CallBack)callback {
+- (void)createNewThreadPrepair:(int)forumId :(CallBack)callback {
 
-    [_browser GETWithURLString:BBS_NEW_THREAD(formId) requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser GETWithURLString:BBS_NEW_THREAD(forumId) requestCallback:^(BOOL isSuccess, NSString *html) {
 
         if (isSuccess) {
             NSString *token = [_htmlParser parseSecurityToken:html];
@@ -421,7 +421,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
-- (void)createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *)images handler:(HandlerWithBool)handler {
+- (void)createNewThreadWithForumId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *)images handler:(HandlerWithBool)handler {
     if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
         message = [message stringByAppendingString:[self buildSignature]];
 
@@ -603,7 +603,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             if ([html containsString:@"<ol><li>本论坛允许的发表两个帖子的时间间隔必须大于 30 秒。请等待 "] || [html containsString:@"<ol><li>本論壇允許的發表兩個文章的時間間隔必須大於 30 秒。請等待"]){
                 handler(NO, @"本论坛允许的发表两个帖子的时间间隔必须大于 30 秒");
             } else{
-                ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:message];
+                ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:html];
                 if (thread.dataList.count > 0) {
                     handler(YES, thread);
                 } else {
@@ -698,8 +698,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     [parameters setValue:token forKey:@"securitytoken"];
     [parameters setValue:@"manageattach" forKey:@"do"];
     [parameters setValue:[NSString stringWithFormat:@"%d", threadId] forKey:@"t"];
-    NSString *formID = [NSString stringWithFormat:@"%d", fId];
-    [parameters setValue:formID forKey:@"f"];
+    NSString *forumId = [NSString stringWithFormat:@"%d", fId];
+    [parameters setValue:forumId forKey:@"f"];
     [parameters setValue:@"" forKey:@"p"];
     [parameters setValue:postTime forKey:@"poststarttime"];
 
@@ -756,7 +756,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
-- (void)seniorReplyWithThreadId:(int)threadId forFormId:(int)formId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(HandlerWithBool)handler {
+- (void)seniorReplyWithThreadId:(int)threadId forForumId:(int)forumId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(HandlerWithBool)handler {
     NSString *url = BBS_REPLY(threadId);
 
 
@@ -790,7 +790,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                         if ([html containsString:@"<ol><li>本论坛允许的发表两个帖子的时间间隔必须大于 30 秒。请等待 "] || [html containsString:@"<ol><li>本論壇允許的發表兩個文章的時間間隔必須大於 30 秒。請等待"]){
                             handler(NO, @"本论坛允许的发表两个帖子的时间间隔必须大于 30 秒");
                         } else{
-                            ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:message];
+                            ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:result];
                             if (thread.dataList.count > 0) {
                                 handler(YES, thread);
                             } else {
@@ -820,7 +820,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                         NSData *image = images[i];
 
                         [NSThread sleepForTimeInterval:2.0f];
-                        [self uploadImageForSeniorReply:uploadImageUrl :uploadImageToken fId:formId threadId:threadId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id uploadResultHtml) {
+                        [self uploadImageForSeniorReply:uploadImageUrl :uploadImageToken fId:forumId threadId:threadId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id uploadResultHtml) {
                             uploadSuccess = isSuccess;
                             // 更新token
                             uploadImageToken = [_htmlParser parseSecurityToken:uploadResultHtml];
@@ -835,7 +835,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                                         if ([html containsString:@"<ol><li>本论坛允许的发表两个帖子的时间间隔必须大于 30 秒。请等待 "] || [html containsString:@"<ol><li>本論壇允許的發表兩個文章的時間間隔必須大於 30 秒。請等待"]){
                                             handler(NO, @"本论坛允许的发表两个帖子的时间间隔必须大于 30 秒");
                                         } else{
-                                            ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:message];
+                                            ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:uploadResultHtml];
                                             if (thread.dataList.count > 0) {
                                                 handler(YES, thread);
                                             } else {
@@ -1026,8 +1026,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
-- (void)favoriteFormsWithId:(NSString *)formId handler:(HandlerWithBool)handler {
-    NSString *preUrl = BBS_SUBSCRIPTION(formId);
+- (void)favoriteForumsWithId:(NSString *)forumId handler:(HandlerWithBool)handler {
+    NSString *preUrl = BBS_SUBSCRIPTION(forumId);
 
     [_browser GETWithURLString:preUrl requestCallback:^(BOOL isSuccess, NSString *html) {
         if (!isSuccess) {
@@ -1035,17 +1035,17 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
         } else {
             NSString *token = [_htmlParser parseSecurityToken:html];
 
-            NSString *url = BBS_SUBSCRIPTION_PARAM(formId);
+            NSString *url = BBS_SUBSCRIPTION_PARAM(forumId);
             NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 
-            NSString *paramUrl = BBS_FORMDISPLAY(formId);
+            NSString *paramUrl = BBS_FORMDISPLAY(forumId);
 
             [parameters setValue:@"" forKey:@"s"];
             [parameters setValue:token forKey:@"securitytoken"];
             [parameters setValue:@"doaddsubscription" forKey:@"do"];
-            [parameters setValue:formId forKey:@"formid"];
+            [parameters setValue:forumId forKey:@"forumid"];
             [parameters setValue:paramUrl forKey:@"url"];
-            [parameters setValue:@")" forKey:@"emailupdate"];
+            [parameters setValue:@"0" forKey:@"emailupdate"];
 
 
             [_browser POSTWithURLString:url parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
@@ -1056,8 +1056,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
-- (void)unfavoriteFormsWithId:(NSString *)formId handler:(HandlerWithBool)handler {
-    NSString *url = BBS_UNFAV_FORM(formId);
+- (void)unfavouriteForumsWithId:(NSString *)forumId handler:(HandlerWithBool)handler {
+    NSString *url = BBS_UNFAV_FORM(forumId);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
@@ -1100,7 +1100,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 - (void)listPrivateMessageWithType:(int)type andPage:(int)page handler:(HandlerWithBool)handler {
     [_browser GETWithURLString:BBS_PM_WITH_TYPE(type, page) requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            ForumDisplayPage *page = [_htmlParser parsePrivateMessageFormHtml:html];
+            ForumDisplayPage *page = [_htmlParser parsePrivateMessageFromHtml:html];
             handler(YES, page);
         } else {
             handler(NO, html);
@@ -1108,10 +1108,10 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
-- (void)listFavoriteForms:(HandlerWithBool)handler {
+- (void)listFavoriteForums:(HandlerWithBool)handler {
     [_browser GETWithURLString:BBS_USER_CP requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            NSMutableArray<Forum *> *favForms = [_htmlParser parseFavFormFormHtml:html];
+            NSMutableArray<Forum *> *favForms = [_htmlParser parseFavForumFromHtml:html];
             handler(YES, favForms);
         } else {
             handler(NO, html);
@@ -1123,7 +1123,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     NSString *url = BBS_LIST_FAV_POST(page);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            ForumDisplayPage *page = [_htmlParser parseFavThreadListFormHtml:html];
+            ForumDisplayPage *page = [_htmlParser parseFavThreadListFromHtml:html];
             handler(isSuccess, page);
         } else{
             handler(NO, html);
@@ -1286,7 +1286,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 - (void)showThreadWithId:(int)threadId andPage:(int)page handler:(HandlerWithBool)handler {
     [_browser GETWithURLString:BBS_SHOWTHREAD_PAGE(threadId, page) requestCallback:^(BOOL isSuccess, NSString *html) {
         if (html == nil || [html containsString:@"<div style=\"margin: 10px\">没有指定 主题 。如果您来自一个有效链接，请通知<a href=\"sendmessage.php\">管理员</a></div>"] ||
-           [html containsString:@"<div style=\"margin: 10px\">沒有指定主題 。如果您來自一個有效連結，請通知<a href=\"sendmessage.php\">管理員</a></div>"]){
+            [html containsString:@"<div style=\"margin: 10px\">沒有指定主題 。如果您來自一個有效連結，請通知<a href=\"sendmessage.php\">管理員</a></div>"] || [html containsString:@"<li>您的账号可能没有足够的权限访问此页面或执行需要授权的操作。</li>"]
+            || [html containsString:@"<li>您的帳號可能沒有足夠的權限存取此頁面。您是否正在嘗試編輯別人的文章、存取論壇管理功能或是一些其他需要授權存取的系統?</li>"]){
             handler(NO, @"没有指定主題，可能被删除或无权查看");
             return;
         }
@@ -1303,7 +1304,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     NSString *url = BBS_SHOWTHREAD_WITH_P(p);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         if (html == nil || [html containsString:@"<div style=\"margin: 10px\">没有指定 主题 。如果您来自一个有效链接，请通知<a href=\"sendmessage.php\">管理员</a></div>"] ||
-            [html containsString:@"<div style=\"margin: 10px\">沒有指定主題 。如果您來自一個有效連結，請通知<a href=\"sendmessage.php\">管理員</a></div>"]) {
+            [html containsString:@"<div style=\"margin: 10px\">沒有指定主題 。如果您來自一個有效連結，請通知<a href=\"sendmessage.php\">管理員</a></div>"] || [html containsString:@"<li>您的账号可能没有足够的权限访问此页面或执行需要授权的操作。</li>"]
+            || [html containsString:@"<li>您的帳號可能沒有足夠的權限存取此頁面。您是否正在嘗試編輯別人的文章、存取論壇管理功能或是一些其他需要授權存取的系統?</li>"]){
             handler(NO, @"没有指定主題，可能被删除或无权查看");
             return;
         }
@@ -1316,10 +1318,10 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
-- (void)forumDisplayWithId:(int)formId andPage:(int)page handler:(HandlerWithBool)handler {
-    [_browser GETWithURLString:BBS_FORMDISPLAY_PAGE(formId, page) requestCallback:^(BOOL isSuccess, NSString *html) {
+- (void)forumDisplayWithId:(int)forumId andPage:(int)page handler:(HandlerWithBool)handler {
+    [_browser GETWithURLString:BBS_FORMDISPLAY_PAGE(forumId, page) requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            ForumDisplayPage *page = [_htmlParser parseThreadListFromHtml:html withThread:formId andContainsTop:YES];
+            ForumDisplayPage *page = [_htmlParser parseThreadListFromHtml:html withThread:forumId andContainsTop:YES];
             handler(isSuccess, page);
         } else {
             handler(NO, html);

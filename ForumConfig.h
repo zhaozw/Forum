@@ -20,7 +20,7 @@
 
 // 附件相关
 #define BBS_NEWATTACHMENT_THREAD(threadId, time, hash) [NSString stringWithFormat:@"%@newattachment.php?t=%d&poststarttime=%@&posthash=%@", BBS_URL, threadId, time, hash]
-#define BBS_NEWATTACHMENT_FORM(formId, time, hash) [NSString stringWithFormat:@"%@newattachment.php?f=%d&poststarttime=%@&posthash=%@", BBS_URL, formId, time, hash]
+#define BBS_NEWATTACHMENT_FORM(forumId, time, hash) [NSString stringWithFormat:@"%@newattachment.php?f=%d&poststarttime=%@&posthash=%@", BBS_URL, forumId, time, hash]
 // 管理附件
 #define BBS_MANAGE_ATT [NSString stringWithFormat:@"%@newattachment.php?do=manageattach&p=", BBS_URL]
 //#define BBS_NEWATTACHMENT(...) [NSString stringWithFormat:BBS_NEWATTACHMENT_PATTERN,##__VA_ARGS__]
@@ -34,12 +34,12 @@
 #define BBS_FIND_USER_WITH_NAME(name) [NSString stringWithFormat:@"%@search.php?do=process&showposts=0&starteronly=1&exactname=1&searchuser=%@", BBS_URL ,name]
 
 // 收藏论坛
-#define BBS_SUBSCRIPTION(formId) [NSString stringWithFormat:@"%@subscription.php?do=addsubscription&f=%@", BBS_URL,formId]
+#define BBS_SUBSCRIPTION(forumId) [NSString stringWithFormat:@"%@subscription.php?do=addsubscription&f=%@", BBS_URL,forumId]
 // 收藏论坛参数
-#define BBS_SUBSCRIPTION_PARAM(formId) [NSString stringWithFormat:@"%@subscription.php?do=doaddsubscription&forumid=%@",BBS_URL,formId]
+#define BBS_SUBSCRIPTION_PARAM(forumId) [NSString stringWithFormat:@"%@subscription.php?do=doaddsubscription&forumid=%@",BBS_URL,forumId]
 
 // 取消收藏论坛
-#define BBS_UNFAV_FORM(formId) [NSString stringWithFormat:@"%@subscription.php?do=removesubscription&f=%@",BBS_URL, formId]
+#define BBS_UNFAV_FORM(forumId) [NSString stringWithFormat:@"%@subscription.php?do=removesubscription&f=%@",BBS_URL, forumId]
 
 // 收藏主题
 #define BBS_FAV_THREAD(threadId) [NSString stringWithFormat:@"%@subscription.php?do=addsubscription&t=%@",BBS_URL, threadId]
@@ -49,8 +49,8 @@
 #define BBS_UNFAV_THREAD(threadId) [NSString stringWithFormat:@"%@subscription.php?do=removesubscription&t=%@",BBS_URL, threadId]
 
 // FormDisplay
-#define BBS_FORMDISPLAY(formId) [NSString stringWithFormat:@"%@forumdisplay.php?f=%@", BBS_URL, formId]
-#define BBS_FORMDISPLAY_PAGE(formId, page) [NSString stringWithFormat:@"%@forumdisplay.php?f=%d&order=desc&page=%d", BBS_URL, formId, page]
+#define BBS_FORMDISPLAY(forumId) [NSString stringWithFormat:@"%@forumdisplay.php?f=%@", BBS_URL, forumId]
+#define BBS_FORMDISPLAY_PAGE(forumId, page) [NSString stringWithFormat:@"%@forumdisplay.php?f=%d&order=desc&page=%d", BBS_URL, forumId, page]
 
 // 列出收藏的帖子
 #define BBS_LIST_FAV_POST(page) [NSString stringWithFormat:@"%@subscription.php?do=viewsubscription&pp=35&folderid=0&sort=lastpost&order=desc&page=%d", BBS_URL, page]
@@ -87,7 +87,7 @@
 #define BBS_INBOX [NSString stringWithFormat:@"%@private.php?folderid=0", BBS_URL]
 
 // 发表新帖子
-#define BBS_NEW_THREAD(formId) [NSString stringWithFormat:@"%@newthread.php?do=newthread&f=%d", BBS_URL,formId]
+#define BBS_NEW_THREAD(forumId) [NSString stringWithFormat:@"%@newthread.php?do=newthread&f=%d", BBS_URL,forumId]
 
 // 站内短信
 #define BBS_PM_WITH_TYPE(type, page) [NSString stringWithFormat:@"%@private.php?folderid=%d&pp=30&sort=date&page=%d", BBS_URL,type, page]
