@@ -37,7 +37,7 @@
     [super viewDidLoad];
 
     ForumCoreDataManager *manager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
-    childForms = [[manager selectChildFormsForId:transForm.formId] mutableCopy];
+    childForms = [[manager selectChildFormsForId:transForm.forumId] mutableCopy];
 
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 180.0;
@@ -46,14 +46,14 @@
         self.threadTopList = [NSMutableArray array];
     }
 
-    self.titleNavigationItem.title = transForm.formName;
+    self.titleNavigationItem.title = transForm.forumName;
 
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     [self.tableView setLayoutMargins:UIEdgeInsetsZero];
 }
 
 - (void)onPullRefresh {
-    [self.ccfApi forumDisplayWithId:transForm.formId andPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *page) {
+    [self.ccfApi forumDisplayWithId:transForm.forumId andPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *page) {
 
         [self.tableView.mj_header endRefreshing];
 
@@ -81,7 +81,7 @@
 }
 
 - (void)onLoadMore {
-    [self.ccfApi forumDisplayWithId:transForm.formId andPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage *page) {
+    [self.ccfApi forumDisplayWithId:transForm.forumId andPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage *page) {
 
         [self.tableView.mj_footer endRefreshing];
 
@@ -153,7 +153,7 @@
         cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
 
         Forum *form = childForms[(NSUInteger) indexPath.row];
-        cell.textLabel.text = form.formName;
+        cell.textLabel.text = form.forumName;
 
         UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0,16,0,16);
         [cell setSeparatorInset:edgeInsets];
@@ -215,7 +215,7 @@
     if (indexPath.section == 0) {
         Forum *parent = childForms[(NSUInteger) cell.indexPath.section];
 
-        [self.ccfApi favoriteForumsWithId:[NSString stringWithFormat:@"%d", parent.formId] handler:^(BOOL isSuccess, id message) {
+        [self.ccfApi favoriteForumsWithId:[NSString stringWithFormat:@"%d", parent.forumId] handler:^(BOOL isSuccess, id message) {
             NSLog(@">>>>>>>>>>>> %@", message);
         }];
     } else if (indexPath.section == 1) {
@@ -290,7 +290,7 @@
 
         ForumNewThreadViewController *newPostController = segue.destinationViewController;
         TransBundle * bundle = [[TransBundle alloc] init];
-        [bundle putIntValue:transForm.formId forKey:@"FORM_ID"];
+        [bundle putIntValue:transForm.forumId forKey:@"FORM_ID"];
         [self transBundle:bundle forController:newPostController];
 
 
@@ -322,7 +322,7 @@
         int row = indexPath.row;
         Forum * forum = childForms[(NSUInteger) row];
         TransBundle * bundle = [[TransBundle alloc] init];
-        [bundle putIntValue:forum.formId forKey:@"ForumId"];
+        [bundle putIntValue:forum.forumId forKey:@"ForumId"];
         [self transBundle:bundle forController:controller];
 
     } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]) {
@@ -353,7 +353,7 @@
     ForumNewThreadNavigationController *createController = (id) [storyboard instantiateViewControllerWithIdentifier:@"CreateNewThread"];
 
     TransBundle *bundle = [[TransBundle alloc] init];
-    [bundle putIntValue:transForm.formId forKey:@"FORM_ID"];
+    [bundle putIntValue:transForm.forumId forKey:@"FORM_ID"];
     [self presentViewController:(id) createController withBundle:bundle forRootController:YES animated:YES completion:^{
 
     }];

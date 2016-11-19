@@ -114,7 +114,7 @@
 
     Forum *form = self.dataList[(NSUInteger) indexPath.row];
 
-    cell.textLabel.text = form.formName;
+    cell.textLabel.text = form.forumName;
 
     UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0,16,0,16);
     [cell setSeparatorInset:edgeInsets];
@@ -133,7 +133,7 @@
 
     Forum *parent = self.dataList[(NSUInteger) cell.indexPath.row];
 
-    [self.ccfApi unfavouriteForumsWithId:[NSString stringWithFormat:@"%d", parent.formId] handler:^(BOOL isSuccess, id message) {
+    [self.ccfApi unfavouriteForumsWithId:[NSString stringWithFormat:@"%d", parent.forumId] handler:^(BOOL isSuccess, id message) {
 
     }];
 

@@ -14,8 +14,8 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"ForumEntry"];
 }
 
-@dynamic formId;
-@dynamic formName;
-@dynamic parentFormId;
+@dynamic forumId;
+@dynamic forumName;
+@dynamic parentForumId;
 
 @end

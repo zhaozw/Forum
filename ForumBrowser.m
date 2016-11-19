@@ -197,8 +197,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     [parameters setValue:@"0" forKey:@"iconid"];
     [parameters setValue:@"" forKey:@"s"];
     [parameters setValue:token forKey:@"securitytoken"];
-    NSString *formId = [NSString stringWithFormat:@"%d", fId];
-    [parameters setValue:formId forKey:@"f"];
+    NSString *forumId = [NSString stringWithFormat:@"%d", fId];
+    [parameters setValue:forumId forKey:@"f"];
     [parameters setValue:@"postthread" forKey:@"do"];
     [parameters setValue:hash forKey:@"posthash"];
 
@@ -223,9 +223,9 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 // private 进入图片管理页面，准备上传图片
-- (void)uploadImagePrepair:(int)formId startPostTime:(NSString *)time postHash:(NSString *)hash :(HandlerWithBool)callback {
+- (void)uploadImagePrepair:(int)forumId startPostTime:(NSString *)time postHash:(NSString *)hash :(HandlerWithBool)callback {
 
-    [_browser GETWithURLString:BBS_NEWATTACHMENT_FORM(formId, time, hash) requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser GETWithURLString:BBS_NEWATTACHMENT_FORM(forumId, time, hash) requestCallback:^(BOOL isSuccess, NSString *html) {
         callback(isSuccess, html);
     }];
 }
@@ -346,8 +346,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     [parameters setValue:token forKey:@"securitytoken"];
     [parameters setValue:@"manageattach" forKey:@"do"];
     [parameters setValue:@"" forKey:@"t"];
-    NSString *formID = [NSString stringWithFormat:@"%d", fId];
-    [parameters setValue:formID forKey:@"f"];
+    NSString *forumId = [NSString stringWithFormat:@"%d", fId];
+    [parameters setValue:forumId forKey:@"f"];
     [parameters setValue:@"" forKey:@"p"];
     [parameters setValue:postTime forKey:@"poststarttime"];
     [parameters setValue:@"0" forKey:@"editpost"];
@@ -404,9 +404,9 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 //private  获取发新帖子的Posttime hash 和token
-- (void)createNewThreadPrepair:(int)formId :(CallBack)callback {
+- (void)createNewThreadPrepair:(int)forumId :(CallBack)callback {
 
-    [_browser GETWithURLString:BBS_NEW_THREAD(formId) requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser GETWithURLString:BBS_NEW_THREAD(forumId) requestCallback:^(BOOL isSuccess, NSString *html) {
 
         if (isSuccess) {
             NSString *token = [_htmlParser parseSecurityToken:html];
@@ -698,8 +698,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     [parameters setValue:token forKey:@"securitytoken"];
     [parameters setValue:@"manageattach" forKey:@"do"];
     [parameters setValue:[NSString stringWithFormat:@"%d", threadId] forKey:@"t"];
-    NSString *formID = [NSString stringWithFormat:@"%d", fId];
-    [parameters setValue:formID forKey:@"f"];
+    NSString *forumId = [NSString stringWithFormat:@"%d", fId];
+    [parameters setValue:forumId forKey:@"f"];
     [parameters setValue:@"" forKey:@"p"];
     [parameters setValue:postTime forKey:@"poststarttime"];
 
@@ -756,7 +756,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
-- (void)seniorReplyWithThreadId:(int)threadId forForumId:(int)formId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(HandlerWithBool)handler {
+- (void)seniorReplyWithThreadId:(int)threadId forForumId:(int)forumId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(HandlerWithBool)handler {
     NSString *url = BBS_REPLY(threadId);
 
 
@@ -820,7 +820,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                         NSData *image = images[i];
 
                         [NSThread sleepForTimeInterval:2.0f];
-                        [self uploadImageForSeniorReply:uploadImageUrl :uploadImageToken fId:formId threadId:threadId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id uploadResultHtml) {
+                        [self uploadImageForSeniorReply:uploadImageUrl :uploadImageToken fId:forumId threadId:threadId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id uploadResultHtml) {
                             uploadSuccess = isSuccess;
                             // 更新token
                             uploadImageToken = [_htmlParser parseSecurityToken:uploadResultHtml];
@@ -1026,8 +1026,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
-- (void)favoriteForumsWithId:(NSString *)formId handler:(HandlerWithBool)handler {
-    NSString *preUrl = BBS_SUBSCRIPTION(formId);
+- (void)favoriteForumsWithId:(NSString *)forumId handler:(HandlerWithBool)handler {
+    NSString *preUrl = BBS_SUBSCRIPTION(forumId);
 
     [_browser GETWithURLString:preUrl requestCallback:^(BOOL isSuccess, NSString *html) {
         if (!isSuccess) {
@@ -1035,17 +1035,17 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
         } else {
             NSString *token = [_htmlParser parseSecurityToken:html];
 
-            NSString *url = BBS_SUBSCRIPTION_PARAM(formId);
+            NSString *url = BBS_SUBSCRIPTION_PARAM(forumId);
             NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 
-            NSString *paramUrl = BBS_FORMDISPLAY(formId);
+            NSString *paramUrl = BBS_FORMDISPLAY(forumId);
 
             [parameters setValue:@"" forKey:@"s"];
             [parameters setValue:token forKey:@"securitytoken"];
             [parameters setValue:@"doaddsubscription" forKey:@"do"];
-            [parameters setValue:formId forKey:@"formid"];
+            [parameters setValue:forumId forKey:@"forumid"];
             [parameters setValue:paramUrl forKey:@"url"];
-            [parameters setValue:@")" forKey:@"emailupdate"];
+            [parameters setValue:@"0" forKey:@"emailupdate"];
 
 
             [_browser POSTWithURLString:url parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
@@ -1056,8 +1056,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
-- (void)unfavouriteForumsWithId:(NSString *)formId handler:(HandlerWithBool)handler {
-    NSString *url = BBS_UNFAV_FORM(formId);
+- (void)unfavouriteForumsWithId:(NSString *)forumId handler:(HandlerWithBool)handler {
+    NSString *url = BBS_UNFAV_FORM(forumId);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
@@ -1318,10 +1318,10 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
-- (void)forumDisplayWithId:(int)formId andPage:(int)page handler:(HandlerWithBool)handler {
-    [_browser GETWithURLString:BBS_FORMDISPLAY_PAGE(formId, page) requestCallback:^(BOOL isSuccess, NSString *html) {
+- (void)forumDisplayWithId:(int)forumId andPage:(int)page handler:(HandlerWithBool)handler {
+    [_browser GETWithURLString:BBS_FORMDISPLAY_PAGE(forumId, page) requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            ForumDisplayPage *page = [_htmlParser parseThreadListFromHtml:html withThread:formId andContainsTop:YES];
+            ForumDisplayPage *page = [_htmlParser parseThreadListFromHtml:html withThread:forumId andContainsTop:YES];
             handler(isSuccess, page);
         } else {
             handler(NO, html);

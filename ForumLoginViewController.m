@@ -142,9 +142,9 @@
 
                     [formManager insertData:needInsert operation:^(NSManagedObject *target, id src) {
                         ForumEntry *newsInfo = (ForumEntry *) target;
-                        newsInfo.formId = [src valueForKey:@"formId"];
-                        newsInfo.formName = [src valueForKey:@"formName"];
-                        newsInfo.parentFormId = [src valueForKey:@"parentFormId"];
+                        newsInfo.forumId = [src valueForKey:@"forumId"];
+                        newsInfo.forumName = [src valueForKey:@"forumName"];
+                        newsInfo.parentForumId = [src valueForKey:@"parentForumId"];
 
                     }];
 

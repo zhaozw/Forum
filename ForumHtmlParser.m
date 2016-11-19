@@ -688,15 +688,15 @@
     // 通过ids 过滤出Form
     ForumCoreDataManager *manager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
     NSArray *result = [manager selectData:^NSPredicate * {
-        return [NSPredicate predicateWithFormat:@"formId IN %@", ids];
+        return [NSPredicate predicateWithFormat:@"forumId IN %@", ids];
     }];
     
     NSMutableArray<Forum *> *forms = [NSMutableArray arrayWithCapacity:result.count];
     
     for (ForumEntry *entry in result) {
         Forum *form = [[Forum alloc] init];
-        form.formName = entry.formName;
-        form.formId = [entry.formId intValue];
+        form.forumName = entry.forumName;
+        form.forumId = [entry.forumId intValue];
         [forms addObject:form];
     }
     
@@ -939,9 +939,9 @@
     NSString *url = [[node childrenAtPosition:0] html];
     int formId = [[url stringWithRegular:@"f-\\d+" andChild:@"\\d+"] intValue];
     int fixFormId = formId == 0 ? replaceId : formId;
-    parent.formId = fixFormId;
-    parent.parentFormId = parentFormId;
-    parent.formName = name;
+    parent.forumId = fixFormId;
+    parent.parentForumId = parentFormId;
+    parent.forumName = name;
     
     if (node.childrenCount == 2) {
         IGXMLNodeSet *childSet = [node childrenAtPosition:1].children;
@@ -950,7 +950,7 @@
         for (IGXMLNode *childNode in childSet) {
             [childForms addObject:[self node2Form:childNode parentFormId:fixFormId replaceId:replaceId]];
         }
-        parent.childForms = childForms;
+        parent.childForums = childForms;
     }
     
     return parent;
@@ -960,7 +960,7 @@
 - (NSArray *)flatForm:(Forum *)form {
     NSMutableArray *resultArray = [NSMutableArray array];
     [resultArray addObject:form];
-    for (Forum *childForm in form.childForms) {
+    for (Forum *childForm in form.childForums) {
         [resultArray addObjectsFromArray:[self flatForm:childForm]];
     }
     return resultArray;
@@ -990,7 +990,7 @@
     }
     
     for (Forum *form in needInsert) {
-        NSLog(@">>>>>>>>>>>>>>>>>>>>>>> %@     formId: %d     parentFormId:%d\n\n\n", form.formName, form.formId, form.parentFormId);
+        NSLog(@">>>>>>>>>>>>>>>>>>>>>>> %@     formId: %d     parentFormId:%d\n\n\n", form.forumName, form.forumId, form.parentForumId);
     }
     
     

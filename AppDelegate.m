@@ -52,7 +52,7 @@
     application.applicationIconBadgeNumber = 0;
 
 
-    DB_VERSION = 6;
+    DB_VERSION = 7;
 
 
     API_DEBUG = NO;
@@ -172,7 +172,7 @@
 - (NSArray *)flatForm:(Forum *)form {
     NSMutableArray *resultArray = [NSMutableArray array];
     [resultArray addObject:form];
-    for (Forum *childForm in form.childForms) {
+    for (Forum *childForm in form.childForums) {
         [resultArray addObjectsFromArray:[self flatForm:childForm]];
     }
     return resultArray;
