@@ -525,6 +525,16 @@
 			name = Extension;
 			sourceTree = "<group>";
 		};
+		3A2C40111DE0423500576151 /* ApiTest */ = {
+			isa = PBXGroup;
+			children = (
+				3A2C3F8A1DDFDFC000576151 /* ApiTestViewController.h */,
+				3A2C3F8B1DDFDFC000576151 /* ApiTestViewController.m */,
+				3A2C3F8C1DDFDFC000576151 /* ApiTestViewController.xib */,
+			);
+			name = ApiTest;
+			sourceTree = "<group>";
+		};
 		3A37ED921D85C72E003CDC58 /* Templet */ = {
 			isa = PBXGroup;
 			children = (
@@ -575,9 +585,8 @@
 		4D339D821C31454A0022A6A4 = {
 			isa = PBXGroup;
 			children = (
-				3A2C3F8A1DDFDFC000576151 /* ApiTestViewController.h */,
-				3A2C3F8B1DDFDFC000576151 /* ApiTestViewController.m */,
-				3A2C3F8C1DDFDFC000576151 /* ApiTestViewController.xib */,
+				3AC65FBC1CF13809000D3BDB /* Custom */,
+				3A2C40111DE0423500576151 /* ApiTest */,
 				3A2C40101DE0029D00576151 /* Extension */,
 				3A2C400F1DE0026400576151 /* ForumControllers */,
 				3A2C400E1DE0024000576151 /* Cells */,
@@ -585,6 +594,10 @@
 				3A2C400C1DE001F100576151 /* SupportFiles */,
 				3A2C400B1DE001B800576151 /* ForumCoreData */,
 				3A2C3FF31DDFE23D00576151 /* TransBundle */,
+				4DF736F91DDECC3700BF1896 /* Engine */,
+				3A37ED921D85C72E003CDC58 /* Templet */,
+				3ACFFD311CFA640B000312DC /* PhotoView */,
+				3ACFFD271CF9D6B1000312DC /* NetWork */,
 				3A2C3F8F1DDFDFEF00576151 /* Forum.pch */,
 				3A2C3F131DDFB94200576151 /* AppDelegate.h */,
 				3A2C3F141DDFB94200576151 /* AppDelegate.m */,
@@ -592,11 +605,6 @@
 				3A2C3FF01DDFE13500576151 /* Main.storyboard */,
 				3A2C3F0B1DDFB88400576151 /* Assets.xcassets */,
 				3A2C3F111DDFB91F00576151 /* Info.plist */,
-				3AC65FBC1CF13809000D3BDB /* Custom */,
-				4DF736F91DDECC3700BF1896 /* Engine */,
-				3A37ED921D85C72E003CDC58 /* Templet */,
-				3ACFFD311CFA640B000312DC /* PhotoView */,
-				3ACFFD271CF9D6B1000312DC /* NetWork */,
 				4D339D8C1C31454A0022A6A4 /* Products */,
 				849509D36740A6FFD960CDA8 /* Pods */,
 				CC5E7A99B69535660B7F40C0 /* Frameworks */,
