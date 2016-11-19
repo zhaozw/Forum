@@ -28,7 +28,7 @@
 
     ForumCoreDataManager *formManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
 
-    self.dataList = [[formManager selectAllForms] copy];
+    self.dataList = [[formManager selectAllForums] copy];
 
     [self.tableView reloadData];
 

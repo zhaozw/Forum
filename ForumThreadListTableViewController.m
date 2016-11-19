@@ -37,7 +37,7 @@
     [super viewDidLoad];
 
     ForumCoreDataManager *manager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
-    childForms = [[manager selectChildFormsForId:transForm.forumId] mutableCopy];
+    childForms = [[manager selectChildForumsById:transForm.forumId] mutableCopy];
 
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 180.0;

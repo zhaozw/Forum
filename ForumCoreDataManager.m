@@ -24,7 +24,7 @@
 }
 
 
-- (NSArray<Forum *> *)selectFavForms:(NSArray *)ids {
+- (NSArray<Forum *> *)selectFavForums:(NSArray *)ids {
 
     NSArray<ForumEntry *> *entrys = [self selectData:^NSPredicate * {
         return [NSPredicate predicateWithFormat:@"forumId IN %@", ids];
@@ -42,7 +42,7 @@
 }
 
 
-- (NSArray<Forum *> *)selectAllForms {
+- (NSArray<Forum *> *)selectAllForums {
 
     NSArray<ForumEntry *> *entrys = [self selectData:^NSPredicate * {
         return [NSPredicate predicateWithFormat:@"parentForumId = %d", -1];
@@ -59,7 +59,7 @@
     }
 
     for (Forum *form in forms) {
-        form.childForums = [self selectChildFormsForId:form.forumId];
+        form.childForums = [self selectChildForumsById:form.forumId];
     }
 
 
@@ -67,10 +67,10 @@
 }
 
 
-- (NSArray<Forum *> *)selectChildFormsForId:(int)formId {
+- (NSArray<Forum *> *)selectChildForumsById:(int)forumId {
 
     NSArray<ForumEntry *> *entrys = [self selectData:^NSPredicate * {
-        return [NSPredicate predicateWithFormat:@"parentForumId = %d", formId];
+        return [NSPredicate predicateWithFormat:@"parentForumId = %d", forumId];
     }];
 
     NSMutableArray<Forum *> *forms = [NSMutableArray arrayWithCapacity:entrys.count];

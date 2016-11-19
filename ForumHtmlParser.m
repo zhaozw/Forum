@@ -219,12 +219,12 @@
     IGHTMLDocument *document = [[IGHTMLDocument alloc] initWithHTMLString:fuxkHttp error:nil];
     
     
-    NSString *formId = [fuxkHttp stringWithRegular:@"newthread.php\\?do=newthread&amp;f=\\d+" andChild:@"\\d+"];
+    NSString *forumId = [fuxkHttp stringWithRegular:@"newthread.php\\?do=newthread&amp;f=\\d+" andChild:@"\\d+"];
     
     ShowThreadPage *showThreadPage = [[ShowThreadPage alloc] init];
     showThreadPage.originalHtml = [self postMessages:fuxkHttp];
     
-    showThreadPage.formId = formId;
+    showThreadPage.forumId = forumId;
     
     NSString *securityToken = [self parseSecurityToken:html];
     showThreadPage.securityToken = securityToken;
@@ -937,9 +937,9 @@
     Forum *parent = [[Forum alloc] init];
     NSString *name = [[node childrenAtPosition:0] text];
     NSString *url = [[node childrenAtPosition:0] html];
-    int formId = [[url stringWithRegular:@"f-\\d+" andChild:@"\\d+"] intValue];
-    int fixFormId = formId == 0 ? replaceId : formId;
-    parent.forumId = fixFormId;
+    int forumId = [[url stringWithRegular:@"f-\\d+" andChild:@"\\d+"] intValue];
+    int fixForumId = forumId == 0 ? replaceId : forumId;
+    parent.forumId = fixForumId;
     parent.parentForumId = parentFormId;
     parent.forumName = name;
     
@@ -948,7 +948,7 @@
         NSMutableArray<Forum *> *childForms = [NSMutableArray array];
         
         for (IGXMLNode *childNode in childSet) {
-            [childForms addObject:[self node2Form:childNode parentFormId:fixFormId replaceId:replaceId]];
+            [childForms addObject:[self node2Form:childNode parentFormId:fixForumId replaceId:replaceId]];
         }
         parent.childForums = childForms;
     }
@@ -985,12 +985,12 @@
     
     NSMutableArray<Forum *> *needInsert = [NSMutableArray array];
     
-    for (Forum *form in forms) {
-        [needInsert addObjectsFromArray:[self flatForm:form]];
+    for (Forum *forum in forms) {
+        [needInsert addObjectsFromArray:[self flatForm:forum]];
     }
     
     for (Forum *form in needInsert) {
-        NSLog(@">>>>>>>>>>>>>>>>>>>>>>> %@     formId: %d     parentFormId:%d\n\n\n", form.forumName, form.forumId, form.parentForumId);
+        NSLog(@">>>>>>>>>>>>>>>>>>>>>>> %@     forumId: %d     parentForumId:%d\n\n\n", form.forumName, form.forumId, form.parentForumId);
     }
     
     

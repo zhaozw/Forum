@@ -25,7 +25,7 @@
     int threadId ;
     NSString *securityToken;
 
-    NSString *formIdStr;
+    NSString *forumIdStr;
 }
 
 @end
@@ -38,7 +38,7 @@
     threadId = [bundle getIntValue:@"THREAD_ID"];
     securityToken = [bundle getStringValue:@"SECYRITY_TOKEN"];
 
-    formIdStr = [bundle getStringValue:@"FORM_ID"];
+    forumIdStr = [bundle getStringValue:@"FORM_ID"];
 }
 
 
@@ -230,7 +230,7 @@
     }
 
 
-    [self.ccfForumApi seniorReplyWithThreadId:threadId forForumId:[formIdStr intValue] andMessage:self.replyContent.text withImages:uploadData securitytoken:securityToken handler:^(BOOL isSuccess, id message) {
+    [self.ccfForumApi seniorReplyWithThreadId:threadId forForumId:[forumIdStr intValue] andMessage:self.replyContent.text withImages:uploadData securitytoken:securityToken handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
 

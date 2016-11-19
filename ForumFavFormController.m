@@ -62,7 +62,7 @@
         }];
     } else {
         ForumCoreDataManager *manager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
-        NSArray *forms = [[manager selectFavForms:userDef.favFormIds] mutableCopy];
+        NSArray *forms = [[manager selectFavForums:userDef.favFormIds] mutableCopy];
 
         [self.dataList addObjectsFromArray:forms];
 
