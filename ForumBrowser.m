@@ -603,7 +603,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             if ([html containsString:@"<ol><li>本论坛允许的发表两个帖子的时间间隔必须大于 30 秒。请等待 "] || [html containsString:@"<ol><li>本論壇允許的發表兩個文章的時間間隔必須大於 30 秒。請等待"]){
                 handler(NO, @"本论坛允许的发表两个帖子的时间间隔必须大于 30 秒");
             } else{
-                ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:message];
+                ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:html];
                 if (thread.dataList.count > 0) {
                     handler(YES, thread);
                 } else {
@@ -790,7 +790,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                         if ([html containsString:@"<ol><li>本论坛允许的发表两个帖子的时间间隔必须大于 30 秒。请等待 "] || [html containsString:@"<ol><li>本論壇允許的發表兩個文章的時間間隔必須大於 30 秒。請等待"]){
                             handler(NO, @"本论坛允许的发表两个帖子的时间间隔必须大于 30 秒");
                         } else{
-                            ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:message];
+                            ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:result];
                             if (thread.dataList.count > 0) {
                                 handler(YES, thread);
                             } else {
@@ -835,7 +835,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                                         if ([html containsString:@"<ol><li>本论坛允许的发表两个帖子的时间间隔必须大于 30 秒。请等待 "] || [html containsString:@"<ol><li>本論壇允許的發表兩個文章的時間間隔必須大於 30 秒。請等待"]){
                                             handler(NO, @"本论坛允许的发表两个帖子的时间间隔必须大于 30 秒");
                                         } else{
-                                            ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:message];
+                                            ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:uploadResultHtml];
                                             if (thread.dataList.count > 0) {
                                                 handler(YES, thread);
                                             } else {
