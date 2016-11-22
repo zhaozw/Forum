@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3A2C3F0C1DDFB88400576151 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A2C3F0B1DDFB88400576151 /* Assets.xcassets */; };
 		3A2C3F0E1DDFB8D300576151 /* paperclip.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3A2C3F0D1DDFB8D300576151 /* paperclip.gif */; };
-		3A2C3F121DDFB91F00576151 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A2C3F111DDFB91F00576151 /* Info.plist */; };
 		3A2C3F151DDFB94200576151 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3F141DDFB94200576151 /* AppDelegate.m */; };
 		3A2C3F171DDFBAB200576151 /* append_post_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 3A2C3F161DDFBAB200576151 /* append_post_content.html */; };
 		3A2C3F191DDFBABD00576151 /* append_post.js in Resources */ = {isa = PBXBuildFile; fileRef = 3A2C3F181DDFBABD00576151 /* append_post.js */; };
@@ -724,7 +723,7 @@
 		4D339D831C31454A0022A6A4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = andforce;
 				TargetAttributes = {
 					4D339D8A1C31454A0022A6A4 = {
@@ -771,7 +770,6 @@
 				3A2C3FF21DDFE13500576151 /* Main.storyboard in Resources */,
 				3A2C3F1E1DDFBAD000576151 /* post_view_notitle.html in Resources */,
 				3A2C3F171DDFBAB200576151 /* append_post_content.html in Resources */,
-				3A2C3F121DDFB91F00576151 /* Info.plist in Resources */,
 				3A2C3F1D1DDFBAD000576151 /* post_message.html in Resources */,
 				3A2C3F191DDFBABD00576151 /* append_post.js in Resources */,
 				3A2C3FF11DDFE13500576151 /* LaunchScreen.storyboard in Resources */,
