@@ -202,7 +202,14 @@ static id <HPURLMapping> s_URLMapping;
 
         // 404的用户头像特殊处理: 加一个透明的头像到缓存
         if ([response isKindOfClass:NSHTTPURLResponse.class] && [(NSHTTPURLResponse *) response statusCode] == 404 && [[self.request.URL absoluteString] rangeOfString:@"no_avatar.gif"].location != NSNotFound) {
-            [[SDImageCache sharedImageCache] storeImage:[UIImage imageNamed:@"logo.jpg"] forKey:[self.class cacheKeyForURL:self.request.URL]];
+            
+            NSDictionary *infoPlist = [[NSBundle mainBundle] infoDictionary];
+            
+            NSString *icon = [[infoPlist valueForKeyPath:@"CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconFiles"] lastObject];
+            
+            UIImage * defaultAvatarImage = [UIImage imageNamed:icon];
+            
+            [[SDImageCache sharedImageCache] storeImage:defaultAvatarImage forKey:[self.class cacheKeyForURL:self.request.URL]];
         }
     }
 }

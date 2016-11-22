@@ -35,7 +35,13 @@
 }
 
 - (void)initData {
-    defaultAvatarImage = [UIImage imageNamed:@"logo.jpg"];
+    
+    
+    NSDictionary *infoPlist = [[NSBundle mainBundle] infoDictionary];
+    
+    NSString *icon = [[infoPlist valueForKeyPath:@"CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconFiles"] lastObject];
+
+    defaultAvatarImage = [UIImage imageNamed:icon];
 
     ccfapi = [[ForumBrowser alloc] init];
 
