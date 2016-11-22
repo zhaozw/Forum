@@ -14,8 +14,6 @@
 #import "UIStoryboard+Forum.h"
 #import "ForumConfig.h"
 
-#import "ForumWritePMNavigationController.h"
-
 #import "TransBundleDelegate.h"
 
 @interface ForumShowPrivateMessageViewController () <UIWebViewDelegate, UIScrollViewDelegate, TransBundleDelegate> {
@@ -180,7 +178,7 @@
 - (IBAction)replyPM:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
 
-    ForumWritePMNavigationController *controller = [storyboard instantiateViewControllerWithIdentifier:@"CreatePM"];
+    UINavigationController *controller = [storyboard instantiateViewControllerWithIdentifier:@"CreatePM"];
 
     TransBundle *bundle = [[TransBundle alloc] init];
     [bundle putObjectValue:transPrivateMessage forKey:@"toReplyMessage"];

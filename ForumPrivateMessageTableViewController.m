@@ -10,7 +10,6 @@
 #import "ForumShowPrivateMessageViewController.h"
 
 #import "ForumUserProfileTableViewController.h"
-#import "ForumWritePMNavigationController.h"
 #import "UIStoryboard+Forum.h"
 #import "ForumTabBarController.h"
 
@@ -168,7 +167,7 @@
 - (IBAction)writePrivateMessage:(UIBarButtonItem *)sender {
     UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
 
-    ForumWritePMNavigationController *controller = [storyboard instantiateViewControllerWithIdentifier:@"CreatePM"];
+    UINavigationController *controller = [storyboard instantiateViewControllerWithIdentifier:@"CreatePM"];
     [self.navigationController presentViewController:controller animated:YES completion:^{
 
     }];

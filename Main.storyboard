@@ -2230,7 +2230,7 @@
         <!--发送私信-->
         <scene sceneID="pmZ-Qb-ymY">
             <objects>
-                <navigationController storyboardIdentifier="CreatePM" title="发送私信" id="tGS-ab-K6j" customClass="ForumWritePMNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CreatePM" title="发送私信" id="tGS-ab-K6j" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="CXw-Xr-NPb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2413,10 +2413,10 @@
             </objects>
             <point key="canvasLocation" x="4057" y="-358"/>
         </scene>
-        <!--Forum Simple Reply Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="GR0-WA-SGL">
             <objects>
-                <navigationController storyboardIdentifier="QuickReplySomeOne" automaticallyAdjustsScrollViewInsets="NO" id="Ysh-rq-SAD" customClass="ForumSimpleReplyNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="QuickReplySomeOne" automaticallyAdjustsScrollViewInsets="NO" id="Ysh-rq-SAD" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="4pX-Pq-RjH">

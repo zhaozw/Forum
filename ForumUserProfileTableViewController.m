@@ -9,7 +9,6 @@
 #import "ForumProfileTableViewCell.h"
 #import "ForumUserThreadTableViewController.h"
 
-#import "ForumWritePMNavigationController.h"
 #import <UIImageView+WebCache.h>
 #import "UIStoryboard+Forum.h"
 
@@ -160,7 +159,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
     if (indexPath.section == 1 && indexPath.row == 1) {
-        ForumWritePMNavigationController *controller = (id) [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"CreatePM"];
+        UINavigationController *controller = (id) [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"CreatePM"];
         TransBundle *bundle = [[TransBundle alloc] init];
         [bundle putStringValue:userProfile.profileName forKey:@"PROFILE_NAME"];
 
