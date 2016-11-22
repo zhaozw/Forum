@@ -14,7 +14,6 @@
 #import "NSUserDefaults+Setting.h"
 #import "UIStoryboard+Forum.h"
 #import "ForumWebViewController.h"
-#import "ForumNewThreadNavigationController.h"
 
 
 @interface ForumThreadListTableViewController () <TransBundleDelegate, ThreadListCellDelegate, MGSwipeTableCellDelegate> {
@@ -350,7 +349,7 @@
 - (IBAction)createThread:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
 
-    ForumNewThreadNavigationController *createController = (id) [storyboard instantiateViewControllerWithIdentifier:@"CreateNewThread"];
+    UINavigationController *createController = (id) [storyboard instantiateViewControllerWithIdentifier:@"CreateNewThread"];
 
     TransBundle *bundle = [[TransBundle alloc] init];
     [bundle putIntValue:transForm.forumId forKey:@"FORM_ID"];

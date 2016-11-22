@@ -58,7 +58,6 @@
 		3A2C3FD51DDFE0C900576151 /* ForumMyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FA11DDFE0C900576151 /* ForumMyProfileTableViewController.m */; };
 		3A2C3FD61DDFE0C900576151 /* ForumMyThreadPostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FA31DDFE0C900576151 /* ForumMyThreadPostTableViewController.m */; };
 		3A2C3FD71DDFE0C900576151 /* ForumMyThreadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FA51DDFE0C900576151 /* ForumMyThreadTableViewController.m */; };
-		3A2C3FD81DDFE0C900576151 /* ForumNewThreadNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FA71DDFE0C900576151 /* ForumNewThreadNavigationController.m */; };
 		3A2C3FD91DDFE0C900576151 /* ForumNewThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FA91DDFE0C900576151 /* ForumNewThreadViewController.m */; };
 		3A2C3FDA1DDFE0C900576151 /* ForumPrivateMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FAB1DDFE0C900576151 /* ForumPrivateMessageTableViewController.m */; };
 		3A2C3FDC1DDFE0C900576151 /* ForumReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FAF1DDFE0C900576151 /* ForumReportViewController.m */; };
@@ -206,8 +205,6 @@
 		3A2C3FA31DDFE0C900576151 /* ForumMyThreadPostTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumMyThreadPostTableViewController.m; sourceTree = "<group>"; };
 		3A2C3FA41DDFE0C900576151 /* ForumMyThreadTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumMyThreadTableViewController.h; sourceTree = "<group>"; };
 		3A2C3FA51DDFE0C900576151 /* ForumMyThreadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumMyThreadTableViewController.m; sourceTree = "<group>"; };
-		3A2C3FA61DDFE0C900576151 /* ForumNewThreadNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumNewThreadNavigationController.h; sourceTree = "<group>"; };
-		3A2C3FA71DDFE0C900576151 /* ForumNewThreadNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumNewThreadNavigationController.m; sourceTree = "<group>"; };
 		3A2C3FA81DDFE0C900576151 /* ForumNewThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumNewThreadViewController.h; sourceTree = "<group>"; };
 		3A2C3FA91DDFE0C900576151 /* ForumNewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumNewThreadViewController.m; sourceTree = "<group>"; };
 		3A2C3FAA1DDFE0C900576151 /* ForumPrivateMessageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumPrivateMessageTableViewController.h; sourceTree = "<group>"; };
@@ -445,8 +442,6 @@
 				3A2C3FA31DDFE0C900576151 /* ForumMyThreadPostTableViewController.m */,
 				3A2C3FA41DDFE0C900576151 /* ForumMyThreadTableViewController.h */,
 				3A2C3FA51DDFE0C900576151 /* ForumMyThreadTableViewController.m */,
-				3A2C3FA61DDFE0C900576151 /* ForumNewThreadNavigationController.h */,
-				3A2C3FA71DDFE0C900576151 /* ForumNewThreadNavigationController.m */,
 				3A2C3FA81DDFE0C900576151 /* ForumNewThreadViewController.h */,
 				3A2C3FA91DDFE0C900576151 /* ForumNewThreadViewController.m */,
 				3A2C3FAA1DDFE0C900576151 /* ForumPrivateMessageTableViewController.h */,
@@ -882,7 +877,6 @@
 				3A2C3F7D1DDFC0CD00576151 /* UIColor+MyColor.m in Sources */,
 				3A2C3FD61DDFE0C900576151 /* ForumMyThreadPostTableViewController.m in Sources */,
 				3A2C3F5F1DDFBFC500576151 /* XibInflater.m in Sources */,
-				3A2C3FD81DDFE0C900576151 /* ForumNewThreadNavigationController.m in Sources */,
 				3A2C3F801DDFC0CD00576151 /* UIView+Corner.m in Sources */,
 				3A2C3F5D1DDFBFC500576151 /* PageHeaderView.m in Sources */,
 				3A2C40021DDFE30300576151 /* TransBundleUIViewController.m in Sources */,

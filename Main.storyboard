@@ -2206,7 +2206,7 @@
         <!--新主题-->
         <scene sceneID="xBQ-EG-vCf">
             <objects>
-                <navigationController storyboardIdentifier="CreateNewThread" title="新主题" id="VHN-J2-LXw" customClass="ForumNewThreadNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CreateNewThread" title="新主题" id="VHN-J2-LXw" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="u2t-T6-8CQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
