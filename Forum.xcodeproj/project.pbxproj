@@ -95,6 +95,7 @@
 		3ACFFD341CFA641F000312DC /* NYTExamplePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACFFD331CFA641F000312DC /* NYTExamplePhoto.m */; };
 		3AF8878E1DA155D20083A8D5 /* ForumHtmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF8878D1DA155D20083A8D5 /* ForumHtmlParser.m */; };
 		3AF887971DA16D2C0083A8D5 /* ForumBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF887961DA16D2C0083A8D5 /* ForumBrowser.m */; };
+		4D0D87251DE40C7900DA9034 /* ForumNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D0D87241DE40C7900DA9034 /* ForumNavigationViewController.m */; };
 		4DEB34C31C47BBE400063CBB /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEB34C21C47BBE400063CBB /* AssetsLibrary.framework */; };
 		4DF737051DDECC8500BF1896 /* ThreadInSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737021DDECC8500BF1896 /* ThreadInSearch.m */; };
 		4DF737061DDECC8500BF1896 /* SearchForumDisplayPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737041DDECC8500BF1896 /* SearchForumDisplayPage.m */; };
@@ -275,6 +276,8 @@
 		3AF8878D1DA155D20083A8D5 /* ForumHtmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumHtmlParser.m; sourceTree = SOURCE_ROOT; };
 		3AF887951DA16D2C0083A8D5 /* ForumBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumBrowser.h; sourceTree = SOURCE_ROOT; };
 		3AF887961DA16D2C0083A8D5 /* ForumBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumBrowser.m; sourceTree = SOURCE_ROOT; };
+		4D0D87231DE40C7900DA9034 /* ForumNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumNavigationViewController.h; sourceTree = "<group>"; };
+		4D0D87241DE40C7900DA9034 /* ForumNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumNavigationViewController.m; sourceTree = "<group>"; };
 		4D339D8B1C31454A0022A6A4 /* Forum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DEB34C21C47BBE400063CBB /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		4DF736FA1DDECC5000BF1896 /* ForumEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForumEngine.h; sourceTree = "<group>"; };
@@ -423,6 +426,8 @@
 		3A2C400F1DE0026400576151 /* ForumControllers */ = {
 			isa = PBXGroup;
 			children = (
+				4D0D87231DE40C7900DA9034 /* ForumNavigationViewController.h */,
+				4D0D87241DE40C7900DA9034 /* ForumNavigationViewController.m */,
 				3A2C3F931DDFE0C900576151 /* ForumApiBaseTableViewController.h */,
 				3A2C3F941DDFE0C900576151 /* ForumApiBaseTableViewController.m */,
 				3A2C3F951DDFE0C900576151 /* ForumApiBaseViewController.h */,
@@ -880,6 +885,7 @@
 				3A2C3F801DDFC0CD00576151 /* UIView+Corner.m in Sources */,
 				3A2C3F5D1DDFBFC500576151 /* PageHeaderView.m in Sources */,
 				3A2C40021DDFE30300576151 /* TransBundleUIViewController.m in Sources */,
+				4D0D87251DE40C7900DA9034 /* ForumNavigationViewController.m in Sources */,
 				3A2C3F511DDFBF5900576151 /* SelectPhotoCollectionViewCell.m in Sources */,
 				3A2C40301DE0A3DD00576151 /* ForumEntry+CoreDataProperties.m in Sources */,
 				3A2C3FD51DDFE0C900576151 /* ForumMyProfileTableViewController.m in Sources */,
