@@ -1,11 +1,10 @@
 //
-//  ForumReplyNavigationController.m
+//  TransBundleUINavigationController.m
 //
 //  Created by 迪远 王 on 16/4/10.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "ForumReplyNavigationController.h"
 #import "TransBundleDelegate.h"
 #import "TransBundleUINavigationController.h"
 

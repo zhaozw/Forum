@@ -11,7 +11,6 @@
 #import <SVProgressHUD.h>
 #import "LCActionSheet.h"
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "ForumReplyNavigationController.h"
 #import "TransBundleDelegate.h"
 #import "TransBundle.h"
 #import "UIImage+Tint.h"

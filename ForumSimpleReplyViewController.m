@@ -6,7 +6,6 @@
 //
 
 #import "ForumSimpleReplyViewController.h"
-#import "ForumReplyNavigationController.h"
 #import "SVProgressHUD.h"
 
 #import "UIStoryboard+Forum.h"

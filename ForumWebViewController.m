@@ -17,7 +17,6 @@
 #import "SVProgressHUD.h"
 #import "UIStoryboard+Forum.h"
 #import "ActionSheetPicker.h"
-#import "ForumReplyNavigationController.h"
 #import "NSString+Extensions.h"
 #import "ForumUserProfileTableViewController.h"
 #import "ForumConfig.h"
@@ -546,7 +545,7 @@
             if (buttonIndex == 0) {
                 UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
 
-                ForumReplyNavigationController *simpleReplyController = [storyboard instantiateViewControllerWithIdentifier:@"QuickReplySomeOne"];
+                UINavigationController *simpleReplyController = [storyboard instantiateViewControllerWithIdentifier:@"QuickReplySomeOne"];
 
                 TransBundle *bundle = [[TransBundle alloc] init];
 
@@ -566,7 +565,7 @@
 
                 UIStoryboard *storyBoard = [UIStoryboard mainStoryboard];
 
-                ForumReplyNavigationController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"SeniorReplySomeOne"];
+                UINavigationController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"SeniorReplySomeOne"];
 
 
                 TransBundle *bundle = [[TransBundle alloc] init];
@@ -781,7 +780,7 @@
 - (IBAction)reply:(id)sender {
 
     UIStoryboard *storyBoard = [UIStoryboard mainStoryboard];
-    ForumReplyNavigationController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"SeniorReplySomeOne"];
+    UINavigationController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"SeniorReplySomeOne"];
 
     TransBundle *bundle = [[TransBundle alloc] init];
     [bundle putIntValue:threadID forKey:@"THREAD_ID"];

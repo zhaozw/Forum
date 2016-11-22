@@ -61,7 +61,6 @@
 		3A2C3FD81DDFE0C900576151 /* ForumNewThreadNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FA71DDFE0C900576151 /* ForumNewThreadNavigationController.m */; };
 		3A2C3FD91DDFE0C900576151 /* ForumNewThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FA91DDFE0C900576151 /* ForumNewThreadViewController.m */; };
 		3A2C3FDA1DDFE0C900576151 /* ForumPrivateMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FAB1DDFE0C900576151 /* ForumPrivateMessageTableViewController.m */; };
-		3A2C3FDB1DDFE0C900576151 /* ForumReplyNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FAD1DDFE0C900576151 /* ForumReplyNavigationController.m */; };
 		3A2C3FDC1DDFE0C900576151 /* ForumReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FAF1DDFE0C900576151 /* ForumReportViewController.m */; };
 		3A2C3FDD1DDFE0C900576151 /* ForumSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FB11DDFE0C900576151 /* ForumSearchViewController.m */; };
 		3A2C3FDE1DDFE0C900576151 /* ForumSeniorNewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FB31DDFE0C900576151 /* ForumSeniorNewPostViewController.m */; };
@@ -214,8 +213,6 @@
 		3A2C3FA91DDFE0C900576151 /* ForumNewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumNewThreadViewController.m; sourceTree = "<group>"; };
 		3A2C3FAA1DDFE0C900576151 /* ForumPrivateMessageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumPrivateMessageTableViewController.h; sourceTree = "<group>"; };
 		3A2C3FAB1DDFE0C900576151 /* ForumPrivateMessageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumPrivateMessageTableViewController.m; sourceTree = "<group>"; };
-		3A2C3FAC1DDFE0C900576151 /* ForumReplyNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumReplyNavigationController.h; sourceTree = "<group>"; };
-		3A2C3FAD1DDFE0C900576151 /* ForumReplyNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumReplyNavigationController.m; sourceTree = "<group>"; };
 		3A2C3FAE1DDFE0C900576151 /* ForumReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumReportViewController.h; sourceTree = "<group>"; };
 		3A2C3FAF1DDFE0C900576151 /* ForumReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumReportViewController.m; sourceTree = "<group>"; };
 		3A2C3FB01DDFE0C900576151 /* ForumSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumSearchViewController.h; sourceTree = "<group>"; };
@@ -457,8 +454,6 @@
 				3A2C3FA91DDFE0C900576151 /* ForumNewThreadViewController.m */,
 				3A2C3FAA1DDFE0C900576151 /* ForumPrivateMessageTableViewController.h */,
 				3A2C3FAB1DDFE0C900576151 /* ForumPrivateMessageTableViewController.m */,
-				3A2C3FAC1DDFE0C900576151 /* ForumReplyNavigationController.h */,
-				3A2C3FAD1DDFE0C900576151 /* ForumReplyNavigationController.m */,
 				3A2C3FAE1DDFE0C900576151 /* ForumReportViewController.h */,
 				3A2C3FAF1DDFE0C900576151 /* ForumReportViewController.m */,
 				3A2C3FB01DDFE0C900576151 /* ForumSearchViewController.h */,
@@ -927,7 +922,6 @@
 				3A2C3F7E1DDFC0CD00576151 /* UIImage+Tint.m in Sources */,
 				3A2C3F6A1DDFC03400576151 /* LeftDrawerItem.m in Sources */,
 				3A2C3F691DDFC03400576151 /* CommonUtils.m in Sources */,
-				3A2C3FDB1DDFE0C900576151 /* ForumReplyNavigationController.m in Sources */,
 				3A2C3F321DDFBCE800576151 /* CoreDataManager.m in Sources */,
 				3A2C3F881DDFDF9200576151 /* IGHTMLDocument+QueryNode.m in Sources */,
 				4DF737271DDECC9600BF1896 /* ShowPrivateMessage.m in Sources */,

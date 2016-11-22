@@ -2184,7 +2184,7 @@
         <!--高级回复-->
         <scene sceneID="CKB-b1-PTH">
             <objects>
-                <navigationController storyboardIdentifier="SeniorReplySomeOne" title="高级回复" automaticallyAdjustsScrollViewInsets="NO" id="gBw-i8-805" customClass="ForumReplyNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SeniorReplySomeOne" title="高级回复" automaticallyAdjustsScrollViewInsets="NO" id="gBw-i8-805" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="WUE-ZV-zcY">
