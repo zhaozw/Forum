@@ -5,6 +5,8 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
+#define THEME_COLOR [[UIColor alloc] initWithRed:25.f/255.f green:67.f/255.f blue:70.f/255.f alpha:1]
+
 #define THREAD_PAGE [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil]
 #define THREAD_PAGE_NOTITLE [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_view_notitle" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil]
 #define POST_MESSAGE [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"post_message" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil]

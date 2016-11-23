@@ -7,6 +7,7 @@
 //
 
 #import "ForumNavigationViewController.h"
+#import "ForumConfig.h"
 
 @interface ForumNavigationViewController ()
 
@@ -16,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationBar.barTintColor = [[UIColor alloc] initWithRed:47.f/255.f green:69.f/255.f blue:130.f/255.f alpha:1];
+    self.navigationBar.barTintColor = THEME_COLOR;
 }
 
 - (void)didReceiveMemoryWarning {

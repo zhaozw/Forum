@@ -12,6 +12,7 @@
 #import <SVProgressHUD.h>
 #import "ForumCoreDataManager.h"
 #import "ForumEntry+CoreDataClass.h"
+#import "ForumConfig.h"
 
 @interface ForumLoginViewController () <UITextFieldDelegate> {
 
@@ -28,6 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.rootView.backgroundColor = THEME_COLOR;
+    
     _userName.delegate = self;
     _password.delegate = self;
     _vCode.delegate = self;
