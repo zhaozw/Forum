@@ -43,7 +43,7 @@
 }
 
 - (void)onPullRefresh {
-    [self.ccfApi forumDisplayWithId:forumId andPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *page) {
+    [self.forumBrowser forumDisplayWithId:forumId andPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *page) {
 
         [self.tableView.mj_header endRefreshing];
 
@@ -71,7 +71,7 @@
 }
 
 - (void)onLoadMore {
-    [self.ccfApi forumDisplayWithId:forumId andPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage *page) {
+    [self.forumBrowser forumDisplayWithId:forumId andPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage *page) {
 
         [self.tableView.mj_footer endRefreshing];
 
@@ -149,13 +149,13 @@
     if (indexPath.section == 0) {
         NormalThread *play = self.threadTopList[(NSUInteger) indexPath.row];
 
-        [self.ccfApi favoriteThreadPostWithId:play.threadID handler:^(BOOL isSuccess, id message) {
+        [self.forumBrowser favoriteThreadPostWithId:play.threadID handler:^(BOOL isSuccess, id message) {
 
         }];
     } else {
         NormalThread *play = self.threadTopList[(NSUInteger) indexPath.row];
 
-        [self.ccfApi favoriteThreadPostWithId:play.threadID handler:^(BOOL isSuccess, id message) {
+        [self.forumBrowser favoriteThreadPostWithId:play.threadID handler:^(BOOL isSuccess, id message) {
 
         }];
     }

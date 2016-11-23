@@ -18,7 +18,7 @@
 @implementation ForumThreadListCell {
 
     ForumCoreDataManager *_coreDateManager;
-    ForumBrowser *ccfapi;
+    ForumBrowser *_forumBrowser;
     NSIndexPath *selectIndexPath;
 }
 
@@ -33,7 +33,7 @@
     self = [super initWithCoder:coder];
     if (self) {
 
-        ccfapi = [[ForumBrowser alloc] init];
+        _forumBrowser = [[ForumBrowser alloc] init];
         _coreDateManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
 
         [self.avatarImage setContentScaleFactor:[[UIScreen mainScreen] scale]];

@@ -13,7 +13,7 @@
     UIImage *defaultAvatarImage;
 
     ForumCoreDataManager *coreDateManager;
-    ForumBrowser *ccfapi;
+    ForumBrowser *_forumBrowser;
 
     NSMutableDictionary *avatarCache;
 
@@ -43,7 +43,7 @@
 
     defaultAvatarImage = [UIImage imageNamed:icon];
 
-    ccfapi = [[ForumBrowser alloc] init];
+    _forumBrowser = [[ForumBrowser alloc] init];
 
     avatarCache = [NSMutableDictionary dictionary];
 
@@ -80,7 +80,7 @@
 
     if (avatarInArray == nil) {
 
-        [ccfapi getAvatarWithUserId:userId handler:^(BOOL isSuccess, NSString *avatar) {
+        [_forumBrowser getAvatarWithUserId:userId handler:^(BOOL isSuccess, NSString *avatar) {
 
             if (isSuccess) {
                 // 存入数据库

@@ -96,7 +96,7 @@
     Forum *parent = self.dataList[cell.indexPath.section];
     Forum *child = parent.childForums[cell.indexPath.row];
 
-    [self.ccfApi favoriteForumsWithId:[NSString stringWithFormat:@"%d", child.forumId] handler:^(BOOL isSuccess, id message) {
+    [self.forumBrowser favoriteForumsWithId:[NSString stringWithFormat:@"%d", child.forumId] handler:^(BOOL isSuccess, id message) {
         NSLog(@">>>>>>>>>>>> %@", message);
     }];
 

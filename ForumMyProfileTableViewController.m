@@ -82,11 +82,11 @@
 
 
 - (void)onPullRefresh {
-    ForumBrowser *api = self.ccfApi;
+    ForumBrowser *api = self.forumBrowser;
 
     NSString *currentUserId = api.getLoginUser.userID;
 
-    [self.ccfApi showProfileWithUserId:currentUserId handler:^(BOOL isSuccess, UserProfile *message) {
+    [self.forumBrowser showProfileWithUserId:currentUserId handler:^(BOOL isSuccess, UserProfile *message) {
         userProfile = message;
 
         [self.tableView.mj_header endRefreshing];
@@ -112,7 +112,7 @@
 
     if (avatarInArray == nil) {
 
-        [self.ccfApi getAvatarWithUserId:userId handler:^(BOOL isSuccess, NSString *avatar) {
+        [self.forumBrowser getAvatarWithUserId:userId handler:^(BOOL isSuccess, NSString *avatar) {
 
             if (isSuccess) {
                 // 存入数据库
@@ -167,7 +167,7 @@
 
     if (indexPath.section == 3 && indexPath.row == 1) {
 
-        [self.ccfApi logout];
+        [self.forumBrowser logout];
 
 
         ForumLoginViewController *rootController = [[ForumLoginViewController alloc] init];

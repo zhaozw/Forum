@@ -254,7 +254,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     [parameters setValue:hash forKey:@"posthash"];
     [parameters setValue:@"16777216" forKey:@"MAX_FILE_SIZE"];
     [parameters setValue:@"上传" forKey:@"upload"];
-    NSString *name = [NSString stringWithFormat:@"CCF_CLIENT_%f.jpg", [[NSDate date] timeIntervalSince1970]];
+    NSString *name = [NSString stringWithFormat:@"Forum_Client_%f.jpg", [[NSDate date] timeIntervalSince1970]];
 
     [parameters setValue:name forKey:@"attachment[]"];
 
@@ -356,7 +356,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     [parameters setValue:@"上传" forKey:@"upload"];
 
 
-    NSString *name = [NSString stringWithFormat:@"CCF_CLIENT_%f.jpg", [[NSDate date] timeIntervalSince1970]];
+    NSString *name = [NSString stringWithFormat:@"Forum_Client_%f.jpg", [[NSDate date] timeIntervalSince1970]];
 
     [parameters setValue:name forKey:@"attachment[]"];
 
@@ -709,7 +709,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     [parameters setValue:@"16777216" forKey:@"MAX_FILE_SIZE"];
     [parameters setValue:@"上传" forKey:@"upload"];
 
-    NSString *name = [NSString stringWithFormat:@"CCF_CLIENT_%f.jpg", [[NSDate date] timeIntervalSince1970]];
+    NSString *name = [NSString stringWithFormat:@"Forum_Client_%f.jpg", [[NSDate date] timeIntervalSince1970]];
 
     [parameters setValue:name forKey:@"attachment[]"];
 

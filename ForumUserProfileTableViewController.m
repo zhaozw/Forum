@@ -20,7 +20,7 @@
     int userId;
     UIImage *defaultAvatarImage;
     ForumCoreDataManager *coreDateManager;
-    ForumBrowser *ccfapi;
+    ForumBrowser *_forumBrowser;
     NSMutableDictionary *avatarCache;
     NSMutableArray<UserEntry *> *cacheUsers;
 
@@ -43,7 +43,7 @@
     
     defaultAvatarImage = [UIImage imageNamed:icon];
 
-    ccfapi = [[ForumBrowser alloc] init];
+    _forumBrowser = [[ForumBrowser alloc] init];
     coreDateManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
     avatarCache = [NSMutableDictionary dictionary];
 
@@ -65,7 +65,7 @@
 
 - (void)onPullRefresh {
     NSString *userIdString = [NSString stringWithFormat:@"%d", userId];
-    [self.ccfApi showProfileWithUserId:userIdString handler:^(BOOL isSuccess, UserProfile *message) {
+    [self.forumBrowser showProfileWithUserId:userIdString handler:^(BOOL isSuccess, UserProfile *message) {
         userProfile = message;
 
         [self.tableView.mj_header endRefreshing];
@@ -131,7 +131,7 @@
 
     if (avatarInArray == nil) {
 
-        [ccfapi getAvatarWithUserId:profileUserId handler:^(BOOL isSuccess, NSString *avatar) {
+        [_forumBrowser getAvatarWithUserId:profileUserId handler:^(BOOL isSuccess, NSString *avatar) {
             // 存入数据库
             [coreDateManager insertOneData:^(id src) {
                 UserEntry *user = (UserEntry *) src;

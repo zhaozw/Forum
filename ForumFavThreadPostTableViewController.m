@@ -21,7 +21,7 @@
 @implementation ForumFavThreadPostTableViewController
 
 - (void)onPullRefresh {
-    [self.ccfApi listFavoriteThreadPostsWithPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *resultPage) {
+    [self.forumBrowser listFavoriteThreadPostsWithPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *resultPage) {
 
         [self.tableView.mj_header endRefreshing];
         if (isSuccess) {
@@ -38,7 +38,7 @@
 }
 
 - (void)onLoadMore {
-    [self.ccfApi listFavoriteThreadPostsWithPage:self.currentPage handler:^(BOOL isSuccess, ForumDisplayPage *resultPage) {
+    [self.forumBrowser listFavoriteThreadPostsWithPage:self.currentPage handler:^(BOOL isSuccess, ForumDisplayPage *resultPage) {
 
         [self.tableView.mj_footer endRefreshing];
 
@@ -83,7 +83,7 @@
 
     SimpleThread *list = self.dataList[(NSUInteger) cell.indexPath.row];
 
-    [self.ccfApi unfavoriteThreadPostWithId:list.threadID handler:^(BOOL isSuccess, id message) {
+    [self.forumBrowser unfavoriteThreadPostWithId:list.threadID handler:^(BOOL isSuccess, id message) {
         NSLog(@">>>>>>>>>>>> %@", message);
     }];
 

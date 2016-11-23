@@ -72,7 +72,7 @@
 #pragma mark initData
 
 - (void)initData {
-    self.ccfApi = [[ForumBrowser alloc] init];
+    self.forumBrowser = [[ForumBrowser alloc] init];
     self.dataList = [[NSMutableArray alloc] init];
 }
 

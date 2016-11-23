@@ -229,7 +229,7 @@
     }
 
 
-    [self.ccfForumApi seniorReplyWithThreadId:threadId forForumId:[forumIdStr intValue] andMessage:self.replyContent.text withImages:uploadData securitytoken:securityToken handler:^(BOOL isSuccess, id message) {
+    [self.forumBrowser seniorReplyWithThreadId:threadId forForumId:[forumIdStr intValue] andMessage:self.replyContent.text withImages:uploadData securitytoken:securityToken handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
 

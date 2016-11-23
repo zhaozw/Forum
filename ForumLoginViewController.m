@@ -17,7 +17,7 @@
 
     CGRect screenSize;
 
-    ForumBrowser *_ccfApi;
+    ForumBrowser *_forumBrowser;
 
 }
 
@@ -41,12 +41,12 @@
 
     screenSize = [UIScreen mainScreen].bounds;
 
-    _ccfApi = [[ForumBrowser alloc] init];
+    _forumBrowser = [[ForumBrowser alloc] init];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
-    [_ccfApi refreshVCodeToUIImageView:_doorImageView];
+    [_forumBrowser refreshVCodeToUIImageView:_doorImageView];
 
 }
 
@@ -127,10 +127,10 @@
 
     [SVProgressHUD showWithStatus:@"正在登录" maskType:SVProgressHUDMaskTypeBlack];
 
-    [_ccfApi loginWithName:name andPassWord:password withCode:code handler:^(BOOL isSuccess, id message) {
+    [_forumBrowser loginWithName:name andPassWord:password withCode:code handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
 
-            [_ccfApi listAllForums:^(BOOL isSuccess, id message) {
+            [_forumBrowser listAllForums:^(BOOL isSuccess, id message) {
 
 
                 [SVProgressHUD dismiss];
@@ -172,7 +172,7 @@
 
 
 - (IBAction)refreshDoor:(id)sender {
-    [_ccfApi refreshVCodeToUIImageView:_doorImageView];
+    [_forumBrowser refreshVCodeToUIImageView:_doorImageView];
 }
 
 @end

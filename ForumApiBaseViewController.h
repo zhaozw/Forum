@@ -11,6 +11,6 @@
 
 @interface ForumApiBaseViewController : TransBundleUIViewController
 
-@property(nonatomic, strong) ForumBrowser *ccfForumApi;
+@property(nonatomic, strong) ForumBrowser *forumBrowser;
 
 @end

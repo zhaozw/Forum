@@ -56,7 +56,7 @@
     
     for (IGXMLNode *node in postMessages) {
         
-        Post *ccfpost = [[Post alloc] init];
+        Post *post = [[Post alloc] init];
         
         
         NSString *postId = [[[node attribute:@"id"] componentsSeparatedByString:@"td_post_"] lastObject];
@@ -70,11 +70,11 @@
         NSString *xPathMessage = [NSString stringWithFormat:@"//*[@id='post_message_%@']", postId];
         IGXMLNode *message = [postDocument queryWithXPath:xPathMessage].firstObject;
         
-        ccfpost.postContent = message.html;
+        post.postContent = message.html;
         // 去掉引用inline 的样式设定
-        ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\">引用:</div>" withString:@""];
-        ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:@"style=\"margin:20px; margin-top:5px; \"" withString:@"class=\"post-quote\""];
-        ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:@"<td class=\"alt2\" style=\"border:1px inset\">" withString:@"<td class=\"alt2\">"];
+        post.postContent = [post.postContent stringByReplacingOccurrencesOfString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\">引用:</div>" withString:@""];
+        post.postContent = [post.postContent stringByReplacingOccurrencesOfString:@"style=\"margin:20px; margin-top:5px; \"" withString:@"class=\"post-quote\""];
+        post.postContent = [post.postContent stringByReplacingOccurrencesOfString:@"<td class=\"alt2\" style=\"border:1px inset\">" withString:@"<td class=\"alt2\">"];
         
         
         NSString *xPathAttImage = [NSString stringWithFormat:@"//*[@id='td_post_%@']/div[2]", postId];
@@ -103,14 +103,14 @@
         
         
         if (attImage != nil) {
-            ccfpost.postContent = [ccfpost.postContent stringByAppendingString:attImageHtml];
+            post.postContent = [post.postContent stringByAppendingString:attImageHtml];
         }
         
         
         NSRange louCengRange = [time.text rangeOfString:@"#\\d+" options:NSRegularExpressionSearch];
         
         if (louCengRange.location != NSNotFound) {
-            ccfpost.postLouCeng = [time.text substringWithRange:louCengRange];
+            post.postLouCeng = [time.text substringWithRange:louCengRange];
         }
         
         
@@ -118,13 +118,13 @@
         
         if (timeRange.location != NSNotFound) {
             NSString *fixTime = [[time.text substringWithRange:timeRange] stringByReplacingOccurrencesOfString:@", " withString:@" "];
-            ccfpost.postTime = [self timeForShort:fixTime withFormat:@"yyyy-MM-dd HH:mm:ss"];
+            post.postTime = [self timeForShort:fixTime withFormat:@"yyyy-MM-dd HH:mm:ss"];
         }
         // 保存数据
-        ccfpost.postID = postId;
+        post.postID = postId;
         
         // 添加数据
-        [posts addObject:ccfpost];
+        [posts addObject:post];
         
         
     }
@@ -143,13 +143,13 @@
         }
         IGXMLNode *nameNode = userInfoNode.firstChild.firstChild;
         
-        User *ccfuser = [[User alloc] init];
+        User *user = [[User alloc] init];
         
         NSString *name = nameNode.innerHtml;
-        ccfuser.userName = name;
+        user.userName = name;
         NSString *nameLink = [nameNode attribute:@"href"];
-        ccfuser.userLink = [BBS_URL stringByAppendingString:nameLink];
-        ccfuser.userID = [nameLink stringWithRegular:@"\\d+"];
+        user.userLink = [BBS_URL stringByAppendingString:nameLink];
+        user.userID = [nameLink stringWithRegular:@"\\d+"];
         //avatar
         IGXMLNode *avatarNode = userInfoNode.children[1];
         NSString *avatarLink = [[[avatarNode children][1] firstChild] attribute:@"src"];
@@ -161,27 +161,27 @@
         
         //avatarLink = [[avatarLink componentsSeparatedByString:@"/"]lastObject];
         
-        ccfuser.userAvatar = avatarLink;
+        user.userAvatar = avatarLink;
         
         //rank
         IGXMLNode *rankNode = userInfoNode.children[3];
-        ccfuser.userRank = rankNode.text;
+        user.userRank = rankNode.text;
         // 资料div
         IGXMLNode *subInfoNode = userInfoNode.children[4];
         // 注册日期
         IGXMLNode *signDateNode = [[subInfoNode children][1] children][1];
-        ccfuser.userSignDate = signDateNode.text;
+        user.userSignDate = signDateNode.text;
         // 帖子数量html
         IGXMLNode *postCountNode = [[subInfoNode children][1] children][2];
-        ccfuser.userPostCount = postCountNode.text;
+        user.userPostCount = postCountNode.text;
         // 精华 解答 暂时先不处理
         //IGXMLNode * solveCountNode = subInfoNode;
         
         
-        posts[postPointer].postUserInfo = ccfuser;
+        posts[postPointer].postUserInfo = user;
         
         Post *newPost = posts[postPointer];
-        newPost.postUserInfo = ccfuser;
+        newPost.postUserInfo = user;
         [posts removeObjectAtIndex:postPointer];
         [posts insertObject:newPost atIndex:postPointer];
         

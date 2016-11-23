@@ -206,7 +206,7 @@
 }
 
 - (void)showThreadWithP:(NSString *)pID {
-    [self.ccfForumApi showThreadWithP:pID handler:^(BOOL isSuccess, id message) {
+    [self.forumBrowser showThreadWithP:pID handler:^(BOOL isSuccess, id message) {
 
         if (!isSuccess){
             [self showFailedMessage:message];
@@ -265,7 +265,7 @@
 - (void)prePage:(int)threadId page:(int)page withAnim:(BOOL)anim {
 
 
-    [self.ccfForumApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
+    [self.forumBrowser showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
 
         if (!isSuccess){
             [self showFailedMessage:message];
@@ -363,7 +363,7 @@
     if (currentPage < currentShowThreadPage.totalPageCount) {
         [self showThread:threadId page:currentPage + 1 withAnim:YES];
     } else {
-        [self.ccfForumApi showThreadWithId:threadId andPage:currentPage handler:^(BOOL isSuccess, id message) {
+        [self.forumBrowser showThreadWithId:threadId andPage:currentPage handler:^(BOOL isSuccess, id message) {
 
             if (!isSuccess){
                 [self showFailedMessage:message];
@@ -396,7 +396,7 @@
 
     NSString *cacheHtml = pageDic[@(page)];
 
-    [self.ccfForumApi showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
+    [self.forumBrowser showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, id message) {
 
         
         [SVProgressHUD dismiss];
