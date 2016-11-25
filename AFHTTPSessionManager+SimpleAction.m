@@ -7,6 +7,7 @@
 
 #import "AFHTTPSessionManager+SimpleAction.h"
 #import "NSString+Extensions.h"
+#import "NSData+UTF8.h"
 
 @implementation AFHTTPSessionManager (SimpleAction)
 
@@ -14,7 +15,9 @@
 - (void)GETWithURL:(NSURL *)url requestCallback:(RequestCallback)callback {
 
     [self GET:[url absoluteString] parameters:nil progress:nil success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject) {
-        NSString *orgHtml = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        NSData * utf8Data = [responseObject UTF8Data];
+        NSString *orgHtml = [[NSString alloc] initWithData:utf8Data encoding:NSUTF8StringEncoding];
 
         NSString *html = [orgHtml replaceUnicode];
         callback(YES, html);
@@ -28,7 +31,10 @@
 //        return request;
 //    }];
     [self POST:[url absoluteString] parameters:parameters progress:nil success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject) {
-        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
+        
+        NSData * utf8Data = [responseObject UTF8Data];
+        
+        NSString *html = [[[NSString alloc] initWithData:utf8Data encoding:NSUTF8StringEncoding] replaceUnicode];
         callback(YES, html);
     }  failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error) {
         callback(NO, @"网络异常");
@@ -45,7 +51,8 @@
 
     }  success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject) {
 
-        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
+        NSData * utf8Data = [responseObject UTF8Data];
+        NSString *html = [[[NSString alloc] initWithData:utf8Data encoding:NSUTF8StringEncoding] replaceUnicode];
         callback(YES, html);
 
     }  failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error) {

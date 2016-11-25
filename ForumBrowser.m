@@ -47,6 +47,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
         _browser.responseSerializer = [AFHTTPResponseSerializer serializer];
         _browser.responseSerializer.acceptableContentTypes = [_browser.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
 
+        [_browser.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36" forHTTPHeaderField:@"User-Agent"];
+        
         _htmlParser = [[ForumHtmlParser alloc] init];
         _phoneName = [DeviceName deviceNameDetail];
     }
