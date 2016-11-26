@@ -74,7 +74,7 @@
 		3A2C3FE81DDFE0C900576151 /* ForumUserThreadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FC71DDFE0C900576151 /* ForumUserThreadTableViewController.m */; };
 		3A2C3FE91DDFE0C900576151 /* ForumWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FC91DDFE0C900576151 /* ForumWebViewController.m */; };
 		3A2C3FEB1DDFE0C900576151 /* ForumWritePMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FCD1DDFE0C900576151 /* ForumWritePMViewController.m */; };
-		3A2C3FEE1DDFE10900576151 /* db.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FEC1DDFE10900576151 /* db.xcdatamodeld */; };
+		3A2C3FEE1DDFE10900576151 /* forum.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FEC1DDFE10900576151 /* forum.xcdatamodeld */; };
 		3A2C3FF11DDFE13500576151 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A2C3FEF1DDFE13500576151 /* LaunchScreen.storyboard */; };
 		3A2C3FF21DDFE13500576151 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A2C3FF01DDFE13500576151 /* Main.storyboard */; };
 		3A2C3FFF1DDFE30300576151 /* TranBundleUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3FF51DDFE30300576151 /* TranBundleUITableViewController.m */; };
@@ -240,7 +240,7 @@
 		3A2C3FC91DDFE0C900576151 /* ForumWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumWebViewController.m; sourceTree = "<group>"; };
 		3A2C3FCC1DDFE0C900576151 /* ForumWritePMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumWritePMViewController.h; sourceTree = "<group>"; };
 		3A2C3FCD1DDFE0C900576151 /* ForumWritePMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumWritePMViewController.m; sourceTree = "<group>"; };
-		3A2C3FED1DDFE10900576151 /* db.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = db.xcdatamodel; sourceTree = "<group>"; };
+		3A2C3FED1DDFE10900576151 /* forum.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = forum.xcdatamodel; sourceTree = "<group>"; };
 		3A2C3FEF1DDFE13500576151 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A2C3FF01DDFE13500576151 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3A2C3FF41DDFE30300576151 /* TranBundleUITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranBundleUITableViewController.h; sourceTree = "<group>"; };
@@ -363,7 +363,7 @@
 				3A2C402C1DE0A3DD00576151 /* ForumEntry+CoreDataProperties.m */,
 				3A2C3F351DDFBD2700576151 /* ForumCoreDataManager.h */,
 				3A2C3F361DDFBD2700576151 /* ForumCoreDataManager.m */,
-				3A2C3FEC1DDFE10900576151 /* db.xcdatamodeld */,
+				3A2C3FEC1DDFE10900576151 /* forum.xcdatamodeld */,
 				3A2C3F2C1DDFBCE800576151 /* CoreDataManager.h */,
 				3A2C3F2D1DDFBCE800576151 /* CoreDataManager.m */,
 			);
@@ -874,7 +874,7 @@
 				3A2C40011DDFE30300576151 /* TransBundle.m in Sources */,
 				3A2C3FE01DDFE0C900576151 /* ForumShowNewThreadPostTableViewController.m in Sources */,
 				3A2C3FE31DDFE0C900576151 /* ForumTabBarController.m in Sources */,
-				3A2C3FEE1DDFE10900576151 /* db.xcdatamodeld in Sources */,
+				3A2C3FEE1DDFE10900576151 /* forum.xcdatamodeld in Sources */,
 				3A2C402D1DE0A3DD00576151 /* UserEntry+CoreDataClass.m in Sources */,
 				3AF8878E1DA155D20083A8D5 /* ForumHtmlParser.m in Sources */,
 				4DF737261DDECC9600BF1896 /* PrivateMessage.m in Sources */,
@@ -1103,13 +1103,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		3A2C3FEC1DDFE10900576151 /* db.xcdatamodeld */ = {
+		3A2C3FEC1DDFE10900576151 /* forum.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				3A2C3FED1DDFE10900576151 /* db.xcdatamodel */,
+				3A2C3FED1DDFE10900576151 /* forum.xcdatamodel */,
 			);
-			currentVersion = 3A2C3FED1DDFE10900576151 /* db.xcdatamodel */;
-			path = db.xcdatamodeld;
+			currentVersion = 3A2C3FED1DDFE10900576151 /* forum.xcdatamodel */;
+			path = forum.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
