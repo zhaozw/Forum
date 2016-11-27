@@ -16,10 +16,9 @@
 
     [self GET:[url absoluteString] parameters:nil progress:nil success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject) {
         
-        NSData * utf8Data = [responseObject UTF8Data];
-        NSString *orgHtml = [[NSString alloc] initWithData:utf8Data encoding:NSUTF8StringEncoding];
-
+        NSString *orgHtml = [responseObject utf8String];
         NSString *html = [orgHtml replaceUnicode];
+        
         callback(YES, html);
     } failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error) {
         callback(NO, @"网络异常");
@@ -32,9 +31,9 @@
 //    }];
     [self POST:[url absoluteString] parameters:parameters progress:nil success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject) {
         
-        NSData * utf8Data = [responseObject UTF8Data];
-        
-        NSString *html = [[[NSString alloc] initWithData:utf8Data encoding:NSUTF8StringEncoding] replaceUnicode];
+        NSString *orgHtml = [responseObject utf8String];
+        NSString *html = [orgHtml replaceUnicode];
+
         callback(YES, html);
     }  failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error) {
         callback(NO, @"网络异常");
@@ -51,8 +50,9 @@
 
     }  success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject) {
 
-        NSData * utf8Data = [responseObject UTF8Data];
-        NSString *html = [[[NSString alloc] initWithData:utf8Data encoding:NSUTF8StringEncoding] replaceUnicode];
+        NSString *orgHtml = [responseObject utf8String];
+        NSString *html = [orgHtml replaceUnicode];
+
         callback(YES, html);
 
     }  failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error) {

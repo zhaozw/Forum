@@ -6,5 +6,9 @@
 #import <Foundation/Foundation.h>
 
 @interface NSData (UTF8)
+
 - (NSData *)UTF8Data;
+
+- (NSString *) utf8String;
+
 @end
