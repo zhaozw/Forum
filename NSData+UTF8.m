@@ -9,13 +9,29 @@
 @implementation NSData (UTF8)
 
 
-- (NSString *) utf8String{
+- (NSString *)utf8String {
     NSString *string = [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding];
     if (string == nil) {
         string = [[NSString alloc] initWithData:[self UTF8Data] encoding:NSUTF8StringEncoding];
     }
     return string;
 }
+
+//              https://zh.wikipedia.org/wiki/UTF-8
+//              https://www.w3.org/International/questions/qa-forms-utf-8
+//
+//            $field =~
+//                    m/\A(
+//            [\x09\x0A\x0D\x20-\x7E]            # ASCII
+//            | [\xC2-\xDF][\x80-\xBF]             # non-overlong 2-byte
+//            |  \xE0[\xA0-\xBF][\x80-\xBF]        # excluding overlongs
+//            | [\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}  # straight 3-byte
+//            |  \xED[\x80-\x9F][\x80-\xBF]        # excluding surrogates
+//            |  \xF0[\x90-\xBF][\x80-\xBF]{2}     # planes 1-3
+//            | [\xF1-\xF3][\x80-\xBF]{3}          # planes 4-15
+//            |  \xF4[\x80-\x8F][\x80-\xBF]{2}     # plane 16
+//            )*\z/x;
+
 
 - (NSData *)UTF8Data {
     //保存结果
@@ -26,98 +42,72 @@
     uint64_t index = 0;
     const uint8_t *bytes = self.bytes;
 
-    long dataLength = self.length;
-    
+    long dataLength = (long) self.length;
+
     while (index < dataLength) {
         uint8_t len = 0;
-        uint8_t header = bytes[index];
+        uint8_t firstChar = bytes[index];
 
-        //单字节
-        if ((header & 0x80) == 0) {
+            // 1个字节
+        if ((firstChar & 0x80) == 0 && (firstChar == 0x09 || firstChar == 0x0A || firstChar == 0x0D || (0x20 <= firstChar && firstChar <= 0x7E))) {
             len = 1;
-            [resData appendBytes:bytes + index length:1];
-            
-            index += 1;
         }
-            //2字节(并且不能为C0,C1)
-        else if ((header & 0xE0) == 0xC0) {
-            
-            if (index + 1 <= dataLength -1) {
-                uint8_t nextHeader = bytes[index + 1];
-                if ((nextHeader & 0xC0) == 0x80) {
-                    len = 2;
-                    [resData appendBytes:bytes + index length:2];
+            // 2字节
+        else if ((firstChar & 0xE0) == 0xC0 && (0xC2 <= firstChar && firstChar <= 0xDF)) {
+            uint8_t secondChar = bytes[index + 1];
+            if (0x80 <= secondChar && secondChar <= 0xBF) {
+                len = 2;
+            }
+        }
+            // 3字节
+        else if ((firstChar & 0xF0) == 0xE0) {
+            uint8_t secondChar = bytes[index + 1];
+            uint8_t thirdChar = bytes[index + 2];
+
+            if (firstChar == 0xE0 && (0xA0 <= secondChar && secondChar <= 0xBF) && (0x80 <= thirdChar && thirdChar <= 0xBF)) {
+                len = 3;
+            } else if (((0xE1 <= firstChar && firstChar <= 0xEC) || firstChar == 0xEE || firstChar == 0xEF) && (0x80 <= secondChar && secondChar <= 0xBF) && (0x80 <= thirdChar && thirdChar <= 0xBF)) {
+                len = 3;
+            } else if (firstChar == 0xED && (0x80 <= secondChar && secondChar <= 0x9F) && (0x80 <= thirdChar && thirdChar <= 0xBF)) {
+                len = 3;
+            }
+        }
+            // 4字节
+        else if ((firstChar & 0xF8) == 0xF0) {
+            uint8_t secondChar = bytes[index + 1];
+            uint8_t thirdChar = bytes[index + 2];
+            uint8_t fourthChar = bytes[index + 3];
+
+            if (firstChar == 0xF0) {
+                if ((0x90 <= secondChar & secondChar <= 0xBF) && (0x80 <= thirdChar && thirdChar <= 0xBF) && (0x80 <= fourthChar && fourthChar <= 0xBF)) {
+                    len = 4;
+                }
+            } else if ((0xF1 <= firstChar && firstChar <= 0xF3)) {
+                if ((0x80 <= secondChar && secondChar <= 0xBF) && (0x80 <= thirdChar && thirdChar <= 0xBF) && (0x80 <= fourthChar && fourthChar <= 0xBF)) {
+                    len = 4;
+                }
+            } else if (firstChar == 0xF3) {
+                if ((0x80 <= secondChar && secondChar <= 0x8F) && (0x80 <= thirdChar && thirdChar <= 0xBF) && (0x80 <= fourthChar && fourthChar <= 0xBF)) {
+                    len = 4;
                 }
             }
-            
-            index += 2;
-//            if (header != 0xC0 && header != 0xC1) {
-//                len = 2;
-//            }
         }
-            //3字节
-        else if ((header & 0xF0) == 0xE0) {
-            if (index + 2 <= dataLength -1) {
-                uint8_t nextHeader = bytes[index + 1];
-                if ((nextHeader & 0xC0) == 0x80) {
-                    uint8_t lastHeader = bytes[index + 2];
-                    if ((lastHeader & 0xC0) == 0x80) {
-                        //len = 3;
-                        
-                        NSMutableData *text = [[NSMutableData alloc] initWithCapacity:3];
-                        [text appendBytes:bytes + index length:3];
-                        NSString *orgHtml = [[NSString alloc] initWithData:text encoding:NSUTF8StringEncoding];
-                        if (orgHtml == nil) {
-                            [resData appendData:replacement];
-                        } else{
-                            [resData appendBytes:bytes + index length:3];
-                        }
-                    }
-                }
-            }
-            
-//            if (header == 0xed && bytes[index + 1] == 0xbf && bytes[index + 2] == 0xbd) {
-//                len = 0;
-//            } else{
-//                len = 3;
-//            }
-            index += 3;
+            // 5个字节
+        else if ((firstChar & 0xFC) == 0xF8) {
+            len = 5;
         }
-            //4字节(并且不能为F5,F6,F7)
-        else if ((header & 0xF8) == 0xF0) {
-            if (header != 0xF5 && header != 0xF6 && header != 0xF7) {
-                len = 4;
-                [resData appendBytes:bytes + index length:4];
-            }
-            index += 4;
-        } else{
-            len = 0;
+            // 6个字节
+        else if ((firstChar & 0xFE) == 0xFC) {
+            len = 6;
         }
 
-//        //无法识别
-//        if (len == 0) {
-//            [resData appendData:replacement];
-//            index++;
-//            continue;
-//        }
-//
-//        //检测有效的数据长度(后面还有多少个10xxxxxx这样的字节)
-//        uint8_t validLen = 1;
-//        while (validLen < len && index + validLen < self.length) {
-//            if ((bytes[index + validLen] & 0xC0) != 0x80)
-//                break;
-//            validLen++;
-//        }
-//
-//        //有效字节等于编码要求的字节数表示合法,否则不合法
-//        if (validLen == len) {
-//            [resData appendBytes:bytes + index length:len];
-//        } else {
-//            [resData appendData:replacement];
-//        }
-//
-//        //移动下标
-//        index += validLen;
+        if (len == 0) {
+            index++;
+            [resData appendData:replacement];
+        } else {
+            [resData appendBytes:bytes + index length:len];
+            index += len;
+        }
     }
 
     return resData;
