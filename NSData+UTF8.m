@@ -54,41 +54,47 @@
         }
             // 2字节
         else if ((firstChar & 0xE0) == 0xC0 && (0xC2 <= firstChar && firstChar <= 0xDF)) {
-            uint8_t secondChar = bytes[index + 1];
-            if (0x80 <= secondChar && secondChar <= 0xBF) {
-                len = 2;
+            if (index + 1 < dataLength) {
+                uint8_t secondChar = bytes[index + 1];
+                if (0x80 <= secondChar && secondChar <= 0xBF) {
+                    len = 2;
+                }
             }
         }
             // 3字节
         else if ((firstChar & 0xF0) == 0xE0) {
-            uint8_t secondChar = bytes[index + 1];
-            uint8_t thirdChar = bytes[index + 2];
-
-            if (firstChar == 0xE0 && (0xA0 <= secondChar && secondChar <= 0xBF) && (0x80 <= thirdChar && thirdChar <= 0xBF)) {
-                len = 3;
-            } else if (((0xE1 <= firstChar && firstChar <= 0xEC) || firstChar == 0xEE || firstChar == 0xEF) && (0x80 <= secondChar && secondChar <= 0xBF) && (0x80 <= thirdChar && thirdChar <= 0xBF)) {
-                len = 3;
-            } else if (firstChar == 0xED && (0x80 <= secondChar && secondChar <= 0x9F) && (0x80 <= thirdChar && thirdChar <= 0xBF)) {
-                len = 3;
+            if (index + 2 < dataLength) {
+                uint8_t secondChar = bytes[index + 1];
+                uint8_t thirdChar = bytes[index + 2];
+                
+                if (firstChar == 0xE0 && (0xA0 <= secondChar && secondChar <= 0xBF) && (0x80 <= thirdChar && thirdChar <= 0xBF)) {
+                    len = 3;
+                } else if (((0xE1 <= firstChar && firstChar <= 0xEC) || firstChar == 0xEE || firstChar == 0xEF) && (0x80 <= secondChar && secondChar <= 0xBF) && (0x80 <= thirdChar && thirdChar <= 0xBF)) {
+                    len = 3;
+                } else if (firstChar == 0xED && (0x80 <= secondChar && secondChar <= 0x9F) && (0x80 <= thirdChar && thirdChar <= 0xBF)) {
+                    len = 3;
+                }
             }
         }
             // 4字节
         else if ((firstChar & 0xF8) == 0xF0) {
-            uint8_t secondChar = bytes[index + 1];
-            uint8_t thirdChar = bytes[index + 2];
-            uint8_t fourthChar = bytes[index + 3];
-
-            if (firstChar == 0xF0) {
-                if ((0x90 <= secondChar & secondChar <= 0xBF) && (0x80 <= thirdChar && thirdChar <= 0xBF) && (0x80 <= fourthChar && fourthChar <= 0xBF)) {
-                    len = 4;
-                }
-            } else if ((0xF1 <= firstChar && firstChar <= 0xF3)) {
-                if ((0x80 <= secondChar && secondChar <= 0xBF) && (0x80 <= thirdChar && thirdChar <= 0xBF) && (0x80 <= fourthChar && fourthChar <= 0xBF)) {
-                    len = 4;
-                }
-            } else if (firstChar == 0xF3) {
-                if ((0x80 <= secondChar && secondChar <= 0x8F) && (0x80 <= thirdChar && thirdChar <= 0xBF) && (0x80 <= fourthChar && fourthChar <= 0xBF)) {
-                    len = 4;
+            if (index + 3 < dataLength) {
+                uint8_t secondChar = bytes[index + 1];
+                uint8_t thirdChar = bytes[index + 2];
+                uint8_t fourthChar = bytes[index + 3];
+                
+                if (firstChar == 0xF0) {
+                    if ((0x90 <= secondChar & secondChar <= 0xBF) && (0x80 <= thirdChar && thirdChar <= 0xBF) && (0x80 <= fourthChar && fourthChar <= 0xBF)) {
+                        len = 4;
+                    }
+                } else if ((0xF1 <= firstChar && firstChar <= 0xF3)) {
+                    if ((0x80 <= secondChar && secondChar <= 0xBF) && (0x80 <= thirdChar && thirdChar <= 0xBF) && (0x80 <= fourthChar && fourthChar <= 0xBF)) {
+                        len = 4;
+                    }
+                } else if (firstChar == 0xF3) {
+                    if ((0x80 <= secondChar && secondChar <= 0x8F) && (0x80 <= thirdChar && thirdChar <= 0xBF) && (0x80 <= fourthChar && fourthChar <= 0xBF)) {
+                        len = 4;
+                    }
                 }
             }
         }
