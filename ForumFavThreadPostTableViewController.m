@@ -21,7 +21,7 @@
 @implementation ForumFavThreadPostTableViewController
 
 - (void)onPullRefresh {
-    [self.forumBrowser listFavoriteThreadPostsWithPage:1 handler:^(BOOL isSuccess, ForumPage *resultPage) {
+    [self.forumBrowser listFavoriteThreadPostsWithPage:1 handler:^(BOOL isSuccess, ViewForumPage *resultPage) {
 
         [self.tableView.mj_header endRefreshing];
         if (isSuccess) {
@@ -38,7 +38,7 @@
 }
 
 - (void)onLoadMore {
-    [self.forumBrowser listFavoriteThreadPostsWithPage:self.currentPage handler:^(BOOL isSuccess, ForumPage *resultPage) {
+    [self.forumBrowser listFavoriteThreadPostsWithPage:self.currentPage handler:^(BOOL isSuccess, ViewForumPage *resultPage) {
 
         [self.tableView.mj_footer endRefreshing];
 

@@ -52,7 +52,7 @@
 }
 
 - (void)onPullRefresh {
-    [self.forumBrowser forumDisplayWithId:transForm.forumId andPage:1 handler:^(BOOL isSuccess, ForumPage *page) {
+    [self.forumBrowser forumDisplayWithId:transForm.forumId andPage:1 handler:^(BOOL isSuccess, ViewForumPage *page) {
 
         [self.tableView.mj_header endRefreshing];
 
@@ -80,7 +80,7 @@
 }
 
 - (void)onLoadMore {
-    [self.forumBrowser forumDisplayWithId:transForm.forumId andPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumPage *page) {
+    [self.forumBrowser forumDisplayWithId:transForm.forumId andPage:self.currentPage + 1 handler:^(BOOL isSuccess, ViewForumPage *page) {
 
         [self.tableView.mj_footer endRefreshing];
 

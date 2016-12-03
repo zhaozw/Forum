@@ -27,7 +27,7 @@
 
     LCActionSheet *itemActionSheet;
 
-    ShowThreadPage *currentShowThreadPage;
+    ViewThreadPage *currentShowThreadPage;
 
     NSMutableDictionary *pageDic;
 
@@ -46,7 +46,7 @@
 - (void)transBundle:(TransBundle *)bundle {
 
     if ([bundle containsKey:@"Senior_Reply_Callback"]) {
-        ShowThreadPage *threadPage = [bundle getObjectValue:@"Senior_Reply_Callback"];
+        ViewThreadPage *threadPage = [bundle getObjectValue:@"Senior_Reply_Callback"];
 
         currentShowThreadPage = threadPage;
 
@@ -87,7 +87,7 @@
         shouldScrollEnd = YES;
 
     } else if ([bundle containsKey:@"Simple_Reply_Callback"]) {
-        ShowThreadPage *threadPage = [bundle getObjectValue:@"Simple_Reply_Callback"];
+        ViewThreadPage *threadPage = [bundle getObjectValue:@"Simple_Reply_Callback"];
 
         currentShowThreadPage = threadPage;
 
@@ -213,7 +213,7 @@
             return;
         }
 
-        ShowThreadPage *threadPage = message;
+        ViewThreadPage *threadPage = message;
         currentShowThreadPage = threadPage;
         threadID = [threadPage.threadID intValue];
 
@@ -272,7 +272,7 @@
             return;
         }
 
-        ShowThreadPage *threadPage = message;
+        ViewThreadPage *threadPage = message;
 
         if (threadPage.threadTitle == nil) {
 
@@ -370,7 +370,7 @@
                 return;
             }
 
-            ShowThreadPage *threadPage = message;
+            ViewThreadPage *threadPage = message;
             if (currentShowThreadPage.threadList.count < threadPage.threadList.count) {
 
                 NSMutableArray *posts = threadPage.threadList;
@@ -406,7 +406,7 @@
             return;
         }
 
-        ShowThreadPage *threadPage = message;
+        ViewThreadPage *threadPage = message;
 
         currentShowThreadPage = threadPage;
 

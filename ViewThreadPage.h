@@ -1,15 +1,15 @@
 //
-//  ShowThreadPage.h
+//  ViewThreadPage.h
 //
 //  Created by WDY on 15/12/29.
 //  Copyright © 2015年 andforce. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "ForumPage.h"
+#import "ViewForumPage.h"
 #import "Post.h"
 
-@interface ShowThreadPage : ForumPage
+@interface ViewThreadPage : ViewForumPage
 
 @property(nonatomic, strong) NSString *threadID;
 @property(nonatomic, strong) NSString *threadLink;

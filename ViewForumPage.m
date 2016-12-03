@@ -5,8 +5,8 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "ForumPage.h"
+#import "ViewForumPage.h"
 
-@implementation ForumPage
+@implementation ViewForumPage
 
 @end

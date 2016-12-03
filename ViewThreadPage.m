@@ -1,12 +1,12 @@
 //
-//  ShowThreadPage.m
+//  ViewThreadPage.m
 //
 //  Created by WDY on 15/12/29.
 //  Copyright © 2015年 andforce. All rights reserved.
 //
 
-#import "ShowThreadPage.h"
+#import "ViewThreadPage.h"
 
-@implementation ShowThreadPage
+@implementation ViewThreadPage
 
 @end

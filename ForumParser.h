@@ -17,18 +17,18 @@
 #import "UserProfile.h"
 #import "SimpleThread.h"
 #import "NormalThread.h"
-#import "ShowThreadPage.h"
-#import "ForumPage.h"
+#import "ViewThreadPage.h"
+#import "ViewForumPage.h"
 #import "ThreadInSearch.h"
-#import "SearchForumDisplayPage.h"
+#import "ViewSearchForumPage.h"
 
 @protocol ForumParser <NSObject>
 
-- (ShowThreadPage *)parseShowThreadWithHtml:(NSString *)html;
+- (ViewThreadPage *)parseShowThreadWithHtml:(NSString *)html;
 
-- (ForumPage *)parseThreadListFromHtml:(NSString *)html withThread:(int)threadId andContainsTop:(BOOL)containTop;
+- (ViewForumPage *)parseThreadListFromHtml:(NSString *)html withThread:(int)threadId andContainsTop:(BOOL)containTop;
 
-- (ForumPage *)parseFavThreadListFromHtml:(NSString *)html;
+- (ViewForumPage *)parseFavThreadListFromHtml:(NSString *)html;
 
 - (NSString *)parseSecurityToken:(NSString *)html;
 
@@ -38,11 +38,11 @@
 
 - (NSString *)parseLoginErrorMessage:(NSString *)html;
 
-- (SearchForumDisplayPage *)parseSearchPageFromHtml:(NSString *)html;
+- (ViewSearchForumPage *)parseSearchPageFromHtml:(NSString *)html;
 
 - (NSMutableArray<Forum *> *)parseFavForumFromHtml:(NSString *)html;
 
-- (ForumPage *)parsePrivateMessageFromHtml:(NSString *)html;
+- (ViewForumPage *)parsePrivateMessageFromHtml:(NSString *)html;
 
 - (ShowPrivateMessage *)parsePrivateMessageContent:(NSString *)html;
 

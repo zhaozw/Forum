@@ -59,11 +59,11 @@
 
 
     if (postId != -1) {
-        [self.forumBrowser quickReplyPostWithThreadId:threadId forPostId:postId andMessage:self.replyContent.text securitytoken:securityToken ajaxLastPost:ajaxLastPost handler:^(BOOL isSuccess, ShowThreadPage *message) {
+        [self.forumBrowser quickReplyPostWithThreadId:threadId forPostId:postId andMessage:self.replyContent.text securitytoken:securityToken ajaxLastPost:ajaxLastPost handler:^(BOOL isSuccess, ViewThreadPage *message) {
             if (isSuccess && message != nil) {
                 [SVProgressHUD showSuccessWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
 
-                ShowThreadPage *thread = message;
+                ViewThreadPage *thread = message;
 
                 TransBundle * bundle = [[TransBundle alloc] init];
                 [bundle putObjectValue:thread forKey:@"Simple_Reply_Callback"];
@@ -89,7 +89,7 @@
 
                 self.replyContent.text = @"";
 
-                ShowThreadPage *thread = message;
+                ViewThreadPage *thread = message;
 
 //                ForumReplyNavigationController *navigationController = (ForumReplyNavigationController *) self.navigationController;
 //                self.delegate = (id <ReplyCallbackDelegate>) navigationController.controller;

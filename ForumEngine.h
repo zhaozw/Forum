@@ -7,9 +7,9 @@
 
 #import <Foundation/Foundation.h>
 #import "LoginUser.h"
-#import "ForumPage.h"
+#import "ViewForumPage.h"
 #import "ThreadInSearch.h"
-#import "SearchForumDisplayPage.h"
+#import "ViewSearchForumPage.h"
 #import "Forum.h"
 
 typedef void (^HandlerWithBool)(BOOL isSuccess, id message);

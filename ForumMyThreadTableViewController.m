@@ -16,7 +16,7 @@
 @implementation ForumMyThreadTableViewController
 
 - (void)onPullRefresh {
-    [self.forumBrowser listMyAllThreadsWithPage:1 handler:^(BOOL isSuccess, ForumPage *message) {
+    [self.forumBrowser listMyAllThreadsWithPage:1 handler:^(BOOL isSuccess, ViewForumPage *message) {
         [self.tableView.mj_header endRefreshing];
 
         if (isSuccess) {
@@ -34,7 +34,7 @@
 }
 
 - (void)onLoadMore {
-    [self.forumBrowser listMyAllThreadsWithPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumPage *message) {
+    [self.forumBrowser listMyAllThreadsWithPage:self.currentPage + 1 handler:^(BOOL isSuccess, ViewForumPage *message) {
         [self.tableView.mj_footer endRefreshing];
 
         if (isSuccess) {

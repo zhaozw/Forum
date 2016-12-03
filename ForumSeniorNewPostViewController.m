@@ -233,7 +233,7 @@
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
 
-            ShowThreadPage *thread = message;
+            ViewThreadPage *thread = message;
 
             TransBundle *bundle = [[TransBundle alloc] init];
             [bundle putObjectValue:thread forKey:@"Senior_Reply_Callback"];

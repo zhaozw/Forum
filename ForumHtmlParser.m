@@ -190,7 +190,7 @@
     return posts;
 }
 
-- (ShowThreadPage *)parseShowThreadWithHtml:(NSString *)html {
+- (ViewThreadPage *)parseShowThreadWithHtml:(NSString *)html {
     // 查找设置了字体的回帖
     NSArray *fontSetString = [html arrayWithRegulat:@"<font size=\"\\d+\">"];
     
@@ -220,7 +220,7 @@
     
     NSString *forumId = [fuxkHttp stringWithRegular:@"newthread.php\\?do=newthread&amp;f=\\d+" andChild:@"\\d+"];
     
-    ShowThreadPage *showThreadPage = [[ShowThreadPage alloc] init];
+    ViewThreadPage *showThreadPage = [[ViewThreadPage alloc] init];
     showThreadPage.originalHtml = [self postMessages:fuxkHttp];
     
     showThreadPage.forumId = forumId;
@@ -350,8 +350,8 @@
     return time;
 }
 
-- (ForumPage *)parseThreadListFromHtml:(NSString *)html withThread:(int)threadId andContainsTop:(BOOL)containTop {
-    ForumPage *page = [[ForumPage alloc] init];
+- (ViewForumPage *)parseThreadListFromHtml:(NSString *)html withThread:(int)threadId andContainsTop:(BOOL)containTop {
+    ViewForumPage *page = [[ViewForumPage alloc] init];
     
     NSString *path = [NSString stringWithFormat:@"//*[@id='threadbits_forum_%d']/tr", threadId];
     
@@ -481,8 +481,8 @@
     return page;
 }
 
-- (ForumPage *)parseFavThreadListFromHtml:(NSString *)html {
-    ForumPage *page = [[ForumPage alloc] init];
+- (ViewForumPage *)parseFavThreadListFromHtml:(NSString *)html {
+    ViewForumPage *page = [[ViewForumPage alloc] init];
     
     NSString *path = @"/html/body/div[2]/div/div/table[3]/tr/td[3]/form[2]/table/tr[position()>2]";
     
@@ -592,7 +592,7 @@
     return contents.firstObject.text;
 }
 
-- (SearchForumDisplayPage *)parseSearchPageFromHtml:(NSString *)html {
+- (ViewSearchForumPage *)parseSearchPageFromHtml:(NSString *)html {
     IGHTMLDocument *document = [[IGHTMLDocument alloc] initWithHTMLString:html error:nil];
     IGXMLNodeSet *searchNodeSet = [document queryWithXPath:@"//*[@id='threadslist']/tr[*]"];
     
@@ -601,7 +601,7 @@
     }
     
     
-    SearchForumDisplayPage *resultPage = [[SearchForumDisplayPage alloc] init];
+    ViewSearchForumPage *resultPage = [[ViewSearchForumPage alloc] init];
     
     IGXMLNode *postTotalCountNode = [document queryWithXPath:@"//*[@id='threadslist']/tr[1]/td/span[1]"].firstObject;
     
@@ -702,8 +702,8 @@
     return forms;
 }
 
-- (ForumPage *)parsePrivateMessageFromHtml:(NSString *)html {
-    ForumPage *page = [[ForumPage alloc] init];
+- (ViewForumPage *)parsePrivateMessageFromHtml:(NSString *)html {
+    ViewForumPage *page = [[ViewForumPage alloc] init];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc] initWithHTMLString:html error:nil];
     

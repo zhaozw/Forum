@@ -9,7 +9,7 @@
 #import "ForumApi.h"
 #import "Post.h"
 
-#import "ShowThreadPage.h"
+#import "ViewThreadPage.h"
 
 #define S(f, ...) [NSString stringWithFormat:f,##__VA_ARGS__]
 

@@ -37,7 +37,7 @@
         [self.tableView.mj_footer endRefreshing];
         return;
     }
-    [self.forumBrowser listSearchResultWithSearchid:_searchid andPage:self.currentPage + 1 handler:^(BOOL isSuccess, SearchForumDisplayPage *message) {
+    [self.forumBrowser listSearchResultWithSearchid:_searchid andPage:self.currentPage + 1 handler:^(BOOL isSuccess, ViewSearchForumPage *message) {
         [self.tableView.mj_footer endRefreshing];
 
         if (isSuccess) {
@@ -70,7 +70,7 @@
 
     int select = (int) self.segmentedControl.selectedSegmentIndex;
 
-    [self.forumBrowser searchWithKeyWord:searchText forType:select handler:^(BOOL isSuccess, SearchForumDisplayPage *message) {
+    [self.forumBrowser searchWithKeyWord:searchText forType:select handler:^(BOOL isSuccess, ViewSearchForumPage *message) {
         [SVProgressHUD dismiss];
 
         if (isSuccess) {

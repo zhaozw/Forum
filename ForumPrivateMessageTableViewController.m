@@ -59,7 +59,7 @@
 
 
 - (void)refreshMessage:(int)page {
-    [self.forumBrowser listPrivateMessageWithType:messageType andPage:page handler:^(BOOL isSuccess, ForumPage *message) {
+    [self.forumBrowser listPrivateMessageWithType:messageType andPage:page handler:^(BOOL isSuccess, ViewForumPage *message) {
         [self.tableView.mj_header endRefreshing];
 
         if (isSuccess) {
@@ -78,7 +78,7 @@
 
 
 - (void)onLoadMore {
-    [self.forumBrowser listPrivateMessageWithType:messageType andPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumPage *message) {
+    [self.forumBrowser listPrivateMessageWithType:messageType andPage:self.currentPage + 1 handler:^(BOOL isSuccess, ViewForumPage *message) {
         [self.tableView.mj_footer endRefreshing];
         if (isSuccess) {
             self.currentPage++;
