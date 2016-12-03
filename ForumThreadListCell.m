@@ -48,7 +48,6 @@
 - (void)setData:(NormalThread *)data {
     self.threadAuthor.text = data.threadAuthorName;
 
-    self.threadType.text = data.threadCategory;
     self.threadPostCount.text = data.postCount;
     self.threadOpenCount.text = data.openCount;
     self.threadCreateTime.text = data.lastPostTime;
@@ -58,16 +57,14 @@
 
     self.threadContainsImage.hidden = !data.isContainsImage;
 
-    NSString *title = [NSString stringWithFormat:@"[%@]%@", data.threadCategory, data.threadTitle];
-
     if (data.isGoodNess) {
-        NSString *goodNessTitle = [@"[精]" stringByAppendingString:title];
+        NSString *goodNessTitle = [@"[精]" stringByAppendingString:data.threadTitle];
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:goodNessTitle];
         [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 3)];
 
         self.threadTitle.attributedText = attrStr;
     } else {
-        self.threadTitle.text = title;
+        self.threadTitle.text = data.threadTitle;
     }
     [self showAvatar:self.avatarImage userId:data.threadAuthorID];
 }

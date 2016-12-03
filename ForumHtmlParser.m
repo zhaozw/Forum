@@ -301,19 +301,6 @@
 }
 
 // private
-- (NSString *)spliteCategory:(NSString *)fullTitle {
-    NSString *type = [fullTitle stringWithRegular:@"【.{1,4}】"];
-    NSString *category = [type substringWithRange:NSMakeRange(1, type.length - 2)];
-    return type == nil ? @"讨论" : category;
-}
-
-// private
-- (NSString *)spliteTitle:(NSString *)fullTitle {
-    NSString *type = [fullTitle stringWithRegular:@"【.{1,4}】"];
-    return type == nil ? fullTitle : [fullTitle substringFromIndex:type.length];
-}
-
-// private
 - (NSString *)timeForShort:(NSString *)time withFormat:(NSString *)format {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     //[dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
@@ -400,11 +387,15 @@
             IGHTMLDocument *titleTemp = [[IGHTMLDocument alloc] initWithXMLString:titleAndCategory error:nil];
             
             NSString *titleText = [titleTemp text];
+            if ([titleText hasPrefix:@"【"]) {
+                titleText = [titleText stringByReplacingOccurrencesOfString:@"【" withString:@"["];
+                titleText = [titleText stringByReplacingOccurrencesOfString:@"】" withString:@"]"];
+            } else {
+                titleText = [@"[讨论]" stringByAppendingString:titleText];
+            }
             
-            // 分离出主题分类
-            normalThread.threadCategory = [self spliteCategory:titleText];
             // 分离出主题
-            normalThread.threadTitle = [self spliteTitle:titleText];
+            normalThread.threadTitle = titleText;
             
             //[@"showthread.php?t=" length]    17的由来
             normalThread.threadID = [[titleTemp attribute:@"href"] substringFromIndex:17];
@@ -497,14 +488,18 @@
             
             // title
             IGXMLNode *threadTitleNode = threadListNode.children[2];
-            NSString *titleAndCategory = [[[threadTitleNode text] trim] componentsSeparatedByString:@"\n"].firstObject;
+            NSString *titleText = [[[threadTitleNode text] trim] componentsSeparatedByString:@"\n"].firstObject;
             
-            //分离出Title 和 Category
-            simpleThread.threadTitle = [self spliteTitle:titleAndCategory];
+            if ([titleText hasPrefix:@"【"]) {
+                titleText = [titleText stringByReplacingOccurrencesOfString:@"【" withString:@"["];
+                titleText = [titleText stringByReplacingOccurrencesOfString:@"】" withString:@"]"];
+            } else {
+                titleText = [@"[讨论]" stringByAppendingString:titleText];
+            }
             
-            simpleThread.threadCategory = [self spliteCategory:titleAndCategory];
-            
-            
+            //分离出Title
+            simpleThread.threadTitle = titleText;
+
             NSString *timeHtml = [self parseTitle:[[threadTitleNode innerHtml] trim]];
             IGHTMLDocument *titleTemp = [[IGHTMLDocument alloc] initWithXMLString:timeHtml error:nil];
             
@@ -640,9 +635,14 @@
             
             searchThread.threadID = postId;
             
+            if ([titleText hasPrefix:@"【"]) {
+                titleText = [titleText stringByReplacingOccurrencesOfString:@"【" withString:@"["];
+                titleText = [titleText stringByReplacingOccurrencesOfString:@"】" withString:@"]"];
+            } else {
+                titleText = [@"[讨论]" stringByAppendingString:titleText];
+            }
             
-            searchThread.threadTitle = [self spliteTitle:titleText];
-            searchThread.threadCategory = [self spliteCategory:titleText];
+            searchThread.threadTitle = titleText;
             
             searchThread.threadAuthorName = postAuthor;
             searchThread.threadAuthorID = postAuthorId;
