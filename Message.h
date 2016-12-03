@@ -1,5 +1,5 @@
 //
-//  PrivateMessage.h
+//  Message.h
 //
 //  Created by 迪远 王 on 16/2/28.
 //  Copyright © 2016年 andforce. All rights reserved.
@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PrivateMessage : NSObject
+@interface Message : NSObject
 
 @property(nonatomic, assign) BOOL isReaded;
 @property(nonatomic, strong) NSString *pmID;

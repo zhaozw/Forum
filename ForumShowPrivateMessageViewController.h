@@ -13,7 +13,7 @@
 @interface ForumShowPrivateMessageViewController : ForumApiBaseViewController
 
 
-@property(nonatomic, strong) NSMutableArray<ShowPrivateMessage *> *dataList;
+@property(nonatomic, strong) NSMutableArray<ViewMessagePage *> *dataList;
 
 
 - (IBAction)back:(id)sender;

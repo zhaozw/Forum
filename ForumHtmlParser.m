@@ -231,7 +231,7 @@
     NSString *ajaxLastPost = [self parseAjaxLastPost:html];
     showThreadPage.ajaxLastPost = ajaxLastPost;
     
-    showThreadPage.threadList = [self parseShowThreadPosts:document];
+    showThreadPage.postList = [self parseShowThreadPosts:document];
     
     
     IGXMLNode *titleNode = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tr/td[1]/table/tr[2]/td/strong"].firstObject;
@@ -246,7 +246,6 @@
     if (threadInfoSet == nil || threadInfoSet.count == 0) {
         showThreadPage.totalPageCount = 1;
         showThreadPage.currentPage = 1;
-        showThreadPage.totalCount = showThreadPage.threadList.count;
         
     } else {
         IGXMLNode *currentPageAndTotalPageNode = threadInfoSet.firstObject.firstChild;
@@ -255,13 +254,6 @@
         
         showThreadPage.totalPageCount = (NSUInteger) [[[pageAndTotalPage.lastObject stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"页" withString:@""] intValue];
         showThreadPage.currentPage = (NSUInteger) [[[pageAndTotalPage.firstObject stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"第" withString:@""] intValue];
-        
-        IGXMLNode *totalPostCount = [threadInfoSet.firstObject children][1];
-        
-        NSString *totalPostString = [totalPostCount.firstChild attribute:@"title"];
-        NSString *tmp = [totalPostString componentsSeparatedByString:@"共计 "].lastObject;
-        showThreadPage.totalCount = (NSUInteger) [[tmp stringByReplacingOccurrencesOfString:@" 条." withString:@""] intValue];
-        
     }
     
     return showThreadPage;
@@ -714,21 +706,16 @@
     page.currentPage = [currentPage integerValue];
     NSString *totalPageCount = [fullText stringWithRegular:@"共 \\d+ 页" andChild:@"\\d+"];
     page.totalPageCount = [totalPageCount integerValue];
+
     
-    
-    IGXMLNodeSet *totalCount = [document queryWithXPath:@"//*[@id='pmform']/table[1]/tr/td/div/table/tr/td[7]"];
-    NSString *totalCountStr = [[[totalCount firstObject] html] stringWithRegular:@"共计 \\d+" andChild:@"\\d+"];
-    page.totalCount = [totalCountStr integerValue];
-    
-    
-    NSMutableArray<PrivateMessage *> *messagesList = [NSMutableArray array];
+    NSMutableArray<Message *> *messagesList = [NSMutableArray array];
     
     IGXMLNodeSet *messages = [document queryWithXPath:@"//*[@id='pmform']/table[2]/tbody[*]/tr"];
     for (IGXMLNode *node in messages) {
         long childCount = [[node children] count];
         if (childCount == 4) {
             // 有4个节点说明是正常的站内短信
-            PrivateMessage *message = [[PrivateMessage alloc] init];
+            Message *message = [[Message alloc] init];
             
             IGXMLNodeSet *children = [node children];
             // 1. 是不是未读短信
@@ -778,7 +765,7 @@
     return page;
 }
 
-- (ShowPrivateMessage *)parsePrivateMessageContent:(NSString *)html {
+- (ViewMessagePage *)parsePrivateMessageContent:(NSString *)html {
     // 去掉引用inline 的样式设定
     html = [html stringByReplacingOccurrencesOfString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\">引用:</div>" withString:@""];
     html = [html stringByReplacingOccurrencesOfString:@"style=\"margin:20px; margin-top:5px; \"" withString:@"class=\"post-quote\""];
@@ -788,7 +775,7 @@
     IGHTMLDocument *document = [[IGHTMLDocument alloc] initWithHTMLString:html error:nil];
     
     // message content
-    ShowPrivateMessage *privateMessage = [[ShowPrivateMessage alloc] init];
+    ViewMessagePage *privateMessage = [[ViewMessagePage alloc] init];
     IGXMLNodeSet *contentNodeSet = [document queryWithXPath:@"//*[@id='post_message_']"];
     privateMessage.pmContent = [[contentNodeSet firstObject] html];
     // 回帖时间

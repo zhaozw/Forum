@@ -92,6 +92,7 @@
 		3ACFFD2D1CF9D6BF000312DC /* SDImageCache+URLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACFFD2B1CF9D6BF000312DC /* SDImageCache+URLCache.m */; };
 		3ACFFD301CF9DD3C000312DC /* HPURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACFFD2F1CF9DD3C000312DC /* HPURLProtocol.m */; };
 		3ACFFD341CFA641F000312DC /* NYTExamplePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACFFD331CFA641F000312DC /* NYTExamplePhoto.m */; };
+		3AE854B71DF2B0B3000F62E9 /* defaultAvatar.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3AE854B61DF2B0B3000F62E9 /* defaultAvatar.gif */; };
 		3AF8878E1DA155D20083A8D5 /* ForumHtmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF8878D1DA155D20083A8D5 /* ForumHtmlParser.m */; };
 		3AF887971DA16D2C0083A8D5 /* ForumBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF887961DA16D2C0083A8D5 /* ForumBrowser.m */; };
 		4D0D87251DE40C7900DA9034 /* ForumNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D0D87241DE40C7900DA9034 /* ForumNavigationViewController.m */; };
@@ -107,8 +108,8 @@
 		4DF7371F1DDECC8D00BF1896 /* NormalThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737141DDECC8D00BF1896 /* NormalThread.m */; };
 		4DF737201DDECC8D00BF1896 /* ViewThreadPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737161DDECC8D00BF1896 /* ViewThreadPage.m */; };
 		4DF737211DDECC8D00BF1896 /* ViewForumPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737181DDECC8D00BF1896 /* ViewForumPage.m */; };
-		4DF737261DDECC9600BF1896 /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737231DDECC9600BF1896 /* PrivateMessage.m */; };
-		4DF737271DDECC9600BF1896 /* ShowPrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737251DDECC9600BF1896 /* ShowPrivateMessage.m */; };
+		4DF737261DDECC9600BF1896 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737231DDECC9600BF1896 /* Message.m */; };
+		4DF737271DDECC9600BF1896 /* ViewMessagePage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737251DDECC9600BF1896 /* ViewMessagePage.m */; };
 		4DF7372A1DDECCA200BF1896 /* LoginUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737291DDECCA200BF1896 /* LoginUser.m */; };
 		757C88B17FCB5AFBB7C0CA0B /* libPods-Forum.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA91F0D805959E8525B7BE0D /* libPods-Forum.a */; };
 		C7B59D8E9D44A593D270BE03 /* NSData+UTF8.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B590FF019B54B2E6BDDE91 /* NSData+UTF8.m */; };
@@ -272,6 +273,7 @@
 		3ACFFD2F1CF9DD3C000312DC /* HPURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPURLProtocol.m; sourceTree = "<group>"; };
 		3ACFFD321CFA641F000312DC /* NYTExamplePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTExamplePhoto.h; sourceTree = "<group>"; };
 		3ACFFD331CFA641F000312DC /* NYTExamplePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTExamplePhoto.m; sourceTree = "<group>"; };
+		3AE854B61DF2B0B3000F62E9 /* defaultAvatar.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = defaultAvatar.gif; sourceTree = "<group>"; };
 		3AF8878C1DA155D20083A8D5 /* ForumHtmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumHtmlParser.h; sourceTree = SOURCE_ROOT; };
 		3AF8878D1DA155D20083A8D5 /* ForumHtmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumHtmlParser.m; sourceTree = SOURCE_ROOT; };
 		3AF887951DA16D2C0083A8D5 /* ForumBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumBrowser.h; sourceTree = SOURCE_ROOT; };
@@ -305,10 +307,10 @@
 		4DF737161DDECC8D00BF1896 /* ViewThreadPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewThreadPage.m; sourceTree = "<group>"; };
 		4DF737171DDECC8D00BF1896 /* ViewForumPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewForumPage.h; sourceTree = "<group>"; };
 		4DF737181DDECC8D00BF1896 /* ViewForumPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewForumPage.m; sourceTree = "<group>"; };
-		4DF737221DDECC9600BF1896 /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessage.h; sourceTree = "<group>"; };
-		4DF737231DDECC9600BF1896 /* PrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessage.m; sourceTree = "<group>"; };
-		4DF737241DDECC9600BF1896 /* ShowPrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPrivateMessage.h; sourceTree = "<group>"; };
-		4DF737251DDECC9600BF1896 /* ShowPrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPrivateMessage.m; sourceTree = "<group>"; };
+		4DF737221DDECC9600BF1896 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		4DF737231DDECC9600BF1896 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		4DF737241DDECC9600BF1896 /* ViewMessagePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMessagePage.h; sourceTree = "<group>"; };
+		4DF737251DDECC9600BF1896 /* ViewMessagePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMessagePage.m; sourceTree = "<group>"; };
 		4DF737281DDECCA200BF1896 /* LoginUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginUser.h; sourceTree = "<group>"; };
 		4DF737291DDECCA200BF1896 /* LoginUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUser.m; sourceTree = "<group>"; };
 		C7B590FF019B54B2E6BDDE91 /* NSData+UTF8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+UTF8.m"; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 		3A2C400C1DE001F100576151 /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
+				3AE854B61DF2B0B3000F62E9 /* defaultAvatar.gif */,
 				3A2C40091DE0015C00576151 /* main.m */,
 				3A2C3F0D1DDFB8D300576151 /* paperclip.gif */,
 			);
@@ -672,10 +675,10 @@
 		4DF737001DDECC7400BF1896 /* PrivateMessage */ = {
 			isa = PBXGroup;
 			children = (
-				4DF737221DDECC9600BF1896 /* PrivateMessage.h */,
-				4DF737231DDECC9600BF1896 /* PrivateMessage.m */,
-				4DF737241DDECC9600BF1896 /* ShowPrivateMessage.h */,
-				4DF737251DDECC9600BF1896 /* ShowPrivateMessage.m */,
+				4DF737221DDECC9600BF1896 /* Message.h */,
+				4DF737231DDECC9600BF1896 /* Message.m */,
+				4DF737241DDECC9600BF1896 /* ViewMessagePage.h */,
+				4DF737251DDECC9600BF1896 /* ViewMessagePage.m */,
 			);
 			name = PrivateMessage;
 			sourceTree = "<group>";
@@ -778,6 +781,7 @@
 				3A2C3F1D1DDFBAD000576151 /* post_message.html in Resources */,
 				3A2C3F191DDFBABD00576151 /* append_post.js in Resources */,
 				3A2C3FF11DDFE13500576151 /* LaunchScreen.storyboard in Resources */,
+				3AE854B71DF2B0B3000F62E9 /* defaultAvatar.gif in Resources */,
 				3A2C3F5E1DDFBFC500576151 /* PageHeaderView.xib in Resources */,
 				3A2C3FD41DDFE0C900576151 /* ForumLoginViewController.xib in Resources */,
 			);
@@ -877,7 +881,7 @@
 				3A2C3FEE1DDFE10900576151 /* forum.xcdatamodeld in Sources */,
 				3A2C402D1DE0A3DD00576151 /* UserEntry+CoreDataClass.m in Sources */,
 				3AF8878E1DA155D20083A8D5 /* ForumHtmlParser.m in Sources */,
-				4DF737261DDECC9600BF1896 /* PrivateMessage.m in Sources */,
+				4DF737261DDECC9600BF1896 /* Message.m in Sources */,
 				3A2C3F7C1DDFC0CD00576151 /* NSUserDefaults+Setting.m in Sources */,
 				3ACFFD301CF9DD3C000312DC /* HPURLProtocol.m in Sources */,
 				3A2C3FFF1DDFE30300576151 /* TranBundleUITableViewController.m in Sources */,
@@ -921,7 +925,7 @@
 				3A2C3F691DDFC03400576151 /* CommonUtils.m in Sources */,
 				3A2C3F321DDFBCE800576151 /* CoreDataManager.m in Sources */,
 				3A2C3F881DDFDF9200576151 /* IGHTMLDocument+QueryNode.m in Sources */,
-				4DF737271DDECC9600BF1896 /* ShowPrivateMessage.m in Sources */,
+				4DF737271DDECC9600BF1896 /* ViewMessagePage.m in Sources */,
 				3A2C3F4E1DDFBF5900576151 /* ForumThreadListCell.m in Sources */,
 				3A2C3FE71DDFE0C900576151 /* ForumUserProfileTableViewController.m in Sources */,
 				3A2C3F5B1DDFBFC500576151 /* ForumListHeaderView.m in Sources */,

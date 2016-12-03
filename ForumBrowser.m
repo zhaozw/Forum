@@ -442,7 +442,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                     handler(NO, @"您输入的信息太短，您发布的信息至少为 5 个字符。");
                 } else{
                     ViewThreadPage *thread = [_htmlParser parseShowThreadWithHtml:result];
-                    if (thread.threadList.count > 0) {
+                    if (thread.postList.count > 0) {
                         handler(YES, thread);
                     } else {
                         handler(NO, @"未知错误");
@@ -479,7 +479,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                                     handler(NO, @"您输入的信息太短，您发布的信息至少为 5 个字符。");
                                 } else{
                                     ViewThreadPage *thread = [_htmlParser parseShowThreadWithHtml:result];
-                                    if (thread.threadList.count > 0) {
+                                    if (thread.postList.count > 0) {
                                         handler(YES, thread);
                                     } else {
                                         handler(NO, @"未知错误");
@@ -551,7 +551,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                 handler(NO, @"您输入的信息太短，您发布的信息至少为 5 个字符。");
             } else {
                 ViewThreadPage *thread = [_htmlParser parseShowThreadWithHtml:message];
-                if (thread.threadList.count > 0) {
+                if (thread.postList.count > 0) {
                     handler(YES, thread);
                 } else {
                     handler(NO, @"未知错误");
@@ -606,7 +606,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                 handler(NO, @"本论坛允许的发表两个帖子的时间间隔必须大于 30 秒");
             } else{
                 ViewThreadPage *thread = [_htmlParser parseShowThreadWithHtml:html];
-                if (thread.threadList.count > 0) {
+                if (thread.postList.count > 0) {
                     handler(YES, thread);
                 } else {
                     handler(NO, @"未知错误");
@@ -793,7 +793,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                             handler(NO, @"本论坛允许的发表两个帖子的时间间隔必须大于 30 秒");
                         } else{
                             ViewThreadPage *thread = [_htmlParser parseShowThreadWithHtml:result];
-                            if (thread.threadList.count > 0) {
+                            if (thread.postList.count > 0) {
                                 handler(YES, thread);
                             } else {
                                 handler(NO, @"未知错误");
@@ -838,7 +838,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                                             handler(NO, @"本论坛允许的发表两个帖子的时间间隔必须大于 30 秒");
                                         } else{
                                             ViewThreadPage *thread = [_htmlParser parseShowThreadWithHtml:uploadResultHtml];
-                                            if (thread.threadList.count > 0) {
+                                            if (thread.postList.count > 0) {
                                                 handler(YES, thread);
                                             } else {
                                                 handler(NO, @"未知错误");
@@ -938,7 +938,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 - (void)showPrivateContentById:(int)pmId handler:(HandlerWithBool)handler {
     [_browser GETWithURLString:BBS_SHOW_PM(pmId) requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            ShowPrivateMessage *content = [_htmlParser parsePrivateMessageContent:html];
+            ViewMessagePage *content = [_htmlParser parsePrivateMessageContent:html];
             handler(YES, content);
         } else {
             handler(NO, html);

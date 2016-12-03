@@ -100,7 +100,7 @@
     cell.delegate = self;
     cell.showUserProfileDelegate = self;
 
-    PrivateMessage *message = self.dataList[(NSUInteger) indexPath.row];
+    Message *message = self.dataList[(NSUInteger) indexPath.row];
 
     [cell setData:message forIndexPath:indexPath];
 
@@ -112,7 +112,7 @@
 
 - (void)showUserProfile:(NSIndexPath *)indexPath {
     ForumUserProfileTableViewController *controller = selectSegue.destinationViewController;
-    PrivateMessage *message = self.dataList[(NSUInteger) indexPath.row];
+    Message *message = self.dataList[(NSUInteger) indexPath.row];
     TransBundle *bundle = [[TransBundle alloc] init];
     [bundle putIntValue:[message.pmAuthorId intValue] forKey:@"UserId"];
     [self transBundle:bundle forController:controller];
@@ -140,7 +140,7 @@
 
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 
-        PrivateMessage *message = self.dataList[(NSUInteger) indexPath.row];
+        Message *message = self.dataList[(NSUInteger) indexPath.row];
 
         TransBundle *bundle = [[TransBundle alloc] init];
         [bundle putObjectValue:message forKey:@"TransPrivateMessage"];

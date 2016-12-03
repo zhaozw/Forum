@@ -48,9 +48,9 @@
 
     NSDictionary *infoPlist = [[NSBundle mainBundle] infoDictionary];
     
-    NSString *icon = [[infoPlist valueForKeyPath:@"CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconFiles"] lastObject];
+//    NSString *icon = [[infoPlist valueForKeyPath:@"CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconFiles"] lastObject];
     
-    defaultAvatarImage = [UIImage imageNamed:icon];
+    defaultAvatarImage = [UIImage imageNamed:@"defaultAvatar.gif"];
 
     avatarCache = [NSMutableDictionary dictionary];
 

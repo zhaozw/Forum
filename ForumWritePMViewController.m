@@ -15,7 +15,7 @@
 @interface ForumWritePMViewController () <TransBundleDelegate> {
     NSString *profileName;
     BOOL isReply;
-    PrivateMessage *_privateMessage;
+    Message *_privateMessage;
 }
 
 @end

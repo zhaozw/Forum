@@ -21,7 +21,7 @@
     return self;
 }
 
-- (void)setData:(PrivateMessage *)data {
+- (void)setData:(Message *)data {
 
 
     [self.privateMessageTitle setText:data.pmTitle];

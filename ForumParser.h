@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "LoginUser.h"
-#import "PrivateMessage.h"
-#import "ShowPrivateMessage.h"
+#import "Message.h"
+#import "ViewMessagePage.h"
 #import "Post.h"
 #import "User.h"
 #import "Forum.h"
@@ -44,7 +44,7 @@
 
 - (ViewForumPage *)parsePrivateMessageFromHtml:(NSString *)html;
 
-- (ShowPrivateMessage *)parsePrivateMessageContent:(NSString *)html;
+- (ViewMessagePage *)parsePrivateMessageContent:(NSString *)html;
 
 - (NSString *)parseQuickReplyQuoteContent:(NSString *)html;
 

@@ -205,9 +205,9 @@ static id <HPURLMapping> s_URLMapping;
             
             NSDictionary *infoPlist = [[NSBundle mainBundle] infoDictionary];
             
-            NSString *icon = [[infoPlist valueForKeyPath:@"CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconFiles"] lastObject];
+//            NSString *icon = [[infoPlist valueForKeyPath:@"CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconFiles"] lastObject];
             
-            UIImage * defaultAvatarImage = [UIImage imageNamed:icon];
+            UIImage * defaultAvatarImage = [UIImage imageNamed:@"defaultAvatar.gif"];
             
             [[SDImageCache sharedImageCache] storeImage:defaultAvatarImage forKey:[self.class cacheKeyForURL:self.request.URL]];
         }

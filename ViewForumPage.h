@@ -10,17 +10,9 @@
 
 @interface ViewForumPage : NSObject
 
-
-@property (nonatomic, strong) NSString * originalHtml;
-
+@property(nonatomic, assign) BOOL isCanCreateThread;
 @property(nonatomic, strong) NSMutableArray<Thread *> *threadList;
-
-@property(nonatomic, assign) NSUInteger totalCount;
 @property(nonatomic, assign) NSUInteger totalPageCount;
 @property(nonatomic, assign) NSUInteger currentPage;
-
-@property(nonatomic, strong) NSString *securityToken;
-@property(nonatomic, strong) NSString *ajaxLastPost;
-
 
 @end

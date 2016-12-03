@@ -6,14 +6,27 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ViewForumPage.h"
 #import "Post.h"
 
-@interface ViewThreadPage : ViewForumPage
+@interface ViewThreadPage : NSObject
 
 @property(nonatomic, strong) NSString *threadID;
-@property(nonatomic, strong) NSString *threadLink;
+
+@property(nonatomic, assign) BOOL isCanReply;
+
 @property(nonatomic, strong) NSString *threadTitle;
 @property(nonatomic, strong) NSString *forumId;            // 主题所属论坛
+
+
+@property(nonatomic, strong) NSString *originalHtml;
+
+@property(nonatomic, strong) NSMutableArray<Post *> *postList;
+
+@property(nonatomic, assign) NSUInteger totalPageCount;
+@property(nonatomic, assign) NSUInteger currentPage;
+
+@property(nonatomic, strong) NSString *securityToken;
+@property(nonatomic, strong) NSString *ajaxLastPost;
+
 
 @end
