@@ -24,7 +24,7 @@
 @implementation ForumShowNewThreadPostTableViewController
 
 - (void)onPullRefresh {
-    [self.forumBrowser listNewThreadPostsWithPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *message) {
+    [self.forumBrowser listNewThreadPostsWithPage:1 handler:^(BOOL isSuccess, ForumPage *message) {
         [self.tableView.mj_header endRefreshing];
         if (isSuccess) {
             [self.tableView.mj_footer endRefreshing];
@@ -37,7 +37,7 @@
             }
 
             [self.dataList removeAllObjects];
-            [self.dataList addObjectsFromArray:message.dataList];
+            [self.dataList addObjectsFromArray:message.threadList];
             [self.tableView reloadData];
         }
 
@@ -45,7 +45,7 @@
 }
 
 - (void)onLoadMore {
-    [self.forumBrowser listNewThreadPostsWithPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage *message) {
+    [self.forumBrowser listNewThreadPostsWithPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumPage *message) {
         [self.tableView.mj_footer endRefreshing];
         if (isSuccess) {
             self.currentPage++;
@@ -53,7 +53,7 @@
             if (self.currentPage >= self.totalPage) {
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }
-            [self.dataList addObjectsFromArray:message.dataList];
+            [self.dataList addObjectsFromArray:message.threadList];
             [self.tableView reloadData];
         }
 

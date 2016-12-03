@@ -5,9 +5,9 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "ForumDisplayPage.h"
+#import "ForumPage.h"
 
-@interface SearchForumDisplayPage : ForumDisplayPage
+@interface SearchForumDisplayPage : ForumPage
 
 @property(nonatomic, strong) NSString *searchid;
 

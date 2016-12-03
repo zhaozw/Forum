@@ -16,7 +16,7 @@
 @implementation ForumMyThreadTableViewController
 
 - (void)onPullRefresh {
-    [self.forumBrowser listMyAllThreadsWithPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *message) {
+    [self.forumBrowser listMyAllThreadsWithPage:1 handler:^(BOOL isSuccess, ForumPage *message) {
         [self.tableView.mj_header endRefreshing];
 
         if (isSuccess) {
@@ -25,7 +25,7 @@
             self.currentPage = 1;
             [self.dataList removeAllObjects];
 
-            [self.dataList addObjectsFromArray:message.dataList];
+            [self.dataList addObjectsFromArray:message.threadList];
             [self.tableView reloadData];
 
         }
@@ -34,7 +34,7 @@
 }
 
 - (void)onLoadMore {
-    [self.forumBrowser listMyAllThreadsWithPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage *message) {
+    [self.forumBrowser listMyAllThreadsWithPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumPage *message) {
         [self.tableView.mj_footer endRefreshing];
 
         if (isSuccess) {
@@ -42,7 +42,7 @@
             if (self.currentPage >= message.totalPageCount) {
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }
-            [self.dataList addObjectsFromArray:message.dataList];
+            [self.dataList addObjectsFromArray:message.threadList];
             [self.tableView reloadData];
 
         }

@@ -52,7 +52,7 @@
 }
 
 - (void)onPullRefresh {
-    [self.forumBrowser forumDisplayWithId:transForm.forumId andPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *page) {
+    [self.forumBrowser forumDisplayWithId:transForm.forumId andPage:1 handler:^(BOOL isSuccess, ForumPage *page) {
 
         [self.tableView.mj_header endRefreshing];
 
@@ -66,7 +66,7 @@
             [self.threadTopList removeAllObjects];
             [self.dataList removeAllObjects];
 
-            for (NormalThread *thread in page.dataList) {
+            for (NormalThread *thread in page.threadList) {
                 if (thread.isTopThread) {
                     [self.threadTopList addObject:thread];
                 } else {
@@ -80,7 +80,7 @@
 }
 
 - (void)onLoadMore {
-    [self.forumBrowser forumDisplayWithId:transForm.forumId andPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage *page) {
+    [self.forumBrowser forumDisplayWithId:transForm.forumId andPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumPage *page) {
 
         [self.tableView.mj_footer endRefreshing];
 
@@ -91,7 +91,7 @@
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }
 
-            for (NormalThread *thread in page.dataList) {
+            for (NormalThread *thread in page.threadList) {
                 if (!thread.isTopThread) {
                     [self.dataList addObject:thread];
                 }

@@ -49,7 +49,7 @@
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }
 
-            [self.dataList addObjectsFromArray:message.dataList];
+            [self.dataList addObjectsFromArray:message.threadList];
             [self.tableView reloadData];
         } else {
             NSLog(@"searchBarSearchButtonClicked   ERROR %@", message);
@@ -80,7 +80,7 @@
             self.totalPage = (int) message.totalPageCount;
 
             [self.dataList removeAllObjects];
-            [self.dataList addObjectsFromArray:message.dataList];
+            [self.dataList addObjectsFromArray:message.threadList];
             [self.tableView reloadData];
         } else {
             NSLog(@"searchBarSearchButtonClicked   ERROR %@", message);

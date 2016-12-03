@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LoginUser.h"
-#import "ForumDisplayPage.h"
+#import "ForumPage.h"
 #import "ThreadInSearch.h"
 #import "SearchForumDisplayPage.h"
 #import "Forum.h"

@@ -31,6 +31,6 @@ FOUNDATION_EXPORT const unsigned char vBulletinForumEngineVersionString[];
 #import "SimpleThread.h"
 #import "NormalThread.h"
 #import "ShowThreadPage.h"
-#import "ForumDisplayPage.h"
+#import "ForumPage.h"
 #import "ThreadInSearch.h"
 #import "SearchForumDisplayPage.h"

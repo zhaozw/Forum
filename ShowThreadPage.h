@@ -6,10 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ForumDisplayPage.h"
+#import "ForumPage.h"
 #import "Post.h"
 
-@interface ShowThreadPage : ForumDisplayPage
+@interface ShowThreadPage : ForumPage
 
 @property(nonatomic, strong) NSString *threadID;
 @property(nonatomic, strong) NSString *threadLink;

@@ -231,7 +231,7 @@
     NSString *ajaxLastPost = [self parseAjaxLastPost:html];
     showThreadPage.ajaxLastPost = ajaxLastPost;
     
-    showThreadPage.dataList = [self parseShowThreadPosts:document];
+    showThreadPage.threadList = [self parseShowThreadPosts:document];
     
     
     IGXMLNode *titleNode = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tr/td[1]/table/tr[2]/td/strong"].firstObject;
@@ -246,7 +246,7 @@
     if (threadInfoSet == nil || threadInfoSet.count == 0) {
         showThreadPage.totalPageCount = 1;
         showThreadPage.currentPage = 1;
-        showThreadPage.totalCount = showThreadPage.dataList.count;
+        showThreadPage.totalCount = showThreadPage.threadList.count;
         
     } else {
         IGXMLNode *currentPageAndTotalPageNode = threadInfoSet.firstObject.firstChild;
@@ -350,8 +350,8 @@
     return time;
 }
 
-- (ForumDisplayPage *)parseThreadListFromHtml:(NSString *)html withThread:(int)threadId andContainsTop:(BOOL)containTop {
-    ForumDisplayPage *page = [[ForumDisplayPage alloc] init];
+- (ForumPage *)parseThreadListFromHtml:(NSString *)html withThread:(int)threadId andContainsTop:(BOOL)containTop {
+    ForumPage *page = [[ForumPage alloc] init];
     
     NSString *path = [NSString stringWithFormat:@"//*[@id='threadbits_forum_%d']/tr", threadId];
     
@@ -476,13 +476,13 @@
     } else {
         page.totalPageCount = totaleListCount;
     }
-    page.dataList = threadList;
+    page.threadList = threadList;
     
     return page;
 }
 
-- (ForumDisplayPage *)parseFavThreadListFromHtml:(NSString *)html {
-    ForumDisplayPage *page = [[ForumDisplayPage alloc] init];
+- (ForumPage *)parseFavThreadListFromHtml:(NSString *)html {
+    ForumPage *page = [[ForumPage alloc] init];
     
     NSString *path = @"/html/body/div[2]/div/div/table[3]/tr/td[3]/form[2]/table/tr[position()>2]";
     
@@ -556,7 +556,7 @@
     } else {
         page.totalPageCount = totaleListCount;
     }
-    page.dataList = threadList;
+    page.threadList = threadList;
     
     return page;
 }
@@ -663,7 +663,7 @@
     }
     
     resultPage.searchid = [self parseListMyThreadSearchid:html];
-    resultPage.dataList = post;
+    resultPage.threadList = post;
     
     return resultPage;
 }
@@ -702,8 +702,8 @@
     return forms;
 }
 
-- (ForumDisplayPage *)parsePrivateMessageFromHtml:(NSString *)html {
-    ForumDisplayPage *page = [[ForumDisplayPage alloc] init];
+- (ForumPage *)parsePrivateMessageFromHtml:(NSString *)html {
+    ForumPage *page = [[ForumPage alloc] init];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc] initWithHTMLString:html error:nil];
     
@@ -773,7 +773,7 @@
         }
     }
     
-    page.dataList = messagesList;
+    page.threadList = messagesList;
     
     return page;
 }

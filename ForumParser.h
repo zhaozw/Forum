@@ -18,7 +18,7 @@
 #import "SimpleThread.h"
 #import "NormalThread.h"
 #import "ShowThreadPage.h"
-#import "ForumDisplayPage.h"
+#import "ForumPage.h"
 #import "ThreadInSearch.h"
 #import "SearchForumDisplayPage.h"
 
@@ -26,9 +26,9 @@
 
 - (ShowThreadPage *)parseShowThreadWithHtml:(NSString *)html;
 
-- (ForumDisplayPage *)parseThreadListFromHtml:(NSString *)html withThread:(int)threadId andContainsTop:(BOOL)containTop;
+- (ForumPage *)parseThreadListFromHtml:(NSString *)html withThread:(int)threadId andContainsTop:(BOOL)containTop;
 
-- (ForumDisplayPage *)parseFavThreadListFromHtml:(NSString *)html;
+- (ForumPage *)parseFavThreadListFromHtml:(NSString *)html;
 
 - (NSString *)parseSecurityToken:(NSString *)html;
 
@@ -42,7 +42,7 @@
 
 - (NSMutableArray<Forum *> *)parseFavForumFromHtml:(NSString *)html;
 
-- (ForumDisplayPage *)parsePrivateMessageFromHtml:(NSString *)html;
+- (ForumPage *)parsePrivateMessageFromHtml:(NSString *)html;
 
 - (ShowPrivateMessage *)parsePrivateMessageContent:(NSString *)html;
 

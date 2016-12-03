@@ -21,7 +21,7 @@
 @implementation ForumFavThreadPostTableViewController
 
 - (void)onPullRefresh {
-    [self.forumBrowser listFavoriteThreadPostsWithPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *resultPage) {
+    [self.forumBrowser listFavoriteThreadPostsWithPage:1 handler:^(BOOL isSuccess, ForumPage *resultPage) {
 
         [self.tableView.mj_header endRefreshing];
         if (isSuccess) {
@@ -31,14 +31,14 @@
             self.currentPage = 1;
             self.totalPage = (int) resultPage.totalPageCount;
             [self.dataList removeAllObjects];
-            [self.dataList addObjectsFromArray:resultPage.dataList];
+            [self.dataList addObjectsFromArray:resultPage.threadList];
             [self.tableView reloadData];
         }
     }];
 }
 
 - (void)onLoadMore {
-    [self.forumBrowser listFavoriteThreadPostsWithPage:self.currentPage handler:^(BOOL isSuccess, ForumDisplayPage *resultPage) {
+    [self.forumBrowser listFavoriteThreadPostsWithPage:self.currentPage handler:^(BOOL isSuccess, ForumPage *resultPage) {
 
         [self.tableView.mj_footer endRefreshing];
 
@@ -48,7 +48,7 @@
             if (self.currentPage >= self.totalPage) {
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }
-            [self.dataList addObjectsFromArray:resultPage.dataList];
+            [self.dataList addObjectsFromArray:resultPage.threadList];
 
             [self.tableView reloadData];
         }

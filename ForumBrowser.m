@@ -442,7 +442,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                     handler(NO, @"您输入的信息太短，您发布的信息至少为 5 个字符。");
                 } else{
                     ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:result];
-                    if (thread.dataList.count > 0) {
+                    if (thread.threadList.count > 0) {
                         handler(YES, thread);
                     } else {
                         handler(NO, @"未知错误");
@@ -479,7 +479,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                                     handler(NO, @"您输入的信息太短，您发布的信息至少为 5 个字符。");
                                 } else{
                                     ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:result];
-                                    if (thread.dataList.count > 0) {
+                                    if (thread.threadList.count > 0) {
                                         handler(YES, thread);
                                     } else {
                                         handler(NO, @"未知错误");
@@ -551,7 +551,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                 handler(NO, @"您输入的信息太短，您发布的信息至少为 5 个字符。");
             } else {
                 ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:message];
-                if (thread.dataList.count > 0) {
+                if (thread.threadList.count > 0) {
                     handler(YES, thread);
                 } else {
                     handler(NO, @"未知错误");
@@ -606,7 +606,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                 handler(NO, @"本论坛允许的发表两个帖子的时间间隔必须大于 30 秒");
             } else{
                 ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:html];
-                if (thread.dataList.count > 0) {
+                if (thread.threadList.count > 0) {
                     handler(YES, thread);
                 } else {
                     handler(NO, @"未知错误");
@@ -793,7 +793,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                             handler(NO, @"本论坛允许的发表两个帖子的时间间隔必须大于 30 秒");
                         } else{
                             ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:result];
-                            if (thread.dataList.count > 0) {
+                            if (thread.threadList.count > 0) {
                                 handler(YES, thread);
                             } else {
                                 handler(NO, @"未知错误");
@@ -838,7 +838,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                                             handler(NO, @"本论坛允许的发表两个帖子的时间间隔必须大于 30 秒");
                                         } else{
                                             ShowThreadPage *thread = [_htmlParser parseShowThreadWithHtml:uploadResultHtml];
-                                            if (thread.dataList.count > 0) {
+                                            if (thread.threadList.count > 0) {
                                                 handler(YES, thread);
                                             } else {
                                                 handler(NO, @"未知错误");
@@ -1102,7 +1102,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 - (void)listPrivateMessageWithType:(int)type andPage:(int)page handler:(HandlerWithBool)handler {
     [_browser GETWithURLString:BBS_PM_WITH_TYPE(type, page) requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            ForumDisplayPage *page = [_htmlParser parsePrivateMessageFromHtml:html];
+            ForumPage *page = [_htmlParser parsePrivateMessageFromHtml:html];
             handler(YES, page);
         } else {
             handler(NO, html);
@@ -1125,7 +1125,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     NSString *url = BBS_LIST_FAV_POST(page);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            ForumDisplayPage *page = [_htmlParser parseFavThreadListFromHtml:html];
+            ForumPage *page = [_htmlParser parseFavThreadListFromHtml:html];
             handler(isSuccess, page);
         } else{
             handler(NO, html);
@@ -1151,7 +1151,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                 [userDefault setInteger:newThreadPostSearchId forKey:@"search_id"];
             }
             if (isSuccess) {
-                ForumDisplayPage *sarchPage = [_htmlParser parseSearchPageFromHtml:html];
+                ForumPage *sarchPage = [_htmlParser parseSearchPageFromHtml:html];
                 handler(isSuccess, sarchPage);
             } else{
                 handler(NO, html);
@@ -1162,7 +1162,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
         NSString *url = BBS_SEARCH_WITH_SEARCHID(searchIdStr, page);
         [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
             if (isSuccess) {
-                ForumDisplayPage *sarchPage = [_htmlParser parseSearchPageFromHtml:html];
+                ForumPage *sarchPage = [_htmlParser parseSearchPageFromHtml:html];
                 handler(isSuccess, sarchPage);
             } else{
                 handler(NO, html);
@@ -1179,7 +1179,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
                 todayNewThreadPostSearchId = [_htmlParser parseListMyThreadSearchid:html];
             }
             if (isSuccess) {
-                ForumDisplayPage *sarchPage = [_htmlParser parseSearchPageFromHtml:html];
+                ForumPage *sarchPage = [_htmlParser parseSearchPageFromHtml:html];
                 handler(isSuccess, sarchPage);
             } else{
                 handler(NO, html);
@@ -1189,7 +1189,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
         NSString *url = BBS_SEARCH_WITH_SEARCHID(todayNewThreadPostSearchId, page);
         [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
             if (isSuccess) {
-                ForumDisplayPage *sarchPage = [_htmlParser parseSearchPageFromHtml:html];
+                ForumPage *sarchPage = [_htmlParser parseSearchPageFromHtml:html];
                 handler(isSuccess, sarchPage);
             } else{
                 handler(NO, html);
@@ -1230,7 +1230,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             }
             
             if (isSuccess) {
-                ForumDisplayPage *sarchPage = [_htmlParser parseSearchPageFromHtml:html];
+                ForumPage *sarchPage = [_htmlParser parseSearchPageFromHtml:html];
                 handler(isSuccess, sarchPage);
             } else{
                 handler(NO, html);
@@ -1240,7 +1240,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
         NSString *url = BBS_SEARCH_WITH_SEARCHID(listMyThreadSearchId, page);
         [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
             if (isSuccess) {
-                ForumDisplayPage *sarchPage = [_htmlParser parseSearchPageFromHtml:html];
+                ForumPage *sarchPage = [_htmlParser parseSearchPageFromHtml:html];
                 handler(isSuccess, sarchPage);
             } else{
                 handler(NO, html);
@@ -1264,7 +1264,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             [listUserThreadRedirectUrlDictionary setObject:searchId forKey:[NSNumber numberWithInt:userId]];
             
             if (isSuccess) {
-                ForumDisplayPage *sarchPage = [_htmlParser parseSearchPageFromHtml:html];
+                ForumPage *sarchPage = [_htmlParser parseSearchPageFromHtml:html];
                 handler(isSuccess, sarchPage);
             } else{
                 handler(NO, html);
@@ -1276,7 +1276,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
         NSString *url = BBS_SEARCH_WITH_SEARCHID(searchId, page);
         [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
             if (isSuccess) {
-                ForumDisplayPage *sarchPage = [_htmlParser parseSearchPageFromHtml:html];
+                ForumPage *sarchPage = [_htmlParser parseSearchPageFromHtml:html];
                 handler(isSuccess, sarchPage);
             } else{
                 handler(NO, html);
@@ -1323,7 +1323,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 - (void)forumDisplayWithId:(int)forumId andPage:(int)page handler:(HandlerWithBool)handler {
     [_browser GETWithURLString:BBS_FORMDISPLAY_PAGE(forumId, page) requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            ForumDisplayPage *page = [_htmlParser parseThreadListFromHtml:html withThread:forumId andContainsTop:YES];
+            ForumPage *page = [_htmlParser parseThreadListFromHtml:html withThread:forumId andContainsTop:YES];
             handler(isSuccess, page);
         } else {
             handler(NO, html);
@@ -1355,7 +1355,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             } else{
                 SearchForumDisplayPage *page = [_htmlParser parseSearchPageFromHtml:html];
                 
-                if (page != nil && page.dataList != nil && page.dataList.count > 0) {
+                if (page != nil && page.threadList != nil && page.threadList.count > 0) {
                     handler(YES, page);
                 } else {
                     handler(NO, @"未知错误");

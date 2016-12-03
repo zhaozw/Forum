@@ -25,7 +25,7 @@
 
 - (void)onPullRefresh {
     int userId = [userProfile.profileUserId intValue];
-    [self.forumBrowser listAllUserThreads:userId withPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *message) {
+    [self.forumBrowser listAllUserThreads:userId withPage:1 handler:^(BOOL isSuccess, ForumPage *message) {
         [self.tableView.mj_header endRefreshing];
 
         if (isSuccess) {
@@ -34,7 +34,7 @@
             self.currentPage = 1;
             [self.dataList removeAllObjects];
 
-            [self.dataList addObjectsFromArray:message.dataList];
+            [self.dataList addObjectsFromArray:message.threadList];
             [self.tableView reloadData];
 
         }
@@ -43,7 +43,7 @@
 
 - (void)onLoadMore {
     int userId = [userProfile.profileUserId intValue];
-    [self.forumBrowser listAllUserThreads:userId withPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage *message) {
+    [self.forumBrowser listAllUserThreads:userId withPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumPage *message) {
         [self.tableView.mj_footer endRefreshing];
 
         if (isSuccess) {
@@ -51,7 +51,7 @@
             if (self.currentPage >= message.totalPageCount) {
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }
-            [self.dataList addObjectsFromArray:message.dataList];
+            [self.dataList addObjectsFromArray:message.threadList];
             [self.tableView reloadData];
 
         }

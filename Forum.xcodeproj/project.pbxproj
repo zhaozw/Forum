@@ -106,7 +106,7 @@
 		4DF7371E1DDECC8D00BF1896 /* SimpleThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737121DDECC8D00BF1896 /* SimpleThread.m */; };
 		4DF7371F1DDECC8D00BF1896 /* NormalThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737141DDECC8D00BF1896 /* NormalThread.m */; };
 		4DF737201DDECC8D00BF1896 /* ShowThreadPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737161DDECC8D00BF1896 /* ShowThreadPage.m */; };
-		4DF737211DDECC8D00BF1896 /* ForumDisplayPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737181DDECC8D00BF1896 /* ForumDisplayPage.m */; };
+		4DF737211DDECC8D00BF1896 /* ForumPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737181DDECC8D00BF1896 /* ForumPage.m */; };
 		4DF737261DDECC9600BF1896 /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737231DDECC9600BF1896 /* PrivateMessage.m */; };
 		4DF737271DDECC9600BF1896 /* ShowPrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737251DDECC9600BF1896 /* ShowPrivateMessage.m */; };
 		4DF7372A1DDECCA200BF1896 /* LoginUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF737291DDECCA200BF1896 /* LoginUser.m */; };
@@ -303,8 +303,8 @@
 		4DF737141DDECC8D00BF1896 /* NormalThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NormalThread.m; sourceTree = "<group>"; };
 		4DF737151DDECC8D00BF1896 /* ShowThreadPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowThreadPage.h; sourceTree = "<group>"; };
 		4DF737161DDECC8D00BF1896 /* ShowThreadPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowThreadPage.m; sourceTree = "<group>"; };
-		4DF737171DDECC8D00BF1896 /* ForumDisplayPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumDisplayPage.h; sourceTree = "<group>"; };
-		4DF737181DDECC8D00BF1896 /* ForumDisplayPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumDisplayPage.m; sourceTree = "<group>"; };
+		4DF737171DDECC8D00BF1896 /* ForumPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumPage.h; sourceTree = "<group>"; };
+		4DF737181DDECC8D00BF1896 /* ForumPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumPage.m; sourceTree = "<group>"; };
 		4DF737221DDECC9600BF1896 /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessage.h; sourceTree = "<group>"; };
 		4DF737231DDECC9600BF1896 /* PrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessage.m; sourceTree = "<group>"; };
 		4DF737241DDECC9600BF1896 /* ShowPrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPrivateMessage.h; sourceTree = "<group>"; };
@@ -663,8 +663,8 @@
 				4DF737141DDECC8D00BF1896 /* NormalThread.m */,
 				4DF737151DDECC8D00BF1896 /* ShowThreadPage.h */,
 				4DF737161DDECC8D00BF1896 /* ShowThreadPage.m */,
-				4DF737171DDECC8D00BF1896 /* ForumDisplayPage.h */,
-				4DF737181DDECC8D00BF1896 /* ForumDisplayPage.m */,
+				4DF737171DDECC8D00BF1896 /* ForumPage.h */,
+				4DF737181DDECC8D00BF1896 /* ForumPage.m */,
 			);
 			name = Thread;
 			sourceTree = "<group>";
@@ -900,7 +900,7 @@
 				3A2C3FE81DDFE0C900576151 /* ForumUserThreadTableViewController.m in Sources */,
 				3A2C3F501DDFBF5900576151 /* PrivateMessageTableViewCell.m in Sources */,
 				3A2C3FE41DDFE0C900576151 /* ForumTableViewController.m in Sources */,
-				4DF737211DDECC8D00BF1896 /* ForumDisplayPage.m in Sources */,
+				4DF737211DDECC8D00BF1896 /* ForumPage.m in Sources */,
 				3A2C3F681DDFC03400576151 /* AutoRelayoutUITextView.m in Sources */,
 				3AF887971DA16D2C0083A8D5 /* ForumBrowser.m in Sources */,
 				3A2C3FE91DDFE0C900576151 /* ForumWebViewController.m in Sources */,

@@ -54,7 +54,7 @@
         NSString *title = [NSString stringWithFormat:@"%lu/%lu", (unsigned long) currentShowThreadPage.currentPage, (unsigned long) currentShowThreadPage.totalPageCount];
         self.pageNumber.title = title;
 
-        NSMutableArray<Post *> *posts = threadPage.dataList;
+        NSMutableArray<Post *> *posts = threadPage.threadList;
 
         NSString *lis = @"";
 
@@ -95,7 +95,7 @@
         NSString *title = [NSString stringWithFormat:@"%lu/%lu", (unsigned long) currentShowThreadPage.currentPage, (unsigned long) currentShowThreadPage.totalPageCount];
         self.pageNumber.title = title;
 
-        NSMutableArray<Post *> *posts = threadPage.dataList;
+        NSMutableArray<Post *> *posts = threadPage.threadList;
 
         NSString *lis = @"";
 
@@ -220,7 +220,7 @@
         NSString *title = [NSString stringWithFormat:@"%d/%d", currentShowThreadPage.currentPage, currentShowThreadPage.totalPageCount];
         self.pageNumber.title = title;
 
-        NSMutableArray<Post *> *posts = threadPage.dataList;
+        NSMutableArray<Post *> *posts = threadPage.threadList;
 
 
         NSString *lis = @"";
@@ -304,7 +304,7 @@
         NSString *title = [NSString stringWithFormat:@"%lu/%lu", (unsigned long) currentShowThreadPage.currentPage, (unsigned long) currentShowThreadPage.totalPageCount];
         self.pageNumber.title = title;
 
-        NSMutableArray<Post *> *posts = threadPage.dataList;
+        NSMutableArray<Post *> *posts = threadPage.threadList;
 
 
         NSString *lis = @"";
@@ -371,11 +371,11 @@
             }
 
             ShowThreadPage *threadPage = message;
-            if (currentShowThreadPage.dataList.count < threadPage.dataList.count) {
+            if (currentShowThreadPage.threadList.count < threadPage.threadList.count) {
 
-                NSMutableArray *posts = threadPage.dataList;
+                NSMutableArray *posts = threadPage.threadList;
 
-                for (int i = currentShowThreadPage.dataList.count; i < posts.count; i++) {
+                for (int i = currentShowThreadPage.threadList.count; i < posts.count; i++) {
                     Post *post = posts[i];
                     NSString *avatar = BBS_AVATAR(post.postUserInfo.userAvatar);
                     NSString *louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
@@ -414,7 +414,7 @@
         NSString *title = [NSString stringWithFormat:@"%lu/%lu", (unsigned long)currentShowThreadPage.currentPage, (unsigned long)currentShowThreadPage.totalPageCount];
         self.pageNumber.title = title;
 
-        NSMutableArray<Post *> *posts = threadPage.dataList;
+        NSMutableArray<Post *> *posts = threadPage.threadList;
 
         NSString *lis = @"";
 
