@@ -1,13 +1,12 @@
 //
-//  IGHTMLDocument+QueryNode.m
-//
-//  Created by 迪远 王 on 16/3/26.
-//  Copyright © 2016年 andforce. All rights reserved.
+// Created by WDY on 2016/12/2.
+// Copyright (c) 2016 andforce. All rights reserved.
 //
 
-#import "IGHTMLDocument+QueryNode.h"
+#import "IGXMLNode+QueryNode.h"
 
-@implementation IGHTMLDocument (QueryNode)
+
+@implementation IGXMLNode (QueryNode)
 
 - (IGXMLNode *)queryNodeWithXPath:(NSString *)xpath {
     return [self queryWithXPath:xpath].firstObject;
@@ -19,4 +18,5 @@
     IGXMLNode * node = [self queryNodeWithXPath:xpath];
     return node;
 }
+
 @end

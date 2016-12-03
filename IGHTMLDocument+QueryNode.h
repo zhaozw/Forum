@@ -11,4 +11,6 @@
 
 - (IGXMLNode *)queryNodeWithXPath:(NSString *)xpath;
 
+- (IGXMLNode *)queryNodeWithClassName:(NSString *)name;
+
 @end
