@@ -407,7 +407,7 @@
         <!--新主题-->
         <scene sceneID="cr2-FS-gXj">
             <objects>
-                <viewController storyboardIdentifier="ShowCreateNewThread" id="pXN-Qw-w0b" customClass="ForumNewThreadViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShowCreateNewThread" id="pXN-Qw-w0b" customClass="ForumCreateNewThreadViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="e5j-8u-NEf"/>
                         <viewControllerLayoutGuide type="bottom" id="BTe-LE-Lmy"/>

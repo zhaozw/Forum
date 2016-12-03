@@ -8,7 +8,7 @@
 #import "ForumThreadListTableViewController.h"
 
 #import "ForumThreadListCell.h"
-#import "ForumNewThreadViewController.h"
+#import "ForumCreateNewThreadViewController.h"
 #import "ForumUserProfileTableViewController.h"
 #import "ForumThreadListForChildFormUITableViewController.h"
 #import "NSUserDefaults+Setting.h"
@@ -287,7 +287,7 @@
 
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
 
-        ForumNewThreadViewController *newPostController = segue.destinationViewController;
+        ForumCreateNewThreadViewController *newPostController = segue.destinationViewController;
         TransBundle * bundle = [[TransBundle alloc] init];
         [bundle putIntValue:transForm.forumId forKey:@"FORM_ID"];
         [self transBundle:bundle forController:newPostController];

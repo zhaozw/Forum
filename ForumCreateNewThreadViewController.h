@@ -1,5 +1,5 @@
 //
-//  ForumNewThreadViewController.h
+//  ForumCreateNewThreadViewController.h
 //
 //  Created by 迪远 王 on 16/1/13.
 //  Copyright © 2016年 andforce. All rights reserved.
@@ -9,7 +9,7 @@
 
 #import "SelectPhotoCollectionViewCell.h"
 
-@interface ForumNewThreadViewController : UIViewController
+@interface ForumCreateNewThreadViewController : UIViewController
 
 
 @property(weak, nonatomic) IBOutlet UITextField *subject;

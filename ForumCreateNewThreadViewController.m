@@ -1,11 +1,11 @@
 //
-//  ForumNewThreadViewController.m
+//  ForumCreateNewThreadViewController.m
 //
 //  Created by 迪远 王 on 16/1/13.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "ForumNewThreadViewController.h"
+#import "ForumCreateNewThreadViewController.h"
 #import "ForumHtmlParser.h"
 #import "ForumBrowser.h"
 #import <AssetsLibrary/AssetsLibrary.h>
@@ -17,7 +17,7 @@
 #import "TransBundleDelegate.h"
 #import "UIImage+Tint.h"
 
-@interface ForumNewThreadViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate,
+@interface ForumCreateNewThreadViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate,
         UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,
         DeleteDelegate, TransBundleDelegate, UIScrollViewDelegate> {
 
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation ForumNewThreadViewController
+@implementation ForumCreateNewThreadViewController
 
 - (void)transBundle:(TransBundle *)bundle {
     forumId = [bundle getIntValue:@"FORM_ID"];
@@ -186,6 +186,8 @@
 
 
 - (IBAction)createThread:(id)sender {
+
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 
     NSString *title = self.subject.text;
     NSString *message = self.message.text;
