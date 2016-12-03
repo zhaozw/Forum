@@ -148,7 +148,6 @@
         NSString *name = nameNode.innerHtml;
         user.userName = name;
         NSString *nameLink = [nameNode attribute:@"href"];
-        user.userLink = [BBS_URL stringByAppendingString:nameLink];
         user.userID = [nameLink stringWithRegular:@"\\d+"];
         //avatar
         IGXMLNode *avatarNode = userInfoNode.children[1];
