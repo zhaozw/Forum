@@ -100,11 +100,11 @@
         }
             // 5个字节
         else if ((firstChar & 0xFC) == 0xF8) {
-            len = 5;
+            len = 0;
         }
             // 6个字节
         else if ((firstChar & 0xFE) == 0xFC) {
-            len = 6;
+            len = 0;
         }
 
         if (len == 0) {
