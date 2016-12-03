@@ -235,7 +235,15 @@
     
     
     IGXMLNode *titleNode = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tr/td[1]/table/tr[2]/td/strong"].firstObject;
-    showThreadPage.threadTitle = titleNode.text;
+    NSString * fixedTitle = [titleNode.text trim];
+    if ([fixedTitle hasPrefix:@"【"]){
+        fixedTitle = [fixedTitle stringByReplacingOccurrencesOfString:@"【" withString:@"["];
+        fixedTitle = [fixedTitle stringByReplacingOccurrencesOfString:@"】" withString:@"]"];
+    } else{
+        fixedTitle = [@"讨论" stringByAppendingString:fixedTitle];
+    }
+
+    showThreadPage.threadTitle = fixedTitle;
     
     NSString *threadIdPattern = @"<input type=\"hidden\" name=\"searchthreadid\" value=\"\\d+\" />";
     NSString *threadID = [html stringWithRegular:threadIdPattern andChild:@"\\d+"];
