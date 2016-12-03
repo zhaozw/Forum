@@ -16,6 +16,9 @@
 #import "ForumTabBarController.h"
 #import "UIStoryboard+Forum.h"
 
+#import "ForumEntry+CoreDataClass.h"
+
+
 
 @interface ForumTableViewController () <MGSwipeTableCellDelegate>
 
@@ -28,21 +31,56 @@
 
     ForumCoreDataManager *formManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
 
-    self.dataList = [[formManager selectAllForums] copy];
+    [self.dataList removeAllObjects];
+
+    [self.dataList addObjectsFromArray:[[formManager selectAllForums] copy]];
 
     [self.tableView reloadData];
 
 }
 
 - (BOOL)setPullRefresh:(BOOL)enable {
-    return NO;
+    return YES;
 }
 
 - (BOOL)setLoadMore:(BOOL)enable {
     return NO;
 }
 
+- (BOOL)autoPullfresh {
+    return NO;
+}
 
+- (void)onPullRefresh {
+
+    [self.forumBrowser listAllForums:^(BOOL isSuccess, id message) {
+
+        [self.tableView.mj_header endRefreshing];
+
+        if (isSuccess) {
+            NSMutableArray<Forum *> *needInsert = message;
+            ForumCoreDataManager *formManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
+            // 需要先删除之前的老数据
+            [formManager deleteData];
+
+            [formManager insertData:needInsert operation:^(NSManagedObject *target, id src) {
+                ForumEntry *newsInfo = (ForumEntry *) target;
+                newsInfo.forumId = [src valueForKey:@"forumId"];
+                newsInfo.forumName = [src valueForKey:@"forumName"];
+                newsInfo.parentForumId = [src valueForKey:@"parentForumId"];
+
+            }];
+
+            [self.dataList removeAllObjects];
+
+            [self.dataList addObjectsFromArray:[[formManager selectAllForums] copy]];
+
+            [self.tableView reloadData];
+        }
+
+    }];
+
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
