@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F34CFBB62E848555D9DB610 /* ForumShortCutCreateNewThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F34CA129BA2D7ADF167E05D /* ForumShortCutCreateNewThreadViewController.m */; };
 		3A2C3F0C1DDFB88400576151 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A2C3F0B1DDFB88400576151 /* Assets.xcassets */; };
 		3A2C3F0E1DDFB8D300576151 /* paperclip.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3A2C3F0D1DDFB8D300576151 /* paperclip.gif */; };
 		3A2C3F151DDFB94200576151 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3F141DDFB94200576151 /* AppDelegate.m */; };
@@ -116,6 +117,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F34CA129BA2D7ADF167E05D /* ForumShortCutCreateNewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumShortCutCreateNewThreadViewController.m; sourceTree = "<group>"; };
+		2F34CA3EA8022D958EAEA736 /* ForumShortCutCreateNewThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumShortCutCreateNewThreadViewController.h; sourceTree = "<group>"; };
 		3A2C3F0B1DDFB88400576151 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A2C3F0D1DDFB8D300576151 /* paperclip.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = paperclip.gif; sourceTree = "<group>"; };
 		3A2C3F111DDFB91F00576151 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -486,6 +489,8 @@
 				3A2C3FC91DDFE0C900576151 /* ForumWebViewController.m */,
 				3A2C3FCC1DDFE0C900576151 /* ForumWritePMViewController.h */,
 				3A2C3FCD1DDFE0C900576151 /* ForumWritePMViewController.m */,
+				2F34CA3EA8022D958EAEA736 /* ForumShortCutCreateNewThreadViewController.h */,
+				2F34CA129BA2D7ADF167E05D /* ForumShortCutCreateNewThreadViewController.m */,
 			);
 			name = ForumControllers;
 			sourceTree = "<group>";
@@ -930,6 +935,7 @@
 				3A2C3FE71DDFE0C900576151 /* ForumUserProfileTableViewController.m in Sources */,
 				3A2C3F5B1DDFBFC500576151 /* ForumListHeaderView.m in Sources */,
 				C7B59D8E9D44A593D270BE03 /* NSData+UTF8.m in Sources */,
+				2F34CFBB62E848555D9DB610 /* ForumShortCutCreateNewThreadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

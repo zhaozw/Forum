@@ -17,7 +17,9 @@
 #import "UIStoryboard+Forum.h"
 
 #import "ForumEntry+CoreDataClass.h"
-
+#import "ForumSearchViewController.h"
+#import "ForumShortCutCreateNewThreadViewController.h"
+#import "ForumNavigationViewController.h"
 
 
 @interface ForumTableViewController () <MGSwipeTableCellDelegate>
@@ -153,14 +155,55 @@
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         Forum *select = self.dataList[(NSUInteger) path.section];
         Forum *child = select.childForums[(NSUInteger) path.row];
+
         TransBundle * bundle = [[TransBundle alloc] init];
         [bundle putObjectValue:child forKey:@"TransForm"];
         [self transBundle:bundle forController:controller];
 
     }
-
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+- (void)showControllerByShortCutItemType:(NSString *)shortCutItemType {
+    
+    if ([shortCutItemType isEqualToString:@"OPEN_JINGPING_HOME"]){
+        ForumThreadListTableViewController * controller = (ForumThreadListTableViewController *) [[UIStoryboard mainStoryboard] finControllerById:@"ThreadList"];
+        TransBundle * bundle = [[TransBundle alloc] init];
+        Forum * child = [[Forum alloc] init];
+        child.forumName = @"精品家园";
+        child.forumId = 147;
+        [bundle putObjectValue:child forKey:@"TransForm"];
+        [self transBundle:bundle forController:controller];
+
+        [self.navigationController pushViewController:controller animated:YES];
+
+    } else if ([shortCutItemType isEqualToString:@"OPEN_ERSHOU_FORUM"]){
+
+        ForumThreadListTableViewController * controller = (ForumThreadListTableViewController *) [[UIStoryboard mainStoryboard] finControllerById:@"ThreadList"];
+        TransBundle * bundle = [[TransBundle alloc] init];
+        Forum * child = [[Forum alloc] init];
+        child.forumName = @"二手闲置";
+        child.forumId = 174;
+        [bundle putObjectValue:child forKey:@"TransForm"];
+        [self transBundle:bundle forController:controller];
+
+        [self.navigationController pushViewController:controller animated:YES];
+
+    } else if ([shortCutItemType isEqualToString:@"OPEN_CREATE_NEW_THREAD"]){
+        ForumNavigationViewController *controller = (ForumNavigationViewController *) [[UIStoryboard mainStoryboard] finControllerById:@"ShortCutCreateNewThreadNV"];
+        //[self.navigationController pushViewController:controller animated:YES];
+        [self presentViewController:controller animated:YES completion:^{
+
+        }];
+    } else if ([shortCutItemType isEqualToString:@"OPEN_SEARCH_FORUM"]){
+        ForumSearchViewController * controller = (ForumSearchViewController *) [[UIStoryboard mainStoryboard] finControllerById:@"SearchForum"];
+
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+}
 - (IBAction)showLeftDrawer:(id)sender {
     ForumTabBarController *controller = (ForumTabBarController *) self.tabBarController;
 

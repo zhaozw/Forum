@@ -14,7 +14,11 @@
 
 - (void)GETWithURL:(NSURL *)url requestCallback:(RequestCallback)callback {
 
-    [self GET:[url absoluteString] parameters:nil progress:nil success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject) {
+    NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:@"2" forKey:@"styleid"];
+    [parameters setValue:@"1" forKey:@"langid"];
+
+    [self GET:[url absoluteString] parameters:parameters progress:nil success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject) {
         
         NSString *orgHtml = [responseObject utf8String];
         NSString *html = [orgHtml replaceUnicode];

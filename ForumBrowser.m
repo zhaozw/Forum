@@ -37,6 +37,12 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     ForumHtmlParser *_htmlParser;
 
     AFHTTPSessionManager *_browser;
+
+    // senior post
+    NSArray *toUploadImages;
+    HandlerWithBool _handlerWithBool;
+    NSString *_message;
+    NSString *_subject;
 }
 
 
@@ -136,9 +142,9 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 
     UIImageView *view = vCodeImageView;
 
-    [vCodeImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *_Nonnull request, NSHTTPURLResponse *_Nullable response, UIImage *_Nonnull image) {
+    [vCodeImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *_Nonnull urlRequest, NSHTTPURLResponse *_Nullable response, UIImage *_Nonnull image) {
         [view setImage:image];
-    } failure:^(NSURLRequest *_Nonnull request, NSHTTPURLResponse *_Nullable response, NSError *_Nonnull error) {
+    } failure:^(NSURLRequest *_Nonnull urlRequest, NSHTTPURLResponse *_Nullable response, NSError *_Nonnull error) {
         NSLog(@"refreshDoor failed");
     }];
 }
@@ -149,7 +155,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     user.userName = [self userName];
 
     for (int i = 0; i < cookies.count; i++) {
-        NSHTTPCookie *cookie = cookies[i];
+        NSHTTPCookie *cookie = cookies[(NSUInteger) i];
 
         if ([cookie.name isEqualToString:kCookieLastVisit]) {
             user.lastVisit = cookie.value;
@@ -240,60 +246,6 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
-// private 开始上传图片
-- (void)uploadFile:(NSString *)token fId:(NSString *)fId postTime:(NSString *)postTime hash:(NSString *)hash image:(NSData *)image {
-
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-
-    [parameters setValue:@"" forKey:@"s"];
-    [parameters setValue:token forKey:@"securitytoken"];
-    [parameters setValue:@"manageattach" forKey:@"do"];
-    [parameters setValue:@"" forKey:@"t"];
-    [parameters setValue:fId forKey:@"f"];
-    [parameters setValue:@"" forKey:@"p"];
-    [parameters setValue:postTime forKey:@"poststarttime"];
-    [parameters setValue:@"0" forKey:@"editpost"];
-    [parameters setValue:hash forKey:@"posthash"];
-    [parameters setValue:@"16777216" forKey:@"MAX_FILE_SIZE"];
-    [parameters setValue:@"上传" forKey:@"upload"];
-    NSString *name = [NSString stringWithFormat:@"Forum_Client_%f.jpg", [[NSDate date] timeIntervalSince1970]];
-
-    [parameters setValue:name forKey:@"attachment[]"];
-
-    [parameters setValue:@"" forKey:@"attachmenturl[]"];
-
-
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    // 设置时间格式
-    formatter.dateFormat = @"yyyyMMddHHmmss";
-    NSString *str = [formatter stringFromDate:[NSDate date]];
-    NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
-    [parameters setValue:fileName forKey:@"attachment[]"];
-
-
-
-    //[_browser.requestSerializer setValue:@"multipart/form-data; boundary=----WebKitFormBoundaryG9KMXkoSxJnZByFF" forHTTPHeaderField:@"Content-Type"];
-
-    [_browser POSTWithURLString:BBS_MANAGE_ATT parameters:parameters constructingBodyWithBlock:^(id <AFMultipartFormData> formData) {
-        NSString *type = [self contentTypeForImageData:image];
-
-        //[formData appendPartWithFileData:image name:@"attachment[]" fileName:@"abc123.jpeg" mimeType:type];
-
-        UIImage *image = [UIImage imageNamed:@"test.jpg"];
-        NSData *data = UIImageJPEGRepresentation(image, 1);
-
-
-        [formData appendPartWithFileData:data name:@"attachment[]" fileName:fileName mimeType:type];
-
-        //[formData appendPartWithFormData:data name:fileName];
-
-    }           requestCallback:^(BOOL isSuccess, NSString *html) {
-
-        NSLog(@"上传结果-------->>>>>>>> :   %@", html);
-        NSLog(@"上传结果-------->>>>>>>> 上传结束");
-    }];
-
-}
 
 // private
 - (NSString *)contentTypeForImageData:(NSData *)data {
@@ -310,12 +262,13 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
         case 0x49:
         case 0x4D:
             return @"image/tiff";
+        default:
+            return nil;
     }
-    return nil;
 }
 
 // private
-- (void)uploadImage:(NSURL *)url :(NSString *)token fId:(int)fId postTime:(NSString *)postTime hash:(NSString *)hash :(NSData *)imageData callback:(HandlerWithBool)callback {
+- (void)uploadImage:(NSURL *)url :(NSString *)token fId:(int)fId postTime:(NSString *)postTime hash:(NSString *)hash uploadImage:(NSData *)imageData callback:(HandlerWithBool)callback {
 
 
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -368,7 +321,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     for (NSString *param in parameters) {
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", param] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"%@\r\n", [parameters objectForKey:param]] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"%@\r\n", parameters[param]] dataUsingEncoding:NSUTF8StringEncoding]];
     }
 
 
@@ -423,6 +376,37 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
+// private
+- (NSString *)checkError:(NSString *)html {
+    NSString *duplicate = @"<p><strong>此帖是您在最后 5 分钟发表的帖子的副本，您将返回该主题。</strong></p>";
+    NSString *tooShot = @"<ol><li>您输入的信息太短，您发布的信息至少为 5 个字符。</li></ol>";
+    NSString *tooFast = @"<ol><li>本论坛允许的发表两个帖子的时间间隔必须大于 30 秒。请等待";
+
+    NSString *searchFailed = @"<ol><li>对不起，没有匹配记录。请尝试采用其他条件查询。";
+    NSString *searchTooFast = @"<ol><li>本论坛允许的进行两次搜索的时间间隔必须大于 30 秒";
+
+    NSString *urlLost = @"<div style=\"margin: 10px\">没有指定 主题 。如果您来自一个有效链接，请通知<a href=\"sendmessage.php\">管理员</a></div>";
+    NSString *permission = @"<li>您的账号可能没有足够的权限访问此页面或执行需要授权的操作。</li>";
+
+    if ([html containsString:duplicate]) {
+        return @"内容重复";
+    } else if ([html containsString:tooFast]) {
+        return @"30秒发帖限制";
+    } else if ([html containsString:tooFast]) {
+        return @"少于5个字";
+    } else if ([html containsString:searchFailed]) {
+        return @"未查到结果";
+    } else if ([html containsString:searchTooFast]) {
+        return @"30秒搜索限制";
+    } else if ([html containsString:urlLost]) {
+        return @"无效链接";
+    } else if ([html containsString:permission]) {
+        return @"无权查看";
+    } else {
+        return nil;
+    }
+}
+
 - (void)createNewThreadWithForumId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *)images handler:(HandlerWithBool)handler {
     if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
         message = [message stringByAppendingString:[self buildSignature]];
@@ -435,18 +419,20 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
         if (images == nil || images.count == 0) {
             // 没有图片，直接发送主题
             [self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time handler:^(BOOL isSuccess, NSString * result) {
-
-                if ([result containsString:@"此帖是您在最后 5 分钟发表的帖子的副本，您将返回该主题。"]){
-                    handler(NO, @"此帖是您在最后 5 分钟发表的帖子的副本，您将返回该主题。");
-                } else if ([result containsString:@"您输入的信息太短，您发布的信息至少为 5 个字符。"]){
-                    handler(NO, @"您输入的信息太短，您发布的信息至少为 5 个字符。");
-                } else{
-                    ViewThreadPage *thread = [_htmlParser parseShowThreadWithHtml:result];
-                    if (thread.postList.count > 0) {
-                        handler(YES, thread);
-                    } else {
-                        handler(NO, @"未知错误");
+                if (isSuccess){
+                    NSString *error = [self checkError:result];
+                    if (error != nil){
+                        handler(NO, error);
+                    } else{
+                        ViewThreadPage *thread = [_htmlParser parseShowThreadWithHtml:result];
+                        if (thread.postList.count > 0) {
+                            handler(YES, thread);
+                        } else {
+                            handler(NO, @"未知错误");
+                        }
                     }
+                } else{
+                    handler(NO, result);
                 }
 
             }];
@@ -454,52 +440,72 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             // 如果有图片，先传图片
             [self uploadImagePrepair:fId startPostTime:time postHash:hash :^(BOOL isSuccess, NSString *result) {
 
-                // 解析出上传图片需要的参数
-                NSString *uploadToken = [_htmlParser parseSecurityToken:result];
-                NSString *uploadTime = [[token componentsSeparatedByString:@"-"] firstObject];
-                NSString *uploadHash = [_htmlParser parsePostHash:result];
+                if (isSuccess){
+                    // 解析出上传图片需要的参数
+                    NSString *uploadToken = [_htmlParser parseSecurityToken:result];
+                    NSString *uploadTime = [[token componentsSeparatedByString:@"-"] firstObject];
+                    NSString *uploadHash = [_htmlParser parsePostHash:result];
 
-                __block BOOL uploadSuccess = YES;
-                for (int i = 0; i < images.count && uploadSuccess; i++) {
-                    NSData *image = images[(NSUInteger) i];
+                    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createThreadUploadImages:) name:@"CREATE_THREAD_UPLOAD_IMAGE" object:nil];
 
-                    [NSThread sleepForTimeInterval:2.0f];
+                    toUploadImages = images;
+                    _handlerWithBool = handler;
+                    _message = message;
+                    _subject = subject;
 
-                    NSURL *url = [NSURL URLWithString:BBS_MANAGE_ATT];
-                    [self uploadImage:url :uploadToken fId:fId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id result) {
-                        uploadSuccess = isSuccess;
-
-                        if (i == images.count - 1) {
-                            [NSThread sleepForTimeInterval:2.0f];
-                            [self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time handler:^(BOOL isSuccess, id result) {
-
-                                if ([result containsString:@"此帖是您在最后 5 分钟发表的帖子的副本，您将返回该主题。"]){
-                                    handler(NO, @"此帖是您在最后 5 分钟发表的帖子的副本，您将返回该主题。");
-                                } else if ([result containsString:@"您输入的信息太短，您发布的信息至少为 5 个字符。"]){
-                                    handler(NO, @"您输入的信息太短，您发布的信息至少为 5 个字符。");
-                                } else{
-                                    ViewThreadPage *thread = [_htmlParser parseShowThreadWithHtml:result];
-                                    if (thread.postList.count > 0) {
-                                        handler(YES, thread);
-                                    } else {
-                                        handler(NO, @"未知错误");
-                                    }
-                                }
-
-                            }];
-                        }
-                    }];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"CREATE_THREAD_UPLOAD_IMAGE" object:self userInfo:@{@"uploadToken" : uploadToken, @"fId": @(fId),  @"uploadTime":uploadTime, @"uploadHash":uploadHash, @"imageId":@(0)}];
+                } else{
+                    handler(NO, result);
                 }
 
-                if (!uploadSuccess) {
-                    handler(NO, @"上传图片失败！");
-                }
 
             }];
         }
 
     }];
 
+}
+
+- (void)createThreadUploadImages:(NSNotification *)notification {
+
+    NSDictionary *dictionary = [notification userInfo];
+    NSString *uploadToken = [dictionary valueForKey:@"uploadToken"];
+    int fId = [dictionary[@"fId"] intValue];
+    NSString *uploadTime = [dictionary valueForKey:@"uploadTime"];
+    NSString *uploadHash = [dictionary valueForKey:@"uploadHash"];
+
+    int imageId = [dictionary[@"imageId"] intValue];
+
+    if (imageId < toUploadImages.count) {
+        NSData *image = toUploadImages[(NSUInteger) imageId];
+        [self uploadImage:[NSURL URLWithString:BBS_MANAGE_ATT] :uploadToken fId:fId postTime:uploadTime hash:uploadHash uploadImage:image callback:^(BOOL success, id html) {
+            [NSThread sleepForTimeInterval:2.0f];
+
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"CREATE_THREAD_UPLOAD_IMAGE" object:self userInfo:@{@"uploadToken": uploadToken, @"fId": @(fId), @"uploadTime": uploadTime, @"uploadHash": uploadHash, @"imageId": @(imageId + 1)}];
+
+        }];
+    } else {
+        [self doPostThread:fId withSubject:_subject andMessage:_message withToken:uploadToken withHash:uploadHash postTime:uploadTime handler:^(BOOL postSuccess, id doPostResult) {
+
+            [[NSNotificationCenter defaultCenter] removeObserver:self];
+            if (postSuccess){
+
+                NSString *error = [self checkError:doPostResult];
+                if (error != nil){
+                    _handlerWithBool(NO, error);
+                } else{
+                    ViewThreadPage *thread = [_htmlParser parseShowThreadWithHtml:doPostResult];
+                    if (thread.postList.count > 0) {
+                        _handlerWithBool(YES, thread);
+                    } else {
+                        _handlerWithBool(NO, @"未知错误");
+                    }
+                }
+            } else{
+                _handlerWithBool(NO, doPostResult);
+            }
+        }];
+    }
 }
 
 // private
@@ -545,11 +551,10 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             // 保存Cookie
             [self saveCookie];
 
-            if ([html containsString:@"此帖是您在最后 5 分钟发表的帖子的副本，您将返回该主题。"]){
-                handler(NO, @"此帖是您在最后 5 分钟发表的帖子的副本，您将返回该主题。");
-            } else if ([html containsString:@"您输入的信息太短，您发布的信息至少为 5 个字符。"]){
-                handler(NO, @"您输入的信息太短，您发布的信息至少为 5 个字符。");
-            } else {
+            NSString *error = [self checkError:html];
+            if (error != nil){
+                handler(NO, error);
+            } else{
                 ViewThreadPage *thread = [_htmlParser parseShowThreadWithHtml:message];
                 if (thread.postList.count > 0) {
                     handler(YES, thread);
@@ -602,9 +607,11 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 
     [_browser POSTWithURLString:url parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess){
-            if ([html containsString:@"<ol><li>本论坛允许的发表两个帖子的时间间隔必须大于 30 秒。请等待 "] || [html containsString:@"<ol><li>本論壇允許的發表兩個文章的時間間隔必須大於 30 秒。請等待"]){
-                handler(NO, @"本论坛允许的发表两个帖子的时间间隔必须大于 30 秒");
-            } else{
+
+            NSString *error = [self checkError:html];
+            if (error != nil){
+                handler(NO, error);
+            } else {
                 ViewThreadPage *thread = [_htmlParser parseShowThreadWithHtml:html];
                 if (thread.postList.count > 0) {
                     handler(YES, thread);
@@ -721,7 +728,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     for (NSString *param in parameters) {
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", param] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"%@\r\n", [parameters objectForKey:param]] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"%@\r\n", parameters[param]] dataUsingEncoding:NSUTF8StringEncoding]];
     }
 
 
@@ -782,15 +789,18 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     [_browser POSTWithURLString:url parameters:presparameters requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
 
-            NSString *token = [_htmlParser parseSecurityToken:html];
+            NSString *securityToken = [_htmlParser parseSecurityToken:html];
             NSString *postHash = [_htmlParser parsePostHash:html];
             NSString *postStartTime = [_htmlParser parserPostStartTime:html];
 
             if (images == nil || [images count] == 0) {
-                [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:token posthash:postHash poststarttime:postStartTime handler:^(BOOL isSuccess, id result) {
-                    if (isSuccess){
-                        if ([html containsString:@"<ol><li>本论坛允许的发表两个帖子的时间间隔必须大于 30 秒。请等待 "] || [html containsString:@"<ol><li>本論壇允許的發表兩個文章的時間間隔必須大於 30 秒。請等待"]){
-                            handler(NO, @"本论坛允许的发表两个帖子的时间间隔必须大于 30 秒");
+                [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:securityToken posthash:postHash poststarttime:postStartTime handler:^(BOOL success, id result) {
+                    if (success){
+
+                        NSString *error = [self checkError:result];
+                        if (error != nil){
+
+                            handler(NO, error);
                         } else{
                             ViewThreadPage *thread = [_htmlParser parseShowThreadWithHtml:result];
                             if (thread.postList.count > 0) {
@@ -807,55 +817,28 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             } else {
 
                 __block NSString *uploadImageToken = @"";
-                NSString *urlStr = BBS_MANAGE_ATT;
-                NSURL *uploadImageUrl = [NSURL URLWithString:urlStr];
                 // 如果有图片，先传图片
-                [self uploadImagePrepairFormSeniorReply:threadId startPostTime:postStartTime postHash:postHash :^(BOOL isSuccess, id result) {
-                    // 解析出上传图片需要的参数
-                    uploadImageToken = [_htmlParser parseSecurityToken:result];
-                    NSString *uploadTime = [[token componentsSeparatedByString:@"-"] firstObject];
-                    NSString *uploadHash = [_htmlParser parsePostHash:result];
+                [self uploadImagePrepairFormSeniorReply:threadId startPostTime:postStartTime postHash:postHash :^(BOOL success, id result) {
 
-                    __block BOOL uploadSuccess = YES;
-                    int uploadCount = (int) images.count;
-                    for (int i = 0; i < uploadCount && uploadSuccess; i++) {
-                        NSData *image = images[i];
+                    if (success){
+                        // 解析出上传图片需要的参数
+                        uploadImageToken = [_htmlParser parseSecurityToken:result];
+                        NSString *uploadTime = [[securityToken componentsSeparatedByString:@"-"] firstObject];
+                        NSString *uploadHash = [_htmlParser parsePostHash:result];
 
-                        [NSThread sleepForTimeInterval:2.0f];
-                        [self uploadImageForSeniorReply:uploadImageUrl :uploadImageToken fId:forumId threadId:threadId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id uploadResultHtml) {
-                            uploadSuccess = isSuccess;
-                            // 更新token
-                            uploadImageToken = [_htmlParser parseSecurityToken:uploadResultHtml];
+                        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(seniorReplyUploadImage:) name:@"SENIOR_REPLY_UPLOAD_IMAGE" object:nil];
 
-                            NSLog(@" 上传第 %d 张图片", i);
+                        toUploadImages = images;
+                        _handlerWithBool = handler;
+                        _message = message;
 
-                            if (i == images.count - 1) {
-                                [NSThread sleepForTimeInterval:2.0f];
-                                [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:uploadImageToken posthash:postHash poststarttime:postStartTime handler:^(BOOL isSuccess, id result) {
-
-                                    if (isSuccess){
-                                        if ([html containsString:@"<ol><li>本论坛允许的发表两个帖子的时间间隔必须大于 30 秒。请等待 "] || [html containsString:@"<ol><li>本論壇允許的發表兩個文章的時間間隔必須大於 30 秒。請等待"]){
-                                            handler(NO, @"本论坛允许的发表两个帖子的时间间隔必须大于 30 秒");
-                                        } else{
-                                            ViewThreadPage *thread = [_htmlParser parseShowThreadWithHtml:uploadResultHtml];
-                                            if (thread.postList.count > 0) {
-                                                handler(YES, thread);
-                                            } else {
-                                                handler(NO, @"未知错误");
-                                            }
-                                        }
-                                    } else{
-                                        handler(NO, html);
-                                    }
-
-                                }];
-                            }
-                        }];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"SENIOR_REPLY_UPLOAD_IMAGE" object:self userInfo:@{@"uploadImageToken" : uploadImageToken, @"forumId": @(forumId),
+                                @"threadId": @(threadId), @"uploadTime":uploadTime, @"uploadHash":uploadHash, @"imageId":@(0)}];
+                    } else{
+                        handler(NO, result);
                     }
 
-                    if (!uploadSuccess) {
-                        handler(NO, @"上传图片失败！");
-                    }
+
                 }];
             }
         } else {
@@ -864,6 +847,60 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     }];
 }
 
+// private
+-(void)seniorReplyUploadImage:(NSNotification*)notification{
+    NSDictionary * dictionary = [notification userInfo];
+    NSString *uploadImageToken = [dictionary valueForKey:@"uploadImageToken"];
+    int forumId = [dictionary[@"forumId"] intValue];
+    int threadId = [dictionary[@"threadId"] intValue];
+    NSString *uploadTime = [dictionary valueForKey:@"uploadTime"];
+    NSString *uploadHash = [dictionary valueForKey:@"uploadHash"];
+
+    int imageId = [dictionary[@"imageId"] intValue];
+
+    if (imageId < toUploadImages.count){
+        NSData *image = toUploadImages[(NSUInteger) imageId];
+        [NSThread sleepForTimeInterval:2.0f];
+
+        [self uploadImageForSeniorReply:[NSURL URLWithString:BBS_MANAGE_ATT] :uploadImageToken fId:forumId threadId:threadId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id uploadResultHtml) {
+
+            // 更新token
+            NSString *newUploadImageToken = [_htmlParser parseSecurityToken:uploadResultHtml];
+
+            NSLog(@" 上传第 %d 张图片", imageId);
+
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"SENIOR_REPLY_UPLOAD_IMAGE" object:self userInfo:@{@"uploadImageToken" : newUploadImageToken, @"forumId": @(forumId),
+                    @"threadId": @(threadId), @"uploadTime":uploadTime, @"uploadHash":uploadHash, @"imageId":@(imageId + 1)}];
+
+        }];
+
+    } else{
+
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+        [self seniorReplyWithThreadId:threadId andMessage:_message securitytoken:uploadImageToken posthash:uploadHash poststarttime:uploadTime handler:^(BOOL isSuccess, id result) {
+
+            if (isSuccess) {
+
+                NSString *error = [self checkError:result];
+                if (error != nil){
+                    _handlerWithBool(NO, error);
+                } else{
+                    ViewThreadPage *thread = [_htmlParser parseShowThreadWithHtml:result];
+                    if (thread.postList.count > 0) {
+                        _handlerWithBool(YES, thread);
+                    } else {
+                        _handlerWithBool(NO, @"未知错误");
+                    }
+                }
+            } else {
+                _handlerWithBool(NO, result);
+            }
+
+        }];
+    }
+
+}
 // private
 - (void)saveSecurityToken:(NSString *)token {
     [[NSUserDefaults standardUserDefaults] setValue:token forKey:kSecurityToken];
@@ -918,13 +955,24 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             NSString *securitytoken = [self readSecurityToken];
             [parameters setValue:securitytoken forKey:@"securitytoken"];
 
-            [_browser POSTWithURLString:BBS_SEARCH parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
-                if (isSuccess) {
-                    [self saveCookie];
+            [_browser POSTWithURLString:BBS_SEARCH parameters:parameters requestCallback:^(BOOL searchSuccess, NSString *searchResult) {
 
-                    handler(YES, html);
-                } else {
-                    handler(NO, html);
+                if(searchSuccess){
+                    NSString *error = [self checkError:searchResult];
+                    if (error != nil){
+                        handler(NO, error);
+                    } else{
+                        ViewSearchForumPage *page = [_htmlParser parseSearchPageFromHtml:searchResult];
+                        [self saveCookie];
+
+                        if (page != nil && page.threadList != nil && page.threadList.count > 0) {
+                            handler(YES, page);
+                        } else {
+                            handler(NO, @"未知错误");
+                        }
+                    }
+                } else{
+                    handler(NO, searchResult);
                 }
 
             }];
@@ -967,9 +1015,9 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             [parameters setValue:@"" forKey:@"bccrecipients"];
             [parameters setValue:@"0" forKey:@"iconid"];
 
-            [_browser POSTWithURLString:BBS_SEND_PM parameters:parameters requestCallback:^(BOOL isSuccess, NSString *result) {
-                if (isSuccess) {
-                    if ([result containsString:@"信息提交时发生如下错误:"] || [result containsString:@"訊息提交時發生如下錯誤:"]) {
+            [_browser POSTWithURLString:BBS_SEND_PM parameters:parameters requestCallback:^(BOOL success, NSString *result) {
+                if (success) {
+                    if ([result containsString:@"信息提交时发生如下错误:"]) {
                         handler(NO, @"收件人未找到或者未填写标题");
                     } else {
                         handler(YES, @"");
@@ -1018,8 +1066,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             [parameters setValue:@"1" forKey:@"savecopy"];
             [parameters setValue:@"提交信息" forKey:@"sbutton"];
 
-            [_browser POSTWithURLString:BBS_REPLY_PM(pmId) parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
-                handler(isSuccess, html);
+            [_browser POSTWithURLString:BBS_REPLY_PM(pmId) parameters:parameters requestCallback:^(BOOL success, NSString *result) {
+                handler(success, result);
             }];
 
         } else {
@@ -1050,8 +1098,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             [parameters setValue:@"0" forKey:@"emailupdate"];
 
 
-            [_browser POSTWithURLString:url parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
-                handler(isSuccess, html);
+            [_browser POSTWithURLString:url parameters:parameters requestCallback:^(BOOL success, NSString *result) {
+                handler(success, result);
             }];
 
         }
@@ -1085,8 +1133,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             [parameters setValue:@"0" forKey:@"folderid"];
 
             NSString *fav = BBS_SUBSCRIPTION_THREAD(threadPostId);
-            [_browser POSTWithURLString:fav parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
-                handler(isSuccess, html);
+            [_browser POSTWithURLString:fav parameters:parameters requestCallback:^(BOOL success, NSString *result) {
+                handler(success, result);
             }];
         }
     }];
@@ -1102,8 +1150,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 - (void)listPrivateMessageWithType:(int)type andPage:(int)page handler:(HandlerWithBool)handler {
     [_browser GETWithURLString:BBS_PM_WITH_TYPE(type, page) requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            ViewForumPage *page = [_htmlParser parsePrivateMessageFromHtml:html];
-            handler(YES, page);
+            ViewForumPage *viewForumPage = [_htmlParser parsePrivateMessageFromHtml:html];
+            handler(YES, viewForumPage);
         } else {
             handler(NO, html);
         }
@@ -1125,8 +1173,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     NSString *url = BBS_LIST_FAV_POST(page);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            ViewForumPage *page = [_htmlParser parseFavThreadListFromHtml:html];
-            handler(isSuccess, page);
+            ViewForumPage *viewForumPage = [_htmlParser parseFavThreadListFromHtml:html];
+            handler(isSuccess, viewForumPage);
         } else{
             handler(NO, html);
         }
@@ -1137,7 +1185,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     
     NSDate *date = [NSDate date];
-    NSInteger timeStamp = [date timeIntervalSince1970];
+    NSInteger timeStamp = (NSInteger) [date timeIntervalSince1970];
     
     NSInteger searchId = [userDefault integerForKey:@"search_id"];
     NSInteger lastTimeStamp = [userDefault integerForKey:@"search_time"];
@@ -1146,7 +1194,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     if (page == 1 && (searchId == 0 || spaceTime > 60 * 10)) {
         [_browser GETWithURLString:BBS_GET_NEW requestCallback:^(BOOL isSuccess, NSString *html) {
             if (isSuccess) {
-                NSUInteger newThreadPostSearchId = [[_htmlParser parseListMyThreadSearchid:html] integerValue];
+                NSUInteger newThreadPostSearchId = (NSUInteger) [[_htmlParser parseListMyThreadSearchid:html] integerValue];
                 [userDefault setInteger:timeStamp forKey:@"search_time"];
                 [userDefault setInteger:newThreadPostSearchId forKey:@"search_id"];
             }
@@ -1158,7 +1206,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             }
         }];
     } else {
-        NSString *searchIdStr = [NSString stringWithFormat:@"%ld", searchId];
+        NSString *searchIdStr = [NSString stringWithFormat:@"%ld", (long) searchId];
         NSString *url = BBS_SEARCH_WITH_SEARCHID(searchIdStr, page);
         [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
             if (isSuccess) {
@@ -1251,7 +1299,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 
 - (void)listAllUserThreads:(int)userId withPage:(int)page handler:(HandlerWithBool)handler {
     NSString *baseUrl = BBS_FIND_USER_THREADS(userId);
-    if (listUserThreadRedirectUrlDictionary == nil || [listUserThreadRedirectUrlDictionary objectForKey:[NSNumber numberWithInt:userId]] == nil) {
+    if (listUserThreadRedirectUrlDictionary == nil || listUserThreadRedirectUrlDictionary[@(userId)] == nil) {
         
         
         [_browser GETWithURLString:baseUrl requestCallback:^(BOOL isSuccess, NSString *html) {
@@ -1261,7 +1309,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             
             NSString *searchId = [_htmlParser parseListMyThreadSearchid:html];
             
-            [listUserThreadRedirectUrlDictionary setObject:searchId forKey:[NSNumber numberWithInt:userId]];
+            listUserThreadRedirectUrlDictionary[@(userId)] = searchId;
             
             if (isSuccess) {
                 ViewForumPage *sarchPage = [_htmlParser parseSearchPageFromHtml:html];
@@ -1271,7 +1319,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             }
         }];
     } else {
-        NSString *searchId = [listUserThreadRedirectUrlDictionary objectForKey:[NSNumber numberWithInt:userId]];
+        NSString *searchId = listUserThreadRedirectUrlDictionary[@(userId)];
         
         NSString *url = BBS_SEARCH_WITH_SEARCHID(searchId, page);
         [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
@@ -1287,34 +1335,39 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 
 - (void)showThreadWithId:(int)threadId andPage:(int)page handler:(HandlerWithBool)handler {
     [_browser GETWithURLString:BBS_SHOWTHREAD_PAGE(threadId, page) requestCallback:^(BOOL isSuccess, NSString *html) {
-        if (html == nil || [html containsString:@"<div style=\"margin: 10px\">没有指定 主题 。如果您来自一个有效链接，请通知<a href=\"sendmessage.php\">管理员</a></div>"] ||
-            [html containsString:@"<div style=\"margin: 10px\">沒有指定主題 。如果您來自一個有效連結，請通知<a href=\"sendmessage.php\">管理員</a></div>"] || [html containsString:@"<li>您的账号可能没有足够的权限访问此页面或执行需要授权的操作。</li>"]
-            || [html containsString:@"<li>您的帳號可能沒有足夠的權限存取此頁面。您是否正在嘗試編輯別人的文章、存取論壇管理功能或是一些其他需要授權存取的系統?</li>"]){
-            handler(NO, @"没有指定主題，可能被删除或无权查看");
-            return;
-        }
-        if (isSuccess) {
-            ViewThreadPage *detail = [_htmlParser parseShowThreadWithHtml:html];
-            handler(isSuccess, detail);
-        } else {
+
+        if (isSuccess){
+            NSString *error = [self checkError:html];
+            if (error != nil) {
+                handler(NO, error);
+            } else {
+                if (isSuccess) {
+                    ViewThreadPage *detail = [_htmlParser parseShowThreadWithHtml:html];
+                    handler(isSuccess, detail);
+                } else {
+                    handler(NO, html);
+                }
+            }
+        } else{
             handler(NO, html);
         }
+
     }];
 }
 
 - (void)showThreadWithP:(NSString *)p handler:(HandlerWithBool)handler {
     NSString *url = BBS_SHOWTHREAD_WITH_P(p);
     [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
-        if (html == nil || [html containsString:@"<div style=\"margin: 10px\">没有指定 主题 。如果您来自一个有效链接，请通知<a href=\"sendmessage.php\">管理员</a></div>"] ||
-            [html containsString:@"<div style=\"margin: 10px\">沒有指定主題 。如果您來自一個有效連結，請通知<a href=\"sendmessage.php\">管理員</a></div>"] || [html containsString:@"<li>您的账号可能没有足够的权限访问此页面或执行需要授权的操作。</li>"]
-            || [html containsString:@"<li>您的帳號可能沒有足夠的權限存取此頁面。您是否正在嘗試編輯別人的文章、存取論壇管理功能或是一些其他需要授權存取的系統?</li>"]){
-            handler(NO, @"没有指定主題，可能被删除或无权查看");
-            return;
-        }
-        if (isSuccess) {
-            ViewThreadPage *detail = [_htmlParser parseShowThreadWithHtml:html];
-            handler(isSuccess, detail);
-        } else {
+
+        if (isSuccess){
+            NSString *error = [self checkError:html];
+            if (error != nil) {
+                handler(NO, error);
+            } else {
+                ViewThreadPage *detail = [_htmlParser parseShowThreadWithHtml:html];
+                handler(isSuccess, detail);
+            }
+        } else{
             handler(NO, html);
         }
     }];
@@ -1323,8 +1376,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 - (void)forumDisplayWithId:(int)forumId andPage:(int)page handler:(HandlerWithBool)handler {
     [_browser GETWithURLString:BBS_FORMDISPLAY_PAGE(forumId, page) requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            ViewForumPage *page = [_htmlParser parseThreadListFromHtml:html withThread:forumId andContainsTop:YES];
-            handler(isSuccess, page);
+            ViewForumPage *viewForumPage = [_htmlParser parseThreadListFromHtml:html withThread:forumId andContainsTop:YES];
+            handler(isSuccess, viewForumPage);
         } else {
             handler(NO, html);
         }
@@ -1347,21 +1400,19 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     NSString *searchedUrl = BBS_SEARCH_WITH_SEARCHID(searchid, page);
     [_browser GETWithURLString:searchedUrl requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            
-            if ([html containsString:@"对不起，没有匹配记录。请尝试采用其他条件查询。"]) {
-                handler(NO, @"对不起，没有匹配记录。请尝试采用其他条件查询。");
-            } else if ([html containsString:@"本论坛允许的进行两次搜索的时间间隔必须大于 30 秒。"]){
-                handler(NO, @"本论坛允许的进行两次搜索的时间间隔必须大于 30 秒。");
-            } else{
-                ViewSearchForumPage *page = [_htmlParser parseSearchPageFromHtml:html];
-                
-                if (page != nil && page.threadList != nil && page.threadList.count > 0) {
-                    handler(YES, page);
+
+            NSString *error = [self checkError:html];
+            if (error != nil) {
+                handler(NO, error);
+            } else {
+                ViewSearchForumPage *viewSearchForumPage = [_htmlParser parseSearchPageFromHtml:html];
+
+                if (viewSearchForumPage != nil && viewSearchForumPage.threadList != nil && viewSearchForumPage.threadList.count > 0) {
+                    handler(YES, viewSearchForumPage);
                 } else {
                     handler(NO, @"未知错误");
                 }
             }
-            
 
         } else {
             handler(NO, html);
@@ -1393,8 +1444,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             [parameters setValue:@"sendemail" forKey:@"do"];
             [parameters setValue:[NSString stringWithFormat:@"showthread.php?p=%d#post%d", postId, postId] forKey:@"url"];
             
-            [_browser POSTWithURLString:BBS_REPORT_SENDEMAIL parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
-                handler(isSuccess, html);
+            [_browser POSTWithURLString:BBS_REPORT_SENDEMAIL parameters:parameters requestCallback:^(BOOL success, NSString *string) {
+                handler(success, string);
             }];
         } else {
             handler(NO, html);

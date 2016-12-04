@@ -19,6 +19,10 @@
     return [UIStoryboard storyboardWithName:kCCFStoryboard bundle:nil];
 }
 
+- (UIViewController *)finControllerById:(NSString *)controllerId {
+    UITabBarController *controller = [self instantiateViewControllerWithIdentifier:controllerId];
+    return controller;
+}
 
 - (void)changeRootViewControllerTo:(NSString *)identifier {
 

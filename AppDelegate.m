@@ -22,6 +22,8 @@
 #import "HPURLProtocol.h"
 #import "AFNetworking.h"
 #import "AFNetworkActivityIndicatorManager.h"
+#import "ForumTabBarController.h"
+#import "ForumTableViewController.h"
 
 
 @interface AppDelegate () {
@@ -89,6 +91,8 @@
     [setting registerDefaults:dictonary];
 
 
+
+    // 判断是否登录
     ForumBrowser *browser = [[ForumBrowser alloc] init];
     LoginUser *loginUser = [browser getLoginUser];
 
@@ -97,7 +101,6 @@
     if (loginUser.userID == nil || [loginUser.expireTime compare:date] == NSOrderedAscending) {
         self.window.rootViewController = [[ForumLoginViewController alloc] init];
     }
-
 
     NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
 
@@ -127,6 +130,14 @@
     [AVOSCloud registerForRemoteNotification];
 
 
+    if (launchOptions[@"UIApplicationLaunchOptionsShortcutItemKey"] == nil) {
+        NSLog(@"UIApplicationLaunchOptionsShortcutItemKey yes");
+        return YES;
+    } else {
+        NSLog(@"UIApplicationLaunchOptionsShortcutItemKey no");
+        return NO;
+    }
+    
     return YES;
 }
 
@@ -279,6 +290,31 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
+    }
+}
+
+/** 处理shortcutItem */
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+    NSString *shortCutItemType = shortcutItem.type;
+
+    ForumTabBarController * controller = (ForumTabBarController *) self.window.rootViewController;
+
+    if ([shortCutItemType isEqualToString:@"OPEN_JINGPING_HOME"]){
+        controller.selectedIndex = 2;
+        ForumTableViewController * forumTableViewController = controller.selectedViewController.childViewControllers.firstObject;
+        [forumTableViewController showControllerByShortCutItemType:shortCutItemType];
+    } else if ([shortCutItemType isEqualToString:@"OPEN_ERSHOU_FORUM"]){
+        controller.selectedIndex = 2;
+        ForumTableViewController * forumTableViewController = controller.selectedViewController.childViewControllers.firstObject;
+        [forumTableViewController showControllerByShortCutItemType:shortCutItemType];
+    } else if ([shortCutItemType isEqualToString:@"OPEN_CREATE_NEW_THREAD"]){
+        controller.selectedIndex = 2;
+        ForumTableViewController * forumTableViewController = controller.selectedViewController.childViewControllers.firstObject;
+        [forumTableViewController showControllerByShortCutItemType:shortCutItemType];
+    } else if ([shortCutItemType isEqualToString:@"OPEN_SEARCH_FORUM"]){
+        controller.selectedIndex = 2;
+        ForumTableViewController * forumTableViewController = controller.selectedViewController.childViewControllers.firstObject;
+        [forumTableViewController showControllerByShortCutItemType:shortCutItemType];
     }
 }
 

@@ -17,5 +17,6 @@
 
 - (void)changeRootViewControllerToController:(UIViewController *)controller;
 
+- (UIViewController *)finControllerById:(NSString *)controllerId;
 
 @end

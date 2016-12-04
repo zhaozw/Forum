@@ -11,4 +11,6 @@
 @interface ForumTableViewController : ForumApiBaseTableViewController
 - (IBAction)showLeftDrawer:(id)sender;
 
+- (void) showControllerByShortCutItemType:(NSString *) shortCutItemType;
+
 @end
