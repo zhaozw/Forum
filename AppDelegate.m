@@ -93,12 +93,8 @@
 
 
     // 判断是否登录
-    ForumBrowser *browser = [[ForumBrowser alloc] init];
-    LoginUser *loginUser = [browser getLoginUser];
 
-    NSDate *date = [NSDate date];
-
-    if (loginUser.userID == nil || [loginUser.expireTime compare:date] == NSOrderedAscending) {
+    if (![self isUserHasLogin]) {
         self.window.rootViewController = [[ForumLoginViewController alloc] init];
     }
 
@@ -116,19 +112,17 @@
 
         [data setDBVersion:DB_VERSION];
 
-
+        ForumBrowser *browser = [[ForumBrowser alloc] init];
         [browser logout];
 
         ForumLoginViewController *rootController = [[ForumLoginViewController alloc] init];
 
         UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
         [stortboard changeRootViewControllerToController:rootController];
-
     }
 
 
     [AVOSCloud registerForRemoteNotification];
-
 
     if (launchOptions[@"UIApplicationLaunchOptionsShortcutItemKey"] == nil) {
         NSLog(@"UIApplicationLaunchOptionsShortcutItemKey yes");
@@ -139,6 +133,15 @@
     }
     
     return YES;
+}
+
+- (BOOL)isUserHasLogin {
+    // 判断是否登录
+    ForumBrowser *browser = [[ForumBrowser alloc] init];
+    LoginUser *loginUser = [browser getLoginUser];
+
+    NSDate *date = [NSDate date];
+    return (loginUser.userID != nil && [loginUser.expireTime compare:date] != NSOrderedAscending);
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
@@ -295,23 +298,11 @@
 
 /** 处理shortcutItem */
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
-    NSString *shortCutItemType = shortcutItem.type;
+    if ([self isUserHasLogin]){
+        NSString *shortCutItemType = shortcutItem.type;
 
-    ForumTabBarController * controller = (ForumTabBarController *) self.window.rootViewController;
+        ForumTabBarController * controller = (ForumTabBarController *) self.window.rootViewController;
 
-    if ([shortCutItemType isEqualToString:@"OPEN_JINGPING_HOME"]){
-        controller.selectedIndex = 2;
-        ForumTableViewController * forumTableViewController = controller.selectedViewController.childViewControllers.firstObject;
-        [forumTableViewController showControllerByShortCutItemType:shortCutItemType];
-    } else if ([shortCutItemType isEqualToString:@"OPEN_ERSHOU_FORUM"]){
-        controller.selectedIndex = 2;
-        ForumTableViewController * forumTableViewController = controller.selectedViewController.childViewControllers.firstObject;
-        [forumTableViewController showControllerByShortCutItemType:shortCutItemType];
-    } else if ([shortCutItemType isEqualToString:@"OPEN_CREATE_NEW_THREAD"]){
-        controller.selectedIndex = 2;
-        ForumTableViewController * forumTableViewController = controller.selectedViewController.childViewControllers.firstObject;
-        [forumTableViewController showControllerByShortCutItemType:shortCutItemType];
-    } else if ([shortCutItemType isEqualToString:@"OPEN_SEARCH_FORUM"]){
         controller.selectedIndex = 2;
         ForumTableViewController * forumTableViewController = controller.selectedViewController.childViewControllers.firstObject;
         [forumTableViewController showControllerByShortCutItemType:shortCutItemType];

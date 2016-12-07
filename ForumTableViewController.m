@@ -170,35 +170,83 @@
 - (void)showControllerByShortCutItemType:(NSString *)shortCutItemType {
     
     if ([shortCutItemType isEqualToString:@"OPEN_JINGPING_HOME"]){
-        ForumThreadListTableViewController * controller = (ForumThreadListTableViewController *) [[UIStoryboard mainStoryboard] finControllerById:@"ThreadList"];
         TransBundle * bundle = [[TransBundle alloc] init];
         Forum * child = [[Forum alloc] init];
         child.forumName = @"精品家园";
         child.forumId = 147;
         [bundle putObjectValue:child forKey:@"TransForm"];
-        [self transBundle:bundle forController:controller];
 
+        NSArray<UIViewController *> * childViewControllers = self.navigationController.childViewControllers;
+        for (int i = 0; i < childViewControllers.count; ++i) {
+            UIViewController *child = childViewControllers[i];
+            if ([child isKindOfClass:[ForumThreadListTableViewController class]]) {
+                ForumThreadListTableViewController * ftl = child;
+                NSString * title = ftl.titleNavigationItem.title;
+                if ([title isEqualToString:@"精品家园"]) {
+                    [self transBundle:bundle forController:ftl];
+                    return;
+                }
+            }
+        }
+        
+        ForumThreadListTableViewController * controller = (ForumThreadListTableViewController *) [[UIStoryboard mainStoryboard] finControllerById:@"ThreadList"];
+        
+        [self transBundle:bundle forController:controller];
         [self.navigationController pushViewController:controller animated:YES];
+
 
     } else if ([shortCutItemType isEqualToString:@"OPEN_ERSHOU_FORUM"]){
 
-        ForumThreadListTableViewController * controller = (ForumThreadListTableViewController *) [[UIStoryboard mainStoryboard] finControllerById:@"ThreadList"];
         TransBundle * bundle = [[TransBundle alloc] init];
         Forum * child = [[Forum alloc] init];
         child.forumName = @"二手闲置";
         child.forumId = 174;
+        
+        NSArray<UIViewController *> * childViewControllers = self.navigationController.childViewControllers;
+        for (int i = 0; i < childViewControllers.count; ++i) {
+            UIViewController *child = childViewControllers[i];
+            if ([child isKindOfClass:[ForumThreadListTableViewController class]]) {
+                ForumThreadListTableViewController * ftl = child;
+                NSString * title = ftl.titleNavigationItem.title;
+                if ([title isEqualToString:@"二手闲置"]) {
+                    [self transBundle:bundle forController:ftl];
+                    return;
+                }
+            }
+        }
+        
+        ForumThreadListTableViewController * controller = (ForumThreadListTableViewController *) [[UIStoryboard mainStoryboard] finControllerById:@"ThreadList"];
+
         [bundle putObjectValue:child forKey:@"TransForm"];
         [self transBundle:bundle forController:controller];
 
         [self.navigationController pushViewController:controller animated:YES];
 
     } else if ([shortCutItemType isEqualToString:@"OPEN_CREATE_NEW_THREAD"]){
+
+        NSArray<UIViewController *> * childViewControllers = self.navigationController.viewControllers;
+        for (int i = 0; i < childViewControllers.count; ++i) {
+            UIViewController *child = childViewControllers[i];
+            if ([child isKindOfClass:[ForumNavigationViewController class]]) {
+                return;
+            }
+        }
+
         ForumNavigationViewController *controller = (ForumNavigationViewController *) [[UIStoryboard mainStoryboard] finControllerById:@"ShortCutCreateNewThreadNV"];
-        //[self.navigationController pushViewController:controller animated:YES];
+
         [self presentViewController:controller animated:YES completion:^{
 
         }];
     } else if ([shortCutItemType isEqualToString:@"OPEN_SEARCH_FORUM"]){
+        
+        NSArray<UIViewController *> * childViewControllers = self.navigationController.viewControllers;
+        for (int i = 0; i < childViewControllers.count; ++i) {
+            UIViewController *child = childViewControllers[i];
+            if ([child isKindOfClass:[ForumSearchViewController class]]) {
+                return;
+            }
+        }
+        
         ForumSearchViewController * controller = (ForumSearchViewController *) [[UIStoryboard mainStoryboard] finControllerById:@"SearchForum"];
 
         [self.navigationController pushViewController:controller animated:YES];
