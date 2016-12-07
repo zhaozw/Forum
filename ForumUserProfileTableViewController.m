@@ -49,7 +49,7 @@
 
     if (cacheUsers == nil) {
         cacheUsers = [[coreDateManager selectData:^NSPredicate * {
-            return [NSPredicate predicateWithFormat:@"userID > %d", 0];
+            return [NSPredicate predicateWithFormat:@"forumHost = %@ AND userID > %d", [NSURL URLWithString:BBS_URL].host, 0];
         }] copy];
     }
 
@@ -137,6 +137,7 @@
                 UserEntry *user = (UserEntry *) src;
                 user.userID = profileUserId;
                 user.userAvatar = avatar;
+                user.forumHost = [NSURL URLWithString:BBS_URL].host;
             }];
             // 添加到Cache中
             [avatarCache setValue:avatar forKey:profileUserId];

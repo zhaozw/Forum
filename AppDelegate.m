@@ -54,7 +54,7 @@
     application.applicationIconBadgeNumber = 0;
 
 
-    DB_VERSION = 7;
+    DB_VERSION = 8;
 
 
     API_DEBUG = NO;

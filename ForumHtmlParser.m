@@ -687,7 +687,7 @@
     // 通过ids 过滤出Form
     ForumCoreDataManager *manager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
     NSArray *result = [manager selectData:^NSPredicate * {
-        return [NSPredicate predicateWithFormat:@"forumId IN %@", ids];
+        return [NSPredicate predicateWithFormat:@"forumHost = %@ AND forumId IN %@",[NSURL URLWithString:BBS_URL].host, ids];
     }];
     
     NSMutableArray<Forum *> *forms = [NSMutableArray arrayWithCapacity:result.count];
@@ -936,6 +936,7 @@
     parent.forumId = fixForumId;
     parent.parentForumId = parentFormId;
     parent.forumName = name;
+    parent.forumHost = [NSURL URLWithString:BBS_URL].host;
     
     if (node.childrenCount == 2) {
         IGXMLNodeSet *childSet = [node childrenAtPosition:1].children;

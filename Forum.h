@@ -11,6 +11,7 @@
 
 @property(nonatomic, assign) int forumId;
 @property(nonatomic, strong) NSString *forumName;
+@property(nonatomic, strong) NSString *forumHost;
 @property(nonatomic, assign) int parentForumId;
 
 @property(nonatomic, strong) NSArray<Forum *> *childForums;

@@ -2,7 +2,7 @@
 //  UserEntry+CoreDataProperties.m
 //  
 //
-//  Created by 迪远 王 on 2016/11/19.
+//  Created by WDY on 2016/12/7.
 //
 //
 
@@ -16,5 +16,6 @@
 
 @dynamic userAvatar;
 @dynamic userID;
+@dynamic forumHost;
 
 @end

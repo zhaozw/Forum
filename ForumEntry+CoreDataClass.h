@@ -2,7 +2,7 @@
 //  ForumEntry+CoreDataClass.h
 //  
 //
-//  Created by 迪远 王 on 2016/11/19.
+//  Created by WDY on 2016/12/7.
 //
 //
 

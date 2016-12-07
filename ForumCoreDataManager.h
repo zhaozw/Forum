@@ -19,8 +19,8 @@ typedef NS_ENUM(NSInteger, EntryType) {
 
 #pragma mark Form 相关
 #define kFormEntry @"ForumEntry"
-#define kFormXcda @"forum"
-#define kFormDBName @"forum.sqlite"
+#define kFormXcda @"forum1"
+#define kFormDBName @"forum1.sqlite"
 
 #define kUserEntry @"UserEntry"
 

@@ -148,6 +148,7 @@
                         newsInfo.forumId = [src valueForKey:@"forumId"];
                         newsInfo.forumName = [src valueForKey:@"forumName"];
                         newsInfo.parentForumId = [src valueForKey:@"parentForumId"];
+                        newsInfo.forumHost = [NSURL URLWithString:BBS_URL].host;
 
                     }];
 
