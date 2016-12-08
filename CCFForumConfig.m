@@ -8,14 +8,16 @@
 
 #import "CCFForumConfig.h"
 
-@implementation CCFForumConfig{
+@implementation CCFForumConfig {
     NSURL *url;
+    NSString *urlString;
 }
 
-- (id)initWithHost:(NSString *)host {
+- (instancetype)init {
     self = [super init];
-    url = [NSURL URLWithString:@"https://bbs.et8.net/bbs/"];
-    
+    urlString = @"https://bbs.et8.net/bbs/";
+    url = [NSURL URLWithString:urlString];
+
     return self;
 }
 
@@ -24,171 +26,167 @@
 }
 
 - (UIColor *)themeColor {
-    return nil;
+    return [[UIColor alloc] initWithRed:25.f / 255.f green:67.f / 255.f blue:70.f / 255.f alpha:1];
 }
 
 - (NSString *)archive {
-    return nil;
+    return [urlString stringByAppendingString:@"archive/index.php"];
 }
 
 - (NSString *)newattachmentForThread:(int)threadId time:(NSString *)time postHash:(NSString *)postHash {
-    return nil;
+    return [NSString stringWithFormat:@"%@newattachment.php?t=%d&poststarttime=%@&posthash=%@", urlString, threadId, time, postHash];
 }
 
 - (NSString *)newattachmentForForum:(int)forumId time:(NSString *)time postHash:(NSString *)postHash {
-    return nil;
+    return [NSString stringWithFormat:@"%@newattachment.php?f=%d&poststarttime=%@&posthash=%@", urlString, forumId, time, postHash];
 }
 
 - (NSString *)newattachment {
-    return nil;
+    return [NSString stringWithFormat:@"%@newattachment.php", urlString];
 }
 
 - (NSString *)search {
-    return nil;
+    return [urlString stringByAppendingString:@"search.php"];
 }
 
 - (NSString *)searchWithSearchId:(NSString *)searchId withPage:(int)page {
-    return nil;
+    return [NSString stringWithFormat:@"%@search.php?searchid=%@&pp=30&page=%d",urlString, searchId, page];
 }
 
 - (NSString *)searchThreadWithUserId:(NSString *)userId {
-    return nil;
+    return [NSString stringWithFormat:@"%@search.php?do=finduser&u=%@&starteronly=1", urlString ,userId];
 }
 
 - (NSString *)searchMyPostWithUserId:(NSString *)userId {
-    return nil;
+    return [NSString stringWithFormat:@"%@search.php?do=finduser&userid=%@", urlString ,userId];
 }
 
-- (NSString *)searchMyThreadWithUserId:(NSString *)userId {
-    return nil;
+- (NSString *)searchMyThreadWithUserId:(NSString *)name {
+    return [NSString stringWithFormat:@"%@search.php?do=process&showposts=0&starteronly=1&exactname=1&searchuser=%@", urlString ,name];
 }
 
 - (NSString *)favForumWithId:(NSString *)forumId {
-    return nil;
+    return [NSString stringWithFormat:@"%@subscription.php?do=addsubscription&f=%@", urlString,forumId];
 }
 
 - (NSString *)favForumWithIdParam:(NSString *)forumId {
-    return nil;
+    return [NSString stringWithFormat:@"%@subscription.php?do=doaddsubscription&forumid=%@",urlString,forumId];
 }
 
 - (NSString *)unfavForumWithId:(NSString *)forumId {
-    return nil;
+    return [NSString stringWithFormat:@"%@subscription.php?do=removesubscription&f=%@",urlString, forumId];
 }
 
-- (NSString *)favThreadWithIdPre:(NSString *)forumId {
-    return nil;
+- (NSString *)favThreadWithIdPre:(NSString *)threadId {
+    return [NSString stringWithFormat:@"%@subscription.php?do=addsubscription&t=%@",urlString, threadId];
 }
 
-- (NSString *)favThreadWithId:(NSString *)forumId {
-    return nil;
+- (NSString *)favThreadWithId:(NSString *)threadId {
+    return [NSString stringWithFormat:@"%@subscription.php?do=doaddsubscription&threadid=%@", urlString, threadId];
 }
 
-- (NSString *)unfavThreadWithId:(NSString *)forumId {
-    return nil;
+- (NSString *)unfavThreadWithId:(NSString *)threadId {
+    return [NSString stringWithFormat:@"%@subscription.php?do=removesubscription&t=%@",BBS_URL, threadId];
 }
 
-- (NSString *)listfavThreadWithId:(NSString *)forumId {
-    return nil;
-}
-
-- (NSString *)listfavPostWithPage:(int)page {
-    return nil;
+- (NSString *)listfavThreadWithId:(int)page {
+    return [NSString stringWithFormat:@"%@subscription.php?do=viewsubscription&pp=35&folderid=0&sort=lastpost&order=desc&page=%d", BBS_URL, page];
 }
 
 - (NSString *)forumDisplayWithId:(NSString *)forumId {
-    return nil;
+    return [NSString stringWithFormat:@"%@forumdisplay.php?f=%@", urlString, forumId];
 }
 
 - (NSString *)forumDisplayWithId:(NSString *)forumId withPage:(int)page {
-    return nil;
+    return [NSString stringWithFormat:@"%@forumdisplay.php?f=%@&order=desc&page=%d", urlString, forumId, page];
 }
 
 - (NSString *)searchNewThread {
-    return nil;
+    return [NSString stringWithFormat:@"%@search.php?do=getnew", urlString];
 }
 
 - (NSString *)searchNewThreadToday {
-    return nil;
+    return [NSString stringWithFormat:@"%@search.php?do=getdaily",urlString];
 }
 
 - (NSString *)newReplyWithThreadId:(int)threadId {
-    return nil;
+    return [NSString stringWithFormat:@"%@newreply.php?do=postreply&t=%d",urlString, threadId];
 }
 
 - (NSString *)showThreadWithThreadId:(NSString *)threadId {
-    return nil;
+    return [NSString stringWithFormat:@"%@showthread.php?t=%@",urlString, threadId];
 }
 
 - (NSString *)showThreadWithThreadId:(NSString *)threadId withPage:(int)page {
-    return nil;
+    return [NSString stringWithFormat:@"%@showthread.php?t=%@&page=%d",urlString, threadId, page];
 }
 
 - (NSString *)showThreadWithPostId:(NSString *)postId withPostCout:(int)postCount {
-    return nil;
+    return [NSString stringWithFormat:@"%@showpost.php?p=%@&postcount=%d",urlString, postId, postCount];
 }
 
 - (NSString *)showThreadWithP:(NSString *)p {
-    return nil;
+    return [NSString stringWithFormat:@"%@showthread.php?p=%@",urlString, p];
 }
 
 - (NSString *)avatar:(NSString *)avatar {
-    return nil;
+    return [NSString stringWithFormat:@"%@customavatars%@",urlString, avatar];
 }
 
 - (NSString *)avatarBase {
-    return nil;
+    return [BBS_URL stringByAppendingString:@"customavatars"];
 }
 
 - (NSString *)avatarNo {
-    return nil;
+    return [[self avatarBase] stringByAppendingString:@"/no_avatar.gif"];
 }
 
 - (NSString *)memberWithUserId:(NSString *)userId {
-    return nil;
+    return [NSString stringWithFormat:@"%@member.php?u=%@", BBS_URL, userId];
 }
 
 - (NSString *)login {
-    return nil;
+    return [NSString stringWithFormat:@"%@login.php?do=login", BBS_URL];
 }
 
 - (NSString *)loginvCode {
-    return nil;
+    return [NSString stringWithFormat:@"%@login.php?do=vcode", BBS_URL];
 }
 
 - (NSString *)newThreadWithForumId:(NSString *)forumId {
-    return nil;
+    return [NSString stringWithFormat:@"%@newthread.php?do=newthread&f=%d", BBS_URL,forumId];
 }
 
 - (NSString *)privateWithType:(int)type withPage:(int)page {
-    return nil;
+    return [NSString stringWithFormat:@"%@private.php?folderid=%d&pp=30&sort=date&page=%d", BBS_URL,type, page];
 }
 
 - (NSString *)privateShowWithMessageId:(int)messageId {
-    return nil;
+    return [NSString stringWithFormat:@"%@private.php?do=showpm&pmid=%d", BBS_URL,messageId];
 }
 
 - (NSString *)privateReplyWithMessageIdPre:(int)messageId {
-    return nil;
+    return [NSString stringWithFormat:@"%@private.php?do=insertpm&pmid=%d", BBS_URL,messageId];
 }
 
 - (NSString *)privateReplyWithMessage {
-    return nil;
+    return [NSString stringWithFormat:@"%@private.php?do=insertpm&pmid=0", BBS_URL];
 }
 
 - (NSString *)privateNewPre {
-    return nil;
+    return [NSString stringWithFormat:@"%@private.php?do=newpm", BBS_URL];
 }
 
 - (NSString *)usercp {
-    return nil;
+    return [NSString stringWithFormat:@"%@usercp.php", BBS_URL];
 }
 
 - (NSString *)report {
-    return nil;
+    return [NSString stringWithFormat:@"%@report.php?do=sendemail", BBS_URL];
 }
 
 - (NSString *)reportWithPostId:(int)postId {
-    return nil;
+    return [NSString stringWithFormat:@"%@report.php?p=%d", BBS_URL,postId];
 }
 
 @end

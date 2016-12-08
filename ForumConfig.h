@@ -36,7 +36,7 @@
 - (NSString *) searchWithSearchId:(NSString *)searchId withPage:(int)page;
 - (NSString *) searchThreadWithUserId:(NSString *)userId;
 - (NSString *) searchMyPostWithUserId:(NSString *)userId;
-- (NSString *) searchMyThreadWithUserId:(NSString *)userId;
+- (NSString *) searchMyThreadWithUserId:(NSString *)name;
 
 // 收藏论坛
 - (NSString *) favForumWithId:(NSString *)forumId;
@@ -44,13 +44,10 @@
 - (NSString *) unfavForumWithId:(NSString *)forumId;
 
 // 收藏主题
-- (NSString *) favThreadWithIdPre:(NSString *)forumId;
-- (NSString *) favThreadWithId:(NSString *)forumId;
-- (NSString *) unfavThreadWithId:(NSString *)forumId;
-- (NSString *) listfavThreadWithId:(NSString *)forumId;
-
-// 列出收藏的帖子
-- (NSString *) listfavPostWithPage:(int)page;
+- (NSString *) favThreadWithIdPre:(NSString *)threadId;
+- (NSString *) favThreadWithId:(NSString *)threadId;
+- (NSString *) unfavThreadWithId:(NSString *)threadId;
+- (NSString *) listfavThreadWithId:(int)page;
 
 // FormDisplay
 - (NSString *) forumDisplayWithId:(NSString *)forumId;
