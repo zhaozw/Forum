@@ -18,8 +18,6 @@
 
 + (ForumConfig*)configWithForumHost:(NSString *)host;
 
-#define BBS_URL @"https://bbs.et8.net/bbs/"
-
 - (UIColor *) themeColor;
 
 - (NSString *) host;

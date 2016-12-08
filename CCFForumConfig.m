@@ -86,11 +86,11 @@
 }
 
 - (NSString *)unfavThreadWithId:(NSString *)threadId {
-    return [NSString stringWithFormat:@"%@subscription.php?do=removesubscription&t=%@",BBS_URL, threadId];
+    return [NSString stringWithFormat:@"%@subscription.php?do=removesubscription&t=%@",urlString, threadId];
 }
 
 - (NSString *)listfavThreadWithId:(int)page {
-    return [NSString stringWithFormat:@"%@subscription.php?do=viewsubscription&pp=35&folderid=0&sort=lastpost&order=desc&page=%d", BBS_URL, page];
+    return [NSString stringWithFormat:@"%@subscription.php?do=viewsubscription&pp=35&folderid=0&sort=lastpost&order=desc&page=%d", urlString, page];
 }
 
 - (NSString *)forumDisplayWithId:(NSString *)forumId {
@@ -134,7 +134,7 @@
 }
 
 - (NSString *)avatarBase {
-    return [BBS_URL stringByAppendingString:@"customavatars"];
+    return [urlString stringByAppendingString:@"customavatars"];
 }
 
 - (NSString *)avatarNo {
@@ -142,51 +142,51 @@
 }
 
 - (NSString *)memberWithUserId:(NSString *)userId {
-    return [NSString stringWithFormat:@"%@member.php?u=%@", BBS_URL, userId];
+    return [NSString stringWithFormat:@"%@member.php?u=%@", urlString, userId];
 }
 
 - (NSString *)login {
-    return [NSString stringWithFormat:@"%@login.php?do=login", BBS_URL];
+    return [NSString stringWithFormat:@"%@login.php?do=login", urlString];
 }
 
 - (NSString *)loginvCode {
-    return [NSString stringWithFormat:@"%@login.php?do=vcode", BBS_URL];
+    return [NSString stringWithFormat:@"%@login.php?do=vcode", urlString];
 }
 
 - (NSString *)newThreadWithForumId:(NSString *)forumId {
-    return [NSString stringWithFormat:@"%@newthread.php?do=newthread&f=%@", BBS_URL,forumId];
+    return [NSString stringWithFormat:@"%@newthread.php?do=newthread&f=%@", urlString,forumId];
 }
 
 - (NSString *)privateWithType:(int)type withPage:(int)page {
-    return [NSString stringWithFormat:@"%@private.php?folderid=%d&pp=30&sort=date&page=%d", BBS_URL,type, page];
+    return [NSString stringWithFormat:@"%@private.php?folderid=%d&pp=30&sort=date&page=%d", urlString,type, page];
 }
 
 - (NSString *)privateShowWithMessageId:(int)messageId {
-    return [NSString stringWithFormat:@"%@private.php?do=showpm&pmid=%d", BBS_URL,messageId];
+    return [NSString stringWithFormat:@"%@private.php?do=showpm&pmid=%d", urlString,messageId];
 }
 
 - (NSString *)privateReplyWithMessageIdPre:(int)messageId {
-    return [NSString stringWithFormat:@"%@private.php?do=insertpm&pmid=%d", BBS_URL,messageId];
+    return [NSString stringWithFormat:@"%@private.php?do=insertpm&pmid=%d", urlString,messageId];
 }
 
 - (NSString *)privateReplyWithMessage {
-    return [NSString stringWithFormat:@"%@private.php?do=insertpm&pmid=0", BBS_URL];
+    return [NSString stringWithFormat:@"%@private.php?do=insertpm&pmid=0", urlString];
 }
 
 - (NSString *)privateNewPre {
-    return [NSString stringWithFormat:@"%@private.php?do=newpm", BBS_URL];
+    return [NSString stringWithFormat:@"%@private.php?do=newpm", urlString];
 }
 
 - (NSString *)usercp {
-    return [NSString stringWithFormat:@"%@usercp.php", BBS_URL];
+    return [NSString stringWithFormat:@"%@usercp.php", urlString];
 }
 
 - (NSString *)report {
-    return [NSString stringWithFormat:@"%@report.php?do=sendemail", BBS_URL];
+    return [NSString stringWithFormat:@"%@report.php?do=sendemail", urlString];
 }
 
 - (NSString *)reportWithPostId:(int)postId {
-    return [NSString stringWithFormat:@"%@report.php?p=%d", BBS_URL,postId];
+    return [NSString stringWithFormat:@"%@report.php?p=%d", urlString,postId];
 }
 
 @end
