@@ -154,7 +154,7 @@
 }
 
 - (NSString *)newThreadWithForumId:(NSString *)forumId {
-    return [NSString stringWithFormat:@"%@newthread.php?do=newthread&f=%d", BBS_URL,forumId];
+    return [NSString stringWithFormat:@"%@newthread.php?do=newthread&f=%@", BBS_URL,forumId];
 }
 
 - (NSString *)privateWithType:(int)type withPage:(int)page {
