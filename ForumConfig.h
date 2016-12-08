@@ -23,8 +23,9 @@
 // 附件相关
 #define BBS_NEWATTACHMENT_THREAD(threadId, time, hash) [NSString stringWithFormat:@"%@newattachment.php?t=%d&poststarttime=%@&posthash=%@", BBS_URL, threadId, time, hash]
 #define BBS_NEWATTACHMENT_FORM(forumId, time, hash) [NSString stringWithFormat:@"%@newattachment.php?f=%d&poststarttime=%@&posthash=%@", BBS_URL, forumId, time, hash]
+
 // 管理附件
-#define BBS_MANAGE_ATT [NSString stringWithFormat:@"%@newattachment.php?do=manageattach&p=", BBS_URL]
+#define BBS_MANAGE_ATT [NSString stringWithFormat:@"%@newattachment.php", BBS_URL]
 //#define BBS_NEWATTACHMENT(...) [NSString stringWithFormat:BBS_NEWATTACHMENT_PATTERN,##__VA_ARGS__]
 
 // 搜索相关
