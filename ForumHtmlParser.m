@@ -11,7 +11,7 @@
 
 @implementation ForumHtmlParser
 
-- (instancetype)initWithForumHost:(ForumConfig *)config {
+- (instancetype)initWithForumConfig:(ForumConfig *)config {
     self = [super init];
     if ([config.host isEqualToString:@"bbs.et8.net"]){
         return [[CCFForumHtmlParser alloc] init];

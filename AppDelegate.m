@@ -112,7 +112,7 @@
 
         [data setDBVersion:DB_VERSION];
 
-        ForumBrowser *browser = [ForumBrowser browserWithForumHost:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
+        ForumBrowser *browser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
         [browser logout];
 
         ForumLoginViewController *rootController = [[ForumLoginViewController alloc] init];
@@ -137,7 +137,7 @@
 
 - (BOOL)isUserHasLogin {
     // 判断是否登录
-    ForumBrowser *browser = [ForumBrowser browserWithForumHost:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
+    ForumBrowser *browser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
     LoginUser *loginUser = [browser getLoginUser];
 
     NSDate *date = [NSDate date];

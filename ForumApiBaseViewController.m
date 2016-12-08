@@ -16,7 +16,7 @@
 #pragma mark initData
 
 - (void)initData {
-    self.forumBrowser = [ForumBrowser browserWithForumHost:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
+    self.forumBrowser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
 }
 
 #pragma mark override-init

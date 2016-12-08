@@ -12,6 +12,6 @@
 
 @interface ForumHtmlParser : NSObject <ForumParser>
 
-- (instancetype) initWithForumHost:(ForumConfig *)config;
+- (instancetype)initWithForumConfig:(ForumConfig *)config;
 
 @end
