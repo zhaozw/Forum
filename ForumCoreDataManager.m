@@ -7,8 +7,7 @@
 
 #import "ForumCoreDataManager.h"
 #import "ForumEntry+CoreDataClass.h"
-#import "AConfig.h"
-
+#import "AppDelegate.h"
 
 @implementation ForumCoreDataManager
 
@@ -28,7 +27,8 @@
 - (NSArray<Forum *> *)selectFavForums:(NSArray *)ids {
 
     NSArray<ForumEntry *> *entrys = [self selectData:^NSPredicate * {
-        return [NSPredicate predicateWithFormat:@"forumHost = %@ AND forumId IN %@", [NSURL URLWithString:BBS_URL].host, ids];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        return [NSPredicate predicateWithFormat:@"forumHost = %@ AND forumId IN %@", [NSURL URLWithString:appDelegate.forumBaseUrl].host, ids];
     }];
 
     NSMutableArray<Forum *> *forms = [NSMutableArray arrayWithCapacity:entrys.count];
@@ -45,8 +45,9 @@
 
 - (NSArray<Forum *> *)selectAllForums {
 
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSArray<ForumEntry *> *entrys = [self selectData:^NSPredicate * {
-        return [NSPredicate predicateWithFormat:@"forumHost = %@ AND parentForumId = %d", [NSURL URLWithString:BBS_URL].host , -1];
+        return [NSPredicate predicateWithFormat:@"forumHost = %@ AND parentForumId = %d", [NSURL URLWithString:appDelegate.forumBaseUrl].host , -1];
     }];
 
     NSMutableArray<Forum *> *forms = [NSMutableArray arrayWithCapacity:entrys.count];

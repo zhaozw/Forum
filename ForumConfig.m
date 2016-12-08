@@ -64,7 +64,7 @@ static CCFForumConfig *_ccfForumConfig;
     return nil;
 }
 
-- (NSString *)searchMyThreadWithUserId:(NSString *)userId {
+- (NSString *)searchMyThreadWithUserName:(NSString *)userId {
     return nil;
 }
 

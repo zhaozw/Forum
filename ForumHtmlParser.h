@@ -14,4 +14,5 @@
 
 - (instancetype)initWithForumConfig:(ForumConfig *)config;
 
+@property (nonatomic, strong) ForumConfig *config;
 @end

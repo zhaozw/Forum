@@ -12,7 +12,7 @@
 
 #import "ForumWebViewController.h"
 #import "UIStoryboard+Forum.h"
-#import "AConfig.h"
+#import "AppDelegate.h"
 
 #import "TransBundleDelegate.h"
 
@@ -64,7 +64,8 @@
 
             NSString *html = [NSString stringWithFormat:THREAD_PAGE, content.pmTitle, postInfo];
 
-            [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:appDelegate.forumBaseUrl]];
 
             [self.webView.scrollView.mj_header endRefreshing];
         }];

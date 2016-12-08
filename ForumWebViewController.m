@@ -19,7 +19,7 @@
 #import "ActionSheetPicker.h"
 #import "NSString+Extensions.h"
 #import "ForumUserProfileTableViewController.h"
-#import "AConfig.h"
+#import "AppDelegate.h"
 
 #import "TransBundleDelegate.h"
 
@@ -60,7 +60,10 @@
 
         for (Post *post in posts) {
 
-            NSString *avatar = BBS_AVATAR(post.postUserInfo.userAvatar);
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            ForumConfig *forumConfig = [ForumConfig configWithForumHost:appDelegate.forumHost];
+
+            NSString *avatar = [forumConfig avatar:post.postUserInfo.userAvatar];
             NSString *louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
             NSString *postInfo = [NSString stringWithFormat:POST_MESSAGE, post.postID, post.postID, post.postUserInfo.userName, louceng, post.postUserInfo.userID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
 
@@ -79,8 +82,10 @@
         }
 
         NSString *cacheHtml = pageDic[@(currentShowThreadPage.currentPage)];
+
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         if (![cacheHtml isEqualToString:threadPage.originalHtml]) {
-            [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
+            [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:appDelegate.forumBaseUrl]];
             pageDic[@(currentShowThreadPage.currentPage)] = html;
         }
 
@@ -101,7 +106,10 @@
 
         for (Post *post in posts) {
 
-            NSString *avatar = BBS_AVATAR(post.postUserInfo.userAvatar);
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            ForumConfig *forumConfig = [ForumConfig configWithForumHost:appDelegate.forumHost];
+
+            NSString *avatar = [forumConfig avatar:post.postUserInfo.userAvatar];
             NSString *louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
             NSString *postInfo = [NSString stringWithFormat:POST_MESSAGE, post.postID, post.postID, post.postUserInfo.userName, louceng, post.postUserInfo.userID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
 
@@ -121,7 +129,8 @@
 
         NSString *cacheHtml = pageDic[@(currentShowThreadPage.currentPage)];
         if (![cacheHtml isEqualToString:threadPage.originalHtml]) {
-            [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:appDelegate.forumBaseUrl]];
             pageDic[@(currentShowThreadPage.currentPage)] = html;
         }
 
@@ -225,8 +234,11 @@
 
         NSString *lis = @"";
 
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        ForumConfig *forumConfig = [ForumConfig configWithForumHost:appDelegate.forumHost];
         for (Post *post in posts) {
-            NSString *avatar = BBS_AVATAR(post.postUserInfo.userAvatar);
+
+            NSString *avatar = [forumConfig avatar:post.postUserInfo.userAvatar];
             NSString *louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
             NSString *postInfo = [NSString stringWithFormat:POST_MESSAGE, post.postID, post.postID, post.postUserInfo.userName, louceng, post.postUserInfo.userID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
             lis = [lis stringByAppendingString:postInfo];
@@ -238,7 +250,7 @@
         // 缓存当前页面
         pageDic[@(currentShowThreadPage.currentPage)] = threadPage.originalHtml;
 
-        [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
+        [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:appDelegate.forumBaseUrl]];
 
         [self.webView.scrollView.mj_header endRefreshing];
 
@@ -282,7 +294,11 @@
 
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 [self.navigationController popViewControllerAnimated:YES];
-                NSURL *nsurl = [NSURL URLWithString:BBS_SHOWTHREAD_PAGE(threadId, page)];
+
+                AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                ForumConfig *forumConfig = [ForumConfig configWithForumHost:appDelegate.forumHost];
+
+                NSURL *nsurl = [NSURL URLWithString:[forumConfig showThreadWithThreadId:[NSString stringWithFormat:@"%d", threadId] withPage:page]];
                 [[UIApplication sharedApplication] openURL:nsurl];
             }];
 
@@ -309,8 +325,11 @@
 
         NSString *lis = @"";
 
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        ForumConfig *forumConfig = [ForumConfig configWithForumHost:appDelegate.forumHost];
+
         for (Post *post in posts) {
-            NSString *avatar = BBS_AVATAR(post.postUserInfo.userAvatar);
+            NSString *avatar = [forumConfig avatar:post.postUserInfo.userAvatar];
             NSString *louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
             NSString *postInfo = [NSString stringWithFormat:POST_MESSAGE, post.postID, post.postID, post.postUserInfo.userName, louceng, post.postUserInfo.userID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
             lis = [lis stringByAppendingString:postInfo];
@@ -327,7 +346,7 @@
 
         pageDic[@(currentShowThreadPage.currentPage)] = threadPage.originalHtml;
 
-        [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
+        [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:appDelegate.forumBaseUrl]];
 
         [self.webView.scrollView.mj_header endRefreshing];
 
@@ -375,9 +394,12 @@
 
                 NSMutableArray *posts = threadPage.postList;
 
+                AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                ForumConfig *forumConfig = [ForumConfig configWithForumHost:appDelegate.forumHost];
+
                 for (int i = currentShowThreadPage.postList.count; i < posts.count; i++) {
                     Post *post = posts[i];
-                    NSString *avatar = BBS_AVATAR(post.postUserInfo.userAvatar);
+                    NSString *avatar = [forumConfig avatar:post.postUserInfo.userAvatar];
                     NSString *louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
 
                     [self addPostByJSElement:post avatar:avatar louceng:louceng];
@@ -418,9 +440,11 @@
 
         NSString *lis = @"";
 
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        ForumConfig *forumConfig = [ForumConfig configWithForumHost:appDelegate.forumHost];
         for (Post *post in posts) {
 
-            NSString *avatar = BBS_AVATAR(post.postUserInfo.userAvatar);
+            NSString *avatar = [forumConfig avatar:post.postUserInfo.userAvatar];
             NSString *louceng = [post.postLouCeng stringWithRegular:@"\\d+"];
             NSString *postInfo = [NSString stringWithFormat:POST_MESSAGE, post.postID, post.postID, post.postUserInfo.userName, louceng, post.postUserInfo.userID, avatar, post.postUserInfo.userName, post.postLouCeng, post.postTime, post.postContent];
 
@@ -439,7 +463,8 @@
         }
 
         if (![cacheHtml isEqualToString:threadPage.originalHtml]) {
-            [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BBS_URL]];
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:appDelegate.forumBaseUrl]];
             pageDic[@(page)] = html;
         }
 
@@ -589,7 +614,11 @@
                 }];
 
             } else if (buttonIndex == 2) {
-                NSString *postUrl = BBS_SHOWTHREAD_POSTCOUNT(postId, louCeng);
+
+                AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                ForumConfig *forumConfig = [ForumConfig configWithForumHost:appDelegate.forumHost];
+
+                NSString *postUrl = [forumConfig showThreadWithPostId:[NSString stringWithFormat:@"%d",postId] withPostCout:louCeng];//BBS_SHOWTHREAD_POSTCOUNT(postId, louCeng);
                 UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
                 pasteboard.string = postUrl;
                 [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
@@ -760,13 +789,20 @@
         if (buttonIndex == 0) {
             // 复制贴链接
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-            pasteboard.string = BBS_SHOWTHREAD_PAGE(threadID, 0);
+
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            ForumConfig *forumConfig = [ForumConfig configWithForumHost:appDelegate.forumHost];
+
+            pasteboard.string = [forumConfig showThreadWithThreadId:[NSString stringWithFormat:@"%d", threadID] withPage:0];
 
             [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
 
         } else if (buttonIndex == 1) {
             // 在浏览器种查看
-            NSURL *url = [NSURL URLWithString:BBS_SHOWTHREAD_PAGE(threadID, 1)];
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            ForumConfig *forumConfig = [ForumConfig configWithForumHost:appDelegate.forumHost];
+
+            NSURL *url = [NSURL URLWithString:[forumConfig showThreadWithThreadId:[NSString stringWithFormat:@"%d", threadID] withPage:1]];
             [[UIApplication sharedApplication] openURL:url];
         } else if (buttonIndex == 2) {
             [self reply:self];

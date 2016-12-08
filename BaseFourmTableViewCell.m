@@ -7,7 +7,7 @@
 
 #import "BaseFourmTableViewCell.h"
 #import <UIImageView+WebCache.h>
-#import "AConfig.h"
+#import "AppDelegate.h"
 
 @implementation BaseFourmTableViewCell {
     UIImage *defaultAvatarImage;
@@ -50,8 +50,9 @@
 
     coreDateManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
     if (cacheUsers == nil) {
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         cacheUsers = [[coreDateManager selectData:^NSPredicate * {
-            return [NSPredicate predicateWithFormat:@"forumHost = %@ AND userID > %d", [NSURL URLWithString:BBS_URL].host, 0];
+            return [NSPredicate predicateWithFormat:@"forumHost = %@ AND userID > %d", [NSURL URLWithString:appDelegate.forumBaseUrl].host, 0];
         }] copy];
     }
 
@@ -83,12 +84,13 @@
         [_forumBrowser getAvatarWithUserId:userId handler:^(BOOL isSuccess, NSString *avatar) {
 
             if (isSuccess) {
+                AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 // 存入数据库
                 [coreDateManager insertOneData:^(id src) {
                     UserEntry *user = (UserEntry *) src;
                     user.userID = userId;
                     user.userAvatar = avatar;
-                    user.forumHost = [NSURL URLWithString:BBS_URL].host;
+                    user.forumHost = [NSURL URLWithString:appDelegate.forumBaseUrl].host;
                 }];
                 // 添加到Cache中
                 [avatarCache setValue:avatar forKey:userId];
@@ -107,7 +109,9 @@
         }];
     } else {
 
-        if ([avatarInArray isEqualToString:NO_AVATAR_URL]) {
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        ForumConfig *forumConfig = [ForumConfig configWithForumHost:appDelegate.forumHost];
+        if ([avatarInArray isEqualToString:forumConfig.avatarNo]) {
             [avatarImageView setImage:defaultAvatarImage];
         } else {
 

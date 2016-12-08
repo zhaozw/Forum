@@ -29,6 +29,7 @@
 @interface AppDelegate () {
     BOOL API_DEBUG;
     int DB_VERSION;
+    NSString * currentHost;
 }
 @end
 
@@ -226,6 +227,20 @@
     // The directory the application uses to store the Core Data store file. This code uses a directory named "com.andforce.Forum" in the application's documents directory.
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
+- (NSString *)forumBaseUrl {
+    //return currentHost;
+    return @"https://bbs.et8.net/bbs/";
+}
+
+- (void)updateForumBaseUrl:(NSString *)url {
+    currentHost = url;
+}
+
+- (NSString *)forumHost {
+    return [NSURL URLWithString:[self forumBaseUrl]].host;
+}
+
 
 - (NSManagedObjectModel *)managedObjectModel {
     // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.

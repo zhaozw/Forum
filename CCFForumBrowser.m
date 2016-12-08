@@ -8,7 +8,6 @@
 #import "NSString+Extensions.h"
 #import "NSUserDefaults+Extensions.h"
 #import "NSUserDefaults+Setting.h"
-#import "AConfig.h"
 #import <AFImageDownloader.h>
 #import "ForumHtmlParser.h"
 #import "AFHTTPSessionManager+SimpleAction.h"
@@ -78,8 +77,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     [parameters setValue:md5pwd forKey:@"vb_login_md5password"];
     [parameters setValue:md5pwd forKey:@"vb_login_md5password_utf"];
 
-    NSURL *loginUrl = [NSURL URLWithString:BBS_LOGIN];
-    [self.browser POSTWithURLString:[loginUrl absoluteString] parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+    [self.browser POSTWithURLString:self.config.login parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
 
             NSString *userName = [html stringWithRegular:@"<p><strong>.*</strong></p>" andChild:@"，.*。"];
@@ -102,7 +100,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)refreshVCodeToUIImageView:(UIImageView *)vCodeImageView {
-    NSString *url = BBS_VCODE;
+    NSString *url = self.config.loginvCode;
 
     AFImageDownloader *downloader = [[vCodeImageView class] sharedImageDownloader];
     id <AFImageRequestCache> imageCache = downloader.imageCache;
@@ -143,7 +141,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 - (void)logout {
     [[NSUserDefaults standardUserDefaults] clearCookie];
 
-    NSURL *url = [NSURL URLWithString:BBS_URL];
+    NSURL *url = [NSURL URLWithString:self.config.url];
     if (url) {
         NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url];
         for (int i = 0; i < [cookies count]; i++) {
@@ -154,7 +152,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)listAllForums:(HandlerWithBool)handler {
-    [self.browser GETWithURLString:BBS_ARCHIVE requestCallback:^(BOOL isSuccess, NSString *html) {
+    [self.browser GETWithURLString:self.config.archive requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             NSArray<Forum *> *parserForums = [self.htmlParser parserForums:html];
             if (parserForums != nil && parserForums.count > 0) {
@@ -193,7 +191,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     [parameters setValue:@"4" forKey:@"polloptions"];
 
 
-    [self.browser POSTWithURLString:BBS_NEW_THREAD(fId) parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+    [self.browser POSTWithURLString:[self.config newThreadWithForumId:[NSString stringWithFormat:@"%d", fId]] parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             [self saveCookie];
         }
@@ -205,14 +203,14 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 // private 进入图片管理页面，准备上传图片
 - (void)uploadImagePrepair:(int)forumId startPostTime:(NSString *)time postHash:(NSString *)hash :(HandlerWithBool)callback {
 
-    [self.browser GETWithURLString:BBS_NEWATTACHMENT_FORM(forumId, time, hash) requestCallback:^(BOOL isSuccess, NSString *html) {
+    [self.browser GETWithURLString:[self.config newattachmentForForum:forumId time:time postHash:hash] requestCallback:^(BOOL isSuccess, NSString *html) {
         callback(isSuccess, html);
     }];
 }
 
 // private
 - (void)uploadImagePrepairFormSeniorReply:(int)threadId startPostTime:(NSString *)time postHash:(NSString *)hash :(HandlerWithBool)callback {
-    NSString *url = BBS_NEWATTACHMENT_THREAD(threadId, time, hash);
+    NSString *url = [self.config newattachmentForThread:threadId time:time postHash:hash];
     [self.browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         callback(isSuccess, html);
     }];
@@ -333,7 +331,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 //private  获取发新帖子的Posttime hash 和token
 - (void)createNewThreadPrepair:(int)forumId :(CallBack)callback {
 
-    [self.browser GETWithURLString:BBS_NEW_THREAD(forumId) requestCallback:^(BOOL isSuccess, NSString *html) {
+    [self.browser GETWithURLString:[self.config newThreadWithForumId:[NSString stringWithFormat:@"%d", forumId]] requestCallback:^(BOOL isSuccess, NSString *html) {
 
         if (isSuccess) {
             NSString *token = [self.htmlParser parseSecurityToken:html];
@@ -450,7 +448,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 
     if (imageId < toUploadImages.count) {
         NSData *image = toUploadImages[(NSUInteger) imageId];
-        [self uploadImage:[NSURL URLWithString:BBS_MANAGE_ATT] :uploadToken fId:fId postTime:uploadTime hash:uploadHash uploadImage:image callback:^(BOOL success, id html) {
+        [self uploadImage:[NSURL URLWithString:self.config.newattachment] :uploadToken fId:fId postTime:uploadTime hash:uploadHash uploadImage:image callback:^(BOOL success, id html) {
             [NSThread sleepForTimeInterval:2.0f];
 
             [[NSNotificationCenter defaultCenter] postNotificationName:@"CREATE_THREAD_UPLOAD_IMAGE" object:self userInfo:@{@"uploadToken": uploadToken, @"fId": @(fId), @"uploadTime": uploadTime, @"uploadHash": uploadHash, @"imageId": @(imageId + 1)}];
@@ -490,7 +488,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
         message = [message stringByAppendingString:[self buildSignature]];
     }
 
-    NSURL *loginUrl = [NSURL URLWithString:BBS_REPLY(threadId)];
+    NSURL *loginUrl = [NSURL URLWithString:[self.config newReplyWithThreadId:threadId]];//(threadId)];
 
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 
@@ -551,7 +549,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)quickReplyPostWithThreadId:(int)threadId forPostId:(int)postId andMessage:(NSString *)message securitytoken:(NSString *)token ajaxLastPost:(NSString *)ajax_lastpost handler:(HandlerWithBool)handler {
-    NSString *url = BBS_REPLY(threadId);
+    NSString *url = [self.config newReplyWithThreadId:threadId];//(threadId);
 
     if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
         message = [message stringByAppendingString:[self buildSignature]];
@@ -601,7 +599,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 // private
 - (void)seniorReplyWithThreadId:(int)threadId andMessage:(NSString *)message securitytoken:(NSString *)token posthash:(NSString *)posthash poststarttime:(NSString *)poststarttime handler:(HandlerWithBool)handler {
 
-    NSString *url = BBS_REPLY(threadId);
+    NSString *url = [self.config newReplyWithThreadId:threadId];//(threadId);
 
     if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
         message = [message stringByAppendingString:[self buildSignature]];
@@ -738,7 +736,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)seniorReplyWithThreadId:(int)threadId forForumId:(int)forumId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(HandlerWithBool)handler {
-    NSString *url = BBS_REPLY(threadId);
+    NSString *url = [self.config newReplyWithThreadId:threadId];//(threadId);
 
 
     NSMutableDictionary *presparameters = [NSMutableDictionary dictionary];
@@ -834,7 +832,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
         NSData *image = toUploadImages[(NSUInteger) imageId];
         [NSThread sleepForTimeInterval:2.0f];
 
-        [self uploadImageForSeniorReply:[NSURL URLWithString:BBS_MANAGE_ATT] :uploadImageToken fId:forumId threadId:threadId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id uploadResultHtml) {
+        [self uploadImageForSeniorReply:[NSURL URLWithString:self.config.newattachment] :uploadImageToken fId:forumId threadId:threadId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id uploadResultHtml) {
 
             // 更新token
             NSString *newUploadImageToken = [self.htmlParser parseSecurityToken:uploadResultHtml];
@@ -918,7 +916,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     [parameters setValue:@"1" forKey:@"childforums"];
     [parameters setValue:@"1" forKey:@"saveprefs"];
 
-    [self.browser GETWithURLString:BBS_SEARCH requestCallback:^(BOOL isSuccess, NSString *html) {
+    [self.browser GETWithURLString:self.config.search requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             NSString *token = [self.htmlParser parseSecurityToken:html];
             if (token != nil) {
@@ -928,7 +926,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             NSString *securitytoken = [self readSecurityToken];
             [parameters setValue:securitytoken forKey:@"securitytoken"];
 
-            [self.browser POSTWithURLString:BBS_SEARCH parameters:parameters requestCallback:^(BOOL searchSuccess, NSString *searchResult) {
+            [self.browser POSTWithURLString:self.config.search parameters:parameters requestCallback:^(BOOL searchSuccess, NSString *searchResult) {
 
                 if (searchSuccess) {
                     NSString *error = [self checkError:searchResult];
@@ -957,7 +955,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)showPrivateContentById:(int)pmId handler:(HandlerWithBool)handler {
-    [self.browser GETWithURLString:BBS_SHOW_PM(pmId) requestCallback:^(BOOL isSuccess, NSString *html) {
+    [self.browser GETWithURLString:[self.config privateShowWithMessageId:pmId] requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             ViewMessagePage *content = [self.htmlParser parsePrivateMessageContent:html];
             handler(YES, content);
@@ -968,7 +966,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(HandlerWithBool)handler {
-    [self.browser GETWithURLString:BBS_NEW_PM requestCallback:^(BOOL isSuccess, NSString *html) {
+    [self.browser GETWithURLString:self.config.privateNewPre requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             NSString *token = [self.htmlParser parseSecurityToken:html];
 
@@ -988,7 +986,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             [parameters setValue:@"" forKey:@"bccrecipients"];
             [parameters setValue:@"0" forKey:@"iconid"];
 
-            [self.browser POSTWithURLString:BBS_SEND_PM parameters:parameters requestCallback:^(BOOL success, NSString *result) {
+            [self.browser POSTWithURLString:self.config.privateReplyWithMessage parameters:parameters requestCallback:^(BOOL success, NSString *result) {
                 if (success) {
                     if ([result containsString:@"信息提交时发生如下错误:"]) {
                         handler(NO, @"收件人未找到或者未填写标题");
@@ -1008,7 +1006,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)replyPrivateMessageWithId:(int)pmId andMessage:(NSString *)message handler:(HandlerWithBool)handler {
-    [self.browser GETWithURLString:BBS_SHOW_PM(pmId) requestCallback:^(BOOL isSuccess, NSString *html) {
+    [self.browser GETWithURLString:[self.config privateShowWithMessageId:pmId] requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             NSString *token = [self.htmlParser parseSecurityToken:html];
 
@@ -1039,7 +1037,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             [parameters setValue:@"1" forKey:@"savecopy"];
             [parameters setValue:@"提交信息" forKey:@"sbutton"];
 
-            [self.browser POSTWithURLString:BBS_REPLY_PM(pmId) parameters:parameters requestCallback:^(BOOL success, NSString *result) {
+            [self.browser POSTWithURLString:[self.config privateReplyWithMessageIdPre:pmId] parameters:parameters requestCallback:^(BOOL success, NSString *result) {
                 handler(success, result);
             }];
 
@@ -1050,7 +1048,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)favoriteForumsWithId:(NSString *)forumId handler:(HandlerWithBool)handler {
-    NSString *preUrl = BBS_SUBSCRIPTION(forumId);
+    NSString *preUrl = [self.config favForumWithId:forumId];
 
     [self.browser GETWithURLString:preUrl requestCallback:^(BOOL isSuccess, NSString *html) {
         if (!isSuccess) {
@@ -1058,10 +1056,10 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
         } else {
             NSString *token = [self.htmlParser parseSecurityToken:html];
 
-            NSString *url = BBS_SUBSCRIPTION_PARAM(forumId);
+            NSString *url = [self.config favForumWithIdParam:forumId];
             NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 
-            NSString *paramUrl = BBS_FORMDISPLAY(forumId);
+            NSString *paramUrl = [self.config forumDisplayWithId:forumId];
 
             [parameters setValue:@"" forKey:@"s"];
             [parameters setValue:token forKey:@"securitytoken"];
@@ -1080,14 +1078,14 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)unfavouriteForumsWithId:(NSString *)forumId handler:(HandlerWithBool)handler {
-    NSString *url = BBS_UNFAV_FORM(forumId);
+    NSString *url = [self.config unfavForumWithId:forumId];
     [self.browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
 }
 
 - (void)favoriteThreadPostWithId:(NSString *)threadPostId handler:(HandlerWithBool)handler {
-    NSString *preUrl = BBS_FAV_THREAD(threadPostId);
+    NSString *preUrl = [self.config favThreadWithIdPre:threadPostId];
     [self.browser GETWithURLString:preUrl requestCallback:^(BOOL isSuccess, NSString *html) {
         if (!isSuccess) {
             handler(NO, html);
@@ -1099,13 +1097,13 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             [parameters setValue:token forKey:@"securitytoken"];
             [parameters setValue:@"doaddsubscription" forKey:@"do"];
             [parameters setValue:threadPostId forKey:@"threadid"];
-            NSString *urlPram = BBS_SHOWTHREAD(threadPostId);
+            NSString *urlPram = [self.config showThreadWithThreadId:threadPostId];//(threadPostId);
 
             [parameters setValue:urlPram forKey:@"url"];
             [parameters setValue:@"0" forKey:@"emailupdate"];
             [parameters setValue:@"0" forKey:@"folderid"];
 
-            NSString *fav = BBS_SUBSCRIPTION_THREAD(threadPostId);
+            NSString *fav = [self.config favThreadWithId:threadPostId];
             [self.browser POSTWithURLString:fav parameters:parameters requestCallback:^(BOOL success, NSString *result) {
                 handler(success, result);
             }];
@@ -1114,14 +1112,14 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)unfavoriteThreadPostWithId:(NSString *)threadPostId handler:(HandlerWithBool)handler {
-    NSString *url = BBS_UNFAV_THREAD(threadPostId);
+    NSString *url = [self.config unfavThreadWithId:threadPostId];
     [self.browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
 }
 
 - (void)listPrivateMessageWithType:(int)type andPage:(int)page handler:(HandlerWithBool)handler {
-    [self.browser GETWithURLString:BBS_PM_WITH_TYPE(type, page) requestCallback:^(BOOL isSuccess, NSString *html) {
+    [self.browser GETWithURLString:[self.config privateWithType:type withPage:page] requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             ViewForumPage *viewForumPage = [self.htmlParser parsePrivateMessageFromHtml:html];
             handler(YES, viewForumPage);
@@ -1132,7 +1130,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)listFavoriteForums:(HandlerWithBool)handler {
-    [self.browser GETWithURLString:BBS_USER_CP requestCallback:^(BOOL isSuccess, NSString *html) {
+    [self.browser GETWithURLString:self.config.usercp requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             NSMutableArray<Forum *> *favForms = [self.htmlParser parseFavForumFromHtml:html];
             handler(YES, favForms);
@@ -1143,7 +1141,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)listFavoriteThreadPostsWithPage:(int)page handler:(HandlerWithBool)handler {
-    NSString *url = BBS_LIST_FAV_POST(page);
+    NSString *url = [self.config listfavThreadWithId:page];
     [self.browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             ViewForumPage *viewForumPage = [self.htmlParser parseFavThreadListFromHtml:html];
@@ -1165,7 +1163,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 
     long spaceTime = timeStamp - lastTimeStamp;
     if (page == 1 && (searchId == 0 || spaceTime > 60 * 10)) {
-        [self.browser GETWithURLString:BBS_GET_NEW requestCallback:^(BOOL isSuccess, NSString *html) {
+        [self.browser GETWithURLString:self.config.searchNewThread requestCallback:^(BOOL isSuccess, NSString *html) {
             if (isSuccess) {
                 NSUInteger newThreadPostSearchId = (NSUInteger) [[self.htmlParser parseListMyThreadSearchid:html] integerValue];
                 [userDefault setInteger:timeStamp forKey:@"search_time"];
@@ -1180,7 +1178,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
         }];
     } else {
         NSString *searchIdStr = [NSString stringWithFormat:@"%ld", (long) searchId];
-        NSString *url = BBS_SEARCH_WITH_SEARCHID(searchIdStr, page);
+        NSString *url = [self.config searchWithSearchId:searchIdStr withPage:page];
         [self.browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
             if (isSuccess) {
                 ViewForumPage *sarchPage = [self.htmlParser parseSearchPageFromHtml:html];
@@ -1194,7 +1192,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 
 - (void)listTodayNewThreadsWithPage:(int)page handler:(HandlerWithBool)handler {
     if (todayNewThreadPostSearchId == nil) {
-        [self.browser GETWithURLString:BBS_GET_DAILY requestCallback:^(BOOL isSuccess, NSString *html) {
+        [self.browser GETWithURLString:self.config.searchNewThreadToday requestCallback:^(BOOL isSuccess, NSString *html) {
 
             if (isSuccess) {
                 todayNewThreadPostSearchId = [self.htmlParser parseListMyThreadSearchid:html];
@@ -1207,7 +1205,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             }
         }];
     } else {
-        NSString *url = BBS_SEARCH_WITH_SEARCHID(todayNewThreadPostSearchId, page);
+        NSString *url = [self.config searchWithSearchId:todayNewThreadPostSearchId withPage:page];
         [self.browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
             if (isSuccess) {
                 ViewForumPage *sarchPage = [self.htmlParser parseSearchPageFromHtml:html];
@@ -1228,7 +1226,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 
     NSString *userId = user.userID;
 
-    [self.browser GETWithURLString:BBS_FIND_USER_WITH_USERID(userId) requestCallback:^(BOOL isSuccess, NSString *html) {
+    [self.browser GETWithURLString:[self.config searchMyPostWithUserId:userId] requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
 }
@@ -1244,7 +1242,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 
         NSString *encodeName = [user.userName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-        [self.browser GETWithURLString:BBS_FIND_USER_WITH_NAME(encodeName) requestCallback:^(BOOL isSuccess, NSString *html) {
+        [self.browser GETWithURLString:[self.config searchMyThreadWithUserName:encodeName] requestCallback:^(BOOL isSuccess, NSString *html) {
 
             if (listMyThreadSearchId == nil) {
                 listMyThreadSearchId = [self.htmlParser parseListMyThreadSearchid:html];
@@ -1258,7 +1256,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             }
         }];
     } else {
-        NSString *url = BBS_SEARCH_WITH_SEARCHID(listMyThreadSearchId, page);
+        NSString *url = [self.config searchWithSearchId:listMyThreadSearchId withPage:page];//(listMyThreadSearchId, page);
         [self.browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
             if (isSuccess) {
                 ViewForumPage *sarchPage = [self.htmlParser parseSearchPageFromHtml:html];
@@ -1271,7 +1269,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)listAllUserThreads:(int)userId withPage:(int)page handler:(HandlerWithBool)handler {
-    NSString *baseUrl = BBS_FIND_USER_THREADS(userId);
+    NSString *baseUrl = [self.config searchThreadWithUserId:[NSString stringWithFormat:@"%d",userId]];
     if (listUserThreadRedirectUrlDictionary == nil || listUserThreadRedirectUrlDictionary[@(userId)] == nil) {
 
 
@@ -1294,7 +1292,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     } else {
         NSString *searchId = listUserThreadRedirectUrlDictionary[@(userId)];
 
-        NSString *url = BBS_SEARCH_WITH_SEARCHID(searchId, page);
+        NSString *url = [self.config searchWithSearchId:searchId withPage:page];//(searchId, page);
         [self.browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
             if (isSuccess) {
                 ViewForumPage *sarchPage = [self.htmlParser parseSearchPageFromHtml:html];
@@ -1307,7 +1305,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)showThreadWithId:(int)threadId andPage:(int)page handler:(HandlerWithBool)handler {
-    [self.browser GETWithURLString:BBS_SHOWTHREAD_PAGE(threadId, page) requestCallback:^(BOOL isSuccess, NSString *html) {
+    [self.browser GETWithURLString:[self.config showThreadWithThreadId:[NSString stringWithFormat:@"%d", threadId] withPage:page] requestCallback:^(BOOL isSuccess, NSString *html) {
 
         if (isSuccess) {
             NSString *error = [self checkError:html];
@@ -1329,7 +1327,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)showThreadWithP:(NSString *)p handler:(HandlerWithBool)handler {
-    NSString *url = BBS_SHOWTHREAD_WITH_P(p);
+    NSString *url = [self.config showThreadWithP:p];
     [self.browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
 
         if (isSuccess) {
@@ -1347,7 +1345,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)forumDisplayWithId:(int)forumId andPage:(int)page handler:(HandlerWithBool)handler {
-    [self.browser GETWithURLString:BBS_FORMDISPLAY_PAGE(forumId, page) requestCallback:^(BOOL isSuccess, NSString *html) {
+    [self.browser GETWithURLString:[self.config forumDisplayWithId:[NSString stringWithFormat:@"%d", forumId] withPage:page] requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             ViewForumPage *viewForumPage = [self.htmlParser parseThreadListFromHtml:html withThread:forumId andContainsTop:YES];
             handler(isSuccess, viewForumPage);
@@ -1358,19 +1356,19 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)getAvatarWithUserId:(NSString *)userId handler:(HandlerWithBool)handler {
-    [self.browser GETWithURLString:BBS_USER(userId) requestCallback:^(BOOL isSuccess, NSString *html) {
+    [self.browser GETWithURLString:[self.config memberWithUserId:userId] requestCallback:^(BOOL isSuccess, NSString *html) {
         NSString *avatar = [self.htmlParser parseUserAvatar:html userId:userId];
         if (avatar) {
-            avatar = [AVATAR_BASE_URL stringByAppendingString:avatar];
+            avatar = [self.config.avatarBase stringByAppendingString:avatar];
         } else {
-            avatar = NO_AVATAR_URL;
+            avatar = self.config.avatarNo;
         }
         handler(isSuccess, avatar);
     }];
 }
 
 - (void)listSearchResultWithSearchid:(NSString *)searchid andPage:(int)page handler:(HandlerWithBool)handler {
-    NSString *searchedUrl = BBS_SEARCH_WITH_SEARCHID(searchid, page);
+    NSString *searchedUrl = [self.config searchWithSearchId:searchid withPage:page];//(searchid, page);
     [self.browser GETWithURLString:searchedUrl requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
 
@@ -1394,7 +1392,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)showProfileWithUserId:(NSString *)userId handler:(HandlerWithBool)handler {
-    [self.browser GETWithURLString:BBS_USER(userId) requestCallback:^(BOOL isSuccess, NSString *html) {
+    [self.browser GETWithURLString:[self.config memberWithUserId:userId] requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             UserProfile *profile = [self.htmlParser parserProfile:html userId:userId];
             handler(YES, profile);
@@ -1405,7 +1403,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
 }
 
 - (void)reportThreadPost:(int)postId andMessage:(NSString *)message handler:(HandlerWithBool)handler {
-    [self.browser GETWithURLString:BBS_REPORT_THREAD_POST(postId) requestCallback:^(BOOL isSuccess, NSString *html) {
+    [self.browser GETWithURLString:[self.config reportWithPostId:postId] requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
 
             NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
@@ -1417,7 +1415,7 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
             [parameters setValue:@"sendemail" forKey:@"do"];
             [parameters setValue:[NSString stringWithFormat:@"showthread.php?p=%d#post%d", postId, postId] forKey:@"url"];
 
-            [self.browser POSTWithURLString:BBS_REPORT_SENDEMAIL parameters:parameters requestCallback:^(BOOL success, NSString *string) {
+            [self.browser POSTWithURLString:self.config.report parameters:parameters requestCallback:^(BOOL success, NSString *string) {
                 handler(success, string);
             }];
         } else {

@@ -12,7 +12,6 @@
 #import <SVProgressHUD.h>
 #import "ForumCoreDataManager.h"
 #import "ForumEntry+CoreDataClass.h"
-#import "AConfig.h"
 
 @interface ForumLoginViewController () <UITextFieldDelegate> {
 
@@ -29,7 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.rootView.backgroundColor = THEME_COLOR;
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    ForumConfig *forumConfig = [ForumConfig configWithForumHost:appDelegate.forumHost];
+
+    self.rootView.backgroundColor = forumConfig.themeColor;
     
     _userName.delegate = self;
     _password.delegate = self;
@@ -143,12 +145,14 @@
                     // 需要先删除之前的老数据
                     [formManager deleteData];
 
+                    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
                     [formManager insertData:needInsert operation:^(NSManagedObject *target, id src) {
                         ForumEntry *newsInfo = (ForumEntry *) target;
                         newsInfo.forumId = [src valueForKey:@"forumId"];
                         newsInfo.forumName = [src valueForKey:@"forumName"];
                         newsInfo.parentForumId = [src valueForKey:@"parentForumId"];
-                        newsInfo.forumHost = [NSURL URLWithString:BBS_URL].host;
+                        newsInfo.forumHost = [NSURL URLWithString:appDelegate.forumBaseUrl].host;
 
                     }];
 

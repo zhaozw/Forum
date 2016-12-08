@@ -22,6 +22,8 @@
 
 - (NSString *) host;
 
+- (NSString *) url;
+
 - (NSString *) archive;
 
 // 附件相关
@@ -34,7 +36,7 @@
 - (NSString *) searchWithSearchId:(NSString *)searchId withPage:(int)page;
 - (NSString *) searchThreadWithUserId:(NSString *)userId;
 - (NSString *) searchMyPostWithUserId:(NSString *)userId;
-- (NSString *) searchMyThreadWithUserId:(NSString *)name;
+- (NSString *)searchMyThreadWithUserName:(NSString *)name;
 
 // 收藏论坛
 - (NSString *) favForumWithId:(NSString *)forumId;

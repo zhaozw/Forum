@@ -13,6 +13,8 @@
 
 - (instancetype)initWithForumConfig:(ForumConfig *)config {
     self = [super init];
+    self.config = config;
+
     if ([config.host isEqualToString:@"bbs.et8.net"]){
         return [[CCFForumHtmlParser alloc] init];
     }

@@ -6,7 +6,6 @@
 #import "CCFForumHtmlParser.h"
 
 #import "IGXMLNode+Children.h"
-#import "AConfig.h"
 #import <IGHTMLQuery.h>
 
 #import "ForumEntry+CoreDataClass.h"
@@ -16,7 +15,6 @@
 
 #import "IGHTMLDocument+QueryNode.h"
 #import "IGXMLNode+Children.h"
-#import "AConfig.h"
 
 @implementation CCFForumHtmlParser {
 
@@ -687,7 +685,7 @@
     // 通过ids 过滤出Form
     ForumCoreDataManager *manager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
     NSArray *result = [manager selectData:^NSPredicate * {
-        return [NSPredicate predicateWithFormat:@"forumHost = %@ AND forumId IN %@", [NSURL URLWithString:BBS_URL].host, ids];
+        return [NSPredicate predicateWithFormat:@"forumHost = %@ AND forumId IN %@", self.config.host, ids];
     }];
 
     NSMutableArray<Forum *> *forms = [NSMutableArray arrayWithCapacity:result.count];
@@ -815,9 +813,9 @@
     NSString *userAvatar = [[[[[[userInfoNode childrenAtPosition:1] childrenAtPosition:1] childrenAtPosition:0] attribute:@"src"] componentsSeparatedByString:@"/"] lastObject];
     if (userAvatar) {
         NSString *avatarPattern = @"%@/%@";
-        userAvatar = [NSString stringWithFormat:avatarPattern, AVATAR_BASE_URL, userAvatar];
+        userAvatar = [NSString stringWithFormat:avatarPattern, self.config.avatarBase, userAvatar];
     } else {
-        userAvatar = NO_AVATAR_URL;
+        userAvatar = self.config.avatarNo;
     }
     pmAuthor.userAvatar = userAvatar;
 
@@ -936,7 +934,7 @@
     parent.forumId = fixForumId;
     parent.parentForumId = parentFormId;
     parent.forumName = name;
-    parent.forumHost = [NSURL URLWithString:BBS_URL].host;
+    parent.forumHost = self.config.host;
 
     if (node.childrenCount == 2) {
         IGXMLNodeSet *childSet = [node childrenAtPosition:1].children;

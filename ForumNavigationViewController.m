@@ -7,7 +7,8 @@
 //
 
 #import "ForumNavigationViewController.h"
-#import "AConfig.h"
+#import "AppDelegate.h"
+#import "ForumConfig.h"
 
 @interface ForumNavigationViewController ()
 
@@ -17,7 +18,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationBar.barTintColor = THEME_COLOR;
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    ForumConfig *forumConfig = [ForumConfig configWithForumHost:appDelegate.forumHost];
+
+    self.navigationBar.barTintColor = forumConfig.themeColor;
 }
 
 - (void)didReceiveMemoryWarning {
