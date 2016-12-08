@@ -8,8 +8,10 @@
 #import <Foundation/Foundation.h>
 #import "vBulletinForumEngine.h"
 
+#import "ForumConfig.h"
+
 @interface ForumHtmlParser : NSObject <ForumParser>
 
-- (instancetype) initWithForumHost:(NSString *)host;
+- (instancetype) initWithForumHost:(ForumConfig *)config;
 
 @end

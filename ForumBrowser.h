@@ -7,15 +7,18 @@
 
 #import <Foundation/Foundation.h>
 #import "vBulletinForumEngine.h"
+#import "ForumConfig.h"
 
 @class AFHTTPSessionManager;
 @class ForumHtmlParser;
 
+
+
 @interface ForumBrowser : NSObject <ForumEngine>
 
-//- (instancetype)initWithForumHost:(NSString *)host;
++ (ForumBrowser*)browserWithForumHost:(ForumConfig *)config;
 
-+ (ForumBrowser*)browserWithForumHost:(NSString *)host;
+@property(nonatomic, strong) ForumConfig *config;
 
 @property(nonatomic, strong) NSString *phoneName;
 @property(nonatomic, strong) ForumHtmlParser *htmlParser;

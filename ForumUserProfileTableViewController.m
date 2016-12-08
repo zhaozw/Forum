@@ -43,7 +43,7 @@
     
     defaultAvatarImage = [UIImage imageNamed:@"defaultAvatar.gif"];
 
-    _forumBrowser = [ForumBrowser browserWithForumHost:@"bbs.et8.net"];
+    _forumBrowser = [ForumBrowser browserWithForumHost:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
     coreDateManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
     avatarCache = [NSMutableDictionary dictionary];
 

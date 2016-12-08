@@ -40,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    _forumBrowser = [ForumBrowser browserWithForumHost:@"bbs.et8.net"];
+    _forumBrowser = [ForumBrowser browserWithForumHost:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
 
 
     _selectPhotos.delegate = self;

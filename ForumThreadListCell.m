@@ -33,7 +33,7 @@
     self = [super initWithCoder:coder];
     if (self) {
 
-        _forumBrowser = [ForumBrowser browserWithForumHost:@"bbs.et8.net"];
+        _forumBrowser = [ForumBrowser browserWithForumHost:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
         _coreDateManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
 
         [self.avatarImage setContentScaleFactor:[[UIScreen mainScreen] scale]];
