@@ -12,7 +12,7 @@
 #import <SVProgressHUD.h>
 #import "ForumCoreDataManager.h"
 #import "ForumEntry+CoreDataClass.h"
-#import "ForumConfig.h"
+#import "AConfig.h"
 
 @interface ForumLoginViewController () <UITextFieldDelegate> {
 

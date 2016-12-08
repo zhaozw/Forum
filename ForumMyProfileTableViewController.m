@@ -7,7 +7,7 @@
 
 #import "ForumMyProfileTableViewController.h"
 #import <UIImageView+WebCache.h>
-#import "ForumConfig.h"
+#import "AConfig.h"
 #import "ForumCoreDataManager.h"
 #import "UserEntry+CoreDataProperties.h"
 #import "ForumLoginViewController.h"

@@ -8,7 +8,7 @@
 #import "NSString+Extensions.h"
 #import "NSUserDefaults+Extensions.h"
 #import "NSUserDefaults+Setting.h"
-#import "ForumConfig.h"
+#import "AConfig.h"
 #import <AFImageDownloader.h>
 #import "ForumHtmlParser.h"
 #import "AFHTTPSessionManager+SimpleAction.h"

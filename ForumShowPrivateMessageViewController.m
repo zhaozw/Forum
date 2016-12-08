@@ -12,7 +12,7 @@
 
 #import "ForumWebViewController.h"
 #import "UIStoryboard+Forum.h"
-#import "ForumConfig.h"
+#import "AConfig.h"
 
 #import "TransBundleDelegate.h"
 

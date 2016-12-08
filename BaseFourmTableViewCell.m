@@ -7,7 +7,7 @@
 
 #import "BaseFourmTableViewCell.h"
 #import <UIImageView+WebCache.h>
-#import "ForumConfig.h"
+#import "AConfig.h"
 
 @implementation BaseFourmTableViewCell {
     UIImage *defaultAvatarImage;

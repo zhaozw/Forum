@@ -19,7 +19,7 @@
 #import "ActionSheetPicker.h"
 #import "NSString+Extensions.h"
 #import "ForumUserProfileTableViewController.h"
-#import "ForumConfig.h"
+#import "AConfig.h"
 
 #import "TransBundleDelegate.h"
 

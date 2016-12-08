@@ -112,6 +112,8 @@
 		4DFB34D01DF82D5E00BD8DD5 /* ForumEntry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB34CA1DF82D5E00BD8DD5 /* ForumEntry+CoreDataProperties.m */; };
 		4DFB34D11DF82D5E00BD8DD5 /* UserEntry+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB34CC1DF82D5E00BD8DD5 /* UserEntry+CoreDataClass.m */; };
 		4DFB34D21DF82D5E00BD8DD5 /* UserEntry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB34CE1DF82D5E00BD8DD5 /* UserEntry+CoreDataProperties.m */; };
+		4DFB34D61DF946D300BD8DD5 /* CCFForumConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB34D51DF946D300BD8DD5 /* CCFForumConfig.m */; };
+		4DFB34D91DF9481F00BD8DD5 /* ForumConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB34D81DF9481F00BD8DD5 /* ForumConfig.m */; };
 		757C88B17FCB5AFBB7C0CA0B /* libPods-Forum.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA91F0D805959E8525B7BE0D /* libPods-Forum.a */; };
 		C7B59AE98E801BD822B9F92C /* CCFForumBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B593CF20E3E8DCF4B2D83C /* CCFForumBrowser.m */; };
 		C7B59C89FE57387F98A2F727 /* CCFForumHtmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B5922924FBE1978D345607 /* CCFForumHtmlParser.m */; };
@@ -132,7 +134,7 @@
 		3A2C3F1B1DDFBAD000576151 /* post_view_notitle.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = post_view_notitle.html; sourceTree = "<group>"; };
 		3A2C3F1C1DDFBAD000576151 /* post_view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = post_view.html; sourceTree = "<group>"; };
 		3A2C3F201DDFBADA00576151 /* private_message.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = private_message.html; sourceTree = "<group>"; };
-		3A2C3F241DDFBB3900576151 /* ForumConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumConfig.h; sourceTree = "<group>"; };
+		3A2C3F241DDFBB3900576151 /* AConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AConfig.h; sourceTree = "<group>"; };
 		3A2C3F2C1DDFBCE800576151 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
 		3A2C3F2D1DDFBCE800576151 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
 		3A2C3F351DDFBD2700576151 /* ForumCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumCoreDataManager.h; sourceTree = "<group>"; };
@@ -318,6 +320,10 @@
 		4DFB34CC1DF82D5E00BD8DD5 /* UserEntry+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserEntry+CoreDataClass.m"; sourceTree = "<group>"; };
 		4DFB34CD1DF82D5E00BD8DD5 /* UserEntry+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserEntry+CoreDataProperties.h"; sourceTree = "<group>"; };
 		4DFB34CE1DF82D5E00BD8DD5 /* UserEntry+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserEntry+CoreDataProperties.m"; sourceTree = "<group>"; };
+		4DFB34D41DF946D300BD8DD5 /* CCFForumConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForumConfig.h; sourceTree = "<group>"; };
+		4DFB34D51DF946D300BD8DD5 /* CCFForumConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForumConfig.m; sourceTree = "<group>"; };
+		4DFB34D71DF9481F00BD8DD5 /* ForumConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumConfig.h; sourceTree = "<group>"; };
+		4DFB34D81DF9481F00BD8DD5 /* ForumConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumConfig.m; sourceTree = "<group>"; };
 		C7B590FF019B54B2E6BDDE91 /* NSData+UTF8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+UTF8.m"; sourceTree = "<group>"; };
 		C7B5922924FBE1978D345607 /* CCFForumHtmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForumHtmlParser.m; sourceTree = "<group>"; };
 		C7B593CF20E3E8DCF4B2D83C /* CCFForumBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForumBrowser.m; sourceTree = "<group>"; };
@@ -543,15 +549,14 @@
 		3A2C40121DE0439500576151 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				3A2C3F241DDFBB3900576151 /* ForumConfig.h */,
+				4DFB34D31DF9461E00BD8DD5 /* ccf */,
+				3A2C3F241DDFBB3900576151 /* AConfig.h */,
+				4DFB34D71DF9481F00BD8DD5 /* ForumConfig.h */,
+				4DFB34D81DF9481F00BD8DD5 /* ForumConfig.m */,
 				3AF887951DA16D2C0083A8D5 /* ForumBrowser.h */,
 				3AF887961DA16D2C0083A8D5 /* ForumBrowser.m */,
 				3AF8878C1DA155D20083A8D5 /* ForumHtmlParser.h */,
 				3AF8878D1DA155D20083A8D5 /* ForumHtmlParser.m */,
-				C7B5922924FBE1978D345607 /* CCFForumHtmlParser.m */,
-				C7B59F4D903D9AD821ED5B6F /* CCFForumHtmlParser.h */,
-				C7B593CF20E3E8DCF4B2D83C /* CCFForumBrowser.m */,
-				C7B598A44A0FE5E0B0F59D42 /* CCFForumBrowser.h */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -696,6 +701,19 @@
 				4DF737251DDECC9600BF1896 /* ViewMessagePage.m */,
 			);
 			name = PrivateMessage;
+			sourceTree = "<group>";
+		};
+		4DFB34D31DF9461E00BD8DD5 /* ccf */ = {
+			isa = PBXGroup;
+			children = (
+				C7B59F4D903D9AD821ED5B6F /* CCFForumHtmlParser.h */,
+				C7B5922924FBE1978D345607 /* CCFForumHtmlParser.m */,
+				C7B598A44A0FE5E0B0F59D42 /* CCFForumBrowser.h */,
+				C7B593CF20E3E8DCF4B2D83C /* CCFForumBrowser.m */,
+				4DFB34D41DF946D300BD8DD5 /* CCFForumConfig.h */,
+				4DFB34D51DF946D300BD8DD5 /* CCFForumConfig.m */,
+			);
+			name = ccf;
 			sourceTree = "<group>";
 		};
 		849509D36740A6FFD960CDA8 /* Pods */ = {
@@ -859,6 +877,7 @@
 			files = (
 				3A2C3F891DDFDF9200576151 /* IGXMLNode+Children.m in Sources */,
 				3A2C3F151DDFB94200576151 /* AppDelegate.m in Sources */,
+				4DFB34D61DF946D300BD8DD5 /* CCFForumConfig.m in Sources */,
 				3A2C3FDC1DDFE0C900576151 /* ForumReportViewController.m in Sources */,
 				3A2C3FDD1DDFE0C900576151 /* ForumSearchViewController.m in Sources */,
 				3A2C3FD01DDFE0C900576151 /* ForumBaseStaticTableViewController.m in Sources */,
@@ -896,6 +915,7 @@
 				3AF8878E1DA155D20083A8D5 /* ForumHtmlParser.m in Sources */,
 				4DFB34D01DF82D5E00BD8DD5 /* ForumEntry+CoreDataProperties.m in Sources */,
 				4DF737261DDECC9600BF1896 /* Message.m in Sources */,
+				4DFB34D91DF9481F00BD8DD5 /* ForumConfig.m in Sources */,
 				3A2C3F7C1DDFC0CD00576151 /* NSUserDefaults+Setting.m in Sources */,
 				3ACFFD301CF9DD3C000312DC /* HPURLProtocol.m in Sources */,
 				3A2C3FFF1DDFE30300576151 /* TranBundleUITableViewController.m in Sources */,

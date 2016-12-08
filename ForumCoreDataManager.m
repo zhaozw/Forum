@@ -7,7 +7,7 @@
 
 #import "ForumCoreDataManager.h"
 #import "ForumEntry+CoreDataClass.h"
-#import "ForumConfig.h"
+#import "AConfig.h"
 
 
 @implementation ForumCoreDataManager

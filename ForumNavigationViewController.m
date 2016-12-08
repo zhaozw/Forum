@@ -7,7 +7,7 @@
 //
 
 #import "ForumNavigationViewController.h"
-#import "ForumConfig.h"
+#import "AConfig.h"
 
 @interface ForumNavigationViewController ()
 

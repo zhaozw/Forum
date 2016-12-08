@@ -6,7 +6,7 @@
 #import "CCFForumHtmlParser.h"
 
 #import "IGXMLNode+Children.h"
-#import "ForumConfig.h"
+#import "AConfig.h"
 #import <IGHTMLQuery.h>
 
 #import "ForumEntry+CoreDataClass.h"
@@ -16,7 +16,7 @@
 
 #import "IGHTMLDocument+QueryNode.h"
 #import "IGXMLNode+Children.h"
-#import "ForumConfig.h"
+#import "AConfig.h"
 
 @implementation CCFForumHtmlParser {
 

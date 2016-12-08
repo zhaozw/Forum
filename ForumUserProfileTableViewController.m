@@ -12,7 +12,7 @@
 #import <UIImageView+WebCache.h>
 #import "UIStoryboard+Forum.h"
 
-#import "ForumConfig.h"
+#import "AConfig.h"
 
 @interface ForumUserProfileTableViewController () <TransBundleDelegate> {
 
