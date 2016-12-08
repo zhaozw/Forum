@@ -6,9 +6,17 @@
 //
 
 #import "ForumHtmlParser.h"
+#import "CCFForumHtmlParser.h"
 
 
 @implementation ForumHtmlParser
 
+- (instancetype)initWithForumHost:(NSString *)host {
+    self = [super init];
+    if ([host isEqualToString:@"bbs.et8.net"]){
+        return [[CCFForumHtmlParser alloc] init];
+    }
+    return self;
+}
 
 @end

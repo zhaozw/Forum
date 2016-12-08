@@ -18,7 +18,7 @@
     [super viewDidLoad];
 
 
-    ForumBrowser *api = [[ForumBrowser alloc] init];
+    ForumBrowser *api = [ForumBrowser browserWithForumHost:@"bbs.et8.net"];
 
     [api listAllForums:^(BOOL isSuccess, id message) {
 

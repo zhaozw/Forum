@@ -72,7 +72,7 @@
 #pragma mark initData
 
 - (void)initData {
-    self.forumBrowser = [[ForumBrowser alloc] init];
+    self.forumBrowser = [ForumBrowser browserWithForumHost:@"bbs.et8.net"];
     self.dataList = [[NSMutableArray alloc] init];
 }
 

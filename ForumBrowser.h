@@ -8,8 +8,17 @@
 #import <Foundation/Foundation.h>
 #import "vBulletinForumEngine.h"
 
+@class AFHTTPSessionManager;
+@class ForumHtmlParser;
+
 @interface ForumBrowser : NSObject <ForumEngine>
 
+//- (instancetype)initWithForumHost:(NSString *)host;
 
++ (ForumBrowser*)browserWithForumHost:(NSString *)host;
+
+@property(nonatomic, strong) NSString *phoneName;
+@property(nonatomic, strong) ForumHtmlParser *htmlParser;
+@property(nonatomic, strong) AFHTTPSessionManager *browser;
 
 @end

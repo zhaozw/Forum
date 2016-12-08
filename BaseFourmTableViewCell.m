@@ -43,7 +43,7 @@
 
     defaultAvatarImage = [UIImage imageNamed:@"defaultAvatar.gif"];
 
-    _forumBrowser = [[ForumBrowser alloc] init];
+    _forumBrowser = [ForumBrowser browserWithForumHost:@"bbs.et8.net"];
 
     avatarCache = [NSMutableDictionary dictionary];
 

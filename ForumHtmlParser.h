@@ -10,4 +10,6 @@
 
 @interface ForumHtmlParser : NSObject <ForumParser>
 
+- (instancetype) initWithForumHost:(NSString *)host;
+
 @end
