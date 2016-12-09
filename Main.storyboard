@@ -47,6 +47,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="精品论坛" id="FT7-1W-ajH">
+                        <barButtonItem key="leftBarButtonItem" image="ic_menu_18pt" id="Qzd-sz-s13">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic_search_18pt" id="HuU-Ka-jS5">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -155,6 +158,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="Pwi-td-9IN">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" image="ic_menu_18pt" id="fsZ-jb-Oqa">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="h6s-Jp-9xf">
                             <rect key="frame" x="71" y="7" width="234" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -215,6 +221,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="订阅论坛" id="Mhk-pJ-bvf" userLabel="收藏板块">
+                        <barButtonItem key="leftBarButtonItem" image="ic_menu_18pt" id="RrR-nQ-VId">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic_search_18pt" id="3Zy-hR-gcV">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -1178,6 +1187,9 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="查看新帖" id="PE2-Lx-6xT">
+                        <barButtonItem key="leftBarButtonItem" image="ic_menu_18pt" id="d5k-Sr-1mR">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic_search_18pt" id="NVa-5o-hQ4" userLabel="新主题">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -1562,7 +1574,11 @@
                             <outlet property="delegate" destination="all-h2-fhh" id="3gl-V1-Rp4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="我的页面" id="3WX-X4-Rtb"/>
+                    <navigationItem key="navigationItem" title="我的页面" id="3WX-X4-Rtb">
+                        <barButtonItem key="leftBarButtonItem" image="ic_menu_18pt" id="yva-94-8CG">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="lastLoginTime" destination="EiT-0V-suF" id="RYE-mI-IeX"/>
                         <outlet property="postCount" destination="tHd-ny-m5N" id="g9E-gU-4tK"/>
@@ -2778,6 +2794,7 @@
         <image name="ic_close_18pt" width="18" height="18"/>
         <image name="ic_grade_18pt" width="18" height="18"/>
         <image name="ic_loupe_white_18pt" width="18" height="18"/>
+        <image name="ic_menu_18pt" width="18" height="18"/>
         <image name="ic_mode_edit_18pt" width="18" height="18"/>
         <image name="ic_more_horiz_18pt" width="18" height="18"/>
         <image name="ic_perm_identity_18pt" width="18" height="18"/>
