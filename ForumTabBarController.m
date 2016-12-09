@@ -7,10 +7,10 @@
 //
 
 #import "ForumTabBarController.h"
-
+#import "DrawerView.h"
 
 @interface ForumTabBarController () {
-
+    DrawerView *_leftDrawerView;
 }
 
 @end
@@ -20,6 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    _leftDrawerView = [[DrawerView alloc] initWithDrawerType:DrawerViewTypeLeft andXib:@"DrawerView"];
+    [self.view addSubview:_leftDrawerView];
 
 }
 
