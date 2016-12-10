@@ -23,7 +23,7 @@ static CCFForumBrowser * _ccfForumBrowser;
         if (_ccfForumBrowser == nil){
             _ccfForumBrowser = [[CCFForumBrowser alloc] init];
             _ccfForumBrowser.config = config;
-            _ccfForumBrowser.htmlParser = [[ForumHtmlParser alloc] initWithForumConfig:config];
+            _ccfForumBrowser.htmlParser = [ForumHtmlParser parserWithForumConfig:config];
         }
         return _ccfForumBrowser;
     }

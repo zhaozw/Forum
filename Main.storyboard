@@ -717,6 +717,52 @@
             </objects>
             <point key="canvasLocation" x="-1378.4000000000001" y="-5948.2758620689656"/>
         </scene>
+        <!--请选择论坛-->
+        <scene sceneID="Co0-Go-5Y9">
+            <objects>
+                <tableViewController id="2hj-fq-jCt" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="FIz-hs-jNt">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="uER-j0-07Z">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uER-j0-07Z" id="ndx-96-HRg">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="2hj-fq-jCt" id="zxA-pf-8bG"/>
+                            <outlet property="delegate" destination="2hj-fq-jCt" id="SMh-t2-zng"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="请选择论坛" id="Q3m-2X-egQ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eXx-LE-uTu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5940" y="-5947"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Okx-LC-yVb">
+            <objects>
+                <navigationController id="of7-9w-Eye" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="DR5-0D-7aZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.18250495195388794" green="0.27161902189254761" blue="0.51042383909225464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="2hj-fq-jCt" kind="relationship" relationship="rootViewController" id="8Rx-uC-wIb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jfg-Wt-vA8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-6892" y="-5947"/>
+        </scene>
         <!--Forum Tab Bar Controller-->
         <scene sceneID="nUF-pr-pG4">
             <objects>

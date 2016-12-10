@@ -12,7 +12,7 @@
 
 @interface ForumHtmlParser : NSObject <ForumParser>
 
-- (instancetype)initWithForumConfig:(ForumConfig *)config;
++ (instancetype)parserWithForumConfig:(ForumConfig *)config;
 
 @property (nonatomic, strong) ForumConfig *config;
 @end

@@ -9,7 +9,21 @@
 #import "CCFForumHtmlParser.h"
 
 
+static CCFForumHtmlParser *_ccfParser;
+
 @implementation ForumHtmlParser
+
++ (instancetype)parserWithForumConfig:(ForumConfig *)config{
+    
+    if ([config.host isEqualToString:@"bbs.et8.net"]) {
+        if (_ccfParser == nil){
+            _ccfParser = [[CCFForumHtmlParser alloc] init];
+            _ccfParser.config = config;
+        }
+        return _ccfParser;
+    }
+    return self;
+}
 
 - (instancetype)initWithForumConfig:(ForumConfig *)config {
     self = [super init];
