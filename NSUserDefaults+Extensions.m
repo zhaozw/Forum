@@ -56,7 +56,7 @@
 }
 
 - (void)setDBVersion:(int)version {
-    [self setObject:[NSNumber numberWithInt:version] forKey:kDB_VERSION];
+    [self setObject:@(version) forKey:kDB_VERSION];
 }
 
 - (void)clearCookie {
@@ -71,4 +71,14 @@
 - (NSString *)userName {
     return [self valueForKey:kUserName];
 }
+
+- (NSString *)currentForumURL {
+    return [self valueForKey:@"currentForumURL"];
+}
+
+- (void)saveCurrentForumURL:(NSString *)url {
+    [self setValue:url forKey:@"currentForumURL"];
+}
+
+
 @end

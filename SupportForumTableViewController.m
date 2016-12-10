@@ -10,7 +10,7 @@
 #import "ForumThreadListTableViewController.h"
 
 #import "ForumTabBarController.h"
-
+#import "NSUserDefaults+Extensions.h"
 #import "SupportForums.h"
 #import "Forums.h"
 
@@ -102,6 +102,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    Forums *forums = self.dataList[indexPath.row];
+    [[NSUserDefaults standardUserDefaults] saveCurrentForumURL:forums.url];
 }
 
 - (IBAction)showLeftDrawer:(id)sender {

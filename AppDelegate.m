@@ -92,6 +92,12 @@
     [setting registerDefaults:dictonary];
 
 
+    
+    NSString * url = [self forumBaseUrl];
+    if (url == nil) {
+        self.window.rootViewController = [[UIStoryboard mainStoryboard] finControllerById:@"ShowSupportForums"];
+        return YES;
+    }
 
     // 判断是否登录
 
@@ -229,8 +235,9 @@
 }
 
 - (NSString *)forumBaseUrl {
-    //return currentHost;
-    return @"https://bbs.et8.net/bbs/";
+    NSString *urlstr = [NSUserDefaults standardUserDefaults].currentForumURL;
+
+    return urlstr;
 }
 
 - (void)updateForumBaseUrl:(NSString *)url {
