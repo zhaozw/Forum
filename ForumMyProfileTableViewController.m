@@ -12,6 +12,7 @@
 #import "ForumLoginViewController.h"
 #import "UIStoryboard+Forum.h"
 #import "AppDelegate.h"
+#import "ForumTabBarController.h"
 
 @interface ForumMyProfileTableViewController () {
     UserProfile *userProfile;
@@ -183,6 +184,12 @@
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
+}
+
+- (IBAction)showLeftDrawer:(id)sender {
+    ForumTabBarController *controller = (ForumTabBarController *) self.tabBarController;
+    
+    [controller showLeftDrawer];
 }
 
 @end

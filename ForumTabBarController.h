@@ -10,5 +10,6 @@
 
 @interface ForumTabBarController : UITabBarController
 
+- (void)showLeftDrawer;
 
 @end

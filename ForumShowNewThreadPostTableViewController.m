@@ -152,13 +152,8 @@
 - (IBAction)showLeftDrawer:(id)sender {
 
     ForumTabBarController *controller = (ForumTabBarController *) self.tabBarController;
-
-
-    UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
-    UINavigationController *myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"MyProfileNavigationController"];
-    [controller presentViewController:myProfileControllder animated:YES completion:^{
-
-    }];
+    
+    [controller showLeftDrawer];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

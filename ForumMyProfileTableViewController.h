@@ -9,6 +9,9 @@
 #import "ForumBaseStaticTableViewController.h"
 
 @interface ForumMyProfileTableViewController : ForumBaseStaticTableViewController
+
+- (IBAction)showLeftDrawer:(id)sender;
+
 @property(weak, nonatomic) IBOutlet UILabel *profileName;
 
 
