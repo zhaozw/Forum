@@ -34,7 +34,7 @@
 }
 
 - (NSString *)archive {
-    return [urlString stringByAppendingString:@"archive/index.php"];
+    return [urlString stringByAppendingString:@"forumdisplay.php?f=1"];
 }
 
 - (NSString *)newattachmentForThread:(int)threadId time:(NSString *)time postHash:(NSString *)postHash {
