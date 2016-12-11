@@ -1220,8 +1220,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     NSDate *date = [NSDate date];
     NSInteger timeStamp = (NSInteger) [date timeIntervalSince1970];
 
-    NSInteger searchId = [userDefault integerForKey:@"search_id"];
-    NSInteger lastTimeStamp = [userDefault integerForKey:@"search_time"];
+    NSInteger searchId = [userDefault integerForKey:[self.config.host stringByAppendingString:@"-search_id"]];
+    NSInteger lastTimeStamp = [userDefault integerForKey:[self.config.host stringByAppendingString:@"-search_time"]];
 
     long spaceTime = timeStamp - lastTimeStamp;
     if (page == 1 && (searchId == 0 || spaceTime > 60 * 10)) {
@@ -1232,8 +1232,8 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
         [self.browser GETWithURLString:self.config.searchNewThread parameters:defparameters requestCallback:^(BOOL isSuccess, NSString *html) {
             if (isSuccess) {
                 NSUInteger newThreadPostSearchId = (NSUInteger) [[self.htmlParser parseListMyThreadSearchid:html] integerValue];
-                [userDefault setInteger:timeStamp forKey:@"search_time"];
-                [userDefault setInteger:newThreadPostSearchId forKey:@"search_id"];
+                [userDefault setInteger:timeStamp forKey:[self.config.host stringByAppendingString:@"-search_time"]];
+                [userDefault setInteger:newThreadPostSearchId forKey:[self.config.host stringByAppendingString:@"-search_id"]];
             }
             if (isSuccess) {
                 ViewForumPage *sarchPage = [self.htmlParser parseSearchPageFromHtml:html];
