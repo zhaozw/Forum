@@ -154,7 +154,7 @@
                         newsInfo.forumId = [src valueForKey:@"forumId"];
                         newsInfo.forumName = [src valueForKey:@"forumName"];
                         newsInfo.parentForumId = [src valueForKey:@"parentForumId"];
-                        newsInfo.forumHost = [NSURL URLWithString:appDelegate.forumBaseUrl].host;
+                        newsInfo.forumHost = appDelegate.forumHost;
 
                     }];
 

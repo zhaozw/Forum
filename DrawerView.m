@@ -14,7 +14,6 @@
 
 #import "LoginUser.h"
 
-#import "LeftDrawerItem.h"
 #import <UIImageView+WebCache.h>
 #import "ForumCoreDataManager.h"
 #import "UserEntry+CoreDataProperties.h"
@@ -25,14 +24,13 @@
 #import "ForumTabBarController.h"
 #import "SupportForums.h"
 #import "Forums.h"
-#import "NSUserDefaults+Extensions.h"
-
+#import "AppDelegate.h"
 
 @interface DrawerView () <UITableViewDelegate, UITableViewDataSource> {
 
     UIButton *_drawerMaskView;
 
-    ForumBrowser *_ccfapi;
+    ForumBrowser *_forumBrowser;
 
     UIView *_rightEageView;
 
@@ -41,6 +39,11 @@
     ForumCoreDataManager *coreDateManager;
 
     NSMutableArray *loginForums;
+
+
+    UIImage *defaultAvatarImage;
+    NSMutableDictionary *avatarCache;
+    NSMutableArray<UserEntry *> *cacheUsers;
 }
 
 @end
@@ -53,13 +56,87 @@
 
 
 - (void)showUserAvatar {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    ForumBrowser *browser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:appDelegate.forumHost]];
+    LoginUser *loginUser = [browser getLoginUser];
+
+    [self showAvatar:_avatarUIImageView userId:loginUser.userID];
+    
+    self.userName.text = [[NSUserDefaults standardUserDefaults] userName];
+
+}
+
+- (void)showAvatar:(UIImageView *)avatarImageView userId:(NSString *)userId {
+
+    // 不知道什么原因，userID可能是nil
+    if (userId == nil) {
+        [avatarImageView setImage:defaultAvatarImage];
+        return;
+    }
+    NSString *avatarInArray = [avatarCache valueForKey:userId];
+
+    if (avatarInArray == nil) {
+
+        [_forumBrowser getAvatarWithUserId:userId handler:^(BOOL isSuccess, NSString *avatar) {
+
+            if (isSuccess) {
+                AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                // 存入数据库
+                [coreDateManager insertOneData:^(id src) {
+                    UserEntry *user = (UserEntry *) src;
+                    user.userID = userId;
+                    user.userAvatar = avatar;
+                    user.forumHost = appDelegate.forumHost;
+                }];
+                // 添加到Cache中
+                [avatarCache setValue:avatar forKey:userId];
+
+                // 显示头像
+                if (avatar == nil) {
+                    [avatarImageView setImage:defaultAvatarImage];
+                } else {
+                    NSURL *avatarUrl = [NSURL URLWithString:avatar];
+                    [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatarImage];
+                }
+            } else {
+                [avatarImageView setImage:defaultAvatarImage];
+            }
+
+        }];
+    } else {
+
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        ForumConfig *forumConfig = [ForumConfig configWithForumHost:appDelegate.forumHost];
+
+        if ([avatarInArray isEqualToString:forumConfig.avatarNo]) {
+            [avatarImageView setImage:defaultAvatarImage];
+        } else {
+
+            NSURL *avatarUrl = [NSURL URLWithString:avatarInArray];
+
+            if (/* DISABLES CODE */ (NO)) {
+                NSString *cacheImageKey = [[SDWebImageManager sharedManager] cacheKeyForURL:avatarUrl];
+                NSString *cacheImagePath = [[SDImageCache sharedImageCache] defaultCachePathForKey:cacheImageKey];
+                NSLog(@"cache_image_path %@", cacheImagePath);
+            }
+
+            [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatarImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if (error) {
+                    [coreDateManager deleteData:^NSPredicate *{
+                        return [NSPredicate predicateWithFormat:@"forumHost = %@ AND userID = %@", self.currentForumHost, userId];
+                    }];
+                }
+                //NSError * e = error;
+            }];
+        }
+    }
 
 }
 
 - (id)init {
     if (self = [super init]) {
 
-        _ccfapi = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:[self currentForumHost]]];
+        _forumBrowser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:[self currentForumHost]]];
         [self setDrawerType:DrawerViewTypeLeft];
 
         [self initLeftDrawerView];
@@ -67,7 +144,7 @@
 
         [self initMaskView];
 
-        defaultAvatar = [UIImage imageNamed:@"logo.jpg"];
+        defaultAvatar = [UIImage imageNamed:@"defaultAvatar.jpg"];
 
         UIScreenEdgePanGestureRecognizer *leftEdgePanRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(handleLeftEdgePan:)];
         leftEdgePanRecognizer.edges = UIRectEdgeLeft;
@@ -75,6 +152,21 @@
         [self addGestureRecognizer:leftEdgePanRecognizer];
 
         [self setLeftDrawerEnadbled:YES];
+
+        avatarCache = [NSMutableDictionary dictionary];
+
+
+        coreDateManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
+        if (cacheUsers == nil) {
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            cacheUsers = [[coreDateManager selectData:^NSPredicate * {
+                return [NSPredicate predicateWithFormat:@"forumHost = %@ AND userID > %d", [NSURL URLWithString:appDelegate.forumBaseUrl].host, 0];
+            }] copy];
+        }
+
+        for (UserEntry *user in cacheUsers) {
+            [avatarCache setValue:user.userAvatar forKey:user.userID];
+        }
 
         [self showUserAvatar];
 
@@ -148,6 +240,7 @@
     [[NSUserDefaults standardUserDefaults] saveCurrentForumURL:forums.url];
 
     [self closeLeftDrawer:^{
+        [self showUserAvatar];
         if ([self isUserHasLogin:url.host]) {
             ForumTabBarController *rootViewController = (ForumTabBarController *) [[UIStoryboard mainStoryboard] finControllerById:@"ForumTabBarControllerId"];
             rootViewController.selectedIndex = 2;
@@ -173,7 +266,7 @@
 
 - (id)initWithDrawerType:(DrawerViewType)drawerType andXib:(NSString *)name {
     if (self = [super init]) {
-        _ccfapi = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:[self currentForumHost]]];
+        _forumBrowser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:[self currentForumHost]]];
 
         // 和 xib 绑定
         [[NSBundle mainBundle] loadNibNamed:name owner:self options:nil];
@@ -227,7 +320,7 @@
 
     if (self = [super init]) {
 
-        _ccfapi = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:[self currentForumHost]]];
+        _forumBrowser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:[self currentForumHost]]];
 
         [self setDrawerType:drawerType];
 

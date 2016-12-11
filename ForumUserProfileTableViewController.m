@@ -137,7 +137,7 @@
                 UserEntry *user = (UserEntry *) src;
                 user.userID = profileUserId;
                 user.userAvatar = avatar;
-                user.forumHost = [NSURL URLWithString:appDelegate.forumBaseUrl].host;
+                user.forumHost = appDelegate.forumHost;
             }];
             // 添加到Cache中
             [avatarCache setValue:avatar forKey:profileUserId];
