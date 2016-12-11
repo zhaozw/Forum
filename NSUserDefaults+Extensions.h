@@ -14,6 +14,8 @@
 
 - (void)saveCookie;
 
+- (void)clearCookie;
+
 - (void)saveFavFormIds:(NSArray *)ids;
 
 - (NSArray *)favFormIds;
@@ -21,8 +23,6 @@
 - (int)dbVersion;
 
 - (void)setDBVersion:(int)version;
-
-- (void)clearCookie;
 
 - (void)saveUserName:(NSString *)name;
 

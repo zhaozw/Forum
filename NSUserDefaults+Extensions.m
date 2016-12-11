@@ -7,17 +7,12 @@
 
 #import "NSUserDefaults+Extensions.h"
 
-#define kCookie @"ForumCookie"
-#define kFavForumIds @"FavIds"
-
 #define kDB_VERSION @"DB_VERSION"
-#define kUserName @"UserName"
-
 
 @implementation NSUserDefaults (Extensions)
 
 - (NSString *)loadCookie {
-    NSData *cookiesdata = [self objectForKey:kCookie];
+    NSData *cookiesdata = [self objectForKey:[[self currentForumHost] stringByAppendingString:@"-Cookies"]];
 
 
     if ([cookiesdata length]) {
@@ -39,17 +34,21 @@
 - (void)saveCookie {
     NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cookies];
-    [self setObject:data forKey:kCookie];
+    [self setObject:data forKey:[[self currentForumHost] stringByAppendingString:@"-Cookies"]];
+}
+
+- (void)clearCookie {
+    [self removeObjectForKey:[[self currentForumHost] stringByAppendingString:@"-Cookies"]];
 }
 
 - (void)saveFavFormIds:(NSArray *)ids {
-    [self setObject:ids forKey:kFavForumIds];
+    [self setObject:ids forKey:[[self currentForumHost] stringByAppendingString:@"-FavIds"]];
 }
+
 
 - (NSArray *)favFormIds {
-    return [self objectForKey:kFavForumIds];
+    return [self objectForKey:[[self currentForumHost] stringByAppendingString:@"-FavIds"]];
 }
-
 
 - (int)dbVersion {
     return [[self objectForKey:kDB_VERSION] intValue];
@@ -59,17 +58,13 @@
     [self setObject:@(version) forKey:kDB_VERSION];
 }
 
-- (void)clearCookie {
-    [self removeObjectForKey:kCookie];
-}
-
 
 - (void)saveUserName:(NSString *)name {
-    [self setValue:name forKey:kUserName];
+    [self setValue:name forKey:[[self currentForumHost] stringByAppendingString:@"-UserName"]];
 }
 
 - (NSString *)userName {
-    return [self valueForKey:kUserName];
+    return [self valueForKey:[[self currentForumHost] stringByAppendingString:@"-UserName"]];
 }
 
 - (NSString *)currentForumURL {
