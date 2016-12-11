@@ -123,6 +123,7 @@
     }
     
     cell.textLabel.text = forums.name;
+    cell.detailTextLabel.text = forums.host;
     
     UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0,16,0,16);
     [cell setSeparatorInset:edgeInsets];
@@ -145,7 +146,7 @@
     
     if ([self isUserHasLogin:url.host]) {
         UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
-        [stortboard changeRootViewControllerTo:@"DRLTabBarController"];
+        [stortboard changeRootViewControllerTo:@"ForumTabBarControllerId"];
     }
     
 }

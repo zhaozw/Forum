@@ -776,7 +776,7 @@
         <!--Forum Tab Bar Controller-->
         <scene sceneID="nUF-pr-pG4">
             <objects>
-                <tabBarController storyboardIdentifier="DRLTabBarController" id="KZC-NN-lJ7" customClass="ForumTabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="ForumTabBarControllerId" id="KZC-NN-lJ7" customClass="ForumTabBarController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="l8f-Hy-IeX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

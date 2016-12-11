@@ -157,7 +157,7 @@
                     }];
 
                     UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
-                    [stortboard changeRootViewControllerTo:kCCFRootController];
+                    [stortboard changeRootViewControllerTo:kForumTabBarControllerId];
 
                 }
 

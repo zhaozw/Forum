@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define kCCFRootController @"DRLTabBarController"
+#define kForumTabBarControllerId @"ForumTabBarControllerId"
 
 @interface UIStoryboard (Forum)
 
