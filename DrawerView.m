@@ -406,6 +406,12 @@
     }];
 }
 
+-(IBAction)showMyProfile:(id)sender{
+    [self closeLeftDrawer];
+    
+    ForumTabBarController * root = (ForumTabBarController*)self.window.rootViewController;
+    root.selectedIndex = 4;
+}
 
 
 - (void) showRightDrawerWithAdim:(UIView *)view{
