@@ -13,7 +13,7 @@ typedef void(^Operation)(NSManagedObject *target, id src);
 
 typedef void(^InsertOperation)(id src);
 
-typedef NSPredicate *(^SelectOperation)();
+typedef NSPredicate *(^Predicate)();
 
 
 @interface CoreDataManager : NSObject
@@ -37,9 +37,9 @@ typedef NSPredicate *(^SelectOperation)();
 // 取出所有的数据
 - (NSArray *)selectData;
 
-- (NSArray *)selectData:(SelectOperation)operation;
+- (NSArray *)selectData:(Predicate)operation;
 
-- (void)deleteData:(SelectOperation)operation;
+- (void)deleteData:(Predicate)operation;
 
 
 //查询

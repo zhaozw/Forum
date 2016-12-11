@@ -176,7 +176,7 @@
     return resultArray;
 }
 
-- (void)deleteData:(SelectOperation)operation {
+- (void)deleteData:(Predicate)operation {
     NSManagedObjectContext *context = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 
@@ -267,7 +267,7 @@
     return resultArray;
 }
 
-- (NSArray *)selectData:(SelectOperation)operation {
+- (NSArray *)selectData:(Predicate)operation {
     NSManagedObjectContext *context = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 

@@ -60,10 +60,12 @@
 
     API_DEBUG = NO;
 
+    NSDictionary *dic = [[NSBundle mainBundle] infoDictionary];
+    NSLog(@"infoDictionary %@",dic);
+    
     if (API_DEBUG) {
 
-        NSDictionary *dic = [[NSBundle mainBundle] infoDictionary];
-        NSLog(@"infoDictionary %@",dic);
+
 
         NSString *versionCode = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
         NSLog(@"versionCode %@",versionCode);

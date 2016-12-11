@@ -143,7 +143,9 @@
                     NSMutableArray<Forum *> *needInsert = message;
                     ForumCoreDataManager *formManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
                     // 需要先删除之前的老数据
-                    [formManager deleteData];
+                    [formManager deleteData:^NSPredicate * {
+                        return [NSPredicate predicateWithFormat:@"forumHost = %@", self.currentForumHost];;
+                    }];
 
                     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
