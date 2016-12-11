@@ -96,6 +96,7 @@
 
 
 - (void)didMoveToSuperview {
+    
     UIView *superView = [self superview];
     CGRect rect = superView.frame;
 

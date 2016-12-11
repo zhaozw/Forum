@@ -121,10 +121,13 @@
         [stortboard changeRootViewControllerTo:@"DRLTabBarController"];
         
     } else{
+        
+        [[NSUserDefaults standardUserDefaults] saveCurrentForumURL:forums.url];
+        
         UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
         [stortboard changeRootViewControllerToController:[[ForumLoginViewController alloc] init]];
     }
-    [[NSUserDefaults standardUserDefaults] saveCurrentForumURL:forums.url];
+
 }
 
 
@@ -132,6 +135,12 @@
     ForumTabBarController *controller = (ForumTabBarController *) self.tabBarController;
 
     [controller showLeftDrawer];
+}
+
+- (IBAction)cancel:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 @end
 

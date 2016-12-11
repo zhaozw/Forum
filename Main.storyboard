@@ -740,7 +740,14 @@
                             <outlet property="delegate" destination="2hj-fq-jCt" id="SMh-t2-zng"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="请选择论坛" id="Q3m-2X-egQ"/>
+                    <navigationItem key="navigationItem" title="请选择论坛" id="Q3m-2X-egQ">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="dMy-xS-H9h">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="cancel:" destination="2hj-fq-jCt" id="jch-Ro-41c"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eXx-LE-uTu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

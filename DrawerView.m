@@ -21,6 +21,8 @@
 #import "LoginUser.h"
 #import "ForumBrowser.h"
 #import "NSUserDefaults+Extensions.h"
+#import "UIStoryboard+Forum.h"
+#import "ForumTabBarController.h"
 
 
 @interface DrawerView(){
@@ -295,6 +297,20 @@
     }
 }
 
+- (IBAction)showAddForumController:(id)sender {
+    [self closeLeftDrawer];
+    
+    ForumTabBarController * root = (ForumTabBarController*)self.window.rootViewController;
+    
+    
+    UIViewController * controller = [[UIStoryboard mainStoryboard] finControllerById:@"ShowSupportForums"];
+    
+
+    [root presentViewController:controller animated:YES completion:^{
+        
+    }];
+}
+
 
 
 - (void) showRightDrawerWithAdim:(UIView *)view{
@@ -351,6 +367,7 @@
         if (_delegate != nil && [_delegate respondsToSelector:@selector(leftDrawerDidOpened)]) {
             [_delegate leftDrawerDidOpened];
         }
+    
         [self setLeftDrawerOpened:YES];
     }];
     
@@ -604,6 +621,5 @@
     [self showOrHideLeftAfterPan:recognizer :_leftDrawerView];
     
 }
-
 
 @end

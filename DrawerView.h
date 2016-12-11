@@ -60,6 +60,7 @@ typedef NS_ENUM(NSInteger, DrawerIndex) {
 -(void)openRightDrawer;
 -(void)closeRightDrawer;
 
+- (IBAction)showAddForumController:(id)sender;
 
 - (IBAction)showMyProfile:(id)sender;
 
