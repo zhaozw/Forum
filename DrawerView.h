@@ -13,6 +13,8 @@
 
 typedef CGFloat(^TouchX) (CGFloat x, CGFloat maxX);
 
+typedef void (^Done) ();
+
 
 typedef NS_ENUM(NSInteger, DrawerViewType) {
     DrawerViewTypeLeft = 0,                         // left
@@ -53,6 +55,12 @@ typedef NS_ENUM(NSInteger, DrawerIndex) {
 -(id)initWithDrawerType:(DrawerViewType)drawerType andXib:(NSString *)name;
 
 -(id)init;
+
+-(void)openLeftDrawer:(Done) done;
+-(void)closeLeftDrawer:(Done) done;
+
+-(void)openRightDrawer:(Done) done;
+-(void)closeRightDrawer:(Done) done;
 
 -(void)openLeftDrawer;
 -(void)closeLeftDrawer;
