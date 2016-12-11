@@ -8,8 +8,10 @@
 
 #import "ForumConfig.h"
 #import "CCFForumConfig.h"
+#import "DRLForumConfig.h"
 
 static CCFForumConfig *_ccfForumConfig;
+static DRLForumConfig *_drlForumConfig;
 
 @implementation ForumConfig
 
@@ -19,6 +21,11 @@ static CCFForumConfig *_ccfForumConfig;
             _ccfForumConfig = [[CCFForumConfig alloc] init];
         }
         return _ccfForumConfig;
+    } else if ([host isEqualToString:@"dream4ever.org"]) {
+        if (_drlForumConfig == nil) {
+            _drlForumConfig = [[DRLForumConfig alloc] init];
+        }
+        return _drlForumConfig;
     }
     return nil;
 }

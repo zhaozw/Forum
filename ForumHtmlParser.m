@@ -7,9 +7,11 @@
 
 #import "ForumHtmlParser.h"
 #import "CCFForumHtmlParser.h"
+#import "DRLForumHtmlParser.h"
 
 
 static CCFForumHtmlParser *_ccfParser;
+static DRLForumHtmlParser *_drlParser;
 
 @implementation ForumHtmlParser
 
@@ -21,7 +23,14 @@ static CCFForumHtmlParser *_ccfParser;
             _ccfParser.config = config;
         }
         return _ccfParser;
+    } else if ([config.host isEqualToString:@"dream4ever.org"]){
+        if (_drlParser == nil){
+            _drlParser = [[DRLForumHtmlParser alloc] init];
+            _drlParser.config = config;
+        }
+        return _drlParser;
     }
+        
     return self;
 }
 
@@ -31,6 +40,8 @@ static CCFForumHtmlParser *_ccfParser;
 
     if ([config.host isEqualToString:@"bbs.et8.net"]){
         return [[CCFForumHtmlParser alloc] init];
+    } else if ([config.host isEqualToString:@"dream4ever.org"]){
+        return [[DRLForumHtmlParser alloc] init];
     }
     return self;
 }

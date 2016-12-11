@@ -11,8 +11,10 @@
 #import "ForumHtmlParser.h"
 #import <iOSDeviceName/iOSDeviceName.h>
 #import "CCFForumBrowser.h"
+#import "DRLForumBrowser.h"
 
 static CCFForumBrowser * _ccfForumBrowser;
+static DRLForumBrowser * _drlForumBrowser;
 
 @implementation ForumBrowser
 
@@ -26,6 +28,13 @@ static CCFForumBrowser * _ccfForumBrowser;
             _ccfForumBrowser.htmlParser = [ForumHtmlParser parserWithForumConfig:config];
         }
         return _ccfForumBrowser;
+    } else if ([config.host isEqualToString:@"dream4ever.org"]){
+        if (_drlForumBrowser == nil){
+            _drlForumBrowser = [[DRLForumBrowser alloc] init];
+            _drlForumBrowser.config = config;
+            _drlForumBrowser.htmlParser = [ForumHtmlParser parserWithForumConfig:config];
+        }
+        return _drlForumBrowser;
     }
     return self;
 }
