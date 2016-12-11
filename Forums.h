@@ -18,4 +18,6 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dict;
 - (NSDictionary *)dictionaryRepresentation;
 
+- (NSString*) host;
+
 @end

@@ -25,6 +25,7 @@
 #import "ForumTabBarController.h"
 #import "SupportForums.h"
 #import "Forums.h"
+#import "NSUserDefaults+Extensions.h"
 
 
 
@@ -114,6 +115,12 @@
     UITableViewCell *cell = nib.lastObject;
 
     Forums *forums = loginForums[indexPath.row];
+    
+    if ([forums.host isEqualToString:[NSUserDefaults standardUserDefaults].currentForumHost]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else{
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     cell.textLabel.text = forums.name;
     

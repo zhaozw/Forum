@@ -80,5 +80,9 @@
     [self setValue:url forKey:@"currentForumURL"];
 }
 
+- (NSString*) currentForumHost{
+    NSURL * nsurl = [NSURL URLWithString:[self currentForumURL]];
+    return [nsurl host];
+}
 
 @end

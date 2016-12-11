@@ -32,4 +32,7 @@
 
 - (void) saveCurrentForumURL:(NSString*) url;
 
+- (NSString*) currentForumHost;
+
+
 @end

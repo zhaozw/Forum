@@ -59,6 +59,11 @@ NSString *const kForumsUrl = @"url";
     return [NSString stringWithFormat:@"%@", [self dictionaryRepresentation]];
 }
 
+- (NSString *)host{
+    NSURL *url = [NSURL URLWithString:self.url];
+    return url.host;
+}
+
 #pragma mark - Helper Method
 - (id)objectOrNilForKey:(id)aKey fromDictionary:(NSDictionary *)dict
 {
