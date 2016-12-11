@@ -116,14 +116,13 @@
     
     NSURL * url = [NSURL URLWithString:forums.url];
     
+    [[NSUserDefaults standardUserDefaults] saveCurrentForumURL:forums.url];
+    
     if ([self isUserHasLogin:url.host]) {
         UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
         [stortboard changeRootViewControllerTo:@"DRLTabBarController"];
         
     } else{
-        
-        [[NSUserDefaults standardUserDefaults] saveCurrentForumURL:forums.url];
-        
         UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
         [stortboard changeRootViewControllerToController:[[ForumLoginViewController alloc] init]];
     }

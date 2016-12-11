@@ -72,7 +72,8 @@
 - (NSArray<Forum *> *)selectChildForumsById:(int)forumId {
 
     NSArray<ForumEntry *> *entrys = [self selectData:^NSPredicate * {
-        return [NSPredicate predicateWithFormat:@"parentForumId = %d", forumId];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        return [NSPredicate predicateWithFormat:@"forumHost = %@ AND parentForumId = %d", [NSURL URLWithString:appDelegate.forumBaseUrl].host, forumId];
     }];
 
     NSMutableArray<Forum *> *forms = [NSMutableArray arrayWithCapacity:entrys.count];

@@ -159,7 +159,7 @@
             [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatarImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 if (error) {
                     [coreDateManager deleteData:^NSPredicate *{
-                        return [NSPredicate predicateWithFormat:@"userID = %@", userId];
+                        return [NSPredicate predicateWithFormat:@"forumHost = %@ AND userID = %@", self.currentForumHost, userId];
                     }];
                 }
                 //NSError * e = error;
