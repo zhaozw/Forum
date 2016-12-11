@@ -145,8 +145,10 @@
     [[NSUserDefaults standardUserDefaults] saveCurrentForumURL:forums.url];
     
     if ([self isUserHasLogin:url.host]) {
+        ForumTabBarController * rootViewController = (ForumTabBarController *)[[UIStoryboard mainStoryboard] finControllerById:@"ForumTabBarControllerId"];
+        rootViewController.selectedIndex = 2;
         UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
-        [stortboard changeRootViewControllerTo:@"ForumTabBarControllerId"];
+        [stortboard changeRootViewControllerToController:rootViewController];
     }
     
 }
