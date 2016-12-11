@@ -6,6 +6,7 @@
 //
 
 #import "ForumApiBaseViewController.h"
+#import "NSUserDefaults+Extensions.h"
 
 @interface ForumApiBaseViewController ()
 
@@ -16,7 +17,7 @@
 #pragma mark initData
 
 - (void)initData {
-    self.forumBrowser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
+    self.forumBrowser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:self.currentForumHost]];
 }
 
 #pragma mark override-init
@@ -44,6 +45,13 @@
         [self initData];
     }
     return self;
+}
+
+- (NSString *)currentForumHost {
+
+    NSString * urlStr = [[NSUserDefaults standardUserDefaults] currentForumURL];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    return url.host;
 }
 
 

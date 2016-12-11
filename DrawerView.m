@@ -20,6 +20,7 @@
 #import "UserEntry+CoreDataProperties.h"
 #import "LoginUser.h"
 #import "ForumBrowser.h"
+#import "NSUserDefaults+Extensions.h"
 
 
 @interface DrawerView(){
@@ -51,7 +52,7 @@
 -(id)init{
     if (self = [super init]) {
         
-        _ccfapi = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
+        _ccfapi = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:[self currentForumHost]]];
         [self setDrawerType:DrawerViewTypeLeft];
         
         [self initLeftDrawerView];
@@ -74,13 +75,19 @@
     return self;
 }
 
+- (NSString *)currentForumHost {
+    NSString * urlStr = [[NSUserDefaults standardUserDefaults] currentForumURL];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    return url.host;
+}
+
 - (void)getAvatar:(LoginUser *)loginUser {
 
 }
 
 -(id)initWithDrawerType:(DrawerViewType)drawerType andXib:(NSString *)name{
     if (self = [super init]) {
-        _ccfapi = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
+        _ccfapi = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:[self currentForumHost]]];
         
         // 和 xib 绑定
         [[NSBundle mainBundle] loadNibNamed:name owner:self options:nil];
@@ -134,7 +141,7 @@
     
     if (self = [super init]) {
         
-        _ccfapi = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
+        _ccfapi = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:[self currentForumHost]]];
         
         [self setDrawerType:drawerType];
         

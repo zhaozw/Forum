@@ -8,11 +8,12 @@
 
 #import "SupportForumTableViewController.h"
 #import "ForumThreadListTableViewController.h"
-
 #import "ForumTabBarController.h"
 #import "NSUserDefaults+Extensions.h"
+#import "UIStoryboard+Forum.h"
 #import "SupportForums.h"
 #import "Forums.h"
+#import "ForumLoginViewController.h"
 
 
 @interface SupportForumTableViewController ()
@@ -100,11 +101,32 @@
     }
 }
 
+- (BOOL)isUserHasLogin:(NSString*)host {
+    // 判断是否登录
+    ForumBrowser *browser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:host]];
+    LoginUser *loginUser = [browser getLoginUser];
+    
+    NSDate *date = [NSDate date];
+    return (loginUser.userID != nil && [loginUser.expireTime compare:date] != NSOrderedAscending);
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     Forums *forums = self.dataList[indexPath.row];
+    
+    NSURL * url = [NSURL URLWithString:forums.url];
+    
+    if ([self isUserHasLogin:url.host]) {
+        UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
+        [stortboard changeRootViewControllerTo:@"DRLTabBarController"];
+        
+    } else{
+        UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
+        [stortboard changeRootViewControllerToController:[[ForumLoginViewController alloc] init]];
+    }
     [[NSUserDefaults standardUserDefaults] saveCurrentForumURL:forums.url];
 }
+
 
 - (IBAction)showLeftDrawer:(id)sender {
     ForumTabBarController *controller = (ForumTabBarController *) self.tabBarController;
@@ -112,3 +134,6 @@
     [controller showLeftDrawer];
 }
 @end
+
+
+

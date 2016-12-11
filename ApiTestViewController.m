@@ -7,6 +7,7 @@
 
 #import "ApiTestViewController.h"
 #import "ForumBrowser.h"
+#import "NSUserDefaults+Extensions.h"
 
 @interface ApiTestViewController ()
 
@@ -14,11 +15,17 @@
 
 @implementation ApiTestViewController
 
+- (NSString *)currentForumHost {
+    NSString * urlStr = [[NSUserDefaults standardUserDefaults] currentForumURL];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    return url.host;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
 
-    ForumBrowser *api = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
+    ForumBrowser *api = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:[self currentForumHost]]];
 
     [api listAllForums:^(BOOL isSuccess, id message) {
 

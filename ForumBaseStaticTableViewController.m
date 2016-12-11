@@ -6,6 +6,7 @@
 //
 
 #import "ForumBaseStaticTableViewController.h"
+#import "NSUserDefaults+Extensions.h"
 
 @interface ForumBaseStaticTableViewController () {
     BOOL disablePullrefresh;
@@ -53,6 +54,14 @@
     return YES;
 }
 
+- (NSString *)currentForumHost {
+
+    NSString * urlStr = [[NSUserDefaults standardUserDefaults] currentForumURL];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    return url.host;
+}
+
+
 - (BOOL)setPullRefresh:(BOOL)enable {
     return YES;
 }
@@ -72,7 +81,7 @@
 #pragma mark initData
 
 - (void)initData {
-    self.forumBrowser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
+    self.forumBrowser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:self.currentForumHost]];
     self.dataList = [[NSMutableArray alloc] init];
 }
 

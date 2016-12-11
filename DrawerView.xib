@@ -15,6 +15,7 @@
                 <outlet property="avatarUIImageView" destination="EMP-9K-WJf" id="HCc-XC-Azq"/>
                 <outlet property="leftDrawerView" destination="iN0-l3-epB" id="WHZ-Lh-teq"/>
                 <outlet property="rightDrawerView" destination="dJQ-C7-qpp" id="SHy-gC-DGq"/>
+                <outlet property="tableView" destination="RoY-1E-1dD" id="Cfn-8U-flj"/>
                 <outlet property="userName" destination="bCv-xg-GdF" id="RYQ-CP-wkt"/>
             </connections>
         </placeholder>
@@ -53,15 +54,23 @@
                         <action selector="showMyProfile:" destination="-1" eventType="touchUpInside" id="PFV-pR-2f2"/>
                     </connections>
                 </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="RoY-1E-1dD">
+                    <rect key="frame" x="0.0" y="175" width="280" height="353"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="bCv-xg-GdF" firstAttribute="top" secondItem="EMP-9K-WJf" secondAttribute="bottom" constant="6" id="9kJ-9a-3eK"/>
                 <constraint firstItem="bCv-xg-GdF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="JG7-9H-TbO"/>
+                <constraint firstAttribute="trailing" secondItem="RoY-1E-1dD" secondAttribute="trailing" id="aKm-2B-vxv"/>
                 <constraint firstItem="7SC-OU-YuA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hln-Sh-HKD"/>
+                <constraint firstAttribute="bottom" secondItem="RoY-1E-1dD" secondAttribute="bottom" constant="42" id="miK-Sv-esd"/>
                 <constraint firstItem="7SC-OU-YuA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="45" id="oqw-0b-NH8"/>
                 <constraint firstItem="EMP-9K-WJf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="45" id="rvq-Zx-eQF"/>
+                <constraint firstItem="RoY-1E-1dD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tLU-Wi-bdm"/>
                 <constraint firstItem="EMP-9K-WJf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="um7-hG-j4u"/>
+                <constraint firstItem="RoY-1E-1dD" firstAttribute="top" secondItem="bCv-xg-GdF" secondAttribute="bottom" constant="8" id="wSH-Ur-jIO"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-630" y="266"/>

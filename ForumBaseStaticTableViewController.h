@@ -28,4 +28,6 @@
 
 - (BOOL)autoPullfresh;
 
+- (NSString *) currentForumHost;
+
 @end

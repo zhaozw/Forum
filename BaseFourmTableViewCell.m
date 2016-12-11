@@ -8,6 +8,7 @@
 #import "BaseFourmTableViewCell.h"
 #import <UIImageView+WebCache.h>
 #import "AppDelegate.h"
+#import "NSUserDefaults+Extensions.h"
 
 @implementation BaseFourmTableViewCell {
     UIImage *defaultAvatarImage;
@@ -43,16 +44,15 @@
 
     defaultAvatarImage = [UIImage imageNamed:@"defaultAvatar.gif"];
 
-    _forumBrowser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
+    _forumBrowser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:self.currentForumHost]];
 
     avatarCache = [NSMutableDictionary dictionary];
 
 
     coreDateManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
     if (cacheUsers == nil) {
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         cacheUsers = [[coreDateManager selectData:^NSPredicate * {
-            return [NSPredicate predicateWithFormat:@"forumHost = %@ AND userID > %d", [NSURL URLWithString:appDelegate.forumBaseUrl].host, 0];
+            return [NSPredicate predicateWithFormat:@"forumHost = %@ AND userID > %d", self.currentForumHost, 0];
         }] copy];
     }
 
@@ -68,6 +68,13 @@
 
 - (void)setData:(id)data forIndexPath:(NSIndexPath *)indexPath {
 
+}
+
+- (NSString *)currentForumHost {
+
+    NSString * urlStr = [[NSUserDefaults standardUserDefaults] currentForumURL];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    return url.host;
 }
 
 - (void)showAvatar:(UIImageView *)avatarImageView userId:(NSString *)userId {

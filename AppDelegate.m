@@ -119,7 +119,7 @@
 
         [data setDBVersion:DB_VERSION];
 
-        ForumBrowser *browser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
+        ForumBrowser *browser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:[self currentForumHost]]];
         [browser logout];
 
         ForumLoginViewController *rootController = [[ForumLoginViewController alloc] init];
@@ -142,9 +142,15 @@
     return YES;
 }
 
+- (NSString *)currentForumHost {
+    NSString * urlStr = [[NSUserDefaults standardUserDefaults] currentForumURL];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    return url.host;
+}
+
 - (BOOL)isUserHasLogin {
     // 判断是否登录
-    ForumBrowser *browser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:@"bbs.et8.net"]];
+    ForumBrowser *browser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:[self currentForumHost]]];
     LoginUser *loginUser = [browser getLoginUser];
 
     NSDate *date = [NSDate date];

@@ -22,5 +22,6 @@
 
 @property(nonatomic, weak) NSIndexPath *selectIndexPath;
 
+- (NSString *) currentForumHost;
 
 @end

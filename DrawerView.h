@@ -34,6 +34,7 @@ typedef NS_ENUM(NSInteger, DrawerIndex) {
 
 @property (strong, nonatomic) IBOutlet UIView *leftDrawerView;
 @property (strong, nonatomic) IBOutlet UIView *rightDrawerView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 
 @property (nonatomic, assign) BOOL leftDrawerOpened;
@@ -59,14 +60,6 @@ typedef NS_ENUM(NSInteger, DrawerIndex) {
 -(void)openRightDrawer;
 -(void)closeRightDrawer;
 
-- (IBAction)showMyFavForm:(id)sender;
-- (IBAction)showMessage:(id)sender;
-- (IBAction)showFavThread:(id)sender;
-- (IBAction)showNewThread:(id)sender;
-- (IBAction)showMyPost:(id)sender;
-- (IBAction)showMyThread:(id)sender;
-- (IBAction)showAllForms:(id)sender;
-- (IBAction)showTodayNewThreadPost:(LeftDrawerItem *)sender;
 
 - (IBAction)showMyProfile:(id)sender;
 

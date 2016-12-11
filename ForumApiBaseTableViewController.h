@@ -32,4 +32,7 @@
 - (BOOL)setLoadMore:(BOOL)enable;
 
 - (BOOL)autoPullfresh;
+
+- (NSString *)currentForumHost;
+
 @end

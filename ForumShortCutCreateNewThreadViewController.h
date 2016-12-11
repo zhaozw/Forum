@@ -5,8 +5,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SelectPhotoCollectionViewCell.h"
+#import "ForumApiBaseViewController.h"
 
-@interface ForumShortCutCreateNewThreadViewController : UIViewController
+@interface ForumShortCutCreateNewThreadViewController : ForumApiBaseViewController
 
 @property(weak, nonatomic) IBOutlet UITextField *subject;
 
