@@ -26,6 +26,12 @@
 
 - (NSString *) archive;
 
+- (NSString *) cookieUserIdKey;
+
+- (NSString *) cookieLastVisitTimeKey;
+
+- (NSString *) cookieExpTimeKey;
+
 // 附件相关
 - (NSString *)newattachmentForThread:(int) threadId time:(NSString *)time postHash:(NSString *)postHash;
 - (NSString *)newattachmentForForum:(int) forumId time:(NSString *)time postHash:(NSString *)postHash;

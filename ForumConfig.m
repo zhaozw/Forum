@@ -15,6 +15,23 @@ static DRLForumConfig *_drlForumConfig;
 
 @implementation ForumConfig
 
+- (NSString *)url {
+    return nil;
+}
+
+- (NSString *)cookieUserIdKey {
+    return nil;
+}
+
+- (NSString *)cookieLastVisitTimeKey {
+    return nil;
+}
+
+- (NSString *)cookieExpTimeKey {
+    return nil;
+}
+
+
 + (ForumConfig *)configWithForumHost:(NSString *)host {
     if ([host isEqualToString:@"bbs.et8.net"]) {
         if (_ccfForumConfig == nil) {

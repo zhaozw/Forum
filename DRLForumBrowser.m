@@ -13,9 +13,9 @@
 #import "AFHTTPSessionManager+SimpleAction.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
-#define kCookieUser @"bbuserid"
-#define kCookieLastVisit @"bblastvisit"
-#define kCookieIDStack @"IDstack"
+//#define kCookieUser @"bbuserid"
+//#define kCookieLastVisit @"bblastvisit"
+//#define kCookieIDStack @"IDstack"
 #define kSecurityToken @"securitytoken"
 
 typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
@@ -138,12 +138,12 @@ typedef void (^CallBack)(NSString *token, NSString *hash, NSString *time);
     
     for (int i = 0; i < cookies.count; i++) {
         NSHTTPCookie *cookie = cookies[i];
-        
-        if ([cookie.name isEqualToString:kCookieLastVisit]) {
+
+        if ([cookie.name isEqualToString:self.config.cookieLastVisitTimeKey]) {
             user.lastVisit = cookie.value;
-        } else if ([cookie.name isEqualToString:kCookieUser]) {
+        } else if ([cookie.name isEqualToString:self.config.cookieUserIdKey]) {
             user.userID = cookie.value;
-        } else if ([cookie.name isEqualToString:kCookieIDStack]) {
+        } else if ([cookie.name isEqualToString:self.config.cookieExpTimeKey]) {
             user.expireTime = cookie.expiresDate;
         }
     }

@@ -29,6 +29,18 @@
     return urlString;
 }
 
+- (NSString *)cookieUserIdKey {
+    return @"drluserid";
+}
+
+- (NSString *)cookieLastVisitTimeKey {
+    return @"drllastvisit";
+}
+
+- (NSString *)cookieExpTimeKey {
+    return @"IDstack";
+}
+
 - (UIColor *)themeColor {
     return [[UIColor alloc] initWithRed:25.f / 255.f green:67.f / 255.f blue:70.f / 255.f alpha:1];
 }
