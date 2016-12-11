@@ -12,11 +12,7 @@
 @implementation AFHTTPSessionManager (SimpleAction)
 
 
-- (void)GETWithURL:(NSURL *)url requestCallback:(RequestCallback)callback {
-
-    NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
-    [parameters setValue:@"2" forKey:@"styleid"];
-    [parameters setValue:@"1" forKey:@"langid"];
+- (void)GETWithURL:(NSURL *)url parameters:(NSDictionary *)parameters requestCallback:(RequestCallback)callback {
 
     [self GET:[url absoluteString] parameters:parameters progress:nil success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject) {
         
@@ -65,12 +61,13 @@
     }];
 }
 
-
-- (void)GETWithURLString:(NSString *)url requestCallback:(RequestCallback)callback {
+-(void)GETWithURLString:(NSString *)url parameters:(NSDictionary *)parameters requestCallback:(RequestCallback)callback{
+//    NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+//    [parameters setValue:@"2" forKey:@"styleid"];
+//    [parameters setValue:@"1" forKey:@"langid"];
     NSURL *nsurl = [NSURL URLWithString:url];
-    [self GETWithURL:nsurl requestCallback:callback];
+    [self GETWithURL:nsurl parameters:parameters requestCallback:callback];
 }
-
 
 - (void)POSTWithURLString:(NSString *)url parameters:(id)parameters constructingBodyWithBlock:(void (^)(id <AFMultipartFormData>))block requestCallback:(RequestCallback)callback {
     NSURL *nsurl = [NSURL URLWithString:url];
