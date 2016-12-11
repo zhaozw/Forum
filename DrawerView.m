@@ -23,9 +23,12 @@
 #import "NSUserDefaults+Extensions.h"
 #import "UIStoryboard+Forum.h"
 #import "ForumTabBarController.h"
+#import "SupportForums.h"
+#import "Forums.h"
 
 
-@interface DrawerView(){
+
+@interface DrawerView()<UITableViewDelegate, UITableViewDataSource>{
     
     UIButton *_drawerMaskView;
     
@@ -36,6 +39,8 @@
     UIImage *defaultAvatar;
     
     ForumCoreDataManager *coreDateManager;
+    
+    NSMutableArray *loginForums;
 }
 
 @end
@@ -76,6 +81,68 @@
     }
     return self;
 }
+
+- (BOOL)isUserHasLogin:(NSString*)host {
+    // 判断是否登录
+    ForumBrowser *browser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:host]];
+    LoginUser *loginUser = [browser getLoginUser];
+    
+    NSDate *date = [NSDate date];
+    return (loginUser.userID != nil && [loginUser.expireTime compare:date] != NSOrderedAscending);
+}
+
+#pragma mark - Table view data source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 1;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return loginForums.count;
+}
+
+#pragma mark - 代理方法
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HaveLoginForum" owner:self options:nil];
+    
+    UITableViewCell *cell = nib.lastObject;
+
+    Forums *forums = loginForums[indexPath.row];
+    
+    cell.textLabel.text = forums.name;
+    
+    UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0,16,0,16);
+    [cell setSeparatorInset:edgeInsets];
+    [cell setLayoutMargins:UIEdgeInsetsZero];
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 54;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    Forums *forums = loginForums[indexPath.row];
+    
+    NSURL * url = [NSURL URLWithString:forums.url];
+    
+    [[NSUserDefaults standardUserDefaults] saveCurrentForumURL:forums.url];
+    
+    if ([self isUserHasLogin:url.host]) {
+        UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
+        [stortboard changeRootViewControllerTo:@"DRLTabBarController"];
+    }
+    
+}
+
 
 - (NSString *)currentForumHost {
     NSString * urlStr = [[NSUserDefaults standardUserDefaults] currentForumURL];
@@ -272,6 +339,24 @@
     }
     
     [rootView bringSubviewToFront:self];
+    
+    
+    loginForums = [NSMutableArray array];
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    NSData *data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"supportForums" ofType:@"json"]];
+    
+    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    
+    SupportForums *supportForums = [SupportForums modelObjectWithDictionary:dictionary];
+    for (Forums * forums in supportForums.forums) {
+        NSURL * url = [NSURL URLWithString:forums.url];
+        if ([self isUserHasLogin:url.host]) {
+            [loginForums addObject:forums];
+        }
+    }
     
 }
 

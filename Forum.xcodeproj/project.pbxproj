@@ -17,6 +17,7 @@
 		3A288A621DFD14D8002EBBC2 /* DRLForumBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A288A5D1DFD14D8002EBBC2 /* DRLForumBrowser.m */; };
 		3A288A631DFD14D8002EBBC2 /* DRLForumConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A288A5F1DFD14D8002EBBC2 /* DRLForumConfig.m */; };
 		3A288A641DFD14D8002EBBC2 /* DRLForumHtmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A288A611DFD14D8002EBBC2 /* DRLForumHtmlParser.m */; };
+		3A288A661DFD8C76002EBBC2 /* HaveLoginForum.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A288A651DFD8C76002EBBC2 /* HaveLoginForum.xib */; };
 		3A2C3F0C1DDFB88400576151 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A2C3F0B1DDFB88400576151 /* Assets.xcassets */; };
 		3A2C3F0E1DDFB8D300576151 /* paperclip.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3A2C3F0D1DDFB8D300576151 /* paperclip.gif */; };
 		3A2C3F151DDFB94200576151 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2C3F141DDFB94200576151 /* AppDelegate.m */; };
@@ -149,6 +150,7 @@
 		3A288A5F1DFD14D8002EBBC2 /* DRLForumConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRLForumConfig.m; sourceTree = "<group>"; };
 		3A288A601DFD14D8002EBBC2 /* DRLForumHtmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRLForumHtmlParser.h; sourceTree = "<group>"; };
 		3A288A611DFD14D8002EBBC2 /* DRLForumHtmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRLForumHtmlParser.m; sourceTree = "<group>"; };
+		3A288A651DFD8C76002EBBC2 /* HaveLoginForum.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HaveLoginForum.xib; sourceTree = "<group>"; };
 		3A2C3F0B1DDFB88400576151 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A2C3F0D1DDFB8D300576151 /* paperclip.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = paperclip.gif; sourceTree = "<group>"; };
 		3A2C3F111DDFB91F00576151 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 				3A288A491DFAE47F002EBBC2 /* DrawerView.h */,
 				3A288A4A1DFAE47F002EBBC2 /* DrawerView.m */,
 				3A288A4B1DFAE47F002EBBC2 /* DrawerView.xib */,
+				3A288A651DFD8C76002EBBC2 /* HaveLoginForum.xib */,
 				3A2C3F531DDFBFC500576151 /* ForumListHeaderView.h */,
 				3A2C3F541DDFBFC500576151 /* ForumListHeaderView.m */,
 				3A2C3F551DDFBFC500576151 /* ForumListHeaderView.xib */,
@@ -870,6 +873,7 @@
 				3A2C3F171DDFBAB200576151 /* append_post_content.html in Resources */,
 				3A2C3F1D1DDFBAD000576151 /* post_message.html in Resources */,
 				3A2C3F191DDFBABD00576151 /* append_post.js in Resources */,
+				3A288A661DFD8C76002EBBC2 /* HaveLoginForum.xib in Resources */,
 				3A2C3FF11DDFE13500576151 /* LaunchScreen.storyboard in Resources */,
 				3A288A501DFC4EAF002EBBC2 /* supportForums.json in Resources */,
 				3AE854B71DF2B0B3000F62E9 /* defaultAvatar.gif in Resources */,
