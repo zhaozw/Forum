@@ -16,34 +16,38 @@ static DRLForumHtmlParser *_drlParser;
 @implementation ForumHtmlParser
 
 + (instancetype)parserWithForumConfig:(ForumConfig *)config{
-    
-    if ([config.host isEqualToString:@"bbs.et8.net"]) {
+
+    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
+    if ([bundleId isEqualToString:@"com.andforce.et8"]){
         if (_ccfParser == nil){
             _ccfParser = [[CCFForumHtmlParser alloc] init];
             _ccfParser.config = config;
         }
         return _ccfParser;
-    } else if ([config.host isEqualToString:@"dream4ever.org"]){
+    } else if ([bundleId isEqualToString:@"com.andforce.DRL"]){
         if (_drlParser == nil){
             _drlParser = [[DRLForumHtmlParser alloc] init];
             _drlParser.config = config;
         }
         return _drlParser;
+    } else{
+        if ([config.host isEqualToString:@"bbs.et8.net"]) {
+            if (_ccfParser == nil){
+                _ccfParser = [[CCFForumHtmlParser alloc] init];
+                _ccfParser.config = config;
+            }
+            return _ccfParser;
+        } else if ([config.host isEqualToString:@"dream4ever.org"]){
+            if (_drlParser == nil){
+                _drlParser = [[DRLForumHtmlParser alloc] init];
+                _drlParser.config = config;
+            }
+            return _drlParser;
+        }
+
+        return self;
     }
-        
-    return self;
 }
 
-- (instancetype)initWithForumConfig:(ForumConfig *)config {
-    self = [super init];
-    self.config = config;
-
-    if ([config.host isEqualToString:@"bbs.et8.net"]){
-        return [[CCFForumHtmlParser alloc] init];
-    } else if ([config.host isEqualToString:@"dream4ever.org"]){
-        return [[DRLForumHtmlParser alloc] init];
-    }
-    return self;
-}
 
 @end
