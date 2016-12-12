@@ -72,7 +72,7 @@
     [super viewDidLoad];
 
     if ([self isNeedHideLeftMenu]){
-        self.navigationItem.leftBarButtonItem.customView.hidden = YES;
+        self.navigationItem.leftBarButtonItem = nil;
     }
 
     UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0,16,0,16);

@@ -54,7 +54,7 @@
     [super viewDidLoad];
 
     if ([self isNeedHideLeftMenu]){
-        self.navigationItem.leftBarButtonItem.customView.hidden = YES;
+        self.navigationItem.leftBarButtonItem = nil;
     }
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
 
