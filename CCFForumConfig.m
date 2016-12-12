@@ -42,7 +42,7 @@
 }
 
 - (UIColor *)themeColor {
-    return [[UIColor alloc] initWithRed:25.f / 255.f green:67.f / 255.f blue:70.f / 255.f alpha:1];
+    return [[UIColor alloc] initWithRed:46.f/255.f green:70.f/255.f blue:126.f/255.f alpha:1];
 }
 
 - (NSString *)archive {
