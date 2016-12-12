@@ -25,11 +25,10 @@
 #import "ForumTabBarController.h"
 #import "ForumTableViewController.h"
 
+static BOOL API_DEBUG = NO;
+static int DB_VERSION = 8;
 
 @interface AppDelegate () {
-    BOOL API_DEBUG;
-    int DB_VERSION;
-    NSString * currentHost;
 }
 @end
 
@@ -45,30 +44,19 @@
 
     [HPURLProtocol registerURLProtocolIfNeed];
 
-
-
-
-
     // 这地方要换成你自己的ID，别用我这个，否则签名不对你也无法收到推送
     [AVOSCloud setApplicationId:@"x67DOcrRJjpYs5Qb6H13PrMY-gzGzoHsz" clientKey:@"LGvFICq1HK7z01ybiNQcDQNu"];
 
     application.applicationIconBadgeNumber = 0;
 
-
-    DB_VERSION = 8;
-
-
-    API_DEBUG = NO;
-
-    NSDictionary *dic = [[NSBundle mainBundle] infoDictionary];
-    NSLog(@"infoDictionary %@",dic);
-    
     if (API_DEBUG) {
 
-
+        NSDictionary *dic = [[NSBundle mainBundle] infoDictionary];
+        NSLog(@"infoDictionary %@",dic);
 
         NSString *versionCode = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
         NSLog(@"versionCode %@",versionCode);
+        
         ApiTestViewController *testController = [[ApiTestViewController alloc] init];
         self.window.rootViewController = testController;
         return YES;
@@ -246,10 +234,6 @@
     NSString *urlstr = [NSUserDefaults standardUserDefaults].currentForumURL;
 
     return urlstr;
-}
-
-- (void)updateForumBaseUrl:(NSString *)url {
-    currentHost = url;
 }
 
 - (NSString *)forumHost {
