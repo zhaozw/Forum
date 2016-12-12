@@ -16,5 +16,6 @@
 @property(weak, nonatomic) IBOutlet UISegmentedControl *messageSegmentedControl;
 
 - (IBAction)writePrivateMessage:(UIBarButtonItem *)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *leftMenu;
 
 @end

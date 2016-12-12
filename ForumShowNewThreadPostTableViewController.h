@@ -18,5 +18,6 @@
 @property(nonatomic, strong) id <TransBundleDelegate> delegate;
 
 @property(nonatomic, strong) TransBundle *bundle;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *leftMenu;
 
 @end
