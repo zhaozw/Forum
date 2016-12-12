@@ -82,15 +82,17 @@ static int DB_VERSION = 8;
     [setting registerDefaults:dictonary];
 
 
-    
-    NSString * url = [self forumBaseUrl];
-    if (url == nil) {
-        self.window.rootViewController = [[UIStoryboard mainStoryboard] finControllerById:@"ShowSupportForums"];
-        return YES;
+    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
+    if ([bundleId isEqualToString:@"com.andforce.forum"]){
+        NSString * url = [self forumBaseUrl];
+        if (url == nil) {
+            self.window.rootViewController = [[UIStoryboard mainStoryboard] finControllerById:@"ShowSupportForums"];
+            return YES;
+        }
     }
+    
 
     // 判断是否登录
-
     if (![self isUserHasLogin]) {
         self.window.rootViewController = [[ForumLoginViewController alloc] init];
     }
