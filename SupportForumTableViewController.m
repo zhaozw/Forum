@@ -14,9 +14,11 @@
 #import "SupportForums.h"
 #import "Forums.h"
 #import "ForumLoginViewController.h"
+#import "AppDelegate.h"
+#import "ForumNavigationViewController.h"
 
 
-@interface SupportForumTableViewController ()
+@interface SupportForumTableViewController ()<CAAnimationDelegate>
 
 @end
 
@@ -137,10 +139,44 @@
 }
 
 - (IBAction)cancel:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    if ([app.window.rootViewController isMemberOfClass:[ForumNavigationViewController class]]) {
+        [self exitApplication];
+    } else{
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }
+
 }
+
+- (void)exitApplication {
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    UIWindow *window = app.window;
+    
+    CABasicAnimation* rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.x"];
+    rotationAnimation.delegate = self;
+    
+    rotationAnimation.fillMode=kCAFillModeForwards;
+    
+    rotationAnimation.removedOnCompletion = NO;
+    //旋转角度
+    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI /2 ];
+    //每次旋转的时间（单位秒）
+    rotationAnimation.duration = 0.5;
+    rotationAnimation.cumulative = YES;
+    //重复旋转的次数，如果你想要无数次，那么设置成MAXFLOAT
+    rotationAnimation.repeatCount = 0;
+    [window.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+
+
+}
+
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+    exit(0);
+}
+
 @end
 
 

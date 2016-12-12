@@ -13,6 +13,8 @@
 static CCFForumConfig *_ccfForumConfig;
 static DRLForumConfig *_drlForumConfig;
 
+static ForumConfig * _defForumConfig;
+
 @implementation ForumConfig
 
 - (NSString *)url {
@@ -44,7 +46,11 @@ static DRLForumConfig *_drlForumConfig;
         }
         return _drlForumConfig;
     }
-    return nil;
+    
+    if (_defForumConfig == nil) {
+        _defForumConfig = [[ForumConfig alloc] init];
+    }
+    return _defForumConfig;
 }
 
 
@@ -53,7 +59,7 @@ static DRLForumConfig *_drlForumConfig;
 }
 
 - (UIColor *)themeColor {
-    return nil;
+    return [[UIColor alloc] initWithRed:29.f/255.f green:67.f/255.f blue:71.f/255.f alpha:1];;
 }
 
 - (NSString *)archive {
