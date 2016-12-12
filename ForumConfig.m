@@ -36,7 +36,7 @@ static ForumConfig * _defForumConfig;
 
 + (ForumConfig *)configWithForumHost:(NSString *)host {
     NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
-    if ([bundleId isEqualToString:@"com.andforce.CCF"]){
+    if ([bundleId isEqualToString:@"com.andforce.et8"]){
         if (_ccfForumConfig == nil) {
             _ccfForumConfig = [[CCFForumConfig alloc] init];
         }
