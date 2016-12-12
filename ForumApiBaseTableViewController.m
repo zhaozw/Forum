@@ -38,7 +38,11 @@
             [self onLoadMore];
         }];
     }
+}
 
+- (BOOL)isNeedHideLeftMenu {
+    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
+    return ![bundleId isEqualToString:@"com.andforce.forum"];
 
 }
 

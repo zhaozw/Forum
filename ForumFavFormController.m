@@ -53,6 +53,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    if ([self isNeedHideLeftMenu]){
+        self.navigationItem.leftBarButtonItem = nil;
+    }
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
 
     if (userDef.favFormIds == nil) {
