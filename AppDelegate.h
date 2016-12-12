@@ -22,8 +22,6 @@
 
 - (NSString *)forumBaseUrl;
 
-- (void)updateForumBaseUrl:(NSString *)url;
-
 - (NSString *)forumHost;
 
 @end

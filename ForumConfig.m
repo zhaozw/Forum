@@ -35,22 +35,36 @@ static ForumConfig * _defForumConfig;
 
 
 + (ForumConfig *)configWithForumHost:(NSString *)host {
-    if ([host isEqualToString:@"bbs.et8.net"]) {
+    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
+    if ([bundleId isEqualToString:@"com.andforce.CCF"]){
         if (_ccfForumConfig == nil) {
             _ccfForumConfig = [[CCFForumConfig alloc] init];
         }
         return _ccfForumConfig;
-    } else if ([host isEqualToString:@"dream4ever.org"]) {
+    } else if ([bundleId isEqualToString:@"com.andforce.DRL"]){
         if (_drlForumConfig == nil) {
             _drlForumConfig = [[DRLForumConfig alloc] init];
         }
         return _drlForumConfig;
+    } else{
+        if ([host isEqualToString:@"bbs.et8.net"]) {
+            if (_ccfForumConfig == nil) {
+                _ccfForumConfig = [[CCFForumConfig alloc] init];
+            }
+            return _ccfForumConfig;
+        } else if ([host isEqualToString:@"dream4ever.org"]) {
+            if (_drlForumConfig == nil) {
+                _drlForumConfig = [[DRLForumConfig alloc] init];
+            }
+            return _drlForumConfig;
+        }
+
+        if (_defForumConfig == nil) {
+            _defForumConfig = [[ForumConfig alloc] init];
+        }
+        return _defForumConfig;
     }
-    
-    if (_defForumConfig == nil) {
-        _defForumConfig = [[ForumConfig alloc] init];
-    }
-    return _defForumConfig;
+
 }
 
 
