@@ -71,10 +71,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    if ([self isNeedHideLeftMenu]){
+        self.navigationItem.leftBarButtonItem.customView.hidden = YES;
+    }
 
     UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0,16,0,16);
     [self.tableView setSeparatorInset:edgeInsets];
     [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+}
+
+- (BOOL)isNeedHideLeftMenu {
+    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
+    return ![bundleId isEqualToString:@"com.andforce.forum"];
+
 }
 
 - (BOOL)setLoadMore:(BOOL)enable {

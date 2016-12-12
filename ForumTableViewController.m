@@ -31,6 +31,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    if ([self isNeedHideLeftMenu]){
+        self.navigationItem.leftBarButtonItem.customView.hidden = YES;
+    }
+
     ForumCoreDataManager *formManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
 
     [self.dataList removeAllObjects];

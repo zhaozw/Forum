@@ -35,4 +35,6 @@
 
 - (NSString *)currentForumHost;
 
+- (BOOL) isNeedHideLeftMenu;
+
 @end
