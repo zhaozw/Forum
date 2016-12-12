@@ -68,7 +68,14 @@
 }
 
 - (NSString *)currentForumURL {
-    return [self valueForKey:@"currentForumURL"];
+    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
+    if ([bundleId isEqualToString:@"com.andforce.et8"]){
+        return @"https://bbs.et8.net/bbs/";
+    } else if ([bundleId isEqualToString:@"com.andforce.DRL"]){
+        return @"https://dream4ever.org/";
+    } else{
+        return [self valueForKey:@"currentForumURL"];
+    }
 }
 
 - (void)saveCurrentForumURL:(NSString *)url {
