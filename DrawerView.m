@@ -452,6 +452,7 @@
 
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.scrollsToTop = NO;
 
     NSData *data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"supportForums" ofType:@"json"]];
 

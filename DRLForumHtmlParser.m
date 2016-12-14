@@ -211,6 +211,13 @@
     return fixedImage;
 }
 
+// private
+- (NSString *) fixedQuote:(NSString *)html{
+
+    NSString *result = [html stringByReplacingOccurrencesOfString:@"<div style=\"overflow: auto; height: 100px; padding: 2px;\" id=\"quote_d\">" withString:@"<div id=\"quote_d\">"];
+    return result;
+}
+
 - (ViewThreadPage *)parseShowThreadWithHtml:(NSString *)html {
     
     
@@ -218,8 +225,9 @@
     
     NSString * fixFontSizeHTML = [self fixedFontSize:fixedImage];
     NSString * fixedClodeBlock = [self fixedCodeBlodk:fixFontSizeHTML];
-    
-    NSString * fixedHtml = [self fixedLink:fixedClodeBlock];
+
+    NSString * fixedQuoteHeight = [self fixedQuote:fixedClodeBlock];
+    NSString * fixedHtml = [self fixedLink:fixedQuoteHeight];
     
     
     
@@ -247,16 +255,19 @@
     // title
     IGXMLNode * titleNode = [document queryWithXPath:@"//*[@id='table1']/tr/td[1]/div/strong"].firstObject;
     
-    NSString * fixedTitle = [titleNode.text trim];
-    if ([fixedTitle hasPrefix:@"【"]){
-        fixedTitle = [fixedTitle stringByReplacingOccurrencesOfString:@"【" withString:@"["];
-        fixedTitle = [fixedTitle stringByReplacingOccurrencesOfString:@"】" withString:@"]"];
-    } else{
-        fixedTitle = [@"讨论" stringByAppendingString:fixedTitle];
+    if (titleNode != nil) {
+        NSString * fixedTitle = [titleNode.text trim];
+        if ([fixedTitle hasPrefix:@"【"]){
+            fixedTitle = [fixedTitle stringByReplacingOccurrencesOfString:@"【" withString:@"["];
+            fixedTitle = [fixedTitle stringByReplacingOccurrencesOfString:@"】" withString:@"]"];
+        } else{
+            fixedTitle = [@"讨论" stringByAppendingString:fixedTitle];
+        }
+        showThreadPage.threadTitle = fixedTitle;
     }
-    
-    showThreadPage.threadTitle = fixedTitle;
-    
+
+
+
     // page number
     IGXMLNode * pageNumberNode = [document queryNodeWithXPath:@"/html/body/table/tr/td/div[2]/div/div/table[2]/tr/td[2]/div/table/tr/td[1]"];
     
