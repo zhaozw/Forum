@@ -247,16 +247,19 @@
     // title
     IGXMLNode * titleNode = [document queryWithXPath:@"//*[@id='table1']/tr/td[1]/div/strong"].firstObject;
     
-    NSString * fixedTitle = [titleNode.text trim];
-    if ([fixedTitle hasPrefix:@"【"]){
-        fixedTitle = [fixedTitle stringByReplacingOccurrencesOfString:@"【" withString:@"["];
-        fixedTitle = [fixedTitle stringByReplacingOccurrencesOfString:@"】" withString:@"]"];
-    } else{
-        fixedTitle = [@"讨论" stringByAppendingString:fixedTitle];
+    if (titleNode != nil) {
+        NSString * fixedTitle = [titleNode.text trim];
+        if ([fixedTitle hasPrefix:@"【"]){
+            fixedTitle = [fixedTitle stringByReplacingOccurrencesOfString:@"【" withString:@"["];
+            fixedTitle = [fixedTitle stringByReplacingOccurrencesOfString:@"】" withString:@"]"];
+        } else{
+            fixedTitle = [@"讨论" stringByAppendingString:fixedTitle];
+        }
+        showThreadPage.threadTitle = fixedTitle;
     }
-    
-    showThreadPage.threadTitle = fixedTitle;
-    
+
+
+
     // page number
     IGXMLNode * pageNumberNode = [document queryNodeWithXPath:@"/html/body/table/tr/td/div[2]/div/div/table[2]/tr/td[2]/div/table/tr/td[1]"];
     
