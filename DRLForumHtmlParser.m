@@ -211,6 +211,13 @@
     return fixedImage;
 }
 
+// private
+- (NSString *) fixedQuote:(NSString *)html{
+
+    NSString *result = [html stringByReplacingOccurrencesOfString:@"<div style=\"overflow: auto; height: 100px; padding: 2px;\" id=\"quote_d\">" withString:@"<div id=\"quote_d\">"];
+    return result;
+}
+
 - (ViewThreadPage *)parseShowThreadWithHtml:(NSString *)html {
     
     
@@ -218,8 +225,9 @@
     
     NSString * fixFontSizeHTML = [self fixedFontSize:fixedImage];
     NSString * fixedClodeBlock = [self fixedCodeBlodk:fixFontSizeHTML];
-    
-    NSString * fixedHtml = [self fixedLink:fixedClodeBlock];
+
+    NSString * fixedQuoteHeight = [self fixedQuote:fixedClodeBlock];
+    NSString * fixedHtml = [self fixedLink:fixedQuoteHeight];
     
     
     
