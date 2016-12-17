@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,26 +21,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="h6s-4j-gBo">
-                                <rect key="frame" x="137.5" y="173" width="100" height="100"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_bai" translatesAutoresizingMaskIntoConstraints="NO" id="h6s-4j-gBo">
+                                <rect key="frame" x="112" y="258" width="150" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="CkR-LR-ALe"/>
-                                    <constraint firstAttribute="width" secondItem="h6s-4j-gBo" secondAttribute="height" multiplier="1:1" id="kmY-ns-qwv"/>
+                                    <constraint firstAttribute="width" constant="150" id="6H4-EF-9ec"/>
+                                    <constraint firstAttribute="height" constant="150" id="TIy-Kv-1vc"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="论坛" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ttb-QI-mkY">
-                                <rect key="frame" x="147.5" y="326" width="80.5" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <color key="textColor" red="0.94999998807907104" green="0.94999998807907104" blue="0.94999998807907104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.11282248049974442" green="0.26660430431365967" blue="0.27443438768386841" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.43431052565574646" green="0.5224413275718689" blue="0.62924760580062866" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ttb-QI-mkY" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6MG-1L-pbU"/>
-                            <constraint firstItem="h6s-4j-gBo" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="153" id="P8B-rU-2lc"/>
-                            <constraint firstItem="h6s-4j-gBo" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="VTY-ko-wTJ"/>
-                            <constraint firstItem="ttb-QI-mkY" firstAttribute="top" secondItem="h6s-4j-gBo" secondAttribute="bottom" constant="53" id="gu6-Fm-IfU"/>
+                            <constraint firstItem="h6s-4j-gBo" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Nnj-3M-pt0"/>
+                            <constraint firstItem="h6s-4j-gBo" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="tNi-a6-7CX"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -51,6 +42,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="320" height="320"/>
+        <image name="logo_bai" width="1024" height="1024"/>
     </resources>
 </document>
