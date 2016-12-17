@@ -29,7 +29,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnU-2D-N9K">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="KW9-CB-Ybn">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_bai" translatesAutoresizingMaskIntoConstraints="NO" id="KW9-CB-Ybn">
                             <rect key="frame" x="137.5" y="100" width="100" height="100"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="100" id="9l1-BH-aul"/>
@@ -178,6 +178,6 @@
         </view>
     </objects>
     <resources>
-        <image name="logo" width="320" height="320"/>
+        <image name="logo_bai" width="1024" height="1024"/>
     </resources>
 </document>
