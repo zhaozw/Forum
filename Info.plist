@@ -39,22 +39,22 @@
 	<string>是否允许此App使用你的相册</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
-		<dict>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeBookmark</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>精品家园</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>OPEN_JINGPING_HOME</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeBookmark</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>二手闲置</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>OPEN_ERSHOU_FORUM</string>
-		</dict>
+<!--		<dict>-->
+<!--			<key>UIApplicationShortcutItemIconType</key>-->
+<!--			<string>UIApplicationShortcutIconTypeBookmark</string>-->
+<!--			<key>UIApplicationShortcutItemTitle</key>-->
+<!--			<string>精品家园</string>-->
+<!--			<key>UIApplicationShortcutItemType</key>-->
+<!--			<string>OPEN_JINGPING_HOME</string>-->
+<!--		</dict>-->
+<!--		<dict>-->
+<!--			<key>UIApplicationShortcutItemIconType</key>-->
+<!--			<string>UIApplicationShortcutIconTypeBookmark</string>-->
+<!--			<key>UIApplicationShortcutItemTitle</key>-->
+<!--			<string>二手闲置</string>-->
+<!--			<key>UIApplicationShortcutItemType</key>-->
+<!--			<string>OPEN_ERSHOU_FORUM</string>-->
+<!--		</dict>-->
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeCompose</string>
