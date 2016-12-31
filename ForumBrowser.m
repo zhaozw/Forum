@@ -12,6 +12,7 @@
 #import <iOSDeviceName/iOSDeviceName.h>
 #import "CCFForumBrowser.h"
 #import "DRLForumBrowser.h"
+#import "AppDelegate.h"
 
 static CCFForumBrowser * _ccfForumBrowser;
 static DRLForumBrowser * _drlForumBrowser;
@@ -21,7 +22,9 @@ static DRLForumBrowser * _drlForumBrowser;
 
 + (ForumBrowser *)browserWithForumConfig:(ForumConfig *)config {
 
-    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString *bundleId = [appDelegate bundleIdentifier];
+
     if ([bundleId isEqualToString:@"com.andforce.et8"]){
         if (_ccfForumBrowser == nil){
             _ccfForumBrowser = [[CCFForumBrowser alloc] init];

@@ -7,6 +7,7 @@
 
 #import "ForumApiBaseTableViewController.h"
 #import "NSUserDefaults+Extensions.h"
+#import "AppDelegate.h"
 
 @interface ForumApiBaseTableViewController () {
     BOOL disablePullrefresh;
@@ -41,7 +42,8 @@
 }
 
 - (BOOL)isNeedHideLeftMenu {
-    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString *bundleId = [appDelegate bundleIdentifier];
     return ![bundleId isEqualToString:@"com.andforce.forum"];
 
 }

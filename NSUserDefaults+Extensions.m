@@ -6,6 +6,7 @@
 //
 
 #import "NSUserDefaults+Extensions.h"
+#import "AppDelegate.h"
 
 #define kDB_VERSION @"DB_VERSION"
 
@@ -68,7 +69,8 @@
 }
 
 - (NSString *)currentForumURL {
-    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString *bundleId = [appDelegate bundleIdentifier];
     if ([bundleId isEqualToString:@"com.andforce.et8"]){
         return @"https://bbs.et8.net/bbs/";
     } else if ([bundleId isEqualToString:@"com.andforce.DRL"]){

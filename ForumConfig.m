@@ -10,6 +10,8 @@
 #import "CCFForumConfig.h"
 #import "DRLForumConfig.h"
 
+#import "AppDelegate.h"
+
 static CCFForumConfig *_ccfForumConfig;
 static DRLForumConfig *_drlForumConfig;
 
@@ -35,7 +37,10 @@ static ForumConfig * _defForumConfig;
 
 
 + (ForumConfig *)configWithForumHost:(NSString *)host {
-    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
+
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString *bundleId = [appDelegate bundleIdentifier];
+
     if ([bundleId isEqualToString:@"com.andforce.et8"]){
         if (_ccfForumConfig == nil) {
             _ccfForumConfig = [[CCFForumConfig alloc] init];

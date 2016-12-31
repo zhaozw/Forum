@@ -8,6 +8,7 @@
 
 #import "ForumTabBarController.h"
 #import "DrawerView.h"
+#import "AppDelegate.h"
 
 @interface ForumTabBarController () {
     DrawerView *_leftDrawerView;
@@ -29,7 +30,8 @@
 }
 
 - (BOOL)isNeedHideLeftMenu {
-    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString *bundleId = [appDelegate bundleIdentifier];
     return ![bundleId isEqualToString:@"com.andforce.forum"];
 }
 
