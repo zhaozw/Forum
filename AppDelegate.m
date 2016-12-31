@@ -137,11 +137,11 @@ static NSString *bundleIdentifier;
 }
 
 - (NSString *) bundleIdentifier{
-    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
     if (bundleIdentifier == nil) {
+        NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
         bundleIdentifier = bundleId;
     }
-
+    
     return bundleIdentifier;
 }
 
