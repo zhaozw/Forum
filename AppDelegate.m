@@ -39,8 +39,7 @@ static NSString *bundleIdentifier;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
-    bundleIdentifier = bundleId;
+
 
     NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:10 * 1024 * 1024 diskCapacity:50 * 1024 * 1024 diskPath:nil];
     [NSURLCache setSharedURLCache:cache];
@@ -86,7 +85,7 @@ static NSString *bundleIdentifier;
     [dictonary setValue:[NSNumber numberWithInt:1] forKey:kTOP_THREAD];
     [setting registerDefaults:dictonary];
 
-    if ([bundleId isEqualToString:@"com.andforce.forum"]){
+    if ([[self bundleIdentifier] isEqualToString:@"com.andforce.forum"]){
         NSString * url = [self forumBaseUrl];
         if (url == nil) {
             self.window.rootViewController = [[UIStoryboard mainStoryboard] finControllerById:@"ShowSupportForums"];
@@ -138,6 +137,11 @@ static NSString *bundleIdentifier;
 }
 
 - (NSString *) bundleIdentifier{
+    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
+    if (bundleIdentifier == nil) {
+        bundleIdentifier = bundleId;
+    }
+
     return bundleIdentifier;
 }
 
