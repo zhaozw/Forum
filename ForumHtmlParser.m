@@ -8,7 +8,7 @@
 #import "ForumHtmlParser.h"
 #import "CCFForumHtmlParser.h"
 #import "DRLForumHtmlParser.h"
-
+#import "AppDelegate.h"
 
 static CCFForumHtmlParser *_ccfParser;
 static DRLForumHtmlParser *_drlParser;
@@ -17,7 +17,9 @@ static DRLForumHtmlParser *_drlParser;
 
 + (instancetype)parserWithForumConfig:(ForumConfig *)config{
 
-    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString *bundleId = [appDelegate bundleIdentifier];
+
     if ([bundleId isEqualToString:@"com.andforce.et8"]){
         if (_ccfParser == nil){
             _ccfParser = [[CCFForumHtmlParser alloc] init];
