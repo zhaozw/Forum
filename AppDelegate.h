@@ -24,5 +24,7 @@
 
 - (NSString *)forumHost;
 
+- (NSString *) bundleIdentifier;
+
 @end
 

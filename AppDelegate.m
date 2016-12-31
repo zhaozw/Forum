@@ -28,6 +28,8 @@
 static BOOL API_DEBUG = NO;
 static int DB_VERSION = 8;
 
+static NSString *bundleIdentifier;
+
 @interface AppDelegate () {
 }
 @end
@@ -36,6 +38,9 @@ static int DB_VERSION = 8;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
+    bundleIdentifier = bundleId;
 
     NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:10 * 1024 * 1024 diskCapacity:50 * 1024 * 1024 diskPath:nil];
     [NSURLCache setSharedURLCache:cache];
@@ -81,8 +86,6 @@ static int DB_VERSION = 8;
     [dictonary setValue:[NSNumber numberWithInt:1] forKey:kTOP_THREAD];
     [setting registerDefaults:dictonary];
 
-
-    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
     if ([bundleId isEqualToString:@"com.andforce.forum"]){
         NSString * url = [self forumBaseUrl];
         if (url == nil) {
@@ -132,6 +135,10 @@ static int DB_VERSION = 8;
     }
     
     return YES;
+}
+
+- (NSString *) bundleIdentifier{
+    return bundleIdentifier;
 }
 
 - (NSString *)currentForumHost {
