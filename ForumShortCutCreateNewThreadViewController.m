@@ -40,8 +40,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    _forumBrowser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:self.currentForumHost]];
+    //_forumBrowser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:self.currentForumHost]];
 
+    _forumBrowser = [[[ForumBrowser alloc] init] browserWithForumConfig:[ForumConfig configWithForumHost:self.currentForumHost]];
 
     _selectPhotos.delegate = self;
     _selectPhotos.dataSource = self;

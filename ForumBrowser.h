@@ -16,7 +16,7 @@
 
 @interface ForumBrowser : NSObject <ForumEngine>
 
-+ (ForumBrowser*)browserWithForumConfig:(ForumConfig *)config;
+- (ForumBrowser*)browserWithForumConfig:(ForumConfig *)config;
 
 @property(nonatomic, strong) ForumConfig *config;
 
