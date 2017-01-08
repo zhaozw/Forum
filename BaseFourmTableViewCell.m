@@ -44,7 +44,9 @@
 
     defaultAvatarImage = [UIImage imageNamed:@"defaultAvatar.gif"];
 
-    _forumBrowser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:self.currentForumHost]];
+//    _forumBrowser = [ForumBrowser browserWithForumConfig:[ForumConfig configWithForumHost:self.currentForumHost]];
+    
+    _forumBrowser = [[[ForumBrowser alloc] init] browserWithForumConfig:[ForumConfig configWithForumHost:self.currentForumHost]];
 
     avatarCache = [NSMutableDictionary dictionary];
 
