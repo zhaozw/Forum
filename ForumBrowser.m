@@ -14,49 +14,43 @@
 #import "DRLForumBrowser.h"
 #import "AppDelegate.h"
 
-static CCFForumBrowser * _ccfForumBrowser;
-static DRLForumBrowser * _drlForumBrowser;
+//static CCFForumBrowser * _ccfForumBrowser;
+//static DRLForumBrowser * _drlForumBrowser;
 
 @implementation ForumBrowser
 
 
-+ (ForumBrowser *)browserWithForumConfig:(ForumConfig *)config {
+- (ForumBrowser *)browserWithForumConfig:(ForumConfig *)config {
 
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSString *bundleId = [appDelegate bundleIdentifier];
 
     if ([bundleId isEqualToString:@"com.andforce.et8"]){
-        if (_ccfForumBrowser == nil){
-            _ccfForumBrowser = [[CCFForumBrowser alloc] init];
+            CCFForumBrowser * _ccfForumBrowser = [[CCFForumBrowser alloc] init];
             _ccfForumBrowser.config = config;
             _ccfForumBrowser.htmlParser = [ForumHtmlParser parserWithForumConfig:config];
-        }
         return _ccfForumBrowser;
     } else if ([bundleId isEqualToString:@"com.andforce.DRL"]){
-        if (_drlForumBrowser == nil){
-            _drlForumBrowser = [[DRLForumBrowser alloc] init];
+            DRLForumBrowser * _drlForumBrowser = [[DRLForumBrowser alloc] init];
             _drlForumBrowser.config = config;
             _drlForumBrowser.htmlParser = [ForumHtmlParser parserWithForumConfig:config];
-        }
         return _drlForumBrowser;
     } else{
         if ([config.host isEqualToString:@"bbs.et8.net"]) {
-            if (_ccfForumBrowser == nil){
-                _ccfForumBrowser = [[CCFForumBrowser alloc] init];
+                CCFForumBrowser * _ccfForumBrowser = [[CCFForumBrowser alloc] init];
                 _ccfForumBrowser.config = config;
                 _ccfForumBrowser.htmlParser = [ForumHtmlParser parserWithForumConfig:config];
-            }
             return _ccfForumBrowser;
         } else if ([config.host isEqualToString:@"dream4ever.org"]){
-            if (_drlForumBrowser == nil){
-                _drlForumBrowser = [[DRLForumBrowser alloc] init];
+                DRLForumBrowser * _drlForumBrowser = [[DRLForumBrowser alloc] init];
                 _drlForumBrowser.config = config;
                 _drlForumBrowser.htmlParser = [ForumHtmlParser parserWithForumConfig:config];
-            }
             return _drlForumBrowser;
         }
         return self;
     }
+    
+    return self;
 
 }
 
