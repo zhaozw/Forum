@@ -12,7 +12,7 @@
 
 @property(nonatomic, assign) BOOL isCanCreateThread;
 @property(nonatomic, strong) NSMutableArray<Thread *> *threadList;
-@property(nonatomic, assign) NSUInteger totalPageCount;
-@property(nonatomic, assign) NSUInteger currentPage;
+@property(nonatomic, assign) NSInteger totalPageCount;
+@property(nonatomic, assign) NSInteger currentPage;
 
 @end

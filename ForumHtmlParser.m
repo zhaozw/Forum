@@ -23,7 +23,6 @@ static DRLForumHtmlParser *_drlParser;
     if ([bundleId isEqualToString:@"com.andforce.et8"]){
         if (_ccfParser == nil){
             _ccfParser = [[CCFForumHtmlParser alloc] init];
-            _ccfParser.config = config;
         }
         return _ccfParser;
     } else if ([bundleId isEqualToString:@"com.andforce.DRL"]){
@@ -36,7 +35,6 @@ static DRLForumHtmlParser *_drlParser;
         if ([config.host isEqualToString:@"bbs.et8.net"]) {
             if (_ccfParser == nil){
                 _ccfParser = [[CCFForumHtmlParser alloc] init];
-                _ccfParser.config = config;
             }
             return _ccfParser;
         } else if ([config.host isEqualToString:@"dream4ever.org"]){
