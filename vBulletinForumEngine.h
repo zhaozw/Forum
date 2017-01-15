@@ -18,7 +18,7 @@ FOUNDATION_EXPORT const unsigned char vBulletinForumEngineVersionString[];
 
 
 #import "ForumEngine.h"
-#import "ForumHtmlParserDelegate.h"
+#import "ForumParser.h"
 
 #import "LoginUser.h"
 #import "Message.h"

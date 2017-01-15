@@ -1,5 +1,5 @@
 //
-//  ForumHtmlParserDelegate.h
+//  ForumParser.h
 //  vBulletinForumEngine
 //
 //  Created by 迪远 王 on 16/10/2.
@@ -22,7 +22,7 @@
 #import "ThreadInSearch.h"
 #import "ViewSearchForumPage.h"
 
-@protocol ForumHtmlParserDelegate
+@protocol ForumParser <NSObject>
 
 - (ViewThreadPage *)parseShowThreadWithHtml:(NSString *)html;
 

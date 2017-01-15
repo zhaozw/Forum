@@ -93,11 +93,11 @@
 
 
         NSString *newImagePattern = @"<img src=\"%@\" />";
-        for (IGXMLNode *nodeImage in attImageSet) {
-            NSString *href = [nodeImage attribute:@"href"];
+        for (IGXMLNode *node in attImageSet) {
+            NSString *href = [node attribute:@"href"];
             NSString *newImage = [NSString stringWithFormat:newImagePattern, href];
 
-            attImageHtml = [attImageHtml stringByReplacingOccurrencesOfString:nodeImage.html withString:newImage];
+            attImageHtml = [attImageHtml stringByReplacingOccurrencesOfString:node.html withString:newImage];
         }
 
 
@@ -134,7 +134,7 @@
     IGXMLNodeSet *postUserInfo = [document queryWithXPath:@"//*[@id='posts']/div[*]/div/div/div/table/tr[1]/td[1]"];
     //*[@id="post"]/tbody/tr[1]/td[1]
 
-    NSUInteger postPointer = 0;
+    int postPointer = 0;
     for (IGXMLNode *userInfoNode in postUserInfo) {
 
         if (userInfoNode.children.count < 5) {
@@ -316,7 +316,7 @@
 
     NSTimeInterval intervalTime = date.timeIntervalSinceNow;
 
-    double interval = -intervalTime;
+    int interval = -intervalTime;
     if (interval < 60) {
         return @"刚刚";
     } else if (interval >= 60 && interval <= 60 * 60) {
@@ -346,8 +346,10 @@
     IGHTMLDocument *document = [[IGHTMLDocument alloc] initWithHTMLString:html error:nil];
     IGXMLNodeSet *contents = [document queryWithXPath:path];
 
+    NSInteger totaleListCount = -1;
+
     for (int i = 0; i < contents.count; i++) {
-        IGXMLNode *normallThreadNode = contents[(NSUInteger)i];
+        IGXMLNode *normallThreadNode = contents[i];
 
         if (normallThreadNode.children.count >= 8) { // 要>=8的原因是：过滤已经被删除的帖子 以及 被移动的帖子
 
@@ -444,19 +446,26 @@
     }
 
     // 总页数
-    IGXMLNodeSet *totalPageSet = [document queryWithXPath:@"//*[@id='inlinemodform']/table[4]/tr[1]/td[2]/div/table/tr/td[1]"];
+    if (totaleListCount == -1) {
+        IGXMLNodeSet *totalPageSet = [document queryWithXPath:@"//*[@id='inlinemodform']/table[4]/tr[1]/td[2]/div/table/tr/td[1]"];
 
-    if (totalPageSet == nil) {
-        page.totalPageCount = 1;
+        if (totalPageSet == nil) {
+            totaleListCount = 1;
+            page.totalPageCount = 1;
+        } else {
+            IGXMLNode *totalPage = totalPageSet.firstObject;
+            NSString *pageText = [totalPage innerHtml];
+            NSString *numberText = [[pageText componentsSeparatedByString:@"，"] lastObject];
+            numberText = [numberText stringWithRegular:@"\\d+"];
+            NSUInteger totalNumber = [numberText integerValue];
+            //NSLog(@"总页数：   %@", pageText);
+            page.totalPageCount = totalNumber;
+            totaleListCount = totalNumber;
+        }
+
     } else {
-        IGXMLNode *totalPage = totalPageSet.firstObject;
-        NSString *pageText = [totalPage innerHtml];
-        NSString *numberText = [[pageText componentsSeparatedByString:@"，"] lastObject];
-        numberText = [numberText stringWithRegular:@"\\d+"];
-        NSInteger totalNumber = [numberText integerValue];
-        page.totalPageCount = totalNumber;
+        page.totalPageCount = totaleListCount;
     }
-
     page.threadList = threadList;
 
     return page;
@@ -473,6 +482,8 @@
 
     IGHTMLDocument *document = [[IGHTMLDocument alloc] initWithHTMLString:html error:nil];
     IGXMLNodeSet *contents = [document queryWithXPath:path];
+
+    NSInteger totaleListCount = -1;
 
 
     for (int i = 0; i < contents.count; i++) {
@@ -520,19 +531,25 @@
     }
 
     // 总页数
-    IGXMLNodeSet *totalPageSet = [document queryWithXPath:@"//*[@id='inlinemodform']/table[4]/tr[1]/td[2]/div/table/tr/td[1]"];
+    if (totaleListCount == -1) {
+        IGXMLNodeSet *totalPageSet = [document queryWithXPath:@"//*[@id='inlinemodform']/table[4]/tr[1]/td[2]/div/table/tr/td[1]"];
 
-    if (totalPageSet == nil) {
-        page.totalPageCount = 1;
+        if (totalPageSet == nil) {
+            totaleListCount = 1;
+            page.totalPageCount = 1;
+        } else {
+            IGXMLNode *totalPage = totalPageSet.firstObject;
+            NSString *pageText = [totalPage innerHtml];
+            NSString *numberText = [[pageText componentsSeparatedByString:@"，"] lastObject];
+            NSUInteger totalNumber = [numberText integerValue];
+            NSLog(@"总页数：   %@", pageText);
+            page.totalPageCount = totalNumber;
+            totaleListCount = totalNumber;
+        }
+
     } else {
-        IGXMLNode *totalPage = totalPageSet.firstObject;
-        NSString *pageText = [totalPage innerHtml];
-        NSString *numberText = [[pageText componentsSeparatedByString:@"，"] lastObject];
-        NSInteger totalNumber = [numberText integerValue];
-        NSLog(@"总页数：   %@", pageText);
-        page.totalPageCount = totalNumber;
+        page.totalPageCount = totaleListCount;
     }
-
     page.threadList = threadList;
 
     return page;
@@ -606,6 +623,8 @@
 
             IGXMLNode *postForNode = [node childrenAtPosition:2];
 
+            NSLog(@"--------------------- %ld title: %@", [postForNode children].count, [[postForNode text] trim]);
+
             NSString *postIdNode = [postForNode html];
             NSString *postId = [postIdNode stringWithRegular:@"id=\"thread_title_\\d+\"" andChild:@"\\d+"];
 
@@ -658,7 +677,7 @@
     //<a href="forumdisplay.php?f=158">『手机◇移动数码』</a>
     for (IGXMLNode *node in favFormNodeSet) {
         NSString *idsStr = [node.html stringWithRegular:@"f=\\d+" andChild:@"\\d+"];
-        [ids addObject:@(idsStr.intValue)];
+        [ids addObject:[NSNumber numberWithInt:[idsStr intValue]]];
     }
 
     [[NSUserDefaults standardUserDefaults] saveFavFormIds:ids];
@@ -701,7 +720,7 @@
 
     IGXMLNodeSet *messages = [document queryWithXPath:@"//*[@id='pmform']/table[2]/tbody[*]/tr"];
     for (IGXMLNode *node in messages) {
-        NSUInteger childCount = [[node children] count];
+        long childCount = [[node children] count];
         if (childCount == 4) {
             // 有4个节点说明是正常的站内短信
             Message *message = [[Message alloc] init];
@@ -796,9 +815,9 @@
     NSString *userAvatar = [[[[[[userInfoNode childrenAtPosition:1] childrenAtPosition:1] childrenAtPosition:0] attribute:@"src"] componentsSeparatedByString:@"/"] lastObject];
     if (userAvatar) {
         NSString *avatarPattern = @"%@/%@";
-        userAvatar = [NSString stringWithFormat:avatarPattern, @"https://bbs.et8.net/bbs/customavatars", userAvatar];
+        userAvatar = [NSString stringWithFormat:avatarPattern, self.config.avatarBase, userAvatar];
     } else {
-        userAvatar = @"https://bbs.et8.net/bbs/customavatars/no_avatar.gif";
+        userAvatar = self.config.avatarNo;
     }
     pmAuthor.userAvatar = userAvatar;
 
@@ -917,7 +936,7 @@
     parent.forumId = fixForumId;
     parent.parentForumId = parentFormId;
     parent.forumName = name;
-    parent.forumHost = @"bbs.et8.net";
+    parent.forumHost = self.config.host;
 
     if (node.childrenCount == 2) {
         IGXMLNodeSet *childSet = [node childrenAtPosition:1].children;
