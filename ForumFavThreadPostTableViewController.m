@@ -20,6 +20,12 @@
 
 @implementation ForumFavThreadPostTableViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 97.0;
+}
+
 - (void)onPullRefresh {
     [self.forumBrowser listFavoriteThreadPostsWithPage:1 handler:^(BOOL isSuccess, ViewForumPage *resultPage) {
 
