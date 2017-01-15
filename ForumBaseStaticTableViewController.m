@@ -23,7 +23,7 @@
 
 
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 180.0;
+    self.tableView.estimatedRowHeight = 97.0;
 
     if ([self setPullRefresh:YES]) {
         self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{

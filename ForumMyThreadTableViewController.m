@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 180.0;
+    self.tableView.estimatedRowHeight = 97.0;
 }
 
 - (void)onPullRefresh {

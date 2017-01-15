@@ -31,7 +31,7 @@
     }
 
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 180.0;
+    self.tableView.estimatedRowHeight = 97.0;
 
     [self.messageSegmentedControl addTarget:self action:@selector(didClicksegmentedControlAction:) forControlEvents:UIControlEventValueChanged];
 }
