@@ -35,6 +35,9 @@
         self.navigationItem.leftBarButtonItem = nil;
     }
 
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 180.0;
+
     ForumCoreDataManager *formManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
 
     [self.dataList removeAllObjects];
