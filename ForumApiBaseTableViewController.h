@@ -9,7 +9,6 @@
 
 #import "ForumBrowser.h"
 #import "MJRefresh.h"
-#import "UITableView+FDTemplateLayoutCell.h"
 
 #import "vBulletinForumEngine.h"
 #import "TranBundleUITableViewController.h"

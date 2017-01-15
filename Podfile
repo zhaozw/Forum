@@ -5,7 +5,7 @@ target 'Forum' do
 	pod 'IGHTMLQuery', '~> 0.8.4'
 	pod 'JSONModel', '~> 1.1.2' #json解:析
 	pod 'MJRefresh', '~> 3.0.8'
-	pod 'UITableView+FDTemplateLayoutCell', '~> 1.4'
+    #pod 'UITableView+FDTemplateLayoutCell', '~> 1.4'
 	pod 'SVProgressHUD', '~> 1.1.3'
 	pod 'LCActionSheet', '~>1.2.3'
 	pod 'ActionSheetPicker-3.0'

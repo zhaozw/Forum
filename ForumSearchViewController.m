@@ -127,7 +127,7 @@
 
     [cell setSeparatorInset:UIEdgeInsetsZero];
     [cell setLayoutMargins:UIEdgeInsetsZero];
-
+    [cell setData:self.dataList[(NSUInteger) indexPath.row]];
     return cell;
 }
 
@@ -145,19 +145,6 @@
 
 
     return YES;
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [tableView fd_heightForCellWithIdentifier:@"SearchResultCell" configuration:^(ForumSearchResultCell *cell) {
-        [self configureCell:cell atIndexPath:indexPath];
-    }];
-}
-
-- (void)configureCell:(ForumSearchResultCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
-
-    [cell setData:self.dataList[(NSUInteger) indexPath.row]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

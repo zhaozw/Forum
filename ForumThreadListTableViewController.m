@@ -204,6 +204,8 @@
         [cell setSeparatorInset:UIEdgeInsetsZero];
         [cell setLayoutMargins:UIEdgeInsetsZero];
 
+        [cell setData:self.dataList[(NSUInteger) indexPath.row]];
+
         return cell;
     }
 }
@@ -233,23 +235,6 @@
 
 
     return YES;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        return 54;
-    } else {
-        return [tableView fd_heightForCellWithIdentifier:@"ThreadListCellIdentifier" configuration:^(ForumThreadListCell *cell) {
-            [self configureCell:cell atIndexPath:indexPath];
-        }];
-    }
-}
-
-
-- (void)configureCell:(ForumThreadListCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
-
-    [cell setData:self.dataList[(NSUInteger) indexPath.row]];
 }
 
 - (void)showUserProfile:(NSIndexPath *)indexPath {

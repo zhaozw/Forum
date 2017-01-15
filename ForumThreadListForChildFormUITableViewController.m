@@ -141,6 +141,8 @@
 
     [cell setSeparatorInset:UIEdgeInsetsZero];
     [cell setLayoutMargins:UIEdgeInsetsZero];
+
+    [cell setData:self.dataList[(NSUInteger) indexPath.row]];
     return cell;
 }
 
@@ -161,19 +163,6 @@
     }
 
     return YES;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [tableView fd_heightForCellWithIdentifier:@"ThreadListCellIdentifier" configuration:^(ForumThreadListCell *cell) {
-        [self configureCell:cell atIndexPath:indexPath];
-    }];
-}
-
-
-- (void)configureCell:(ForumThreadListCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
-
-    [cell setData:self.dataList[(NSUInteger) indexPath.row]];
 }
 
 #pragma mark Controller跳转
