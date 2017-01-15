@@ -8,7 +8,6 @@
 #import <UIKit/UIKit.h>
 #import "vBulletinForumEngine.h"
 #import "BaseFourmTableViewCell.h"
-#import "UITableView+FDTemplateLayoutCell.h"
 
 @interface ForumSimpleThreadTableViewCell : BaseFourmTableViewCell
 

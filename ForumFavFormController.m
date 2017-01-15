@@ -53,6 +53,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 97.0;
+
     if ([self isNeedHideLeftMenu]){
         self.navigationItem.leftBarButtonItem = nil;
     }

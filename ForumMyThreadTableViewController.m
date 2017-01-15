@@ -15,6 +15,12 @@
 
 @implementation ForumMyThreadTableViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 97.0;
+}
+
 - (void)onPullRefresh {
     [self.forumBrowser listMyAllThreadsWithPage:1 handler:^(BOOL isSuccess, ViewForumPage *message) {
         [self.tableView.mj_header endRefreshing];
@@ -59,20 +65,8 @@
     [cell setSeparatorInset:UIEdgeInsetsZero];
     [cell setLayoutMargins:UIEdgeInsetsZero];
 
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [tableView fd_heightForCellWithIdentifier:@"SearchResultCell" configuration:^(ForumSearchResultCell *cell) {
-        [self configureCell:cell atIndexPath:indexPath];
-    }];
-}
-
-
-- (void)configureCell:(ForumSearchResultCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
-
     [cell setData:self.dataList[(NSUInteger) indexPath.row]];
+    return cell;
 }
 
 #pragma mark Controller跳转
