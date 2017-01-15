@@ -93,6 +93,9 @@
         self.navigationItem.leftBarButtonItem = nil;
     }
 
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 180.0;
+    
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     [self.tableView setLayoutMargins:UIEdgeInsetsZero];
 
